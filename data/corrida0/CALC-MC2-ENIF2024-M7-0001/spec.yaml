@@ -1,0 +1,752 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-MC2-ENIF2024-M7-0001
+spec_md: ../../../forense/prereg-caja/MC2-ENIF2024-M7-spec-v1_0.md
+spec_md_sha256: 08b8ecc7cbaf9be373db21525c9a714d172d5e671b16b961abdd467c780dbeda
+script: data/corrida0/CALC-MC2-ENIF2024-M7-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  cuenta_gen2_nota: "encargo GEN2-MEDICION-CARRILES-2 + ADENDA-1 (firma R06 m7 ABIERTA-PARCIAL); no adopta"
+  acto: GEN2-MEDICION-CARRILES-2
+  tipo: PISO-DESCRIPTIVO-RETROSPECTIVO
+  temporalidad: RETROSPECTIVA
+  reserva: "ENIF 2024 m7 ABIERTA-PARCIAL sólo P7_1_1, P7_1_2, P7_2_1, P7_3_1 (ADENDA-1); resto de P7_* RESERVADO, guardia en el medidor"
+
+inputs:
+  - {id: enif_2024_enif_2024_bd_csv, origen: manifiesto}
+
+lectura_de_estructura_previa: "FD enif2024_fd_xlsx (cuatro columnas del módulo 7) y cuestionario §7.1-7.3; ningún registro del módulo 7 leído antes del COMMIT-1"
+
+variables:
+  - {archivo: TMODULO.csv, variable: EDAD_V, rol: "edad FP-384"}
+  - {archivo: TMODULO.csv, variable: NIV, rol: "escolaridad"}
+  - {archivo: TMODULO.csv, variable: SEXO, rol: "sexo"}
+  - {archivo: TMODULO.csv, variable: TLOC, rol: "localidad"}
+  - {archivo: TMODULO.csv, variable: REGION, rol: "región 1-6"}
+  - {archivo: TMODULO.csv, variable: EST_DIS, rol: "estrato"}
+  - {archivo: TMODULO.csv, variable: UPM_DIS, rol: "UPM"}
+  - {archivo: TMODULO.csv, variable: FAC_PER, rol: "ponderador"}
+  - {archivo: TMODULO.csv, variable: P7_1_1, rol: "7.1 forma de pago más frecuente, compras <= 500 (ABIERTA-PARCIAL)"}
+  - {archivo: TMODULO.csv, variable: P7_1_2, rol: "7.1 forma de pago más frecuente, compras >= 501 (ABIERTA-PARCIAL)"}
+  - {archivo: TMODULO.csv, variable: P7_2_1, rol: "7.2 conoce CoDi (ABIERTA-PARCIAL)"}
+  - {archivo: TMODULO.csv, variable: P7_3_1, rol: "7.3 ha usado CoDi (ABIERTA-PARCIAL)"}
+
+universo: "Persona elegida de 18 años y más (TMODULO.csv de ENIF 2024)."
+filtros: "P7_1_* fuera de 1-3 fuera (contado); P7_3_1 sólo con P7_2_1 = 1."
+ponderador: FAC_PER sin normalizar
+transformacion: "Ver spec humana §1: proporciones ponderadas; diferencia por localidad en la misma réplica."
+estimando: "Proporciones ponderadas por celda con IC95 de diseño; descriptivo, RETROSPECTIVO; dictámenes B-bis §2."
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap de UPM_DIS con reemplazo dentro de EST_DIS; percentiles 2.5/97.5
+  singleton: autorremuestreo; varianza cero; contado en DIAG-N-ESTRATOS-UPM-UNICA
+  hash_medidor_sha256: 0c8f3ca6ab58c87d0a7632cb143dc2f882ed094a1778c571b5a8f9534a93c200
+  hash_payload_sha256: "enif_2024_enif_2024_bd_csv 00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+  hash_prereg_sha256: 08b8ecc7cbaf9be373db21525c9a714d172d5e671b16b961abdd467c780dbeda
+  hash_encargo_sha256: 783bc65f1875b0f2b605f5aa3a4e4614bf4685708d4937f77e5f4ba7c6abab38
+
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: misma semilla y sumas deterministas; enteros comparan exacto
+
+resultados:
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-HASTA-PRIMARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-HASTA-PRIMARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-HASTA-PRIMARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-HASTA-PRIMARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-SECUNDARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-SECUNDARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-SECUNDARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-SECUNDARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-MEDIA-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-MEDIA-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-MEDIA-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-ESC-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-LOC-15MIL-Y-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-LOC-15MIL-Y-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-LOC-15MIL-Y-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-LOC-15MIL-Y-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-LOC-MENOS-15MIL-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-LOC-MENOS-15MIL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-LOC-MENOS-15MIL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-LOC-MENOS-15MIL-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-1-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-1-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-1-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-1-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-2-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-2-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-2-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-2-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-3-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-3-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-3-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-3-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-4-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-4-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-4-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-4-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-5-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-5-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-5-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-5-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-6-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-6-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-6-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-REGION-6-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-HASTA-PRIMARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-HASTA-PRIMARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-HASTA-PRIMARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-HASTA-PRIMARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-SECUNDARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-SECUNDARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-SECUNDARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-SECUNDARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-MEDIA-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-MEDIA-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-MEDIA-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-ESC-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-LOC-15MIL-Y-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-LOC-15MIL-Y-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-LOC-15MIL-Y-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-LOC-15MIL-Y-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-LOC-MENOS-15MIL-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-LOC-MENOS-15MIL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-LOC-MENOS-15MIL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-LOC-MENOS-15MIL-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-1-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-1-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-1-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-1-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-2-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-2-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-2-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-2-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-3-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-3-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-3-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-3-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-4-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-4-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-4-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-4-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-5-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-5-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-5-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-5-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-6-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-6-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-6-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-500-O-MENOS-REGION-6-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-HASTA-PRIMARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-HASTA-PRIMARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-HASTA-PRIMARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-HASTA-PRIMARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-SECUNDARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-SECUNDARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-SECUNDARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-SECUNDARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-MEDIA-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-MEDIA-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-MEDIA-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-ESC-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-LOC-15MIL-Y-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-LOC-15MIL-Y-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-LOC-15MIL-Y-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-LOC-15MIL-Y-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-LOC-MENOS-15MIL-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-LOC-MENOS-15MIL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-LOC-MENOS-15MIL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-LOC-MENOS-15MIL-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-1-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-1-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-1-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-1-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-2-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-2-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-2-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-2-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-3-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-3-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-3-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-3-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-4-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-4-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-4-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-4-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-5-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-5-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-5-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-5-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-6-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-6-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-6-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-500-O-MENOS-REGION-6-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-HASTA-PRIMARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-HASTA-PRIMARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-HASTA-PRIMARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-HASTA-PRIMARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-SECUNDARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-SECUNDARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-SECUNDARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-SECUNDARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-MEDIA-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-MEDIA-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-MEDIA-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-ESC-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-LOC-15MIL-Y-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-LOC-15MIL-Y-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-LOC-15MIL-Y-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-LOC-15MIL-Y-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-LOC-MENOS-15MIL-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-LOC-MENOS-15MIL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-LOC-MENOS-15MIL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-LOC-MENOS-15MIL-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-1-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-1-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-1-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-1-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-2-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-2-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-2-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-2-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-3-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-3-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-3-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-3-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-4-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-4-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-4-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-4-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-5-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-5-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-5-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-5-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-6-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-6-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-6-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-501-O-MAS-REGION-6-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-HASTA-PRIMARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-HASTA-PRIMARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-HASTA-PRIMARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-HASTA-PRIMARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-SECUNDARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-SECUNDARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-SECUNDARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-SECUNDARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-MEDIA-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-MEDIA-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-MEDIA-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-ESC-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-LOC-15MIL-Y-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-LOC-15MIL-Y-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-LOC-15MIL-Y-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-LOC-15MIL-Y-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-LOC-MENOS-15MIL-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-LOC-MENOS-15MIL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-LOC-MENOS-15MIL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-LOC-MENOS-15MIL-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-1-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-1-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-1-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-1-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-2-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-2-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-2-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-2-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-3-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-3-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-3-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-3-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-4-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-4-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-4-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-4-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-5-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-5-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-5-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-5-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-6-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-6-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-6-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-DIGITAL-501-O-MAS-REGION-6-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-HASTA-PRIMARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-HASTA-PRIMARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-HASTA-PRIMARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-HASTA-PRIMARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-SECUNDARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-SECUNDARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-SECUNDARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-SECUNDARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-MEDIA-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-MEDIA-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-MEDIA-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-ESC-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-LOC-15MIL-Y-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-LOC-15MIL-Y-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-LOC-15MIL-Y-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-LOC-15MIL-Y-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-LOC-MENOS-15MIL-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-LOC-MENOS-15MIL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-LOC-MENOS-15MIL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-LOC-MENOS-15MIL-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-1-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-1-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-1-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-1-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-2-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-2-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-2-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-2-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-3-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-3-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-3-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-3-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-4-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-4-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-4-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-4-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-5-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-5-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-5-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-5-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-6-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-6-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-6-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-TARJETA-501-O-MAS-REGION-6-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-HASTA-PRIMARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-HASTA-PRIMARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-HASTA-PRIMARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-HASTA-PRIMARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-SECUNDARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-SECUNDARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-SECUNDARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-SECUNDARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-MEDIA-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-MEDIA-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-MEDIA-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-ESC-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-LOC-15MIL-Y-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-LOC-15MIL-Y-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-LOC-15MIL-Y-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-LOC-15MIL-Y-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-LOC-MENOS-15MIL-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-LOC-MENOS-15MIL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-LOC-MENOS-15MIL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-LOC-MENOS-15MIL-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-1-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-1-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-1-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-1-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-2-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-2-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-2-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-2-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-3-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-3-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-3-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-3-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-4-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-4-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-4-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-4-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-5-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-5-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-5-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-5-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-6-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-6-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-6-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-CONOCE-REGION-6-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-HASTA-PRIMARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-HASTA-PRIMARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-HASTA-PRIMARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-HASTA-PRIMARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-SECUNDARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-SECUNDARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-SECUNDARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-SECUNDARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-MEDIA-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-MEDIA-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-MEDIA-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-ESC-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-LOC-15MIL-Y-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-LOC-15MIL-Y-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-LOC-15MIL-Y-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-LOC-15MIL-Y-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-LOC-MENOS-15MIL-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-LOC-MENOS-15MIL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-LOC-MENOS-15MIL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-LOC-MENOS-15MIL-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-1-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-1-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-1-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-1-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-2-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-2-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-2-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-2-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-3-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-3-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-3-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-3-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-4-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-4-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-4-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-4-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-5-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-5-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-5-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-5-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-6-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-6-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-6-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-SI-CONOCE-REGION-6-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-HASTA-PRIMARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-HASTA-PRIMARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-HASTA-PRIMARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-HASTA-PRIMARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-SECUNDARIA-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-SECUNDARIA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-SECUNDARIA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-SECUNDARIA-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-MEDIA-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-MEDIA-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-MEDIA-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-ESC-SUPERIOR-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-LOC-15MIL-Y-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-LOC-15MIL-Y-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-LOC-15MIL-Y-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-LOC-15MIL-Y-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-LOC-MENOS-15MIL-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-LOC-MENOS-15MIL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-LOC-MENOS-15MIL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-LOC-MENOS-15MIL-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-1-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-1-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-1-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-1-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-2-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-2-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-2-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-2-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-3-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-3-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-3-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-3-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-4-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-4-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-4-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-4-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-5-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-5-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-5-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-5-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-6-P, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-6-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-6-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-CODI-USA-POBLACION-REGION-6-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-DIF-LOC-MENOS-MAS-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-DIF-LOC-MENOS-MAS-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-DIF-LOC-MENOS-MAS-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona elegida 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIF2024-M7-EFECTIVO-500-O-MENOS-DIF-LOC-MENOS-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona elegida 18+)"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIAG-FILAS-TMODULO, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIAG-P7_1_1-FUERA-1-3, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIAG-P7_1_2-FUERA-1-3, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIAG-N-SIN-PONDERADOR, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIAG-N-ESTRATOS, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIAG-N-UPM, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENIF2024-M7-DIAG-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
