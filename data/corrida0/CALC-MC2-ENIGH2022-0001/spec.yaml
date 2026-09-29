@@ -1,0 +1,132 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-MC2-ENIGH2022-0001
+spec_md: ../../../forense/prereg-caja/MC2-ENIGH2022-spec-v1_0.md
+spec_md_sha256: a6c98d6b10d4b5d707036a56271a9e167d7a8d8019c14b51b459d7779dafc943
+script: data/corrida0/CALC-MC2-ENIGH2022-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  cuenta_gen2_nota: "encargo GEN2-MEDICION-CARRILES-2 (ADENDA-2: «sigue»); no adopta"
+  acto: GEN2-MEDICION-CARRILES-2
+  tipo: PISO-DESCRIPTIVO-RETROSPECTIVO
+  temporalidad: RETROSPECTIVA
+  ola_reservada: "ENIGH 2024 (salvo seis columnas AMAI), no es input; se mide la ola vista 2022"
+
+inputs:
+  - {id: enigh2022_nc_csv, origen: manifiesto}
+
+lectura_de_estructura_previa: "cabecera del concentradohogar 2022 y descripción de la base; de CALC-ENIGH2022-INTENSIDAD-REMESAS-0001 sólo ids; ningún registro leído antes del COMMIT-1"
+
+variables:
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2022_ns.csv, variable: folioviv, rol: "llave vivienda"}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2022_ns.csv, variable: foliohog, rol: "llave hogar"}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2022_ns.csv, variable: ubica_geo, rol: "entidad (2 dígitos)"}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2022_ns.csv, variable: est_dis, rol: "estrato de diseño"}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2022_ns.csv, variable: upm, rol: "UPM"}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2022_ns.csv, variable: factor, rol: "factor de expansión hogar"}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2022_ns.csv, variable: ing_cor, rol: "ingreso corriente trimestral"}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2022_ns.csv, variable: transfer, rol: "transferencias"}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2022_ns.csv, variable: gasto_mon, rol: "gasto corriente monetario trimestral"}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2022_ns.csv, variable: alimentos, rol: "gasto en alimentos, bebidas y tabaco"}
+
+universo: "Hogares de ENIGH 2022 Nueva Serie (concentradohogar)."
+filtros: "Sin filtros de contenido; ingreso sin transferencias truncado a 0."
+ponderador: factor sin normalizar
+transformacion: "Ver spec humana §1: medias, razones de la misma réplica, deciles fijos, Gini ponderado."
+estimando: "Medias, razones y Gini ponderados con IC95 de diseño; RETROSPECTIVO; dictámenes B-bis §2."
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap de upm con reemplazo dentro de est_dis; percentiles 2.5/97.5; Gini con semilla seed+1
+  singleton: autorremuestreo; varianza cero; contado en DIAG-N-ESTRATOS-UPM-UNICA
+  hash_medidor_sha256: ca7a10bea418c6728d4b758a75564c23d3cf593a4e8bfe2db2cae3704be714b1
+  hash_payload_sha256: "enigh2022_nc_csv 3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06"
+  hash_prereg_sha256: a6c98d6b10d4b5d707036a56271a9e167d7a8d8019c14b51b459d7779dafc943
+  hash_encargo_sha256: 791d0a894ac00d25d51e8001b686ac0db05dd5411e4ebfd412e9882173f1e6d5
+
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-8
+  razon: misma semilla y sumas deterministas; enteros comparan exacto
+
+resultados:
+  - {id: RESULT-MC2-ENIGH2022-GASTO-MON-MENSUAL-CDMX-P, tipo: flotante, unidad: "pesos mensuales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GASTO-MON-MENSUAL-CDMX-IC95-INF, tipo: flotante, unidad: "pesos mensuales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GASTO-MON-MENSUAL-CDMX-IC95-SUP, tipo: flotante, unidad: "pesos mensuales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GASTO-MON-MENSUAL-CDMX-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-ING-COR-TRIM-CDMX-P, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-COR-TRIM-CDMX-IC95-INF, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-COR-TRIM-CDMX-IC95-SUP, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-COR-TRIM-CDMX-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-GASTO-MON-MENSUAL-CHIAPAS-P, tipo: flotante, unidad: "pesos mensuales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GASTO-MON-MENSUAL-CHIAPAS-IC95-INF, tipo: flotante, unidad: "pesos mensuales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GASTO-MON-MENSUAL-CHIAPAS-IC95-SUP, tipo: flotante, unidad: "pesos mensuales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GASTO-MON-MENSUAL-CHIAPAS-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-ING-COR-TRIM-CHIAPAS-P, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-COR-TRIM-CHIAPAS-IC95-INF, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-COR-TRIM-CHIAPAS-IC95-SUP, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-COR-TRIM-CHIAPAS-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-GASTO-MON-MENSUAL-NUEVO-LEON-P, tipo: flotante, unidad: "pesos mensuales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GASTO-MON-MENSUAL-NUEVO-LEON-IC95-INF, tipo: flotante, unidad: "pesos mensuales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GASTO-MON-MENSUAL-NUEVO-LEON-IC95-SUP, tipo: flotante, unidad: "pesos mensuales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GASTO-MON-MENSUAL-NUEVO-LEON-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-ING-COR-TRIM-NUEVO-LEON-P, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-COR-TRIM-NUEVO-LEON-IC95-INF, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-COR-TRIM-NUEVO-LEON-IC95-SUP, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-COR-TRIM-NUEVO-LEON-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-D1-ALIMENTOS-MEDIA-P, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D1-ALIMENTOS-MEDIA-IC95-INF, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D1-ALIMENTOS-MEDIA-IC95-SUP, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D1-ALIMENTOS-MEDIA-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-D1-TRANSFER-MEDIA-P, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D1-TRANSFER-MEDIA-IC95-INF, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D1-TRANSFER-MEDIA-IC95-SUP, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D1-TRANSFER-MEDIA-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-D1-ING-MEDIA-P, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D1-ING-MEDIA-IC95-INF, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D1-ING-MEDIA-IC95-SUP, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D1-ING-MEDIA-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-ING-X-MEDIA-TODOS-P, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-X-MEDIA-TODOS-IC95-INF, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-X-MEDIA-TODOS-IC95-SUP, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-X-MEDIA-TODOS-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-ING-MEDIA-TODOS-P, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-MEDIA-TODOS-IC95-INF, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-MEDIA-TODOS-IC95-SUP, tipo: flotante, unidad: "pesos trimestrales, media ponderada por hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-MEDIA-TODOS-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-GASTO-RAZON-CDMX-CHIAPAS-P, tipo: flotante, unidad: "razón de medias ponderadas, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GASTO-RAZON-CDMX-CHIAPAS-IC95-INF, tipo: flotante, unidad: "razón de medias ponderadas, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GASTO-RAZON-CDMX-CHIAPAS-IC95-SUP, tipo: flotante, unidad: "razón de medias ponderadas, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GASTO-RAZON-CDMX-CHIAPAS-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-ING-RAZON-NUEVO-LEON-CHIAPAS-P, tipo: flotante, unidad: "razón de medias ponderadas, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-RAZON-NUEVO-LEON-CHIAPAS-IC95-INF, tipo: flotante, unidad: "razón de medias ponderadas, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-RAZON-NUEVO-LEON-CHIAPAS-IC95-SUP, tipo: flotante, unidad: "razón de medias ponderadas, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-ING-RAZON-NUEVO-LEON-CHIAPAS-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-D1-ALIMENTOS-SOBRE-INGRESO-P, tipo: flotante, unidad: "razón de totales ponderados, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D1-ALIMENTOS-SOBRE-INGRESO-IC95-INF, tipo: flotante, unidad: "razón de totales ponderados, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D1-ALIMENTOS-SOBRE-INGRESO-IC95-SUP, tipo: flotante, unidad: "razón de totales ponderados, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D1-ALIMENTOS-SOBRE-INGRESO-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-D1-TRANSFER-SOBRE-INGRESO-P, tipo: flotante, unidad: "razón de totales ponderados, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D1-TRANSFER-SOBRE-INGRESO-IC95-INF, tipo: flotante, unidad: "razón de totales ponderados, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D1-TRANSFER-SOBRE-INGRESO-IC95-SUP, tipo: flotante, unidad: "razón de totales ponderados, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D1-TRANSFER-SOBRE-INGRESO-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-D10-PARTICIPACION-INGRESO-P, tipo: flotante, unidad: "razón de totales ponderados, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D10-PARTICIPACION-INGRESO-IC95-INF, tipo: flotante, unidad: "razón de totales ponderados, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D10-PARTICIPACION-INGRESO-IC95-SUP, tipo: flotante, unidad: "razón de totales ponderados, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-D10-PARTICIPACION-INGRESO-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-GINI-CON-TRANSFERENCIAS-P, tipo: flotante, unidad: "coeficiente de Gini ponderado, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GINI-CON-TRANSFERENCIAS-IC95-INF, tipo: flotante, unidad: "coeficiente de Gini ponderado, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GINI-CON-TRANSFERENCIAS-IC95-SUP, tipo: flotante, unidad: "coeficiente de Gini ponderado, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GINI-CON-TRANSFERENCIAS-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-GINI-SIN-TRANSFERENCIAS-P, tipo: flotante, unidad: "coeficiente de Gini ponderado, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GINI-SIN-TRANSFERENCIAS-IC95-INF, tipo: flotante, unidad: "coeficiente de Gini ponderado, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GINI-SIN-TRANSFERENCIAS-IC95-SUP, tipo: flotante, unidad: "coeficiente de Gini ponderado, hogar", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENIGH2022-GINI-SIN-TRANSFERENCIAS-N, tipo: entero, unidad: "n no ponderado (hogares)"}
+  - {id: RESULT-MC2-ENIGH2022-DIAG-FILAS, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENIGH2022-DIAG-LLAVE-HOGAR-DUPLICADA, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENIGH2022-DIAG-N-ESTRATOS, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENIGH2022-DIAG-N-UPM, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENIGH2022-DIAG-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo de diagnóstico"}
