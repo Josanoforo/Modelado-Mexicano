@@ -29,15 +29,15 @@ Detalle y cierre de cada una en el [estado y prueba]({{ '/estado.html#la-prueba'
 
 | Objeto | Valor |
 |---|---:|
-| Corridas selladas | 300 <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> |
-| RESULT GEN2 sellados | 205 587 <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> |
-| RESULT GEN2 adoptados (piso publicado) | 81 <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_adoptados_activos=' --> |
+| Corridas selladas | 324 <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> |
+| RESULT GEN2 sellados | 216 702 <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> |
+| RESULT GEN2 adoptados (piso publicado) | 128 <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_adoptados_activos=' --> |
 | Celdas validadas (contador rector) | 219 <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas=' --> |
 | Reports de evidencia en el corpus | 31 <!-- deriva: rg --files corpus/reports -g '*.md' | wc -l --> |
-| Áreas de consulta con estimador adoptado | 13 <!-- deriva: python3 -c "import csv,sys;csv.field_size_limit(sys.maxsize);print(len({r['area_consulta'] for r in csv.DictReader(open('canon/tabla-de-piso-v1_2.tsv'),delimiter='\t')}))" --> |
-| Estimadores en el catálogo v1.3 (= filas de la tabla de piso) | 63 706 <!-- deriva: python3 tools/genera_tabla_piso_v1_2.py | rg '^filas_adoptadas=' --> |
+| Áreas de consulta con estimador adoptado | 14 <!-- deriva: python3 -c "import csv,sys;csv.field_size_limit(sys.maxsize);print(len({r['area_consulta'] for r in csv.DictReader(open('canon/tabla-de-piso-v1_3.tsv'),delimiter='\t')}))" --> |
+| Filas de la tabla de piso v1.3 (catálogo v1.4 sin contrastes de momento) | 65 314 <!-- deriva: python3 tools/genera_tabla_piso_v1_3.py | rg '^filas_adoptadas=' --> |
 
-El [catálogo del mexicano v1.3](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/catalogo-del-mexicano-v1_3.md) contiene solo estimadores adoptados por firma de mesa citada por id; la [tabla de piso v1.2](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/tabla-de-piso-v1_2.tsv) los proyecta con sus hashes — ésa es la línea que el [reto público]({{ '/reto.html' | relative_url }}) invita a vencer. La fila «RESULT GEN2 adoptados» cuenta otra cosa: los RESULT que hoy consume el motor (`corrida0 status`).
+El [catálogo del mexicano v1.4](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/catalogo-del-mexicano-v1_4.md) (sucede a la [v1.3](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/catalogo-del-mexicano-v1_3.md)) contiene estimadores con su adopción citada — firma de mesa citada por id, o el bloque de adopción de la semana, que se adopta con el merge de mesa; la [tabla de piso v1.3](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/tabla-de-piso-v1_3.tsv) (sucede a la [v1.2](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/tabla-de-piso-v1_2.tsv)) los proyecta con sus hashes — ésa es la línea que el [reto público]({{ '/reto.html' | relative_url }}) invita a vencer. La fila «RESULT GEN2 adoptados» cuenta otra cosa: los RESULT que hoy consume el motor (`corrida0 status`).
 
 ## Qué obtiene cada audiencia
 

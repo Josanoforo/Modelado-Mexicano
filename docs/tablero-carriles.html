@@ -48,47 +48,47 @@ Misma data que <a href="https://github.com/Josanoforo/Modelado-Mexicano/blob/mai
 <strong>Límites de esta lectura:</strong> la unión carril ↔ instrumento es por palabra en <code>instrumento_ola</code>, y la reserva de ENIGH 2024 que la memoria operativa declara no tiene token en el manifiesto ni en tabla-final, así que el tablero no la ve (hallazgo del acto).
 </li></ul>
 <h2>Cómo leer</h2>
-<p>Umbrales (único sitio: cabecera de <code>tools/tablero_carriles.py</code>): núcleo = dominio con peso ≥ 0.2 (más el de mayor peso) · VERDE exige cifra adoptada en todo el núcleo y reglas con dictamen ≥ 0.5 · GRIS = dominio principal en GENETICA, GENOMICA o NO-MEDIBLE-POR-DISEÑO &gt; 0.5 · a lo más 5 stoppers listados por categoría <span class="dd">⟨S⟩</span></p>
+<p>Umbrales (único sitio: cabecera de <code>tools/tablero_carriles.py</code>): núcleo = dominio con peso ≥ 0.2 (más el de mayor peso) · VERDE exige cifra adoptada en todo el núcleo y reglas con dictamen ≥ 0.5 · NARANJA = núcleo cubierto por cifra adoptada o piso sellado registrado en la vista pendiente de adopción (visibilidad, no adopción) · GRIS = dominio principal en GENETICA, GENOMICA o NO-MEDIBLE-POR-DISEÑO &gt; 0.5 · a lo más 5 stoppers listados por categoría <span class="dd">⟨S⟩</span></p>
 <p>Precedencia de la siguiente acción: FIRMA &gt; RESERVA &gt; ADQUISICION &gt; NC-PARO &gt; CALC &gt; EDITORIAL. Cada línea con un número lleva <code>⟨F…⟩</code>: el archivo del que sale, con su blob y su lector en «Cadena de procedencia». <code>S</code> = regla del script. El catálogo no trae <code>report</code>: la unión carril ↔ cifra pasa por dominio × instrumento. Firmas, reservas, NC, CALC, actos en vuelo y validación casan con los instrumentos del núcleo y se ordenan por relevancia. <span class="dd">⟨S⟩</span></p>
 <h2>Resumen</h2>
-<p>Carriles 31: 🔴 ROJO 7 · 🟡 AMARILLO 21 · 🟢 VERDE 0 · ⚪ GRIS 3 <span class="dd">⟨F1 F2 F3 S⟩</span></p>
+<p>Carriles 31: 🔴 ROJO 7 · 🟡 AMARILLO 21 · 🟠 NARANJA 0 · 🟢 VERDE 0 · ⚪ GRIS 3 <span class="dd">⟨F1 F2 F3 S⟩</span></p>
 <div class="tabla"><table>
 <thead><tr><th>carril</th><th>report</th><th>semáforo</th><th>afirm.</th><th>núcleo con cifra</th><th>reglas con dictamen</th><th>stoppers</th><th>siguiente acción</th><th>⟨⟩</th></tr></thead><tbody>
-<tr><td>CARRIL-09</td><td>El México Rural e Indígena en sus Propios Términos · Comunal</td><td>🔴 ROJO</td><td>49</td><td>0/1</td><td>0% de 3</td><td>7</td><td>FIRMA: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-09</td><td>El México Rural e Indígena en sus Propios Términos · Comunal</td><td>🔴 ROJO</td><td>49</td><td>0/1</td><td>0% de 3</td><td>3</td><td>FIRMA: <code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
 <tr><td>CARRIL-02</td><td>Ausencia sin certeza · duelo y pérdida ambigua en familias d</td><td>🔴 ROJO</td><td>41</td><td>0/1</td><td>0% de 4</td><td>2</td><td>ADQUISICION: <code>SIN-UNION</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-08</td><td>El Mexicano y el Tiempo · Estructura · no Cultura · en la Pl</td><td>🔴 ROJO</td><td>38</td><td>0/1</td><td>29% de 7</td><td>6</td><td>RESERVA: <code>mapa:reserva_v1_1</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-08</td><td>El Mexicano y el Tiempo · Estructura · no Cultura · en la Pl</td><td>🔴 ROJO</td><td>38</td><td>0/1</td><td>29% de 7</td><td>4</td><td>FIRMA: <code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
 <tr><td>CARRIL-13</td><td>Humor in Mexican Psychological Life · 2023-2026 Update</td><td>🔴 ROJO</td><td>34</td><td>0/1</td><td>0% de 3</td><td>1</td><td>ADQUISICION: <code>SIN-UNION</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
 <tr><td>CARRIL-22</td><td>Psicología de la Juventud Mexicana Contemporánea · Gen Z y M</td><td>🔴 ROJO</td><td>32</td><td>0/1</td><td>0% de 4</td><td>4</td><td>RESERVA: <code>mapa:reserva_v1_1</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
 <tr><td>CARRIL-17</td><td>Moral Emotions in Mexico · Declared Dignity · Relational Fac</td><td>🔴 ROJO</td><td>31</td><td>0/1</td><td>0% de 2</td><td>1</td><td>ADQUISICION: <code>SIN-UNION</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-03</td><td>Autoridad y jerarquía en el México contemporáneo · anatomía</td><td>🔴 ROJO</td><td>30</td><td>0/1</td><td>0% de 3</td><td>6</td><td>FIRMA: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-24</td><td>Psicología del Trabajo en México · Un Mapa Basado en Evidenc</td><td>🟡 AMARILLO</td><td>57</td><td>1/1</td><td>0% de 3</td><td>4</td><td>RESERVA: <code>mapa:reserva_v1_1</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-15</td><td>La familia mexicana como sistema psicológico · entre el afec</td><td>🟡 AMARILLO</td><td>51</td><td>1/1</td><td>0% de 3</td><td>7</td><td>ADQUISICION: <code>SIN-UNION</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-07</td><td>El Efecto Ambiental de la Violencia Crónica en México · Cómo</td><td>🟡 AMARILLO</td><td>48</td><td>1/1</td><td>0% de 4</td><td>2</td><td>ADQUISICION: <code>SIN-UNION</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-10</td><td>Elegir · Cortejar y Amar en el México de Hoy · Díada de Pare</td><td>🟡 AMARILLO</td><td>46</td><td>2/2</td><td>0% de 4</td><td>3</td><td>FIRMA: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-01</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-03</td><td>Autoridad y jerarquía en el México contemporáneo · anatomía</td><td>🔴 ROJO</td><td>30</td><td>0/1</td><td>0% de 3</td><td>6</td><td>FIRMA: <code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-24</td><td>Psicología del Trabajo en México · Un Mapa Basado en Evidenc</td><td>🟡 AMARILLO</td><td>57</td><td>1/1</td><td>0% de 3</td><td>5</td><td>RESERVA: <code>mapa:reserva_v1_1</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-15</td><td>La familia mexicana como sistema psicológico · entre el afec</td><td>🟡 AMARILLO</td><td>51</td><td>1/1</td><td>0% de 3</td><td>5</td><td>FIRMA: <code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-07</td><td>El Efecto Ambiental de la Violencia Crónica en México · Cómo</td><td>🟡 AMARILLO</td><td>48</td><td>1/1</td><td>0% de 4</td><td>3</td><td>ADQUISICION: <code>SIN-UNION</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-10</td><td>Elegir · Cortejar y Amar en el México de Hoy · Díada de Pare</td><td>🟡 AMARILLO</td><td>46</td><td>2/2</td><td>0% de 4</td><td>4</td><td>FIRMA: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-01</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
 <tr><td>CARRIL-14</td><td>La arquitectura invisible de la interacción social en México</td><td>🟡 AMARILLO</td><td>45</td><td>1/2</td><td>0% de 2</td><td>1</td><td>ADQUISICION: <code>SIN-UNION</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-01</td><td>Adopción y Resistencia Tecnológica en México · La Paradoja d</td><td>🟡 AMARILLO</td><td>43</td><td>1/1</td><td>0% de 3</td><td>4</td><td>FIRMA: <code>FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-04</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-06</td><td>El Clasemediero Mexicano · Identidad · Ansiedad de Estatus y</td><td>🟡 AMARILLO</td><td>43</td><td>1/1</td><td>0% de 2</td><td>9</td><td>FIRMA: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-20</td><td>Psicología Política y Comportamiento Cívico del Mexicano Con</td><td>🟡 AMARILLO</td><td>43</td><td>1/1</td><td>30% de 10</td><td>9</td><td>FIRMA: <code>FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-04</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-19</td><td>Non-Family Social Capital in Mexico · Cooperation · Trust ·</td><td>🟡 AMARILLO</td><td>42</td><td>1/1</td><td>44% de 9</td><td>9</td><td>FIRMA: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-25</td><td>Psychology of Mexico-US Migration · Identity · Family · Aspi</td><td>🟡 AMARILLO</td><td>42</td><td>1/1</td><td>0% de 3</td><td>3</td><td>FIRMA: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-12</td><td>Health · Body · Food and Substance Use in Mexico · The Behav</td><td>🟡 AMARILLO</td><td>39</td><td>1/1</td><td>0% de 3</td><td>6</td><td>FIRMA: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-29</td><td>Salud Mental en México · Prevalencia · Estigma y la Brecha e</td><td>🟡 AMARILLO</td><td>39</td><td>1/1</td><td>0% de 3</td><td>3</td><td>FIRMA: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-18</td><td>Mérito · Movilidad Social y Desigualdad en México · Actualiz</td><td>🟡 AMARILLO</td><td>38</td><td>1/1</td><td>0% de 4</td><td>8</td><td>FIRMA: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-23</td><td>Psicología del Consumidor Mexicano · Patrones · Contradiccio</td><td>🟡 AMARILLO</td><td>38</td><td>2/2</td><td>40% de 5</td><td>5</td><td>FIRMA: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-01</td><td>Adopción y Resistencia Tecnológica en México · La Paradoja d</td><td>🟡 AMARILLO</td><td>43</td><td>1/1</td><td>0% de 3</td><td>3</td><td>ADQUISICION: <code>SIN-UNION</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-06</td><td>El Clasemediero Mexicano · Identidad · Ansiedad de Estatus y</td><td>🟡 AMARILLO</td><td>43</td><td>1/1</td><td>0% de 2</td><td>5</td><td>RESERVA: <code>mapa:reserva_v1_1</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-20</td><td>Psicología Política y Comportamiento Cívico del Mexicano Con</td><td>🟡 AMARILLO</td><td>43</td><td>1/1</td><td>30% de 10</td><td>6</td><td>FIRMA: <code>FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-19</td><td>Non-Family Social Capital in Mexico · Cooperation · Trust ·</td><td>🟡 AMARILLO</td><td>42</td><td>1/1</td><td>44% de 9</td><td>6</td><td>FIRMA: <code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-25</td><td>Psychology of Mexico-US Migration · Identity · Family · Aspi</td><td>🟡 AMARILLO</td><td>42</td><td>1/1</td><td>0% de 3</td><td>1</td><td>ADQUISICION: <code>SIN-UNION</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-12</td><td>Health · Body · Food and Substance Use in Mexico · The Behav</td><td>🟡 AMARILLO</td><td>39</td><td>1/1</td><td>0% de 3</td><td>7</td><td>FIRMA: <code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-29</td><td>Salud Mental en México · Prevalencia · Estigma y la Brecha e</td><td>🟡 AMARILLO</td><td>39</td><td>1/1</td><td>0% de 3</td><td>1</td><td>ADQUISICION: <code>SIN-UNION</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-18</td><td>Mérito · Movilidad Social y Desigualdad en México · Actualiz</td><td>🟡 AMARILLO</td><td>38</td><td>1/1</td><td>0% de 4</td><td>6</td><td>FIRMA: <code>FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-23</td><td>Psicología del Consumidor Mexicano · Patrones · Contradiccio</td><td>🟡 AMARILLO</td><td>38</td><td>2/2</td><td>40% de 5</td><td>2</td><td>RESERVA: <code>ENDUTIH 2025</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
 <tr><td>CARRIL-27</td><td>Religiosidad y Psicología del Mexicano Contemporáneo · Moral</td><td>🟡 AMARILLO</td><td>38</td><td>1/1</td><td>0% de 3</td><td>1</td><td>ADQUISICION: <code>SIN-UNION</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
 <tr><td>CARRIL-28</td><td>Report 26 · The Contemporary Mexican and Knowledge · Experti</td><td>🟡 AMARILLO</td><td>38</td><td>2/2</td><td>22% de 9</td><td>4</td><td>RESERVA: <code>mapa:reserva_v1_1</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-31</td><td>Vejez y Cuidado Intergeneracional en México · El Debilitamie</td><td>🟡 AMARILLO</td><td>38</td><td>1/1</td><td>25% de 4</td><td>4</td><td>FIRMA: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-31</td><td>Vejez y Cuidado Intergeneracional en México · El Debilitamie</td><td>🟡 AMARILLO</td><td>38</td><td>1/1</td><td>25% de 4</td><td>2</td><td>RESERVA: <code>mapa:reserva_v1_1</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
 <tr><td>CARRIL-04</td><td>Behavioral Finance Mexicano · Estructura · Adaptación Racion</td><td>🟡 AMARILLO</td><td>35</td><td>1/1</td><td>33% de 3</td><td>1</td><td>ADQUISICION: <code>SIN-UNION</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-05</td><td>Confianza y Desconfianza en México · Anatomía Psicológica de</td><td>🟡 AMARILLO</td><td>33</td><td>1/1</td><td>0% de 4</td><td>8</td><td>FIRMA: <code>FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-04</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-05</td><td>Confianza y Desconfianza en México · Anatomía Psicológica de</td><td>🟡 AMARILLO</td><td>33</td><td>1/1</td><td>0% de 4</td><td>5</td><td>FIRMA: <code>FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
 <tr><td>CARRIL-26</td><td>Reconfiguración de los Guiones de Género en México · Masculi</td><td>🟡 AMARILLO</td><td>33</td><td>2/2</td><td>0% de 3</td><td>5</td><td>FIRMA: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-01</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
 <tr><td>CARRIL-21</td><td>Psicología · Conducta y Sociedad en el México Contemporáneo</td><td>🟡 AMARILLO</td><td>28</td><td>2/2</td><td>0% de 0</td><td>6</td><td>RESERVA: <code>mapa:reserva_v1_1</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
 <tr><td>CARRIL-11</td><td>Genetica y Conducta del Mexicano Contemporaneo · Canal Indiv</td><td>⚪ GRIS</td><td>38</td><td>0/1</td><td>0% de 3</td><td>1</td><td>ADQUISICION: <code>SIN-UNION</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
 <tr><td>CARRIL-16</td><td>Mexican Population Genomics · 2025-2026 Scientific and Marke</td><td>⚪ GRIS</td><td>33</td><td>0/1</td><td>0% de 2</td><td>4</td><td>FIRMA: <code>FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
-<tr><td>CARRIL-30</td><td>Sanción Social Horizontal en México · Chisme · Envidia y Mal</td><td>⚪ GRIS</td><td>22</td><td>0/1</td><td>0% de 2</td><td>2</td><td>FIRMA: <code>FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-04</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
+<tr><td>CARRIL-30</td><td>Sanción Social Horizontal en México · Chisme · Envidia y Mal</td><td>⚪ GRIS</td><td>22</td><td>0/1</td><td>0% de 2</td><td>2</td><td>ADQUISICION: <code>SIN-UNION</code></td><td><span class="dd">⟨F1 F2 F3 F4 F5 F7 F8 F9⟩</span></td></tr>
 </tbody></table></div>
 <h2>Adquisición — global</h2>
 <p>Cola de adquisición: 952 filas; por estado A4/A5 (primer token, tal cual): OBTENIDO 879 · OBTENIDO-PARCIAL 20 · SOLICITUD-PREPARADA 13 · NO-ACCESIBLE 10 · NO-OBTENIDO-POR-ESTE-AGENTE 8 · NO-ENCONTRADO 6 · CERRADA 4 · CERRADA-PREEXISTENTE 4 · SUPERADA-POR 4 · SIN-FETCH 2 · DIFERIDO-A 1 · NO-ADQUIRIDA-POR-COSTO 1 <span class="dd">⟨F5⟩</span></p>
-<p>Manifiesto: 7198 payloads; con <code>estado_reserva</code>: RESERVADA-NO-ABIERTA-NO-INDEXAR-L 173 · DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS 45 · RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR 4; licencia ausente o NO-DECLARADA: 676 <span class="dd">⟨F6⟩</span></p>
+<p>Manifiesto: 7198 payloads; con <code>estado_reserva</code>: RESERVADA-NO-ABIERTA-NO-INDEXAR-L 173 · DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS 45 · RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR 4; licencia ausente o NO-DECLARADA: 220 <span class="dd">⟨F6⟩</span></p>
 <p>Vocabulario de instrumentos: 149 tokens; tokens de la cola citados por los reports y fuera del vocabulario: ninguno <span class="dd">⟨F12 F2 F1 F5 S⟩</span></p>
 <p>Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):</p>
 <div class="tabla"><table>
@@ -171,13 +171,15 @@ Misma data que <a href="https://github.com/Josanoforo/Modelado-Mexicano/blob/mai
 <ul><li>
 <strong>Semáforo ROJO</strong> — núcleo con cifra adoptada 0/1 <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 49</strong>: medible en corpus 7 · con adquisición 23 · no medible por diseño 19 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 2 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 49</strong>: medible en corpus 7 · con adquisición 23 · no medible por diseño 19 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 5 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: RURAL_INDIGENA 38 (78%) núcleo · SALUD 5 (10%) · MIGRACION 3 (6%) · RELIGIOSIDAD 2 (4%) · GENERO 1 (2%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
 <strong>Instrumentos citados</strong> (afirmaciones): ENUT 4 · CONEVAL 2 · ENIGH 2 · CAAS 1 · ENADID 1 · ENASEM 1 · ENASIC 1 · ENDIREH 1 · ENSANUT 1; sin instrumento reconocido: 38 <span class="dd">⟨F1 F12 S⟩</span>
 </li><li>
 <strong>Instrumentos del núcleo</strong> (casan stoppers y validación): ENUT 3 · CONEVAL 2 · ENASEM 1 · ENASIC 1 · ENIGH 1 <span class="dd">⟨F1 F12 S⟩</span>
+</li><li>
+<strong>Pisos del núcleo pendientes de adopción</strong> — registrados en la vista: ninguno; sellados en disco, no registrados (E.7): RURAL_INDIGENA: CALC-MC2-ENSANUT2024-0001, CALC-PDR1-ENADID2023-0001, CALC-PDR1-ENUT2024-0001 <span class="dd">⟨F16 F17 S⟩</span>
 </li><li>
 <strong>Cifras del catálogo v1.3 por dominio</strong> (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) <span class="dd">⟨F2⟩</span>
 <ul><li>
@@ -188,17 +190,17 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): GENERO 7304 �
 </li><li>
 <strong>Reglas del report</strong> (3; encabezados excluidos 1): SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 4 · NO-PASA 2 · PASA 1 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 19 · NO-PASA 2 · PASA 1 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 5 / 21 / 2 / 32): EN-MAIN · recibo pr-1240 · regla adoptada: No acreditada aquí · reserva material: 32 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): EN-MANIFIESTO 1 · PROGRAMA-OBTENIDO-EN-COLA 2 · SIN-UNION 20 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (7): <span class="dd">⟨F1 F5 F6 F7 F8⟩</span>
+<strong>Stoppers</strong> (3): <span class="dd">⟨F1 F5 F6 F7 F8⟩</span>
 <ul><li>
 <strong>FIRMA</strong> (1) <span class="dd">⟨F7⟩</span>
 <ul><li>
-<code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> (por ENIGH) — Acceso C1 a ENBIARE 2021 / ENCODAT 2016 / ENCUCI 2020 / ENIGH 2022 para las 312 residuales (contienen las 56)  → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
+<code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code> (por ENUT) — §5-bis · regla del semáforo de tools/tablero_carriles.py (GEN2-TUBERIA-TABLERO-INSUMOS-1; dirección propone, m → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md <span class="dd">⟨F7⟩</span>
 </li></ul>
 </li><li>
 <strong>ADQUISICION</strong> (1) <span class="dd">⟨F1 F5 F6⟩</span>
@@ -206,17 +208,9 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): GENERO 7304 �
 <code>SIN-UNION</code> — afirmaciones 20 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-U5 ×18, ASTRA5-MESA-RURAL ×2 <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
 </li><li>
-<strong>NC-PARO</strong> (5) <span class="dd">⟨F8⟩</span>
+<strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
 <ul><li>
-<code>NC-0374</code> (por ENUT) — PARO-PREMISA · P1 -- COMMIT-1: spec + medidor + rejilla, congelados juntos → MESA -- ¿mesa quiere un nucleo comun ENUT 2019/2024 (items = / aprox sin las clases ausent <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-0375</code> (por ENUT) — PARO-PREMISA · P2 -- COMMIT-2: CALC-PISOS-ENUT2019-EJES-0001 (RESULT por celda, registro en la  → MESA -- depende de la misma decision que NC-0374; si se abre el nucleo comun 2019/2024, ac <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-03</code> (por ENUT) — PARO-PREMISA: · P3 · enut-comparabilidad-texto-v1_0.tsv enmendado por (a) (fila C2×2019); marcad → GEN2-ENUT-ENLACE-MARCADOR-1 (enut-comparabilidad-texto-v1_1.tsv, tabla de identidad PISOS- <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-260922-GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1-7357-01</code> (por ENUT) — PARO-PREMISA · P2 -- celdas hermanas sobre el nucleo ENUT registradas con su piso 2019 y R 2024 → NC-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01 (ya ABIERTA, cubre el mismo objeto) <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-1-8851-01</code> (por ENIGH) — PARO-PREMISA · P2, P3, P4 -- normalización de campos, guarda de tamaño en CI y prueba real del  → GEN2-TUBERIA-VISTA-NORMALIZADA-2 (tras decisión de mesa entre las tres opciones documentad <span class="dd">⟨F8⟩</span>
+<code>NC-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-03</code> (por ENUT) — PARO-PREMISA: · P3 · enut-comparabilidad-texto-v1_0.tsv enmendado por (a) (fila C2×2019); marcad → MESA (2026-10-05) · encargo por escribir (decidida por delegación: decididas-por-delegacio <span class="dd">⟨F8⟩</span>
 </li></ul>
 </li></ul>
 </li><li>
@@ -224,13 +218,13 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): GENERO 7304 �
 </li><li>
 <strong>Frente 2027</strong>: SIN-UNION (ningún instrumento citado es de una familia 2027) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
+<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code> → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md <span class="dd">⟨F7⟩</span>
 </li></ul>
 <h3 class="carril rojo">🔴 CARRIL-02 · Ausencia sin certeza · duelo y pérdida ambigua en familias de personas desaparecidas en México <span class="dd">⟨F1 F14⟩</span></h3>
 <ul><li>
 <strong>Semáforo ROJO</strong> — núcleo con cifra adoptada 0/1 <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 41</strong>: medible en corpus 3 · con adquisición 24 · no medible por diseño 14 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 0 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 41</strong>: medible en corpus 3 · con adquisición 24 · no medible por diseño 14 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 3 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: DUELO 33 (80%) núcleo · CONFIANZA 1 (2%) · FAMILIA_CUIDADOS 1 (2%) · GENERO 1 (2%) · MIGRACION 1 (2%) · RELIGIOSIDAD 1 (2%) · SALUD 1 (2%) · SALUD_MENTAL 1 (2%) · SANCION_SOCIAL 1 (2%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -247,7 +241,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Reglas del report</strong> (4; encabezados excluidos 0): SIN-CIFRA-GEN2 4; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 4 · PASA 4 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 4 · PASA 142 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 9 / 23 / 3 / 20): EN-MAIN · recibo pr-1246 · regla adoptada: No acreditada aquí · reserva material: 20 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
@@ -262,7 +256,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
 <ul><li>
-<code>NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-01</code> (por ENVIPE) — PARO-PREMISA: · P1 → sucesor que primero reconcilie con mesa la cuenta 24-vs-42 del duelo y luego diseñe el lec <span class="dd">⟨F8⟩</span>
+<code>NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-01</code> (por ENVIPE) — PARO-PREMISA: · P1 → MESA (2026-10-05) · encargo por escribir (decidida por delegación: decididas-por-delegacio <span class="dd">⟨F8⟩</span>
 </li></ul>
 </li></ul>
 </li><li>
@@ -276,13 +270,15 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 <ul><li>
 <strong>Semáforo ROJO</strong> — núcleo con cifra adoptada 0/1 <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 38</strong>: medible en corpus 12 · con adquisición 12 · no medible por diseño 14 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 5 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 38</strong>: medible en corpus 12 · con adquisición 12 · no medible por diseño 14 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 7 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: TIEMPO 18 (47%) núcleo · TRABAJO 4 (11%) · DINERO 3 (8%) · MOVILIDAD 3 (8%) · VIOLENCIA 3 (8%) · INTERACCION 2 (5%) · CONFIANZA 1 (3%) · CONSUMO 1 (3%) · GENERO 1 (3%) · JUVENTUD 1 (3%) · SALUD 1 (3%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
 <strong>Instrumentos citados</strong> (afirmaciones): ENIF 1 · ENOE 1 · ENUT 1; sin instrumento reconocido: 35 <span class="dd">⟨F1 F12 S⟩</span>
 </li><li>
 <strong>Instrumentos del núcleo</strong> (casan stoppers y validación): ENIF 1 · ENUT 1 <span class="dd">⟨F1 F12 S⟩</span>
+</li><li>
+<strong>Pisos del núcleo pendientes de adopción</strong> — registrados en la vista: ninguno; sellados en disco, no registrados (E.7): TIEMPO: CALC-MC2-ENIF2024-0001, CALC-PDR1-ENUT2024-0001 <span class="dd">⟨F16 F17 S⟩</span>
 </li><li>
 <strong>Cifras del catálogo v1.3 por dominio</strong> (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) <span class="dd">⟨F2⟩</span>
 <ul><li>
@@ -299,9 +295,14 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): EN-MANIFIESTO 5 · SIN-UNION 7 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (6): <span class="dd">⟨F1 F5 F6 F8 F12⟩</span>
+<strong>Stoppers</strong> (4): <span class="dd">⟨F1 F5 F6 F7 F8 F12 F15⟩</span>
 <ul><li>
-<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6⟩</span>
+<strong>FIRMA</strong> (1) <span class="dd">⟨F7⟩</span>
+<ul><li>
+<code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code> (por ENUT) — §5-bis · regla del semáforo de tools/tablero_carriles.py (GEN2-TUBERIA-TABLERO-INSUMOS-1; dirección propone, m → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md <span class="dd">⟨F7⟩</span>
+</li></ul>
+</li><li>
+<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6 F15⟩</span>
 <ul><li>
 <code>mapa:reserva_v1_1</code> — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 2) → E.6 (reserva declarada en el mapa) <span class="dd">⟨F1⟩</span>
 </li></ul>
@@ -311,21 +312,15 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 <code>SIN-UNION</code> — afirmaciones 7 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-U1 ×7 <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
 </li><li>
-<strong>NC-PARO</strong> (4) <span class="dd">⟨F8⟩</span>
+<strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
 <ul><li>
-<code>NC-0374</code> (por ENUT) — PARO-PREMISA · P1 -- COMMIT-1: spec + medidor + rejilla, congelados juntos → MESA -- ¿mesa quiere un nucleo comun ENUT 2019/2024 (items = / aprox sin las clases ausent <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-0375</code> (por ENUT) — PARO-PREMISA · P2 -- COMMIT-2: CALC-PISOS-ENUT2019-EJES-0001 (RESULT por celda, registro en la  → MESA -- depende de la misma decision que NC-0374; si se abre el nucleo comun 2019/2024, ac <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-03</code> (por ENUT) — PARO-PREMISA: · P3 · enut-comparabilidad-texto-v1_0.tsv enmendado por (a) (fila C2×2019); marcad → GEN2-ENUT-ENLACE-MARCADOR-1 (enut-comparabilidad-texto-v1_1.tsv, tabla de identidad PISOS- <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-260922-GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1-7357-01</code> (por ENUT) — PARO-PREMISA · P2 -- celdas hermanas sobre el nucleo ENUT registradas con su piso 2019 y R 2024 → NC-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01 (ya ABIERTA, cubre el mismo objeto) <span class="dd">⟨F8⟩</span>
+<code>NC-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-03</code> (por ENUT) — PARO-PREMISA: · P3 · enut-comparabilidad-texto-v1_0.tsv enmendado por (a) (fila C2×2019); marcad → MESA (2026-10-05) · encargo por escribir (decidida por delegación: decididas-por-delegacio <span class="dd">⟨F8⟩</span>
 </li></ul>
 </li></ul>
 </li><li>
 <strong>Frente 2027</strong>: ENIF-AHORRO-FORMAL (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE; reserva heredada de v1.0: ACCESO-AUTORIZADO(FP-260926-GEN2-AS) · ENIF-HORIZONTE-AHORRO (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE; reserva heredada de v1.0: ACCESO-AUTORIZADO(FP-260926-GEN2-AS) · ENOE-INFORMALIDAD (NO-LANZAR-TODAVIA; gate CONTRATO-FIRMADO(regla de inferencia para 39 estratos singleton)+FIRMA-DE-MESA(F) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [RESERVA]: <code>mapa:reserva_v1_1</code> → E.6 (reserva declarada en el mapa) <span class="dd">⟨F1⟩</span>
+<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code> → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md <span class="dd">⟨F7⟩</span>
 </li></ul>
 <h3 class="carril rojo">🔴 CARRIL-13 · Humor in Mexican Psychological Life · 2023-2026 Update <span class="dd">⟨F1 F14⟩</span></h3>
 <ul><li>
@@ -348,7 +343,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): GENERO 7304 �
 </li><li>
 <strong>Reglas del report</strong> (3; encabezados excluidos 0): SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: ningún RESULT de sus instrumentos o núcleo <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 68 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 3 / 15 / 0 / 17): EN-MAIN · recibo pr-1243 · regla adoptada: No acreditada aquí · reserva material: 17 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
@@ -370,13 +365,15 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): GENERO 7304 �
 <ul><li>
 <strong>Semáforo ROJO</strong> — núcleo con cifra adoptada 0/1 <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 32</strong>: medible en corpus 9 · con adquisición 14 · no medible por diseño 8 · no construible 1; citan un CALC/RESULT en <code>gen2_existente</code>: 7 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 32</strong>: medible en corpus 9 · con adquisición 14 · no medible por diseño 8 · no construible 1; citan un CALC/RESULT en <code>gen2_existente</code>: 8 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: JUVENTUD 10 (31%) núcleo · POLITICA 4 (12%) · TRABAJO 4 (12%) · GENERO 3 (9%) · SALUD_MENTAL 3 (9%) · AUTORIDAD 2 (6%) · FAMILIA_CUIDADOS 2 (6%) · TECNOLOGIA 2 (6%) · PAREJA 1 (3%) · RELIGIOSIDAD 1 (3%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
 <strong>Instrumentos citados</strong> (afirmaciones): EDER 3 · ENADID 3 · ENOE 3 · ENDUTIH 2 · OECD 2 · EDR 1 · ENCODAT 1 · ENDISEG 1 · ENSANUT 1 · LATINOBAROMETRO 1; sin instrumento reconocido: 14 <span class="dd">⟨F1 F12 S⟩</span>
 </li><li>
 <strong>Instrumentos del núcleo</strong> (casan stoppers y validación): EDER 3 · ENADID 3 · OECD 1 <span class="dd">⟨F1 F12 S⟩</span>
+</li><li>
+<strong>Pisos del núcleo pendientes de adopción</strong> — registrados en la vista: ninguno; sellados en disco, no registrados (E.7): JUVENTUD: CALC-MC2-ENOE-0001 <span class="dd">⟨F16 F17 S⟩</span>
 </li><li>
 <strong>Cifras del catálogo v1.3 por dominio</strong> (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) <span class="dd">⟨F2⟩</span>
 <ul><li>
@@ -387,15 +384,15 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): FAMILIA_CUIDA
 </li><li>
 <strong>Reglas del report</strong> (4; encabezados excluidos 0): SIN-CIFRA-GEN2 4; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 2 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 8 · PASA 94 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 0 / 10 / 4 / 26): EN-MAIN · recibo pr-1242 · regla adoptada: No acreditada aquí · reserva material: 26 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): COLA-PENDIENTE 2 · EN-MANIFIESTO 4 · PROGRAMA-OBTENIDO-EN-COLA 1 · SIN-UNION 7 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (4): <span class="dd">⟨F1 F5 F6 F12⟩</span>
+<strong>Stoppers</strong> (4): <span class="dd">⟨F1 F5 F6 F12 F15⟩</span>
 <ul><li>
-<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6⟩</span>
+<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6 F15⟩</span>
 <ul><li>
 <code>mapa:reserva_v1_1</code> — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 1) → E.6 (reserva declarada en el mapa) <span class="dd">⟨F1⟩</span>
 </li></ul>
@@ -459,13 +456,15 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 <ul><li>
 <strong>Semáforo ROJO</strong> — núcleo con cifra adoptada 0/1 <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 30</strong>: medible en corpus 9 · con adquisición 10 · no medible por diseño 11 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 0 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 30</strong>: medible en corpus 9 · con adquisición 10 · no medible por diseño 11 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 3 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: AUTORIDAD 29 (97%) núcleo · POLITICA 1 (3%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
 <strong>Instrumentos citados</strong> (afirmaciones): ENCUCI 3 · LATINOBAROMETRO 2 · CEEY_EMOVI 1 · WVS 1; sin instrumento reconocido: 23 <span class="dd">⟨F1 F12 S⟩</span>
 </li><li>
 <strong>Instrumentos del núcleo</strong> (casan stoppers y validación): ENCUCI 3 · LATINOBAROMETRO 2 · CEEY_EMOVI 1 · WVS 1 <span class="dd">⟨F1 F12 S⟩</span>
+</li><li>
+<strong>Pisos del núcleo pendientes de adopción</strong> — registrados en la vista: ninguno; sellados en disco, no registrados (E.7): AUTORIDAD: CALC-PDR1-ENCUCI2020-0002 <span class="dd">⟨F16 F17 S⟩</span>
 </li><li>
 <strong>Cifras del catálogo v1.3 por dominio</strong> (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) <span class="dd">⟨F2⟩</span>
 <ul><li>
@@ -476,7 +475,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): POLITICA 84 <
 </li><li>
 <strong>Reglas del report</strong> (3; encabezados excluidos 1): SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: PASA 3 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 68 · PASA 3 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 1 / 16 / 1 / 41): EN-MAIN · recibo pr-1240 · regla adoptada: No acreditada aquí · reserva material: 41 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
@@ -486,7 +485,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): POLITICA 84 <
 <ul><li>
 <strong>FIRMA</strong> (3) <span class="dd">⟨F7⟩</span>
 <ul><li>
-<code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> (por ENCUCI) — Acceso C1 a ENBIARE 2021 / ENCODAT 2016 / ENCUCI 2020 / ENIGH 2022 para las 312 residuales (contienen las 56)  → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
+<code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code> (por ENCUCI) — §5-bis · regla del semáforo de tools/tablero_carriles.py (GEN2-TUBERIA-TABLERO-INSUMOS-1; dirección propone, m → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md <span class="dd">⟨F7⟩</span>
 </li><li>
 <code>FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01</code> (por WVS) — Acceso con solicitud o términos para seis objetos (EMOVI 2023/2011 CEEY, WVS ola 7 EE.UU./Japón y longitudinal → mesa firma (plazo 2026-09-29); encargo 2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1.md <span class="dd">⟨F7⟩</span>
 </li><li>
@@ -505,7 +504,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): POLITICA 84 <
 </li><li>
 <strong>Frente 2027</strong>: SIN-UNION (ningún instrumento citado es de una familia 2027) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
+<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code> → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md <span class="dd">⟨F7⟩</span>
 </li></ul>
 <h3 class="carril amarillo">🟡 CARRIL-24 · Psicología del Trabajo en México · Un Mapa Basado en Evidencia <span class="dd">⟨F1 F14⟩</span></h3>
 <ul><li>
@@ -528,15 +527,15 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Reglas del report</strong> (3; encabezados excluidos 0): SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: ningún RESULT de sus instrumentos o núcleo <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 134 · PASA 2 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 2 / 49 / 2 / 94): EN-MAIN · recibo RECIBO-ASTRA6-1 · regla adoptada: No acreditada aquí · reserva material: 94 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): COLA-PENDIENTE 2 · PROGRAMA-OBTENIDO-EN-COLA 1 · SIN-UNION 31 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (4): <span class="dd">⟨F1 F5 F6 F12⟩</span>
+<strong>Stoppers</strong> (5): <span class="dd">⟨F1 F5 F6 F8 F12 F15⟩</span>
 <ul><li>
-<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6⟩</span>
+<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6 F15⟩</span>
 <ul><li>
 <code>mapa:reserva_v1_1</code> — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 1) → E.6 (reserva declarada en el mapa) <span class="dd">⟨F1⟩</span>
 </li></ul>
@@ -548,6 +547,11 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 <code>OECD</code> — estado OBTENIDO-PARCIAL; prioridad 36; afirmaciones 2; origen cola-adquisicion-2026-08-12.tsv:36 → caja (completa el payload) <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
 <code>OECD_TRUST_PUM_2021_2023_2025</code> — estado SOLICITUD-PREPARADA; prioridad 36; afirmaciones 2; origen NC-0061;NC-0151; GEN2-CRON-DEMANDA-A-DATO-Y-PRODUCCION → mesa con identidad (solicitud preparada) <span class="dd">⟨F1 F5 F6⟩</span>
+</li></ul>
+</li><li>
+<strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
+<ul><li>
+<code>NC-260928-GEN2-VALIDACION-Y-2027-1-f926-03</code> (por ENOE) — PARO-PREMISA · P3 → FP-260928-GEN2-VALIDACION-Y-2027-1-f926-04 <span class="dd">⟨F8⟩</span>
 </li></ul>
 </li></ul>
 </li><li>
@@ -561,7 +565,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 1/1; reglas con dictamen 0% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 51</strong>: medible en corpus 8 · con adquisición 32 · no medible por diseño 9 · no construible 2; citan un CALC/RESULT en <code>gen2_existente</code>: 6 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 51</strong>: medible en corpus 8 · con adquisición 32 · no medible por diseño 9 · no construible 2; citan un CALC/RESULT en <code>gen2_existente</code>: 9 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: FAMILIA_CUIDADOS 23 (45%) núcleo · DINERO 6 (12%) · SALUD_MENTAL 5 (10%) · GENERO 4 (8%) · JUVENTUD 4 (8%) · TRABAJO 4 (8%) · CAPITAL_SOCIAL 2 (4%) · RURAL_INDIGENA 1 (2%) · SALUD 1 (2%) · VIOLENCIA 1 (2%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -578,14 +582,19 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CAPITAL_SOCIA
 </li><li>
 <strong>Reglas del report</strong> (3; encabezados excluidos 0): SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 6 · NO-PASA 2 · PASA 157 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 420 · NO-PASA 229 · PASA 257 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 0 / 49 / 1 / 70): EN-MAIN · recibo RECIBO-ASTRA6-1 · regla adoptada: No acreditada aquí · reserva material: 70 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): COLA-PENDIENTE 2 · EN-MANIFIESTO 4 · PROGRAMA-OBTENIDO-EN-COLA 6 · SIN-UNION 20 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (7): <span class="dd">⟨F1 F5 F6 F8⟩</span>
+<strong>Stoppers</strong> (5): <span class="dd">⟨F1 F5 F6 F7 F8⟩</span>
 <ul><li>
+<strong>FIRMA</strong> (1) <span class="dd">⟨F7⟩</span>
+<ul><li>
+<code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code> (por ENUT) — §5-bis · regla del semáforo de tools/tablero_carriles.py (GEN2-TUBERIA-TABLERO-INSUMOS-1; dirección propone, m → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md <span class="dd">⟨F7⟩</span>
+</li></ul>
+</li><li>
 <strong>ADQUISICION</strong> (3) <span class="dd">⟨F1 F5 F6⟩</span>
 <ul><li>
 <code>SIN-UNION</code> — afirmaciones 20 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-MESA-FAMILIA ×9, ASTRA5-MESA-SALUD ×4, ASTRA5-U1 ×2 <span class="dd">⟨F1 F5 F6⟩</span>
@@ -595,15 +604,9 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CAPITAL_SOCIA
 <code>OECD_TRUST_PUM_2021_2023_2025</code> — estado SOLICITUD-PREPARADA; prioridad 36; afirmaciones 2; origen NC-0061;NC-0151; GEN2-CRON-DEMANDA-A-DATO-Y-PRODUCCION → mesa con identidad (solicitud preparada) <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
 </li><li>
-<strong>NC-PARO</strong> (4) <span class="dd">⟨F8⟩</span>
+<strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
 <ul><li>
-<code>NC-0374</code> (por ENUT) — PARO-PREMISA · P1 -- COMMIT-1: spec + medidor + rejilla, congelados juntos → MESA -- ¿mesa quiere un nucleo comun ENUT 2019/2024 (items = / aprox sin las clases ausent <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-0375</code> (por ENUT) — PARO-PREMISA · P2 -- COMMIT-2: CALC-PISOS-ENUT2019-EJES-0001 (RESULT por celda, registro en la  → MESA -- depende de la misma decision que NC-0374; si se abre el nucleo comun 2019/2024, ac <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-03</code> (por ENUT) — PARO-PREMISA: · P3 · enut-comparabilidad-texto-v1_0.tsv enmendado por (a) (fila C2×2019); marcad → GEN2-ENUT-ENLACE-MARCADOR-1 (enut-comparabilidad-texto-v1_1.tsv, tabla de identidad PISOS- <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-260922-GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1-7357-01</code> (por ENUT) — PARO-PREMISA · P2 -- celdas hermanas sobre el nucleo ENUT registradas con su piso 2019 y R 2024 → NC-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01 (ya ABIERTA, cubre el mismo objeto) <span class="dd">⟨F8⟩</span>
+<code>NC-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-03</code> (por ENUT) — PARO-PREMISA: · P3 · enut-comparabilidad-texto-v1_0.tsv enmendado por (a) (fila C2×2019); marcad → MESA (2026-10-05) · encargo por escribir (decidida por delegación: decididas-por-delegacio <span class="dd">⟨F8⟩</span>
 </li></ul>
 </li></ul>
 </li><li>
@@ -611,13 +614,13 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CAPITAL_SOCIA
 </li><li>
 <strong>Frente 2027</strong>: ENIF-AHORRO-FORMAL (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE; reserva heredada de v1.0: ACCESO-AUTORIZADO(FP-260926-GEN2-AS) · ENIF-HORIZONTE-AHORRO (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE; reserva heredada de v1.0: ACCESO-AUTORIZADO(FP-260926-GEN2-AS) · ENOE-INFORMALIDAD (NO-LANZAR-TODAVIA; gate CONTRATO-FIRMADO(regla de inferencia para 39 estratos singleton)+FIRMA-DE-MESA(F) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [ADQUISICION]: <code>SIN-UNION</code> → propietario en el mapa: ASTRA5-MESA-FAMILIA ×9, ASTRA5-MESA-SALUD ×4, ASTRA5-U1 ×2 <span class="dd">⟨F1 F5 F6⟩</span>
+<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code> → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md <span class="dd">⟨F7⟩</span>
 </li></ul>
 <h3 class="carril amarillo">🟡 CARRIL-07 · El Efecto Ambiental de la Violencia Crónica en México · Cómo el Miedo Reorganiza la Conducta Psicológica de la Población <span class="dd">⟨F1 F14⟩</span></h3>
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 1/1; reglas con dictamen 0% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 48</strong>: medible en corpus 14 · con adquisición 21 · no medible por diseño 12 · no construible 1; citan un CALC/RESULT en <code>gen2_existente</code>: 0 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 48</strong>: medible en corpus 14 · con adquisición 21 · no medible por diseño 12 · no construible 1; citan un CALC/RESULT en <code>gen2_existente</code>: 8 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: VIOLENCIA 22 (46%) núcleo · DINERO 8 (17%) · CONFIANZA 5 (10%) · SALUD_MENTAL 5 (10%) · GENERO 4 (8%) · MIGRACION 2 (4%) · AUTORIDAD 1 (2%) · POLITICA 1 (2%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -634,22 +637,24 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Reglas del report</strong> (4; encabezados excluidos 0): SIN-CIFRA-GEN2 4; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 4 · PASA 4 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 12109 · NO-PASA 525 · PASA 146 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 9 / 25 / 2 / 104): EN-MAIN · recibo pr-1180 · regla adoptada: No acreditada aquí · reserva material: 104 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): EN-MANIFIESTO 1 · PROGRAMA-OBTENIDO-EN-COLA 2 · SIN-UNION 18 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (2): <span class="dd">⟨F1 F5 F6 F8⟩</span>
+<strong>Stoppers</strong> (3): <span class="dd">⟨F1 F5 F6 F8⟩</span>
 <ul><li>
 <strong>ADQUISICION</strong> (1) <span class="dd">⟨F1 F5 F6⟩</span>
 <ul><li>
 <code>SIN-UNION</code> — afirmaciones 18 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-MESA-VIOLENCIA ×14, ASTRA5-MESA-MIGRACION ×2, ASTRA5-U2 ×1 <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
 </li><li>
-<strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
+<strong>NC-PARO</strong> (2) <span class="dd">⟨F8⟩</span>
 <ul><li>
-<code>NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-01</code> (por ENVIPE) — PARO-PREMISA: · P1 → sucesor que primero reconcilie con mesa la cuenta 24-vs-42 del duelo y luego diseñe el lec <span class="dd">⟨F8⟩</span>
+<code>NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-01</code> (por ENVIPE) — PARO-PREMISA: · P1 → MESA (2026-10-05) · encargo por escribir (decidida por delegación: decididas-por-delegacio <span class="dd">⟨F8⟩</span>
+</li><li>
+<code>NC-260928-GEN2-VALIDACION-Y-2027-1-f926-03</code> (por ENSU) — PARO-PREMISA · P3 → FP-260928-GEN2-VALIDACION-Y-2027-1-f926-04 <span class="dd">⟨F8⟩</span>
 </li></ul>
 </li></ul>
 </li><li>
@@ -663,7 +668,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 2/2; reglas con dictamen 0% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 46</strong>: medible en corpus 5 · con adquisición 25 · no medible por diseño 16 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 5 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 46</strong>: medible en corpus 5 · con adquisición 25 · no medible por diseño 16 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 6 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: PAREJA 30 (65%) núcleo · VIOLENCIA 12 (26%) núcleo · GENERO 1 (2%) · MIGRACION 1 (2%) · RELIGIOSIDAD 1 (2%) · SALUD 1 (2%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -682,13 +687,13 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): GENERO 7304 �
 </li><li>
 <strong>Reglas del report</strong> (4; encabezados excluidos 0): SIN-CIFRA-GEN2 4; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: NO-PASA 10 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 12879 · NO-PASA 535 · PASA 3332 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 2 / 24 / 2 / 48): EN-MAIN · recibo pr-1197 · regla adoptada: No acreditada aquí · reserva material: 48 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): EN-MANIFIESTO 4 · PROGRAMA-OBTENIDO-EN-COLA 6 · SIN-UNION 15 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (3): <span class="dd">⟨F1 F5 F6 F7 F8⟩</span>
+<strong>Stoppers</strong> (4): <span class="dd">⟨F1 F5 F6 F7 F8⟩</span>
 <ul><li>
 <strong>FIRMA</strong> (1) <span class="dd">⟨F7⟩</span>
 <ul><li>
@@ -700,9 +705,11 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): GENERO 7304 �
 <code>SIN-UNION</code> — afirmaciones 15 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-MESA-PAREJA ×10, ASTRA5-U2 ×4, ASTRA5-MESA-GENERO ×1 <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
 </li><li>
-<strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
+<strong>NC-PARO</strong> (2) <span class="dd">⟨F8⟩</span>
 <ul><li>
-<code>NC-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-03</code> (por ENDIREH) — PARO-PREMISA: · ENTORNO · ENDIREH 2021 → GEN2-ASTRA6-C1-LOTE-4 <span class="dd">⟨F8⟩</span>
+<code>NC-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-03</code> (por ENDIREH) — PARO-PREMISA: · ENTORNO · ENDIREH 2021 → MESA (2026-10-05) · encargo por escribir: GEN2-ASTRA6-C1-LOTE-4 (767 ENDIREH 2021 -ventana <span class="dd">⟨F8⟩</span>
+</li><li>
+<code>NC-260928-GEN2-VALIDACION-Y-2027-1-f926-03</code> (por ENOE) — PARO-PREMISA · P3 → FP-260928-GEN2-VALIDACION-Y-2027-1-f926-04 <span class="dd">⟨F8⟩</span>
 </li></ul>
 </li></ul>
 </li><li>
@@ -735,7 +742,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Reglas del report</strong> (2; encabezados excluidos 0): SIN-CIFRA-GEN2 2; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: ningún RESULT de sus instrumentos o núcleo <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 134 · PASA 2 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 0 / 26 / 1 / 22): EN-MAIN · recibo pr-1243 · regla adoptada: No acreditada aquí · reserva material: 22 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
@@ -759,7 +766,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 1/1; reglas con dictamen 0% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 43</strong>: medible en corpus 16 · con adquisición 15 · no medible por diseño 12 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 2 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 43</strong>: medible en corpus 16 · con adquisición 15 · no medible por diseño 12 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 12 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: TECNOLOGIA 38 (88%) núcleo · CONFIANZA 2 (5%) · RURAL_INDIGENA 1 (2%) · SALUD 1 (2%) · TRABAJO 1 (2%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -782,13 +789,8 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): COLA-PENDIENTE 1 · SIN-UNION 14 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (4): <span class="dd">⟨F1 F5 F6 F7⟩</span>
+<strong>Stoppers</strong> (3): <span class="dd">⟨F1 F5 F6⟩</span>
 <ul><li>
-<strong>FIRMA</strong> (1) <span class="dd">⟨F7⟩</span>
-<ul><li>
-<code>FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-04</code> (por ENDUTIH) — Tolerancias por identidad ENDUTIH/MOCIBA: proporciones abs1e-8 rel0, enteros/estados exactos y pesos expandido → mesa firma; encargo 2026-09-26-ASTRA6-C1-IMPEDIMENTOS-LOTE2-ACTA-EJECUCION.md <span class="dd">⟨F7⟩</span>
-</li></ul>
-</li><li>
 <strong>ADQUISICION</strong> (3) <span class="dd">⟨F1 F5 F6⟩</span>
 <ul><li>
 <code>SIN-UNION</code> — afirmaciones 14 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-U4 ×9, ASTRA5-U3_U4 ×4, ASTRA5-U3 ×1 <span class="dd">⟨F1 F5 F6⟩</span>
@@ -803,13 +805,13 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Frente 2027</strong>: SIN-UNION (ningún instrumento citado es de una familia 2027) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-04</code> → mesa firma; encargo 2026-09-26-ASTRA6-C1-IMPEDIMENTOS-LOTE2-ACTA-EJECUCION.md <span class="dd">⟨F7⟩</span>
+<strong>Siguiente acción</strong> [ADQUISICION]: <code>SIN-UNION</code> → propietario en el mapa: ASTRA5-U4 ×9, ASTRA5-U3_U4 ×4, ASTRA5-U3 ×1 <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
 <h3 class="carril amarillo">🟡 CARRIL-06 · El Clasemediero Mexicano · Identidad · Ansiedad de Estatus y el Miedo Racional a Caer <span class="dd">⟨F1 F14⟩</span></h3>
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 1/1; reglas con dictamen 0% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 43</strong>: medible en corpus 4 · con adquisición 24 · no medible por diseño 15 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 3 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 43</strong>: medible en corpus 4 · con adquisición 24 · no medible por diseño 15 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 4 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: MOVILIDAD 25 (58%) núcleo · POLITICA 5 (12%) · CONOCIMIENTO 4 (9%) · SALUD_MENTAL 4 (9%) · DINERO 3 (7%) · CONSUMO 1 (2%) · TRABAJO 1 (2%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -826,24 +828,15 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONOCIMIENTO 
 </li><li>
 <strong>Reglas del report</strong> (2; encabezados excluidos 1): SIN-CIFRA-GEN2 2; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 130 · NO-PASA 2 · PASA 1 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 425 · NO-PASA 6 · PASA 1 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 1 / 15 / 4 / 41): EN-MAIN · recibo RECIBO-ASTRA6-1 · regla adoptada: No acreditada aquí · reserva material: 41 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): COLA-PENDIENTE 2 · EN-MANIFIESTO 3 · PROGRAMA-OBTENIDO-EN-COLA 3 · SIN-UNION 16 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (9): <span class="dd">⟨F1 F5 F6 F7 F8 F12⟩</span>
+<strong>Stoppers</strong> (5): <span class="dd">⟨F1 F5 F6 F12 F15⟩</span>
 <ul><li>
-<strong>FIRMA</strong> (3) <span class="dd">⟨F7⟩</span>
-<ul><li>
-<code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> (por ENBIARE, ENIGH) — Acceso C1 a ENBIARE 2021 / ENCODAT 2016 / ENCUCI 2020 / ENIGH 2022 para las 312 residuales (contienen las 56)  → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
-</li><li>
-<code>FP-260927-GEN2-ASTRA6-C1-ENTRADAS-LOTE2-RESIDUALES-1-1653-01</code> (por ENBIARE) — Adoptar para un nuevo intento la propuesta ENBIARE de edades y corte CESD7, y las recetas IC sucesoras documen → mesa firma; encargo 01-ASTRA6-C1-ENTRADAS-LOTE2-RESIDUALES-1.md <span class="dd">⟨F7⟩</span>
-</li><li>
-<code>FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-04</code> (por ENBIARE) — 126 COINCIDE ENBIARE no ciegas del lote 2 (NC 627e-07; las 4 ENCIG ya tienen PASA de otra validación): re-comp → mesa firma; encargo 2026-09-28-GEN2-ASTRA-CONTINUIDAD-C1-1.md <span class="dd">⟨F7⟩</span>
-</li></ul>
-</li><li>
-<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6⟩</span>
+<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6 F15⟩</span>
 <ul><li>
 <code>mapa:reserva_v1_1</code> — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 1) → E.6 (reserva declarada en el mapa) <span class="dd">⟨F1⟩</span>
 </li></ul>
@@ -858,22 +851,17 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONOCIMIENTO 
 </li><li>
 <code>EMOVI_2023</code> — estado NO-ACCESIBLE; prioridad 3; afirmaciones 1; origen ASTRA5-U0 ASTRA5-U0-AUTOR-016;ASTRA5-U0-MER-013;ASTRA5-U0-ME → mesa con identidad (acceso/registro) <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
-</li><li>
-<strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
-<ul><li>
-<code>NC-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-1-8851-01</code> (por ENIGH) — PARO-PREMISA · P2, P3, P4 -- normalización de campos, guarda de tamaño en CI y prueba real del  → GEN2-TUBERIA-VISTA-NORMALIZADA-2 (tras decisión de mesa entre las tres opciones documentad <span class="dd">⟨F8⟩</span>
-</li></ul>
 </li></ul>
 </li><li>
 <strong>Frente 2027</strong>: ENOE-INFORMALIDAD (NO-LANZAR-TODAVIA; gate CONTRATO-FIRMADO(regla de inferencia para 39 estratos singleton)+FIRMA-DE-MESA(F) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
+<strong>Siguiente acción</strong> [RESERVA]: <code>mapa:reserva_v1_1</code> → E.6 (reserva declarada en el mapa) <span class="dd">⟨F1⟩</span>
 </li></ul>
 <h3 class="carril amarillo">🟡 CARRIL-20 · Psicología Política y Comportamiento Cívico del Mexicano Contemporáneo · Una Lectura Anti-Esencialista desde Abajo · 2026 <span class="dd">⟨F1 F14⟩</span></h3>
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 1/1; reglas con dictamen 30% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 43</strong>: medible en corpus 18 · con adquisición 14 · no medible por diseño 11 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 3 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 43</strong>: medible en corpus 18 · con adquisición 14 · no medible por diseño 11 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 17 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: POLITICA 40 (93%) núcleo · CONFIANZA 2 (5%) · VIOLENCIA 1 (2%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -890,24 +878,22 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Reglas del report</strong> (10; encabezados excluidos 0): MATIZA 2 · MATIZA-SIN-CRUCE 1 · SIN-CIFRA-GEN2 7; con dictamen distinto de SIN-CIFRA-GEN2 30% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 4 · PASA 10 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 230 · PASA 148 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 6 / 16 / 4 / 34): EN-MAIN · recibo pr-1240 · regla adoptada: No acreditada aquí · reserva material: 34 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): EN-MANIFIESTO 1 · SIN-UNION 13 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (9): <span class="dd">⟨F1 F5 F6 F7 F8 F12⟩</span>
+<strong>Stoppers</strong> (6): <span class="dd">⟨F1 F5 F6 F7 F8 F12 F15⟩</span>
 <ul><li>
-<strong>FIRMA</strong> (3) <span class="dd">⟨F7⟩</span>
+<strong>FIRMA</strong> (2) <span class="dd">⟨F7⟩</span>
 <ul><li>
-<code>FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-04</code> (por ENCIG) — 126 COINCIDE ENBIARE no ciegas del lote 2 (NC 627e-07; las 4 ENCIG ya tienen PASA de otra validación): re-comp → mesa firma; encargo 2026-09-28-GEN2-ASTRA-CONTINUIDAD-C1-1.md <span class="dd">⟨F7⟩</span>
-</li><li>
 <code>FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01</code> (por WVS) — Acceso con solicitud o términos para seis objetos (EMOVI 2023/2011 CEEY, WVS ola 7 EE.UU./Japón y longitudinal → mesa firma (plazo 2026-09-29); encargo 2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1.md <span class="dd">⟨F7⟩</span>
 </li><li>
 <code>FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-12</code> (por WVS) — [E1] 6 fuentes de microdato (EMOVI 2023/2011 de CEEY, WVS ola 7 EE.UU./Japón, WVS longitudinal 1981-2022, IFPS → mesa firma (plazo 2026-09-29); encargo 2026-09-27-GEN2-TRAMITE-NC-DECISIONES-1.md <span class="dd">⟨F7⟩</span>
 </li></ul>
 </li><li>
-<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6⟩</span>
+<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6 F15⟩</span>
 <ul><li>
 <code>CSES 2016</code> — manifiesto estado_reserva: RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO ×1; afirmaciones que la citan: 1 → E.6: la levanta el código congelado de una prueba pre-registrada o mesa por escrito <span class="dd">⟨F6⟩</span>
 </li></ul>
@@ -917,15 +903,11 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 <code>SIN-UNION</code> — afirmaciones 13 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-U3 ×13 <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
 </li><li>
-<strong>NC-PARO</strong> (4) <span class="dd">⟨F8⟩</span>
+<strong>NC-PARO</strong> (2) <span class="dd">⟨F8⟩</span>
 <ul><li>
-<code>NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-01</code> (por ENVIPE) — PARO-PREMISA: · P1 → sucesor que primero reconcilie con mesa la cuenta 24-vs-42 del duelo y luego diseñe el lec <span class="dd">⟨F8⟩</span>
+<code>NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-01</code> (por ENVIPE) — PARO-PREMISA: · P1 → MESA (2026-10-05) · encargo por escribir (decidida por delegación: decididas-por-delegacio <span class="dd">⟨F8⟩</span>
 </li><li>
-<code>NC-0423</code> (por ENCIG) — PARO-PREMISA · P5 -- metrica rectora <code>celdas_validadas</code> en la primera linea del tablero → DIFERIDO-A:RELEVO-TANDA-3 (o acto propio de tablero) <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-260923-GEN2-CONTADORES-CONSUMO-2-749c-01</code> (por ENCIG) — PARO-PREMISA · P3 (canal completo): 16 celdas de GOB.gobierno_digital.encig2025.edad_x_sexo + . → SIN-ASIGNAR (CONTADORES-CONSUMO-3 nunca archivado) <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-01</code> (por ENCIG) — PARO-PREMISA · P1 · eje tamaño de localidad → mesa -- decidir si el eje de localidad de confianza institucional se toma de otro instrume <span class="dd">⟨F8⟩</span>
+<code>NC-260923-GEN2-CONTADORES-CONSUMO-2-749c-01</code> (por ENCIG) — PARO-PREMISA · P3 (canal completo): 16 celdas de GOB.gobierno_digital.encig2025.edad_x_sexo + . → MESA (2026-10-05) · cerrable al fusionar el [deriva] o su acto: EN-CURSO [canal [deriva] · <span class="dd">⟨F8⟩</span>
 </li></ul>
 </li></ul>
 </li><li>
@@ -933,13 +915,13 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Frente 2027</strong>: ENCIG-PAGO-DIGITAL (SUSPENDIDA(FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-01); gate CONTEXTO(gate vigente; soporte_acreditado=False)+CONTRATO-FIRMADO(enmienda pre-d) · ENCIG-SOLICITUD-MORDIDA (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE) · ENVIPE-DENUNCIA-U4 (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE) · ENVIPE-EVASION-NORMA (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-04</code> → mesa firma; encargo 2026-09-28-GEN2-ASTRA-CONTINUIDAD-C1-1.md <span class="dd">⟨F7⟩</span>
+<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01</code> → mesa firma (plazo 2026-09-29); encargo 2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1.md <span class="dd">⟨F7⟩</span>
 </li></ul>
 <h3 class="carril amarillo">🟡 CARRIL-19 · Non-Family Social Capital in Mexico · Cooperation · Trust · and Collective Action Beyond Kinship <span class="dd">⟨F1 F14⟩</span></h3>
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 1/1; reglas con dictamen 44% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 42</strong>: medible en corpus 13 · con adquisición 13 · no medible por diseño 16 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 2 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 42</strong>: medible en corpus 13 · con adquisición 13 · no medible por diseño 16 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 11 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: CAPITAL_SOCIAL 24 (57%) núcleo · RURAL_INDIGENA 5 (12%) · AUTORIDAD 3 (7%) · DINERO 3 (7%) · CONFIANZA 2 (5%) · RELIGIOSIDAD 2 (5%) · VIOLENCIA 2 (5%) · TECNOLOGIA 1 (2%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -956,17 +938,17 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Reglas del report</strong> (9; encabezados excluidos 0): MATIZA 1 · MATIZA-SIN-CRUCE 3 · SIN-CIFRA-GEN2 5; con dictamen distinto de SIN-CIFRA-GEN2 44% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 4 · PASA 163 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 4 · PASA 301 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 0 / 5 / 0 / 83): EN-MAIN · recibo pr-1171 · regla adoptada: No acreditada aquí · reserva material: 83 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): COLA-PENDIENTE 1 · SIN-UNION 12 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (9): <span class="dd">⟨F1 F5 F6 F7 F8⟩</span>
+<strong>Stoppers</strong> (6): <span class="dd">⟨F1 F5 F6 F7 F8⟩</span>
 <ul><li>
 <strong>FIRMA</strong> (1) <span class="dd">⟨F7⟩</span>
 <ul><li>
-<code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> (por ENCUCI) — Acceso C1 a ENBIARE 2021 / ENCODAT 2016 / ENCUCI 2020 / ENIGH 2022 para las 312 residuales (contienen las 56)  → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
+<code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code> (por ENCUCI, ENUT) — §5-bis · regla del semáforo de tools/tablero_carriles.py (GEN2-TUBERIA-TABLERO-INSUMOS-1; dirección propone, m → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md <span class="dd">⟨F7⟩</span>
 </li></ul>
 </li><li>
 <strong>ADQUISICION</strong> (3) <span class="dd">⟨F1 F5 F6⟩</span>
@@ -978,17 +960,11 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 <code>CONDUSEF_CNBV_TANDAS_FUERA_DE_PERIMETRO</code> — estado NO-ENCONTRADO; prioridad —; afirmaciones 1; origen gen2-universo-c → acto de nube (/sonda) <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
 </li><li>
-<strong>NC-PARO</strong> (5) <span class="dd">⟨F8⟩</span>
+<strong>NC-PARO</strong> (2) <span class="dd">⟨F8⟩</span>
 <ul><li>
-<code>NC-0374</code> (por ENUT) — PARO-PREMISA · P1 -- COMMIT-1: spec + medidor + rejilla, congelados juntos → MESA -- ¿mesa quiere un nucleo comun ENUT 2019/2024 (items = / aprox sin las clases ausent <span class="dd">⟨F8⟩</span>
+<code>NC-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-03</code> (por ENUT) — PARO-PREMISA: · P3 · enut-comparabilidad-texto-v1_0.tsv enmendado por (a) (fila C2×2019); marcad → MESA (2026-10-05) · encargo por escribir (decidida por delegación: decididas-por-delegacio <span class="dd">⟨F8⟩</span>
 </li><li>
-<code>NC-0375</code> (por ENUT) — PARO-PREMISA · P2 -- COMMIT-2: CALC-PISOS-ENUT2019-EJES-0001 (RESULT por celda, registro en la  → MESA -- depende de la misma decision que NC-0374; si se abre el nucleo comun 2019/2024, ac <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-03</code> (por ENUT) — PARO-PREMISA: · P3 · enut-comparabilidad-texto-v1_0.tsv enmendado por (a) (fila C2×2019); marcad → GEN2-ENUT-ENLACE-MARCADOR-1 (enut-comparabilidad-texto-v1_1.tsv, tabla de identidad PISOS- <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-260922-GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1-7357-01</code> (por ENUT) — PARO-PREMISA · P2 -- celdas hermanas sobre el nucleo ENUT registradas con su piso 2019 y R 2024 → NC-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01 (ya ABIERTA, cubre el mismo objeto) <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-01</code> (por ENVIPE) — PARO-PREMISA: · P1 → sucesor que primero reconcilie con mesa la cuenta 24-vs-42 del duelo y luego diseñe el lec <span class="dd">⟨F8⟩</span>
+<code>NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-01</code> (por ENVIPE) — PARO-PREMISA: · P1 → MESA (2026-10-05) · encargo por escribir (decidida por delegación: decididas-por-delegacio <span class="dd">⟨F8⟩</span>
 </li></ul>
 </li></ul>
 </li><li>
@@ -996,13 +972,13 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Frente 2027</strong>: ENVIPE-DENUNCIA-U4 (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE) · ENVIPE-EVASION-NORMA (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
+<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code> → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md <span class="dd">⟨F7⟩</span>
 </li></ul>
 <h3 class="carril amarillo">🟡 CARRIL-25 · Psychology of Mexico-US Migration · Identity · Family · Aspiration · and Wellbeing in 2025 <span class="dd">⟨F1 F14⟩</span></h3>
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 1/1; reglas con dictamen 0% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 42</strong>: medible en corpus 4 · con adquisición 17 · no medible por diseño 20 · no construible 1; citan un CALC/RESULT en <code>gen2_existente</code>: 2 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 42</strong>: medible en corpus 4 · con adquisición 17 · no medible por diseño 20 · no construible 1; citan un CALC/RESULT en <code>gen2_existente</code>: 3 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: MIGRACION 42 (100%) núcleo <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -1017,27 +993,17 @@ MIGRACION (núcleo): 0 · 126 · 0 · 0 — por instrumento (* = el carril lo ci
 </li><li>
 <strong>Reglas del report</strong> (3; encabezados excluidos 1): SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 4 · NO-PASA 2 · PASA 11 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 55 · NO-PASA 2 · PASA 105 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 0 / 19 / 1 / 48): EN-MAIN · recibo pr-1197 · regla adoptada: No acreditada aquí · reserva material: 48 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): PROGRAMA-OBTENIDO-EN-COLA 2 · SIN-UNION 15 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (3): <span class="dd">⟨F1 F5 F6 F7 F8⟩</span>
+<strong>Stoppers</strong> (1): <span class="dd">⟨F1 F5 F6⟩</span>
 <ul><li>
-<strong>FIRMA</strong> (1) <span class="dd">⟨F7⟩</span>
-<ul><li>
-<code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> (por ENIGH) — Acceso C1 a ENBIARE 2021 / ENCODAT 2016 / ENCUCI 2020 / ENIGH 2022 para las 312 residuales (contienen las 56)  → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
-</li></ul>
-</li><li>
 <strong>ADQUISICION</strong> (1) <span class="dd">⟨F1 F5 F6⟩</span>
 <ul><li>
 <code>SIN-UNION</code> — afirmaciones 15 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-MESA-MIGRACION ×15 <span class="dd">⟨F1 F5 F6⟩</span>
-</li></ul>
-</li><li>
-<strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
-<ul><li>
-<code>NC-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-1-8851-01</code> (por ENIGH) — PARO-PREMISA · P2, P3, P4 -- normalización de campos, guarda de tamaño en CI y prueba real del  → GEN2-TUBERIA-VISTA-NORMALIZADA-2 (tras decisión de mesa entre las tres opciones documentad <span class="dd">⟨F8⟩</span>
 </li></ul>
 </li></ul>
 </li><li>
@@ -1045,13 +1011,13 @@ MIGRACION (núcleo): 0 · 126 · 0 · 0 — por instrumento (* = el carril lo ci
 </li><li>
 <strong>Frente 2027</strong>: SIN-UNION (ningún instrumento citado es de una familia 2027) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
+<strong>Siguiente acción</strong> [ADQUISICION]: <code>SIN-UNION</code> → propietario en el mapa: ASTRA5-MESA-MIGRACION ×15 <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
 <h3 class="carril amarillo">🟡 CARRIL-12 · Health · Body · Food and Substance Use in Mexico · The Behavioral Layer of Decisions · Environment and Structure <span class="dd">⟨F1 F14⟩</span></h3>
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 1/1; reglas con dictamen 0% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 39</strong>: medible en corpus 11 · con adquisición 22 · no medible por diseño 6 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 3 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 39</strong>: medible en corpus 11 · con adquisición 22 · no medible por diseño 6 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 4 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: SALUD 32 (82%) núcleo · CONSUMO 7 (18%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -1068,26 +1034,26 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONSUMO 4470 
 </li><li>
 <strong>Reglas del report</strong> (3; encabezados excluidos 1): SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 130 · PASA 3 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 400 · PASA 99 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 2 / 15 / 0 / 35): EN-MAIN · recibo pr-1242 · regla adoptada: No acreditada aquí · reserva material: 35 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): PROGRAMA-OBTENIDO-EN-COLA 10 · SIN-UNION 12 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (6): <span class="dd">⟨F1 F5 F6 F7 F12⟩</span>
+<strong>Stoppers</strong> (7): <span class="dd">⟨F1 F5 F6 F7 F8 F12 F15⟩</span>
 <ul><li>
 <strong>FIRMA</strong> (1) <span class="dd">⟨F7⟩</span>
 <ul><li>
-<code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> (por ENCODAT, ENCUCI) — Acceso C1 a ENBIARE 2021 / ENCODAT 2016 / ENCUCI 2020 / ENIGH 2022 para las 312 residuales (contienen las 56)  → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
+<code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code> (por ENCUCI) — §5-bis · regla del semáforo de tools/tablero_carriles.py (GEN2-TUBERIA-TABLERO-INSUMOS-1; dirección propone, m → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md <span class="dd">⟨F7⟩</span>
 </li></ul>
 </li><li>
-<strong>RESERVA</strong> (4) <span class="dd">⟨F12 F6⟩</span>
+<strong>RESERVA</strong> (4) <span class="dd">⟨F12 F6 F15⟩</span>
 <ul><li>
-<code>ENCODAT 2025</code> — manifiesto estado_reserva: DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS ×5; RESERVADA-NO-ABIERTA-NO-INDEXAR-L ×3; afirmaciones que la citan: 7 → E.6: la levanta el código congelado de una prueba pre-registrada o mesa por escrito <span class="dd">⟨F6⟩</span>
+<code>ENCODAT 2025</code> — manifiesto estado_reserva: DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS ×5; RESERVADA-NO-ABIERTA-NO-INDEXAR-L ×3; afirmaciones que la citan: 7 → E.6: la levanta el código congelado de una prueba pre-registrada o mesa por escrito; expediente forense/prereg-aperturas/ENCODAT-2025 (CODIGO-CONGELADO del expediente ENCODAT-) <span class="dd">⟨F6⟩</span>
 </li><li>
-<code>ENOE 2026</code> — manifiesto estado_reserva: RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO ×2; RESERVADA-NO-ABIERTA-NO-INDEXAR-L ×1; afirmaciones que la citan: 1 → familia 2027 ENOE-INFORMALIDAD <span class="dd">⟨F6⟩</span>
+<code>ENOE 2026</code> — manifiesto estado_reserva: RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO ×2; RESERVADA-NO-ABIERTA-NO-INDEXAR-L ×1; afirmaciones que la citan: 1 → familia 2027 ENOE-INFORMALIDAD; expediente forense/prereg-aperturas/ENOE-2026T2 (CODIGO-CONGELADO del expediente ENOE-202) <span class="dd">⟨F6⟩</span>
 </li><li>
-<code>ENOE 2026T2</code> — tabla-final olas_reservadas_al_entrar; afirmaciones que la citan: 1 → familia 2027 ENOE-INFORMALIDAD <span class="dd">⟨F12⟩</span>
+<code>ENOE 2026T2</code> — tabla-final olas_reservadas_al_entrar; afirmaciones que la citan: 1 → familia 2027 ENOE-INFORMALIDAD; expediente forense/prereg-aperturas/ENOE-2026T2 (CODIGO-CONGELADO del expediente ENOE-202) <span class="dd">⟨F12⟩</span>
 </li><li>
 <code>mapa:reserva_v1_1</code> — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 1) → E.6 (reserva declarada en el mapa) <span class="dd">⟨F1⟩</span>
 </li></ul>
@@ -1096,19 +1062,24 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONSUMO 4470 
 <ul><li>
 <code>SIN-UNION</code> — afirmaciones 12 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-MESA-SALUD ×12 <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
+</li><li>
+<strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
+<ul><li>
+<code>NC-260928-GEN2-VALIDACION-Y-2027-1-f926-03</code> (por ENOE) — PARO-PREMISA · P3 → FP-260928-GEN2-VALIDACION-Y-2027-1-f926-04 <span class="dd">⟨F8⟩</span>
+</li></ul>
 </li></ul>
 </li><li>
 <strong>Actos en vuelo</strong> (sin CONSUMIDO, por nombre): <code>2026-08-20-ADQ-ENOE-PRE2019.md</code>, <code>2026-09-02-MAESTRA35-L10-OLA6-SALUD-L1.md</code>, <code>2026-09-17-GEN2-ADQ-HANDOFF-RESULTADO-Y-SALUD-1-ENCARGO.md</code>, <code>2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1-CONTINUACION.md</code>, <code>2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1.md</code> … y 1 más <span class="dd">⟨F13⟩</span>
 </li><li>
 <strong>Frente 2027</strong>: ENOE-INFORMALIDAD (NO-LANZAR-TODAVIA; gate CONTRATO-FIRMADO(regla de inferencia para 39 estratos singleton)+FIRMA-DE-MESA(F) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
+<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code> → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md <span class="dd">⟨F7⟩</span>
 </li></ul>
 <h3 class="carril amarillo">🟡 CARRIL-29 · Salud Mental en México · Prevalencia · Estigma y la Brecha entre Necesidad y Atención <span class="dd">⟨F1 F14⟩</span></h3>
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 1/1; reglas con dictamen 0% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 39</strong>: medible en corpus 6 · con adquisición 23 · no medible por diseño 9 · no construible 1; citan un CALC/RESULT en <code>gen2_existente</code>: 4 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 39</strong>: medible en corpus 6 · con adquisición 23 · no medible por diseño 9 · no construible 1; citan un CALC/RESULT en <code>gen2_existente</code>: 5 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: SALUD_MENTAL 22 (56%) núcleo · GENERO 3 (8%) · JUVENTUD 3 (8%) · MIGRACION 2 (5%) · RELIGIOSIDAD 2 (5%) · TECNOLOGIA 2 (5%) · VIOLENCIA 2 (5%) · EMOCIONES_MORALES 1 (3%) · FAMILIA_CUIDADOS 1 (3%) · RURAL_INDIGENA 1 (3%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -1125,39 +1096,29 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): FAMILIA_CUIDA
 </li><li>
 <strong>Reglas del report</strong> (3; encabezados excluidos 0): SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 130 · NO-PASA 2 · PASA 1 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 541 · NO-PASA 6 · PASA 2291 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 0 / 36 / 2 / 68): EN-MAIN · recibo pr-1180 · regla adoptada: No acreditada aquí · reserva material: 68 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): EN-MANIFIESTO 2 · PROGRAMA-OBTENIDO-EN-COLA 1 · SIN-UNION 20 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (3): <span class="dd">⟨F1 F5 F6 F7 F8⟩</span>
+<strong>Stoppers</strong> (1): <span class="dd">⟨F1 F5 F6⟩</span>
 <ul><li>
-<strong>FIRMA</strong> (1) <span class="dd">⟨F7⟩</span>
-<ul><li>
-<code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> (por ENIGH) — Acceso C1 a ENBIARE 2021 / ENCODAT 2016 / ENCUCI 2020 / ENIGH 2022 para las 312 residuales (contienen las 56)  → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
-</li></ul>
-</li><li>
 <strong>ADQUISICION</strong> (1) <span class="dd">⟨F1 F5 F6⟩</span>
 <ul><li>
 <code>SIN-UNION</code> — afirmaciones 20 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-MESA-SALUD ×15, ASTRA5-MESA-GENERO ×2, ASTRA5-U0 ×1 <span class="dd">⟨F1 F5 F6⟩</span>
-</li></ul>
-</li><li>
-<strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
-<ul><li>
-<code>NC-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-1-8851-01</code> (por ENIGH) — PARO-PREMISA · P2, P3, P4 -- normalización de campos, guarda de tamaño en CI y prueba real del  → GEN2-TUBERIA-VISTA-NORMALIZADA-2 (tras decisión de mesa entre las tres opciones documentad <span class="dd">⟨F8⟩</span>
 </li></ul>
 </li></ul>
 </li><li>
 <strong>Frente 2027</strong>: SIN-UNION (ningún instrumento citado es de una familia 2027) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
+<strong>Siguiente acción</strong> [ADQUISICION]: <code>SIN-UNION</code> → propietario en el mapa: ASTRA5-MESA-SALUD ×15, ASTRA5-MESA-GENERO ×2, ASTRA5-U0 ×1 <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
 <h3 class="carril amarillo">🟡 CARRIL-18 · Mérito · Movilidad Social y Desigualdad en México · Actualización 2025-2026 <span class="dd">⟨F1 F14⟩</span></h3>
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 1/1; reglas con dictamen 0% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 38</strong>: medible en corpus 6 · con adquisición 22 · no medible por diseño 6 · no construible 4; citan un CALC/RESULT en <code>gen2_existente</code>: 0 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 38</strong>: medible en corpus 6 · con adquisición 22 · no medible por diseño 6 · no construible 4; citan un CALC/RESULT en <code>gen2_existente</code>: 3 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: MOVILIDAD 22 (58%) núcleo · CONFIANZA 5 (13%) · DINERO 3 (8%) · JUVENTUD 2 (5%) · TRABAJO 2 (5%) · CONSUMO 1 (3%) · GENERO 1 (3%) · MIGRACION 1 (3%) · POLITICA 1 (3%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -1174,24 +1135,22 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Reglas del report</strong> (4; encabezados excluidos 0): SIN-CIFRA-GEN2 4; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 4 · NO-PASA 2 · PASA 1 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 245 · NO-PASA 2 · PASA 1 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 3 / 26 / 0 / 54): EN-MAIN · recibo RECIBO-ASTRA6-1 · regla adoptada: No acreditada aquí · reserva material: 54 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): COLA-PENDIENTE 7 · EN-MANIFIESTO 3 · PROGRAMA-OBTENIDO-EN-COLA 2 · SIN-UNION 10 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (8): <span class="dd">⟨F1 F5 F6 F7 F8 F12⟩</span>
+<strong>Stoppers</strong> (6): <span class="dd">⟨F1 F5 F6 F7 F12 F15⟩</span>
 <ul><li>
-<strong>FIRMA</strong> (3) <span class="dd">⟨F7⟩</span>
+<strong>FIRMA</strong> (2) <span class="dd">⟨F7⟩</span>
 <ul><li>
-<code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> (por ENIGH) — Acceso C1 a ENBIARE 2021 / ENCODAT 2016 / ENCUCI 2020 / ENIGH 2022 para las 312 residuales (contienen las 56)  → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
-</li><li>
 <code>FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01</code> (por WVS) — Acceso con solicitud o términos para seis objetos (EMOVI 2023/2011 CEEY, WVS ola 7 EE.UU./Japón y longitudinal → mesa firma (plazo 2026-09-29); encargo 2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1.md <span class="dd">⟨F7⟩</span>
 </li><li>
 <code>FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-12</code> (por WVS) — [E1] 6 fuentes de microdato (EMOVI 2023/2011 de CEEY, WVS ola 7 EE.UU./Japón, WVS longitudinal 1981-2022, IFPS → mesa firma (plazo 2026-09-29); encargo 2026-09-27-GEN2-TRAMITE-NC-DECISIONES-1.md <span class="dd">⟨F7⟩</span>
 </li></ul>
 </li><li>
-<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6⟩</span>
+<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6 F15⟩</span>
 <ul><li>
 <code>mapa:reserva_v1_1</code> — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 2) → E.6 (reserva declarada en el mapa) <span class="dd">⟨F1⟩</span>
 </li></ul>
@@ -1204,22 +1163,17 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <code>EMOVI_2023</code> — estado NO-ACCESIBLE; prioridad 3; afirmaciones 7; origen ASTRA5-U0 ASTRA5-U0-AUTOR-016;ASTRA5-U0-MER-013;ASTRA5-U0-ME → mesa con identidad (acceso/registro) <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
-</li><li>
-<strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
-<ul><li>
-<code>NC-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-1-8851-01</code> (por ENIGH) — PARO-PREMISA · P2, P3, P4 -- normalización de campos, guarda de tamaño en CI y prueba real del  → GEN2-TUBERIA-VISTA-NORMALIZADA-2 (tras decisión de mesa entre las tres opciones documentad <span class="dd">⟨F8⟩</span>
-</li></ul>
 </li></ul>
 </li><li>
 <strong>Frente 2027</strong>: ENCIG-PAGO-DIGITAL (SUSPENDIDA(FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-01); gate CONTEXTO(gate vigente; soporte_acreditado=False)+CONTRATO-FIRMADO(enmienda pre-d) · ENCIG-SOLICITUD-MORDIDA (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE) · ENOE-INFORMALIDAD (NO-LANZAR-TODAVIA; gate CONTRATO-FIRMADO(regla de inferencia para 39 estratos singleton)+FIRMA-DE-MESA(F) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
+<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01</code> → mesa firma (plazo 2026-09-29); encargo 2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1.md <span class="dd">⟨F7⟩</span>
 </li></ul>
 <h3 class="carril amarillo">🟡 CARRIL-23 · Psicología del Consumidor Mexicano · Patrones · Contradicciones y Estrategia <span class="dd">⟨F1 F14⟩</span></h3>
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 2/2; reglas con dictamen 40% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 38</strong>: medible en corpus 5 · con adquisición 23 · no medible por diseño 10 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 2 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 38</strong>: medible en corpus 5 · con adquisición 23 · no medible por diseño 10 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 6 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: CONSUMO 25 (66%) núcleo · DINERO 9 (24%) núcleo · TECNOLOGIA 2 (5%) · CONFIANZA 1 (3%) · JUVENTUD 1 (3%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -1238,40 +1192,28 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Reglas del report</strong> (5; encabezados excluidos 1): CONFIRMA 1 · MATIZA-SIN-CRUCE 1 · SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 40% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 5 · NO-PASA 3 · PASA 18 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 6 · NO-PASA 3 · PASA 18 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 0 / 69 / 0 / 144): EN-MAIN · recibo RECIBO-ASTRA6-1 · regla adoptada: No acreditada aquí · reserva material: 144 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): EN-MANIFIESTO 2 · PROGRAMA-OBTENIDO-EN-COLA 1 · SIN-UNION 20 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (5): <span class="dd">⟨F1 F5 F6 F7 F8 F12⟩</span>
+<strong>Stoppers</strong> (2): <span class="dd">⟨F1 F5 F6 F12 F15⟩</span>
 <ul><li>
-<strong>FIRMA</strong> (2) <span class="dd">⟨F7⟩</span>
+<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6 F15⟩</span>
 <ul><li>
-<code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> (por ENIGH) — Acceso C1 a ENBIARE 2021 / ENCODAT 2016 / ENCUCI 2020 / ENIGH 2022 para las 312 residuales (contienen las 56)  → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
-</li><li>
-<code>FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-04</code> (por ENDUTIH) — Tolerancias por identidad ENDUTIH/MOCIBA: proporciones abs1e-8 rel0, enteros/estados exactos y pesos expandido → mesa firma; encargo 2026-09-26-ASTRA6-C1-IMPEDIMENTOS-LOTE2-ACTA-EJECUCION.md <span class="dd">⟨F7⟩</span>
-</li></ul>
-</li><li>
-<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6⟩</span>
-<ul><li>
-<code>ENDUTIH 2025</code> — manifiesto estado_reserva: RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO ×1; afirmaciones que la citan: 1 → E.6: la levanta el código congelado de una prueba pre-registrada o mesa por escrito <span class="dd">⟨F6⟩</span>
+<code>ENDUTIH 2025</code> — manifiesto estado_reserva: RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO ×1; afirmaciones que la citan: 1 → E.6: la levanta el código congelado de una prueba pre-registrada o mesa por escrito; expediente forense/prereg-aperturas/ENDUTIH-2025 (SOLO-MESA-POR-ESCRITO (sin contendiente ) <span class="dd">⟨F6⟩</span>
 </li></ul>
 </li><li>
 <strong>ADQUISICION</strong> (1) <span class="dd">⟨F1 F5 F6⟩</span>
 <ul><li>
 <code>SIN-UNION</code> — afirmaciones 20 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-MESA-CONSUMO ×14, ASTRA5-MESA-DINERO ×3, ASTRA5-MESA-DIGITAL ×1 <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
-</li><li>
-<strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
-<ul><li>
-<code>NC-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-1-8851-01</code> (por ENIGH) — PARO-PREMISA · P2, P3, P4 -- normalización de campos, guarda de tamaño en CI y prueba real del  → GEN2-TUBERIA-VISTA-NORMALIZADA-2 (tras decisión de mesa entre las tres opciones documentad <span class="dd">⟨F8⟩</span>
-</li></ul>
 </li></ul>
 </li><li>
 <strong>Frente 2027</strong>: ENIF-AHORRO-FORMAL (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE; reserva heredada de v1.0: ACCESO-AUTORIZADO(FP-260926-GEN2-AS) · ENIF-HORIZONTE-AHORRO (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE; reserva heredada de v1.0: ACCESO-AUTORIZADO(FP-260926-GEN2-AS) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
+<strong>Siguiente acción</strong> [RESERVA]: <code>ENDUTIH 2025</code> → E.6: la levanta el código congelado de una prueba pre-registrada o mesa por escrito; expediente forense/prereg-aperturas/ENDUTIH-2025 (SOLO-MESA-POR-ESCRITO (sin contendiente ) <span class="dd">⟨F6⟩</span>
 </li></ul>
 <h3 class="carril amarillo">🟡 CARRIL-27 · Religiosidad y Psicología del Mexicano Contemporáneo · Moral · Afrontamiento · Consumo e Identidad en Transformación <span class="dd">⟨F1 F14⟩</span></h3>
 <ul><li>
@@ -1294,7 +1236,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONSUMO 4470 
 </li><li>
 <strong>Reglas del report</strong> (3; encabezados excluidos 0): SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: ningún RESULT de sus instrumentos o núcleo <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 451 · NO-PASA 227 · PASA 6 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 2 / 106 / 4 / 47): EN-MAIN · recibo pr-1171 · regla adoptada: No acreditada aquí · reserva material: 47 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
@@ -1335,15 +1277,15 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Reglas del report</strong> (9; encabezados excluidos 0): MATIZA 1 · MATIZA-SIN-CRUCE 1 · SIN-CIFRA-GEN2 7; con dictamen distinto de SIN-CIFRA-GEN2 22% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 130 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 450 · PASA 90 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 5 / 28 / 2 / 99): EN-MAIN · recibo pr-1196 · regla adoptada: No acreditada aquí · reserva material: 99 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): COLA-PENDIENTE 1 · EN-MANIFIESTO 2 · PROGRAMA-OBTENIDO-EN-COLA 9 · SIN-UNION 7 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (4): <span class="dd">⟨F1 F5 F6 F12⟩</span>
+<strong>Stoppers</strong> (4): <span class="dd">⟨F1 F5 F6 F12 F15⟩</span>
 <ul><li>
-<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6⟩</span>
+<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6 F15⟩</span>
 <ul><li>
 <code>mapa:reserva_v1_1</code> — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 1) → E.6 (reserva declarada en el mapa) <span class="dd">⟨F1⟩</span>
 </li></ul>
@@ -1368,7 +1310,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 1/1; reglas con dictamen 25% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 38</strong>: medible en corpus 9 · con adquisición 24 · no medible por diseño 5 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 5 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 38</strong>: medible en corpus 9 · con adquisición 24 · no medible por diseño 5 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 6 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: FAMILIA_CUIDADOS 15 (39%) núcleo · TRABAJO 5 (13%) · DINERO 4 (11%) · SALUD 4 (11%) · SALUD_MENTAL 4 (11%) · MIGRACION 2 (5%) · CONSUMO 1 (3%) · GENERO 1 (3%) · RURAL_INDIGENA 1 (3%) · TIEMPO 1 (3%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -1385,20 +1327,15 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONSUMO 4470 
 </li><li>
 <strong>Reglas del report</strong> (4; encabezados excluidos 0): MATIZA 1 · SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 25% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 6 · NO-PASA 2 · PASA 1 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 420 · NO-PASA 229 · PASA 101 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 1 / 42 / 0 / 86): EN-MAIN · recibo pr-1197 · regla adoptada: No acreditada aquí · reserva material: 86 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): EN-MANIFIESTO 6 · PROGRAMA-OBTENIDO-EN-COLA 2 · SIN-UNION 16 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (4): <span class="dd">⟨F1 F5 F6 F7 F8 F12⟩</span>
+<strong>Stoppers</strong> (2): <span class="dd">⟨F1 F5 F6 F12 F15⟩</span>
 <ul><li>
-<strong>FIRMA</strong> (1) <span class="dd">⟨F7⟩</span>
-<ul><li>
-<code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> (por ENIGH) — Acceso C1 a ENBIARE 2021 / ENCODAT 2016 / ENCUCI 2020 / ENIGH 2022 para las 312 residuales (contienen las 56)  → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
-</li></ul>
-</li><li>
-<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6⟩</span>
+<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6 F15⟩</span>
 <ul><li>
 <code>mapa:reserva_v1_1</code> — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 1) → E.6 (reserva declarada en el mapa) <span class="dd">⟨F1⟩</span>
 </li></ul>
@@ -1407,24 +1344,19 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONSUMO 4470 
 <ul><li>
 <code>SIN-UNION</code> — afirmaciones 16 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-MESA-VEJEZ ×13, ASTRA5-MESA-SALUD ×3 <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
-</li><li>
-<strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
-<ul><li>
-<code>NC-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-1-8851-01</code> (por ENIGH) — PARO-PREMISA · P2, P3, P4 -- normalización de campos, guarda de tamaño en CI y prueba real del  → GEN2-TUBERIA-VISTA-NORMALIZADA-2 (tras decisión de mesa entre las tres opciones documentad <span class="dd">⟨F8⟩</span>
-</li></ul>
 </li></ul>
 </li><li>
 <strong>Actos en vuelo</strong> (sin CONSUMIDO, por nombre): <code>2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1-CONTINUACION.md</code>, <code>2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1.md</code> <span class="dd">⟨F13⟩</span>
 </li><li>
 <strong>Frente 2027</strong>: ENOE-INFORMALIDAD (NO-LANZAR-TODAVIA; gate CONTRATO-FIRMADO(regla de inferencia para 39 estratos singleton)+FIRMA-DE-MESA(F) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
+<strong>Siguiente acción</strong> [RESERVA]: <code>mapa:reserva_v1_1</code> → E.6 (reserva declarada en el mapa) <span class="dd">⟨F1⟩</span>
 </li></ul>
 <h3 class="carril amarillo">🟡 CARRIL-04 · Behavioral Finance Mexicano · Estructura · Adaptación Racional y Cultura en el Ahorro · Crédito y Riesgo <span class="dd">⟨F1 F14⟩</span></h3>
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 1/1; reglas con dictamen 33% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 35</strong>: medible en corpus 18 · con adquisición 6 · no medible por diseño 10 · no construible 1; citan un CALC/RESULT en <code>gen2_existente</code>: 2 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 35</strong>: medible en corpus 18 · con adquisición 6 · no medible por diseño 10 · no construible 1; citan un CALC/RESULT en <code>gen2_existente</code>: 11 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: DINERO 30 (86%) núcleo · CONFIANZA 3 (9%) · CONSUMO 1 (3%) · GENERO 1 (3%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -1463,7 +1395,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 1/1; reglas con dictamen 0% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 33</strong>: medible en corpus 6 · con adquisición 17 · no medible por diseño 7 · no construible 3; citan un CALC/RESULT en <code>gen2_existente</code>: 0 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 33</strong>: medible en corpus 6 · con adquisición 17 · no medible por diseño 7 · no construible 3; citan un CALC/RESULT en <code>gen2_existente</code>: 7 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: CONFIANZA 19 (58%) núcleo · CAPITAL_SOCIAL 4 (12%) · DINERO 4 (12%) · AUTORIDAD 3 (9%) · GENERO 1 (3%) · JUVENTUD 1 (3%) · TRABAJO 1 (3%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -1480,18 +1412,16 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CAPITAL_SOCIA
 </li><li>
 <strong>Reglas del report</strong> (4; encabezados excluidos 0): SIN-CIFRA-GEN2 4; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 4 · PASA 9 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 72 · PASA 147 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 0 / 150 / 6 / 201): EN-MAIN · recibo pr-1171 · regla adoptada: No acreditada aquí · reserva material: 201 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): EN-MANIFIESTO 3 · PROGRAMA-OBTENIDO-EN-COLA 3 · SIN-UNION 11 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (8): <span class="dd">⟨F1 F5 F6 F7 F8⟩</span>
+<strong>Stoppers</strong> (5): <span class="dd">⟨F1 F5 F6 F7 F8⟩</span>
 <ul><li>
-<strong>FIRMA</strong> (3) <span class="dd">⟨F7⟩</span>
+<strong>FIRMA</strong> (2) <span class="dd">⟨F7⟩</span>
 <ul><li>
-<code>FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-04</code> (por ENCIG) — 126 COINCIDE ENBIARE no ciegas del lote 2 (NC 627e-07; las 4 ENCIG ya tienen PASA de otra validación): re-comp → mesa firma; encargo 2026-09-28-GEN2-ASTRA-CONTINUIDAD-C1-1.md <span class="dd">⟨F7⟩</span>
-</li><li>
 <code>FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01</code> (por WVS) — Acceso con solicitud o términos para seis objetos (EMOVI 2023/2011 CEEY, WVS ola 7 EE.UU./Japón y longitudinal → mesa firma (plazo 2026-09-29); encargo 2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1.md <span class="dd">⟨F7⟩</span>
 </li><li>
 <code>FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-12</code> (por WVS) — [E1] 6 fuentes de microdato (EMOVI 2023/2011 de CEEY, WVS ola 7 EE.UU./Japón, WVS longitudinal 1981-2022, IFPS → mesa firma (plazo 2026-09-29); encargo 2026-09-27-GEN2-TRAMITE-NC-DECISIONES-1.md <span class="dd">⟨F7⟩</span>
@@ -1502,15 +1432,11 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CAPITAL_SOCIA
 <code>SIN-UNION</code> — afirmaciones 11 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-U3 ×8, ASTRA5-MESA-CONFIANZA ×1, ASTRA5-U2 ×1 <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
 </li><li>
-<strong>NC-PARO</strong> (4) <span class="dd">⟨F8⟩</span>
+<strong>NC-PARO</strong> (2) <span class="dd">⟨F8⟩</span>
 <ul><li>
-<code>NC-0423</code> (por ENCIG) — PARO-PREMISA · P5 -- metrica rectora <code>celdas_validadas</code> en la primera linea del tablero → DIFERIDO-A:RELEVO-TANDA-3 (o acto propio de tablero) <span class="dd">⟨F8⟩</span>
+<code>NC-260923-GEN2-CONTADORES-CONSUMO-2-749c-01</code> (por ENCIG) — PARO-PREMISA · P3 (canal completo): 16 celdas de GOB.gobierno_digital.encig2025.edad_x_sexo + . → MESA (2026-10-05) · cerrable al fusionar el [deriva] o su acto: EN-CURSO [canal [deriva] · <span class="dd">⟨F8⟩</span>
 </li><li>
-<code>NC-260923-GEN2-CONTADORES-CONSUMO-2-749c-01</code> (por ENCIG) — PARO-PREMISA · P3 (canal completo): 16 celdas de GOB.gobierno_digital.encig2025.edad_x_sexo + . → SIN-ASIGNAR (CONTADORES-CONSUMO-3 nunca archivado) <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-01</code> (por ENCIG) — PARO-PREMISA · P1 · eje tamaño de localidad → mesa -- decidir si el eje de localidad de confianza institucional se toma de otro instrume <span class="dd">⟨F8⟩</span>
-</li><li>
-<code>NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-01</code> (por ENVIPE) — PARO-PREMISA: · P1 → sucesor que primero reconcilie con mesa la cuenta 24-vs-42 del duelo y luego diseñe el lec <span class="dd">⟨F8⟩</span>
+<code>NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-01</code> (por ENVIPE) — PARO-PREMISA: · P1 → MESA (2026-10-05) · encargo por escribir (decidida por delegación: decididas-por-delegacio <span class="dd">⟨F8⟩</span>
 </li></ul>
 </li></ul>
 </li><li>
@@ -1518,13 +1444,13 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CAPITAL_SOCIA
 </li><li>
 <strong>Frente 2027</strong>: ENCIG-PAGO-DIGITAL (SUSPENDIDA(FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-01); gate CONTEXTO(gate vigente; soporte_acreditado=False)+CONTRATO-FIRMADO(enmienda pre-d) · ENCIG-SOLICITUD-MORDIDA (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE) · ENIF-AHORRO-FORMAL (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE; reserva heredada de v1.0: ACCESO-AUTORIZADO(FP-260926-GEN2-AS) · ENIF-HORIZONTE-AHORRO (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE; reserva heredada de v1.0: ACCESO-AUTORIZADO(FP-260926-GEN2-AS) · ENVIPE-DENUNCIA-U4 (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE) · ENVIPE-EVASION-NORMA (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-04</code> → mesa firma; encargo 2026-09-28-GEN2-ASTRA-CONTINUIDAD-C1-1.md <span class="dd">⟨F7⟩</span>
+<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01</code> → mesa firma (plazo 2026-09-29); encargo 2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1.md <span class="dd">⟨F7⟩</span>
 </li></ul>
 <h3 class="carril amarillo">🟡 CARRIL-26 · Reconfiguración de los Guiones de Género en México · Masculinidades · Feminidades y Violencia a través de Clase · Generación y Región <span class="dd">⟨F1 F14⟩</span></h3>
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 2/2; reglas con dictamen 0% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 33</strong>: medible en corpus 9 · con adquisición 18 · no medible por diseño 6 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 6 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 33</strong>: medible en corpus 9 · con adquisición 18 · no medible por diseño 6 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 10 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: GENERO 12 (36%) núcleo · VIOLENCIA 7 (21%) núcleo · TRABAJO 5 (15%) · POLITICA 3 (9%) · FAMILIA_CUIDADOS 2 (6%) · MIGRACION 1 (3%) · PAREJA 1 (3%) · RURAL_INDIGENA 1 (3%) · TECNOLOGIA 1 (3%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -1543,22 +1469,22 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): FAMILIA_CUIDA
 </li><li>
 <strong>Reglas del report</strong> (3; encabezados excluidos 0): SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: NO-PASA 10 · PASA 3 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 12582 · NO-PASA 535 · PASA 160 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 8 / 16 / 1 / 93): EN-MAIN · recibo pr-1180 · regla adoptada: No acreditada aquí · reserva material: 93 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): EN-MANIFIESTO 1 · PROGRAMA-OBTENIDO-EN-COLA 2 · SIN-UNION 15 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (5): <span class="dd">⟨F1 F5 F6 F7 F8 F12⟩</span>
+<strong>Stoppers</strong> (5): <span class="dd">⟨F1 F5 F6 F7 F8 F12 F15⟩</span>
 <ul><li>
 <strong>FIRMA</strong> (2) <span class="dd">⟨F7⟩</span>
 <ul><li>
 <code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-01</code> (por ENDIREH) — ACOTAR RESULT-ENDIREH2016-PF-TABLA#4 y #50 (edad 60+, vida y desde oct-2015) en catálogo v1.4 con rótulo «60+  → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
 </li><li>
-<code>FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02</code> (por ENCUCI) — Acceso C1 a ENBIARE 2021 / ENCODAT 2016 / ENCUCI 2020 / ENIGH 2022 para las 312 residuales (contienen las 56)  → mesa firma; encargo 2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md <span class="dd">⟨F7⟩</span>
+<code>FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01</code> (por ENCUCI) — §5-bis · regla del semáforo de tools/tablero_carriles.py (GEN2-TUBERIA-TABLERO-INSUMOS-1; dirección propone, m → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md <span class="dd">⟨F7⟩</span>
 </li></ul>
 </li><li>
-<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6⟩</span>
+<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6 F15⟩</span>
 <ul><li>
 <code>mapa:reserva_v1_1</code> — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 1) → E.6 (reserva declarada en el mapa) <span class="dd">⟨F1⟩</span>
 </li></ul>
@@ -1570,7 +1496,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): FAMILIA_CUIDA
 </li><li>
 <strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
 <ul><li>
-<code>NC-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-03</code> (por ENDIREH) — PARO-PREMISA: · ENTORNO · ENDIREH 2021 → GEN2-ASTRA6-C1-LOTE-4 <span class="dd">⟨F8⟩</span>
+<code>NC-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-03</code> (por ENDIREH) — PARO-PREMISA: · ENTORNO · ENDIREH 2021 → MESA (2026-10-05) · encargo por escribir: GEN2-ASTRA6-C1-LOTE-4 (767 ENDIREH 2021 -ventana <span class="dd">⟨F8⟩</span>
 </li></ul>
 </li></ul>
 </li><li>
@@ -1584,7 +1510,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): FAMILIA_CUIDA
 <ul><li>
 <strong>Semáforo AMARILLO</strong> — núcleo con cifra 2/2; reglas con dictamen 0% (umbral 50%) <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 28</strong>: medible en corpus 1 · con adquisición 21 · no medible por diseño 4 · no construible 2; citan un CALC/RESULT en <code>gen2_existente</code>: 0 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 28</strong>: medible en corpus 1 · con adquisición 21 · no medible por diseño 4 · no construible 2; citan un CALC/RESULT en <code>gen2_existente</code>: 1 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: MOVILIDAD 4 (14%) núcleo · SALUD_MENTAL 4 (14%) núcleo · CONOCIMIENTO 3 (11%) · INTERACCION 3 (11%) · TRABAJO 3 (11%) · GENERO 2 (7%) · RURAL_INDIGENA 2 (7%) · CONFIANZA 1 (4%) · DINERO 1 (4%) · EMOCIONES_MORALES 1 (4%) · FAMILIA_CUIDADOS 1 (4%) · MIGRACION 1 (4%) · POLITICA 1 (4%) · VIOLENCIA 1 (4%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
@@ -1603,15 +1529,15 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Reglas del report</strong> (0; encabezados excluidos 0): ninguna; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 126 <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 708 · NO-PASA 4 · PASA 2290 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 2 / 61 / 22 / 20): EN-MAIN · recibo pr-1247 · regla adoptada: No acreditada aquí · reserva material: 20 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): COLA-PENDIENTE 2 · EN-MANIFIESTO 1 · PROGRAMA-OBTENIDO-EN-COLA 1 · SIN-UNION 17 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (6): <span class="dd">⟨F1 F5 F6 F12⟩</span>
+<strong>Stoppers</strong> (6): <span class="dd">⟨F1 F5 F6 F12 F15⟩</span>
 <ul><li>
-<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6⟩</span>
+<strong>RESERVA</strong> (1) <span class="dd">⟨F12 F6 F15⟩</span>
 <ul><li>
 <code>mapa:reserva_v1_1</code> — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 1) → E.6 (reserva declarada en el mapa) <span class="dd">⟨F1⟩</span>
 </li></ul>
@@ -1684,7 +1610,7 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Reglas del report</strong> (2; encabezados excluidos 0): SIN-CIFRA-GEN2 2; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: ningún RESULT de sus instrumentos o núcleo <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 44 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 2 / 14 / 4 / 15): EN-MAIN · recibo pr-1251 · regla adoptada: No acreditada aquí · reserva material: 15 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
@@ -1715,13 +1641,15 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 <ul><li>
 <strong>Semáforo GRIS</strong> — NO-MEDIBLE-POR-DISEÑO 64% &gt; 50% <span class="dd">⟨F1 F2 F3 S⟩</span>
 </li><li>
-<strong>Afirmaciones 22</strong>: medible en corpus 3 · con adquisición 5 · no medible por diseño 14 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 0 <span class="dd">⟨F1⟩</span>
+<strong>Afirmaciones 22</strong>: medible en corpus 3 · con adquisición 5 · no medible por diseño 14 · no construible 0; citan un CALC/RESULT en <code>gen2_existente</code>: 3 <span class="dd">⟨F1⟩</span>
 </li><li>
 <strong>Dominios</strong>: SANCION_SOCIAL 11 (50%) núcleo · INTERACCION 2 (9%) · TRABAJO 2 (9%) · CONFIANZA 1 (5%) · DINERO 1 (5%) · GENERO 1 (5%) · JUVENTUD 1 (5%) · MIGRACION 1 (5%) · RURAL_INDIGENA 1 (5%) · VIOLENCIA 1 (5%) <span class="dd">⟨F1 S⟩</span>
 </li><li>
 <strong>Instrumentos citados</strong> (afirmaciones): ENADID 1 · ENSU 1 · ENVE 1 · ENVIPE 1 · LATINOBAROMETRO 1 · MOCIBA 1; sin instrumento reconocido: 16 <span class="dd">⟨F1 F12 S⟩</span>
 </li><li>
 <strong>Instrumentos del núcleo</strong> (casan stoppers y validación): ENSU 1 · ENVE 1 · MOCIBA 1 <span class="dd">⟨F1 F12 S⟩</span>
+</li><li>
+<strong>Pisos del núcleo pendientes de adopción</strong> — registrados en la vista: ninguno; sellados en disco, no registrados (E.7): SANCION_SOCIAL: CALC-PDR1-ENSU2024-0001 <span class="dd">⟨F16 F17 S⟩</span>
 </li><li>
 <strong>Cifras del catálogo v1.3 por dominio</strong> (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) <span class="dd">⟨F2⟩</span>
 <ul><li>
@@ -1732,22 +1660,22 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Reglas del report</strong> (2; encabezados excluidos 0): SIN-CIFRA-GEN2 2; con dictamen distinto de SIN-CIFRA-GEN2 0% <span class="dd">⟨F3⟩</span>
 </li><li>
-<strong>Validación ciega</strong>: ningún RESULT de sus instrumentos o núcleo <span class="dd">⟨F10 F2⟩</span>
+<strong>Validación ciega</strong>: CONCUERDA-NO-APROBADA 12105 · NO-PASA 525 · PASA 4 <span class="dd">⟨F10 F2⟩</span>
 </li><li>
 <strong>Editorial v2</strong> (C/M/R/S 1 / 11 / 0 / 18): EN-MAIN · recibo pr-1243 · regla adoptada: No acreditada aquí · reserva material: 18 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. <span class="dd">⟨F4⟩</span>
 </li><li>
 <strong>Adquisición del carril</strong> (afirmaciones con adquisición): EN-MANIFIESTO 1 · SIN-UNION 4 <span class="dd">⟨F1 F5 F6⟩</span>
 </li><li>
-<strong>Stoppers</strong> (2): <span class="dd">⟨F1 F5 F6 F7⟩</span>
+<strong>Stoppers</strong> (2): <span class="dd">⟨F1 F5 F6 F8⟩</span>
 <ul><li>
-<strong>FIRMA</strong> (1) <span class="dd">⟨F7⟩</span>
-<ul><li>
-<code>FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-04</code> (por MOCIBA) — Tolerancias por identidad ENDUTIH/MOCIBA: proporciones abs1e-8 rel0, enteros/estados exactos y pesos expandido → mesa firma; encargo 2026-09-26-ASTRA6-C1-IMPEDIMENTOS-LOTE2-ACTA-EJECUCION.md <span class="dd">⟨F7⟩</span>
-</li></ul>
-</li><li>
 <strong>ADQUISICION</strong> (1) <span class="dd">⟨F1 F5 F6⟩</span>
 <ul><li>
 <code>SIN-UNION</code> — afirmaciones 4 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-MESA-RURAL ×2, ASTRA5-MESA-ESTATUS ×1, ASTRA5-MESA-INTERACCION ×1 <span class="dd">⟨F1 F5 F6⟩</span>
+</li></ul>
+</li><li>
+<strong>NC-PARO</strong> (1) <span class="dd">⟨F8⟩</span>
+<ul><li>
+<code>NC-260928-GEN2-VALIDACION-Y-2027-1-f926-03</code> (por ENSU) — PARO-PREMISA · P3 → FP-260928-GEN2-VALIDACION-Y-2027-1-f926-04 <span class="dd">⟨F8⟩</span>
 </li></ul>
 </li></ul>
 </li><li>
@@ -1755,27 +1683,30 @@ dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826
 </li><li>
 <strong>Frente 2027</strong>: ENSU-CAMPECHE-INSEGURIDAD (NO-LANZAR-TODAVIA; gate CONTRATO-FIRMADO(contrato nuevo; potencia insuficiente banda 5pp)+FIRMA-DE-MESA() · ENVIPE-DENUNCIA-U4 (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE) · ENVIPE-EVASION-NORMA (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE) <span class="dd">⟨F11⟩</span>
 </li><li>
-<strong>Siguiente acción</strong> [FIRMA]: <code>FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-04</code> → mesa firma; encargo 2026-09-26-ASTRA6-C1-IMPEDIMENTOS-LOTE2-ACTA-EJECUCION.md <span class="dd">⟨F7⟩</span>
+<strong>Siguiente acción</strong> [ADQUISICION]: <code>SIN-UNION</code> → propietario en el mapa: ASTRA5-MESA-RURAL ×2, ASTRA5-MESA-ESTATUS ×1, ASTRA5-MESA-INTERACCION ×1 <span class="dd">⟨F1 F5 F6⟩</span>
 </li></ul>
 <h2>Cadena de procedencia</h2>
 <p>Todo número de arriba sale de estos archivos por <code>python3 tools/tablero_carriles.py --json</code>; «blob» es el <code>git hash-object</code> del contenido leído (la salida no depende de HEAD ni de la fecha). El crosswalk F14 se escribe con <code>--crosswalk</code> y <code>--verifica</code> lo compara.</p>
 <div class="tabla"><table>
 <thead><tr><th>clave</th><th>archivo</th><th>blob</th><th>lector</th><th>filas leídas</th></tr></thead><tbody>
-<tr><td>F1</td><td><code>canon/mapa-dominios-v1_1.tsv</code></td><td><code>574ca792a001</code></td><td>lee_tsv (csv.DictReader), filas con report corpus/reports/*</td><td>1396</td></tr>
+<tr><td>F1</td><td><code>canon/mapa-dominios-v1_2.tsv</code></td><td><code>14210b7f869a</code></td><td>lee_tsv (csv.DictReader), filas con report corpus/reports/*</td><td>1396</td></tr>
 <tr><td>F2</td><td><code>canon/catalogo-del-mexicano-v1_3.tsv</code></td><td><code>dfd6c29a4e9a</code></td><td>lee_tsv, agrega por (dominio, instrumento, estado_adopcion)</td><td>63706</td></tr>
 <tr><td>F3</td><td><code>canon/reglas-contrastadas-v1_0.tsv</code></td><td><code>422256e0be14</code></td><td>lee_tsv, report = basename(fuentes)</td><td>162</td></tr>
 <tr><td>F4</td><td><code>corpus/reports-v2/INDICE.md</code></td><td><code>cf3d1a1fa04d</code></td><td>indice(): filas de la tabla markdown</td><td>31</td></tr>
 <tr><td>F5</td><td><code>data/cola-adquisicion-v1_0.tsv</code></td><td><code>e96592d42f57</code></td><td>lee_tsv (salta líneas #)</td><td>952</td></tr>
-<tr><td>F6</td><td><code>data/manifiesto.yaml</code></td><td><code>f0ba373e1b1a</code></td><td>manifiesto(): campos id y estado_reserva por línea</td><td>7198</td></tr>
-<tr><td>F7</td><td><code>forense/firmas-pendientes.tsv</code></td><td><code>9be839ca1cbd</code></td><td>lee_tsv, estado ABIERTA*</td><td>645</td></tr>
-<tr><td>F8</td><td><code>forense/no-corrido.tsv</code></td><td><code>8dafdfbe4aa1</code></td><td>lee_tsv, estado ABIERTA*, razón PARO-PREMISA*/PARO-ENTORNO*</td><td>1067</td></tr>
+<tr><td>F6</td><td><code>data/manifiesto.yaml</code></td><td><code>d8ac4943b224</code></td><td>manifiesto(): campos id y estado_reserva por línea</td><td>7198</td></tr>
+<tr><td>F7</td><td><code>forense/firmas-pendientes.tsv</code></td><td><code>c60fe4c8ed18</code></td><td>lee_tsv, estado ABIERTA*</td><td>654</td></tr>
+<tr><td>F8</td><td><code>forense/no-corrido.tsv</code></td><td><code>eb96cf18147c</code></td><td>lee_tsv, estado ABIERTA*, razón PARO-PREMISA*/PARO-ENTORNO*</td><td>1102</td></tr>
 <tr><td>F9</td><td><code>data/corrida0/demanda-dictamen-v1_0.tsv</code></td><td><code>59ab68b09e08</code></td><td>lee_tsv, dictamen SIN-BASE-GEN2 / ESPERA-*</td><td>341</td></tr>
-<tr><td>F10</td><td><code>data/corrida0/validaciones-independientes.tsv</code></td><td><code>9adee7e2341b</code></td><td>lee_tsv, join resultado_id → catálogo.result_id</td><td>491</td></tr>
+<tr><td>F10</td><td><code>data/corrida0/validaciones-independientes.tsv</code></td><td><code>b7b72fc00114</code></td><td>lee_tsv, join resultado_id → catálogo.result_id</td><td>21266</td></tr>
 <tr><td>F11</td><td><code>forense/analisis/familias-2027/familias-2027-estado-v1_1.tsv</code></td><td><code>e8bfab28c374</code></td><td>lee_tsv</td><td>8</td></tr>
 <tr><td>F12</td><td><code>forense/analisis/corpus-completo/tabla-final-v1_0.tsv</code></td><td><code>4a647dd37503</code></td><td>lee_tsv, programa y olas_reservadas_al_entrar</td><td>146</td></tr>
-<tr><td>F13</td><td><code>forense/encargos/*.md</code></td><td><code>544d710afb91 (lista)</code></td><td>glob; en vuelo = sin línea «## CONSUMIDO»</td><td>805</td></tr>
+<tr><td>F13</td><td><code>forense/encargos/*.md</code></td><td><code>a851dda028ca (lista)</code></td><td>glob; en vuelo = sin línea «## CONSUMIDO»</td><td>818</td></tr>
+<tr><td>F15</td><td><code>data/corrida0/aperturas-pendientes-v1_0.tsv</code></td><td><code>4c7f99590390</code></td><td>lee_tsv, (programa, año de ola) -&gt; expediente y qué la abre</td><td>—</td></tr>
+<tr><td>F16</td><td><code>forense/analisis/*/*dictamenes.tsv</code></td><td><code>cd78601b716d (lista)</code></td><td>pisos_pendientes(): glob; filas con dominio · calc · resultado_id</td><td>74</td></tr>
+<tr><td>F17</td><td><code>data/corrida0/resultados.tsv</code></td><td><code>56c0224f683e</code></td><td>pisos_pendientes(): conjunto de resultado_id registrados (salta líneas #)</td><td>—</td></tr>
 <tr><td>F14</td><td><code>canon/crosswalk-carriles-v1_0.tsv</code></td><td><code>9539d131abd1</code></td><td>crosswalk() (misma derivación; --verifica compara con el archivo)</td><td>31</td></tr>
-<tr><td>S</td><td><code>tools/tablero_carriles.py</code></td><td><code>5ee02bedb05b</code></td><td>constantes de la cabecera</td><td>—</td></tr>
+<tr><td>S</td><td><code>tools/tablero_carriles.py</code></td><td><code>c23b28762de9</code></td><td>constantes de la cabecera</td><td>—</td></tr>
 </tbody></table></div>
 <!-- TABLERO-DERIVADO:END -->
 </body>

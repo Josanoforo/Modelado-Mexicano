@@ -1,0 +1,156 @@
+# El Mexicano y el Tiempo  Estructura  no Cultura  en la Planeación y el Compromiso Temporal · v3
+
+> | | |
+> |---|---|
+> | **ARCHIVO** | `corpus/reports-v3/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md` |
+> | **SUCEDE A** | [`corpus/reports-v2/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md`](../reports-v2/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md) · sha256 `8f47011d5c031782b22e5828d15e49cffa3f1e40c1dc713da5088d66a10713f8` — intacto (E.1); su cuerpo va abajo sin editar |
+> | **ACTO** | `GEN2-CIERRE-Y-PRODUCTO-3` (P4) · cero mediciones · la cifra se cita por RESULT del catálogo v1.4 |
+> | **CARRIL** | dominio `TIEMPO` · motivo del v3: `DOMINIO-CON-FILAS-NUEVAS:78` |
+> | **REGENERA** | `python3 forense/analisis/reports-v3/genera_reports_v3.py` |
+
+## v3.1 · Cifras GEN2 nuevas del carril (catálogo v1.4, por RESULT)
+
+El carril recibió 78 filas nuevas en el catálogo v1.4; se muestran hasta 12 (agregados primero, un CALC a la vez). La tabla completa se filtra por `dominio` en `canon/catalogo-del-mexicano-v1_4.tsv`. Todas son RETROSPECTIVAS y descriptivas de una ola: ninguna identifica un mecanismo (co-observación no es identificación).
+
+- `RESULT-PDR1-ENUT2024-COMUN-INT-NAC-P` · 3.313 [3.098, 3.575] · unidad: proporcion (persona) · ENUT 2024 · `ADOPTADO-CON-RESERVA-DE-ANCHO` · RETROSPECTIVA · procedencia (a) datos primarios en México
+- `RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-12-17-P` · 0.024 [0.020, 0.027] · unidad: proporcion (persona) · ENUT 2024 · `ADOPTADO-CON-RESERVA-DE-ANCHO` · RETROSPECTIVA · procedencia (a) datos primarios en México
+- `RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-18-29-P` · 0.021 [0.018, 0.024] · unidad: proporcion (persona) · ENUT 2024 · `ADOPTADO-CON-RESERVA-DE-ANCHO` · RETROSPECTIVA · procedencia (a) datos primarios en México
+- `RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-30-39-P` · 0.031 [0.027, 0.035] · unidad: proporcion (persona) · ENUT 2024 · `ADOPTADO-CON-RESERVA-DE-ANCHO` · RETROSPECTIVA · procedencia (a) datos primarios en México
+- `RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-40-59-P` · 0.037 [0.033, 0.041] · unidad: proporcion (persona) · ENUT 2024 · `ADOPTADO-CON-RESERVA-DE-ANCHO` · RETROSPECTIVA · procedencia (a) datos primarios en México
+- `RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-60-MAS-P` · 0.028 [0.025, 0.032] · unidad: proporcion (persona) · ENUT 2024 · `ADOPTADO-CON-RESERVA-DE-ANCHO` · RETROSPECTIVA · procedencia (a) datos primarios en México
+- `RESULT-PDR1-ENUT2024-COMUN-PART-HOMBRE-P` · 0.038 [0.035, 0.041] · unidad: proporcion (persona) · ENUT 2024 · `ADOPTADO-CON-RESERVA-DE-ANCHO` · RETROSPECTIVA · procedencia (a) datos primarios en México
+- `RESULT-PDR1-ENUT2024-COMUN-PART-IND-P` · 0.063 [0.056, 0.069] · unidad: proporcion (persona) · ENUT 2024 · `ADOPTADO-CON-RESERVA-DE-ANCHO` · RETROSPECTIVA · procedencia (a) datos primarios en México
+- `RESULT-PDR1-ENUT2024-COMUN-PART-MUJER-P` · 0.021 [0.019, 0.024] · unidad: proporcion (persona) · ENUT 2024 · `ADOPTADO-CON-RESERVA-DE-ANCHO` · RETROSPECTIVA · procedencia (a) datos primarios en México
+- `RESULT-PDR1-ENUT2024-COMUN-PART-NAC-P` · 0.029 [0.027, 0.031] · unidad: proporcion (persona) · ENUT 2024 · `ADOPTADO-CON-RESERVA-DE-ANCHO` · RETROSPECTIVA · procedencia (a) datos primarios en México
+- `RESULT-PDR1-ENUT2024-COMUN-PART-NOIND-P` · 0.021 [0.019, 0.023] · unidad: proporcion (persona) · ENUT 2024 · `ADOPTADO-CON-RESERVA-DE-ANCHO` · RETROSPECTIVA · procedencia (a) datos primarios en México
+- `RESULT-PDR1-ENUT2024-COMUN-PART-URBANO-P` · 0.018 [0.016, 0.019] · unidad: proporcion (persona) · ENUT 2024 · `ADOPTADO-CON-RESERVA-DE-ANCHO` · RETROSPECTIVA · procedencia (a) datos primarios en México
+
+## v3.2 · Contraste de las reglas del report (`canon/reglas-contrastadas-v1_1.tsv`)
+
+| regla | dictamen | RESULT · cifra · unidad | tier declarado → evidenciado | procedencia | matiz incorporado |
+|---|---|---|---|---|---|
+| `RG-56f645220c`: T-R3, analista laboral: SI se comparan trabajadores con y sin seguridad social, ENTONCES tratar diferencias de resiliencia como descriptivas | **MATIZA** | `RESULT-ENIF-AHO-A-P-CORTO-SIN-P` · 0.541 [0.522, 0.562] · VER-SPEC | ENIF (a), asociación retrospectiva; falsador de hipótesis causal: cambio de protección exógeno sin cambio posterior en meta directamente medida. → fuerte | (a) | horizonte corto de ahorro 54.1% [52.2,56.2] sin seguridad social vs 37.3% [35.0,39.4] con: la diferencia existe y es descriptiva; selección no identificada, como la regla pide · RETROSPECTIVA · R2: ratificado |
+| `RG-1bd7c23d10`: - SI [alta percepción de inseguridad / zona de violencia] ENTONCES [evita salir de noche, cambia hábitos, prioriza corto plazo] — PORQUE [cá | **MATIZA-SIN-CRUCE** | `RESULT-ENSU-SERIE-C10-HABITO-CAMINAR-NOCHE-2025T4-TOTAL-TODOS-P` · 0.358 [0.349, 0.366] · proporcion (persona 18+ urbana) | HIPÓTESIS RAZONABLE → media | (a) | marginal ENSU 2025T4: 35.8% [34.9,36.6] de adultos urbanos dejó de caminar de noche; sin cruce por percepción de inseguridad en catálogo; «prioriza corto plazo» e hipervigilancia no medidos · RETROSPECTIVA · R2: ratificado |
+
+Una regla `MATIZA` sigue siendo PROPUESTA: su texto queda en el cuerpo v2 y el matiz de arriba es la lectura vigente. `CONFIRMA` con tier evidenciado bajo media no entra al bloque de adopción (`canon/reglas-bloque-adopcion-1.md`).
+
+7 reglas de este report quedan `PROPUESTA` sin cifra, con su instrumento pendiente (columna `instrumento_sugerido`).
+
+## v3.3 · Firewall genético
+
+- `RG-31b23a57ef`: `NO-APLICA`
+- `RG-88a9c0e531`: `NO-APLICA`
+- `RG-56f645220c`: `NO-APLICA`
+- `RG-43fba4bafe`: `NO-APLICA`
+- `RG-5175a7ffab`: `NO-APLICA`
+- `RG-c8ba29e079`: `NO-APLICA`
+- `RG-3b63acddbb`: `NO-APLICA`
+- `RG-1bd7c23d10`: `NO-APLICA`
+- `RG-1905f182c8`: `NO-APLICA`
+
+## v3.4 · Módulo de auditoría de rigor extremo (preguntas [v2.16] incluidas)
+
+- **¿Cuántos contadores movió este trabajo?** Cero mediciones: el v3 cita RESULT ya sellados.
+- **[v2.16] ¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** PROSPECTIVA 0 · RETROSPECTIVA 78 filas del carril; ninguna frase las mezcla.
+- **[v2.16] ¿Qué unidad tiene cada cifra y se promedia con otra?** `proporcion (persona)`. Ninguna se promedia con otra ni se compara sin función de enlace.
+- **¿Sobregeneralización desde clase media urbana?** 0 filas del carril tienen universo urbano declarado en su unidad; ninguna se lee como «el mexicano».
+- **¿Qué parece psicológico y es incentivo racional?** `adaptación racional a riesgo` 1; `estructura (formalidad) + selección` 1.
+- **¿Pobreza, violencia o informalidad confundidas con cultura?** Las cifras nuevas son descriptivas de una ola; el v3 no atribuye ningún gradiente a «cultura».
+- **¿Qué afirmación sobre el corpus se escribió a mano?** Ninguna cifra: todas salen del catálogo v1.4 o de las reglas contrastadas, por el generador.
+- **¿Qué sería peligroso leído simplista?** Leer un piso de una ola como tendencia, o un contraste entre dos grupos como efecto causal.
+
+---
+
+# Cuerpo heredado de v2 (sin editar · sha256 `8f47011d5c031782b22e5828d15e49cffa3f1e40c1dc713da5088d66a10713f8`)
+
+# Tiempo, planeación y compromiso temporal en México
+
+**Report v2 · corte de lectura 27/sep/2026 · original v1 conservado · contador adoptado movido: cero.** Dictamen editorial, no parámetro adoptado. La [tabla de afirmaciones](../../forense/analisis/reports-v2/salud-juventud-tiempo-1/tiempo/afirmaciones.tsv) distingue lo observado, lo compatible y lo que aún exige prueba.
+
+## Resumen ejecutivo
+
+La proposición «estructura, no cultura» funciona como **hipótesis de trabajo**, no como resultado causal cerrado. Hay restricciones materiales observadas: empleo informal entre ocupados y distinto acceso al ahorro. Ninguna de esas distribuciones nacionales mide por sí misma la planeación, la puntualidad o la preferencia por el presente de una persona. En la muestra ENIF de trabajadores con respuestas válidas, el **colchón corto (<1 mes)** es más frecuente entre quienes **no** tienen seguridad social laboral (54.13%; n=4973) que entre quienes sí la tienen (37.31%; n=3969). El grupo sin protección muestra así menor resiliencia financiera descriptiva; la comparación no mide horizonte de metas y puede reflejar selección por ingreso, edad, ocupación y ahorro acumulado. El efecto causal de formalizar sigue abierto.
+
+Lo más sólido para el lector es separar **meta económica declarada**, **tenencia o vía de ahorro**, **capacidad de cubrir gastos**, **preferencia intertemporal experimental**, **puntualidad observada** y **costo de incumplir**. El trabajo doméstico y de cuidado es un mecanismo plausible que debe medirse junto con agendas y asistencia antes de atribuirle un efecto en la planeación. El ensayo de mensajes para ahorro de retiro en México identifica efectos de la intervención en clientes de un banco, no un rasgo temporal nacional. Las frases «ahorita», «sí voy» y «bomberazo» son hipótesis lingüísticas y situacionales que requieren observación emparejada con conducta.
+
+**Hallazgos para uso:** (1) [sólido] informalidad es contexto laboral, no una preferencia; (2) [sólido] el ahorro formal y el informal se superponen; (3) [sólido] la resiliencia ENIF difiere por seguridad social en trabajadores seleccionados; (4) [abierto] la carga de cuidados y su relación con asistencia requieren medición conjunta; (5) [útil] metas y colchón exigen reactivos distintos; (6) [malinterpretado] la tenencia de un producto financiero no demuestra planear; (7) [malinterpretado] comparar personas formalizadas y no formalizadas no estima formalización causal; (8) [útil] confirmar hora convierte un compromiso en algo verificable; (9) [abierto] «ahorita» no está vinculado a asistencia real; (10) [abierto] amenaza y duración de planes no están vinculadas por la evidencia consumida; (11) [abierto] el «bomberazo» carece de frecuencia representativa; (12) [malinterpretado] el efecto de mensajes a clientes bancarios no describe a toda la población.
+
+## Marco: unidad, mecanismo y contraprueba
+
+La **estructura** incluye estabilidad del flujo de ingresos, obligaciones de cuidado, transporte, seguridad, reglas laborales y acceso a productos. La **adaptación** es un cambio de decisión de la *misma persona* cuando cambian esas restricciones. La **norma cultural** es una expectativa compartida que persiste o varía con contextos comparables. La **preferencia** es una elección bajo opciones efectivamente disponibles. Un corte transversal entre empleo formal e informal mezcla estructura con selección previa; ni la informalidad nacional identifica volatilidad individual ni la tenencia de afore demuestra planeación activa. Para distinguir explicaciones se necesita medir ingreso y su variación, metas, saldos, oportunidades, sanciones y conducta de la misma persona a través de cambios plausiblemente exógenos, además de observar contexto social y laboral en una muestra compartida.
+
+## Mapa de evidencia por tier
+
+| Evidencia | Qué acredita y población | Límite |
+|---|---|---|
+| **(a) México, frecuencia sólida externa**: [ENOE, tercer trimestre 2025, comunicado p. 1](https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/enoe/enoe2025_11.pdf) | INEGI publica 54.6% de informalidad laboral entre ocupados en 2024T3 como comparador del mismo trimestre de 2025 | Tabulado público, no RESULT propio; no mide ingresos volátiles, planes ni impuntualidad. No trasladar a toda persona adulta. |
+| **(a) México, frecuencia sólida**: `RESULT-ENIF-AHO-B-P-FORMAL-P` y `RESULT-ENIF-AHO-B-P-INFORMAL-P`, `CALC-ENIF-0001`; adopción documentada en report v2 de finanzas | 28.49% declara alguna vía formal y 56.19% alguna informal entre personas 18+ con factor válido; mismo denominador de 13502; proporciones ponderadas | Vías superpuestas; el instrumento no mide duración de meta ni preferencia temporal. |
+| **(a) México, asociación descriptiva**: `RESULT-ENIF-AHO-A-P-CORTO-CON-P` y `RESULT-ENIF-AHO-A-P-CORTO-SIN-P`, `CALC-ENIF-0001`; sellados, validación independiente PASA en consulta | Colchón corto = gastos cubiertos **menos de un mes** si cesa el ingreso (`P4_10` en {1,2}): 37.31% (IC95 34.99–39.38%; n=3969) con seguridad social laboral y 54.13% (IC95 52.16–56.19%; n=4973) sin ella; denominadores respectivos: trabajadores 18+ con `P3_13` y `P4_10` válidos en cada grupo | Mayor frecuencia de colchón corto indica menor resiliencia en el grupo sin seguridad social, de manera descriptiva. Dos subconjuntos seleccionados; no es efecto de formalizar ni horizonte de planeación. |
+| **(a) México, experimento localizado**: [PNAS Nexus, DOI 10.1093/pnasnexus/pgad058](https://academic.oup.com/pnasnexus/article/2/5/pgad058/7067162), método y resultados | Aleatorización de mensajes a clientes de banco mexicano; mensaje orientado a la familia elevó aportaciones voluntarias frente a estado de cuenta estándar, con heterogeneidad por edad y sexo | Identifica efecto del mensaje en ese canal, no causa del ahorro nacional ni superioridad universal de recordatorios. |
+| **(c) marco importado**: Hall, Hofstede y teoría de escasez | Vocabulario para generar hipótesis | Ningún índice nacional antiguo ni experimento de otro contexto estima conducta individual actual en México. **(b) diáspora:** sin estudio empírico de diáspora usado como evidencia en este report. |
+
+Las cuatro cifras ENIF tienen [traza por RESULT](../../forense/analisis/reports-v2/salud-juventud-tiempo-1/tiempo/trazas-result.tsv): `CALC-ENIF-0001`, fila JSON, SHA-256 sellado, proporción, persona/ola/denominador y adopción `ADOPTADO` mediante `FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01` FIRMADA. Su uso aquí sigue siendo descriptivo; la firma no identifica un mecanismo. Se excluyeron del producto publicaciones de olas reservadas consultadas durante la preparación; el incidente queda descrito en el expediente local. ENIGH 2024 y ENVIPE 2026 quedan fuera de esta pieza.
+
+## Patrones, segmentos y explicaciones rivales
+
+**Metas y ahorro.** Los RESULT ENIF disponibles distinguen vías de ahorro y colchón ante cese de ingresos; ninguno mide una meta de largo plazo, puntualidad o causa de formalización. A favor de la hipótesis estructural, la disponibilidad y el costo de productos, el ingreso y la protección laboral pueden cambiar la factibilidad de una meta. El colchón corto (<1 mes) aparece en 37.31% de trabajadores con seguridad social laboral (n=3969) y 54.13% de quienes no la tienen (n=4973); el segundo grupo muestra menor resiliencia descriptiva. Las vías de ahorro coexisten y esos grupos están seleccionados: la asociación no demuestra que formalizar aumente el colchón en toda persona, alargue sus metas o mejore su puntualidad. El segmento observable son trabajadores con `P3_13` y `P4_10` válidos, no todos los informales ni todos los hogares. Preferencias, composición y selección son rivales; observar una reforma de acceso con mediciones previas y posteriores de metas ayudaría a separarlos. La implicación es ofrecer horizontes y liquidez explícitos, sin diagnosticar carácter a partir del producto usado.
+
+**Tiempo disponible.** El trabajo doméstico, el cuidado, el empleo y el traslado pueden restringir la holgura para gestionar citas o trámites. Este report no presenta una magnitud autorizada de esas cargas ni demuestra que alteren el cumplimiento de horarios o la planeación. La hipótesis de un efecto sobre asistencia exige vincular agenda, costo de traslado, cuidado y cumplimiento en la misma persona; tampoco puede presumirse una dirección individual desde grupos separados.
+
+**Puntualidad y compromiso social.** El sondeo de profesionistas citado por el v1 no tiene fuente primaria y muestreo verificables en este corte. Se retiran sus tasas y sus minutos. «La misma persona ficha a tiempo y llega tarde a una reunión» sigue siendo una hipótesis emparejada; observaciones independientes por contexto no prueban que sean las mismas personas. Sanción, transporte, hora acordada y normas de cortesía pueden actuar juntos. Una agenda con registro de invitación, hora pactada, hora real y costo de faltar permitiría probar la diferencia. El uso lexicográfico de «ahorita» no equivale a una tasa de incumplimiento; el significado depende de conversación y registro.
+
+**Amenaza e improvisación.** La evitación bajo amenaza es una hipótesis de adaptación, pero este report no consume una medición autorizada que la vincule con duración de planes futuros. La teoría de escasez plantea atención a urgencias bajo recursos limitados, pero aplicar su mecanismo psicológico a toda improvisación mexicana exige medir atención, restricciones y decisiones. «Bomberazo» puede reflejar organización, incertidumbre exógena o selección de tareas; no se asigna causa por etiqueta. La cifra de desplazamiento del v1 se retira aquí al no haberse cotejado el informe primario completo.
+
+## Causas: estructura, cultura y adaptación
+
+La estructura material tiene evidencia descriptiva; la norma cultural de flexibilidad horaria y la adaptación individual tienen evidencia directa insuficiente en esta pieza. La afirmación fuerte del v1 de que formalizar empleo **causa** planeación y puntualidad se **ROMPE como inferencia**, aunque la hipótesis permanece evaluable. El supuesto inverso, que un índice Hofstede fija el comportamiento de cada mexicano, tampoco es válido. Para una prueba discriminante se compararía la misma persona antes y después de una variación externa de ingreso, horario o sanción, con grupo comparable y medidas separadas de meta, ahorro y asistencia. Si cambian productos pero no metas, o cambian metas sin cambiar estabilidad, la historia estructural simple debe acotarse.
+
+## Comparación internacional y segmentación
+
+No se dispone aquí de una comparación armonizada de puntualidad mexicana y extranjera. El ensayo bancario mexicano prueba un efecto local de mensajes, no singularidad nacional. La organización del tiempo por cuidados también existe fuera de México; afirmar magnitudes comparables requiere misma definición y universo. Hall y Hofstede son **(c)** marcos históricos, útiles para preguntar por normas de agenda; no se trasladan puntuaciones de empleados y países a personas. La evidencia sobre migrantes mexicanos en Estados Unidos **(b)** requeriría separar lugar de residencia e instituciones; no se usa como contraste observado.
+
+La ENOE distingue ocupación; la ENIF, adultos elegibles y trabajadores seleccionados. Edad, género, clase, localidad e idioma indígena pueden cambiar restricciones y expectativas. El v1 proyectaba de profesionistas urbanos a trabajo rural, de norte industrial a disciplina temporal, y de uso digital juvenil a preferencia por inmediatez. Esas extrapolaciones se retiran. Tampoco hay base aquí para atribuir a religiosidad o migración una dirección de efecto.
+
+## Implicaciones, mitos y síntesis
+
+En servicio y salud, fijar hora, ventana y costo de reprogramar hace el compromiso observable; el efecto de recordatorios sobre asistencia debe evaluarse en esa población, no importarse del ensayo de ahorro. En empleo, registrar tardanza junto con trayecto, turno, cuidado y reglas permite distinguir barrera de sanción; una sanción más fuerte no demuestra por sí misma mejor bienestar. En ahorro, ofrecer vehículos de liquidez y metas explícitas es una propuesta de diseño, con resultados que habrá que medir por separado.
+
+El mito «mexicanos incapaces de planear» no está sustentado; tampoco lo está su negación causal total «todo se explica por estructura». El v1 acertó al exigir contexto, pero sobredeterminó la explicación y elevó sondeos no verificables a tier fuerte. El mayor colchón corto (<1 mes) entre trabajadores sin seguridad social es compatible descriptivamente con menor resiliencia financiera en ese grupo seleccionado, sin probar que formalizar cambie el colchón, las metas o la puntualidad. Queda una tesis defendible: las oportunidades y costos de comprometer tiempo son heterogéneos y medibles. Queda por probar cómo cambian la planeación y la puntualidad *dentro de personas*. Ninguna conclusión se atribuye a ascendencia o genética.
+
+## Reglas SI–ENTONCES propuestas, sin adopción en motor
+
+| Regla y consumidor posible | Condición, tier y falsador |
+|---|---|
+| **T-R1, lector de análisis financiero:** SI se invoca un indicador de ENIF para «planeación», ENTONCES declarar por separado meta, vía de ahorro y colchón. | Regla de medición; frecuencia (a) sólida, mecanismo no identificado. Falsador: instrumento que demuestre equivalencia empírica y conceptual de esos reactivos en mismo universo. |
+| **T-R2, diseñador de citas:** SI se interpreta «ahorita» o una aceptación social, ENTONCES confirmar una hora y registrar asistencia antes de inferir incumplimiento. | Propuesta operativa sin frecuencia nacional; falsador: estudio emparejado que muestre que la confirmación no aporta información ni cambia asistencia. |
+| **T-R3, analista laboral:** SI se comparan trabajadores con y sin seguridad social, ENTONCES tratar diferencias de resiliencia como descriptivas y ajustar diseño para selección antes de llamarlas efecto. | ENIF (a), asociación retrospectiva; falsador de hipótesis causal: cambio de protección exógeno sin cambio posterior en meta directamente medida. |
+
+## Auditoría final de rigor
+
+- **Pobreza, violencia e informalidad frente a cultura:** son contextos observables, no personalidad; la opción cultural también requiere medición. Una cifra nacional no adjudica mecanismo individual.
+- **Clase media urbana y transportabilidad:** el sondeo de profesionistas se retira; el banco experimental no representa todos los ahorradores. No se rellena lo rural o indígena con esos datos.
+- **Literatura importada y diáspora:** Hall, Hofstede y escasez se rotulan (c); no hay evidencia (b) consumida. Se descartan puntajes nacionales como predictores individuales.
+- **Unidad, denominador y escala:** ocupados ENOE, adultos ENIF y trabajadores ENIF son poblaciones distintas. Porcentaje y efecto experimental no se combinan en un índice de «cortoplacismo».
+- **Descripción, asociación, causalidad y predicción:** las distribuciones son descriptivas; la diferencia ENIF por protección es asociación; el ensayo identifica efecto de mensaje en su población; ninguno predice puntualidad o identifica efecto de formalización. No hay prueba prospectiva de las reglas.
+- **Origen temporal de la prueba:** todo RESULT y tabulado de esta pieza es **RETROSPECTIVA** frente a olas ya observadas; ninguna cifra ni regla tiene evaluación **PROSPECTIVA**. Las dos clases no se mezclan en una frase de producto.
+- **Incertidumbre y estado:** los IC de ENIF son los informados por los RESULT consultados, no reconstruidos aquí; el tabulado ENOE citado no aporta un IC en este report. La validación independiente ENIF consultada como PASA no se extiende a cada tesis. La tabla distingue sellado, adopción y evidencia externa. Coincidencia numérica no valida constructo.
+- **Riesgo de uso:** negar crédito o empleo por supuesta impuntualidad nacional, o atribuir falta de ahorro a moral, sería una extrapolación injustificada. También lo sería prometer que formalizar por sí solo alargará metas.
+
+**Fuentes y localizadores.** Original v1 completo (líneas 1–251); `canon/mapa-dominios-v1_1.tsv`, filas `ASTRA5-U0-TIME-*` y `ASTRA5-U0-ENOE-001`; `CALC-ENIF-0001` (cuatro RESULT citados, valores y denominadores); fuente primaria ENOE histórica y ensayo bancario enlazados en tabla. El identificador agregado `RESULT-ENOE-PISOS-TABLA` del report v2 de trabajo no resolvió como fila individual en `tools/consulta.py`; por ello la cifra ENOE se apoya solo en el tabulado público enlazado y no se presenta como RESULT propio. No se localizó estudio primario reciente y representativo que mida policronía o puntualidad social mexicana. Esta ausencia limita la tesis, sin refutarla.
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Las cifras con `RESULT-` citado (5 ids, 2 CALC sellados) llevan la unidad que declara su spec:
+- `CALC-ENIF-0001` → unidad: no declarada en su spec.yaml como persona/hogar/delito/trámite: se lee en el CALC
+- `CALC-ENOE-PISOS-0003` → unidad: personas de universo con diseño válido
+Ninguna cantidad de unidad delito o trámite se promedia aquí con una de unidad persona u hogar.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->
