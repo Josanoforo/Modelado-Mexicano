@@ -15,7 +15,7 @@ import sys
 
 # clave corta de fila -> se resuelve al id completo (sufijo «-<hhhh>-<NN>» del libro; o id numérico exacto)
 ENCARGOS = {
-    "GEN2-TUBERIA-CENSO-Y-DEPENDENCIAS-1": {"entorno": "CAJA", "modelo": "Sonnet", "modo": "ABIERTO", "piezas": {
+    "GEN2-TUBERIA-CENSO-Y-DEPENDENCIAS-1": {"entorno": "NUBE", "modelo": "Opus", "modo": "ABIERTO", "piezas": {
         "P1 · dependencias declaradas en requirements y CI": ["308c-03", "01aa-03", "NC-0332", "e897-04"],
         "P2 · censo de tests regenerado con ejecución real": ["8796-06", "2868-06", "19a3-06", "2518-04", "2d37-10", "3a49-06", "3fc6-03", "NC-0439"],
         "P3 · guardia de huérfanos que no salta lo ya instalado": ["NC-0381", "NC-0403"]}},
@@ -24,7 +24,7 @@ ENCARGOS = {
         "P2 · ensayo y guardas de valor": ["6c10-02", "996b-08", "NC-0292"],
         "P3 · vista, canal y registro": ["18fa-02", "822a-03", "c133-02", "c133-04", "1997-03", "f18c-01"],
         "P4 · citas, manifiesto y delta": ["NC-0303", "NC-0395", "fa42-03", "NC-0048"]}},
-    "GEN2-TUBERIA-TESTS-Y-CHECK-2": {"entorno": "NUBE", "modelo": "Sonnet", "modo": "ABIERTO", "piezas": {
+    "GEN2-TUBERIA-TESTS-Y-CHECK-2": {"entorno": "NUBE", "modelo": "Opus", "modo": "ABIERTO", "piezas": {
         "P1 · tests que dependen del estado vivo del libro": ["NC-0396", "NC-0398", "NC-0450", "247d-02"],
         "P2 · contrato de verify y tablas de identidad": ["NC-0438", "NC-0449", "19a3-02", "7ef3-01"],
         "P3 · check.py, suite y canal de WARN": ["baca-03", "8e53-02", "6e60-07"],
@@ -61,7 +61,7 @@ ENCARGOS = {
         "P2 · lote 4 ENDIREH 2021 (767 identidades)": ["0c1f-03", "627e-09", "fb50-03"],
         "P3 · ENBIARE escalas -P y llaves ENCIG-MOR": ["2385-03", "2385-01"],
         "P4 · hueco v1.2 fuera de corte y IC del lote 1": ["9d28-02", "beee-06"]}},
-    "GEN2-REPLAYS-Y-RECIBOS-CAJA-1": {"entorno": "CAJA", "modelo": "Sonnet", "modo": "ABIERTO", "piezas": {
+    "GEN2-REPLAYS-Y-RECIBOS-CAJA-1": {"entorno": "CAJA", "modelo": "Opus", "modo": "RÍGIDO", "piezas": {
         "P1 · replays con corpus montado": ["8c5c-13", "970c-01"],
         "P2 · recibos técnicos con red": ["9d28-03", "8c5c-08"]}},
     "GEN2-CORRECCION-C3-1": {"entorno": "NUBE", "modelo": "Sonnet", "modo": "ABIERTO", "piezas": {
@@ -74,13 +74,16 @@ ENCARGOS = {
         "P2 · ENUT núcleo y serie ENCIG": ["9f24-02", "9f24-03", "852f-02"],
         "P3 · pisos, identidad de escala y proyección del canal": ["NC-0346", "NC-0413", "63db-02", "7ef3-03"]}},
     "GEN2-PRODUCTO-CANON-2": {"entorno": "NUBE", "modelo": "Sonnet", "modo": "ABIERTO", "piezas": {
-        "P1 · informe v1.6 (IC de conglomerado y detalle por celda)": ["48d4-04", "48d4-03", "7357-02", "NC-0218"],
+        "P1 · informe (Clopper-Pearson por ola, detalle por celda y sello de D-A)": ["48d4-04", "7357-02", "NC-0218"],
         "P2 · catálogo y «Dónde cambió el mexicano»": ["afe1-02", "facd-03", "2385-05"],
-        "P3 · mapa de dominios y tablero": ["43d6-05", "NC-0055"]}},
+        "P3 · mapa de dominios y tablero": ["43d6-05", "NC-0055"],
+        "P4 · guardia de IC declarado en toda emisión": ["48d4-03"]}},
     "GEN2-TRAMITE-ARCHIVO-2": {"entorno": "NUBE", "modelo": "Sonnet", "modo": "ABIERTO", "piezas": {
         "P1 · retro-sello y cola vieja": ["NC-0287", "0eca-02"],
         "P2 · ADR, L0 y trazabilidad de actos ya fusionados": ["NC-0339", "NC-0272", "NC-0285", "NC-0299"],
-        "P3 · contratos C1 por firma y falsador de plantilla": ["fb50-01", "NC-0418"]}},
+        "P3 · hoja de firma por contrato de C1": ["fb50-01"]}},
+    "GEN2-FALSADOR-PLANTILLA-V22-1": {"entorno": "NUBE", "modelo": "Sonnet", "modo": "ABIERTO", "piezas": {
+        "P1 · medición del falsador a tres meses del sello (no lanzar antes del 21/dic/2026)": ["NC-0418"]}},
 }
 
 
