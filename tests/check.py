@@ -3072,6 +3072,10 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # en su espacio); `M5` es el módulo 5 del CSES, no un rótulo; `M1` es el motor M1 de
     # GEN2-M1-ALCANCE-1; `E1` es la letra [E1] de la hoja NC-DECISIONES-1 (FP …f2e5-12).
     "forense/analisis/pendientes-4/PENDIENTES-PROGRAMA-v5.md",
+    # hojas de este acto (renglones D1–D29): `M03`, `M12`, `M14`–`M17` son momentos del catálogo de momentos,
+    # citados como objeto de cada decisión (no se miden aquí).
+    "forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md",
+    "forense/analisis/pendientes-4/hoja-recetas-pendientes-4.md",
     # GEN2-TRAMITE-FIRMAS-21-1 (28/sep/2026): `M09`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
     # (HOLDOUT, encargo P1) y `E2` es letra de la hoja NC-DECISIONES-1 (FP …f2e5-13, ya asentada);
     # encargo verbatim (A.3) y su fragmento L0.
