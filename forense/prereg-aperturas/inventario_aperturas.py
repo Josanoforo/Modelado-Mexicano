@@ -45,6 +45,7 @@ YA_ADJUDICADOS = {
 # CALC que declaran una ola RESERVADA como no-input y cuya ola aún no tiene expediente de apertura que los
 # liste; entran como contendientes cuando se escriba ese expediente (cita = ola y quién lo decide).
 CONTENDIENTE_SIN_EXPEDIENTE = {
+    "CALC-MC2-ENIGH2022-0001": "ENIGH 2024 · GEN2-MEDICION-CARRILES-2 (#1336); expediente ENIGH-2024 congelado sin él; mismo trato que ENOE (decisión de mesa en sesión 28/sep)",
     "CALC-MC2-ENOE-0001": "ENOE 2026T1/2026T2 · GEN2-MEDICION-CARRILES-2 (#1327); decisión de mesa en sesión 28/sep: lista declarada; entra al expediente ENOE-2026T1 cuando exista",
 }
 # (programa, ola) -> (estado_vigente, cita). Sólo lo que una firma o un código congelado cambió.
