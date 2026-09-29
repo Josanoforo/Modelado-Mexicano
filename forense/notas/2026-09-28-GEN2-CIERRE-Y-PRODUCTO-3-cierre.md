@@ -45,7 +45,7 @@
 - **Título:** Benchmark del Mexicano — catálogo v1.4, informe v1.6, estado v1.19 (cierre del 27–28/sep)
 - **Dos líneas derivadas:**
   1. Catálogo del mexicano v1.4: 65 480 estimadores con RESULT sellado en 21 de los 28 dominios del mapa <!-- comando: python3 forense/analisis/informe-v1_6/cifra_v1_6.py cat:estimadores && python3 forense/analisis/informe-v1_6/cifra_v1_6.py mapa11_dominios_medidos -->; 1 722 filas nuevas de la semana adoptadas por bloque con reserva de ancho <!-- comando: python3 forense/analisis/informe-v1_6/cifra_v1_6.py cat:bloque:filas -->. Descriptivo: ninguna fila es predicción.
-  2. 219 celdas validadas (20 prospectivas, reportadas aparte) sobre 320 corridas selladas <!-- comando: python3 tools/corrida0.py status | grep -E "^(celdas_validadas|celdas_validadas_prospectiva|N_corridas_selladas)=" -->; tercer lote de validación ciega: 404 identidades rotuladas <!-- comando: python3 forense/analisis/informe-v1_6/cifra_v1_6.py lote3_filas -->.
+  2. 219 celdas validadas (20 prospectivas, reportadas aparte) sobre 323 corridas selladas <!-- comando: python3 tools/corrida0.py status | grep -E "^(celdas_validadas|celdas_validadas_prospectiva|N_corridas_selladas)=" -->; tercer lote de validación ciega: 404 identidades rotuladas <!-- comando: python3 forense/analisis/informe-v1_6/cifra_v1_6.py lote3_filas -->.
 - **Qué sube a Zenodo:** el tag completo. Mesa activa la integración GitHub → Zenodo y decide el DOI (`FP-260923-GEN2-FRONT-1-4296-01`); `CITATION.cff` sin cambios. Este acto **no publica ni crea el tag** (R49).
 
 ## Módulo de auditoría de rigor extremo
