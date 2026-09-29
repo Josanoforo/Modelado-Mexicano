@@ -1,0 +1,3259 @@
+{
+ "identidad": {
+  "paquete": "envipe-percepcion-2024-0001",
+  "version_entrada": "validacion-continua-1",
+  "sha256_entrada": "b20ad44c388d54eba682aafa83cbc736047e0a17705321915ff456cdf77dadaf"
+ },
+ "parametros": {
+  "semilla": "numpy.PCG64(20261003)",
+  "replicas": 2000,
+  "bloque": 50,
+  "percentiles": [
+   2.5,
+   97.5
+  ]
+ },
+ "global": {
+  "filas_tper_vic1": 89630,
+  "filas_tsdem": 298387,
+  "excl_diseno_invalido": 0,
+  "FILAS-DISENO-VALIDO": 89630,
+  "tsdem_id_per_duplicados_descartados": 0,
+  "FILAS-CON-NIV": 89630,
+  "filas_sin_pareja_tsdem": 0,
+  "excl_fuera_universo_edad": 506,
+  "excl_fuera_universo_edad_por_codigo": {
+   "98": 506
+  },
+  "filas_universo": 89124,
+  "n_estratos": 607,
+  "n_upm": 13080,
+  "n_estratos_upm_unica_certeza": 0
+ },
+ "decisiones_implementacion": [
+  {
+   "id": "D1-remuestreo-nh",
+   "frase_spec": "Bootstrap de UPM `UPM_DIS` dentro de estrato `EST_DIS`.",
+   "decision": "En cada estrato con n_h UPM se sortean n_h UPM con reemplazo (bootstrap ingenuo, sin reescalado Rao-Wu n_h-1); el peso de réplica es FAC_ELE multiplicado por el número de veces que se sorteó su UPM."
+  },
+  {
+   "id": "D2-certeza",
+   "frase_spec": "(UPM única del estrato = de certeza)",
+   "decision": "Estrato con una sola UPM: multiplicador fijo 1 en todas las réplicas, sin consumir números aleatorios. En este dato no hay estratos de UPM única (ver global.n_estratos_upm_unica_certeza)."
+  },
+  {
+   "id": "D3-orden-rng-bloques",
+   "frase_spec": "`numpy.PCG64(20261003)`, 2000 réplicas, bloques de 50",
+   "decision": "Un único Generator(PCG64(20261003)); 40 bloques sucesivos de 50 réplicas; dentro de cada bloque se recorren los estratos en orden lexicográfico de EST_DIS y para cada uno se llama rng.integers(0, n_h, size=(50, n_h)) sobre las UPM ordenadas lexicográficamente por UPM_DIS. La spec no fija el orden de consumo del generador; los extremos del IC dependen de este orden."
+  },
+  {
+   "id": "D4-replicas-comunes",
+   "frase_spec": "Razón ponderada Σw·y/Σw con bootstrap de UPM dentro de estrato ... Un eje a la vez; nunca cruces.",
+   "decision": "Las mismas 2000 réplicas de pesos (sobre todo el diseño válido) se usan para las 138 llaves; el dominio de cada llave se aplica después del remuestreo (estimación por dominio, no remuestreo dentro del dominio)."
+  },
+  {
+   "id": "D5-degenerada",
+   "frase_spec": "contrato conservador (una réplica degenerada → sin EE ni IC)",
+   "decision": "Réplica degenerada = réplica cuyo denominador Σw del dominio es 0 (razón indefinida). Con ≥1 réplica degenerada la llave queda RECONSTRUIDO con estado_ic NO-IDENTIFICADA. No se trata como degenerada una réplica con razón 0 o 1."
+  },
+  {
+   "id": "D6-percentil",
+   "frase_spec": "percentiles 2.5/97.5",
+   "decision": "numpy.percentile con interpolación lineal por defecto (method='linear') sobre las 2000 razones de réplica."
+  },
+  {
+   "id": "D7-dedup-tsdem",
+   "frase_spec": "el medidor deduplica por `id_per` en `une()`",
+   "decision": "drop_duplicates por ID_PER conservando la primera aparición en el orden del archivo, y unión izquierda desde tper_vic1. En el dato no hay ID_PER duplicados en tsdem (diagnóstico global)."
+  },
+  {
+   "id": "D8-niv-no-clasificable",
+   "frase_spec": "ESCOLARIDAD (`NIV` de `tsdem` ... hasta primaria 00-02, secundaria 03-05, media superior 06-07, superior 08-09",
+   "decision": "NIV 99 (no sabe), blanco o sin pareja en tsdem quedan fuera solo del eje ESCOLARIDAD; siguen en los demás ejes."
+  },
+  {
+   "id": "D9-universo-edad",
+   "frase_spec": "Universo de las tres conductas: `EDAD >= 18` y `EDAD <= 97` ... código de edad fuera de ese rango, o en blanco, queda fuera del universo, no de la fila",
+   "decision": "EDAD se convierte a número; 98 (no especificado) y no numéricos quedan fuera del universo pero sus UPM siguen en el diseño del bootstrap. Segmentos de edad: 18-29, 30-44, 45-59, 60+ (60-97 tras el universo)."
+  },
+  {
+   "id": "D10-codigos-fuera",
+   "frase_spec": "Todo otro código (no sabe/no responde `9`, no aplica `3`/`5`, blanco) queda fuera.",
+   "decision": "Filas con código fuera de UNO/CERO se excluyen de numerador y denominador de la llave (no cuentan como 0)."
+  },
+  {
+   "id": "D11-ee",
+   "frase_spec": "contrato conservador (una réplica degenerada → sin EE ni IC)",
+   "decision": "El EE bootstrap (desviación estándar con ddof=1 de las réplicas) se registra solo en diagnóstico; el contrato de salida no tiene campo de EE."
+  }
+ ],
+ "llaves": {
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-DOMINIO-COMPLEMENTO-URBANO-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "DOMINIO",
+   "segmento": "COMPLEMENTO-URBANO",
+   "variable": "AP4_10_02",
+   "n_valido": 14312,
+   "n_uno": 8768,
+   "suma_pesos_denominador": "14841746.0",
+   "n_upm_con_casos": 1272,
+   "n_segmento_en_universo": 22296,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 7963,
+     "9": 21
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.006869155037375524",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-DOMINIO-RURAL-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "DOMINIO",
+   "segmento": "RURAL",
+   "variable": "AP4_10_02",
+   "n_valido": 14115,
+   "n_uno": 7341,
+   "suma_pesos_denominador": "14639842.0",
+   "n_upm_con_casos": 1162,
+   "n_segmento_en_universo": 20831,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 6692,
+     "9": 24
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.007578464123054479",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-DOMINIO-URBANO-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "DOMINIO",
+   "segmento": "URBANO",
+   "variable": "AP4_10_02",
+   "n_valido": 25978,
+   "n_uno": 16640,
+   "suma_pesos_denominador": "31871801.0",
+   "n_upm_con_casos": 9771,
+   "n_segmento_en_universo": 45997,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 19969,
+     "9": 50
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.0048585715577603595",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-EDAD-18-29-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "EDAD",
+   "segmento": "18-29",
+   "variable": "AP4_10_02",
+   "n_valido": 12318,
+   "n_uno": 7395,
+   "suma_pesos_denominador": "15967502.0",
+   "n_upm_con_casos": 6586,
+   "n_segmento_en_universo": 19180,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 6847,
+     "9": 15
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.00659711539985498",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-EDAD-30-44-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "EDAD",
+   "segmento": "30-44",
+   "variable": "AP4_10_02",
+   "n_valido": 20741,
+   "n_uno": 13518,
+   "suma_pesos_denominador": "20995218.0",
+   "n_upm_con_casos": 8891,
+   "n_segmento_en_universo": 27248,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 6484,
+     "9": 23
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.004997951518291362",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-EDAD-45-59-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "EDAD",
+   "segmento": "45-59",
+   "variable": "AP4_10_02",
+   "n_valido": 13033,
+   "n_uno": 7732,
+   "suma_pesos_denominador": "15249611.0",
+   "n_upm_con_casos": 7179,
+   "n_segmento_en_universo": 22292,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 9231,
+     "9": 28
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.005900448003099753",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-EDAD-60-MAS-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "EDAD",
+   "segmento": "60-MAS",
+   "variable": "AP4_10_02",
+   "n_valido": 8313,
+   "n_uno": 4104,
+   "suma_pesos_denominador": "9141058.0",
+   "n_upm_con_casos": 5107,
+   "n_segmento_en_universo": 20404,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 12062,
+     "9": 29
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.008090373485808657",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-01-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "01",
+   "variable": "AP4_10_02",
+   "n_valido": 1154,
+   "n_uno": 722,
+   "suma_pesos_denominador": "710613.0",
+   "n_upm_con_casos": 292,
+   "n_segmento_en_universo": 1744,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 588,
+     "9": 2
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.016934826567233642",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-02-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "02",
+   "variable": "AP4_10_02",
+   "n_valido": 1369,
+   "n_uno": 954,
+   "suma_pesos_denominador": "1531742.0",
+   "n_upm_con_casos": 452,
+   "n_segmento_en_universo": 2601,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1230,
+     "9": 2
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.018542207310334922",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-03-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "03",
+   "variable": "AP4_10_02",
+   "n_valido": 1282,
+   "n_uno": 670,
+   "suma_pesos_denominador": "348519.0",
+   "n_upm_con_casos": 289,
+   "n_segmento_en_universo": 2575,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1293
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.024016812349433873",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-04-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "04",
+   "variable": "AP4_10_02",
+   "n_valido": 1449,
+   "n_uno": 800,
+   "suma_pesos_denominador": "450827.0",
+   "n_upm_con_casos": 303,
+   "n_segmento_en_universo": 2298,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 849
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.018358640509182275",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-05-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "05",
+   "variable": "AP4_10_02",
+   "n_valido": 1528,
+   "n_uno": 821,
+   "suma_pesos_denominador": "1464220.0",
+   "n_upm_con_casos": 449,
+   "n_segmento_en_universo": 2634,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1105,
+     "9": 1
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.018700294533808566",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-06-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "06",
+   "variable": "AP4_10_02",
+   "n_valido": 1616,
+   "n_uno": 1154,
+   "suma_pesos_denominador": "318538.0",
+   "n_upm_con_casos": 456,
+   "n_segmento_en_universo": 3018,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1394,
+     "9": 8
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.016085733076750427",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-07-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "07",
+   "variable": "AP4_10_02",
+   "n_valido": 2381,
+   "n_uno": 1366,
+   "suma_pesos_denominador": "2556646.0",
+   "n_upm_con_casos": 329,
+   "n_segmento_en_universo": 3540,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1154,
+     "9": 5
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.017724033123702278",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-08-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "08",
+   "variable": "AP4_10_02",
+   "n_valido": 2018,
+   "n_uno": 1255,
+   "suma_pesos_denominador": "1845408.0",
+   "n_upm_con_casos": 583,
+   "n_segmento_en_universo": 3253,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1231,
+     "9": 4
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.013732491865587965",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-09-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "09",
+   "variable": "AP4_10_02",
+   "n_valido": 2516,
+   "n_uno": 1657,
+   "suma_pesos_denominador": "3667520.0",
+   "n_upm_con_casos": 1078,
+   "n_segmento_en_universo": 5488,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 2965,
+     "9": 7
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.011333405845603389",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-10-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "10",
+   "variable": "AP4_10_02",
+   "n_valido": 1748,
+   "n_uno": 808,
+   "suma_pesos_denominador": "865397.0",
+   "n_upm_con_casos": 400,
+   "n_segmento_en_universo": 2802,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1051,
+     "9": 3
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.013662476344259343",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-11-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "11",
+   "variable": "AP4_10_02",
+   "n_valido": 1388,
+   "n_uno": 897,
+   "suma_pesos_denominador": "2887622.0",
+   "n_upm_con_casos": 278,
+   "n_segmento_en_universo": 2293,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 903,
+     "9": 2
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.017209737862492983",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-12-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "12",
+   "variable": "AP4_10_02",
+   "n_valido": 1631,
+   "n_uno": 896,
+   "suma_pesos_denominador": "1682568.0",
+   "n_upm_con_casos": 272,
+   "n_segmento_en_universo": 2499,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 868
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.019501302377638034",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-13-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "13",
+   "variable": "AP4_10_02",
+   "n_valido": 2185,
+   "n_uno": 1350,
+   "suma_pesos_denominador": "1907179.0",
+   "n_upm_con_casos": 236,
+   "n_segmento_en_universo": 2708,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 519,
+     "9": 4
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.016022295159229864",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-14-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "14",
+   "variable": "AP4_10_02",
+   "n_valido": 1809,
+   "n_uno": 983,
+   "suma_pesos_denominador": "4495069.0",
+   "n_upm_con_casos": 386,
+   "n_segmento_en_universo": 2616,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 802,
+     "9": 5
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.01566112294764656",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-15-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "15",
+   "variable": "AP4_10_02",
+   "n_valido": 1882,
+   "n_uno": 1240,
+   "suma_pesos_denominador": "9247413.0",
+   "n_upm_con_casos": 464,
+   "n_segmento_en_universo": 2760,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 877,
+     "9": 1
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.014008117517784724",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-16-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "16",
+   "variable": "AP4_10_02",
+   "n_valido": 2389,
+   "n_uno": 1342,
+   "suma_pesos_denominador": "2469178.0",
+   "n_upm_con_casos": 337,
+   "n_segmento_en_universo": 3532,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1140,
+     "9": 3
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.017244822011483453",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-17-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "17",
+   "variable": "AP4_10_02",
+   "n_valido": 1351,
+   "n_uno": 1045,
+   "suma_pesos_denominador": "835310.0",
+   "n_upm_con_casos": 348,
+   "n_segmento_en_universo": 2554,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1199,
+     "9": 4
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.014364256422285391",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-18-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "18",
+   "variable": "AP4_10_02",
+   "n_valido": 1297,
+   "n_uno": 530,
+   "suma_pesos_denominador": "649430.0",
+   "n_upm_con_casos": 201,
+   "n_segmento_en_universo": 1840,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 542,
+     "9": 1
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.01722251885900295",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-19-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "19",
+   "variable": "AP4_10_02",
+   "n_valido": 1464,
+   "n_uno": 987,
+   "suma_pesos_denominador": "2856230.0",
+   "n_upm_con_casos": 459,
+   "n_segmento_en_universo": 2527,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1061,
+     "9": 2
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.015351892349302346",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-20-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "20",
+   "variable": "AP4_10_02",
+   "n_valido": 1592,
+   "n_uno": 751,
+   "suma_pesos_denominador": "1862911.0",
+   "n_upm_con_casos": 220,
+   "n_segmento_en_universo": 2649,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1054,
+     "9": 3
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.01758361003389826",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-21-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "21",
+   "variable": "AP4_10_02",
+   "n_valido": 2175,
+   "n_uno": 1416,
+   "suma_pesos_denominador": "3031914.0",
+   "n_upm_con_casos": 401,
+   "n_segmento_en_universo": 3496,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1317,
+     "9": 4
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.012469519328914274",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-22-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "22",
+   "variable": "AP4_10_02",
+   "n_valido": 1488,
+   "n_uno": 1046,
+   "suma_pesos_denominador": "1073999.0",
+   "n_upm_con_casos": 353,
+   "n_segmento_en_universo": 2649,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1156,
+     "9": 5
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.014906133952748434",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-23-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "23",
+   "variable": "AP4_10_02",
+   "n_valido": 1249,
+   "n_uno": 906,
+   "suma_pesos_denominador": "729928.0",
+   "n_upm_con_casos": 421,
+   "n_segmento_en_universo": 2612,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1354,
+     "9": 9
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.016602028749903013",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-24-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "24",
+   "variable": "AP4_10_02",
+   "n_valido": 1269,
+   "n_uno": 935,
+   "suma_pesos_denominador": "1530846.0",
+   "n_upm_con_casos": 224,
+   "n_segmento_en_universo": 1817,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 548
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.014772942431893218",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-25-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "25",
+   "variable": "AP4_10_02",
+   "n_valido": 2332,
+   "n_uno": 1100,
+   "suma_pesos_denominador": "1595995.0",
+   "n_upm_con_casos": 486,
+   "n_segmento_en_universo": 3502,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1169,
+     "9": 1
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.014411241667614419",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-26-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "26",
+   "variable": "AP4_10_02",
+   "n_valido": 1259,
+   "n_uno": 795,
+   "suma_pesos_denominador": "1648558.0",
+   "n_upm_con_casos": 277,
+   "n_segmento_en_universo": 1767,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 507,
+     "9": 1
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.015856415645701318",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-27-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "27",
+   "variable": "AP4_10_02",
+   "n_valido": 2214,
+   "n_uno": 1114,
+   "suma_pesos_denominador": "1298166.0",
+   "n_upm_con_casos": 266,
+   "n_segmento_en_universo": 3093,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 877,
+     "9": 2
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.01560846150249856",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-28-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "28",
+   "variable": "AP4_10_02",
+   "n_valido": 2207,
+   "n_uno": 1478,
+   "suma_pesos_denominador": "1640604.0",
+   "n_upm_con_casos": 660,
+   "n_segmento_en_universo": 3690,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1480,
+     "9": 3
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.012634028863066386",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-29-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "29",
+   "variable": "AP4_10_02",
+   "n_valido": 1370,
+   "n_uno": 923,
+   "suma_pesos_denominador": "622094.0",
+   "n_upm_con_casos": 329,
+   "n_segmento_en_universo": 2334,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 961,
+     "9": 3
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.018902535691335102",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-30-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "30",
+   "variable": "AP4_10_02",
+   "n_valido": 1998,
+   "n_uno": 1231,
+   "suma_pesos_denominador": "3768303.0",
+   "n_upm_con_casos": 379,
+   "n_segmento_en_universo": 3360,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1354,
+     "9": 8
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.014331936036475207",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-31-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "31",
+   "variable": "AP4_10_02",
+   "n_valido": 1632,
+   "n_uno": 692,
+   "suma_pesos_denominador": "1015240.0",
+   "n_upm_con_casos": 402,
+   "n_segmento_en_universo": 3045,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 1411,
+     "9": 2
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.016304237978349626",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-32-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ENTIDAD",
+   "segmento": "32",
+   "variable": "AP4_10_02",
+   "n_valido": 1163,
+   "n_uno": 885,
+   "suma_pesos_denominador": "745402.0",
+   "n_upm_con_casos": 175,
+   "n_segmento_en_universo": 1828,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 665
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.013425967475537223",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ESCOLARIDAD-HASTA-PRIMARIA-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "variable": "AP4_10_02",
+   "n_valido": 12984,
+   "n_uno": 6686,
+   "suma_pesos_denominador": "14656299.0",
+   "n_upm_con_casos": 5324,
+   "n_segmento_en_universo": 23384,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 10361,
+     "9": 39
+    },
+    "eje_sin_pareja_tsdem_global_universo": 0,
+    "eje_niv_no_clasificable_global_universo": {
+     "99": 334
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.006841380641013087",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "variable": "AP4_10_02",
+   "n_valido": 12817,
+   "n_uno": 8115,
+   "suma_pesos_denominador": "15007758.0",
+   "n_upm_con_casos": 7251,
+   "n_segmento_en_universo": 19676,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 6846,
+     "9": 13
+    },
+    "eje_sin_pareja_tsdem_global_universo": 0,
+    "eje_niv_no_clasificable_global_universo": {
+     "99": 334
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.006268490525315654",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ESCOLARIDAD-SECUNDARIA-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "variable": "AP4_10_02",
+   "n_valido": 16927,
+   "n_uno": 10391,
+   "suma_pesos_denominador": "18824816.0",
+   "n_upm_con_casos": 7491,
+   "n_segmento_en_universo": 24769,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 7819,
+     "9": 23
+    },
+    "eje_sin_pareja_tsdem_global_universo": 0,
+    "eje_niv_no_clasificable_global_universo": {
+     "99": 334
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.0057794883599137595",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ESCOLARIDAD-SUPERIOR-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "variable": "AP4_10_02",
+   "n_valido": 11466,
+   "n_uno": 7439,
+   "suma_pesos_denominador": "12596354.0",
+   "n_upm_con_casos": 6898,
+   "n_segmento_en_universo": 20961,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 9478,
+     "9": 17
+    },
+    "eje_sin_pareja_tsdem_global_universo": 0,
+    "eje_niv_no_clasificable_global_universo": {
+     "99": 334
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.006229414343034697",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-SEXO-HOMBRE-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "variable": "AP4_10_02",
+   "n_valido": 22909,
+   "n_uno": 12505,
+   "suma_pesos_denominador": "27092832.0",
+   "n_upm_con_casos": 9313,
+   "n_segmento_en_universo": 40299,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 17340,
+     "9": 50
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.004734183991312836",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-SEXO-MUJER-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "variable": "AP4_10_02",
+   "n_valido": 31496,
+   "n_uno": 20244,
+   "suma_pesos_denominador": "34260557.0",
+   "n_upm_con_casos": 10665,
+   "n_segmento_en_universo": 48825,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 17284,
+     "9": 45
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.004266455885283856",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-TOTAL-TODOS-P": {
+   "conducta": "dejo-permitir-menores-salir-solos",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "variable": "AP4_10_02",
+   "n_valido": 54405,
+   "n_uno": 32749,
+   "suma_pesos_denominador": "61353389.0",
+   "n_upm_con_casos": 12205,
+   "n_segmento_en_universo": 89124,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "3": 34624,
+     "9": 95
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.003467844664149866",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-DOMINIO-COMPLEMENTO-URBANO-P": {
+   "conducta": "estado-inseguro",
+   "eje": "DOMINIO",
+   "segmento": "COMPLEMENTO-URBANO",
+   "variable": "AP4_3_3",
+   "n_valido": 21737,
+   "n_uno": 15262,
+   "suma_pesos_denominador": "20779277.0",
+   "n_upm_con_casos": 1272,
+   "n_segmento_en_universo": 22296,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 559
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.0043536835095450855",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-DOMINIO-RURAL-P": {
+   "conducta": "estado-inseguro",
+   "eje": "DOMINIO",
+   "segmento": "RURAL",
+   "variable": "AP4_3_3",
+   "n_valido": 20191,
+   "n_uno": 14265,
+   "suma_pesos_denominador": "19769516.0",
+   "n_upm_con_casos": 1162,
+   "n_segmento_en_universo": 20831,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 640
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.004838600227737751",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-DOMINIO-URBANO-P": {
+   "conducta": "estado-inseguro",
+   "eje": "DOMINIO",
+   "segmento": "URBANO",
+   "variable": "AP4_3_3",
+   "n_valido": 45234,
+   "n_uno": 31227,
+   "suma_pesos_denominador": "51074539.0",
+   "n_upm_con_casos": 10631,
+   "n_segmento_en_universo": 45997,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 763
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.002667463381403652",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-EDAD-18-29-P": {
+   "conducta": "estado-inseguro",
+   "eje": "EDAD",
+   "segmento": "18-29",
+   "variable": "AP4_3_3",
+   "n_valido": 18892,
+   "n_uno": 12736,
+   "suma_pesos_denominador": "23380192.0",
+   "n_upm_con_casos": 8917,
+   "n_segmento_en_universo": 19180,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 288
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.004390965221461721",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-EDAD-30-44-P": {
+   "conducta": "estado-inseguro",
+   "eje": "EDAD",
+   "segmento": "30-44",
+   "variable": "AP4_3_3",
+   "n_valido": 26805,
+   "n_uno": 18736,
+   "suma_pesos_denominador": "26593676.0",
+   "n_upm_con_casos": 10467,
+   "n_segmento_en_universo": 27248,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 443
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.0037523600269407627",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-EDAD-45-59-P": {
+   "conducta": "estado-inseguro",
+   "eje": "EDAD",
+   "segmento": "45-59",
+   "variable": "AP4_3_3",
+   "n_valido": 21801,
+   "n_uno": 15653,
+   "suma_pesos_denominador": "23312252.0",
+   "n_upm_con_casos": 9860,
+   "n_segmento_en_universo": 22292,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 491
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.0036048215441720115",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-EDAD-60-MAS-P": {
+   "conducta": "estado-inseguro",
+   "eje": "EDAD",
+   "segmento": "60-MAS",
+   "variable": "AP4_3_3",
+   "n_valido": 19664,
+   "n_uno": 13629,
+   "suma_pesos_denominador": "18337212.0",
+   "n_upm_con_casos": 9015,
+   "n_segmento_en_universo": 20404,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 740
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.00417186872274947",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-01-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "01",
+   "variable": "AP4_3_3",
+   "n_valido": 1730,
+   "n_uno": 891,
+   "suma_pesos_denominador": "1025342.0",
+   "n_upm_con_casos": 301,
+   "n_segmento_en_universo": 1744,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 14
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.01439919731118742",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-02-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "02",
+   "variable": "AP4_3_3",
+   "n_valido": 2541,
+   "n_uno": 1891,
+   "suma_pesos_denominador": "2687181.0",
+   "n_upm_con_casos": 492,
+   "n_segmento_en_universo": 2601,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 60
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.010926651015146458",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-03-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "03",
+   "variable": "AP4_3_3",
+   "n_valido": 2525,
+   "n_uno": 764,
+   "suma_pesos_denominador": "628509.0",
+   "n_upm_con_casos": 306,
+   "n_segmento_en_universo": 2575,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 50
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.010472409314621208",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-04-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "04",
+   "variable": "AP4_3_3",
+   "n_valido": 2267,
+   "n_uno": 1428,
+   "suma_pesos_denominador": "667026.0",
+   "n_upm_con_casos": 317,
+   "n_segmento_en_universo": 2298,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 31
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.011639738778062621",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-05-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "05",
+   "variable": "AP4_3_3",
+   "n_valido": 2568,
+   "n_uno": 980,
+   "suma_pesos_denominador": "2319937.0",
+   "n_upm_con_casos": 480,
+   "n_segmento_en_universo": 2634,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 66
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.012170679647804633",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-06-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "06",
+   "variable": "AP4_3_3",
+   "n_valido": 2935,
+   "n_uno": 2388,
+   "suma_pesos_denominador": "531806.0",
+   "n_upm_con_casos": 494,
+   "n_segmento_en_universo": 3018,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 83
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.00902238510323537",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-07-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "07",
+   "variable": "AP4_3_3",
+   "n_valido": 3444,
+   "n_uno": 2743,
+   "suma_pesos_denominador": "3474624.0",
+   "n_upm_con_casos": 335,
+   "n_segmento_en_universo": 3540,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 96
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.01170524623093779",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-08-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "08",
+   "variable": "AP4_3_3",
+   "n_valido": 3046,
+   "n_uno": 2211,
+   "suma_pesos_denominador": "2567606.0",
+   "n_upm_con_casos": 593,
+   "n_segmento_en_universo": 3253,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 207
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.010213138588336747",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-09-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "09",
+   "variable": "AP4_3_3",
+   "n_valido": 5437,
+   "n_uno": 4104,
+   "suma_pesos_denominador": "7297922.0",
+   "n_upm_con_casos": 1271,
+   "n_segmento_en_universo": 5488,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 51
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.006977502313339328",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-10-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "10",
+   "variable": "AP4_3_3",
+   "n_valido": 2724,
+   "n_uno": 1266,
+   "suma_pesos_denominador": "1283701.0",
+   "n_upm_con_casos": 428,
+   "n_segmento_en_universo": 2802,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 78
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.014055501446790245",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-11-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "11",
+   "variable": "AP4_3_3",
+   "n_valido": 2252,
+   "n_uno": 1999,
+   "suma_pesos_denominador": "4386348.0",
+   "n_upm_con_casos": 290,
+   "n_segmento_en_universo": 2293,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 41
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.008148290326988923",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-12-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "12",
+   "variable": "AP4_3_3",
+   "n_valido": 2437,
+   "n_uno": 2025,
+   "suma_pesos_denominador": "2396771.0",
+   "n_upm_con_casos": 290,
+   "n_segmento_en_universo": 2499,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 62
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.00887237215541789",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-13-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "13",
+   "variable": "AP4_3_3",
+   "n_valido": 2649,
+   "n_uno": 1672,
+   "suma_pesos_denominador": "2242066.0",
+   "n_upm_con_casos": 240,
+   "n_segmento_en_universo": 2708,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 59
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.011873790870180768",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-14-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "14",
+   "variable": "AP4_3_3",
+   "n_valido": 2557,
+   "n_uno": 1938,
+   "suma_pesos_denominador": "6125546.0",
+   "n_upm_con_casos": 396,
+   "n_segmento_en_universo": 2616,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 59
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.011007665763315369",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-15-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "15",
+   "variable": "AP4_3_3",
+   "n_valido": 2745,
+   "n_uno": 2393,
+   "suma_pesos_denominador": "13053360.0",
+   "n_upm_con_casos": 483,
+   "n_segmento_en_universo": 2760,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 15
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.0074809580685718585",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-16-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "16",
+   "variable": "AP4_3_3",
+   "n_valido": 3438,
+   "n_uno": 2776,
+   "suma_pesos_denominador": "3360742.0",
+   "n_upm_con_casos": 353,
+   "n_segmento_en_universo": 3532,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 94
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.009219266839093212",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-17-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "17",
+   "variable": "AP4_3_3",
+   "n_valido": 2530,
+   "n_uno": 2290,
+   "suma_pesos_denominador": "1433853.0",
+   "n_upm_con_casos": 393,
+   "n_segmento_en_universo": 2554,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 24
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.006891643976281751",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-18-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "18",
+   "variable": "AP4_3_3",
+   "n_valido": 1809,
+   "n_uno": 797,
+   "suma_pesos_denominador": "867396.0",
+   "n_upm_con_casos": 202,
+   "n_segmento_en_universo": 1840,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 31
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.015165186855228345",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-19-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "19",
+   "variable": "AP4_3_3",
+   "n_valido": 2497,
+   "n_uno": 1810,
+   "suma_pesos_denominador": "4529645.0",
+   "n_upm_con_casos": 500,
+   "n_segmento_en_universo": 2527,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 30
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.009317396014071945",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-20-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "20",
+   "variable": "AP4_3_3",
+   "n_valido": 2517,
+   "n_uno": 1821,
+   "suma_pesos_denominador": "2842118.0",
+   "n_upm_con_casos": 225,
+   "n_segmento_en_universo": 2649,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 132
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.01212869520356278",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-21-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "21",
+   "variable": "AP4_3_3",
+   "n_valido": 3360,
+   "n_uno": 2616,
+   "suma_pesos_denominador": "4422997.0",
+   "n_upm_con_casos": 439,
+   "n_segmento_en_universo": 3496,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 136
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.008588840513565925",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-22-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "22",
+   "variable": "AP4_3_3",
+   "n_valido": 2570,
+   "n_uno": 1423,
+   "suma_pesos_denominador": "1775395.0",
+   "n_upm_con_casos": 392,
+   "n_segmento_en_universo": 2649,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 79
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.011457650311616939",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-23-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "23",
+   "variable": "AP4_3_3",
+   "n_valido": 2564,
+   "n_uno": 2067,
+   "suma_pesos_denominador": "1405305.0",
+   "n_upm_con_casos": 479,
+   "n_segmento_en_universo": 2612,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 48
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.008676810989878705",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-24-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "24",
+   "variable": "AP4_3_3",
+   "n_valido": 1780,
+   "n_uno": 1354,
+   "suma_pesos_denominador": "2030153.0",
+   "n_upm_con_casos": 232,
+   "n_segmento_en_universo": 1817,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 37
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.012467438062689002",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-25-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "25",
+   "variable": "AP4_3_3",
+   "n_valido": 3468,
+   "n_uno": 1904,
+   "suma_pesos_denominador": "2226307.0",
+   "n_upm_con_casos": 497,
+   "n_segmento_en_universo": 3502,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 34
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.009504848324451297",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-26-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "26",
+   "variable": "AP4_3_3",
+   "n_valido": 1735,
+   "n_uno": 1240,
+   "suma_pesos_denominador": "2139623.0",
+   "n_upm_con_casos": 283,
+   "n_segmento_en_universo": 1767,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 32
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.011782002164131614",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-27-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "27",
+   "variable": "AP4_3_3",
+   "n_valido": 3081,
+   "n_uno": 2600,
+   "suma_pesos_denominador": "1763078.0",
+   "n_upm_con_casos": 273,
+   "n_segmento_en_universo": 3093,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 12
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.008362509634601105",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-28-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "28",
+   "variable": "AP4_3_3",
+   "n_valido": 3614,
+   "n_uno": 2722,
+   "suma_pesos_denominador": "2553460.0",
+   "n_upm_con_casos": 714,
+   "n_segmento_en_universo": 3690,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 76
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.008338748929878145",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-29-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "29",
+   "variable": "AP4_3_3",
+   "n_valido": 2272,
+   "n_uno": 1503,
+   "suma_pesos_denominador": "999419.0",
+   "n_upm_con_casos": 338,
+   "n_segmento_en_universo": 2334,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 62
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.012251452939519684",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-30-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "30",
+   "variable": "AP4_3_3",
+   "n_valido": 3253,
+   "n_uno": 2644,
+   "suma_pesos_denominador": "5759268.0",
+   "n_upm_con_casos": 403,
+   "n_segmento_en_universo": 3360,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 107
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.008166531590639754",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-31-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "31",
+   "variable": "AP4_3_3",
+   "n_valido": 2999,
+   "n_uno": 898,
+   "suma_pesos_denominador": "1722626.0",
+   "n_upm_con_casos": 448,
+   "n_segmento_en_universo": 3045,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 46
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.01086898771243994",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-32-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ENTIDAD",
+   "segmento": "32",
+   "variable": "AP4_3_3",
+   "n_valido": 1818,
+   "n_uno": 1596,
+   "suma_pesos_denominador": "1104202.0",
+   "n_upm_con_casos": 178,
+   "n_segmento_en_universo": 1828,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 10
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.009414241947520365",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ESCOLARIDAD-HASTA-PRIMARIA-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "variable": "AP4_3_3",
+   "n_valido": 22440,
+   "n_uno": 15493,
+   "suma_pesos_denominador": "22391434.0",
+   "n_upm_con_casos": 7543,
+   "n_segmento_en_universo": 23384,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 944
+    },
+    "eje_sin_pareja_tsdem_global_universo": 0,
+    "eje_niv_no_clasificable_global_universo": {
+     "99": 334
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.004085483072938429",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "variable": "AP4_3_3",
+   "n_valido": 19343,
+   "n_uno": 13557,
+   "suma_pesos_denominador": "21514131.0",
+   "n_upm_con_casos": 9485,
+   "n_segmento_en_universo": 19676,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 333
+    },
+    "eje_sin_pareja_tsdem_global_universo": 0,
+    "eje_niv_no_clasificable_global_universo": {
+     "99": 334
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.004167075985838937",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ESCOLARIDAD-SECUNDARIA-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "variable": "AP4_3_3",
+   "n_valido": 24290,
+   "n_uno": 17183,
+   "suma_pesos_denominador": "25597064.0",
+   "n_upm_con_casos": 9472,
+   "n_segmento_en_universo": 24769,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 479
+    },
+    "eje_sin_pareja_tsdem_global_universo": 0,
+    "eje_niv_no_clasificable_global_universo": {
+     "99": 334
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.0037423730179643837",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ESCOLARIDAD-SUPERIOR-P": {
+   "conducta": "estado-inseguro",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "variable": "AP4_3_3",
+   "n_valido": 20769,
+   "n_uno": 14302,
+   "suma_pesos_denominador": "21735089.0",
+   "n_upm_con_casos": 9554,
+   "n_segmento_en_universo": 20961,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 192
+    },
+    "eje_sin_pareja_tsdem_global_universo": 0,
+    "eje_niv_no_clasificable_global_universo": {
+     "99": 334
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.00401955725108952",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-SEXO-HOMBRE-P": {
+   "conducta": "estado-inseguro",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "variable": "AP4_3_3",
+   "n_valido": 39488,
+   "n_uno": 25424,
+   "suma_pesos_denominador": "42122542.0",
+   "n_upm_con_casos": 12084,
+   "n_segmento_en_universo": 40299,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 811
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.003154802064654397",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-SEXO-MUJER-P": {
+   "conducta": "estado-inseguro",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "variable": "AP4_3_3",
+   "n_valido": 47674,
+   "n_uno": 35330,
+   "suma_pesos_denominador": "49500790.0",
+   "n_upm_con_casos": 12514,
+   "n_segmento_en_universo": 48825,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 1151
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.0024496117358097074",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-TOTAL-TODOS-P": {
+   "conducta": "estado-inseguro",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "variable": "AP4_3_3",
+   "n_valido": 87162,
+   "n_uno": 60754,
+   "suma_pesos_denominador": "91623332.0",
+   "n_upm_con_casos": 13065,
+   "n_segmento_en_universo": 89124,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "9": 1962
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.002060236843409349",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-DOMINIO-COMPLEMENTO-URBANO-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "DOMINIO",
+   "segmento": "COMPLEMENTO-URBANO",
+   "variable": "AP4_4_A",
+   "n_valido": 20768,
+   "n_uno": 11509,
+   "suma_pesos_denominador": "19990949.0",
+   "n_upm_con_casos": 1272,
+   "n_segmento_en_universo": 22296,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 1473,
+     "9": 55
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.006534581296319514",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-DOMINIO-RURAL-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "DOMINIO",
+   "segmento": "RURAL",
+   "variable": "AP4_4_A",
+   "n_valido": 19354,
+   "n_uno": 8078,
+   "suma_pesos_denominador": "19058539.0",
+   "n_upm_con_casos": 1162,
+   "n_segmento_en_universo": 20831,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 1443,
+     "9": 34
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.006752997354157149",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-DOMINIO-URBANO-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "DOMINIO",
+   "segmento": "URBANO",
+   "variable": "AP4_4_A",
+   "n_valido": 43170,
+   "n_uno": 26566,
+   "suma_pesos_denominador": "49248659.0",
+   "n_upm_con_casos": 10631,
+   "n_segmento_en_universo": 45997,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 2753,
+     "9": 74
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.0035919947006533438",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-EDAD-18-29-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "EDAD",
+   "segmento": "18-29",
+   "variable": "AP4_4_A",
+   "n_valido": 18869,
+   "n_uno": 10507,
+   "suma_pesos_denominador": "23343482.0",
+   "n_upm_con_casos": 8909,
+   "n_segmento_en_universo": 19180,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 299,
+     "9": 12
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.005199113938066678",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-EDAD-30-44-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "EDAD",
+   "segmento": "30-44",
+   "variable": "AP4_4_A",
+   "n_valido": 26573,
+   "n_uno": 14713,
+   "suma_pesos_denominador": "26340542.0",
+   "n_upm_con_casos": 10430,
+   "n_segmento_en_universo": 27248,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 641,
+     "9": 34
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.004582843566089527",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-EDAD-45-59-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "EDAD",
+   "segmento": "45-59",
+   "variable": "AP4_4_A",
+   "n_valido": 21215,
+   "n_uno": 11996,
+   "suma_pesos_denominador": "22798515.0",
+   "n_upm_con_casos": 9742,
+   "n_segmento_en_universo": 22292,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 1041,
+     "9": 36
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.004632680860832651",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-EDAD-60-MAS-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "EDAD",
+   "segmento": "60-MAS",
+   "variable": "AP4_4_A",
+   "n_valido": 16635,
+   "n_uno": 8937,
+   "suma_pesos_denominador": "15815608.0",
+   "n_upm_con_casos": 8280,
+   "n_segmento_en_universo": 20404,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 3688,
+     "9": 81
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.005713057966317747",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-01-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "01",
+   "variable": "AP4_4_A",
+   "n_valido": 1662,
+   "n_uno": 1003,
+   "suma_pesos_denominador": "993455.0",
+   "n_upm_con_casos": 301,
+   "n_segmento_en_universo": 1744,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 82
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.016906171239272877",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-02-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "02",
+   "variable": "AP4_4_A",
+   "n_valido": 2434,
+   "n_uno": 1552,
+   "suma_pesos_denominador": "2579296.0",
+   "n_upm_con_casos": 491,
+   "n_segmento_en_universo": 2601,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 161,
+     "9": 6
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.014006532124166256",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-03-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "03",
+   "variable": "AP4_4_A",
+   "n_valido": 2411,
+   "n_uno": 974,
+   "suma_pesos_denominador": "604142.0",
+   "n_upm_con_casos": 306,
+   "n_segmento_en_universo": 2575,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 158,
+     "9": 6
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.013526077283475262",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-04-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "04",
+   "variable": "AP4_4_A",
+   "n_valido": 2186,
+   "n_uno": 1114,
+   "suma_pesos_denominador": "647980.0",
+   "n_upm_con_casos": 317,
+   "n_segmento_en_universo": 2298,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 109,
+     "9": 3
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.013829095130585008",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-05-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "05",
+   "variable": "AP4_4_A",
+   "n_valido": 2507,
+   "n_uno": 1183,
+   "suma_pesos_denominador": "2280029.0",
+   "n_upm_con_casos": 480,
+   "n_segmento_en_universo": 2634,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 123,
+     "9": 4
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.011529789067785364",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-06-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "06",
+   "variable": "AP4_4_A",
+   "n_valido": 2804,
+   "n_uno": 1704,
+   "suma_pesos_denominador": "507123.0",
+   "n_upm_con_casos": 494,
+   "n_segmento_en_universo": 3018,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 202,
+     "9": 12
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.013201878037904327",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-07-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "07",
+   "variable": "AP4_4_A",
+   "n_valido": 3298,
+   "n_uno": 1589,
+   "suma_pesos_denominador": "3359645.0",
+   "n_upm_con_casos": 335,
+   "n_segmento_en_universo": 3540,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 235,
+     "9": 7
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.014234937655945053",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-08-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "08",
+   "variable": "AP4_4_A",
+   "n_valido": 3103,
+   "n_uno": 1806,
+   "suma_pesos_denominador": "2674336.0",
+   "n_upm_con_casos": 602,
+   "n_segmento_en_universo": 3253,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 142,
+     "9": 8
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.010982472918037807",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-09-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "09",
+   "variable": "AP4_4_A",
+   "n_valido": 5266,
+   "n_uno": 3196,
+   "suma_pesos_denominador": "7093008.0",
+   "n_upm_con_casos": 1270,
+   "n_segmento_en_universo": 5488,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 214,
+     "9": 8
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.008301050393647908",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-10-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "10",
+   "variable": "AP4_4_A",
+   "n_valido": 2619,
+   "n_uno": 1106,
+   "suma_pesos_denominador": "1234735.0",
+   "n_upm_con_casos": 426,
+   "n_segmento_en_universo": 2802,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 179,
+     "9": 4
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.01206861861672065",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-11-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "11",
+   "variable": "AP4_4_A",
+   "n_valido": 2129,
+   "n_uno": 1345,
+   "suma_pesos_denominador": "4197140.0",
+   "n_upm_con_casos": 290,
+   "n_segmento_en_universo": 2293,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 164
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.014215254817073409",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-12-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "12",
+   "variable": "AP4_4_A",
+   "n_valido": 2189,
+   "n_uno": 1098,
+   "suma_pesos_denominador": "2168660.0",
+   "n_upm_con_casos": 290,
+   "n_segmento_en_universo": 2499,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 302,
+     "9": 8
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.014787623324193",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-13-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "13",
+   "variable": "AP4_4_A",
+   "n_valido": 2561,
+   "n_uno": 1411,
+   "suma_pesos_denominador": "2180889.0",
+   "n_upm_con_casos": 240,
+   "n_segmento_en_universo": 2708,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 145,
+     "9": 2
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.012867551986734237",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-14-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "14",
+   "variable": "AP4_4_A",
+   "n_valido": 2446,
+   "n_uno": 1353,
+   "suma_pesos_denominador": "5889467.0",
+   "n_upm_con_casos": 396,
+   "n_segmento_en_universo": 2616,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 160,
+     "9": 10
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.01361334014148247",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-15-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "15",
+   "variable": "AP4_4_A",
+   "n_valido": 2644,
+   "n_uno": 1926,
+   "suma_pesos_denominador": "12604862.0",
+   "n_upm_con_casos": 483,
+   "n_segmento_en_universo": 2760,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 113,
+     "9": 3
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.011353003097431912",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-16-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "16",
+   "variable": "AP4_4_A",
+   "n_valido": 3223,
+   "n_uno": 1805,
+   "suma_pesos_denominador": "3176282.0",
+   "n_upm_con_casos": 353,
+   "n_segmento_en_universo": 3532,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 302,
+     "9": 7
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.013783720969717696",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-17-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "17",
+   "variable": "AP4_4_A",
+   "n_valido": 2356,
+   "n_uno": 1730,
+   "suma_pesos_denominador": "1354402.0",
+   "n_upm_con_casos": 392,
+   "n_segmento_en_universo": 2554,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 196,
+     "9": 2
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.01323527487223149",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-18-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "18",
+   "variable": "AP4_4_A",
+   "n_valido": 1701,
+   "n_uno": 638,
+   "suma_pesos_denominador": "828090.0",
+   "n_upm_con_casos": 202,
+   "n_segmento_en_universo": 1840,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 137,
+     "9": 2
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.014170544158559907",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-19-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "19",
+   "variable": "AP4_4_A",
+   "n_valido": 2371,
+   "n_uno": 1490,
+   "suma_pesos_denominador": "4334454.0",
+   "n_upm_con_casos": 499,
+   "n_segmento_en_universo": 2527,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 152,
+     "9": 4
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.012561271400329525",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-20-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "20",
+   "variable": "AP4_4_A",
+   "n_valido": 2494,
+   "n_uno": 998,
+   "suma_pesos_denominador": "2827268.0",
+   "n_upm_con_casos": 225,
+   "n_segmento_en_universo": 2649,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 148,
+     "9": 7
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.014131859567332929",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-21-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "21",
+   "variable": "AP4_4_A",
+   "n_valido": 3308,
+   "n_uno": 2008,
+   "suma_pesos_denominador": "4389559.0",
+   "n_upm_con_casos": 439,
+   "n_segmento_en_universo": 3496,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 180,
+     "9": 8
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.01251452077541517",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-22-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "22",
+   "variable": "AP4_4_A",
+   "n_valido": 2503,
+   "n_uno": 1435,
+   "suma_pesos_denominador": "1731797.0",
+   "n_upm_con_casos": 392,
+   "n_segmento_en_universo": 2649,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 139,
+     "9": 7
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.013071251281390256",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-23-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "23",
+   "variable": "AP4_4_A",
+   "n_valido": 2545,
+   "n_uno": 1607,
+   "suma_pesos_denominador": "1397139.0",
+   "n_upm_con_casos": 479,
+   "n_segmento_en_universo": 2612,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 61,
+     "9": 6
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.012818888563998087",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-24-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "24",
+   "variable": "AP4_4_A",
+   "n_valido": 1626,
+   "n_uno": 972,
+   "suma_pesos_denominador": "1882691.0",
+   "n_upm_con_casos": 232,
+   "n_segmento_en_universo": 1817,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 186,
+     "9": 5
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.014658957975697178",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-25-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "25",
+   "variable": "AP4_4_A",
+   "n_valido": 3307,
+   "n_uno": 1502,
+   "suma_pesos_denominador": "2145961.0",
+   "n_upm_con_casos": 497,
+   "n_segmento_en_universo": 3502,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 195
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.011177768592269786",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-26-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "26",
+   "variable": "AP4_4_A",
+   "n_valido": 1647,
+   "n_uno": 979,
+   "suma_pesos_denominador": "2049493.0",
+   "n_upm_con_casos": 283,
+   "n_segmento_en_universo": 1767,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 117,
+     "9": 3
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.01401308169954884",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-27-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "27",
+   "variable": "AP4_4_A",
+   "n_valido": 2931,
+   "n_uno": 1894,
+   "suma_pesos_denominador": "1678622.0",
+   "n_upm_con_casos": 273,
+   "n_segmento_en_universo": 3093,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 162
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.011878412516110484",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-28-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "28",
+   "variable": "AP4_4_A",
+   "n_valido": 3202,
+   "n_uno": 1637,
+   "suma_pesos_denominador": "2272804.0",
+   "n_upm_con_casos": 712,
+   "n_segmento_en_universo": 3690,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 482,
+     "9": 6
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.010840618892132899",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-29-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "29",
+   "variable": "AP4_4_A",
+   "n_valido": 2180,
+   "n_uno": 1379,
+   "suma_pesos_denominador": "963693.0",
+   "n_upm_con_casos": 338,
+   "n_segmento_en_universo": 2334,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 148,
+     "9": 6
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.012733677669223597",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-30-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "30",
+   "variable": "AP4_4_A",
+   "n_valido": 3131,
+   "n_uno": 1586,
+   "suma_pesos_denominador": "5569539.0",
+   "n_upm_con_casos": 402,
+   "n_segmento_en_universo": 3360,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 216,
+     "9": 13
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.012467444402090841",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-31-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "31",
+   "variable": "AP4_4_A",
+   "n_valido": 2808,
+   "n_uno": 1061,
+   "suma_pesos_denominador": "1632565.0",
+   "n_upm_con_casos": 448,
+   "n_segmento_en_universo": 3045,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 233,
+     "9": 4
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.011379142855210859",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-32-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ENTIDAD",
+   "segmento": "32",
+   "variable": "AP4_4_A",
+   "n_valido": 1700,
+   "n_uno": 1072,
+   "suma_pesos_denominador": "1049021.0",
+   "n_upm_con_casos": 178,
+   "n_segmento_en_universo": 1828,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 126,
+     "9": 2
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.015619293680103008",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ESCOLARIDAD-HASTA-PRIMARIA-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "variable": "AP4_4_A",
+   "n_valido": 20309,
+   "n_uno": 10677,
+   "suma_pesos_denominador": "20633182.0",
+   "n_upm_con_casos": 7057,
+   "n_segmento_en_universo": 23384,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 3008,
+     "9": 67
+    },
+    "eje_sin_pareja_tsdem_global_universo": 0,
+    "eje_niv_no_clasificable_global_universo": {
+     "99": 334
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.005757309327348932",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "variable": "AP4_4_A",
+   "n_valido": 19047,
+   "n_uno": 10793,
+   "suma_pesos_denominador": "21234555.0",
+   "n_upm_con_casos": 9384,
+   "n_segmento_en_universo": 19676,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 605,
+     "9": 24
+    },
+    "eje_sin_pareja_tsdem_global_universo": 0,
+    "eje_niv_no_clasificable_global_universo": {
+     "99": 334
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.005194821518060566",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ESCOLARIDAD-SECUNDARIA-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "variable": "AP4_4_A",
+   "n_valido": 23469,
+   "n_uno": 13308,
+   "suma_pesos_denominador": "24847831.0",
+   "n_upm_con_casos": 9235,
+   "n_segmento_en_universo": 24769,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 1247,
+     "9": 53
+    },
+    "eje_sin_pareja_tsdem_global_universo": 0,
+    "eje_niv_no_clasificable_global_universo": {
+     "99": 334
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.004678155322150956",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ESCOLARIDAD-SUPERIOR-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "variable": "AP4_4_A",
+   "n_valido": 20166,
+   "n_uno": 11208,
+   "suma_pesos_denominador": "21219946.0",
+   "n_upm_con_casos": 9478,
+   "n_segmento_en_universo": 20961,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 779,
+     "9": 16
+    },
+    "eje_sin_pareja_tsdem_global_universo": 0,
+    "eje_niv_no_clasificable_global_universo": {
+     "99": 334
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.004978181031212574",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-SEXO-HOMBRE-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "variable": "AP4_4_A",
+   "n_valido": 38590,
+   "n_uno": 17685,
+   "suma_pesos_denominador": "41362290.0",
+   "n_upm_con_casos": 11992,
+   "n_segmento_en_universo": 40299,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 1661,
+     "9": 48
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.0037821317840420333",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-SEXO-MUJER-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "variable": "AP4_4_A",
+   "n_valido": 44702,
+   "n_uno": 28468,
+   "suma_pesos_denominador": "46935857.0",
+   "n_upm_con_casos": 12365,
+   "n_segmento_en_universo": 48825,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 4008,
+     "9": 115
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.003449185445189355",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  },
+  "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-TOTAL-TODOS-P": {
+   "conducta": "inseguro-caminar-de-noche",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "variable": "AP4_4_A",
+   "n_valido": 83292,
+   "n_uno": 46153,
+   "suma_pesos_denominador": "88298147.0",
+   "n_upm_con_casos": 13065,
+   "n_segmento_en_universo": 89124,
+   "exclusiones": {
+    "diseno_invalido_global": 0,
+    "fuera_universo_edad_global": 506,
+    "respuesta_fuera_de_UNO_CERO_en_segmento": {
+     "5": 5669,
+     "9": 163
+    }
+   },
+   "replicas_degeneradas": 0,
+   "ee_bootstrap": "0.002851217619034767",
+   "estado": "RECONSTRUIDO",
+   "estado_ic": "CALCULADO"
+  }
+ }
+}

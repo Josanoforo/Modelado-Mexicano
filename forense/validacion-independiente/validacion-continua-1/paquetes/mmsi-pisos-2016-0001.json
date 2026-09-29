@@ -1,0 +1,52 @@
+{
+ "paquete": "mmsi-pisos-2016-0001",
+ "calc": "CALC-MMSI-PISOS-2016-0001",
+ "docs": [
+  {
+   "src": "forense/prereg-caja/COLA-MMSI-PISOS-spec-v1_0.md",
+   "miembro": null,
+   "dst": "docs/spec-humana.md"
+  },
+  {
+   "src": "data/raw/MMSI/2016/mmsi2016_fd.xlsx",
+   "miembro": null,
+   "dst": "docs/mmsi2016-fd.xlsx"
+  },
+  {
+   "src": "data/raw/inegi_mmsi_2016/cuestionario_mmsi_2016.pdf",
+   "miembro": null,
+   "dst": "docs/mmsi2016-cuestionario.pdf"
+  },
+  {
+   "src": "data/raw/inegi_mmsi_2016/manual_entrevistador_mmsi_2016.pdf",
+   "miembro": null,
+   "dst": "docs/mmsi2016-manual-entrevistador.pdf"
+  }
+ ],
+ "datos": [
+  {
+   "src": "data/raw/MMSI/2016/mmsi2016_bases_csv.zip",
+   "sha256": "c37656bfcc7cc29be7295eec9a2b999b55a2adbf10630b3616da82290c9bfde1",
+   "miembro": "MMSI_2016.csv",
+   "dst": "datos/mmsi2016.csv"
+  }
+ ],
+ "campos": {
+  "datos/mmsi2016.csv": [
+   "P1_1",
+   "P1_2",
+   "Factor_Per",
+   "upm_ENH",
+   "est_dis_ENH",
+   "NivEsc_Inf",
+   "DivOcu_Act",
+   "Per_SitEco",
+   "P10_1",
+   "P10_2",
+   "P10_3",
+   "tam_loc_ENH"
+  ]
+ },
+ "filtro_filas": "Persona informante de 25 a 64 anos (P1_2); valido: Factor_Per>0, est_dis_ENH y upm_ENH no vacios. Conductas: NivEsc_Inf 9 y blanco fuera; DivOcu_Act 99 y blanco fuera; P10_3 9 fuera.",
+ "notas": "12 columnas verificadas en cabecera real (mayusculas/minusculas exactas). Unica ola del modulo, abierta. Manual del entrevistador incluido porque la spec cita su tarjeta de escala cromatica (orden A=oscuro..K=claro solo esta en imagen). El manual y cuestionario son PDF sin tabulados publicados (no revisados a fondo)."
+}

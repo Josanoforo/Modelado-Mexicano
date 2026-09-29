@@ -30,7 +30,7 @@ acepta un [deriva] que sólo cambie dentro del bloque.
 (las constantes viven sólo aquí; el tablero las imprime en «Cómo leer»)
 
 UNIÓN report ↔ dominio (P1). Dominios del carril = `dominio` de sus filas en
-  `canon/mapa-dominios-v1_1.tsv`, con peso = afirmaciones del dominio / total
+  `canon/mapa-dominios-v1_2.tsv`, con peso = afirmaciones del dominio / total
   del carril. NÚCLEO = dominios con peso ≥ NUCLEO_PESO_MIN, más siempre el (los)
   de mayor peso.
 UNIÓN report ↔ instrumento. Un instrumento es un token del VOCABULARIO citado
@@ -167,7 +167,7 @@ QUIEN_PIDE = (
 
 # ── Fuentes (clave de procedencia → archivo) ────────────────────────────────
 FUENTES = {
-    "F1": "canon/mapa-dominios-v1_1.tsv",
+    "F1": "canon/mapa-dominios-v1_2.tsv",
     "F2": "canon/catalogo-del-mexicano-v1_3.tsv",
     "F3": "canon/reglas-contrastadas-v1_0.tsv",
     "F4": "corpus/reports-v2/INDICE.md",

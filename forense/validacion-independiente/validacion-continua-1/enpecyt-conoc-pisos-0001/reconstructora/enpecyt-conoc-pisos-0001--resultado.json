@@ -1,0 +1,2250 @@
+{
+ "version": 3,
+ "identidad": {
+  "paquete": "enpecyt-conoc-pisos-0001",
+  "version_entrada": "validacion-continua-1",
+  "sha256_entrada": "3c16ea013079651ad944b2864f4130b1616c06fac89d28935e7a99bec978ca0c"
+ },
+ "filas": [
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2011-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7253960361366666",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2011-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7244424021658437",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2011-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6994783031332337",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2011-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7806033962479909",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2011-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7546240551563667",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2011-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7057907222682711",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2011-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6889032152901853",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2011-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.710533768718729",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2011-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7386600978562643",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2011-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7258759964972757",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2013-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7084011020376689",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6748127198335818",
+   "ic95_sup": "0.7420046130676488"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2013-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6997627177467891",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.66918246383985",
+   "ic95_sup": "0.732558184558729"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2013-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7141419641562935",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.675947411833838",
+   "ic95_sup": "0.7513839012260145"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2013-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6899210203086635",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6396400950736144",
+   "ic95_sup": "0.7393633298883341"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2013-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7299918485778104",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7066649695124335",
+   "ic95_sup": "0.7536091417630799"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2013-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6844013831057489",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6498323586885232",
+   "ic95_sup": "0.7197631835948851"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2013-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6806988287554183",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6484582971302829",
+   "ic95_sup": "0.7152191017221551"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2013-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7114477449397506",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6855163813513492",
+   "ic95_sup": "0.7360161889587933"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2013-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6981789717509288",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6715023125638546",
+   "ic95_sup": "0.7236999227509442"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2013-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7043428707610663",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6867931440608891",
+   "ic95_sup": "0.7220589894469054"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2015-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6497261125183227",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2015-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.688341326636183",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2015-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7462673936790902",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2015-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7417253757705925",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2015-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7413754544711605",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2015-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7146440704706921",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2015-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6197466052921049",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2015-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7029329889000373",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2015-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6997177338592587",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-2015-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7012308166374704",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2011-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7369288119454437",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2011-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7367638071654716",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2011-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7144043413989186",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2011-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8068311454903513",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2011-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.778851665915101",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2011-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.713009445224126",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2011-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6927916742452046",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2011-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7189357913456016",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2011-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7582865945414953",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2011-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7402594518657697",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2013-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7129137723727714",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.678686231580396",
+   "ic95_sup": "0.7469699201999724"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2013-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7084811695288078",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6791773897872714",
+   "ic95_sup": "0.7402824815981961"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2013-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7239415014228242",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6859065723033768",
+   "ic95_sup": "0.7613697335407583"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2013-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7214446928049549",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6701990585138086",
+   "ic95_sup": "0.7725169129574965"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2013-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7490456722541927",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7248097404014696",
+   "ic95_sup": "0.7723535613561611"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2013-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.688918915134331",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6539702030422062",
+   "ic95_sup": "0.7236380847899853"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2013-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6855812982635343",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6520863386383952",
+   "ic95_sup": "0.7196678267541159"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2013-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7231316526054415",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6978755181204298",
+   "ic95_sup": "0.747173212616876"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2013-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7085971743224784",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.681507567645844",
+   "ic95_sup": "0.7339482672710981"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2013-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7153437044350356",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6982993320922163",
+   "ic95_sup": "0.7334507378161355"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2015-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6530294317057171",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2015-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6940517777199096",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2015-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7543970607299787",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2015-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7760070348699564",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2015-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.755119980256315",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2015-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.719070972879187",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2015-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6290418584841417",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2015-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7159068314079821",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2015-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7069636314775907",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-FE-CIENCIA-ACUERDO-SIN-NS-2015-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.711154466527327",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2011-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.846581104718488",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2011-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.876172900693625",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2011-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8475927719845375",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2011-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8286956086298974",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2011-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8144819834386828",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2011-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8845436708424473",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2011-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9004872982787658",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2011-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8828694910878857",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2011-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8293704147362738",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2011-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8536870474311012",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2013-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.867142950614494",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8419402666525898",
+   "ic95_sup": "0.8936621677946666"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2013-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8880467090993743",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8668071147798061",
+   "ic95_sup": "0.9075746519174329"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2013-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8801503893315851",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8510934267196347",
+   "ic95_sup": "0.9062392322767967"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2013-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8001060288457654",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7541646877852508",
+   "ic95_sup": "0.8416028009599087"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2013-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8104946011291405",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7856757855975802",
+   "ic95_sup": "0.8357512387926375"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2013-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8990701659537201",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8763422916323396",
+   "ic95_sup": "0.9208936907070285"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2013-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9327660521054613",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9130629792805081",
+   "ic95_sup": "0.9515288495401351"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2013-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8701176425492795",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8479000884360417",
+   "ic95_sup": "0.8905836307319591"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2013-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8651115136695923",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8474505110218069",
+   "ic95_sup": "0.8820705206192523"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2013-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8674370694995857",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8534913576750536",
+   "ic95_sup": "0.8818445176634774"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2015-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9349769189146858",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2015-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9162267566871372",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2015-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9326033448887008",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2015-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.890012716010098",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2015-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8864826443436203",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2015-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9356838390007399",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2015-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9651803692835123",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2015-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9493331352907513",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2015-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8963133005393839",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-2015-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9212641669087581",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2011-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8701159043491767",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2011-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9090479852504281",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2011-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9060961971741438",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2011-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9323724754776908",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2011-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8884885118433575",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2011-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9068599525116674",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2011-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9084828937116892",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2011-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9094737397133954",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2011-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8889434501883356",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2011-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8984772707387367",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2013-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8730248026920425",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8471249764297514",
+   "ic95_sup": "0.8995041530070964"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2013-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9038523668997566",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8841097233175135",
+   "ic95_sup": "0.9214615640054596"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2013-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9128504415770214",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8865183258104941",
+   "ic95_sup": "0.9371019778174425"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2013-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8697842469513156",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8270571263267745",
+   "ic95_sup": "0.9095621147609811"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2013-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8577563870087351",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8322817050905313",
+   "ic95_sup": "0.8818057796734571"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2013-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9047100217420859",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8823870586752246",
+   "ic95_sup": "0.9263168094239876"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2013-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9355841672054973",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9158497369887905",
+   "ic95_sup": "0.9542254029843178"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2013-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.889623378923576",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8688859429385128",
+   "ic95_sup": "0.9104171386036964"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2013-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8945525955857963",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.878393400274229",
+   "ic95_sup": "0.9101722192663645"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2013-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8922489137956628",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8792885985599215",
+   "ic95_sup": "0.9052679299679104"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2015-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9415315875828575",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2015-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.926845550271937",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2015-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9491317791299838",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2015-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9331464090326063",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2015-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9147562999493034",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2015-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9457091668382501",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2015-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9670177948298462",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2015-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9598477948733262",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2015-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.917692140514272",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-GOB-INVERTIR-ACUERDO-SIN-NS-2015-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9376623049765269",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2011-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8575502025467997",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2011-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8172040213804621",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2011-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7416196372758329",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2011-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5896233977203635",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2011-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6404367223448427",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2011-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8964947951722871",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2011-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.949000928721707",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2011-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8125937450063913",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2011-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7570614498865679",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2011-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7823022300124629",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2013-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8862580559011013",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8606428190572084",
+   "ic95_sup": "0.9099352252474496"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2013-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8241266174867421",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7984313389882709",
+   "ic95_sup": "0.8518505056949479"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2013-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7697016514025695",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7347243375429273",
+   "ic95_sup": "0.8023096225863021"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2013-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.565664892053356",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5084875991160496",
+   "ic95_sup": "0.6167520089764432"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2013-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6613201976580719",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6324263148489037",
+   "ic95_sup": "0.6881831000647813"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2013-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8648708634082954",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8365901557661911",
+   "ic95_sup": "0.8895570477262782"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2013-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9410338750155757",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9234015324290312",
+   "ic95_sup": "0.9571883958026657"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2013-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8199088152003929",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7939260683747419",
+   "ic95_sup": "0.8448309069548862"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2013-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7674800507742886",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7451801477128902",
+   "ic95_sup": "0.7882627980125285"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2013-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7918354003269543",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7745135946822732",
+   "ic95_sup": "0.8081835388066291"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2015-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8262882555341893",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2015-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7712392927299397",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2015-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7340207260560075",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2015-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6338185757194977",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2015-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6006125372158526",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2015-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8534576463990591",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2015-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9119117181401986",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2015-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7800200179702723",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2015-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7313740609405641",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-AL-MENOS-MODERADO-2015-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7542666025516499",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2011-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5403824420008498",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2011-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4473341237241399",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2011-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4085420550772147",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2011-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2680559038219281",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2011-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2743051427146199",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2011-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5484333023040677",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2011-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6785177347779682",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2011-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5075975294413387",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2011-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3916890249230027",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2011-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4443722621448021",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2013-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4888323807357417",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4477059744568015",
+   "ic95_sup": "0.5252743462648601"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2013-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4546905873485425",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.42287763282779334",
+   "ic95_sup": "0.4870187600611116"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2013-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.41387761753133745",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.37388397307034016",
+   "ic95_sup": "0.45508265122453273"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2013-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.23775058863807527",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.19581266689788449",
+   "ic95_sup": "0.2846492472298007"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2013-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.291670870176984",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2627474161293438",
+   "ic95_sup": "0.3202672380822295"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2013-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.47066190736648195",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.43086977243277086",
+   "ic95_sup": "0.5083294048803697"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2013-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6013881472771657",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5611224113628964",
+   "ic95_sup": "0.637843501630189"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2013-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5013985605426203",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.47015049647430507",
+   "ic95_sup": "0.5326423919912023"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2013-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.35599821970317447",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3314476815905804",
+   "ic95_sup": "0.3809987966439582"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2013-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4235427473109668",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4023664486778774",
+   "ic95_sup": "0.4441356010061751"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2015-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.45760685188469896",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2015-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3989823558700582",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2015-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.300103558719225",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2015-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2769084630752544",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2015-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2284597438190043",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2015-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.37445071308430017",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2015-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.603636427735667",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2015-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4429232192642107",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2015-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.30485164345861565",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-INTERES-GRANDE-O-MAS-2015-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3698274294732161",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2011-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5091464281116831",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2011-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5247879626478631",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2011-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5427116162782165",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2011-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5305767110076159",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2011-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5741620323002926",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2011-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5503769855464838",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2011-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3987786698981719",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2011-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.48984289415488885",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2011-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5542513567814569",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2011-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.524906669956747",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2013-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4242053491079419",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3895780744514064",
+   "ic95_sup": "0.46063409947886086"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2013-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5073506939687424",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4739307882147086",
+   "ic95_sup": "0.542369336034755"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2013-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5537381722533103",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5143280916346294",
+   "ic95_sup": "0.5952190908557324"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2013-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5456383738054743",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4929762442209233",
+   "ic95_sup": "0.5956230335664466"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2013-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5616736236063916",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5315814515527806",
+   "ic95_sup": "0.5894608192403938"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2013-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4943041931387427",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4559081057496902",
+   "ic95_sup": "0.5322106274067798"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2013-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.40093518687391816",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.36468300501295975",
+   "ic95_sup": "0.4402416135632983"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2013-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.466140126265285",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.43527976757922243",
+   "ic95_sup": "0.4961609391989504"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2013-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5290908778671506",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.505536086582521",
+   "ic95_sup": "0.5550061361840929"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2013-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.49984841638416555",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4801517521779684",
+   "ic95_sup": "0.5197380968831616"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2015-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5487064129958418",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2015-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5761678300000077",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2015-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5625273281760041",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2015-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5863026686992373",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2015-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6529171535154237",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2015-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.481184673837743",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2015-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.511210084325423",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2015-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6056043947706627",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2015-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5320164356454292",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-BOMBERO-2015-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5666858534059676",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2011-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.34558094114308513",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2011-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3467051645672126",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2011-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.38261267048085684",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2011-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.38733863632623905",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2011-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3851099730108728",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2011-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.38472086083888113",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2011-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2844829104184626",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2011-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.36108399490659154",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2011-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.35958354019905026",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2011-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.36026506527938595",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2013-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.28736385015265287",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.25405098341666027",
+   "ic95_sup": "0.3236062924099462"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2013-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.35415896887506537",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3256767833991785",
+   "ic95_sup": "0.3856824260248978"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2013-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.35617043164344153",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.31813166494663464",
+   "ic95_sup": "0.3982644251132566"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2013-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3970605478042098",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3479745852440097",
+   "ic95_sup": "0.44805934557699006"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2013-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.395723909474449",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.36610689244924105",
+   "ic95_sup": "0.4240719681369421"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2013-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.31573239036985995",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2850220531101755",
+   "ic95_sup": "0.35134846347021315"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2013-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.27479926217080086",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.24525986253796678",
+   "ic95_sup": "0.3059905906872993"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2013-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3501964451010276",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.32276205415599046",
+   "ic95_sup": "0.3795490231954108"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2013-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.33348023861445414",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.30871404659919477",
+   "ic95_sup": "0.3574474151948796"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2013-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3412352137055058",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3222289788113397",
+   "ic95_sup": "0.36077778174909925"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2015-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.373833996499188",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2015-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.36724929954301366",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2015-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.32328960884386115",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2015-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3407901697881771",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2015-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.36694402561598854",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2015-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.30520243675959136",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2015-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3807803521085228",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2015-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.36920224645270455",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2015-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.33958202874566273",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-ENFERMERA-2015-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3535431185201692",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVENTOR-2015-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.44041062332260295",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado requiere tau^2 sobre 2011->2013->2015; el reactivo inventor solo existe en 2015 (spec §2), tau^2 no es estimable con una ola"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVENTOR-2015-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.37656519470963723",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado requiere tau^2 sobre 2011->2013->2015; el reactivo inventor solo existe en 2015 (spec §2), tau^2 no es estimable con una ola"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVENTOR-2015-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3973818317595191",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado requiere tau^2 sobre 2011->2013->2015; el reactivo inventor solo existe en 2015 (spec §2), tau^2 no es estimable con una ola"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVENTOR-2015-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2370470879825055",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado requiere tau^2 sobre 2011->2013->2015; el reactivo inventor solo existe en 2015 (spec §2), tau^2 no es estimable con una ola"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVENTOR-2015-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.35740391645717223",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado requiere tau^2 sobre 2011->2013->2015; el reactivo inventor solo existe en 2015 (spec §2), tau^2 no es estimable con una ola"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVENTOR-2015-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.33409917365019715",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado requiere tau^2 sobre 2011->2013->2015; el reactivo inventor solo existe en 2015 (spec §2), tau^2 no es estimable con una ola"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVENTOR-2015-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4555998144691855",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado requiere tau^2 sobre 2011->2013->2015; el reactivo inventor solo existe en 2015 (spec §2), tau^2 no es estimable con una ola"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVENTOR-2015-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3896309062366162",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado requiere tau^2 sobre 2011->2013->2015; el reactivo inventor solo existe en 2015 (spec §2), tau^2 no es estimable con una ola"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVENTOR-2015-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.36710571771420475",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado requiere tau^2 sobre 2011->2013->2015; el reactivo inventor solo existe en 2015 (spec §2), tau^2 no es estimable con una ola"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVENTOR-2015-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.377824658813202",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado requiere tau^2 sobre 2011->2013->2015; el reactivo inventor solo existe en 2015 (spec §2), tau^2 no es estimable con una ola"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2011-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3334757995330789",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2011-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2773418887118699",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2011-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.34259203066391325",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2011-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3160568703278516",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2011-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3137988038583701",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2011-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3493811835081613",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2011-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2857566580224899",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2011-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3257913409141173",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2011-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3079443643204542",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2011-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3160950089344876",
+   "estado_ic": "SIN-IC"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2013-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2678530842496832",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.23463832445151164",
+   "ic95_sup": "0.3025749863816336"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2013-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3106466328236548",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2814172986600191",
+   "ic95_sup": "0.3391954189335033"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2013-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3251224849864576",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2829494234668343",
+   "ic95_sup": "0.36877253851864317"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2013-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.29054178658898383",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.23993759492639866",
+   "ic95_sup": "0.3454684964778253"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2013-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3020623202296321",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.27436493334114226",
+   "ic95_sup": "0.3337927604737099"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2013-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2990225614694213",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2625245979172509",
+   "ic95_sup": "0.33351594520411487"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2013-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2921714900814873",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.26114792942500986",
+   "ic95_sup": "0.3243796785516148"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2013-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.28103910093741413",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2562411208167924",
+   "ic95_sup": "0.30801703837311245"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2013-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.31375213175212885",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2861664240974119",
+   "ic95_sup": "0.3399847297011881"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2013-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.29842802048278294",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2790117988703743",
+   "ic95_sup": "0.31678741062776566"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2015-EDAD-18-29-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.29101492404459567",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2015-EDAD-30-44-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.29029803940702176",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2015-EDAD-45-59-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.25516996456430074",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2015-EDAD-60-MAS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19376134970803205",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2015-ESCOLARIDAD-BASICA-O-MENOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.23251348428758922",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2015-ESCOLARIDAD-MEDIA-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.21356972767164006",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2015-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3740969087063314",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2015-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2686295786501388",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2015-SEXO-MUJER-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2642230212228454",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  },
+  {
+   "llave": "RESULT-ENPECYT-CONOC-PISOS-RESPETA-10-INVESTIGADOR-2015-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona 18+ urbana de 100 000+)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.26632580115066584",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "IC calibrado expit(logit p +- z*sqrt(ee_2015^2+tau^2)) requiere tau^2 'por conducta x eje x categoria sobre 2011->2013->2015'; la spec no define en prosa el estimador de tau^2 (escala, grados de libertad, descuento de varianza muestral con 2011 sin EE) ni la escala de ee_2015 dentro de ic_calibrado de la receta, que no esta en el paquete"
+  }
+ ]
+}

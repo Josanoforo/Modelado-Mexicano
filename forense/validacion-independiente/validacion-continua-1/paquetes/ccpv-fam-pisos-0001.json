@@ -1,0 +1,1125 @@
+{
+ "paquete": "ccpv-fam-pisos-0001",
+ "calc": "CALC-CCPV-FAM-PISOS-0001",
+ "docs": [
+  {
+   "src": "forense/prereg-caja/CCPV-FAM-PISOS-spec-v1_0.md",
+   "miembro": null,
+   "dst": "docs/spec-humana.md"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_01_dta.zip",
+   "miembro": "INSTRUCCIONES ETIQUETADO STATA.txt",
+   "dst": "docs/INSTRUCCIONES ETIQUETADO STATA.txt"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_01_dta.zip",
+   "miembro": "Migrantes.do",
+   "dst": "docs/Migrantes.do"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_01_dta.zip",
+   "miembro": "Personas.do",
+   "dst": "docs/Personas.do"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_01_dta.zip",
+   "miembro": "Vivienda.do",
+   "dst": "docs/Vivienda.do"
+  }
+ ],
+ "datos": [
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_01_dta.zip",
+   "sha256": "c419255a096fb7cdbd0972202c1cde0296f3fce0d535fd49da42f4dc8048b52b",
+   "miembro": "viviendas_01.dta",
+   "dst": "datos/viv_01.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_01_dta.zip",
+   "sha256": "c419255a096fb7cdbd0972202c1cde0296f3fce0d535fd49da42f4dc8048b52b",
+   "miembro": "personas_01.dta",
+   "dst": "datos/per_01.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_02_dta.zip",
+   "sha256": "2186229ae969cac31f76b2057d4d709bc95b18e3bae58d08e4e0ac3b75d3a412",
+   "miembro": "viviendas_02.dta",
+   "dst": "datos/viv_02.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_02_dta.zip",
+   "sha256": "2186229ae969cac31f76b2057d4d709bc95b18e3bae58d08e4e0ac3b75d3a412",
+   "miembro": "personas_02.dta",
+   "dst": "datos/per_02.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_03_dta.zip",
+   "sha256": "d457e25d349ca176bcaf09e9ea8f70fa8100d3d267be60377fa2619d5a418149",
+   "miembro": "viviendas_03.dta",
+   "dst": "datos/viv_03.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_03_dta.zip",
+   "sha256": "d457e25d349ca176bcaf09e9ea8f70fa8100d3d267be60377fa2619d5a418149",
+   "miembro": "personas_03.dta",
+   "dst": "datos/per_03.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_04_dta.zip",
+   "sha256": "844d10bd276487669e0f7987b8ecd1addf396fe51793436d2326a74237c1aa2a",
+   "miembro": "viviendas_04.dta",
+   "dst": "datos/viv_04.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_04_dta.zip",
+   "sha256": "844d10bd276487669e0f7987b8ecd1addf396fe51793436d2326a74237c1aa2a",
+   "miembro": "personas_04.dta",
+   "dst": "datos/per_04.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_05_dta.zip",
+   "sha256": "15970266793f7b776a03e55e575c51c6a8d5239ce4a792731b43b5bb4b9f4ade",
+   "miembro": "viviendas_05.dta",
+   "dst": "datos/viv_05.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_05_dta.zip",
+   "sha256": "15970266793f7b776a03e55e575c51c6a8d5239ce4a792731b43b5bb4b9f4ade",
+   "miembro": "personas_05.dta",
+   "dst": "datos/per_05.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_06_dta.zip",
+   "sha256": "69721343d50083d0d20b8ce98c6a5879fa76fd7f21b0ab311d3ae90dc1cf076d",
+   "miembro": "viviendas_06.dta",
+   "dst": "datos/viv_06.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_06_dta.zip",
+   "sha256": "69721343d50083d0d20b8ce98c6a5879fa76fd7f21b0ab311d3ae90dc1cf076d",
+   "miembro": "personas_06.dta",
+   "dst": "datos/per_06.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_07_dta.zip",
+   "sha256": "6cabcea6ce52a176892fe15a462e8b782898f32b77f451fea9b8fc2fe00b0878",
+   "miembro": "viviendas_07.dta",
+   "dst": "datos/viv_07.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_07_dta.zip",
+   "sha256": "6cabcea6ce52a176892fe15a462e8b782898f32b77f451fea9b8fc2fe00b0878",
+   "miembro": "personas_07.dta",
+   "dst": "datos/per_07.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_08_dta.zip",
+   "sha256": "dab6607c76072fb8b048ddcc739a0fde78298be3903e4f5dc3357b9c76b3b47f",
+   "miembro": "viviendas_08.dta",
+   "dst": "datos/viv_08.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_08_dta.zip",
+   "sha256": "dab6607c76072fb8b048ddcc739a0fde78298be3903e4f5dc3357b9c76b3b47f",
+   "miembro": "personas_08.dta",
+   "dst": "datos/per_08.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_09_dta.zip",
+   "sha256": "2c826252fd403e2cc5c85c55415024714393caf2a6a8afd1c433ce9ae7f25d26",
+   "miembro": "viviendas_09.dta",
+   "dst": "datos/viv_09.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_09_dta.zip",
+   "sha256": "2c826252fd403e2cc5c85c55415024714393caf2a6a8afd1c433ce9ae7f25d26",
+   "miembro": "personas_09.dta",
+   "dst": "datos/per_09.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_10_dta.zip",
+   "sha256": "fd8421eaab22ff5ccfa187b0b16a9a0afa519b0429ba16aaf13d5432e6325890",
+   "miembro": "viviendas_10.dta",
+   "dst": "datos/viv_10.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_10_dta.zip",
+   "sha256": "fd8421eaab22ff5ccfa187b0b16a9a0afa519b0429ba16aaf13d5432e6325890",
+   "miembro": "personas_10.dta",
+   "dst": "datos/per_10.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_11_dta.zip",
+   "sha256": "c777ebf6f7379fe03315fe3c62abb57b3545dfffffcdb03af6587ac092b393b8",
+   "miembro": "viviendas_11.dta",
+   "dst": "datos/viv_11.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_11_dta.zip",
+   "sha256": "c777ebf6f7379fe03315fe3c62abb57b3545dfffffcdb03af6587ac092b393b8",
+   "miembro": "personas_11.dta",
+   "dst": "datos/per_11.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_12_dta.zip",
+   "sha256": "52ee4fcba57f8cd024f8bbf84b6e4b56e2208b09f3348dcd603317f226a8ff35",
+   "miembro": "viviendas_12.dta",
+   "dst": "datos/viv_12.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_12_dta.zip",
+   "sha256": "52ee4fcba57f8cd024f8bbf84b6e4b56e2208b09f3348dcd603317f226a8ff35",
+   "miembro": "personas_12.dta",
+   "dst": "datos/per_12.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_13_dta.zip",
+   "sha256": "2143c326efb527f3f177324022b2ec45b8e262a82e0d82ed470816b10d7a3f16",
+   "miembro": "viviendas_13.dta",
+   "dst": "datos/viv_13.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_13_dta.zip",
+   "sha256": "2143c326efb527f3f177324022b2ec45b8e262a82e0d82ed470816b10d7a3f16",
+   "miembro": "personas_13.dta",
+   "dst": "datos/per_13.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_14_dta.zip",
+   "sha256": "dbd36d67085fe24ddf32647aebc51415875f248521b1d77758cddab8c26371e6",
+   "miembro": "viviendas_14.dta",
+   "dst": "datos/viv_14.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_14_dta.zip",
+   "sha256": "dbd36d67085fe24ddf32647aebc51415875f248521b1d77758cddab8c26371e6",
+   "miembro": "personas_14.dta",
+   "dst": "datos/per_14.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_15_dta.zip",
+   "sha256": "9eb236456c7f01af1c8cd297cd338013b46758ba9857fbbb7ba1c3dbafe36f42",
+   "miembro": "viviendas_15.dta",
+   "dst": "datos/viv_15.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_15_dta.zip",
+   "sha256": "9eb236456c7f01af1c8cd297cd338013b46758ba9857fbbb7ba1c3dbafe36f42",
+   "miembro": "personas_15.dta",
+   "dst": "datos/per_15.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_16_dta.zip",
+   "sha256": "3e33175045048b8bceb6238ecaf7eea87d98c8202414e9d5ff5ca0d255d2be07",
+   "miembro": "viviendas_16.dta",
+   "dst": "datos/viv_16.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_16_dta.zip",
+   "sha256": "3e33175045048b8bceb6238ecaf7eea87d98c8202414e9d5ff5ca0d255d2be07",
+   "miembro": "personas_16.dta",
+   "dst": "datos/per_16.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_17_dta.zip",
+   "sha256": "b2fcbca26035bfe4aba21424e058c18872e36f469f9c3c4d8b7b89176f86dd24",
+   "miembro": "viviendas_17.dta",
+   "dst": "datos/viv_17.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_17_dta.zip",
+   "sha256": "b2fcbca26035bfe4aba21424e058c18872e36f469f9c3c4d8b7b89176f86dd24",
+   "miembro": "personas_17.dta",
+   "dst": "datos/per_17.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_18_dta.zip",
+   "sha256": "cd92bf921a5ad9617eb19431d1d0ea4ed7516ae6465d8f7c8cd1e3639101c595",
+   "miembro": "viviendas_18.dta",
+   "dst": "datos/viv_18.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_18_dta.zip",
+   "sha256": "cd92bf921a5ad9617eb19431d1d0ea4ed7516ae6465d8f7c8cd1e3639101c595",
+   "miembro": "personas_18.dta",
+   "dst": "datos/per_18.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_19_dta.zip",
+   "sha256": "9de4d79066b9c74d05517ebde77e93498fdfd130f6697ce220bef1875f06988f",
+   "miembro": "viviendas_19.dta",
+   "dst": "datos/viv_19.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_19_dta.zip",
+   "sha256": "9de4d79066b9c74d05517ebde77e93498fdfd130f6697ce220bef1875f06988f",
+   "miembro": "personas_19.dta",
+   "dst": "datos/per_19.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_20_dta.zip",
+   "sha256": "0037e3d54b9e31814676e311117b173a664718d984669993ae9bcbc0cea40999",
+   "miembro": "viviendas_20.dta",
+   "dst": "datos/viv_20.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_20_dta.zip",
+   "sha256": "0037e3d54b9e31814676e311117b173a664718d984669993ae9bcbc0cea40999",
+   "miembro": "personas_20.dta",
+   "dst": "datos/per_20.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_21_dta.zip",
+   "sha256": "acc88f43ec1744481f7bcaeb0578c52edc9fe5cf66de635db238ed1ce98e2160",
+   "miembro": "viviendas_21.dta",
+   "dst": "datos/viv_21.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_21_dta.zip",
+   "sha256": "acc88f43ec1744481f7bcaeb0578c52edc9fe5cf66de635db238ed1ce98e2160",
+   "miembro": "personas_21.dta",
+   "dst": "datos/per_21.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_22_dta.zip",
+   "sha256": "8d609249abb79e523bed0ff176454133bb85440fdea816b8f3aeca32eaa95102",
+   "miembro": "viviendas_22.dta",
+   "dst": "datos/viv_22.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_22_dta.zip",
+   "sha256": "8d609249abb79e523bed0ff176454133bb85440fdea816b8f3aeca32eaa95102",
+   "miembro": "personas_22.dta",
+   "dst": "datos/per_22.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_23_dta.zip",
+   "sha256": "42d5a2c3940b7fd3dc77da848b4df8cbd9547369dfed58ae338df21fb8d2c1ff",
+   "miembro": "viviendas_23.dta",
+   "dst": "datos/viv_23.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_23_dta.zip",
+   "sha256": "42d5a2c3940b7fd3dc77da848b4df8cbd9547369dfed58ae338df21fb8d2c1ff",
+   "miembro": "personas_23.dta",
+   "dst": "datos/per_23.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_24_dta.zip",
+   "sha256": "4aaa1c4e3d662420e101496eda73725f0af3567bd8715b58244bf1407ed98d00",
+   "miembro": "viviendas_24.dta",
+   "dst": "datos/viv_24.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_24_dta.zip",
+   "sha256": "4aaa1c4e3d662420e101496eda73725f0af3567bd8715b58244bf1407ed98d00",
+   "miembro": "personas_24.dta",
+   "dst": "datos/per_24.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_25_dta.zip",
+   "sha256": "a5f2fb71b8a96fe3cd470ae96f49114dcae7ed93d2ab0d57e23846314af946f1",
+   "miembro": "viviendas_25.dta",
+   "dst": "datos/viv_25.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_25_dta.zip",
+   "sha256": "a5f2fb71b8a96fe3cd470ae96f49114dcae7ed93d2ab0d57e23846314af946f1",
+   "miembro": "personas_25.dta",
+   "dst": "datos/per_25.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_26_dta.zip",
+   "sha256": "6165d91fa046580c6efc8bcce90136a0fcef72a201b1919b567165677537547f",
+   "miembro": "viviendas_26.dta",
+   "dst": "datos/viv_26.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_26_dta.zip",
+   "sha256": "6165d91fa046580c6efc8bcce90136a0fcef72a201b1919b567165677537547f",
+   "miembro": "personas_26.dta",
+   "dst": "datos/per_26.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_27_dta.zip",
+   "sha256": "a937e54f6c44c771eab8316fd0c4d312e156691341c854b247fcc4df9a9f5cce",
+   "miembro": "viviendas_27.dta",
+   "dst": "datos/viv_27.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_27_dta.zip",
+   "sha256": "a937e54f6c44c771eab8316fd0c4d312e156691341c854b247fcc4df9a9f5cce",
+   "miembro": "personas_27.dta",
+   "dst": "datos/per_27.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_28_dta.zip",
+   "sha256": "9445c230ab9a114e55588b42136b1ae32276f77e2722a52ae68e847709dc783b",
+   "miembro": "viviendas_28.dta",
+   "dst": "datos/viv_28.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_28_dta.zip",
+   "sha256": "9445c230ab9a114e55588b42136b1ae32276f77e2722a52ae68e847709dc783b",
+   "miembro": "personas_28.dta",
+   "dst": "datos/per_28.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_29_dta.zip",
+   "sha256": "70c06ea37588db3373a10163ab4bdf26b46c377c377b7719c30d6d5a63113761",
+   "miembro": "viviendas_29.dta",
+   "dst": "datos/viv_29.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_29_dta.zip",
+   "sha256": "70c06ea37588db3373a10163ab4bdf26b46c377c377b7719c30d6d5a63113761",
+   "miembro": "personas_29.dta",
+   "dst": "datos/per_29.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_30_dta.zip",
+   "sha256": "56eb53435bafaef834961e6a1e8ae5e03c276ff533be5be07e554ce482997e14",
+   "miembro": "viviendas_30.dta",
+   "dst": "datos/viv_30.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_30_dta.zip",
+   "sha256": "56eb53435bafaef834961e6a1e8ae5e03c276ff533be5be07e554ce482997e14",
+   "miembro": "personas_30.dta",
+   "dst": "datos/per_30.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_31_dta.zip",
+   "sha256": "936c3f3abab5f051bbd2b6038d52fd4d2143b32fcb3bde90676eca1fdca59ac8",
+   "miembro": "viviendas_31.dta",
+   "dst": "datos/viv_31.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_31_dta.zip",
+   "sha256": "936c3f3abab5f051bbd2b6038d52fd4d2143b32fcb3bde90676eca1fdca59ac8",
+   "miembro": "personas_31.dta",
+   "dst": "datos/per_31.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_32_dta.zip",
+   "sha256": "5120e7b0a8830a63e8a29a91972c2ac062ea95dad6129dfa213bc050b9407e82",
+   "miembro": "viviendas_32.dta",
+   "dst": "datos/viv_32.dta"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ccpv/2010/MC2010_32_dta.zip",
+   "sha256": "5120e7b0a8830a63e8a29a91972c2ac062ea95dad6129dfa213bc050b9407e82",
+   "miembro": "personas_32.dta",
+   "dst": "datos/per_32.dta"
+  }
+ ],
+ "campos": {
+  "datos/viv_01.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_01.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_02.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_02.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_03.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_03.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_04.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_04.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_05.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_05.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_06.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_06.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_07.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_07.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_08.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_08.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_09.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_09.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_10.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_10.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_11.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_11.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_12.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_12.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_13.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_13.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_14.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_14.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_15.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_15.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_16.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_16.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_17.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_17.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_18.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_18.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_19.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_19.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_20.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_20.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_21.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_21.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_22.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_22.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_23.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_23.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_24.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_24.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_25.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_25.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_26.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_26.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_27.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_27.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_28.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_28.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_29.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_29.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_30.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_30.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_31.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_31.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/viv_32.dta": [
+   "ent",
+   "id_viv",
+   "tipohog",
+   "numpers",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ],
+  "datos/per_32.dta": [
+   "ent",
+   "id_viv",
+   "sexo",
+   "edad",
+   "parent",
+   "nivacad",
+   "factor",
+   "estrato",
+   "upm",
+   "tam_loc"
+  ]
+ },
+ "filtro_filas": "HOGAR: filas de viviendas con factor>0, estrato y upm no vacios (TIPOHOG 1-6 segun conducta); PERSONA (solo PER60-*): filas de personas con el mismo filtro y su propio factor; jefe = unica persona con parent=1 por (ent,id_viv)",
+ "notas": "Ola 2010 abierta; 2020 RESERVADA y no es input (muestra 2020 ni esta en corpus). 32 entidades x (viviendas,personas)=64 miembros .dta; sha256 = del zip segun spec.yaml (coincide con manifiesto). Columnas en minuscula, verificadas en el encabezado real (metadataonly) en 60 de 64 miembros: todas presentes, ninguna faltante. Ent 15 y 20: zip con deflate64, no verificable con zipfile; se asumio el mismo esquema (estos zip son de la misma serie MC2010). Vinculo ent+id_viv; jefe = parent=1; hogar = fila de viviendas. numpers/tipohog solo en viviendas; sexo,edad,parent,nivacad solo en personas. docs: spec humana + .do de etiquetas y INSTRUCCIONES ETIQUETADO STATA.txt del zip 01 (mismos en cada entidad). Input receta_pisos es CODIGO (tools/dominios/salud/pisos_diseno.py), excluido. Diseno: estrato=ent|estrato, UPM=ent|estrato|upm. Diagnosticos por spec: edad 999, sexo fuera de {1,3}, parent fuera de {1-9,99}."
+}

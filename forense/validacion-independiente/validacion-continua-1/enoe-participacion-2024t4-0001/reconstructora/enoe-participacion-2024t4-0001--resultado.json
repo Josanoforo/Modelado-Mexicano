@@ -1,0 +1,1234 @@
+{
+ "version": 3,
+ "identidad": {
+  "paquete": "enoe-participacion-2024t4-0001",
+  "version_entrada": "validacion-continua-1",
+  "sha256_entrada": "e590568f18737bc0bbf5e5ede4ac92b4cc5fc59bc5b9418018a7b3c4f86401d5"
+ },
+ "filas": [
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-18-24-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7342274319968641",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7196966777440784",
+   "ic95_sup": "0.7484097980749705"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-01-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7430210216998192",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6812478297354269",
+   "ic95_sup": "0.8017205171916864"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-02-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6651542763778043",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6026816411192832",
+   "ic95_sup": "0.7274845485012476"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-03-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7025856811806318",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6160299486019525",
+   "ic95_sup": "0.7795655854956354"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-04-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7933211583615967",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7507706489048062",
+   "ic95_sup": "0.8383057026696917"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-05-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.694235457572024",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6324975427464161",
+   "ic95_sup": "0.7525460290193673"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-06-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6785123247103911",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5942344178567349",
+   "ic95_sup": "0.7591677142114309"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-07-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8700758995502249",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.823289701381529",
+   "ic95_sup": "0.9106595716856061"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-08-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7000442589026185",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6432176025994688",
+   "ic95_sup": "0.7527602145152383"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-09-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6825771562076233",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6015611023022093",
+   "ic95_sup": "0.7593620563283988"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-10-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7284689286148608",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6822191172673382",
+   "ic95_sup": "0.7781798523198289"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-11-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7978953723171722",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7318016667169162",
+   "ic95_sup": "0.8529977787600972"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-12-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7638825377259081",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.700118107629426",
+   "ic95_sup": "0.8243350057491423"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-13-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8261351917247414",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7637836846522383",
+   "ic95_sup": "0.8767842783365501"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-14-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6854694633759015",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.62247334850768",
+   "ic95_sup": "0.7455560309218136"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-15-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6646163329849106",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6088925688315465",
+   "ic95_sup": "0.7208463847639489"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-16-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7838637481137354",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6775996705148025",
+   "ic95_sup": "0.8708870587058246"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-17-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7247596752502864",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6596695892982763",
+   "ic95_sup": "0.789352716063463"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-18-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7398520039351555",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6699754752579372",
+   "ic95_sup": "0.810822882771956"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-19-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6933586398545676",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.638742995662665",
+   "ic95_sup": "0.7531780428772717"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-20-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6953074878562918",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.622344221282463",
+   "ic95_sup": "0.7615495790029242"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-21-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.753926138882545",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6966872582164358",
+   "ic95_sup": "0.8123590330550874"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-22-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7087867613994064",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6309219386538237",
+   "ic95_sup": "0.7757213487624555"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-23-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7113938570032712",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6386036260571006",
+   "ic95_sup": "0.7841197697260761"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-24-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7181682063451705",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6651409757571812",
+   "ic95_sup": "0.7715249311102677"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-25-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7940824426198526",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7132115203257082",
+   "ic95_sup": "0.8618742157315986"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-26-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6446207007680876",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5786714515888882",
+   "ic95_sup": "0.7093468566609101"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-27-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.785816189688133",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7158177939939553",
+   "ic95_sup": "0.8448441460390027"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-28-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6489548739988279",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5805330391401321",
+   "ic95_sup": "0.718456450190781"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-29-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7663520400470432",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.715865903284388",
+   "ic95_sup": "0.8155498384778933"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-30-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7813422252884137",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7109233211026638",
+   "ic95_sup": "0.842722982574656"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-31-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7271463508817093",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6550235756456037",
+   "ic95_sup": "0.796537857318863"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-32-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.753334462065203",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6855243902506546",
+   "ic95_sup": "0.8122181343705318"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7335832988892607",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7096744181066812",
+   "ic95_sup": "0.7551733927687048"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7370425227551808",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6950607090617414",
+   "ic95_sup": "0.7736485659248514"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6244736047831898",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5467225662237883",
+   "ic95_sup": "0.6975222608217035"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7474087357236168",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7269346410545998",
+   "ic95_sup": "0.7675707387906824"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-100MIL-MAS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6669125230654814",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6424494366631489",
+   "ic95_sup": "0.6911008569289353"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-15MIL-99MIL-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7303615201811343",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6920215025779567",
+   "ic95_sup": "0.7669188600668595"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-2500-14999-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7741964803992655",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7403885446037658",
+   "ic95_sup": "0.807161814923141"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-MENOS-2500-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.802177054521858",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7775474510354594",
+   "ic95_sup": "0.8244705052138165"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.0",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0",
+   "ic95_sup": "0.0"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-MUJER-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "1.0",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "1.0",
+   "ic95_sup": "1.0"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7342274319968641",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7196966777440784",
+   "ic95_sup": "0.7484097980749705"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-18-24-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1991606765724104",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.19339425237834967",
+   "ic95_sup": "0.20492619240742402"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-01-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.18836352798416112",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16686524009621326",
+   "ic95_sup": "0.21068297254536852"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-02-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1666362987117704",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1476520638934176",
+   "ic95_sup": "0.18579722783049768"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-03-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17834962966185572",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.14352902039474313",
+   "ic95_sup": "0.21551710095883617"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-04-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1867697075419294",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1657179110001654",
+   "ic95_sup": "0.20776831064675688"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-05-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19470453878446836",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17067758541455477",
+   "ic95_sup": "0.21820107902809438"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-06-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1432993422284352",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1204438807824825",
+   "ic95_sup": "0.16562696430126397"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-07-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3495938821070631",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.31861071621872034",
+   "ic95_sup": "0.37726438011359337"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-08-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.16841768084467715",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.15064521386301888",
+   "ic95_sup": "0.18649636888524568"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-09-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1299888396531054",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.10849822667886569",
+   "ic95_sup": "0.15140515923585343"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-10-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19334041832819202",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17155020847550478",
+   "ic95_sup": "0.2148771306568078"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-11-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2607517980730085",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.22384188945432656",
+   "ic95_sup": "0.29452172121652476"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-12-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2762258596875661",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.24119429069704873",
+   "ic95_sup": "0.31271154813453017"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-13-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19417045664857385",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.15779279768723842",
+   "ic95_sup": "0.22987952411743873"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-14-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17057995265116777",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.15042281416068629",
+   "ic95_sup": "0.1905273511844151"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-15-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.178961227705391",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16082742599105898",
+   "ic95_sup": "0.19952102166642957"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-16-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.21957439521082925",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17481135178408744",
+   "ic95_sup": "0.2628535237664965"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-17-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19066567267650844",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16663801416260393",
+   "ic95_sup": "0.21287659476801635"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-18-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17179830104935187",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.15040763817214853",
+   "ic95_sup": "0.19520814256166993"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-19-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1625168381391172",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1439755884701952",
+   "ic95_sup": "0.1805592180941734"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-20-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.27468889487504183",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.23871021905456147",
+   "ic95_sup": "0.3099856231801623"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-21-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19504021359912696",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17389981732442128",
+   "ic95_sup": "0.21534419486464762"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-22-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1527335164835165",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1330190208064302",
+   "ic95_sup": "0.1719238787113964"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-23-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1964112127697744",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16718751843151328",
+   "ic95_sup": "0.2262706147181121"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-24-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.21349215922798553",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1906819310721967",
+   "ic95_sup": "0.23544654177577345"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-25-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.13607866221653256",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.11208171180584746",
+   "ic95_sup": "0.1599600132757176"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-26-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.16043765385819625",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.13548226069889194",
+   "ic95_sup": "0.18529719957222546"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-27-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2337853793250662",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.20596075957021218",
+   "ic95_sup": "0.257266001847791"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-28-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19092292467514385",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16815986424137577",
+   "ic95_sup": "0.21471227412184102"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-29-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19103829292038968",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17227137264792786",
+   "ic95_sup": "0.20926314801665344"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-30-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2652366732320986",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.22729332724782994",
+   "ic95_sup": "0.3010170868069497"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-31-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1391017560947661",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.11930042784328096",
+   "ic95_sup": "0.161101422445978"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-32-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2960304289230701",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2596602658247053",
+   "ic95_sup": "0.33445538400645247"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.14151076747176963",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.13482626365034284",
+   "ic95_sup": "0.14839864408494052"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3697097568030283",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3432276354269172",
+   "ic95_sup": "0.3960642190681445"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5334248224204485",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4864711551984941",
+   "ic95_sup": "0.58347366637699"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.24758503087353154",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.23717486207837654",
+   "ic95_sup": "0.2573214118609172"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-100MIL-MAS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1569428036476547",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.14964775312799122",
+   "ic95_sup": "0.16503514157693056"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-15MIL-99MIL-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.18194678394479052",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16809435070932352",
+   "ic95_sup": "0.1954254779759193"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-2500-14999-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.22090953272989877",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.20441598837516667",
+   "ic95_sup": "0.2383358598462654"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-MENOS-2500-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3038776428501754",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.290055604604141",
+   "ic95_sup": "0.31767945608396114"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.10754179051568521",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.10139084766358948",
+   "ic95_sup": "0.11400649873017914"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-MUJER-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2879628968233721",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.27858624329486503",
+   "ic95_sup": "0.2975012739172149"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1991606765724104",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.19339425237834967",
+   "ic95_sup": "0.20492619240742402"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-15-17-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.20240416561095084",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1939103955573499",
+   "ic95_sup": "0.2109779843146186"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-18-24-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5520041356033977",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5445366968552435",
+   "ic95_sup": "0.5597608730793476"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-25-44-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7699998315016073",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7663915587643801",
+   "ic95_sup": "0.7737480354253861"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-45-64-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6697385665921692",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.664997460837399",
+   "ic95_sup": "0.6745003261405248"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-65-MAS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.24717292966789092",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.24065932700863643",
+   "ic95_sup": "0.2535741370135201"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-01-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5890022449358726",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5765065427981371",
+   "ic95_sup": "0.6013848629261378"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-02-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6004024098297777",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5891339266913416",
+   "ic95_sup": "0.6120980986017752"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-03-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6827246115143771",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6655520237049267",
+   "ic95_sup": "0.6996052014837437"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-04-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6076086187087184",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5978773964167162",
+   "ic95_sup": "0.617938465653202"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-05-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6001593909587576",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5870228762676323",
+   "ic95_sup": "0.6128878605526521"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-06-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6543105225371235",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6372353078021441",
+   "ic95_sup": "0.671173381152395"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-07-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5413270007043347",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5296364699054059",
+   "ic95_sup": "0.5533450336645979"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-08-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6195624493727985",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6099902272583742",
+   "ic95_sup": "0.6289444370832123"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-09-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6519898199703056",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.639387038153068",
+   "ic95_sup": "0.6640987086309257"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-10-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6100472202164063",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6005790441161758",
+   "ic95_sup": "0.6201571535811873"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-11-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5997003985038944",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5870907361208454",
+   "ic95_sup": "0.6126064974816297"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-12-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6027790965655472",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5847129323280474",
+   "ic95_sup": "0.620591924987512"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-13-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5970133157371906",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5778800553033103",
+   "ic95_sup": "0.6146291448290577"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-14-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5854518722603705",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5746268325065855",
+   "ic95_sup": "0.5965387178563453"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-15-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5886012651066361",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5773948423984248",
+   "ic95_sup": "0.5998932465192148"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-16-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6019677594743232",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5841729451051594",
+   "ic95_sup": "0.6182845565878884"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-17-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5593208906739869",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5447650303604472",
+   "ic95_sup": "0.5728842932918281"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-18-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6619437319327389",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6496485342084344",
+   "ic95_sup": "0.6744377523249674"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-19-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.623487802011797",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6132509702765472",
+   "ic95_sup": "0.634427527078651"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-20-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5631504410328553",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5439627566361244",
+   "ic95_sup": "0.5812010163276375"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-21-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6134162934282916",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6014050851779985",
+   "ic95_sup": "0.6254899134797473"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-22-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6166436182384368",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6035671052563123",
+   "ic95_sup": "0.6297313106525948"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-23-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6609440389936319",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6456661115269493",
+   "ic95_sup": "0.6767564198632233"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-24-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5965152334146777",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5836384423279514",
+   "ic95_sup": "0.6089092191927244"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-25-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5921247182383097",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5750704523798524",
+   "ic95_sup": "0.6080019077244433"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-26-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6096264923656297",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5955680538305038",
+   "ic95_sup": "0.6230904075975972"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-27-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5883299335899757",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5734988487274316",
+   "ic95_sup": "0.603382995860014"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-28-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.593965353778057",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5831726499743637",
+   "ic95_sup": "0.6050337983906916"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-29-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6082838094397104",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5981457672256194",
+   "ic95_sup": "0.6186319852280411"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-30-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5454062311490865",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5304095230792615",
+   "ic95_sup": "0.5589155564946742"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-31-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6492346500876504",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6384040525016589",
+   "ic95_sup": "0.6606620720995767"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-32-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.543798460761565",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.526511000549134",
+   "ic95_sup": "0.5615807242409084"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.705270039313818",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.700900295741337",
+   "ic95_sup": "0.7098216687129465"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5177137831950088",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5105674475236462",
+   "ic95_sup": "0.5248120017666318"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.41706303057560135",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4088579680007919",
+   "ic95_sup": "0.42441803878928336"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5767979822198336",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5722767365229902",
+   "ic95_sup": "0.5811989090614349"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-100MIL-MAS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6133830358634437",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6093049469668103",
+   "ic95_sup": "0.617428283513724"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-15MIL-99MIL-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6087211171386456",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6018238609700414",
+   "ic95_sup": "0.6156808899515716"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-2500-14999-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5920102581823722",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5843108553842146",
+   "ic95_sup": "0.5993252248617452"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-MENOS-2500-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.560082034906967",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.553372238936662",
+   "ic95_sup": "0.5664995628858279"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7527306241405021",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.749186062464153",
+   "ic95_sup": "0.7562595960504157"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-SEXO-MUJER-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.46397771339561306",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4598251316112957",
+   "ic95_sup": "0.4681433152551244"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5989543805564548",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.596038358746767",
+   "ic95_sup": "0.6018531505296968"
+  }
+ ]
+}

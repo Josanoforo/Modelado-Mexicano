@@ -1,0 +1,466 @@
+{
+  "congelacion_sha256": "05d32c30e7353c4f05e664cefa591e6ab6ac3e4963c44d38bea973d53b1e2e3c",
+  "estado": "DISCREPA",
+  "identidad": {
+    "paquete": "enasem-escolaridad-2021-0001",
+    "sha256_entrada": "f76eddec9aae60712adaba5f93d1dbd6585f1e25008a506f4fbcbcf881e65bd5",
+    "version_entrada": "validacion-continua-1"
+  },
+  "referencia_sha256": "f68bba9b7b08d89177f66f60f7fffa1a0fbd59fb38277187747402c3bd6ac98f",
+  "resultados": [
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0021855571235623",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00065628010966095",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-50-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0027184112822968",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.002059793090866",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-60-69-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0012504545261995",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0019674175567517",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-70-79-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0001812976379612",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0002421274527972",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-80-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0003955292199272",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0006505859572356",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0001383479200482",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0003687935664817",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0008035648294161",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0001756573273198",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00007042615390101",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00034165184575964",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-50-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00019003536205788",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00174029626773521",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-60-69-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00174671409094210",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00037837670091293",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-70-79-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00171444074177635",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00136479471373369",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-80-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00026214356831351",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00044759622515158",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0001117699553317",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00016614715187669",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00020645180748315",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00077090668687648",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-TOTAL-TODOS-P"
+    }
+  ],
+  "tolerancia": {
+    "abs": "1e-10",
+    "rel": "0"
+  },
+  "tolerancia_sha256": "db9850b21bac2d51db71bbc2b1254a3083f04a68c2756fb74dfb25ed1c66fce5",
+  "version": 3
+}
