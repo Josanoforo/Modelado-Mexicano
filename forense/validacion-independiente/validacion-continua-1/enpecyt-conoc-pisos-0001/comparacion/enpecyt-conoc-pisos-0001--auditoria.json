@@ -1,0 +1,44 @@
+{
+  "columnas_reales_no_autorizadas_en_codigo": [],
+  "comandos_con_red": [
+    "sha256sum paquete/esquema-identidades.tsv paquete/FIRMAS-Y-ACCESO.md paquete/datos/* | grep -c 3c16ea013079; python3 -c \"import sys;sys.path.insert(0,'paquete/lib');import dbfread;print(dbfread.__version__)\"; ls salida; git log --oneline | head"
+  ],
+  "init": {
+    "claude_code_version": "2.1.284",
+    "cwd": "/home/pc0/vyc27-rec/enpecyt-conoc-pisos-0001",
+    "mcp_servers": [],
+    "model": "claude-opus-5-5",
+    "permissionMode": "acceptEdits",
+    "tools": [
+      "Bash",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Read",
+      "Write"
+    ]
+  },
+  "llamadas": 18,
+  "modelos": [
+    "claude-opus-5-5"
+  ],
+  "paquete": "enpecyt-conoc-pisos-0001",
+  "resultado": {
+    "duration_ms": 257791,
+    "is_error": false,
+    "num_turns": 19,
+    "permission_denials": [],
+    "subtype": "success",
+    "total_cost_usd": 1.1202941999999998
+  },
+  "rutas_fuera_del_cwd": [
+    "/d"
+  ],
+  "session_id": "516406b2-5c7d-494b-b799-1f5b5307aeb0",
+  "veredicto": {
+    "CAMPOS-DENTRO": true,
+    "CERO-LECTURAS-FUERA": false,
+    "SIN-RED": false,
+    "SOLO-OPUS": true
+  }
+}

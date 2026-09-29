@@ -1,0 +1,622 @@
+{
+  "version": 3,
+  "identidad": {
+    "paquete": "latinobarometro-cola-2023-0001",
+    "version_entrada": "validacion-continua-1",
+    "sha256_entrada": "06c601418c4d5527fe51e70762a771ec605b223ad6ebd3d7f0286093ea6a94c2"
+  },
+  "filas": [
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4123103517463844",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.28846234804505866",
+      "ic95_sup": "0.5347577447176187"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-CLASE-SUBJETIVA-BAJA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6231422402836633",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5667630865553808",
+      "ic95_sup": "0.6798103344966309"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-CLASE-SUBJETIVA-MEDIA-BAJA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.585871021368852",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5328465439870781",
+      "ic95_sup": "0.6396065040701411"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-CLASE-SUBJETIVA-MEDIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6055226577006072",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5580900446407532",
+      "ic95_sup": "0.6544848168327856"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-EDAD-18-29-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6104937593217677",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5550639106377803",
+      "ic95_sup": "0.6690618688075025"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-EDAD-30-44-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5713511781006867",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5201726729780138",
+      "ic95_sup": "0.6209630440336175"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-EDAD-45-59-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5730019520552755",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5169691968478646",
+      "ic95_sup": "0.6298997087143293"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6718116434611893",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6018462419290213",
+      "ic95_sup": "0.7422267066346075"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-ESCOLARIDAD-HASTA-BASICA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5966240681405447",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5544055436156526",
+      "ic95_sup": "0.6384392035276518"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-ESCOLARIDAD-MEDIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6215159972616962",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5726647645038825",
+      "ic95_sup": "0.6701223777420277"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5893107738603318",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5313516447843493",
+      "ic95_sup": "0.6492966528092553"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-SEXO-HOMBRE-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5982058124963954",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5574879974141927",
+      "ic95_sup": "0.6392048574162553"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-SEXO-MUJER-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6028368078000431",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5619729167148051",
+      "ic95_sup": "0.6431716350798236"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-TAMLOC-100MIL-MAS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5915099776673152",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5561744861070659",
+      "ic95_sup": "0.6280354442786226"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-TAMLOC-20MIL-100MIL-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6321404420984907",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5746653348384109",
+      "ic95_sup": "0.6872644476671919"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-TAMLOC-MENOS-20MIL-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5699365022847308",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4643960948250009",
+      "ic95_sup": "0.6876145984980682"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6005647261386914",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5704751857741914",
+      "ic95_sup": "0.6301587675304207"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4456419726923192",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.32590982638694793",
+      "ic95_sup": "0.5688601333857907"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-CLASE-SUBJETIVA-BAJA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.34390267476047504",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.29059935139267035",
+      "ic95_sup": "0.3964159847479165"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-CLASE-SUBJETIVA-MEDIA-BAJA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3582366432811657",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.30967744430480854",
+      "ic95_sup": "0.4100644335653129"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-CLASE-SUBJETIVA-MEDIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4230716090320544",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.37574552329020416",
+      "ic95_sup": "0.472915908635589"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-EDAD-18-29-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.33758284588628884",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2856322597352851",
+      "ic95_sup": "0.3908984460212576"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-EDAD-30-44-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3789518683325885",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.33138454850263765",
+      "ic95_sup": "0.4281473214217743"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-EDAD-45-59-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.36655492122118366",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3140154200162232",
+      "ic95_sup": "0.421895283551814"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.47389918310420404",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.40071178693123916",
+      "ic95_sup": "0.5471102626345111"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-ESCOLARIDAD-HASTA-BASICA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.37323939237834375",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.33354506370257647",
+      "ic95_sup": "0.41305040148829647"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-ESCOLARIDAD-MEDIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.35994497693886407",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.31020635876767644",
+      "ic95_sup": "0.4076791098839026"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4194487160989961",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.36225967416944416",
+      "ic95_sup": "0.4776332957967326"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-SEXO-HOMBRE-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.38121163238786576",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3400573881923641",
+      "ic95_sup": "0.4225752499573752"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-SEXO-MUJER-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3812243991713045",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3417750903348275",
+      "ic95_sup": "0.4175024172187034"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-TAMLOC-100MIL-MAS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3714709073108777",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3372460249206578",
+      "ic95_sup": "0.40651599668351696"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-TAMLOC-20MIL-100MIL-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3919327226502114",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3369338776210551",
+      "ic95_sup": "0.44352561331589524"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-TAMLOC-MENOS-20MIL-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.43214842024504224",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.326630120738918",
+      "ic95_sup": "0.5448926439793788"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.381218188570983",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3523986258810735",
+      "ic95_sup": "0.4077796667010014"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.41675384371532725",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.30055972139097736",
+      "ic95_sup": "0.5380107235346643"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-CLASE-SUBJETIVA-BAJA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3336618129481478",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.28163228429267695",
+      "ic95_sup": "0.39098692028923593"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-CLASE-SUBJETIVA-MEDIA-BAJA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3519279558548596",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3022468563198299",
+      "ic95_sup": "0.403473484660947"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-CLASE-SUBJETIVA-MEDIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.42295188151617447",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3725822250216589",
+      "ic95_sup": "0.47371763501284586"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-EDAD-18-29-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3803149141947279",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.32512511470495875",
+      "ic95_sup": "0.4351722336789654"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-EDAD-30-44-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.35920912095582774",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.310337782373659",
+      "ic95_sup": "0.4069227727775952"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-EDAD-45-59-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3620848676257887",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.30591499194627997",
+      "ic95_sup": "0.41885192064020915"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4255666426302353",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3484187066862147",
+      "ic95_sup": "0.5007245635098283"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-ESCOLARIDAD-HASTA-BASICA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3738761479690274",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.33158273436336394",
+      "ic95_sup": "0.4162264143386415"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-ESCOLARIDAD-MEDIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.36117759068082966",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.312459126155053",
+      "ic95_sup": "0.40914326581379823"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.40052748819388756",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3462226650810509",
+      "ic95_sup": "0.4587720669559236"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-SEXO-HOMBRE-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.38626841582591426",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.345851995806795",
+      "ic95_sup": "0.42741693035849865"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-SEXO-MUJER-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3687556369951478",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.33006462350037086",
+      "ic95_sup": "0.4094998324000803"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-TAMLOC-100MIL-MAS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.37653864917710367",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3418885224461355",
+      "ic95_sup": "0.4116968511170794"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-TAMLOC-20MIL-100MIL-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3450665215723937",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2917922928469786",
+      "ic95_sup": "0.40008598151798963"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-TAMLOC-MENOS-20MIL-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.50179062707523",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.39389794196641925",
+      "ic95_sup": "0.6119506411622766"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3773592805059562",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.34808781664757843",
+      "ic95_sup": "0.40569457802735653"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7911961490720839",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6854227218138903",
+      "ic95_sup": "0.8889481177859776"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-CLASE-SUBJETIVA-BAJA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.714101146049244",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6644273892269734",
+      "ic95_sup": "0.7652081777197979"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-CLASE-SUBJETIVA-MEDIA-BAJA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6845863212709273",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6347593644093349",
+      "ic95_sup": "0.7353154330727933"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-CLASE-SUBJETIVA-MEDIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7919473493789089",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7518495431269046",
+      "ic95_sup": "0.8315951130364115"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-EDAD-18-29-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7514759162445814",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7004714544267346",
+      "ic95_sup": "0.8006080236880544"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-EDAD-30-44-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7204547718393413",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6751154158985775",
+      "ic95_sup": "0.7677489293677608"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-EDAD-45-59-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7333086498476138",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6846326713794709",
+      "ic95_sup": "0.7845629056833874"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7473118791607538",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6809706077448318",
+      "ic95_sup": "0.8101440221562466"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-ESCOLARIDAD-HASTA-BASICA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7467116892748668",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7106813792849754",
+      "ic95_sup": "0.7823306243957651"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-ESCOLARIDAD-MEDIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7151220081898407",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6681290404614927",
+      "ic95_sup": "0.7605815848976213"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7360199596724529",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6799789548225912",
+      "ic95_sup": "0.7874652002048437"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-SEXO-HOMBRE-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7321637366656193",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6956099869165387",
+      "ic95_sup": "0.766693945691195"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-SEXO-MUJER-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7414504818113953",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7036060965361611",
+      "ic95_sup": "0.776067344700463"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-TAMLOC-100MIL-MAS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7328387018940766",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7031928545875263",
+      "ic95_sup": "0.7641249512237507"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-TAMLOC-20MIL-100MIL-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7230226141700172",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6699175410789582",
+      "ic95_sup": "0.7743170438354611"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-TAMLOC-MENOS-20MIL-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.8265116388542377",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7406065442136001",
+      "ic95_sup": "0.9008308483430278"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7369227317778789",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7125442269182931",
+      "ic95_sup": "0.7623887397523551"
+    }
+  ]
+}

@@ -1,0 +1,1277 @@
+{
+  "identidad": {
+    "paquete": "latinobarometro-cola-2023-0001",
+    "version_entrada": "validacion-continua-1",
+    "sha256_entrada": "06c601418c4d5527fe51e70762a771ec605b223ad6ebd3d7f0286093ea6a94c2"
+  },
+  "filtro": "idenpa = 484; universo edad >= 18; válido wt finito > 0",
+  "conteos_marco": {
+    "filas_archivo": 19205,
+    "filas_mexico": 1200,
+    "excluidas_wt_no_valido": 0,
+    "marco_diseno": 1200
+  },
+  "excluidas_edad_menor_18_en_marco": 0,
+  "diseno": "MAS-PONDERADO-SIN-ESTRATO (bootstrap ponderado de entrevistas)",
+  "bootstrap": {
+    "generador": "numpy.random.Generator(PCG64(20260928))",
+    "replicas": 2000,
+    "bloque": 50,
+    "percentiles": [
+      2.5,
+      97.5
+    ]
+  },
+  "decisiones": [
+    {
+      "id": "D1-remuestreo",
+      "frase": "bootstrap ponderado de entrevistas (sin estrato ni UPM declarados: cada entrevista es su propia UPM, un solo estrato",
+      "decision": "Cada réplica extrae n entrevistas con reemplazo (n = entrevistas válidas para el diseño) del único estrato; peso de réplica = wt * (veces extraída). Sin reescalado Rao-Wu (n-1)."
+    },
+    {
+      "id": "D2-rng-bloques",
+      "frase": "numpy.PCG64(20260928), 2000 réplicas, bloques de 50",
+      "decision": "Un solo numpy.random.Generator(PCG64(20260928)); 40 bloques sucesivos de 50 réplicas; en cada bloque rng.integers(0, n, size=(50, n)) y conteos por bincount. Las mismas 2000 réplicas se usan para las 68 llaves."
+    },
+    {
+      "id": "D3-percentiles",
+      "frase": "percentiles 2.5/97.5",
+      "decision": "numpy.percentile con interpolación lineal (default) sobre las 2000 razones replicadas."
+    },
+    {
+      "id": "D4-degenerada",
+      "frase": "contrato conservador — una réplica degenerada da EE/IC vacíos",
+      "decision": "Si en alguna réplica el denominador del dominio (suma de pesos de réplica con conducta válida) es 0, IC vacío: estado_ic NO-IDENTIFICADA, manteniendo el punto."
+    },
+    {
+      "id": "D5-marco",
+      "frase": "toda conducta fuera de universo sale NaN",
+      "decision": "El marco del bootstrap son las entrevistas de México con wt finito > 0; el universo (edad >= 18) se aplica volviendo NaN la conducta, no quitando filas del marco (en México no hay menores de 18)."
+    },
+    {
+      "id": "D6-denominador",
+      "frase": "Razón ponderada Σw·y/Σw ... fuera de la lista cerrada queda NaN",
+      "decision": "Σw y Σw·y sólo sobre filas del dominio con y no NaN (códigos fuera de UNO/CERO excluidos del denominador)."
+    },
+    {
+      "id": "D7-edad",
+      "frase": "cuatro tramos: 18-29, 30-44, 45-59, 60-MAS",
+      "decision": "Tramos cerrados por edad entera en años cumplidos; 60-MAS = edad >= 60."
+    },
+    {
+      "id": "D8-segmento-invalido",
+      "frase": "CLASE-SUBJETIVA (S2 ...: 1 Alta · 2 Media Alta · 3 Media · 4 Media Baja · 5 Baja",
+      "decision": "Códigos del eje fuera de las listas (p. ej. S2 negativos) no pertenecen a ningún segmento; siguen en TOTAL."
+    }
+  ],
+  "llaves": [
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "ALTA-MEDIA-ALTA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 70,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 1,
+      "codigos_excluidos_en_segmento": {
+        "-5": 1
+      },
+      "n_valido": 69,
+      "suma_w_valido": "64.79100000000001",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.06284457777223795"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-CLASE-SUBJETIVA-BAJA-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "BAJA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 306,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 11,
+      "codigos_excluidos_en_segmento": {
+        "-5": 11
+      },
+      "n_valido": 295,
+      "suma_w_valido": "310.791",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.0288529919672235"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-CLASE-SUBJETIVA-MEDIA-BAJA-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "MEDIA-BAJA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 363,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 8,
+      "codigos_excluidos_en_segmento": {
+        "-5": 8
+      },
+      "n_valido": 355,
+      "suma_w_valido": "350.08899999999994",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.027142824056908054"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-CLASE-SUBJETIVA-MEDIA-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "MEDIA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 416,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 11,
+      "codigos_excluidos_en_segmento": {
+        "-5": 11
+      },
+      "n_valido": 405,
+      "suma_w_valido": "398.53999999999996",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.02541396250150474"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-EDAD-18-29-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "EDAD",
+      "segmento": "18-29",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 312,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 12,
+      "codigos_excluidos_en_segmento": {
+        "-5": 12
+      },
+      "n_valido": 300,
+      "suma_w_valido": "318.475",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.029498854139321996"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-EDAD-30-44-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "EDAD",
+      "segmento": "30-44",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 387,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 9,
+      "codigos_excluidos_en_segmento": {
+        "-5": 9
+      },
+      "n_valido": 378,
+      "suma_w_valido": "352.55899999999997",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.02577520545591997"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-EDAD-45-59-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "EDAD",
+      "segmento": "45-59",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 322,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 10,
+      "codigos_excluidos_en_segmento": {
+        "-5": 10
+      },
+      "n_valido": 312,
+      "suma_w_valido": "284.828",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.029390689848358513"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-EDAD-60-MAS-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "EDAD",
+      "segmento": "60-MAS",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 179,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 3,
+      "codigos_excluidos_en_segmento": {
+        "-5": 3
+      },
+      "n_valido": 176,
+      "suma_w_valido": "210.367",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.03617442817366205"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-ESCOLARIDAD-HASTA-BASICA-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "ESCOLARIDAD",
+      "segmento": "HASTA-BASICA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 543,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 15,
+      "codigos_excluidos_en_segmento": {
+        "-5": 15
+      },
+      "n_valido": 528,
+      "suma_w_valido": "623.887",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.02171155170224941"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-ESCOLARIDAD-MEDIA-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "ESCOLARIDAD",
+      "segmento": "MEDIA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 379,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 11,
+      "codigos_excluidos_en_segmento": {
+        "-5": 11
+      },
+      "n_valido": 368,
+      "suma_w_valido": "265.858",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.02508106121024413"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-ESCOLARIDAD-SUPERIOR-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "ESCOLARIDAD",
+      "segmento": "SUPERIOR",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 278,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 8,
+      "codigos_excluidos_en_segmento": {
+        "-5": 8
+      },
+      "n_valido": 270,
+      "suma_w_valido": "276.48400000000004",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.030642817993990913"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-SEXO-HOMBRE-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "SEXO",
+      "segmento": "HOMBRE",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 601,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 14,
+      "codigos_excluidos_en_segmento": {
+        "-5": 14
+      },
+      "n_valido": 587,
+      "suma_w_valido": "572.181",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.020920365739340176"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-SEXO-MUJER-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "SEXO",
+      "segmento": "MUJER",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 599,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 20,
+      "codigos_excluidos_en_segmento": {
+        "-5": 20
+      },
+      "n_valido": 579,
+      "suma_w_valido": "594.048",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.020860603914663354"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-TAMLOC-100MIL-MAS-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "TAMLOC",
+      "segmento": "100MIL-MAS",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 804,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 22,
+      "codigos_excluidos_en_segmento": {
+        "-5": 22
+      },
+      "n_valido": 782,
+      "suma_w_valido": "777.3359999999999",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.018579225389773735"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-TAMLOC-20MIL-100MIL-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "TAMLOC",
+      "segmento": "20MIL-100MIL",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 312,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 10,
+      "codigos_excluidos_en_segmento": {
+        "-5": 10
+      },
+      "n_valido": 302,
+      "suma_w_valido": "304.638",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.02888469550062734"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-TAMLOC-MENOS-20MIL-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "TAMLOC",
+      "segmento": "MENOS-20MIL",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 84,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 2,
+      "codigos_excluidos_en_segmento": {
+        "-5": 2
+      },
+      "n_valido": 82,
+      "suma_w_valido": "84.255",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.05744860135346777"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-APRUEBA-GOBIERNO-DEL-PRESIDENTE-2023-TOTAL-TODOS-P",
+      "conducta": "aprueba-gobierno-del-presidente",
+      "eje": "TOTAL",
+      "segmento": "TODOS",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 1200,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 34,
+      "codigos_excluidos_en_segmento": {
+        "-5": 34
+      },
+      "n_valido": 1166,
+      "suma_w_valido": "1166.229",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.01503837464394058"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "ALTA-MEDIA-ALTA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 70,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 0,
+      "codigos_excluidos_en_segmento": {},
+      "n_valido": 70,
+      "suma_w_valido": "66.06200000000001",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.060993125084236"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-CLASE-SUBJETIVA-BAJA-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "BAJA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 306,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 2,
+      "codigos_excluidos_en_segmento": {
+        "-1": 2
+      },
+      "n_valido": 304,
+      "suma_w_valido": "320.739",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.02734361361532401"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-CLASE-SUBJETIVA-MEDIA-BAJA-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "MEDIA-BAJA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 363,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 2,
+      "codigos_excluidos_en_segmento": {
+        "-1": 2
+      },
+      "n_valido": 361,
+      "suma_w_valido": "355.77599999999995",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.025854904038768906"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-CLASE-SUBJETIVA-MEDIA-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "MEDIA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 416,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 4,
+      "codigos_excluidos_en_segmento": {
+        "-1": 4
+      },
+      "n_valido": 412,
+      "suma_w_valido": "405.31199999999995",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.024908824094659908"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-EDAD-18-29-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "EDAD",
+      "segmento": "18-29",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 312,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 0,
+      "codigos_excluidos_en_segmento": {},
+      "n_valido": 312,
+      "suma_w_valido": "331.489",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.027035749363869814"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-EDAD-30-44-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "EDAD",
+      "segmento": "30-44",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 387,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 1,
+      "codigos_excluidos_en_segmento": {
+        "-1": 1
+      },
+      "n_valido": 386,
+      "suma_w_valido": "360.241",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.024883214574806935"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-EDAD-45-59-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "EDAD",
+      "segmento": "45-59",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 322,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 4,
+      "codigos_excluidos_en_segmento": {
+        "-1": 4
+      },
+      "n_valido": 318,
+      "suma_w_valido": "290.243",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.027258642184747727"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-EDAD-60-MAS-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "EDAD",
+      "segmento": "60-MAS",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 179,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 3,
+      "codigos_excluidos_en_segmento": {
+        "-1": 3
+      },
+      "n_valido": 176,
+      "suma_w_valido": "210.798",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.03791703966800125"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-ESCOLARIDAD-HASTA-BASICA-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "ESCOLARIDAD",
+      "segmento": "HASTA-BASICA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 543,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 4,
+      "codigos_excluidos_en_segmento": {
+        "-1": 4
+      },
+      "n_valido": 539,
+      "suma_w_valido": "636.712",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.0207897196033667"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-ESCOLARIDAD-MEDIA-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "ESCOLARIDAD",
+      "segmento": "MEDIA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 379,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 3,
+      "codigos_excluidos_en_segmento": {
+        "-1": 3
+      },
+      "n_valido": 376,
+      "suma_w_valido": "271.88599999999997",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.02489650896766548"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-ESCOLARIDAD-SUPERIOR-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "ESCOLARIDAD",
+      "segmento": "SUPERIOR",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 278,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 1,
+      "codigos_excluidos_en_segmento": {
+        "-1": 1
+      },
+      "n_valido": 277,
+      "suma_w_valido": "284.17299999999994",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.029141443945307807"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-SEXO-HOMBRE-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "SEXO",
+      "segmento": "HOMBRE",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 601,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 6,
+      "codigos_excluidos_en_segmento": {
+        "-1": 6
+      },
+      "n_valido": 595,
+      "suma_w_valido": "580.242",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.020796215948273827"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-SEXO-MUJER-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "SEXO",
+      "segmento": "MUJER",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 599,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 2,
+      "codigos_excluidos_en_segmento": {
+        "-1": 2
+      },
+      "n_valido": 597,
+      "suma_w_valido": "612.529",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.019980522780716336"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-TAMLOC-100MIL-MAS-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "TAMLOC",
+      "segmento": "100MIL-MAS",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 804,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 6,
+      "codigos_excluidos_en_segmento": {
+        "-1": 6
+      },
+      "n_valido": 798,
+      "suma_w_valido": "793.653",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.017453524574013567"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-TAMLOC-20MIL-100MIL-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "TAMLOC",
+      "segmento": "20MIL-100MIL",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 312,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 2,
+      "codigos_excluidos_en_segmento": {
+        "-1": 2
+      },
+      "n_valido": 310,
+      "suma_w_valido": "313.092",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.027494282391691816"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-TAMLOC-MENOS-20MIL-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "TAMLOC",
+      "segmento": "MENOS-20MIL",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 84,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 0,
+      "codigos_excluidos_en_segmento": {},
+      "n_valido": 84,
+      "suma_w_valido": "86.02599999999998",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.055498191257206564"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-ORO-CONFIA-GOBIERNO-2023-TOTAL-TODOS-P",
+      "conducta": "oro-confia-gobierno",
+      "eje": "TOTAL",
+      "segmento": "TODOS",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 1200,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 8,
+      "codigos_excluidos_en_segmento": {
+        "-1": 8
+      },
+      "n_valido": 1192,
+      "suma_w_valido": "1192.771",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.014289461010224139"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "ALTA-MEDIA-ALTA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 70,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 3,
+      "codigos_excluidos_en_segmento": {
+        "-1": 3
+      },
+      "n_valido": 67,
+      "suma_w_valido": "63.09",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.06160120070814812"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-CLASE-SUBJETIVA-BAJA-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "BAJA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 306,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 14,
+      "codigos_excluidos_en_segmento": {
+        "-1": 14
+      },
+      "n_valido": 292,
+      "suma_w_valido": "308.49199999999996",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.028225221427413603"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-CLASE-SUBJETIVA-MEDIA-BAJA-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "MEDIA-BAJA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 363,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 4,
+      "codigos_excluidos_en_segmento": {
+        "-1": 4
+      },
+      "n_valido": 359,
+      "suma_w_valido": "353.561",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.026136190076336056"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-CLASE-SUBJETIVA-MEDIA-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "MEDIA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 416,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 7,
+      "codigos_excluidos_en_segmento": {
+        "-1": 7
+      },
+      "n_valido": 409,
+      "suma_w_valido": "401.405",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.025545622917422253"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-EDAD-18-29-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "EDAD",
+      "segmento": "18-29",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 312,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 8,
+      "codigos_excluidos_en_segmento": {
+        "-1": 8
+      },
+      "n_valido": 304,
+      "suma_w_valido": "322.183",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.027952905804632378"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-EDAD-30-44-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "EDAD",
+      "segmento": "30-44",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 387,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 6,
+      "codigos_excluidos_en_segmento": {
+        "-1": 6
+      },
+      "n_valido": 381,
+      "suma_w_valido": "356.717",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.02506374745931026"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-EDAD-45-59-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "EDAD",
+      "segmento": "45-59",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 322,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 8,
+      "codigos_excluidos_en_segmento": {
+        "-1": 8
+      },
+      "n_valido": 314,
+      "suma_w_valido": "286.234",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.02807981797628728"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-EDAD-60-MAS-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "EDAD",
+      "segmento": "60-MAS",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 179,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 7,
+      "codigos_excluidos_en_segmento": {
+        "-1": 7
+      },
+      "n_valido": 172,
+      "suma_w_valido": "205.24399999999997",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.03862341818174314"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-ESCOLARIDAD-HASTA-BASICA-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "ESCOLARIDAD",
+      "segmento": "HASTA-BASICA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 543,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 16,
+      "codigos_excluidos_en_segmento": {
+        "-1": 16
+      },
+      "n_valido": 527,
+      "suma_w_valido": "621.968",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.02179598706348287"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-ESCOLARIDAD-MEDIA-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "ESCOLARIDAD",
+      "segmento": "MEDIA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 379,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 9,
+      "codigos_excluidos_en_segmento": {
+        "-1": 9
+      },
+      "n_valido": 370,
+      "suma_w_valido": "267.8349999999999",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.024801948819343153"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-ESCOLARIDAD-SUPERIOR-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "ESCOLARIDAD",
+      "segmento": "SUPERIOR",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 278,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 4,
+      "codigos_excluidos_en_segmento": {
+        "-1": 4
+      },
+      "n_valido": 274,
+      "suma_w_valido": "280.575",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.029566973295307473"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-SEXO-HOMBRE-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "SEXO",
+      "segmento": "HOMBRE",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 601,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 10,
+      "codigos_excluidos_en_segmento": {
+        "-1": 10
+      },
+      "n_valido": 591,
+      "suma_w_valido": "574.981",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.02095273855747553"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-SEXO-MUJER-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "SEXO",
+      "segmento": "MUJER",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 599,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 19,
+      "codigos_excluidos_en_segmento": {
+        "-1": 19
+      },
+      "n_valido": 580,
+      "suma_w_valido": "595.3969999999999",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.020096855140417053"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-TAMLOC-100MIL-MAS-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "TAMLOC",
+      "segmento": "100MIL-MAS",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 804,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 18,
+      "codigos_excluidos_en_segmento": {
+        "-1": 18
+      },
+      "n_valido": 786,
+      "suma_w_valido": "780.9609999999999",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.017511450684391985"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-TAMLOC-20MIL-100MIL-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "TAMLOC",
+      "segmento": "20MIL-100MIL",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 312,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 9,
+      "codigos_excluidos_en_segmento": {
+        "-1": 9
+      },
+      "n_valido": 303,
+      "suma_w_valido": "305.08899999999994",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.027936130843841053"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-TAMLOC-MENOS-20MIL-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "TAMLOC",
+      "segmento": "MENOS-20MIL",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 84,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 2,
+      "codigos_excluidos_en_segmento": {
+        "-1": 2
+      },
+      "n_valido": 82,
+      "suma_w_valido": "84.32799999999999",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.056057647794344884"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-DEMOCRACIA-2023-TOTAL-TODOS-P",
+      "conducta": "satisfecho-con-la-democracia",
+      "eje": "TOTAL",
+      "segmento": "TODOS",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 1200,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 29,
+      "codigos_excluidos_en_segmento": {
+        "-1": 29
+      },
+      "n_valido": 1171,
+      "suma_w_valido": "1170.3780000000002",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.014421611997106988"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "ALTA-MEDIA-ALTA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 70,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 0,
+      "codigos_excluidos_en_segmento": {},
+      "n_valido": 70,
+      "suma_w_valido": "66.06200000000001",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.04934573534720477"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-CLASE-SUBJETIVA-BAJA-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "BAJA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 306,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 0,
+      "codigos_excluidos_en_segmento": {},
+      "n_valido": 306,
+      "suma_w_valido": "322.76099999999997",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.026024235474154656"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-CLASE-SUBJETIVA-MEDIA-BAJA-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "MEDIA-BAJA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 363,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 2,
+      "codigos_excluidos_en_segmento": {
+        "-5": 2
+      },
+      "n_valido": 361,
+      "suma_w_valido": "355.457",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.025067433271764892"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-CLASE-SUBJETIVA-MEDIA-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "CLASE-SUBJETIVA",
+      "segmento": "MEDIA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 416,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 2,
+      "codigos_excluidos_en_segmento": {
+        "-5": 2
+      },
+      "n_valido": 414,
+      "suma_w_valido": "406.30099999999993",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.020351282428844392"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-EDAD-18-29-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "EDAD",
+      "segmento": "18-29",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 312,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 0,
+      "codigos_excluidos_en_segmento": {},
+      "n_valido": 312,
+      "suma_w_valido": "331.489",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.024649043544287912"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-EDAD-30-44-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "EDAD",
+      "segmento": "30-44",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 387,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 0,
+      "codigos_excluidos_en_segmento": {},
+      "n_valido": 387,
+      "suma_w_valido": "361.412",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.023347587560052986"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-EDAD-45-59-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "EDAD",
+      "segmento": "45-59",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 322,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 2,
+      "codigos_excluidos_en_segmento": {
+        "-5": 2
+      },
+      "n_valido": 320,
+      "suma_w_valido": "291.693",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.025525342923912033"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-EDAD-60-MAS-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "EDAD",
+      "segmento": "60-MAS",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 179,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 3,
+      "codigos_excluidos_en_segmento": {
+        "-5": 3
+      },
+      "n_valido": 176,
+      "suma_w_valido": "209.998",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.032954623942079875"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-ESCOLARIDAD-HASTA-BASICA-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "ESCOLARIDAD",
+      "segmento": "HASTA-BASICA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 543,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 4,
+      "codigos_excluidos_en_segmento": {
+        "-5": 4
+      },
+      "n_valido": 539,
+      "suma_w_valido": "636.421",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.018521069519119658"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-ESCOLARIDAD-MEDIA-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "ESCOLARIDAD",
+      "segmento": "MEDIA",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 379,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 0,
+      "codigos_excluidos_en_segmento": {},
+      "n_valido": 379,
+      "suma_w_valido": "273.998",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.02318197697589069"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-ESCOLARIDAD-SUPERIOR-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "ESCOLARIDAD",
+      "segmento": "SUPERIOR",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 278,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 1,
+      "codigos_excluidos_en_segmento": {
+        "-5": 1
+      },
+      "n_valido": 277,
+      "suma_w_valido": "284.173",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.026644644022810866"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-SEXO-HOMBRE-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "SEXO",
+      "segmento": "HOMBRE",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 601,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 3,
+      "codigos_excluidos_en_segmento": {
+        "-5": 3
+      },
+      "n_valido": 598,
+      "suma_w_valido": "582.423",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.01825397407271328"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-SEXO-MUJER-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "SEXO",
+      "segmento": "MUJER",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 599,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 2,
+      "codigos_excluidos_en_segmento": {
+        "-5": 2
+      },
+      "n_valido": 597,
+      "suma_w_valido": "612.169",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.018329391121078422"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-TAMLOC-100MIL-MAS-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "TAMLOC",
+      "segmento": "100MIL-MAS",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 804,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 3,
+      "codigos_excluidos_en_segmento": {
+        "-5": 3
+      },
+      "n_valido": 801,
+      "suma_w_valido": "795.7439999999999",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.015616146259054468"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-TAMLOC-20MIL-100MIL-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "TAMLOC",
+      "segmento": "20MIL-100MIL",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 312,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 1,
+      "codigos_excluidos_en_segmento": {
+        "-5": 1
+      },
+      "n_valido": 311,
+      "suma_w_valido": "313.874",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.02616276208896768"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-TAMLOC-MENOS-20MIL-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "TAMLOC",
+      "segmento": "MENOS-20MIL",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 84,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 1,
+      "codigos_excluidos_en_segmento": {
+        "-5": 1
+      },
+      "n_valido": 83,
+      "suma_w_valido": "84.974",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.04121677766957429"
+    },
+    {
+      "llave": "RESULT-LATINOBAROMETRO-COLA-2023-SATISFECHO-CON-LA-VIDA-2023-TOTAL-TODOS-P",
+      "conducta": "satisfecho-con-la-vida",
+      "eje": "TOTAL",
+      "segmento": "TODOS",
+      "ola": "2023",
+      "marco_diseno": 1200,
+      "en_segmento": 1200,
+      "excluidas_fuera_universo_en_segmento": 0,
+      "excluidas_codigo_fuera_de_UNO_CERO_en_segmento": 5,
+      "codigos_excluidos_en_segmento": {
+        "-5": 5
+      },
+      "n_valido": 1195,
+      "suma_w_valido": "1194.592",
+      "replicas_degeneradas": 0,
+      "ee_bootstrap": "0.01288264673517851"
+    }
+  ]
+}

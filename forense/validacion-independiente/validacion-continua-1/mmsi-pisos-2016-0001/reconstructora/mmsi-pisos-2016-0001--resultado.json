@@ -1,0 +1,1432 @@
+{
+ "version": 3,
+ "identidad": {
+  "paquete": "mmsi-pisos-2016-0001",
+  "version_entrada": "validacion-continua-1",
+  "sha256_entrada": "33f97f5f4db2f51c79f0624ccfb52175c3830c9e6f1d7268b365df7a57c4cefd"
+ },
+ "filas": [
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-25-34-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2775124107454456",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2604722198303897",
+   "ic95_sup": "0.2955780212742351"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-35-44-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.20527303942081818",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.19291755387360754",
+   "ic95_sup": "0.21853280641834022"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-45-54-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.16988564059825484",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.15679865840882098",
+   "ic95_sup": "0.18406103238470253"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-55-64-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.15428687422545131",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.13658639333181244",
+   "ic95_sup": "0.17259117116411002"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-LENGUA-INDIGENA-NO-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2213510277543465",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2129723172487274",
+   "ic95_sup": "0.2307071194671903"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-LENGUA-INDIGENA-SI-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.06307273420408156",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.046965363223452634",
+   "ic95_sup": "0.08049112704955501"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-BLANCA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.23476397903001062",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2131806645538091",
+   "ic95_sup": "0.258256858017618"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-INDIGENA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08530004955392763",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07081501690747359",
+   "ic95_sup": "0.10094288182827393"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-MESTIZA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.261035034362194",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.25007265921371774",
+   "ic95_sup": "0.27275479419034343"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.12765596473621083",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.08809981240306593",
+   "ic95_sup": "0.17344866203682233"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-OTRA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.35973304260515426",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.22047759049466625",
+   "ic95_sup": "0.497075030209987"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.23702894095042734",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2241363491434382",
+   "ic95_sup": "0.24967230480465943"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-SEXO-MUJER-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.18625481395670412",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17720495887817728",
+   "ic95_sup": "0.19540308946329527"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-100MIL-MAS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.29514094770260785",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.28320560713568965",
+   "ic95_sup": "0.30836979373596857"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-15MIL-99MIL-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1976966575126956",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17819114104322753",
+   "ic95_sup": "0.2175148703975451"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-2500-14999-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.13978563335831898",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.12071675835942627",
+   "ic95_sup": "0.1584124141719946"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-MENOS-2500-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.060382948999660194",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.05084783325405431",
+   "ic95_sup": "0.07093032961409969"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-A-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.0493736543354864",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0",
+   "ic95_sup": "0.12367267221579152"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-B-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.11960362142647717",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.026685020063908563",
+   "ic95_sup": "0.22823458315431844"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-C-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.0815145681469144",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.02760233018917357",
+   "ic95_sup": "0.14956120879498497"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-D-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.0527364901469585",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.032108275142047144",
+   "ic95_sup": "0.08158357206465133"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-E-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.14568018952603776",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.10081327086914475",
+   "ic95_sup": "0.19332022278453057"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-F-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.13163648512632264",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.11613101817193348",
+   "ic95_sup": "0.14799253899337525"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-G-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19327909480098857",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17914791370342817",
+   "ic95_sup": "0.2076245468225825"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-H-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.25876093103934783",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.24540354773815387",
+   "ic95_sup": "0.27266184176269875"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-I-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.258740345690578",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2225276170470395",
+   "ic95_sup": "0.29517679317141055"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-J-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.24451684833290924",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.21224661994439087",
+   "ic95_sup": "0.27914131516298285"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-K-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2883901345079914",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.22974119506132926",
+   "ic95_sup": "0.3462145692598624"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-A-E-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.09573522931576375",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07329790779146744",
+   "ic95_sup": "0.12116899847613759"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-F-G-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17464485425869947",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16364663329819984",
+   "ic95_sup": "0.18592450983382589"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-H-K-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.25857612065008007",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.24674989434935526",
+   "ic95_sup": "0.27079025201894164"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.21029780468613393",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.20264012953545105",
+   "ic95_sup": "0.21880876413415382"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-25-34-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.29155545144301437",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2636343372326196",
+   "ic95_sup": "0.3188817136700308"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-35-44-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2197278129482921",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.20024063199303693",
+   "ic95_sup": "0.2401093833956088"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-45-54-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.20341950668372724",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.18202682807481707",
+   "ic95_sup": "0.22541343804089653"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-55-64-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.21540897893007685",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.18321596078238006",
+   "ic95_sup": "0.24946929578996224"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-LENGUA-INDIGENA-NO-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.24852449597107298",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2347819239532597",
+   "ic95_sup": "0.26295605623494667"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-LENGUA-INDIGENA-SI-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08601042524270439",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.060834331740072176",
+   "ic95_sup": "0.11249310757117355"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-BLANCA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2809403158398072",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.24358899144231932",
+   "ic95_sup": "0.32309253875165317"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-INDIGENA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.07775029249375413",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.05702808896218704",
+   "ic95_sup": "0.10054364353658785"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-MESTIZA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.28815623011780533",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.27147851838584636",
+   "ic95_sup": "0.30624153438569346"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.11705387694794198",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0681923518977038",
+   "ic95_sup": "0.17871459901793796"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-OTRA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.45048336018667706",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.21106126805108916",
+   "ic95_sup": "0.6528727246343939"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.23702894095042734",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2241363491434382",
+   "ic95_sup": "0.24967230480465943"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-100MIL-MAS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.33513147038284474",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.31560938335376815",
+   "ic95_sup": "0.35522792371884643"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-15MIL-99MIL-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.22147115549736504",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1927430684121134",
+   "ic95_sup": "0.2510057970134042"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-2500-14999-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.164776973570949",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1360905414662255",
+   "ic95_sup": "0.19410821376582815"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-MENOS-2500-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.05824591597704559",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.045192419455213025",
+   "ic95_sup": "0.07346226141880013"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-A-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.03119466578131917",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0",
+   "ic95_sup": "0.099156772066354"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-B-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.16453200317157995",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.035128057746961",
+   "ic95_sup": "0.31301231914238603"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-C-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.09207554413317266",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.030675923092881974",
+   "ic95_sup": "0.17381663957538845"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-D-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.0638996899848446",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.034419543557905725",
+   "ic95_sup": "0.10384541196070263"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-E-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19135629313116534",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.12565314536678274",
+   "ic95_sup": "0.25936384946346636"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-F-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.15509564332513068",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.13258584361893735",
+   "ic95_sup": "0.17988217957473693"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-G-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.23073944299680693",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2087041273825505",
+   "ic95_sup": "0.2544609959591046"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-H-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3047923616225138",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2802758400388288",
+   "ic95_sup": "0.3309936240786394"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-I-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2915526149619309",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.226911512589992",
+   "ic95_sup": "0.3522053247328058"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-J-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2609337476250723",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2057045674850286",
+   "ic95_sup": "0.3275485023853846"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-K-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.34812542408838887",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2559337936551046",
+   "ic95_sup": "0.43457170957789837"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-A-E-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1195570100611714",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.08877428291564941",
+   "ic95_sup": "0.15489294960999608"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-F-G-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.20506229424354108",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.18815619998272068",
+   "ic95_sup": "0.22361766168341837"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-H-K-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3013303452470753",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.28012146466131405",
+   "ic95_sup": "0.3240895536782599"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.23702894095042734",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2241363491434382",
+   "ic95_sup": "0.24967230480465943"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-25-34-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2646484711570496",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.24476071097482113",
+   "ic95_sup": "0.2849786745993677"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-35-44-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1927541811184565",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17681055935914924",
+   "ic95_sup": "0.20986432926893542"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-45-54-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.14015016315973583",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.12450525818187538",
+   "ic95_sup": "0.156368608722286"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-55-64-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.09618495162455153",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07933165494204952",
+   "ic95_sup": "0.11530898262863173"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-LENGUA-INDIGENA-NO-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19695514827970045",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.18725147009372617",
+   "ic95_sup": "0.2070008835974654"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-LENGUA-INDIGENA-SI-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.041929808241396055",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.02428946613814312",
+   "ic95_sup": "0.06167855536864839"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-BLANCA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19723213693091093",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17314810228399205",
+   "ic95_sup": "0.22191133649574302"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-INDIGENA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.09200197555091479",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07241454635810819",
+   "ic95_sup": "0.11239081378232954"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-MESTIZA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.23470051945977682",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.22224380134255933",
+   "ic95_sup": "0.247652008746974"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1369728489447897",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.08183653720143984",
+   "ic95_sup": "0.19869046567521512"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-OTRA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.27691264363445073",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.13238053161899313",
+   "ic95_sup": "0.4385041461890592"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-SEXO-MUJER-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.18625481395670412",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17720495887817728",
+   "ic95_sup": "0.19540308946329527"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-100MIL-MAS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.25852585184604643",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2437347986683905",
+   "ic95_sup": "0.2741743589152781"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-15MIL-99MIL-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17814404804132103",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.15466706909978378",
+   "ic95_sup": "0.2010485652014444"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-2500-14999-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.11791608021884625",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0969511243536499",
+   "ic95_sup": "0.14101666552535674"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-MENOS-2500-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.062376533320291784",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.05086279590466229",
+   "ic95_sup": "0.07405929600330881"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-A-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.09333600963468487",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0",
+   "ic95_sup": "0.3086720473857387"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-B-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.011743377983684158",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0",
+   "ic95_sup": "0.04085042205470077"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-C-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.05375373523426156",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0",
+   "ic95_sup": "0.1695085478310354"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-D-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.030069828530696834",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.012495567235648581",
+   "ic95_sup": "0.05100669490876015"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-E-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.06737866249161262",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.035784005808478694",
+   "ic95_sup": "0.10600215301241522"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-F-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.09925783114267003",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.081401542394096",
+   "ic95_sup": "0.11825806483995516"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-G-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1574454561338263",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.14150646399915626",
+   "ic95_sup": "0.17315993791704223"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-H-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.22753872678395826",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2128881440829151",
+   "ic95_sup": "0.24238966811065213"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-I-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2340463594075048",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.19294034551829822",
+   "ic95_sup": "0.27627815050143867"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-J-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.23442743361044588",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.192020259122706",
+   "ic95_sup": "0.2757977731658367"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-K-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2360491277247077",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.15587771162391842",
+   "ic95_sup": "0.3192752925636255"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-A-E-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.04802906309453365",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.029578982839450246",
+   "ic95_sup": "0.06931219966174955"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-F-G-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1421641482066639",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.12971963404504158",
+   "ic95_sup": "0.15482633944354265"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-H-K-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.22922411890799166",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2154818289675368",
+   "ic95_sup": "0.24299429086362798"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.18625481395670412",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17720495887817728",
+   "ic95_sup": "0.19540308946329527"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-25-34-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.04198419480489091",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.03547149661024766",
+   "ic95_sup": "0.04895033417895333"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-35-44-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.047532014914910686",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.04028755645767121",
+   "ic95_sup": "0.054991125326832126"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-45-54-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.05055267101888465",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.04282678977367895",
+   "ic95_sup": "0.058784563685535036"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-55-64-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.047155523138467124",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.037719307808590785",
+   "ic95_sup": "0.05746022185889403"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-LENGUA-INDIGENA-NO-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.04874541021437531",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.04471485987755662",
+   "ic95_sup": "0.0529132100742735"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-LENGUA-INDIGENA-SI-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.015737412110304685",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.008011473003373844",
+   "ic95_sup": "0.023958197606690483"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-BLANCA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.06841909133828808",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.05461801067063051",
+   "ic95_sup": "0.08268047269736804"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-INDIGENA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.016636225749098434",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.011255462748128654",
+   "ic95_sup": "0.022460414870321452"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-MESTIZA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.05443998729762256",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.04936360162485575",
+   "ic95_sup": "0.05980627993754206"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.009733885524495901",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.002850661825470262",
+   "ic95_sup": "0.01782227872659547"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-OTRA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.12998102783140444",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.027711357740576845",
+   "ic95_sup": "0.26922954182701736"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.055393947356310425",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.04985593179484635",
+   "ic95_sup": "0.06118606188666552"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-SEXO-MUJER-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.03761862663821365",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.032770634443676276",
+   "ic95_sup": "0.04248332433487793"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-100MIL-MAS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.0672267447952309",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.06074716751108005",
+   "ic95_sup": "0.07412676997074955"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-15MIL-99MIL-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.03951158338510873",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.03207957746258811",
+   "ic95_sup": "0.04723190143474009"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-2500-14999-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.025792671231399736",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.01834712005769401",
+   "ic95_sup": "0.03450760440066968"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-MENOS-2500-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.012535114558857677",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.00900705728107819",
+   "ic95_sup": "0.016171362367082966"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-A-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.12989714309485922",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0",
+   "ic95_sup": "0.33348607319797935"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-B-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.029094610822244304",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0",
+   "ic95_sup": "0.07079858805147521"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-C-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.006319804222748692",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0",
+   "ic95_sup": "0.01515275538088856"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-D-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.0226736373154249",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.006650963909291638",
+   "ic95_sup": "0.04374156690152843"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-E-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.020993997418514015",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.008427782912261404",
+   "ic95_sup": "0.035531555231948356"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-F-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.03460124420093957",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.026723596924047986",
+   "ic95_sup": "0.04394193512234185"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-G-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.04244302884850782",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.03576809004595434",
+   "ic95_sup": "0.04910680803221622"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-H-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.05485067806171155",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.04793284082623819",
+   "ic95_sup": "0.06230161522635916"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-I-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.06398430353835263",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.045693842670487976",
+   "ic95_sup": "0.08458395897323935"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-J-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.04462301319602854",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.030188725070940763",
+   "ic95_sup": "0.06026023146516152"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-K-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08222998154836889",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.04962128207536592",
+   "ic95_sup": "0.11540598275202599"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-A-E-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.022601883900671534",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.013595081948206524",
+   "ic95_sup": "0.033610793802055394"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-F-G-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.04005932865109188",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.035005515086442125",
+   "ic95_sup": "0.0453291745591699"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-H-K-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.05587374735989868",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.050049097249735684",
+   "ic95_sup": "0.062152024696973944"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.04650116859737664",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0426810609886439",
+   "ic95_sup": "0.05030638138999039"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-25-34-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5115761977290816",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.49354417362909697",
+   "ic95_sup": "0.5291053072077829"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-35-44-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5688166121092152",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5537519373616065",
+   "ic95_sup": "0.5846247184142078"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-45-54-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6035030561482921",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5856225443601123",
+   "ic95_sup": "0.6200472563390951"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-55-64-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6107978478154811",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5866698642956091",
+   "ic95_sup": "0.6347169619502727"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-LENGUA-INDIGENA-NO-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5642944560251754",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5543196650942221",
+   "ic95_sup": "0.5742010042784903"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-LENGUA-INDIGENA-SI-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5985673741322279",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5692903431216885",
+   "ic95_sup": "0.6304584772582399"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-BLANCA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5208503323181161",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4941740976057123",
+   "ic95_sup": "0.5468888367962351"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-INDIGENA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6058592443368307",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5835462326391464",
+   "ic95_sup": "0.6284813160674353"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-MESTIZA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5725601763918206",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5606955558207142",
+   "ic95_sup": "0.5844734535105758"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.561191743423125",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5081978125592586",
+   "ic95_sup": "0.6138575031444805"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-OTRA-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5032193285637122",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3636147754158435",
+   "ic95_sup": "0.6476271873451941"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-SEXO-HOMBRE-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5659367733005449",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5509085151855926",
+   "ic95_sup": "0.5815390890243354"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-SEXO-MUJER-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5673634434125508",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5564736177750037",
+   "ic95_sup": "0.5785680309212924"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-100MIL-MAS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5502669434350079",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5367042090373976",
+   "ic95_sup": "0.5634047392691892"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-15MIL-99MIL-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5692787848937751",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5467208661722023",
+   "ic95_sup": "0.5918441306711726"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-2500-14999-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5730418718809719",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5478701342154674",
+   "ic95_sup": "0.597483147074059"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-MENOS-2500-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6004230389610089",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5798893409023611",
+   "ic95_sup": "0.619610851365471"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-A-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4862497553337248",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2784045331795384",
+   "ic95_sup": "0.6716397615208979"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-B-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4137601175157038",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.30844140370281886",
+   "ic95_sup": "0.528513199872587"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-C-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5525513183794424",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4656145051104706",
+   "ic95_sup": "0.6350611413157248"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-D-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6120629997914672",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5653219084838852",
+   "ic95_sup": "0.6579529377292227"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-E-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.55930546358834",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5043113140560164",
+   "ic95_sup": "0.613627666011396"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-F-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5722660360526655",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5497123776966258",
+   "ic95_sup": "0.5938384840728523"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-G-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5909835895062431",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5741609442473693",
+   "ic95_sup": "0.6077678192828003"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-H-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5543562296212882",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5394797822275532",
+   "ic95_sup": "0.570146868315502"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-I-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5420365391365282",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5038492233423015",
+   "ic95_sup": "0.5831332872611417"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-J-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5414900505185002",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5053768400692178",
+   "ic95_sup": "0.5773997861770362"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-K-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5216796435766261",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.46200356845545015",
+   "ic95_sup": "0.5782768294816999"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-A-E-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5670749501318173",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5335356544424874",
+   "ic95_sup": "0.6021824574073945"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-F-G-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5853253703740887",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.572262566516563",
+   "ic95_sup": "0.5987027234328878"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-H-K-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5504362611992482",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5372825935787321",
+   "ic95_sup": "0.5633231420007008"
+  },
+  {
+   "llave": "RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TOTAL-TODOS-P",
+   "unidad": "proporcion (persona)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5666878746079675",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.557484093406154",
+   "ic95_sup": "0.5760669774101285"
+  }
+ ]
+}

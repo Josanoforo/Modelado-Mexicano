@@ -1,0 +1,136 @@
+{
+  "version": 3,
+  "identidad": {
+    "paquete": "enasem-escolaridad-2021-0001",
+    "version_entrada": "validacion-continua-1",
+    "sha256_entrada": "f76eddec9aae60712adaba5f93d1dbd6585f1e25008a506f4fbcbcf881e65bd5"
+  },
+  "filas": [
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-50-59-P",
+      "unidad": "proporcion (persona 50+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4555463195427803",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4228870143083654",
+      "ic95_sup": "0.48669041559092585"
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-60-69-P",
+      "unidad": "proporcion (persona 50+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5875786885655229",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5555045933199538",
+      "ic95_sup": "0.619049822147485"
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-70-79-P",
+      "unidad": "proporcion (persona 50+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7727971283727507",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7375321211898637",
+      "ic95_sup": "0.8062802345891001"
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-80-MAS-P",
+      "unidad": "proporcion (persona 50+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.8682063408675071",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.8409275588344121",
+      "ic95_sup": "0.8921068149037134"
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-HOMBRE-P",
+      "unidad": "proporcion (persona 50+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5646656547398502",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5365470020040723",
+      "ic95_sup": "0.5910091713845977"
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-MUJER-P",
+      "unidad": "proporcion (persona 50+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.626289270051312",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6046949704033777",
+      "ic95_sup": "0.64875976875461"
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona 50+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5987463989123533",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5780542726316089",
+      "ic95_sup": "0.618679157339687"
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-50-59-P",
+      "unidad": "proporcion (persona 50+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06522502443857223",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05247702158688106",
+      "ic95_sup": "0.07923537339672931"
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-60-69-P",
+      "unidad": "proporcion (persona 50+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.09861997558666954",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.08357373114827338",
+      "ic95_sup": "0.11595152537497205"
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-70-79-P",
+      "unidad": "proporcion (persona 50+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.22040765186792918",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.19202058836873423",
+      "ic95_sup": "0.24774040586797563"
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-80-MAS-P",
+      "unidad": "proporcion (persona 50+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.35964855920106936",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.317565854914663",
+      "ic95_sup": "0.40203468523336766"
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-HOMBRE-P",
+      "unidad": "proporcion (persona 50+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.11224233566083325",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0990276739339401",
+      "ic95_sup": "0.12729400400347987"
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-MUJER-P",
+      "unidad": "proporcion (persona 50+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.14918781733936173",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1356381131875847",
+      "ic95_sup": "0.16404449091520729"
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona 50+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1326749166292146",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.12163560494791348",
+      "ic95_sup": "0.14491672688859478"
+    }
+  ]
+}
