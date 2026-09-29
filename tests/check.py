@@ -3065,12 +3065,6 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-09-28-GEN2-MEDICION-CARRILES-2-ADENDA-1.md",
     "forense/encargos/2026-09-28-GEN2-MEDICION-CARRILES-2-ADENDA-2.md",
     "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-05.md",
-    # GEN2-TABLERO-CARRILES-1 (28/sep/2026): tablero DERIVADO (bloque TABLERO-DERIVADO, lo reescribe
-    # el canal) que cita verbatim `qué_se_firma` de forense/firmas-pendientes.tsv y la `pieza` de
-    # forense/no-corrido.tsv; el primer rótulo pelado (`E1`) es letra de la hoja NC-DECISIONES-1
-    # (FP …f2e5-12). Los rótulos que trae son de su fuente, no del tablero; censado por archivo
-    # porque el contenido cambia con cada [deriva].
-    "forense/tablero/TABLERO-CARRILES.md",
     # GEN2-CALC-ALTERNOS-LOTE-1 (28/sep/2026): `M05`, `M12`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
     # (id_momento del catálogo, no rótulos de un espacio nuevo); el encargo y su adenda los citan verbatim (A.3) y
     # la nota y el L0 los repiten para declarar holdout_gastado.

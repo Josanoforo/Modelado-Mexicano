@@ -7,10 +7,10 @@ a mano (ACTO GEN2-TABLERO-CARRILES-1, 28/sep/2026).
 Uso (desde la raíz del clon):
     python3 tools/tablero_carriles.py                 # markdown del bloque a stdout
     python3 tools/tablero_carriles.py --json          # los mismos datos, JSON
-    python3 tools/tablero_carriles.py --actualiza     # reescribe el bloque derivado de
-        forense/tablero/TABLERO-CARRILES.md y docs/tablero-carriles.html
+    python3 tools/tablero_carriles.py --actualiza     # ya no escribe archivos (TABLERO-UNICO-1): los carriles viven en
+        el bloque TABLERO-UNICO:CARRILES de forense/tablero/TABLERO-PROGRAMA.md (tools/tablero_programa.py --actualiza)
     python3 tools/tablero_carriles.py --crosswalk     # escribe canon/crosswalk-carriles-v1_0.tsv
-    python3 tools/tablero_carriles.py --verifica      # 0 si crosswalk, md y html casan con la derivación
+    python3 tools/tablero_carriles.py --verifica      # 0 si el crosswalk casa con la derivación
 
 Qué NO hace: no mide, no adopta, no descarga, no cierra stoppers; los muestra
 con su sucesor. No decide nada (§2 del encargo: «el tablero no decide nada»).
@@ -107,7 +107,6 @@ from __future__ import annotations
 import csv
 import glob
 import hashlib
-import html
 import json
 import os
 import re
@@ -166,22 +165,52 @@ QUIEN_PIDE = (
 )
 
 # ── Fuentes (clave de procedencia → archivo) ────────────────────────────────
+# GEN2-TUBERIA-TABLERO-UNICO-1 P2: ninguna ruta lleva versión tecleada (D-15).
+# La versión sale del puntero (catálogo) o de la serie más alta del árbol.
+def _serie_alta(patron: str) -> str:
+    """Ruta relativa de la versión más alta de una serie `…-v<M>_<N>.ext` (glob con `*` por versión)."""
+    def clave(r):
+        m = re.search(r"-v(\d+)_(\d+)\.[A-Za-z]+$", r)
+        return (int(m.group(1)), int(m.group(2))) if m else None
+    hallados = [r for r in glob.glob(os.path.join(RAIZ, patron)) if clave(r)]
+    if not hallados:
+        return patron.replace("*", "?_?")  # ausente: lee_tsv falla en voz alta con esta ruta
+    return os.path.relpath(max(hallados, key=clave), RAIZ)
+
+
+def _ver(r: str) -> str:
+    m = re.search(r"-v(\d+)_(\d+)\.", r)
+    return f"v{m.group(1)}.{m.group(2)}" if m else "vigente"
+
+
+def _catalogo_vigente() -> str:
+    """Catálogo que nombra `docs/data/catalogo-vigente.json`; si no existe, la serie más alta."""
+    try:
+        with open(os.path.join(RAIZ, "docs/data/catalogo-vigente.json"), encoding="utf-8") as fh:
+            r = f"canon/catalogo-del-mexicano-{json.load(fh)['catalogo']}.tsv"
+        if os.path.exists(os.path.join(RAIZ, r)):
+            return r
+    except (OSError, KeyError, ValueError):
+        pass
+    return _serie_alta("canon/catalogo-del-mexicano-v*.tsv")
+
+
 FUENTES = {
-    "F1": "canon/mapa-dominios-v1_2.tsv",
-    "F2": "canon/catalogo-del-mexicano-v1_3.tsv",
-    "F3": "canon/reglas-contrastadas-v1_0.tsv",
+    "F1": _serie_alta("canon/mapa-dominios-v*.tsv"),
+    "F2": _catalogo_vigente(),
+    "F3": _serie_alta("canon/reglas-contrastadas-v*.tsv"),
     "F4": "corpus/reports-v2/INDICE.md",
-    "F5": "data/cola-adquisicion-v1_0.tsv",
+    "F5": _serie_alta("data/cola-adquisicion-v*.tsv"),
     "F6": "data/manifiesto.yaml",
     "F7": "forense/firmas-pendientes.tsv",
     "F8": "forense/no-corrido.tsv",
-    "F9": "data/corrida0/demanda-dictamen-v1_0.tsv",
+    "F9": _serie_alta("data/corrida0/demanda-dictamen-v*.tsv"),
     "F10": "data/corrida0/validaciones-independientes.tsv",
-    "F11": "forense/analisis/familias-2027/familias-2027-estado-v1_1.tsv",
-    "F12": "forense/analisis/corpus-completo/tabla-final-v1_0.tsv",
+    "F11": _serie_alta("forense/analisis/familias-2027/familias-2027-estado-v*.tsv"),
+    "F12": _serie_alta("forense/analisis/corpus-completo/tabla-final-v*.tsv"),
     "F13": "forense/encargos/*.md",
     "F14": "canon/crosswalk-carriles-v1_0.tsv",
-    "F15": "data/corrida0/aperturas-pendientes-v1_0.tsv",  # GEN2-APERTURAS-PREREGISTRADAS-1
+    "F15": _serie_alta("data/corrida0/aperturas-pendientes-v*.tsv"),  # GEN2-APERTURAS-PREREGISTRADAS-1
     "F16": "forense/analisis/*/*dictamenes.tsv",           # GEN2-MEDICION-CARRILES-2 (NARANJA)
     "F17": "data/corrida0/resultados.tsv",                 # GEN2-MEDICION-CARRILES-2 (NARANJA)
 }
@@ -206,10 +235,7 @@ LECTOR = {
 }
 CMD = "python3 tools/tablero_carriles.py --json"
 
-MD_SALIDA = "forense/tablero/TABLERO-CARRILES.md"
-HTML_SALIDA = "docs/tablero-carriles.html"
 CROSSWALK = "canon/crosswalk-carriles-v1_0.tsv"
-MARCAS = ("<!-- TABLERO-DERIVADO:BEGIN -->", "<!-- TABLERO-DERIVADO:END -->")
 ICONO = {"VERDE": "🟢", "NARANJA": "🟠", "AMARILLO": "🟡", "ROJO": "🔴", "GRIS": "⚪"}
 ORDEN_SEMAFORO = ("ROJO", "AMARILLO", "NARANJA", "VERDE", "GRIS")
 TAG = re.compile(r"⟨((?:F\d+|S)(?: (?:F\d+|S))*)⟩")
@@ -305,6 +331,20 @@ def patrones(vocab):
 
 def instrumentos_en(texto: str, pats) -> list[str]:
     return sorted({t for p, t in pats if p.search(texto)})
+
+
+# GEN2-TUBERIA-TABLERO-UNICO-1 P3: una firma sobre el aparato (herramientas, tests, CI,
+# reglas del tablero, gobierno) no gatea un instrumento, una ola ni un payload del núcleo,
+# aunque su texto los nombre de ejemplo. Defecto: c6aa-01 (regla del semáforo) salía como
+# stopper de 7 carriles y siguiente acción de 4 porque su texto cita ENUT/ENCUCI y dominios.
+_APARATO_TEXTO = re.compile(r"(?<![A-Za-z0-9_])(?:tools|tests|gobierno)/|\.github/|regla del sem[aá]foro|tablero_(?:carriles|programa)")
+_APARATO_ENCARGO = re.compile(r"-TUBERIA-")
+
+
+def firma_de_aparato(x: dict) -> bool:
+    if _APARATO_ENCARGO.search(os.path.basename(x.get("encargo", ""))):
+        return True
+    return bool(_APARATO_TEXTO.search(x.get("qué_se_firma", "")))
 
 
 def tokens_en(texto: str, tokens) -> list[str]:
@@ -539,6 +579,8 @@ def derivar() -> dict:
             return sum(instr_nuc.get(t, 0) for t in hit) + sum(pesos.get(t, 0) for t in hit)
 
         for x in firmas_ab:
+            if firma_de_aparato(x):
+                continue
             texto = " ".join(x[k] for k in ("qué_se_firma", "gatea", "dónde", "encargo"))
             hit = tokens_en(texto, tokens_carril)
             if hit:
@@ -787,7 +829,7 @@ def tarjeta(c: dict) -> list[str]:
         ps = " · ".join(f"{d}: {', '.join(v)}" for d, v in c["pisos_sin_registrar"].items()) or "ninguno"
         L.append(f"- **Pisos del núcleo pendientes de adopción** — registrados en la vista: {pp}; sellados en disco, no registrados (E.7): {ps} ⟨F16 F17 S⟩")
     if c["cifras"]:
-        L.append(f"- **Cifras del catálogo v1.3 por dominio** (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) ⟨F2⟩")
+        L.append(f"- **Cifras del catálogo {_ver(FUENTES['F2'])} por dominio** (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) ⟨F2⟩")
         sec = []
         for d, v in c["cifras"].items():
             if d not in c["nucleo"]:
@@ -802,7 +844,7 @@ def tarjeta(c: dict) -> list[str]:
         if sec:
             L.append(f"  - dominios secundarios con cifra (adoptadas + con reserva de ancho): {' · '.join(sec)} ⟨F2⟩")
     else:
-        L.append("- **Cifras del catálogo v1.3**: ningún dominio del carril tiene filas en el catálogo ⟨F2⟩")
+        L.append(f"- **Cifras del catálogo {_ver(FUENTES['F2'])}**: ningún dominio del carril tiene filas en el catálogo ⟨F2⟩")
     rg = " · ".join(f"{k} {v}" for k, v in c["reglas"].items()) or "ninguna"
     L.append(f"- **Reglas del report** ({c['reglas_total']}; encabezados excluidos {c['reglas_encabezado']}): {rg}; "
              f"con dictamen distinto de SIN-CIFRA-GEN2 {pct(c['frac_reglas_con_dictamen'])} ⟨F3⟩")
@@ -924,150 +966,9 @@ def render_md(D: dict) -> str:
     return "\n".join(L)
 
 
-# ── render HTML (misma data: el md renderizado) ─────────────────────────────
-def _inline(t: str) -> str:
-    t = html.escape(t, quote=False)
-    t = re.sub(r"`([^`]+)`", r"<code>\1</code>", t)
-    t = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", t)
-    t = re.sub(r"(?<![\w*])_([^_\n]+)_(?!\w)", r"<em>\1</em>", t)
-    t = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", r'<a href="\2">\1</a>', t)
-    t = TAG.sub(lambda m: f'<span class="dd">⟨{m.group(1)}⟩</span>', t)
-    return t
-
-
-def md_a_html(md: str) -> str:
-    out, i, lineas = [], 0, md.split("\n")
-    lista = 0
-
-    def cierra_listas(hasta=0):
-        nonlocal lista
-        while lista > hasta:
-            out.append("</li></ul>")
-            lista -= 1
-
-    while i < len(lineas):
-        ln = lineas[i]
-        if ln.startswith("<!--"):
-            i += 1
-            continue
-        if ln.startswith("|"):
-            cierra_listas()
-            filas = []
-            while i < len(lineas) and lineas[i].startswith("|"):
-                filas.append([x.strip() for x in lineas[i].strip().strip("|").split("|")])
-                i += 1
-            out.append('<div class="tabla"><table>')
-            out.append("<thead><tr>" + "".join(f"<th>{_inline(x)}</th>" for x in filas[0]) + "</tr></thead><tbody>")
-            for f in filas[2:]:
-                out.append("<tr>" + "".join(f"<td>{_inline(x)}</td>" for x in f) + "</tr>")
-            out.append("</tbody></table></div>")
-            continue
-        m = re.match(r"^(#{1,4}) (.*)$", ln)
-        if m:
-            cierra_listas()
-            n = len(m.group(1))
-            cls = ""
-            for s, ic in ICONO.items():
-                if m.group(2).startswith(ic):
-                    cls = f' class="carril {s.lower()}"'
-            out.append(f"<h{n}{cls}>{_inline(m.group(2))}</h{n}>")
-            i += 1
-            continue
-        m = re.match(r"^( *)- (.*)$", ln)
-        if m:
-            nivel = len(m.group(1)) // 2 + 1
-            if nivel > lista:
-                while lista < nivel:
-                    out.append("<ul><li>" if lista < nivel - 1 else "<ul><li>")
-                    lista += 1
-            else:
-                cierra_listas(nivel)
-                out.append("</li><li>")
-            out.append(_inline(m.group(2)))
-            i += 1
-            continue
-        cierra_listas()
-        if ln.strip():
-            out.append(f"<p>{_inline(ln)}</p>")
-        i += 1
-    cierra_listas()
-    return "\n".join(out)
-
-
-HTML_MARCO = """<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tablero por carriles</title>
-<style>
-:root{--bg:#fbfaf7;--fg:#1d1d1b;--mut:#6b6960;--line:#e3e0d8;--card:#ffffff;--code:#f1efe9;
---verde:#2e7d4f;--naranja:#c2600e;--amarillo:#b7860b;--rojo:#b23a2e;--gris:#7a7a7a}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#161614;--fg:#ecebe6;--mut:#a3a197;
---line:#34332f;--card:#1f1f1c;--code:#2a2926;--verde:#5fbf86;--naranja:#f0923c;--amarillo:#e0b43c;--rojo:#e47464;--gris:#a0a0a0}}
-:root[data-theme="dark"]{--bg:#161614;--fg:#ecebe6;--mut:#a3a197;--line:#34332f;--card:#1f1f1c;--code:#2a2926;
---verde:#5fbf86;--naranja:#f0923c;--amarillo:#e0b43c;--rojo:#e47464;--gris:#a0a0a0}
-html,body{margin:0;background:var(--bg);color:var(--fg)}
-body{font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;max-width:1100px;margin:0 auto;padding:16px;
-overflow-wrap:anywhere}
-h1{font-size:1.6rem;margin:.5rem 0}h2{border-bottom:1px solid var(--line);padding-bottom:.2rem;margin-top:2rem}
-h3.carril{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--gris);padding:.5rem .7rem;
-border-radius:6px;font-size:1.05rem;margin-top:1.6rem}
-h3.verde{border-left-color:var(--verde)}h3.naranja{border-left-color:var(--naranja)}h3.amarillo{border-left-color:var(--amarillo)}h3.rojo{border-left-color:var(--rojo)}
-code{background:var(--code);padding:0 .25rem;border-radius:3px;font-size:.88em;word-break:break-all}
-.dd{color:var(--mut);font-size:.8em;white-space:nowrap}
-.tabla{overflow-x:auto;max-width:100%}table{border-collapse:collapse;font-size:.88rem;width:100%;min-width:760px}
-th,td{overflow-wrap:normal}
-td:first-child{white-space:nowrap;overflow-wrap:normal}.intro{color:var(--mut)}
-th,td{border:1px solid var(--line);padding:.25rem .45rem;vertical-align:top;text-align:left}
-th{background:var(--code)}ul{padding-left:1.2rem}li{margin:.15rem 0}
-a{color:inherit}
-</style>
-</head>
-<body>
-<h1>Tablero por carriles · los 31 reports del mexicano</h1>
-<p class="intro">Un carril por report: cómo está, qué lo detiene y cuál es la siguiente acción. Lo escribe
-<code>python3 tools/tablero_carriles.py --actualiza</code> y lo publica el canal en cada push a <code>main</code>.
-Misma data que <a href="https://github.com/Josanoforo/Modelado-Mexicano/blob/main/forense/tablero/TABLERO-CARRILES.md">TABLERO-CARRILES.md</a>.</p>
-<!-- TABLERO-DERIVADO:BEGIN -->
-<!-- TABLERO-DERIVADO:END -->
-</body>
-</html>
-"""
-
-MD_MARCO = """# Tablero por carriles · los 31 reports del mexicano
-
-Un carril por report de `corpus/reports/`: cómo está (evidencia), qué lo detiene (stoppers) y cuál es la siguiente acción. Todo lo que está entre las marcas `TABLERO-DERIVADO` lo escribe `python3 tools/tablero_carriles.py --actualiza` (el canal lo regenera en cada push a `main`); no se edita a mano. Versión web: [docs/tablero-carriles.html](../../docs/tablero-carriles.html). Tablero del programa (GEN1→GEN2): [TABLERO-PROGRAMA.md](TABLERO-PROGRAMA.md).
-
-## Lectura de dirección
-
-<!-- LECTURA-DIRECCION: única sección tecleada por un humano; opinión, fechada. -->
-_Opinión de dirección, sin fecha todavía._
-
-<!-- TABLERO-DERIVADO:BEGIN -->
-<!-- TABLERO-DERIVADO:END -->
-"""
-
-
-def reemplaza_bloque(texto: str, cuerpo: str) -> str:
-    ini, fin = MARCAS
-    a, b = texto.find(ini), texto.find(fin)
-    if a < 0 or b < a or texto.count(ini) != 1 or texto.count(fin) != 1:
-        raise SystemExit(f"error: el archivo no trae exactamente un par de marcas {ini} / {fin}")
-    return texto[:a + len(ini)] + "\n" + cuerpo.rstrip("\n") + "\n" + texto[b:]
-
-
-def genera(D: dict | None = None) -> tuple[str, str]:
-    """(md, html) completos, a partir de los archivos actuales (o marcos si faltan)."""
-    D = D or derivar()
-    p_md, p_html = ruta(MD_SALIDA), ruta(HTML_SALIDA)
-    md0 = open(p_md, encoding="utf-8").read() if os.path.exists(p_md) else MD_MARCO
-    md = reemplaza_bloque(md0, render_md(D))
-    h0 = open(p_html, encoding="utf-8").read() if os.path.exists(p_html) else HTML_MARCO
-    # El HTML lleva su propio encabezado: se renderiza el md desde «Lectura de dirección».
-    k = md.find("## Lectura de dirección")
-    h = reemplaza_bloque(h0, md_a_html(md[k:] if k >= 0 else md))
-    return md, h
+def genera(D: dict | None = None) -> str:
+    """Markdown completo del tablero de carriles (sin marcos ni archivo: lo publica `tools/tablero_unico.py`)."""
+    return render_md(D or derivar())
 
 
 def main(argv=None) -> int:
@@ -1080,23 +981,21 @@ def main(argv=None) -> int:
         return 0
     if "--verifica" in argv:
         D = derivar()
-        md, h = genera(D)
         ok = True
-        for rel, esperado in ((CROSSWALK, crosswalk_texto(D)), (MD_SALIDA, md), (HTML_SALIDA, h)):
+        for rel, esperado in ((CROSSWALK, crosswalk_texto(D)),):
             actual = open(ruta(rel), encoding="utf-8").read() if os.path.exists(ruta(rel)) else None
             casa = actual == esperado
             ok &= casa
             print(f"{rel}: {'CASA' if casa else 'NO-CASA'}")
         return 0 if ok else 1
     if "--actualiza" in argv:
+        # GEN2-TUBERIA-TABLERO-UNICO-1: ya no escribe TABLERO-CARRILES.md ni la página HTML; los carriles
+        # viven en el bloque TABLERO-UNICO:CARRILES de forense/tablero/TABLERO-PROGRAMA.md
+        # (`python3 tools/tablero_programa.py --actualiza`). Se conserva el flag para no romper llamadas viejas.
         D = derivar()
-        md, h = genera(D)
-        os.makedirs(os.path.dirname(ruta(MD_SALIDA)), exist_ok=True)
-        for rel, t in ((MD_SALIDA, md), (HTML_SALIDA, h)):
-            with open(ruta(rel), "w", encoding="utf-8") as f:
-                f.write(t)
         cnt = Counter(c["semaforo"] for c in D["carriles"])
-        print(f"tablero-carriles: {len(D['carriles'])} carriles · " + " · ".join(f"{s} {cnt.get(s, 0)}" for s in ORDEN_SEMAFORO))
+        print(f"tablero-carriles: {len(D['carriles'])} carriles · " + " · ".join(f"{s} {cnt.get(s, 0)}" for s in ORDEN_SEMAFORO)
+              + " · (sin escribir: ver tools/tablero_programa.py --actualiza)")
         return 0
     D = derivar()
     if "--json" in argv:

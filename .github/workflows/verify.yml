@@ -735,7 +735,6 @@ jobs:
               grep -q "!= origin/main" /tmp/tablero.err || exit 1
               echo "trozo $K: main avanzó durante el job; tablero no se regenera en este trozo"
             fi
-            python3 tools/tablero_carriles.py --actualiza && git add -- forense/tablero/TABLERO-CARRILES.md docs/tablero-carriles.html || echo "::warning::tablero-carriles no se regeneró en el trozo $K (GEN2-TABLERO-CARRILES-1; no bloquea la vista)"
             # Las cifras de `corrida0 status` en README.md se mueven con esta
             # misma derivación (tests/test_readme_derivado.py); viven en un
             # bloque TABLERO-DERIVADO que --solo-derivados acepta.

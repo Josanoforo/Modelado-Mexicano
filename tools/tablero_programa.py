@@ -267,7 +267,6 @@ DERIVADOS_DEL_CANAL = (
     "data/corrida0/pines-sellados-resueltos.tsv", "data/corrida0/usos.tsv",
     "data/corrida0/marcador-segmento.tsv", "milpa/estimadores-por-segmento.yaml",
     "forense/tablero/TABLERO-PROGRAMA.md", "docs/tablero.md",
-    "forense/tablero/TABLERO-CARRILES.md", "docs/tablero-carriles.html",  # GEN2-TABLERO-CARRILES-1
 ) + VISTAS_DEMANDA
 
 
@@ -966,6 +965,12 @@ def main() -> None:
             # (idempotencia/preservación) -- una segunda salida, no un
             # segundo productor.
             rc = _actualiza_tablero("docs/tablero.md", I, no_es_origin_main=no_es_origin_main)
+        if rc == 0:
+            # GEN2-TUBERIA-TABLERO-UNICO-1: los carriles y los pendientes viven en el mismo archivo
+            # (y en su copia de Pages), entre sus propios marcadores, en el mismo commit [deriva].
+            import tablero_unico
+            destinos = [r for r in ("forense/tablero/TABLERO-PROGRAMA.md", "docs/tablero.md") if os.path.exists(r)]
+            rc = tablero_unico.actualiza(destinos)
         sys.exit(rc)
 
     I = derivar_indicadores()
