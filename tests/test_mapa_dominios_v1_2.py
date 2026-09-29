@@ -56,5 +56,11 @@ def test_gen2_existente_solo_y_siempre_con_fila_en_la_vista():
 
 
 def test_tablero_lee_v1_2():
-    txt = (RAIZ / "tools/tablero_carriles.py").read_text(encoding="utf-8")
-    assert '"F1": "canon/mapa-dominios-v1_2.tsv"' in txt
+    # GEN2-TUBERIA-TABLERO-UNICO-1: la versión ya no se teclea en tablero_carriles.py; se resuelve de la serie más alta.
+    # La intención de este guardia (el tablero lee el mapa v1_2 o uno posterior) se conserva por comportamiento.
+    import re
+    import sys
+    sys.path.insert(0, str(RAIZ / "tools"))
+    import tablero_carriles as TC
+    m = re.fullmatch(r"canon/mapa-dominios-v(\d+)_(\d+)\.tsv", TC.FUENTES["F1"])
+    assert m and (int(m.group(1)), int(m.group(2))) >= (1, 2), TC.FUENTES["F1"]
