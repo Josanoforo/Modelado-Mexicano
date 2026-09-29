@@ -1,0 +1,821 @@
+# CALC-APERTURA-PEW-2025-0001 -- contrato ejecutable del expediente de apertura (D-15), GEN2-APERTURAS-PREREGISTRADAS-1.
+# NO CORRIDO. La apertura es copiar este archivo a data/corrida0/CALC-APERTURA-PEW-2025-0001/spec.yaml;
+# el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
+calc_id: CALC-APERTURA-PEW-2025-0001
+spec_md: ../../../forense/prereg-aperturas/PEW-2025/APERTURA-PEW-2025-spec-v1_0.md
+spec_md_sha256: 346ef7898c58c2dad8dcd8b49615cf216c8cbba34c12d67482db7e1e9d804859
+script: forense/prereg-aperturas/PEW-2025/medidor_apertura_pew_2025.py
+dependencias_materiales:
+- numpy
+- pandas
+- pyreadstat
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: 'NO'
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+  tipo: APERTURA-PRE-REGISTRADA (COMMIT-3 de la ola reservada)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: PROSPECTIVA
+  unidad_transferencia: PERSONA
+  contendientes:
+  - CALC-PEW-RELIGION-2024-0001
+  - CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001
+  - CALC-PEW-MIGRACION-MEX-0001
+  ola_reservada: PEW 2025 (se abre sólo al correr este CALC)
+  congelado: NO -- expediente; se congela cuando mesa firme su apertura
+inputs:
+- id: pew_gas_spring2025
+  origen: manifiesto
+  sha256: ad04923a88c733a04a359d86464c3424c51c4f3ba555718676ce683fbe4c2e62
+  funcion: DATO
+  nota: Pew GAS Spring 2025 (zip con el .sav) -- ola RESERVADA por la spec sellada de los tres contendientes; sólo
+    este medidor la lee, sólo filas de México
+- id: contendiente_religion2024_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-PEW-RELIGION-2024-0001/medidor.py
+  sha256: e141217b7798ebd260d96b457a7cb097d3a836367886e08af49ad6db551050b6
+  funcion: CODIGO
+  nota: 'medidor sellado CALC-PEW-RELIGION-2024-0001: CONDUCTAS, ESCOL, EJES_CATS, derivadas'
+- id: contendiente_religion2024_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-PEW-RELIGION-2024-0001/resultados.json
+  sha256: 1dd1769d5b0617ca4fd351dc6ca584d78be3e275e3db03483bedd066761aa410
+  funcion: DATO
+  nota: 'piso 2024 sellado: P, IC-LO, IC-HI por celda'
+- id: contendiente_pisos_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001/medidor.py
+  sha256: c45c9802d27fae8fb57fbe81daaaee1829de956216069d277d8ae9093eb65ece
+  funcion: CODIGO
+  nota: 'medidor sellado CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001: OLAS, ESCOL, ejes_de'
+- id: contendiente_pisos_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001/resultados.json
+  sha256: 4dacfff3622f26985af232c24c6d9feaf62cc4403453265007e5112a4e7e9c03
+  funcion: DATO
+  nota: 'pisos sellados: P, IC-LO/IC-HI, ICC-LO/ICC-HI por celda'
+- id: contendiente_migracion_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-PEW-MIGRACION-MEX-0001/medidor.py
+  sha256: 2b2328dfcd836976ea7e4f7bbf3b25dedaf1928f89d556dc97c8a2b605873824
+  funcion: CODIGO
+  nota: 'medidor sellado CALC-PEW-MIGRACION-MEX-0001: CONDUCTAS, CONDICIONAL, EDADES, rid'
+- id: contendiente_migracion_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-PEW-MIGRACION-MEX-0001/resultados.json
+  sha256: f8b1443715e116fa266345a0997116472718c6893eb8a16fe97cf3b7f0fd0cdc
+  funcion: DATO
+  nota: 'pisos sellados: P, IC-LO/IC-HI, ICC-LO/ICC-HI por celda'
+- id: motor_pisos_confianza
+  origen: repo
+  ruta: tools/dominios/confianza/motor_pisos.py
+  sha256: 7d0494f43052e0ea39ce0baf5f6505ccf889b386cfa3c0775b0dbdfb56ef958e
+  funcion: CODIGO
+  nota: lee, num, recodifica, eje_mapa, eje_rango, edad, prepara_diseno, rid
+- id: guardia_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/guardia_apertura.py
+  sha256: b9002a494f3d2468909fb4c5c16d3067b0eacd201027498f1b9ff04297ce7c5e
+  funcion: CODIGO
+  nota: auditoría AST, agregador de una variable, adjudicación
+- id: expediente_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/expediente_apertura.py
+  sha256: 7e7d711a2751c98fe27367c490ee6566874e26418ef9c2315ec27d1ad884ea29
+  funcion: CODIGO
+  nota: esquema, salida y contrato comunes
+variables:
+- nombre: RELIGION2024-CATOLICO
+  definicion: 'bin(_catolico: 1=[1], 0=[0]; resto fuera); códigos de la ola del piso 2024 de CALC-PEW-RELIGION-2024-0001'
+- nombre: RELIGION2024-SIN-RELIGION
+  definicion: 'bin(_sinrel: 1=[1], 0=[0]; resto fuera); códigos de la ola del piso 2024 de CALC-PEW-RELIGION-2024-0001'
+- nombre: RELIGION2024-CAMBIO-DE-RELIGION
+  definicion: 'bin(religion_switch: 1=[1], 0=[2]; resto fuera); códigos de la ola del piso 2024 de CALC-PEW-RELIGION-2024-0001'
+- nombre: RELIGION2024-CREE-EN-DIOS
+  definicion: 'bin(god: 1=[1], 0=[2]; resto fuera); códigos de la ola del piso 2024 de CALC-PEW-RELIGION-2024-0001'
+- nombre: PISOS-RELIGION-MUY-IMPORTANTE
+  definicion: 'bin(religion_import: 1=[1], 0=[2, 3, 4]; resto fuera); códigos de la ola del piso 2024 de CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001'
+- nombre: PISOS-ORA-DIARIO
+  definicion: 'bin(pray_several: 1=[1, 2], 0=[3, 4, 5, 6, 7]; resto fuera); códigos de la ola del piso 2017 de CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001'
+- nombre: PISOS-CONFIANZA-INTERPERSONAL
+  definicion: 'bin(trustpeople: 1=[1], 0=[2, 3]; resto fuera); códigos de la ola del piso 2017 de CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001'
+- nombre: PISOS-CONFIA-GOBIERNO-NACIONAL
+  definicion: 'bin(trust_gov: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2017 de CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001'
+- nombre: PISOS-GOBIERNO-MILITAR-BUENO
+  definicion: 'bin(polsys_junta: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2024 de CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001'
+- nombre: PISOS-LIDER-FUERTE-BUENO
+  definicion: 'bin(polsys_autocracy: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2024 de CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001'
+- nombre: PISOS-EXPERTOS-DECIDEN-BUENO
+  definicion: 'bin(polsys_technocracy: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2024 de CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001'
+- nombre: MIGRACION-IRIA-A-VIVIR-A-EEUU
+  definicion: 'bin(mex_live_us: 1=[1], 0=[2]; resto fuera); códigos de la ola del piso 2018 de CALC-PEW-MIGRACION-MEX-0001'
+- nombre: MIGRACION-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN
+  definicion: 'bin(mex_wo_auth: 1=[1], 0=[2]; resto fuera); códigos de la ola del piso 2017 de CALC-PEW-MIGRACION-MEX-0001'
+- nombre: MIGRACION-EN-EEUU-SE-VIVE-MEJOR
+  definicion: 'bin(us_better_life: 1=[1], 0=[2, 3]; resto fuera); códigos de la ola del piso 2023 de CALC-PEW-MIGRACION-MEX-0001'
+- nombre: MIGRACION-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO
+  definicion: 'bin(friends_abroad: 1=[1], 0=[2]; resto fuera); códigos de la ola del piso 2017 de CALC-PEW-MIGRACION-MEX-0001'
+- nombre: MIGRACION-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO
+  definicion: 'bin(receive_money: 1=[1, 2], 0=[3]; resto fuera); códigos de la ola del piso 2018 de CALC-PEW-MIGRACION-MEX-0001'
+- nombre: MIGRACION-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU
+  definicion: 'bin(good_live_us: 1=[1], 0=[2]; resto fuera); códigos de la ola del piso 2018 de CALC-PEW-MIGRACION-MEX-0001'
+universo: Personas entrevistadas en México en Pew GAS Spring 2025 (código de `country` cuya etiqueta de valor es
+  «Mexico»), weight finito > 0; edad 18-97 (RELIGION2024, MIGRACION) o >= 18 (PISOS), la regla de cada contendiente;
+  IRIA-SIN-AUTORIZACION sólo entre quienes responden 1 a IRIA-A-VIVIR-A-EEUU
+filtros: Un eje a la vez (TOTAL, SEXO, EDAD, ESCOLARIDAD donde el contendiente lo publica); nunca cruces (guardia
+  E.6)
+ponderador: weight
+transformacion: Recodificación bin de cada contendiente con los códigos de la ola de su piso (spec §1); columna
+  ausente en 2025 -> NO-ESTIMABLE (sin recodificación ad hoc)
+estimando: R = Σw·y/Σw por contendiente×conducta×eje×categoría en Pew 2025 México; cobertura de R en el intervalo
+  sellado del piso del contendiente (ICC si finito, si no IC de diseño)
+seed:
+  aplica: false
+  razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
+parametros:
+  nominal: 0.95
+  z: 1.959964
+  regla: cobertura R en [lo, hi] del contendiente; Wilson 95%; NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificación ad hoc)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'determinista: sumas float64 sin remuestreo'
+resultados:
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CATOLICO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CATOLICO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CATOLICO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CATOLICO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CATOLICO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CATOLICO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CATOLICO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CATOLICO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CATOLICO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CATOLICO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CATOLICO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-SIN-RELIGION-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-SIN-RELIGION-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-SIN-RELIGION-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-SIN-RELIGION-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-SIN-RELIGION-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-SIN-RELIGION-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-SIN-RELIGION-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-SIN-RELIGION-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-SIN-RELIGION-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-SIN-RELIGION-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-SIN-RELIGION-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CAMBIO-DE-RELIGION-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CAMBIO-DE-RELIGION-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CAMBIO-DE-RELIGION-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CAMBIO-DE-RELIGION-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CAMBIO-DE-RELIGION-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CAMBIO-DE-RELIGION-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CAMBIO-DE-RELIGION-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CAMBIO-DE-RELIGION-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CAMBIO-DE-RELIGION-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CAMBIO-DE-RELIGION-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CAMBIO-DE-RELIGION-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CREE-EN-DIOS-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CREE-EN-DIOS-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CREE-EN-DIOS-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CREE-EN-DIOS-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CREE-EN-DIOS-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CREE-EN-DIOS-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CREE-EN-DIOS-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CREE-EN-DIOS-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CREE-EN-DIOS-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CREE-EN-DIOS-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-RELIGION2024-CREE-EN-DIOS-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-RELIGION-MUY-IMPORTANTE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-RELIGION-MUY-IMPORTANTE-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-RELIGION-MUY-IMPORTANTE-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-RELIGION-MUY-IMPORTANTE-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-RELIGION-MUY-IMPORTANTE-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-RELIGION-MUY-IMPORTANTE-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-RELIGION-MUY-IMPORTANTE-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-RELIGION-MUY-IMPORTANTE-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-RELIGION-MUY-IMPORTANTE-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-RELIGION-MUY-IMPORTANTE-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-RELIGION-MUY-IMPORTANTE-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-ORA-DIARIO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-ORA-DIARIO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-ORA-DIARIO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-ORA-DIARIO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-ORA-DIARIO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-ORA-DIARIO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-ORA-DIARIO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-ORA-DIARIO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-ORA-DIARIO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-ORA-DIARIO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-ORA-DIARIO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIANZA-INTERPERSONAL-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIANZA-INTERPERSONAL-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIANZA-INTERPERSONAL-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIANZA-INTERPERSONAL-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIANZA-INTERPERSONAL-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIANZA-INTERPERSONAL-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIANZA-INTERPERSONAL-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIANZA-INTERPERSONAL-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIANZA-INTERPERSONAL-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIANZA-INTERPERSONAL-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIANZA-INTERPERSONAL-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIA-GOBIERNO-NACIONAL-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIA-GOBIERNO-NACIONAL-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIA-GOBIERNO-NACIONAL-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIA-GOBIERNO-NACIONAL-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIA-GOBIERNO-NACIONAL-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIA-GOBIERNO-NACIONAL-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIA-GOBIERNO-NACIONAL-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIA-GOBIERNO-NACIONAL-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIA-GOBIERNO-NACIONAL-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIA-GOBIERNO-NACIONAL-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-CONFIA-GOBIERNO-NACIONAL-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-GOBIERNO-MILITAR-BUENO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-GOBIERNO-MILITAR-BUENO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-GOBIERNO-MILITAR-BUENO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-GOBIERNO-MILITAR-BUENO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-GOBIERNO-MILITAR-BUENO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-GOBIERNO-MILITAR-BUENO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-GOBIERNO-MILITAR-BUENO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-GOBIERNO-MILITAR-BUENO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-GOBIERNO-MILITAR-BUENO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-GOBIERNO-MILITAR-BUENO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-GOBIERNO-MILITAR-BUENO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-LIDER-FUERTE-BUENO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-LIDER-FUERTE-BUENO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-LIDER-FUERTE-BUENO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-LIDER-FUERTE-BUENO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-LIDER-FUERTE-BUENO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-LIDER-FUERTE-BUENO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-LIDER-FUERTE-BUENO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-LIDER-FUERTE-BUENO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-LIDER-FUERTE-BUENO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-LIDER-FUERTE-BUENO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-LIDER-FUERTE-BUENO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-EXPERTOS-DECIDEN-BUENO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-EXPERTOS-DECIDEN-BUENO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-EXPERTOS-DECIDEN-BUENO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-EXPERTOS-DECIDEN-BUENO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-EXPERTOS-DECIDEN-BUENO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-EXPERTOS-DECIDEN-BUENO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-EXPERTOS-DECIDEN-BUENO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-EXPERTOS-DECIDEN-BUENO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-EXPERTOS-DECIDEN-BUENO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-EXPERTOS-DECIDEN-BUENO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-PISOS-EXPERTOS-DECIDEN-BUENO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-IRIA-A-VIVIR-A-EEUU-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-IRIA-A-VIVIR-A-EEUU-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-IRIA-A-VIVIR-A-EEUU-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-IRIA-A-VIVIR-A-EEUU-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-IRIA-A-VIVIR-A-EEUU-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-IRIA-A-VIVIR-A-EEUU-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-IRIA-A-VIVIR-A-EEUU-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-EN-EEUU-SE-VIVE-MEJOR-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-EN-EEUU-SE-VIVE-MEJOR-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-EN-EEUU-SE-VIVE-MEJOR-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-EN-EEUU-SE-VIVE-MEJOR-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-EN-EEUU-SE-VIVE-MEJOR-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-EN-EEUU-SE-VIVE-MEJOR-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-EN-EEUU-SE-VIVE-MEJOR-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MIGRACION-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-DICTAMEN
+  tipo: texto
+  unidad: vocabulario cerrado CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE
+- id: RESULT-APERTURA-PEW-2025-K
+  tipo: entero
+  unidad: celdas con R dentro del IC del contendiente
+- id: RESULT-APERTURA-PEW-2025-N
+  tipo: entero
+  unidad: celdas puntuadas
+- id: RESULT-APERTURA-PEW-2025-WILSON-LO
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, inferior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-WILSON-HI
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, superior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MAE-PUNTO
+  tipo: flotante
+  unidad: error absoluto medio punto del contendiente vs R (descriptivo)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-PEW-2025-MARCA
+  tipo: texto
+  unidad: PROSPECTIVA (contendiente sellado antes de R)

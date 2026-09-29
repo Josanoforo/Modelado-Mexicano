@@ -1,0 +1,1019 @@
+# CALC-APERTURA-EMAT-2024-0001 -- contrato ejecutable del expediente de apertura (D-15), GEN2-APERTURAS-PREREGISTRADAS-1.
+# NO CORRIDO. La apertura es copiar este archivo a data/corrida0/CALC-APERTURA-EMAT-2024-0001/spec.yaml;
+# el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
+calc_id: CALC-APERTURA-EMAT-2024-0001
+spec_md: ../../../forense/prereg-aperturas/EMAT-2024/APERTURA-EMAT-2024-spec-v1_0.md
+spec_md_sha256: e6e643364541e2c4fb6815ee0e898202b86cdd29cacbc2af0441c84264b21b59
+script: forense/prereg-aperturas/EMAT-2024/medidor_apertura_emat_2024.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: 'NO'
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+  tipo: APERTURA-PRE-REGISTRADA (COMMIT-3 de la ola reservada)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: PROSPECTIVA
+  unidad_transferencia: MATRIMONIO-REGISTRADO y CONTRAYENTE
+  contendientes:
+  - CALC-EMAT-PAREJA-PISOS-0001
+  ola_reservada: EMAT 2024 (se abre sólo al correr este CALC)
+  congelado: NO -- expediente; se congela cuando mesa firme su apertura
+inputs:
+- id: cc1_inegi_emat_2024__matrimonios_base_datos_2024_dbf
+  origen: manifiesto
+  sha256: 3c65c06472c9f0b13d46c12723dc07f6d1372f3089c46f28186474b8c558c450
+  funcion: DATO
+  nota: EMAT 2024 matrimonios registrados, DBF (miembro MATRI24.dbf) -- ola RESERVADA (RESERVADA-NO-ABIERTA-NO-INDEXAR-L);
+    sólo este medidor la lee
+- id: contendiente_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-EMAT-PAREJA-PISOS-0001/medidor.py
+  sha256: 39e21cd28db9a9a2e6b3e9e5d564cbf4127f93f6ee21cf7ff59dec1fe2bbc1f1
+  funcion: CODIGO
+  nota: 'medidor sellado del contendiente: matrimonios/contrayentes/_todas/miembro_ola/lee_dbf'
+- id: contendiente_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-EMAT-PAREJA-PISOS-0001/resultados.json
+  sha256: 3e3a908a66047ef7abc63c7ecd414d345a66712cd4786c072e83f64747d8359d
+  funcion: DATO
+  nota: 'piso 2023 sellado: P, ICC-LO, ICC-HI por celda'
+- id: guardia_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/guardia_apertura.py
+  sha256: b9002a494f3d2468909fb4c5c16d3067b0eacd201027498f1b9ff04297ce7c5e
+  funcion: CODIGO
+  nota: auditoría AST, agregador de una variable, adjudicación
+- id: expediente_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/expediente_apertura.py
+  sha256: 7e7d711a2751c98fe27367c490ee6566874e26418ef9c2315ec27d1ad884ea29
+  funcion: CODIGO
+  nota: esquema, salida y contrato comunes
+variables:
+- nombre: M-MISMO-SEXO
+  definicion: 'conducta del contendiente (spec EMAT-PAREJA-PISOS §2): GENERO'
+- nombre: M-CON-MENOR-18
+  definicion: 'conducta del contendiente (spec EMAT-PAREJA-PISOS §2): EDAD_CON1, EDAD_CON2'
+- nombre: M-AMBOS-TRABAJAN
+  definicion: 'conducta del contendiente (spec EMAT-PAREJA-PISOS §2): CONACTCON1, CONACTCON2'
+- nombre: M-MISMA-ESCOLARIDAD
+  definicion: 'conducta del contendiente (spec EMAT-PAREJA-PISOS §2): ESCOL_CON1, ESCOL_CON2'
+- nombre: C-TRABAJA
+  definicion: 'conducta del contendiente (spec EMAT-PAREJA-PISOS §2): CONACTCON1, CONACTCON2'
+- nombre: C-EDAD-<tramo>
+  definicion: 'contrayente en el tramo de edad: EDAD_CON1, EDAD_CON2'
+- nombre: ENT_REGIS
+  definicion: entidad de registro (eje ENT 01-32)
+- nombre: TAM_LOC_RE
+  definicion: tamaño de localidad de registro (eje TLOC)
+- nombre: SEXO_CON1/SEXO_CON2
+  definicion: sexo del contrayente (eje SEXO)
+universo: Matrimonios registrados en 2024 (filas vivas de MATRI24.dbf) y sus dos contrayentes; universo por conducta
+  según matrimonios()/contrayentes() del contendiente (edad 12-98, códigos válidos)
+filtros: 'Un eje a la vez: M-* por TOTAL, ENT de registro, TLOC; C-* por TOTAL, SEXO, ESCOLARIDAD, TLOC; nunca cruces
+  (guardia E.6)'
+ponderador: 'ninguno (registro completo: w = 1 por matrimonio o por contrayente)'
+transformacion: Recodificación del contendiente (spec EMAT-PAREJA-PISOS §2); C-EDAD-MEDIA fuera (media sin IC);
+  columna ausente -> NO-ESTIMABLE
+estimando: R = proporción exacta del registro 2024 por conducta×eje×categoría; cobertura de R en el ICC del piso
+  2023
+seed:
+  aplica: false
+  razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
+parametros:
+  nominal: 0.95
+  z: 1.959964
+  regla: cobertura R en [lo, hi] del contendiente; Wilson 95%; NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificación ad hoc)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'determinista: sumas float64 sin remuestreo'
+resultados:
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-01-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-02-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-03-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-04-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-05-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-06-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-07-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-08-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-09-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-10-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-11-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-12-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-13-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-14-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-15-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-16-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-17-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-18-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-19-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-20-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-21-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-22-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-23-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-24-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-25-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-26-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-27-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-28-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-29-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-30-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-31-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-ENT-32-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMO-SEXO-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-01-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-02-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-03-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-04-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-05-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-06-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-07-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-08-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-09-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-10-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-11-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-12-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-13-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-14-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-15-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-16-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-17-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-18-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-19-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-20-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-21-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-22-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-23-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-24-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-25-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-26-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-27-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-28-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-29-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-30-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-31-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-ENT-32-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-CON-MENOR-18-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-01-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-02-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-03-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-04-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-05-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-06-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-07-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-08-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-09-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-10-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-11-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-12-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-13-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-14-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-15-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-16-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-17-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-18-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-19-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-20-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-21-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-22-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-23-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-24-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-25-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-26-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-27-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-28-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-29-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-30-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-31-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-ENT-32-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-AMBOS-TRABAJAN-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-01-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-02-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-03-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-04-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-05-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-06-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-07-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-08-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-09-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-10-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-11-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-12-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-13-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-14-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-15-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-16-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-17-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-18-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-19-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-20-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-21-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-22-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-23-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-24-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-25-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-26-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-27-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-28-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-29-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-30-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-31-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-ENT-32-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-M-MISMA-ESCOLARIDAD-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-12-19-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-12-19-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-12-19-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-12-19-ESCOLARIDAD-PRIMARIA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-12-19-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-12-19-ESCOLARIDAD-PREPARATORIA-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-12-19-ESCOLARIDAD-PROFESIONAL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-12-19-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-12-19-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-12-19-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-12-19-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-20-24-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-20-24-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-20-24-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-20-24-ESCOLARIDAD-PRIMARIA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-20-24-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-20-24-ESCOLARIDAD-PREPARATORIA-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-20-24-ESCOLARIDAD-PROFESIONAL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-20-24-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-20-24-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-20-24-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-20-24-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-25-29-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-25-29-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-25-29-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-25-29-ESCOLARIDAD-PRIMARIA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-25-29-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-25-29-ESCOLARIDAD-PREPARATORIA-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-25-29-ESCOLARIDAD-PROFESIONAL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-25-29-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-25-29-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-25-29-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-25-29-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-30-34-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-30-34-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-30-34-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-30-34-ESCOLARIDAD-PRIMARIA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-30-34-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-30-34-ESCOLARIDAD-PREPARATORIA-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-30-34-ESCOLARIDAD-PROFESIONAL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-30-34-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-30-34-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-30-34-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-30-34-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-35-39-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-35-39-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-35-39-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-35-39-ESCOLARIDAD-PRIMARIA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-35-39-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-35-39-ESCOLARIDAD-PREPARATORIA-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-35-39-ESCOLARIDAD-PROFESIONAL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-35-39-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-35-39-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-35-39-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-35-39-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-40-MAS-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-40-MAS-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-40-MAS-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-40-MAS-ESCOLARIDAD-PRIMARIA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-40-MAS-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-40-MAS-ESCOLARIDAD-PREPARATORIA-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-40-MAS-ESCOLARIDAD-PROFESIONAL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-40-MAS-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-40-MAS-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-40-MAS-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-EDAD-40-MAS-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-TRABAJA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-TRABAJA-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-TRABAJA-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-TRABAJA-ESCOLARIDAD-PRIMARIA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-TRABAJA-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-TRABAJA-ESCOLARIDAD-PREPARATORIA-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-TRABAJA-ESCOLARIDAD-PROFESIONAL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-TRABAJA-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-TRABAJA-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-TRABAJA-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-C-TRABAJA-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta del registro EMAT 2024 (matrimonio o contrayente según la conducta)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-DICTAMEN
+  tipo: texto
+  unidad: vocabulario cerrado CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE
+- id: RESULT-APERTURA-EMAT-2024-K
+  tipo: entero
+  unidad: celdas con R dentro del IC del contendiente
+- id: RESULT-APERTURA-EMAT-2024-N
+  tipo: entero
+  unidad: celdas puntuadas
+- id: RESULT-APERTURA-EMAT-2024-WILSON-LO
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, inferior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-WILSON-HI
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, superior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-MAE-PUNTO
+  tipo: flotante
+  unidad: error absoluto medio punto del contendiente vs R (descriptivo)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EMAT-2024-MARCA
+  tipo: texto
+  unidad: PROSPECTIVA (contendiente sellado antes de R)
