@@ -114,3 +114,28 @@ def test_encodat_sin_soporte_y_categoria_vacia():
     _ok(ENC, out)
     assert out[f"{ENC.P}-CONSULTO-PROFESIONAL-POR-CONSUMO-TOTAL-TODOS-R"] is None
     assert out[f"{ENC.P}-ALCOHOL-12M-ESTRATO-RURAL-R"] is None
+
+
+class _RFalso:
+    """Imita `lee_dta` de la receta: KeyError con los nombres ausentes, como tools/dominios/salud/pisos_diseno.py."""
+    def __init__(self, df):
+        self.df = df
+
+    def lee_dta(self, ruta, columnas, encoding=None):
+        faltan = [c for c in columnas if c not in self.df.columns]
+        if faltan:
+            raise KeyError(f"columnas ausentes en m.dta: {faltan}")
+        return self.df[list(columnas)].copy()
+
+
+def test_columna_de_reactivo_ausente_sale_vacia_y_de_diseno_para():
+    M, _R, _p = ENS.sellados()
+    df = _fr_ensanut(M, np.random.default_rng(3), "ADUL", 50).drop(columns=["a1211"])
+    leido = ENS.lee_payload_reservado(_RFalso(df), M, "ADUL", "/x")
+    assert leido["a1211"].isna().all() and len(leido) == 50
+    try:
+        ENS.lee_payload_reservado(_RFalso(df.drop(columns=["ponde_f"])), M, "ADUL", "/x")
+    except ENS.G.ParoDeGuardia:
+        pass
+    else:
+        raise AssertionError("diseño ausente debía ser PARO")

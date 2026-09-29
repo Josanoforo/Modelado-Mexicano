@@ -93,8 +93,20 @@ def esquema_resultados():
 
 
 def lee_payload_reservado(R, M, arch, ruta):
-    """Única lectura de la ola reservada (la auditoría AST lo exige)."""
-    return R.lee_dta(ruta, getattr(M, COLS[arch]), encoding="UTF-8")
+    """Única lectura de la ola reservada (la auditoría AST lo exige). Spec §5: una columna de diseño o llave
+    ausente es PARO; un reactivo o eje ausente entra vacío y sus celdas salen NO-ESTIMABLE (sin recodificar)."""
+    cols = list(getattr(M, COLS[arch]))
+    try:
+        return R.lee_dta(ruta, cols, encoding="UTF-8")
+    except KeyError as exc:
+        faltan = [c for c in cols if repr(c) in str(exc)]
+    duras = [c for c in faltan if c in ["id_pers", "ponde_ss", "id_hogar", "est_var", "code_upm"]]
+    if duras or not faltan:
+        raise G.ParoDeGuardia(f"columnas de diseño o llave ausentes en {arch}: {duras or faltan}")
+    df = R.lee_dta(ruta, [c for c in cols if c not in faltan], encoding="UTF-8")
+    for c in faltan:
+        df[c] = np.nan
+    return df
 
 
 def mide_r(M, R, frames):
