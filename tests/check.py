@@ -3057,6 +3057,7 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/notas/2026-09-28-GEN2-MEDICION-CARRILES-2-cierre.md",
     "forense/analisis/medicion-carriles-2/hoja-rh.md",
     "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-08.md",
+    "canon/L0/ADR-260929-GEN2-MEDICION-CARRILES-2-8fdf-09.md",
     "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-06.md",
     "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-07.md",
     "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-04.md",
