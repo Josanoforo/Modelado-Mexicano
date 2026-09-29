@@ -1,0 +1,157 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-MC2-ENOE-0001
+spec_md: ../../../forense/prereg-caja/MC2-ENOE-spec-v1_0.md
+spec_md_sha256: a9bd1a90551f8451188091352ec2d350b768b34f14f92df5e801dd15f5a38271
+script: data/corrida0/CALC-MC2-ENOE-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  cuenta_gen2_nota: "encargo GEN2-MEDICION-CARRILES-2 (ADENDA-2: «sigue»); no adopta"
+  acto: GEN2-MEDICION-CARRILES-2
+  tipo: PISO-DESCRIPTIVO-RETROSPECTIVO
+  temporalidad: RETROSPECTIVA
+  ola_reservada: ENOE 2026T1 y 2026T2 (no son input)
+
+inputs:
+  - {id: enoe_2025_4t_microdatos, origen: manifiesto}
+  - {id: enoe_2023_3t_microdatos, origen: manifiesto}
+
+lectura_de_estructura_previa: "cabeceras de ENOE_SDEMT425/323 y FD citado por el mapa; de CALC-ENOE-PISOS-0003 sólo llaves; ningún registro leído antes del COMMIT-1"
+
+variables:
+  - {archivo: ENOE_SDEMT425.csv, variable: r_def, rol: "resultado definitivo 00"}
+  - {archivo: ENOE_SDEMT425.csv, variable: c_res, rol: "condición de residencia 1 o 3"}
+  - {archivo: ENOE_SDEMT425.csv, variable: eda, rol: "edad 15-98"}
+  - {archivo: ENOE_SDEMT425.csv, variable: sex, rol: "sexo"}
+  - {archivo: ENOE_SDEMT425.csv, variable: e_con, rol: "estado conyugal"}
+  - {archivo: ENOE_SDEMT425.csv, variable: clase1, rol: "PEA 1 / PNEA 2"}
+  - {archivo: ENOE_SDEMT425.csv, variable: clase2, rol: "1 ocupada"}
+  - {archivo: ENOE_SDEMT425.csv, variable: ingocup, rol: "ingreso mensual"}
+  - {archivo: ENOE_SDEMT425.csv, variable: fac_tri, rol: "factor trimestral"}
+  - {archivo: ENOE_SDEMT425.csv, variable: est_d_tri, rol: "estrato de diseño"}
+  - {archivo: ENOE_SDEMT425.csv, variable: upm, rol: "UPM"}
+  - {archivo: ENOE_SDEMT323.csv, variable: r_def, rol: "resultado definitivo 00"}
+  - {archivo: ENOE_SDEMT323.csv, variable: c_res, rol: "condición de residencia 1 o 3"}
+  - {archivo: ENOE_SDEMT323.csv, variable: eda, rol: "edad 15-98"}
+  - {archivo: ENOE_SDEMT323.csv, variable: sex, rol: "sexo"}
+  - {archivo: ENOE_SDEMT323.csv, variable: e_con, rol: "estado conyugal"}
+  - {archivo: ENOE_SDEMT323.csv, variable: clase1, rol: "PEA 1 / PNEA 2"}
+  - {archivo: ENOE_SDEMT323.csv, variable: clase2, rol: "1 ocupada"}
+  - {archivo: ENOE_SDEMT323.csv, variable: ingocup, rol: "ingreso mensual"}
+  - {archivo: ENOE_SDEMT323.csv, variable: fac_tri, rol: "factor trimestral"}
+  - {archivo: ENOE_SDEMT323.csv, variable: est_d_tri, rol: "estrato de diseño"}
+  - {archivo: ENOE_SDEMT323.csv, variable: upm, rol: "UPM"}
+
+universo: "Población de 15 a 98 años residente (r_def 00, c_res 1 o 3), ENOE 2025T4 y 2023T3."
+filtros: "ingocup fuera de (0, 999998) fuera; e_con 9 fuera."
+ponderador: fac_tri sin normalizar
+transformacion: "Ver spec humana §1: proporciones y medias ponderadas; brecha 1 - M/H en la misma réplica."
+estimando: "Proporciones y medias ponderadas con IC95 de diseño; RETROSPECTIVO; dictámenes B-bis §2."
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap de upm con reemplazo dentro de est_d_tri; percentiles 2.5/97.5
+  singleton: autorremuestreo; varianza cero; contado en DIAG-*-N-ESTRATOS-UPM-UNICA
+  hash_medidor_sha256: 43027855b00baa4075c1dcf6affe60429ae11158aa986f81bbef994a166dc2ee
+  hash_payload_sha256: "enoe_2025_4t_microdatos e675b41bde4fb3c183a0abd067738109c6aaf30ed314bc9fc548669fb8a1565d; enoe_2023_3t_microdatos cb91900ad406e1d7435cc51ed418866cbdd08808892d2dd60644516e82be9752"
+  hash_prereg_sha256: a9bd1a90551f8451188091352ec2d350b768b34f14f92df5e801dd15f5a38271
+  hash_encargo_sha256: 791d0a894ac00d25d51e8001b686ac0db05dd5411e4ebfd412e9882173f1e6d5
+
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-8
+  razon: misma semilla y sumas deterministas; enteros comparan exacto
+
+resultados:
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-NAC-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-MEDIO-NAC-P, tipo: flotante, unidad: "pesos mensuales, media ponderada, persona ocupada con ingreso válido", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-MEDIO-NAC-IC95-INF, tipo: flotante, unidad: "pesos mensuales, media ponderada, persona ocupada con ingreso válido", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-MEDIO-NAC-IC95-SUP, tipo: flotante, unidad: "pesos mensuales, media ponderada, persona ocupada con ingreso válido", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-MEDIO-NAC-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2025T4-OCUPADO-MENOR25-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-OCUPADO-MENOR25-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-OCUPADO-MENOR25-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-OCUPADO-MENOR25-NAC-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-MEDIO-HOMBRE-P, tipo: flotante, unidad: "pesos mensuales, media ponderada, persona ocupada con ingreso válido", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-MEDIO-HOMBRE-IC95-INF, tipo: flotante, unidad: "pesos mensuales, media ponderada, persona ocupada con ingreso válido", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-MEDIO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "pesos mensuales, media ponderada, persona ocupada con ingreso válido", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-MEDIO-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2025T4-OCUPADO-MENOR25-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-OCUPADO-MENOR25-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-OCUPADO-MENOR25-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-OCUPADO-MENOR25-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-MEDIO-MUJER-P, tipo: flotante, unidad: "pesos mensuales, media ponderada, persona ocupada con ingreso válido", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-MEDIO-MUJER-IC95-INF, tipo: flotante, unidad: "pesos mensuales, media ponderada, persona ocupada con ingreso válido", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-MEDIO-MUJER-IC95-SUP, tipo: flotante, unidad: "pesos mensuales, media ponderada, persona ocupada con ingreso válido", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-MEDIO-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2025T4-OCUPADO-MENOR25-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-OCUPADO-MENOR25-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-OCUPADO-MENOR25-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-OCUPADO-MENOR25-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-DIF-MUJER-HOMBRE-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-DIF-MUJER-HOMBRE-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-DIF-MUJER-HOMBRE-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-PARTICIPA-DIF-MUJER-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-BRECHA-MUJER-HOMBRE-P, tipo: flotante, unidad: "1 - razón de medias mujer/hombre", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-BRECHA-MUJER-HOMBRE-IC95-INF, tipo: flotante, unidad: "1 - razón de medias mujer/hombre", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-BRECHA-MUJER-HOMBRE-IC95-SUP, tipo: flotante, unidad: "1 - razón de medias mujer/hombre", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2025T4-INGRESO-BRECHA-MUJER-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-DIAG-2025T4-FILAS, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENOE-DIAG-2025T4-UNIVERSO-15-98, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENOE-DIAG-2025T4-OCUPADOS, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENOE-DIAG-2025T4-OCUPADOS-SIN-INGRESO-VALIDO, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENOE-DIAG-2025T4-N-ESTRATOS, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENOE-DIAG-2025T4-N-UPM, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENOE-DIAG-2025T4-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-UNION-LIBRE-15MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-UNION-LIBRE-15MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-UNION-LIBRE-15MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-UNION-LIBRE-15MAS-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-UNION-LIBRE-15-29-P, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-UNION-LIBRE-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-UNION-LIBRE-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-UNION-LIBRE-15-29-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-CASADO-15MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-CASADO-15MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-CASADO-15MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-CASADO-15MAS-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-CASADO-15-29-P, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-CASADO-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-CASADO-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-CASADO-15-29-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SOLTERO-15MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SOLTERO-15MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SOLTERO-15MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SOLTERO-15MAS-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SOLTERO-15-29-P, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SOLTERO-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SOLTERO-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SOLTERO-15-29-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SEPARADO-DIVORCIADO-VIUDO-15MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SEPARADO-DIVORCIADO-VIUDO-15MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SEPARADO-DIVORCIADO-VIUDO-15MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SEPARADO-DIVORCIADO-VIUDO-15MAS-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SEPARADO-DIVORCIADO-VIUDO-15-29-P, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SEPARADO-DIVORCIADO-VIUDO-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SEPARADO-DIVORCIADO-VIUDO-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 15+ (ENOE)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENOE-2023T3-ECON-SEPARADO-DIVORCIADO-VIUDO-15-29-N, tipo: entero, unidad: "n no ponderado de la celda"}
+  - {id: RESULT-MC2-ENOE-DIAG-2023T3-FILAS, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENOE-DIAG-2023T3-UNIVERSO-15-98, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENOE-DIAG-2023T3-ECON-NO-ESPECIFICADO, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENOE-DIAG-2023T3-N-ESTRATOS, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENOE-DIAG-2023T3-N-UPM, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENOE-DIAG-2023T3-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo de diagnóstico"}
