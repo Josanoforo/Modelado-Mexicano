@@ -3021,6 +3021,21 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # GEN2-MEDICION-CARRILES-2 (28/sep/2026): `M5` del encargo es «CSES M5» (módulo 5 de CSES, cita verbatim de la
+    # firma R04, A.3); `M23` en la spec y cierre de la hija ENIF 2024 es el id_momento de milpa/catalogo-momentos-v0_1.tsv
+    # (holdout GASTABLE-COMO-PISO declarado); `E1` de la copia de apertura del tablero es la letra de la hoja
+    # NC-DECISIONES-1 (FP …f2e5-12) que el tablero derivado cita. Ninguno es rótulo de un espacio nuevo.
+    "forense/encargos/2026-09-28-GEN2-MEDICION-CARRILES-2.md",
+    "forense/analisis/medicion-carriles-2/apertura-TABLERO-CARRILES.md",
+    "forense/prereg-caja/MC2-ENIF2024-spec-v1_0.md",
+    "forense/analisis/medicion-carriles-2/ENIF2024-dictamenes.tsv",
+    "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-01.md",
+    "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-02.md",
+    "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-03.md",
+    "forense/notas/2026-09-28-GEN2-MEDICION-CARRILES-2-cierre.md",
+    "forense/analisis/medicion-carriles-2/hoja-rh.md",
+    "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-04.md",
+    "forense/encargos/2026-09-28-GEN2-MEDICION-CARRILES-2-ADENDA-1.md",
     # GEN2-TABLERO-CARRILES-1 (28/sep/2026): tablero DERIVADO (bloque TABLERO-DERIVADO, lo reescribe
     # el canal) que cita verbatim `qué_se_firma` de forense/firmas-pendientes.tsv y la `pieza` de
     # forense/no-corrido.tsv; el primer rótulo pelado (`E1`) es letra de la hoja NC-DECISIONES-1

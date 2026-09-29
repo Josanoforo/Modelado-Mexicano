@@ -284,11 +284,19 @@ def caso_e():
     afirma(plantilla_fallas(CUERPO_SANO, ("NC-S-99",)), "(E) NC que lo nombra y no lista debe fallar")
 
 
+HISTORICOS = {"MESA", "DIRECCION"}   # los clasifica `nc_por_clase` (filas históricas o de otro acto); la guardia estricta los rechaza
+
+
 def caso_f():
-    afirma(TOKENS_ESTRICTOS - {"MESA"} >= set(NPC.DUENO_A_CLASE) - {"MESA"},
-           f"(F) el clasificador conoce un token que la regex estricta no: {set(NPC.DUENO_A_CLASE) - TOKENS_ESTRICTOS}")
-    afirma(set(NPC.DUENO_A_CLASE) - {"MESA"} >= TOKENS_ESTRICTOS,
-           f"(F) la regex estricta admite un token que el clasificador no clasifica: {TOKENS_ESTRICTOS - set(NPC.DUENO_A_CLASE)}")
+    conocidos = set(NPC.DUENO_A_CLASE)
+    afirma(conocidos - TOKENS_ESTRICTOS == HISTORICOS,
+           f"(F) el clasificador conoce tokens que la regex estricta no admite y no son los históricos declarados: "
+           f"{conocidos - TOKENS_ESTRICTOS - HISTORICOS} (históricos esperados {HISTORICOS})")
+    afirma(TOKENS_ESTRICTOS <= conocidos,
+           f"(F) la regex estricta admite un token que el clasificador no clasifica: {TOKENS_ESTRICTOS - conocidos}")
+    for h in HISTORICOS:
+        ok, _ = dueno_valido(f"{h} (2026-10-05) · x", set(), set())
+        afirma(not ok, f"(F) el token histórico {h} debe ser rechazado por la guardia estricta")
 
 
 def _filas_libro():
