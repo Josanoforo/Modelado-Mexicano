@@ -1,0 +1,988 @@
+# CALC-APERTURA-ENSANUT-2025-0001 -- contrato ejecutable del expediente de apertura (D-15), GEN2-APERTURAS-PREREGISTRADAS-1.
+# NO CORRIDO. La apertura es copiar este archivo a data/corrida0/CALC-APERTURA-ENSANUT-2025-0001/spec.yaml;
+# el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
+calc_id: CALC-APERTURA-ENSANUT-2025-0001
+spec_md: ../../../forense/prereg-aperturas/ENSANUT-2025/APERTURA-ENSANUT-2025-spec-v1_0.md
+spec_md_sha256: a84246e7d1c1427904388f234e6be757eaf148e16f6572c9a0d0bfecd1e4211a
+script: forense/prereg-aperturas/ENSANUT-2025/medidor_apertura_ensanut_2025.py
+dependencias_materiales:
+- numpy
+- pandas
+- pyreadstat
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: 'NO'
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+  tipo: APERTURA-PRE-REGISTRADA (COMMIT-3 de la ola reservada)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: PROSPECTIVA
+  unidad_transferencia: PERSONA
+  contendientes:
+  - CALC-ENSANUT-PISOS-SALUD-0001
+  - CALC-MC2-ENSANUT2024-0001
+  ola_reservada: ENSANUT 2025 (se abre sólo al correr este CALC)
+  congelado: NO -- expediente; se congela cuando mesa firme su apertura
+inputs:
+- id: ensanut_2025__adultos_2025_w_stata_stata_zip
+  origen: manifiesto
+  sha256: 3f6bbda647360bfe7f2e1866d578bd780a5d422de72f95730a8fff18ee4c8bc0
+  funcion: DATO
+  nota: ENSANUT 2025 ADUL -- ola RESERVADA; sólo este medidor la lee
+- id: ensanut_2025__integrantes_2025_w_stata_stata_zip
+  origen: manifiesto
+  sha256: 04047653d83c2858a7317efcb123ce0a1b1476e91ae198baf1dac7c105846ecf
+  funcion: DATO
+  nota: ENSANUT 2025 INTE -- ola RESERVADA; sólo este medidor la lee
+- id: ensanut_2025__utilizadores_2025_w_stata_stata_zip
+  origen: manifiesto
+  sha256: 371cb309271c10d9161447ac7b49f75531d245af11aa959b18a80b1376e81de4
+  funcion: DATO
+  nota: ENSANUT 2025 UTIL -- ola RESERVADA; sólo este medidor la lee
+- id: ensanut_2025__adolescentes_2025_w_stata_stata_zip
+  origen: manifiesto
+  sha256: f28e1805482fe215d137eaa75e22dd50f566f8556e4896ad8e4e3dacfa3f6d1c
+  funcion: DATO
+  nota: ENSANUT 2025 ADOL -- ola RESERVADA; sólo este medidor la lee
+- id: contendiente_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-ENSANUT-PISOS-SALUD-0001/medidor.py
+  sha256: f334da45a248ccf6d4b812cef2b6108a6dbb3a76825f3af9d5bd9d648e13abe8
+  funcion: CODIGO
+  nota: 'medidor sellado del contendiente: prepara/conducta_y/universo_edad/ejes_de'
+- id: contendiente_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENSANUT-PISOS-SALUD-0001/resultados.json
+  sha256: a2d6654d84c002179dc40eb1c01999f7351dd27be09c52b414d3151033537434
+  funcion: DATO
+  nota: 'piso 2024 sellado: P, ICC-LO, ICC-HI por celda'
+- id: receta_pisos_salud
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: lee_dta y num de la receta de pisos
+- id: contendiente_medidor_mc2
+  origen: repo
+  ruta: data/corrida0/CALC-MC2-ENSANUT2024-0001/medidor.py
+  sha256: 11e22394dafda219c2d2209c756c0660281d6f81f29fb3aa80ba4172b788dc6c
+  funcion: CODIGO
+  nota: 'medidor sellado de MC2: frame_inte/frame_adul, celdas_inte/celdas_adul (recodificación; no importa receta
+    del repo)'
+- id: contendiente_resultados_mc2
+  origen: repo
+  ruta: data/corrida0/CALC-MC2-ENSANUT2024-0001/resultados.json
+  sha256: 69c41814965b485552496b00da067f0d968a25daa4ae863a58af761c80cacf3c
+  funcion: DATO
+  nota: 'MC2 2024 sellado: P, IC95-INF, IC95-SUP por celda'
+- id: guardia_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/guardia_apertura.py
+  sha256: b9002a494f3d2468909fb4c5c16d3067b0eacd201027498f1b9ff04297ce7c5e
+  funcion: CODIGO
+  nota: auditoría AST, agregador de una variable, adjudicación
+- id: expediente_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/expediente_apertura.py
+  sha256: 7e7d711a2751c98fe27367c490ee6566874e26418ef9c2315ec27d1ad884ea29
+  funcion: CODIGO
+  nota: esquema, salida y contrato comunes
+variables:
+- nombre: DEPRESION-CESD7
+  definicion: conducta del contendiente (spec SALUD-ENSANUT-PISOS §2)
+- nombre: IDEACION-SUICIDA-ADULTOS
+  definicion: conducta del contendiente (spec SALUD-ENSANUT-PISOS §2)
+- nombre: DX-DIABETES
+  definicion: conducta del contendiente (spec SALUD-ENSANUT-PISOS §2)
+- nombre: DX-HIPERTENSION
+  definicion: conducta del contendiente (spec SALUD-ENSANUT-PISOS §2)
+- nombre: FUMA-ACTUAL
+  definicion: conducta del contendiente (spec SALUD-ENSANUT-PISOS §2)
+- nombre: ALCOHOL-12M
+  definicion: conducta del contendiente (spec SALUD-ENSANUT-PISOS §2)
+- nombre: ALCOHOL-EXCESIVO-30D
+  definicion: conducta del contendiente (spec SALUD-ENSANUT-PISOS §2)
+- nombre: NECESIDAD-SALUD-3M
+  definicion: conducta del contendiente (spec SALUD-ENSANUT-PISOS §2)
+- nombre: BUSCO-ATENCION
+  definicion: conducta del contendiente (spec SALUD-ENSANUT-PISOS §2)
+- nombre: FUE-ATENDIDO
+  definicion: conducta del contendiente (spec SALUD-ENSANUT-PISOS §2)
+- nombre: ATENCION-CONSULTORIO-FARMACIA
+  definicion: conducta del contendiente (spec SALUD-ENSANUT-PISOS §2)
+- nombre: ATENCION-CURANDERO-HIERBERO
+  definicion: conducta del contendiente (spec SALUD-ENSANUT-PISOS §2)
+- nombre: IDEACION-SUICIDA-ADOLESCENTES
+  definicion: conducta del contendiente (spec SALUD-ENSANUT-PISOS §2)
+- nombre: MC2-BUSCO
+  definicion: buscó atención (h0404 1 vs 2) | necesidad de salud 3 meses (h0401 = 1); sólo NORURAL (NAC/RURAL/URBANO/METRO
+    duplican BUSCO-ATENCION)
+- nombre: MC2-BUSCO-MENTAL
+  definicion: buscó atención | necesidad de salud mental (h0402 en 47/48/50/59)
+- nombre: MC2-ACCESO
+  definicion: algún motivo de no búsqueda (H0405A-C) en 2/3/4 | no buscó con motivo válido 01-13
+- nombre: MC2-NO-GRAVE
+  definicion: algún motivo de no búsqueda = 1 | no buscó con motivo válido 01-13
+- nombre: MC2-DM-SUSPENDE
+  definicion: suspendió medicamento 6 meses (a0313 1 vs 2) | adulto 20+ con a0301 = 1 y a0307 1-3
+- nombre: MC2-DM-ECON-ACCESO
+  definicion: causa de suspensión (a0314) en 5/6/7/10 | suspendió con causa válida
+- nombre: MC2-DM-PAGA
+  definicion: pagó por el tratamiento (0 < a0310a < 99999) | tratado con monto válido
+universo: 'Personas de ENSANUT 2025: adultos 20+, integrantes (todas las edades), utilizadores, adolescentes 10-19;
+  ponde_f > 0 con est_sel y upm no vacíos (prepara() de PISOS-SALUD). Celdas MC2-*: el universo de cada celda del
+  medidor sellado de MC2 (integrantes con necesidad de salud en 3 meses; adultos 20+ con diabetes diagnosticada
+  y en tratamiento), mismo filtro de diseño'
+filtros: 'Un eje a la vez (TOTAL, SEXO, EDAD, ESTRATO, ESCOLARIDAD 20+); nunca cruces (guardia E.6). MC2-*: una
+  llamada por celda sellada, agrupada por su indicador de pertenencia; 7 diferencias y 4 duplicados de PISOS-SALUD
+  apartados sin abrir'
+ponderador: ponde_f
+transformacion: Recodificación del contendiente (forense/analisis/salud-bienestar/lista-cerrada-P1.md §2); columna
+  ausente o con texto/códigos distintos en el catálogo 2025 -> NO-ESTIMABLE
+estimando: R = Σw·y/Σw por celda en ENSANUT 2025; cobertura de R en el IC del contendiente (ICC del piso 2024 de
+  PISOS-SALUD; IC95 de diseño 2024 de MC2), una sola primaria sobre todas las celdas
+seed:
+  aplica: false
+  razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
+parametros:
+  nominal: 0.95
+  z: 1.959964
+  regla: cobertura R en [lo, hi] del contendiente; Wilson 95%; NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificación ad hoc)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'determinista: sumas float64 sin remuestreo'
+resultados:
+- id: RESULT-APERTURA-ENSANUT-2025-DEPRESION-CESD7-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DEPRESION-CESD7-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DEPRESION-CESD7-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DEPRESION-CESD7-EDAD-20-39-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DEPRESION-CESD7-EDAD-40-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DEPRESION-CESD7-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DEPRESION-CESD7-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DEPRESION-CESD7-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DEPRESION-CESD7-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DEPRESION-CESD7-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DEPRESION-CESD7-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DEPRESION-CESD7-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DEPRESION-CESD7-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADULTOS-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADULTOS-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADULTOS-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADULTOS-EDAD-20-39-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADULTOS-EDAD-40-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADULTOS-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADULTOS-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADULTOS-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADULTOS-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADULTOS-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADULTOS-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADULTOS-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADULTOS-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-DIABETES-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-DIABETES-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-DIABETES-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-DIABETES-EDAD-20-39-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-DIABETES-EDAD-40-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-DIABETES-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-DIABETES-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-DIABETES-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-DIABETES-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-DIABETES-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-DIABETES-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-DIABETES-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-DIABETES-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-HIPERTENSION-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-HIPERTENSION-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-HIPERTENSION-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-HIPERTENSION-EDAD-20-39-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-HIPERTENSION-EDAD-40-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-HIPERTENSION-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-HIPERTENSION-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-HIPERTENSION-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-HIPERTENSION-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-HIPERTENSION-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-HIPERTENSION-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-HIPERTENSION-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DX-HIPERTENSION-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUMA-ACTUAL-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUMA-ACTUAL-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUMA-ACTUAL-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUMA-ACTUAL-EDAD-20-39-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUMA-ACTUAL-EDAD-40-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUMA-ACTUAL-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUMA-ACTUAL-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUMA-ACTUAL-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUMA-ACTUAL-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUMA-ACTUAL-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUMA-ACTUAL-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUMA-ACTUAL-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUMA-ACTUAL-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-12M-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-12M-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-12M-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-12M-EDAD-20-39-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-12M-EDAD-40-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-12M-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-12M-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-12M-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-12M-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-12M-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-12M-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-12M-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-12M-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-EXCESIVO-30D-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-EXCESIVO-30D-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-EXCESIVO-30D-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-EXCESIVO-30D-EDAD-20-39-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-EXCESIVO-30D-EDAD-40-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-EXCESIVO-30D-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-EXCESIVO-30D-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-EXCESIVO-30D-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-EXCESIVO-30D-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-EXCESIVO-30D-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-EXCESIVO-30D-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-EXCESIVO-30D-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ALCOHOL-EXCESIVO-30D-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-NECESIDAD-SALUD-3M-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-NECESIDAD-SALUD-3M-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-NECESIDAD-SALUD-3M-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-NECESIDAD-SALUD-3M-EDAD-0-9-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-NECESIDAD-SALUD-3M-EDAD-10-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-NECESIDAD-SALUD-3M-EDAD-20-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-NECESIDAD-SALUD-3M-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-NECESIDAD-SALUD-3M-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-NECESIDAD-SALUD-3M-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-NECESIDAD-SALUD-3M-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-NECESIDAD-SALUD-3M-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-NECESIDAD-SALUD-3M-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-NECESIDAD-SALUD-3M-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-NECESIDAD-SALUD-3M-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-BUSCO-ATENCION-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-BUSCO-ATENCION-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-BUSCO-ATENCION-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-BUSCO-ATENCION-EDAD-0-9-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-BUSCO-ATENCION-EDAD-10-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-BUSCO-ATENCION-EDAD-20-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-BUSCO-ATENCION-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-BUSCO-ATENCION-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-BUSCO-ATENCION-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-BUSCO-ATENCION-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-BUSCO-ATENCION-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-BUSCO-ATENCION-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-BUSCO-ATENCION-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-BUSCO-ATENCION-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUE-ATENDIDO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUE-ATENDIDO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUE-ATENDIDO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUE-ATENDIDO-EDAD-0-9-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUE-ATENDIDO-EDAD-10-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUE-ATENDIDO-EDAD-20-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUE-ATENDIDO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUE-ATENDIDO-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUE-ATENDIDO-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUE-ATENDIDO-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUE-ATENDIDO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUE-ATENDIDO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUE-ATENDIDO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-FUE-ATENDIDO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CONSULTORIO-FARMACIA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CONSULTORIO-FARMACIA-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CONSULTORIO-FARMACIA-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CONSULTORIO-FARMACIA-EDAD-0-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CONSULTORIO-FARMACIA-EDAD-20-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CONSULTORIO-FARMACIA-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CONSULTORIO-FARMACIA-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CONSULTORIO-FARMACIA-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CONSULTORIO-FARMACIA-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CONSULTORIO-FARMACIA-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CONSULTORIO-FARMACIA-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CONSULTORIO-FARMACIA-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CONSULTORIO-FARMACIA-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CURANDERO-HIERBERO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CURANDERO-HIERBERO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CURANDERO-HIERBERO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CURANDERO-HIERBERO-EDAD-0-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CURANDERO-HIERBERO-EDAD-20-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CURANDERO-HIERBERO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CURANDERO-HIERBERO-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CURANDERO-HIERBERO-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CURANDERO-HIERBERO-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CURANDERO-HIERBERO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CURANDERO-HIERBERO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CURANDERO-HIERBERO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-ATENCION-CURANDERO-HIERBERO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADOLESCENTES-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADOLESCENTES-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADOLESCENTES-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADOLESCENTES-EDAD-10-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADOLESCENTES-EDAD-15-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADOLESCENTES-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADOLESCENTES-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADOLESCENTES-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-BUSCO-NORURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-METRO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-NORURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-EDAD-0-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-EDAD-20-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-METRO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-NORURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-EDAD-0-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-EDAD-20-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-BUSCO-MENTAL-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-BUSCO-MENTAL-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-BUSCO-MENTAL-NORURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-SUSPENDE-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-SUSPENDE-PAGA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-SUSPENDE-NOPAGA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-SUSPENDE-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-SUSPENDE-NORURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-SUSPENDE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-SUSPENDE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-ECON-ACCESO-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-ECON-ACCESO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-ECON-ACCESO-NORURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-PAGA-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-DICTAMEN
+  tipo: texto
+  unidad: vocabulario cerrado CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE
+- id: RESULT-APERTURA-ENSANUT-2025-K
+  tipo: entero
+  unidad: celdas con R dentro del IC del contendiente
+- id: RESULT-APERTURA-ENSANUT-2025-N
+  tipo: entero
+  unidad: celdas puntuadas
+- id: RESULT-APERTURA-ENSANUT-2025-WILSON-LO
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, inferior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-WILSON-HI
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, superior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MAE-PUNTO
+  tipo: flotante
+  unidad: error absoluto medio punto del contendiente vs R (descriptivo)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MARCA
+  tipo: texto
+  unidad: PROSPECTIVA (contendiente sellado antes de R)
