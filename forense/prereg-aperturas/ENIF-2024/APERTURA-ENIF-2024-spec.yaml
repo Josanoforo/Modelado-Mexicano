@@ -1,0 +1,417 @@
+# CALC-APERTURA-ENIF-2024-0001 -- contrato ejecutable del expediente de apertura (D-15), GEN2-APERTURAS-PREREGISTRADAS-1.
+# NO CORRIDO. La apertura es copiar este archivo a data/corrida0/CALC-APERTURA-ENIF-2024-0001/spec.yaml;
+# el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
+calc_id: CALC-APERTURA-ENIF-2024-0001
+spec_md: ../../../forense/prereg-aperturas/ENIF-2024/APERTURA-ENIF-2024-spec-v1_0.md
+spec_md_sha256: 47c85d34d36cc415c14da8d99680627afe44d7979d36b291e0b14f818a1d5712
+script: forense/prereg-aperturas/ENIF-2024/medidor_apertura_enif_2024.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: 'NO'
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+  tipo: APERTURA-PRE-REGISTRADA (COMMIT-3 de la ola reservada)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: PROSPECTIVA
+  unidad_transferencia: PERSONA
+  contendientes:
+  - CALC-C2-COMPUESTO-RESERVADAS-0001
+  - CALC-C2-COMPUESTO-IC-ENIF2024-0001
+  ola_reservada: ENIF 2024 (se abre sólo al correr este CALC)
+  congelado: NO -- expediente; se congela cuando mesa firme su apertura
+inputs:
+- id: enif_2024_enif_2024_bd_csv
+  origen: manifiesto
+  sha256: 00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039
+  funcion: DATO
+  nota: 'ENIF 2024 bd csv (TMODULO.csv) -- el que leyó el árbitro y el contendiente; payload sin estado_reserva:
+    la reserva es de CELDA (marcador), y sólo este medidor cruza informal_cualquiera por par'
+- id: arbitro_medidor
+  origen: repo
+  ruta: tools/medidor_ahorro_enif24.py
+  sha256: 58c429598c3cedd6d1f8927e8854bbb6f4461f04a94d4a92568a388c7f1f2c95
+  funcion: CODIGO
+  nota: 'árbitro: carga() (universo y guardias), desenlaces(), EJES_P2, EJE_CUENTA_SECUNDARIO'
+- id: arbitro_ejes
+  origen: repo
+  ruta: tools/ejes_maestra35_l1.py
+  sha256: 502f5a4138c6733677f9472947cfe8c112dd04618e6ac325dd816758f7206c4d
+  funcion: CODIGO
+  nota: Eje, tramos_edad, codificaciones (importado por el árbitro)
+- id: arbitro_wprop
+  origen: repo
+  ruta: tools/calibracion_mordida_encig_serie.py
+  sha256: b2e636b059538e43c57f4f1a288e028c796ef34965186c5bbb771bea5a462bd3
+  funcion: CODIGO
+  nota: wprop_ic_conglomerado (importado por el árbitro; aquí no se usa)
+- id: piso_c2_emisiones
+  origen: repo
+  ruta: data/corrida0/CALC-C2-COMPUESTO-RESERVADAS-0001/resultados.json
+  sha256: be24d879d22d28a05c36441b471976a6b0b3d40f2877efa2cd514a13e5bae3cb
+  funcion: DATO
+  nota: punto sellado del piso C2 por celda (RESULT-C2COMP-INFORMAL-CUALQUIERA-*)
+- id: piso_c2_ic
+  origen: repo
+  ruta: data/corrida0/CALC-C2-COMPUESTO-IC-ENIF2024-0001/resultados.json
+  sha256: 6d3e449ed3156410777f49fac06ad0d3faecf9397bfa60eb9430117ab993fcb7
+  funcion: DATO
+  nota: IC95 por réplica sellado del piso C2 por celda (RESULT-C2IC-ENIF2024-INFORMAL-CUALQUIERA-*)
+- id: guardia_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/guardia_apertura.py
+  sha256: b9002a494f3d2468909fb4c5c16d3067b0eacd201027498f1b9ff04297ce7c5e
+  funcion: CODIGO
+  nota: auditoría AST, agregador de una variable, adjudicación
+- id: expediente_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/expediente_apertura.py
+  sha256: 7e7d711a2751c98fe27367c490ee6566874e26418ef9c2315ec27d1ad884ea29
+  funcion: CODIGO
+  nota: esquema, salida y contrato comunes
+variables:
+- nombre: P5_1_1..P5_1_6
+  definicion: vías informales de ahorro; desenlace informal_cualquiera
+- nombre: P5_6_1..P5_6_9
+  definicion: vías formales (sólo para las guardias de carga() del árbitro)
+- nombre: P5_4_1..P5_4_9
+  definicion: tenencia de cuenta; eje cuenta_formal
+- nombre: SEXO
+  definicion: eje sexo
+- nombre: EDAD_V
+  definicion: eje edad y guardia >= 18
+- nombre: NIV
+  definicion: eje escolaridad
+- nombre: TLOC
+  definicion: eje localidad
+- nombre: FAC_PER
+  definicion: ponderador
+- nombre: EST_DIS
+  definicion: estrato (sólo identidad)
+- nombre: UPM_DIS
+  definicion: UPM (sólo identidad)
+universo: Personas elegidas de 18 años y más de TMODULO de ENIF 2024, universo de carga() del árbitro (EDAD_V numérica
+  >= 18, FAC_PER > 0, alguna de las 15 variables de la sección 5 no en blanco; cualquier violación PARA). Una fila
+  por persona.
+filtros: 'Ninguno adicional al árbitro. Por par, la persona entra a la celda si sus dos ejes caen en categorías
+  de la rejilla ((fuera) en cualquiera de los dos -> fuera de ese par) y la celda está en CELDAS_AUTORIZADAS. Soporte:
+  celda con n < 200 personas sin ponderar -> R NO-ESTIMABLE (no puntúa).'
+ponderador: FAC_PER
+transformacion: 'informal_cualquiera = alguna P5_1_1..P5_1_6 == ''1'' (árbitro desenlaces(), SECUNDARIO). Ejes del
+  árbitro: sexo SEXO; edad EDAD_V en 18-29/30-44/45-59/60+ (60-96; 97+ fuera); escolaridad NIV por ESC_ENIF (99
+  fuera); localidad TLOC {1,2}=15 000 y mas, {3,4}=menor de 15 000; cuenta_formal alguna P5_4_k == ''1'' vs ninguna
+  (todas en blanco fuera). Etiqueta de celda = <PAR>-<slug(a)>-X-<slug(b)>, UNA variable de agrupación.'
+estimando: R(a,b) = Σ FAC_PER·informal_cualquiera / Σ FAC_PER por celda de los 9 pares (68 celdas), proporción [0,1]
+  de personas elegidas 18+; cobertura de R en el IC95 por réplica del piso C2 (primaria); error absoluto medio punto-del-piso
+  vs R (descriptivo)
+seed:
+  aplica: false
+  razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
+parametros:
+  nominal: 0.95
+  z: 1.959964
+  regla: cobertura R en [lo, hi] del contendiente; Wilson 95%; NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificación ad hoc)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'determinista: sumas float64 sin remuestreo'
+resultados:
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXEDAD-CON-CUENTA-X-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXEDAD-CON-CUENTA-X-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXEDAD-CON-CUENTA-X-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXEDAD-CON-CUENTA-X-60-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXEDAD-SIN-CUENTA-X-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXEDAD-SIN-CUENTA-X-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXEDAD-SIN-CUENTA-X-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXEDAD-SIN-CUENTA-X-60-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-15-000-Y-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-MENOR-DE-15-000-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-15-000-Y-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-MENOR-DE-15-000-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXSEXO-CON-CUENTA-X-1-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXSEXO-CON-CUENTA-X-2-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXSEXO-SIN-CUENTA-X-1-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-CUENTA-FORMALXSEXO-SIN-CUENTA-X-2-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-18-29-X-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-18-29-X-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-18-29-X-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-18-29-X-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-30-44-X-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-30-44-X-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-30-44-X-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-30-44-X-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-45-59-X-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-45-59-X-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-45-59-X-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-45-59-X-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-60-X-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-60-X-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-60-X-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXESCOLARIDAD-60-X-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXSEXO-18-29-X-1-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXSEXO-18-29-X-2-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXSEXO-30-44-X-1-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXSEXO-30-44-X-2-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXSEXO-45-59-X-1-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXSEXO-45-59-X-2-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXSEXO-60-X-1-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-EDADXSEXO-60-X-2-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-15-000-Y-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-MENOR-DE-15-000-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-15-000-Y-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-MENOR-DE-15-000-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-15-000-Y-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-MENOR-DE-15-000-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-15-000-Y-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-MENOR-DE-15-000-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXSEXO-SECUNDARIA-X-1-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXSEXO-SECUNDARIA-X-2-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXSEXO-SUPERIOR-X-1-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-ESCOLARIDADXSEXO-SUPERIOR-X-2-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-LOCALIDADXSEXO-15-000-Y-MAS-X-1-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-LOCALIDADXSEXO-15-000-Y-MAS-X-2-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-LOCALIDADXSEXO-MENOR-DE-15-000-X-1-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-LOCALIDADXSEXO-MENOR-DE-15-000-X-2-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-DICTAMEN
+  tipo: texto
+  unidad: vocabulario cerrado CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE
+- id: RESULT-APERTURA-ENIF-2024-K
+  tipo: entero
+  unidad: celdas con R dentro del IC del contendiente
+- id: RESULT-APERTURA-ENIF-2024-N
+  tipo: entero
+  unidad: celdas puntuadas
+- id: RESULT-APERTURA-ENIF-2024-WILSON-LO
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, inferior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-WILSON-HI
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, superior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-MAE-PUNTO
+  tipo: flotante
+  unidad: error absoluto medio punto del contendiente vs R (descriptivo)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENIF-2024-MARCA
+  tipo: texto
+  unidad: PROSPECTIVA (contendiente sellado antes de R)

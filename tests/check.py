@@ -3025,6 +3025,9 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # ENSU-SERIE (archivado verbatim, sellado por su SELLO.txt) nombran las eras del instrumento ENSU (2013–2015 /
     # 2016–2020) que su propia spec humana usa; no son rótulos de un espacio nuevo.
     "forense/validacion-independiente/validacion-continua-1/ensu-serie-0001/reconstructora/ensu-serie-0001--insuficiencias.md",
+    # GEN2-APERTURAS-PREREGISTRADAS-1 (28/sep/2026): encargo verbatim (A.3) que nombra «CSES M5»
+    # = módulo 5 del CSES (instrumento externo), no un rótulo de acto; no se edita para el test.
+    "forense/encargos/2026-09-28-GEN2-APERTURAS-PREREGISTRADAS-1.md",
     # GEN2-MEDICION-CARRILES-2 (28/sep/2026): `M5` del encargo es «CSES M5» (módulo 5 de CSES, cita verbatim de la
     # firma R04, A.3); `M23` en la spec y cierre de la hija ENIF 2024 es el id_momento de milpa/catalogo-momentos-v0_1.tsv
     # (holdout GASTABLE-COMO-PISO declarado); `E1` de la copia de apertura del tablero es la letra de la hoja

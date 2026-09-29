@@ -1,0 +1,1188 @@
+# CALC-APERTURA-LAPOP-2023-0001 -- contrato ejecutable del expediente de apertura (D-15), GEN2-APERTURAS-PREREGISTRADAS-1.
+# NO CORRIDO. La apertura es copiar este archivo a data/corrida0/CALC-APERTURA-LAPOP-2023-0001/spec.yaml;
+# el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
+calc_id: CALC-APERTURA-LAPOP-2023-0001
+spec_md: ../../../forense/prereg-aperturas/LAPOP-2023/APERTURA-LAPOP-2023-spec-v1_0.md
+spec_md_sha256: 9feb6f884e8c26570e204532bb40ff275493d1182d0992876a7da2da8106cccc
+script: forense/prereg-aperturas/LAPOP-2023/medidor_apertura_lapop_2023.py
+dependencias_materiales:
+- numpy
+- pandas
+- pyreadstat
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: 'NO'
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+  tipo: APERTURA-PRE-REGISTRADA (COMMIT-3 de la ola reservada)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: PROSPECTIVA
+  unidad_transferencia: PERSONA
+  contendientes:
+  - CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001
+  ola_reservada: LAPOP 2023 (se abre sólo al correr este CALC)
+  congelado: NO -- expediente; se congela cuando mesa firme su apertura
+inputs:
+- id: mex_2023_lapop_americasbarometer_v1_0_w
+  origen: manifiesto
+  sha256: 4a9410a53cde9d11edeb23465bdbadce8a6abcc18330b6eebe2a4493be6e765c
+  funcion: DATO
+  nota: LAPOP AmericasBarometer México 2023 (.dta) -- reactivos de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001 RESERVADOS
+    por su spec sellada (reserva por estimando); sólo este medidor los lee
+- id: contendiente_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001/medidor.py
+  sha256: 3478170747a8e0e00d6eb836be7bd23a602e2bcbee0c0f9d4271fb01b71fb015
+  funcion: CODIGO
+  nota: 'medidor sellado del contendiente: OLAS, BASE, SOLO_*, ESCOL, CATS, ejes_de, P'
+- id: contendiente_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001/resultados.json
+  sha256: cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c
+  funcion: DATO
+  nota: 'pisos 2004/2006/2019 sellados: P, IC-LO, IC-HI por celda'
+- id: motor_pisos_confianza
+  origen: repo
+  ruta: tools/dominios/confianza/motor_pisos.py
+  sha256: 7d0494f43052e0ea39ce0baf5f6505ccf889b386cfa3c0775b0dbdfb56ef958e
+  funcion: CODIGO
+  nota: lee, num, recodifica, eje_mapa, eje_rango, edad, prepara_diseno, rid
+- id: guardia_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/guardia_apertura.py
+  sha256: b9002a494f3d2468909fb4c5c16d3067b0eacd201027498f1b9ff04297ce7c5e
+  funcion: CODIGO
+  nota: auditoría AST, agregador de una variable, adjudicación
+- id: expediente_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/expediente_apertura.py
+  sha256: 7e7d711a2751c98fe27367c490ee6566874e26418ef9c2315ec27d1ad884ea29
+  funcion: CODIGO
+  nota: esquema, salida y contrato comunes
+variables:
+- nombre: CONFIANZA-INTERPERSONAL
+  definicion: 'bin(it1: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2019 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: CONFIA-FFAA
+  definicion: 'bin(b12: 1=[6, 7], 0=[1, 2, 3, 4, 5]; resto fuera); códigos de la ola del piso 2019 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: CONFIA-CONGRESO
+  definicion: 'bin(b13: 1=[6, 7], 0=[1, 2, 3, 4, 5]; resto fuera); códigos de la ola del piso 2019 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: CONFIA-IGLESIA-CATOLICA
+  definicion: 'bin(b20: 1=[6, 7], 0=[1, 2, 3, 4, 5]; resto fuera); códigos de la ola del piso 2019 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: CONFIA-MEDIOS
+  definicion: 'bin(b37: 1=[6, 7], 0=[1, 2, 3, 4, 5]; resto fuera); códigos de la ola del piso 2019 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: ASISTE-ORG-RELIGIOSA
+  definicion: 'bin(cp6: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2019 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: ASISTE-ASOC-PADRES
+  definicion: 'bin(cp7: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2019 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: ASISTE-COMITE-MEJORAS
+  definicion: 'bin(cp8: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2019 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: ASISTE-PARTIDO
+  definicion: 'bin(cp13: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2019 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: GOLPE-JUSTIFICADO-DELINCUENCIA
+  definicion: 'bin(jc10: 1=[1], 0=[2]; resto fuera); códigos de la ola del piso 2019 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: GOLPE-JUSTIFICADO-CORRUPCION
+  definicion: 'bin(jc13: 1=[1], 0=[2]; resto fuera); códigos de la ola del piso 2019 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: APRUEBA-HOMOSEXUALES-CANDIDATOS
+  definicion: 'bin(d5: 1=[6, 7, 8, 9, 10], 0=[1, 2, 3, 4, 5]; resto fuera); códigos de la ola del piso 2019 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: CONFIA-JUSTICIA
+  definicion: 'bin(b10a: 1=[6, 7], 0=[1, 2, 3, 4, 5]; resto fuera); códigos de la ola del piso 2006 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: CONFIA-GOBIERNO
+  definicion: 'bin(b14: 1=[6, 7], 0=[1, 2, 3, 4, 5]; resto fuera); códigos de la ola del piso 2006 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: ASISTE-ASOC-PROFESIONAL
+  definicion: 'bin(cp9: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2006 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: AYUDO-RESOLVER-PROBLEMA-COMUNIDAD
+  definicion: 'bin(cp5: 1=[1], 0=[2]; resto fuera); códigos de la ola del piso 2006 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: LIDER-FUERTE-NO-ELEGIDO
+  definicion: 'bin(aut1: 1=[1], 0=[2]; resto fuera); códigos de la ola del piso 2006 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: APRUEBA-JUSTICIA-PROPIA-MANO
+  definicion: 'bin(e16: 1=[6, 7, 8, 9, 10], 0=[1, 2, 3, 4, 5]; resto fuera); códigos de la ola del piso 2006 de
+    CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: RELIGION-MUY-IMPORTANTE
+  definicion: 'bin(q5b: 1=[1], 0=[2, 3, 4]; resto fuera); códigos de la ola del piso 2019 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+- nombre: ASISTE-SERVICIO-MENSUAL
+  definicion: 'bin(q5a: 1=[1, 2, 3], 0=[4, 5]; resto fuera); códigos de la ola del piso 2019 de CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001'
+universo: Personas de LAPOP México 2023 con wt finito > 0, estratopri y upm no vacíos (prepara_diseno del contendiente,
+  diseño de su ola 2019) y edad q2 >= 18
+filtros: Un eje a la vez (TOTAL, SEXO, EDAD, ESCOLARIDAD, UR); nunca cruces (guardia E.6)
+ponderador: wt
+transformacion: Recodificación bin del contendiente con los códigos de la ola del piso (2019 o 2006; spec §1); columna
+  ausente en 2023 -> NO-ESTIMABLE (sin recodificación ad hoc)
+estimando: R = Σw·y/Σw por conducta×eje×categoría en LAPOP México 2023; cobertura de R en el IC de diseño sellado
+  de la ola del piso del contendiente (IC-LO/IC-HI; sin ICC por FIRMAS-15 T)
+seed:
+  aplica: false
+  razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
+parametros:
+  nominal: 0.95
+  z: 1.959964
+  regla: cobertura R en [lo, hi] del contendiente; Wilson 95%; NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificación ad hoc)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'determinista: sumas float64 sin remuestreo'
+resultados:
+- id: RESULT-APERTURA-LAPOP-2023-CONFIANZA-INTERPERSONAL-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIANZA-INTERPERSONAL-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIANZA-INTERPERSONAL-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIANZA-INTERPERSONAL-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIANZA-INTERPERSONAL-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIANZA-INTERPERSONAL-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIANZA-INTERPERSONAL-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIANZA-INTERPERSONAL-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIANZA-INTERPERSONAL-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIANZA-INTERPERSONAL-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIANZA-INTERPERSONAL-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIANZA-INTERPERSONAL-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIANZA-INTERPERSONAL-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-FFAA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-FFAA-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-FFAA-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-FFAA-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-FFAA-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-FFAA-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-FFAA-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-FFAA-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-FFAA-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-FFAA-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-FFAA-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-FFAA-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-FFAA-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-CONGRESO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-CONGRESO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-CONGRESO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-CONGRESO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-CONGRESO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-CONGRESO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-CONGRESO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-CONGRESO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-CONGRESO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-CONGRESO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-CONGRESO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-CONGRESO-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-CONGRESO-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-IGLESIA-CATOLICA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-IGLESIA-CATOLICA-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-IGLESIA-CATOLICA-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-IGLESIA-CATOLICA-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-IGLESIA-CATOLICA-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-IGLESIA-CATOLICA-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-IGLESIA-CATOLICA-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-IGLESIA-CATOLICA-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-IGLESIA-CATOLICA-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-IGLESIA-CATOLICA-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-IGLESIA-CATOLICA-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-IGLESIA-CATOLICA-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-IGLESIA-CATOLICA-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-MEDIOS-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-MEDIOS-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-MEDIOS-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-MEDIOS-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-MEDIOS-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-MEDIOS-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-MEDIOS-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-MEDIOS-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-MEDIOS-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-MEDIOS-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-MEDIOS-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-MEDIOS-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-MEDIOS-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ORG-RELIGIOSA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ORG-RELIGIOSA-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ORG-RELIGIOSA-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ORG-RELIGIOSA-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ORG-RELIGIOSA-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ORG-RELIGIOSA-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ORG-RELIGIOSA-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ORG-RELIGIOSA-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ORG-RELIGIOSA-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ORG-RELIGIOSA-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ORG-RELIGIOSA-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ORG-RELIGIOSA-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ORG-RELIGIOSA-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PADRES-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PADRES-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PADRES-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PADRES-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PADRES-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PADRES-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PADRES-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PADRES-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PADRES-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PADRES-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PADRES-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PADRES-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PADRES-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-COMITE-MEJORAS-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-COMITE-MEJORAS-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-COMITE-MEJORAS-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-COMITE-MEJORAS-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-COMITE-MEJORAS-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-COMITE-MEJORAS-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-COMITE-MEJORAS-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-COMITE-MEJORAS-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-COMITE-MEJORAS-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-COMITE-MEJORAS-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-COMITE-MEJORAS-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-COMITE-MEJORAS-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-COMITE-MEJORAS-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-PARTIDO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-PARTIDO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-PARTIDO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-PARTIDO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-PARTIDO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-PARTIDO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-PARTIDO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-PARTIDO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-PARTIDO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-PARTIDO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-PARTIDO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-PARTIDO-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-PARTIDO-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-DELINCUENCIA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-DELINCUENCIA-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-DELINCUENCIA-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-DELINCUENCIA-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-DELINCUENCIA-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-DELINCUENCIA-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-DELINCUENCIA-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-DELINCUENCIA-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-DELINCUENCIA-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-DELINCUENCIA-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-DELINCUENCIA-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-DELINCUENCIA-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-DELINCUENCIA-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-CORRUPCION-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-CORRUPCION-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-CORRUPCION-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-CORRUPCION-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-CORRUPCION-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-CORRUPCION-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-CORRUPCION-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-CORRUPCION-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-CORRUPCION-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-CORRUPCION-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-CORRUPCION-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-CORRUPCION-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-GOLPE-JUSTIFICADO-CORRUPCION-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-HOMOSEXUALES-CANDIDATOS-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-HOMOSEXUALES-CANDIDATOS-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-HOMOSEXUALES-CANDIDATOS-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-HOMOSEXUALES-CANDIDATOS-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-HOMOSEXUALES-CANDIDATOS-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-HOMOSEXUALES-CANDIDATOS-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-HOMOSEXUALES-CANDIDATOS-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-HOMOSEXUALES-CANDIDATOS-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-HOMOSEXUALES-CANDIDATOS-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-HOMOSEXUALES-CANDIDATOS-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-HOMOSEXUALES-CANDIDATOS-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-HOMOSEXUALES-CANDIDATOS-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-HOMOSEXUALES-CANDIDATOS-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-JUSTICIA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-JUSTICIA-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-JUSTICIA-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-JUSTICIA-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-JUSTICIA-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-JUSTICIA-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-JUSTICIA-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-JUSTICIA-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-JUSTICIA-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-JUSTICIA-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-JUSTICIA-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-JUSTICIA-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-JUSTICIA-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-GOBIERNO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-GOBIERNO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-GOBIERNO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-GOBIERNO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-GOBIERNO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-GOBIERNO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-GOBIERNO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-GOBIERNO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-GOBIERNO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-GOBIERNO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-GOBIERNO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-GOBIERNO-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-CONFIA-GOBIERNO-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PROFESIONAL-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PROFESIONAL-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PROFESIONAL-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PROFESIONAL-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PROFESIONAL-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PROFESIONAL-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PROFESIONAL-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PROFESIONAL-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PROFESIONAL-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PROFESIONAL-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PROFESIONAL-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PROFESIONAL-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-ASOC-PROFESIONAL-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-LIDER-FUERTE-NO-ELEGIDO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-LIDER-FUERTE-NO-ELEGIDO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-LIDER-FUERTE-NO-ELEGIDO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-LIDER-FUERTE-NO-ELEGIDO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-LIDER-FUERTE-NO-ELEGIDO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-LIDER-FUERTE-NO-ELEGIDO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-LIDER-FUERTE-NO-ELEGIDO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-LIDER-FUERTE-NO-ELEGIDO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-LIDER-FUERTE-NO-ELEGIDO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-LIDER-FUERTE-NO-ELEGIDO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-LIDER-FUERTE-NO-ELEGIDO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-LIDER-FUERTE-NO-ELEGIDO-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-LIDER-FUERTE-NO-ELEGIDO-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-JUSTICIA-PROPIA-MANO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-JUSTICIA-PROPIA-MANO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-JUSTICIA-PROPIA-MANO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-JUSTICIA-PROPIA-MANO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-JUSTICIA-PROPIA-MANO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-JUSTICIA-PROPIA-MANO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-JUSTICIA-PROPIA-MANO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-JUSTICIA-PROPIA-MANO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-JUSTICIA-PROPIA-MANO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-JUSTICIA-PROPIA-MANO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-JUSTICIA-PROPIA-MANO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-JUSTICIA-PROPIA-MANO-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-APRUEBA-JUSTICIA-PROPIA-MANO-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-RELIGION-MUY-IMPORTANTE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-RELIGION-MUY-IMPORTANTE-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-RELIGION-MUY-IMPORTANTE-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-RELIGION-MUY-IMPORTANTE-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-RELIGION-MUY-IMPORTANTE-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-RELIGION-MUY-IMPORTANTE-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-RELIGION-MUY-IMPORTANTE-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-RELIGION-MUY-IMPORTANTE-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-RELIGION-MUY-IMPORTANTE-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-RELIGION-MUY-IMPORTANTE-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-RELIGION-MUY-IMPORTANTE-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-RELIGION-MUY-IMPORTANTE-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-RELIGION-MUY-IMPORTANTE-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-SERVICIO-MENSUAL-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-SERVICIO-MENSUAL-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-SERVICIO-MENSUAL-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-SERVICIO-MENSUAL-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-SERVICIO-MENSUAL-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-SERVICIO-MENSUAL-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-SERVICIO-MENSUAL-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-SERVICIO-MENSUAL-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-SERVICIO-MENSUAL-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-SERVICIO-MENSUAL-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-SERVICIO-MENSUAL-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-SERVICIO-MENSUAL-UR-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-ASISTE-SERVICIO-MENSUAL-UR-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-DICTAMEN
+  tipo: texto
+  unidad: vocabulario cerrado CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE
+- id: RESULT-APERTURA-LAPOP-2023-K
+  tipo: entero
+  unidad: celdas con R dentro del IC del contendiente
+- id: RESULT-APERTURA-LAPOP-2023-N
+  tipo: entero
+  unidad: celdas puntuadas
+- id: RESULT-APERTURA-LAPOP-2023-WILSON-LO
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, inferior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-WILSON-HI
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, superior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-MAE-PUNTO
+  tipo: flotante
+  unidad: error absoluto medio punto del contendiente vs R (descriptivo)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LAPOP-2023-MARCA
+  tipo: texto
+  unidad: PROSPECTIVA (contendiente sellado antes de R)
