@@ -3021,6 +3021,9 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # GEN2-APERTURAS-PREREGISTRADAS-1 (28/sep/2026): encargo verbatim (A.3) que nombra «CSES M5»
+    # = módulo 5 del CSES (instrumento externo), no un rótulo de acto; no se edita para el test.
+    "forense/encargos/2026-09-28-GEN2-APERTURAS-PREREGISTRADAS-1.md",
     # GEN2-MEDICION-CARRILES-2 (28/sep/2026): `M5` del encargo es «CSES M5» (módulo 5 de CSES, cita verbatim de la
     # firma R04, A.3); `M23` en la spec y cierre de la hija ENIF 2024 es el id_momento de milpa/catalogo-momentos-v0_1.tsv
     # (holdout GASTABLE-COMO-PISO declarado); `E1` de la copia de apertura del tablero es la letra de la hoja
