@@ -41,3 +41,9 @@ Propio: `forense/no-corrido.tsv` (estado, sucesor, cerrado_por, fecha_cierre), `
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No mide, no adopta, no lanza encargos, no envía nada con identidad. Sucesores: dirección revisa y mesa lanza los PROPUESTOS; el tablero de carriles y el inventario v6 leen los dueños nuevos. Sin módulo de auditoría. El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-PENDIENTES-4-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+Ninguno.
+
+Este acto no abre NC (encargo, CABECERA). Tres decisiones declaradas, sin pieza sin ejecutar, en `forense/notas/2026-09-29-GEN2-PENDIENTES-4-cierre.md` § Premisas que cayeron: la lectura de «`MESA-DECISION` ≤ renglones de la hoja» (renglones distintos citados, 28 ≤ 28, con 42 NC), 16 encargos propuestos en lugar de los cinco lotes sugeridos (D-11: hasta cuatro piezas afines por encargo) y 24 filas de firma en lugar de las 7 previstas. Límites declarados en la misma nota § Límites (citas de cierre que dependen de un PR verificadas por el estado del PR, sin logs de run; 10 de las 122 premisas `[EJECUTADO]` de los propuestos muestreadas). Lo que no se cerró queda con dueño de la lista cerrada (284 ABIERTA: DIRECCION-ENCARGO 154 · MESA-DECISION 42 · MESA-ACCION 40 · CANAL 23 · APERTURA 17 · ADQUISICION 7 · CAJA 1). Adenda de este encargo: `forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md`.
