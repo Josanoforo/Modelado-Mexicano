@@ -133,6 +133,10 @@ def prueba_toca_detecta_diff_en_derivado():
             rc_fuera = DP.main(["--solo-derivados", base, fuera])
         finally:
             DP.RAIZ = vieja_raiz
+    uni_a = "x\n" + DP.MARCAS_UNICO[0][0] + "\na\n" + DP.MARCAS_UNICO[0][1] + "\n" + DP.MARCA_BLOQUE[0] + "\nb\n" + DP.MARCA_BLOQUE[1]
+    uni_b = "x\n" + DP.MARCAS_UNICO[0][0] + "\nOTRO\n" + DP.MARCAS_UNICO[0][1] + "\n" + DP.MARCA_BLOQUE[0] + "\nc\n" + DP.MARCA_BLOQUE[1]
+    afirma(DP._fuera_del_bloque(uni_a) == DP._fuera_del_bloque(uni_b),
+           "cambio dentro de TABLERO-UNICO:CARRILES debe ser derivado")
     afirma(rc_bloque == 0, "cambio sólo dentro del bloque TABLERO-DERIVADO debe pasar")
     afirma(rc_fuera == 1, "cambio fuera del bloque TABLERO-DERIVADO debe fallar")
     afirma(rc_si == 1, "tocar el archivo con cabecera DERIVADO debe salir 1")
