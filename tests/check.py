@@ -3041,8 +3041,11 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-03.md",
     "forense/notas/2026-09-28-GEN2-MEDICION-CARRILES-2-cierre.md",
     "forense/analisis/medicion-carriles-2/hoja-rh.md",
+    "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-06.md",
     "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-04.md",
     "forense/encargos/2026-09-28-GEN2-MEDICION-CARRILES-2-ADENDA-1.md",
+    "forense/encargos/2026-09-28-GEN2-MEDICION-CARRILES-2-ADENDA-2.md",
+    "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-05.md",
     # GEN2-TABLERO-CARRILES-1 (28/sep/2026): tablero DERIVADO (bloque TABLERO-DERIVADO, lo reescribe
     # el canal) que cita verbatim `qué_se_firma` de forense/firmas-pendientes.tsv y la `pieza` de
     # forense/no-corrido.tsv; el primer rótulo pelado (`E1`) es letra de la hoja NC-DECISIONES-1

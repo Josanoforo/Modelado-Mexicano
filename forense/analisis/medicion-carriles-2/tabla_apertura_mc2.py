@@ -29,6 +29,8 @@ DECISIONES = {
     "ASTRA5-U0-CLIENT-014": "NO-CONSTRUIBLE (conteo de registro administrativo; spec MC2-ENIF2024 §3)",
     "ASTRA5-U0-CAPSOC-016": "CITADO-E5:CALC-PDR1-ENVIPE2025-0001 (AP4_11_06)",
     "ASTRA5-U0-SALUD-031": "CITADO-E5:S6-L16 (linajes sin reconciliar; no se repite)",
+    "ASTRA5-U0-ENOE-001": "CITADO-E5:CALC-ENOE-PISOS-0003 (dictaminada en resultado-por-afirmacion-v1_0.tsv)",
+    "ASTRA5-U0-TIME-008": "CITADO-E5:CALC-ENOE-PISOS-0003 (mismo texto que ENOE-001)",
     "RG-34a21bc6a2": "NO-CONSTRUIBLE (ENIF no pregunta el tipo de organizador de la tanda; spec MC2-ENIF2024 §3)",
     "RG-145b91d071": "NO-CONSTRUIBLE (unidad comunidad; registro de autodefensas no está en el corpus)",
     "RG-7c6dd83a03": "INCOMPARABLE-v1.1 (banda fijada tras ver el dato; no se puede pre-registrar sobre dato visto)",
