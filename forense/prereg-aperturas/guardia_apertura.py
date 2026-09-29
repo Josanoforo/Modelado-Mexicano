@@ -11,7 +11,8 @@ Tres piezas, ninguna de prosa:
 
   1. `auditoria_ast(fuente)` — lee el código (no lo ejecuta) y devuelve la lista
      de violaciones: `groupby`/`value_counts` con más de una llave, `crosstab`,
-     `pivot`/`pivot_table`/`unstack`, y lecturas `read_*` fuera de la función
+     `pivot`/`pivot_table`/`unstack`, y lecturas `read_*` o `lee*`/`_lee*` (lectores propios de
+     los medidores sellados) fuera de la función
      autorizada `lee_payload_reservado`. Cero violaciones = pasa.
   2. `proporcion_por_grupo(y, w, grupo)` — el ÚNICO agregador autorizado sobre
      la ola reservada: razón ponderada Σw·y/Σw por categoría de UNA variable de
@@ -26,6 +27,7 @@ Nada de este archivo abre dato. Sólo numpy.
 from __future__ import annotations
 
 import ast
+import re
 import math
 
 import numpy as np
@@ -67,7 +69,7 @@ def auditoria_ast(fuente: str) -> list[str]:
             llaves = [a for a in nodo.args[:1]] + [k.value for k in nodo.keywords if k.arg in ("by", "subset")]
             if any(_n_llaves(a) > 1 for a in llaves):
                 viol.append(f"L{nodo.lineno}: {nombre} con más de una variable de agrupación")
-        if nombre.startswith("read_") or nombre in ("lee_dta", "lee_csv_zip"):
+        if nombre.startswith("read_") or re.match(r"^_?lee", nombre) and nombre != LECTOR_AUTORIZADO:
             dueno = nodo
             while dueno in padres and not isinstance(dueno, ast.FunctionDef):
                 dueno = padres[dueno]

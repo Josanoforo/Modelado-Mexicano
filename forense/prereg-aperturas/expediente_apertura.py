@@ -237,4 +237,5 @@ MUTACIONES = [
     "import pandas as pd\ndef _m(r):\n    return pd.read_stata(r)\n",
     "def _m(R, r):\n    return R.lee_dta(r, [])\n",
     "import pandas as pd\ndef _m(r):\n    return pd.read_csv(r)\n",
+    "def _m(M, r):\n    return M._lee_dta(r, [])\n",
 ]
