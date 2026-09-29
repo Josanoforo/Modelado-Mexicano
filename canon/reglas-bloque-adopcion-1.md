@@ -1,5 +1,10 @@
 # Bloque de adopción de reglas · 1 · ACTO GEN2-CIERRE-Y-PRODUCTO-3
 
+> | | |
+> |---|---|
+> | **ARCHIVO** | `reglas-bloque-adopcion-1.md` (tabla: `reglas-bloque-adopcion-1.tsv`) |
+> | **NOMBRE ESTABLE** | `bloque de reglas` |
+
 Derivado de `canon/reglas-contrastadas-v1_1.tsv` (162 reglas) con `python3 forense/analisis/reglas-bloque-1/genera_bloque_reglas.py`. Cero cifras tecleadas: cada punto se re-lee de su CALC sellado. Todo RETROSPECTIVO (olas vistas); ninguna regla se valida prospectivamente aquí.
 
 **Cómo se adopta.** El merge de mesa del PR que trae este archivo es la adopción del bloque (E.2), condicional a la decisión pendiente sobre el criterio de CONFIRMA (`FP-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01`, ABIERTA): si CONFIRMA cubre la conducta descriptiva, el bloque es el de abajo; si exige la regla completa (SI+ENTONCES+PORQUE), la regla pasa a MATIZA y el bloque queda vacío. Adoptar no escribe `milpa/tramite.yaml`: la regla viva la escribe el escritor de relevo tras esa decisión (NC de este acto).

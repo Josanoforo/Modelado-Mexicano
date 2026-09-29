@@ -7,7 +7,7 @@
 > |---|---|
 > | **ARCHIVO** | `estado-programa-v1_19.md` |
 > | **REEMPLAZA A** | `estado-programa-v1_18.md`, retirada del árbol por T01 |
-> | **VERIFICAS ASÍ** | §19 ata cada cifra a un comentario `comando:` que `tests/test_estado_derivado.py` re-ejecuta |
+> | **VERIFICAS ASÍ** | §0 lista `modelo` en **v4.0** (sin cambio) · §19 ata cada cifra a un comentario `comando:` que `tests/test_estado_derivado.py` re-ejecuta |
 > | **NOMBRE ESTABLE** | **`estado`** — cítalo así, nunca por nombre de archivo |
 
 ---

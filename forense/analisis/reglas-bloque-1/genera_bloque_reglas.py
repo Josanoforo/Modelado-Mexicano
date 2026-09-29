@@ -113,6 +113,10 @@ def md(bloque, dest) -> str:
                                                                if ":" in d["destino"] else "") for d in dest)
     L = ["# Bloque de adopción de reglas · 1 · ACTO GEN2-CIERRE-Y-PRODUCTO-3",
          "",
+         "> | | |", "> |---|---|",
+         "> | **ARCHIVO** | `reglas-bloque-adopcion-1.md` (tabla: `reglas-bloque-adopcion-1.tsv`) |",
+         "> | **NOMBRE ESTABLE** | `bloque de reglas` |",
+         "",
          f"Derivado de `canon/reglas-contrastadas-v1_1.tsv` ({len(dest)} reglas) con "
          "`python3 forense/analisis/reglas-bloque-1/genera_bloque_reglas.py`. Cero cifras tecleadas: cada punto se "
          "re-lee de su CALC sellado. Todo RETROSPECTIVO (olas vistas); ninguna regla se valida prospectivamente aquí.",

@@ -3,6 +3,7 @@
 > | | |
 > |---|---|
 > | **ARCHIVO** | `donde-cambio-el-mexicano-v1_1.md` (sucesor de `v1_0`, que queda intacto — E.1, y se hereda abajo sin editar) |
+> | **NOMBRE ESTABLE** | `dónde cambió el mexicano` |
 > | **ACTO** | `GEN2-CIERRE-Y-PRODUCTO-3` (P3) · cero mediciones · RETROSPECTIVA · sin adopción del dictamen |
 > | **NUEVO** | la serie trimestral ENSU (`CALC-ENSU-SERIE-0001`, FIRMAS-20 A1), con su propio dictamen sellado; **no se funde** con la tabla de v1.0 |
 > | **REGENERA** | `python3 forense/analisis/donde-cambio/genera_donde_cambio_v1_1.py` |
