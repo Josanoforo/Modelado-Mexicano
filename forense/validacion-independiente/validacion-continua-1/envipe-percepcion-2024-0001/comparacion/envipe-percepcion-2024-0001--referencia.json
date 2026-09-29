@@ -1,0 +1,1252 @@
+{
+  "version": 3,
+  "identidad": {
+    "paquete": "envipe-percepcion-2024-0001",
+    "version_entrada": "validacion-continua-1",
+    "sha256_entrada": "b20ad44c388d54eba682aafa83cbc736047e0a17705321915ff456cdf77dadaf"
+  },
+  "filas": [
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-DOMINIO-COMPLEMENTO-URBANO-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.619631477320795",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6063746665095849",
+      "ic95_sup": "0.6332164607694617"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-DOMINIO-RURAL-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5358697860263792",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.52140148184164",
+      "ic95_sup": "0.5509099381102104"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-DOMINIO-URBANO-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.650366949768543",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6403563016708781",
+      "ic95_sup": "0.6591154455965793"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-EDAD-18-29-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6031037290616904",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5902223785342576",
+      "ic95_sup": "0.6158042227759467"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-EDAD-30-44-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6632771805465416",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6535760302940757",
+      "ic95_sup": "0.6732354423629479"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-EDAD-45-59-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6187258809421434",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6071857367456748",
+      "ic95_sup": "0.6302841155284605"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5227830301481513",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5071577516051505",
+      "ic95_sup": "0.5395618455109626"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-01-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6191471307167192",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5872380039330988",
+      "ic95_sup": "0.651256537958623"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-02-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6941064487361449",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6561630159524707",
+      "ic95_sup": "0.7290448189846934"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-03-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5174581586656681",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.47248167663870616",
+      "ic95_sup": "0.5655626650401979"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-04-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.546100832470105",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5094955569645595",
+      "ic95_sup": "0.581152979228029"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-05-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.536219966944858",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4995497192787616",
+      "ic95_sup": "0.5736267867902073"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-06-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7174622807953839",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6862548917093206",
+      "ic95_sup": "0.7486328714042271"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-07-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5638324586196134",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5296950964765738",
+      "ic95_sup": "0.5983555221168957"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-08-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6127756030102828",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5859600088673707",
+      "ic95_sup": "0.6392182267751935"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-09-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6583083391501614",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6360129072982778",
+      "ic95_sup": "0.6799217793967934"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-10-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4686092047927136",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4415849068816418",
+      "ic95_sup": "0.49497600826181"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-11-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.643058544366264",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6080987364754964",
+      "ic95_sup": "0.6765232932455256"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-12-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5461728738452175",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5072559548077865",
+      "ic95_sup": "0.5842014265731865"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-13-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6291470281499534",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5973939577502964",
+      "ic95_sup": "0.66034772639016"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-14-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5502291510986816",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5197252576908494",
+      "ic95_sup": "0.5815413375542022"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-15-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6611343085898727",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6329905617622807",
+      "ic95_sup": "0.6889389844278754"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-16-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5587661156870829",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5266102491780629",
+      "ic95_sup": "0.5939997144377214"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-17-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7853431660102238",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7570456947110268",
+      "ic95_sup": "0.8133904228066869"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-18-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.41866405925195943",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.38499379699988695",
+      "ic95_sup": "0.4516484590649275"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-19-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6818918644506919",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6522573016352161",
+      "ic95_sup": "0.7111281867149667"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-20-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.47341767803185447",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.44017317068935075",
+      "ic95_sup": "0.5068222919208405"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-21-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6506296022908301",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.626738821991366",
+      "ic95_sup": "0.675328015926297"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-22-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6910397495714614",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.662642311872804",
+      "ic95_sup": "0.7204057141954321"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-23-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7131580101051063",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6813218030699725",
+      "ic95_sup": "0.7448140821545692"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-24-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7391435846584177",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7098854461653918",
+      "ic95_sup": "0.766802745725905"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-25-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4726800522558028",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.445759799616332",
+      "ic95_sup": "0.5015767456829975"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-26-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6379484373616214",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6073659715024181",
+      "ic95_sup": "0.66912981688943"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-27-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5131939983022202",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.48274113785483946",
+      "ic95_sup": "0.544262909429688"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-28-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6739170451857974",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6498806355422382",
+      "ic95_sup": "0.6993326610667004"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-29-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6561966519529203",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6192695159241386",
+      "ic95_sup": "0.6924824700688699"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-30-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6246236037813307",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5980784276430485",
+      "ic95_sup": "0.6537728027228672"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-31-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4408011898664355",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4094087899303205",
+      "ic95_sup": "0.4735434523902999"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ENTIDAD-32-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7778675131003137",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7519240534526318",
+      "ic95_sup": "0.8036684802109944"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5393584696927921",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5260864841116928",
+      "ic95_sup": "0.5526765686574219"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6404723477017686",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6278125953018941",
+      "ic95_sup": "0.6522013514053929"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6252424459288207",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6136780791295875",
+      "ic95_sup": "0.6363925580730684"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6609283130658284",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6488935084035303",
+      "ic95_sup": "0.6728736055834822"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-SEXO-HOMBRE-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5675263110183535",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.558376507662531",
+      "ic95_sup": "0.5767170885220294"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-SEXO-MUJER-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6536359872958283",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6450381794789163",
+      "ic95_sup": "0.6616630459585824"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6156111115557121",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6087108527358768",
+      "ic95_sup": "0.6223210623711747"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-DOMINIO-COMPLEMENTO-URBANO-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7515103148199045",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7432528467131616",
+      "ic95_sup": "0.7602048994820293"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-DOMINIO-RURAL-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7491307829690924",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7395361772286444",
+      "ic95_sup": "0.7587092321327028"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-DOMINIO-URBANO-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7514054311875433",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7463148064253675",
+      "ic95_sup": "0.7566428990209972"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-EDAD-18-29-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7296305778840482",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7209232738751075",
+      "ic95_sup": "0.7382663705249609"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-EDAD-30-44-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7495759142135897",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.742165758148276",
+      "ic95_sup": "0.7570994459050533"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-EDAD-45-59-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7753282265479972",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7681716419283079",
+      "ic95_sup": "0.7824811684819916"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7490752138329425",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7407428679951256",
+      "ic95_sup": "0.7568932281194864"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-01-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5108188292296619",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.48265406838229236",
+      "ic95_sup": "0.5389208654943394"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-02-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7498516102934637",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.728752063806338",
+      "ic95_sup": "0.7718709056527505"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-03-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3079780878237225",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2879184300050815",
+      "ic95_sup": "0.3290412380785723"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-04-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6380425950412728",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6155975785418647",
+      "ic95_sup": "0.6607959608329911"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-05-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3858940997104663",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.36182371330925617",
+      "ic95_sup": "0.40923963096814514"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-06-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.8151487572535849",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7965885689238522",
+      "ic95_sup": "0.8320995936128924"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-07-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7967230411117865",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7729714701977266",
+      "ic95_sup": "0.8192414418721713"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-08-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7335494620280526",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7138786474503958",
+      "ic95_sup": "0.7534120355224224"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-09-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7643312712851685",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7504142830277973",
+      "ic95_sup": "0.7780085158525373"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-10-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4695836491519443",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4413754135196394",
+      "ic95_sup": "0.4956954160036917"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-11-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.8889912519480898",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.8736142294559774",
+      "ic95_sup": "0.9049601948478269"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-12-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.830002532574034",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.8123817108568456",
+      "ic95_sup": "0.8473476737186617"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-13-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6313003274658284",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6077150029235493",
+      "ic95_sup": "0.6550345190180447"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-14-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7651327734703159",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7426358344799092",
+      "ic95_sup": "0.7860071096163613"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-15-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.8762271170028253",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.8603168304535186",
+      "ic95_sup": "0.890030931715077"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-16-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.8144368118707119",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7956737713593482",
+      "ic95_sup": "0.8330810262250613"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-17-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.9114748861982365",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.897978632613145",
+      "ic95_sup": "0.9250847712409825"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-18-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.44520841691684077",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.41502691090580274",
+      "ic95_sup": "0.47511756206803446"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-19-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7355616168595994",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.717105043291405",
+      "ic95_sup": "0.7534171053511308"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-20-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7162155125156662",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6931497960096404",
+      "ic95_sup": "0.7406213379291797"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-21-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7869824465175989",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7709806147363093",
+      "ic95_sup": "0.8035479257091448"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-22-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.559563928027284",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5365440027420972",
+      "ic95_sup": "0.5821689972797396"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-23-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.8133152589651357",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7963032270234157",
+      "ic95_sup": "0.8300813026849502"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-24-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7582724060698873",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7340808065200052",
+      "ic95_sup": "0.7824483573975162"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-25-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.554711007960717",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5364637663899664",
+      "ic95_sup": "0.5744142285927194"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-26-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7284605745965528",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7049995258441117",
+      "ic95_sup": "0.7513013280342933"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-27-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.8509436338040631",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.8341355995014781",
+      "ic95_sup": "0.8681791951808534"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-28-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7671210827661291",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7505192198666477",
+      "ic95_sup": "0.7835670140882159"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-29-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6483476900078946",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.623523820059207",
+      "ic95_sup": "0.6722463583828996"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-30-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.8158420479824867",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7996613672977309",
+      "ic95_sup": "0.830969169227379"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-31-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3096255368257532",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2877491474810491",
+      "ic95_sup": "0.3305850749513046"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ENTIDAD-32-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.8771583460272667",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.8593509546411459",
+      "ic95_sup": "0.8954815557512339"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7428083882434685",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.734450586884442",
+      "ic95_sup": "0.7506024865584824"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7584322601735576",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7504806864728987",
+      "ic95_sup": "0.766744926478667"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7542600198210232",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7467407224625524",
+      "ic95_sup": "0.7613580983638865"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.748305562493901",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7405902176237238",
+      "ic95_sup": "0.7561884602925665"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-SEXO-HOMBRE-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7061342594186267",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7000586001319204",
+      "ic95_sup": "0.7123584626166951"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-SEXO-MUJER-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7890643765483338",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7840744379305365",
+      "ic95_sup": "0.7937170338001625"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7509384181749688",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7468337118470595",
+      "ic95_sup": "0.7549962468278192"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-DOMINIO-COMPLEMENTO-URBANO-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5785174080530144",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5657677548439028",
+      "ic95_sup": "0.5911140456488355"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-DOMINIO-RURAL-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4338667302881926",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4200837063212127",
+      "ic95_sup": "0.4466904247420853"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-DOMINIO-URBANO-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6476962550391474",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6403482029425658",
+      "ic95_sup": "0.6545994058126076"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-EDAD-18-29-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5836637824639872",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5732921823416417",
+      "ic95_sup": "0.5935128867229741"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-EDAD-30-44-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.584840888999171",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5754618903347662",
+      "ic95_sup": "0.5933943534892743"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-EDAD-45-59-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6034645238955256",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5943825063817062",
+      "ic95_sup": "0.6128842976954009"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5655352611167399",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5542546794236533",
+      "ic95_sup": "0.576776463048949"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-01-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5930927923257722",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5580554037030602",
+      "ic95_sup": "0.6249207655929011"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-02-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6311039911665819",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6038538760865418",
+      "ic95_sup": "0.658017015671975"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-03-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4316402435189078",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4049277292872534",
+      "ic95_sup": "0.4581012244373805"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-04-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5215037501157443",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.494458818304599",
+      "ic95_sup": "0.5487735588171156"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-05-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4740764262208946",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4508876879543464",
+      "ic95_sup": "0.4970059898193873"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-06-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6212792557229706",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5950322658073135",
+      "ic95_sup": "0.6474228772828172"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-07-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4783642319352193",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.45051224902229353",
+      "ic95_sup": "0.5066149650727453"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-08-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6002618967848468",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5786652547953532",
+      "ic95_sup": "0.6212555991469157"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-09-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6125987733271977",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5961345179007227",
+      "ic95_sup": "0.6289422505531851"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-10-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4279379785945972",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.40568313783876975",
+      "ic95_sup": "0.4519941643451483"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-11-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6363242589001081",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6080456783708865",
+      "ic95_sup": "0.6637378395114375"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-12-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4990593269576605",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.46993243699717707",
+      "ic95_sup": "0.5283354508568211"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-13-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5546834341408481",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5290081721518194",
+      "ic95_sup": "0.5800129874220922"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-14-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5544690207110423",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5273720992306462",
+      "ic95_sup": "0.5815907452114455"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-15-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7276139159635385",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7050894331242461",
+      "ic95_sup": "0.7499813651424547"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-16-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.56421753484105",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5382504621451443",
+      "ic95_sup": "0.5907312639734077"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-17-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7371297443447367",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7114962372345804",
+      "ic95_sup": "0.7631868087175109"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-18-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3743494064654808",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.34754345727525515",
+      "ic95_sup": "0.4025489573583991"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-19-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6393561911142672",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6142688663802185",
+      "ic95_sup": "0.6641651677863828"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-20-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.40404128649990023",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3757379724275741",
+      "ic95_sup": "0.4307887273801627"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-21-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6097097681111018",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5855824112435578",
+      "ic95_sup": "0.6350475762174134"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-22-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5728939361830515",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5472526828048614",
+      "ic95_sup": "0.5988619053808074"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-23-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6247531562714949",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6009334371828589",
+      "ic95_sup": "0.6502714566271993"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-24-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6090510869813475",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5810747855938753",
+      "ic95_sup": "0.6381491309018854"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-25-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.46885101826174846",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4477616784806661",
+      "ic95_sup": "0.4902168128173873"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-26-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6071428397169446",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5789251803603173",
+      "ic95_sup": "0.6336695880107398"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-27-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6436922666329883",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.61965063273634",
+      "ic95_sup": "0.6665294305333119"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-28-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5244275353264074",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5036014731258097",
+      "ic95_sup": "0.5459391323454639"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-29-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6380683474924068",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6129595529489907",
+      "ic95_sup": "0.6618071600513608"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-30-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5184913868095725",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.49456579927493877",
+      "ic95_sup": "0.5426326061422926"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-31-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3885395068496507",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3653188116025168",
+      "ic95_sup": "0.41109325359616183"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ENTIDAD-32-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6413274853410942",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6119510495611865",
+      "ic95_sup": "0.6734268044615885"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5616636348189048",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5508683914720671",
+      "ic95_sup": "0.5732797249846847"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5992060582385644",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5890470594890229",
+      "ic95_sup": "0.6094252073524065"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.592256805030588",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5831624553520597",
+      "ic95_sup": "0.601593810439992"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5880901864689005",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5783045983241341",
+      "ic95_sup": "0.5978508898369985"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-SEXO-HOMBRE-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.498778041544605",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.49154089549946933",
+      "ic95_sup": "0.5063557758057623"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-SEXO-MUJER-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6626393974227422",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6560119552526056",
+      "ic95_sup": "0.6693744198450308"
+    },
+    {
+      "llave": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5858803582820373",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5802096643713744",
+      "ic95_sup": "0.591342564977022"
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+ "paquete": "edr-suicidio-pisos-0001",
+ "calc": "CALC-EDR-SUICIDIO-PISOS-0001",
+ "docs": [
+  {
+   "src": "forense/prereg-caja/EDR-SUICIDIO-PISOS-spec-v1_0.md",
+   "miembro": null,
+   "dst": "docs/spec-humana.md"
+  },
+  {
+   "src": "data/raw/EDR/2015-2019/defunciones_generales_base_datos_2015_2019_dbf.zip",
+   "miembro": "defunciones_base_datos_2015/Descripcion BD_Defunciones 2015_LOC_.pdf",
+   "dst": "docs/descriptor-2015.pdf"
+  },
+  {
+   "src": "data/raw/EDR/2015-2019/defunciones_generales_base_datos_2015_2019_dbf.zip",
+   "miembro": "defunciones_base_datos_2016/Descripcion BD_Defunciones 2016(LOC).pdf",
+   "dst": "docs/descriptor-2016.pdf"
+  },
+  {
+   "src": "data/raw/EDR/2015-2019/defunciones_generales_base_datos_2015_2019_dbf.zip",
+   "miembro": "defunciones_base_datos_2017/Descripcion BD_Defunciones 2017(LOC).pdf",
+   "dst": "docs/descriptor-2017.pdf"
+  },
+  {
+   "src": "data/raw/EDR/2015-2019/defunciones_generales_base_datos_2015_2019_dbf.zip",
+   "miembro": "defunciones_base_datos_2018/Descripcion BD_Defunciones 2018.pdf",
+   "dst": "docs/descriptor-2018.pdf"
+  },
+  {
+   "src": "data/raw/EDR/2015-2019/defunciones_generales_base_datos_2015_2019_dbf.zip",
+   "miembro": "defunciones_base_datos_2019/Descripcion BD_Defunciones 2019.pdf",
+   "dst": "docs/descriptor-2019.pdf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/mortalidad/2020/defunciones_base_datos_2020_dbf.zip",
+   "miembro": "Descripcion_BD_Defunciones_2020.pdf",
+   "dst": "docs/descriptor-2020.pdf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/edr/2021/defunciones_base_datos_2021_dbf.zip",
+   "miembro": "Descripcion_BD_Defunciones_2021.pdf",
+   "dst": "docs/descriptor-2021.pdf"
+  },
+  {
+   "src": "data/raw/EDR/2022/defunciones_base_datos_2022_dbf.zip",
+   "miembro": "Descripcion_BD_Defunciones_2022.pdf",
+   "dst": "docs/descriptor-2022.pdf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/edr/2023/defunciones_base_datos_2023_dbf.zip",
+   "miembro": "Descripcion_BD_Defunciones_2023.pdf",
+   "dst": "docs/descriptor-2023.pdf"
+  }
+ ],
+ "datos": [
+  {
+   "src": "data/raw/EDR/2015-2019/defunciones_generales_base_datos_2015_2019_dbf.zip",
+   "sha256": "668166d7a31c3228c518e39c9247616adcd8426416059de7f39aeb905d35b4b6",
+   "miembro": "defunciones_base_datos_2015/DEFUN15.DBF",
+   "dst": "datos/defun15.dbf"
+  },
+  {
+   "src": "data/raw/EDR/2015-2019/defunciones_generales_base_datos_2015_2019_dbf.zip",
+   "sha256": "668166d7a31c3228c518e39c9247616adcd8426416059de7f39aeb905d35b4b6",
+   "miembro": "defunciones_base_datos_2016/DEFUN16.dbf",
+   "dst": "datos/defun16.dbf"
+  },
+  {
+   "src": "data/raw/EDR/2015-2019/defunciones_generales_base_datos_2015_2019_dbf.zip",
+   "sha256": "668166d7a31c3228c518e39c9247616adcd8426416059de7f39aeb905d35b4b6",
+   "miembro": "defunciones_base_datos_2017/DEFUN17.dbf",
+   "dst": "datos/defun17.dbf"
+  },
+  {
+   "src": "data/raw/EDR/2015-2019/defunciones_generales_base_datos_2015_2019_dbf.zip",
+   "sha256": "668166d7a31c3228c518e39c9247616adcd8426416059de7f39aeb905d35b4b6",
+   "miembro": "defunciones_base_datos_2018/DEFUN18.DBF",
+   "dst": "datos/defun18.dbf"
+  },
+  {
+   "src": "data/raw/EDR/2015-2019/defunciones_generales_base_datos_2015_2019_dbf.zip",
+   "sha256": "668166d7a31c3228c518e39c9247616adcd8426416059de7f39aeb905d35b4b6",
+   "miembro": "defunciones_base_datos_2019/DEFUN19.DBF",
+   "dst": "datos/defun19.dbf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/mortalidad/2020/defunciones_base_datos_2020_dbf.zip",
+   "sha256": "4a6e930a4034fd829b567ea321ab42790d712e55b7afad936b5eb69a7c85cf6b",
+   "miembro": "defun20.dbf",
+   "dst": "datos/defun20.dbf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/edr/2021/defunciones_base_datos_2021_dbf.zip",
+   "sha256": "877585d6fdadc81365ebb254d30e21841aa05945756fc9eea41add3b0b57c182",
+   "miembro": "defun21.dbf",
+   "dst": "datos/defun21.dbf"
+  },
+  {
+   "src": "data/raw/EDR/2022/defunciones_base_datos_2022_dbf.zip",
+   "sha256": "0a82398a697b0d9108e6bc46be637b85ffd1af38b1cb063e3ee69a68b1be08aa",
+   "miembro": "DEFUN22.dbf",
+   "dst": "datos/defun22.dbf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/edr/2023/defunciones_base_datos_2023_dbf.zip",
+   "sha256": "93a9b88bf40f07c9fa6e698d55abe97e6ad5f32e1823dc3475259b09bb14655f",
+   "miembro": "DEFUN23.dbf",
+   "dst": "datos/defun23.dbf"
+  }
+ ],
+ "campos": {
+  "datos/defun15.dbf": [
+   "SEXO",
+   "EDAD",
+   "CAUSA_DEF",
+   "ANIO_OCUR",
+   "ANIO_REGIS",
+   "ENT_RESID",
+   "TLOC_RESID",
+   "ESCOLARIDA",
+   "PRESUNTO"
+  ],
+  "datos/defun16.dbf": [
+   "SEXO",
+   "EDAD",
+   "CAUSA_DEF",
+   "ANIO_OCUR",
+   "ANIO_REGIS",
+   "ENT_RESID",
+   "TLOC_RESID",
+   "ESCOLARIDA",
+   "PRESUNTO"
+  ],
+  "datos/defun17.dbf": [
+   "SEXO",
+   "EDAD",
+   "CAUSA_DEF",
+   "ANIO_OCUR",
+   "ANIO_REGIS",
+   "ENT_RESID",
+   "TLOC_RESID",
+   "ESCOLARIDA",
+   "PRESUNTO"
+  ],
+  "datos/defun18.dbf": [
+   "SEXO",
+   "EDAD",
+   "CAUSA_DEF",
+   "ANIO_OCUR",
+   "ANIO_REGIS",
+   "ENT_RESID",
+   "TLOC_RESID",
+   "ESCOLARIDA",
+   "PRESUNTO"
+  ],
+  "datos/defun19.dbf": [
+   "SEXO",
+   "EDAD",
+   "CAUSA_DEF",
+   "ANIO_OCUR",
+   "ANIO_REGIS",
+   "ENT_RESID",
+   "TLOC_RESID",
+   "ESCOLARIDA",
+   "PRESUNTO"
+  ],
+  "datos/defun20.dbf": [
+   "SEXO",
+   "EDAD",
+   "CAUSA_DEF",
+   "ANIO_OCUR",
+   "ANIO_REGIS",
+   "ENT_RESID",
+   "TLOC_RESID",
+   "ESCOLARIDA",
+   "PRESUNTO"
+  ],
+  "datos/defun21.dbf": [
+   "SEXO",
+   "EDAD",
+   "CAUSA_DEF",
+   "ANIO_OCUR",
+   "ANIO_REGIS",
+   "ENT_RESID",
+   "TLOC_RESID",
+   "ESCOLARIDA",
+   "PRESUNTO"
+  ],
+  "datos/defun22.dbf": [
+   "SEXO",
+   "EDAD",
+   "CAUSA_DEF",
+   "ANIO_OCUR",
+   "ANIO_REGIS",
+   "ENT_RESID",
+   "TLOC_RESID",
+   "ESCOLARIDA",
+   "TIPO_DEFUN"
+  ],
+  "datos/defun23.dbf": [
+   "SEXO",
+   "EDAD",
+   "CAUSA_DEF",
+   "ANIO_OCUR",
+   "ANIO_REGIS",
+   "ENT_RESID",
+   "TLOC_RESID",
+   "ESCOLARIDA",
+   "TIPO_DEFUN"
+  ]
+ },
+ "filtro_filas": null,
+ "notas": "Sin filtro global: universo base = todas las filas vivas del DBF de cada ola (ola = anio de registro; archivo DEFUNyy). Universos por conducta segun spec: SUICIDIO-CIE causa no vacia (X60-X84); SUICIDIO-PRESUNTO todas; SUIC-HOMBRE sexo 1-2; SUIC-15-* edad valida (4001-4120 anios). Solo olas 2015-2023; 2024 RESERVADA excluida. Columna de tipo de defuncion: PRESUNTO (2015-2021) y TIPO_DEFUN (2022-2023), valor 3 = suicidio. ENT_RESID: la spec dice 'ENT de residencia' sin nombrar la columna; inferida del encabezado. Sin discrepancias de nombre; todas las columnas existen en las 9 olas (DEFUN22/23 tienen 73/74 campos vs 59). Descriptores PDF de las 9 olas incluidos como docs. Sin denominador poblacional en corpus; no hay tasas."
+}

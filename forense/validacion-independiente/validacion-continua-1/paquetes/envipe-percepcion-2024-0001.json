@@ -1,0 +1,91 @@
+{
+ "paquete": "envipe-percepcion-2024-0001",
+ "calc": "CALC-ENVIPE-PERCEPCION-2024-0001",
+ "docs": [
+  {
+   "src": "forense/prereg-caja/COLA-ENVIPE-PERCEPCION-spec-v1_0.md",
+   "miembro": null,
+   "dst": "docs/spec-humana.md"
+  },
+  {
+   "src": "data/raw/cuest_principal_envipe2024.pdf",
+   "miembro": null,
+   "dst": "docs/cuestionario-principal-envipe2024.pdf"
+  },
+  {
+   "src": "data/raw/envipe2024_csv.zip",
+   "miembro": "tper_vic1_envipe2024/catalogos/ap4_3_3.csv",
+   "dst": "docs/cat-ap4_3_3.csv"
+  },
+  {
+   "src": "data/raw/envipe2024_csv.zip",
+   "miembro": "tper_vic1_envipe2024/catalogos/ap4_4_a.csv",
+   "dst": "docs/cat-ap4_4_a.csv"
+  },
+  {
+   "src": "data/raw/envipe2024_csv.zip",
+   "miembro": "tper_vic1_envipe2024/catalogos/ap4_10_02.csv",
+   "dst": "docs/cat-ap4_10_02.csv"
+  },
+  {
+   "src": "data/raw/envipe2024_csv.zip",
+   "miembro": "tper_vic1_envipe2024/catalogos/sexo.csv",
+   "dst": "docs/cat-sexo.csv"
+  },
+  {
+   "src": "data/raw/envipe2024_csv.zip",
+   "miembro": "tper_vic1_envipe2024/catalogos/dominio.csv",
+   "dst": "docs/cat-dominio.csv"
+  },
+  {
+   "src": "data/raw/envipe2024_csv.zip",
+   "miembro": "tsdem_envipe2024/catalogos/niv.csv",
+   "dst": "docs/cat-niv.csv"
+  },
+  {
+   "src": "data/raw/envipe2024_csv.zip",
+   "miembro": "tper_vic1_envipe2024/diccionario_de_datos/diccionario_de_datos_tper_vic1_envipe2024.csv",
+   "dst": "docs/diccionario-tper-vic1.csv"
+  },
+  {
+   "src": "data/raw/envipe2024_csv.zip",
+   "miembro": "tsdem_envipe2024/diccionario_de_datos/diccionario_de_datos_tsdem_envipe2024.csv",
+   "dst": "docs/diccionario-tsdem.csv"
+  }
+ ],
+ "datos": [
+  {
+   "src": "data/raw/envipe2024_csv.zip",
+   "sha256": "90776b2fab6e3666dad1cb5f5f3eb7d6a7699dbfefd4f8f04f07fb01e61a6fb2",
+   "miembro": "tper_vic1_envipe2024/conjunto_de_datos/conjunto_de_datos_tper_vic1_envipe2024.csv",
+   "dst": "datos/tper_vic1.csv"
+  },
+  {
+   "src": "data/raw/envipe2024_csv.zip",
+   "sha256": "90776b2fab6e3666dad1cb5f5f3eb7d6a7699dbfefd4f8f04f07fb01e61a6fb2",
+   "miembro": "tsdem_envipe2024/conjunto_de_datos/conjunto_de_datos_tsdem_envipe2024.csv",
+   "dst": "datos/tsdem.csv"
+  }
+ ],
+ "campos": {
+  "datos/tper_vic1.csv": [
+   "ID_PER",
+   "AP4_3_3",
+   "AP4_4_A",
+   "AP4_10_02",
+   "EDAD",
+   "SEXO",
+   "DOMINIO",
+   "CVE_ENT",
+   "FAC_ELE",
+   "EST_DIS",
+   "UPM_DIS"
+  ],
+  "datos/tsdem.csv": [
+   "ID_PER",
+   "NIV"
+  ]
+ },
+ "filtro_filas": "Persona elegida de 18+: EDAD entre 18 y 97 (tabla tper_vic1); valido: FAC_ELE>0, EST_DIS y UPM_DIS no vacios. NIV se une desde tsdem por ID_PER (tsdem trae todas las personas del hogar; deduplicar por ID_PER).",
+ "notas": "Todas las columnas verificadas en cabecera real. AVISO: el CSV termina lineas con \\r en tsdem (cabecera y filas separadas por CR; leer con newline universal); un primer intento de leer la cabecera con readline() mostro ademas la primera fila de datos de tsdem (solo llaves de vivienda/hogar y codigos demograficos, ninguna conducta) - declarado. NIV no existe en tper_vic1, solo en tsdem; ENVIPE 2026 no tocado. La spec cita el cuestionario y catalogos como descriptor; se incluyen catalogos de las 3 conductas, sexo, dominio, niv y diccionarios de datos (no numericos). DOMINIO/EST_DIS/UPM_DIS/SEXO/EDAD tambien estan en tsdem; se toman de tper_vic1."
+}

@@ -1,0 +1,406 @@
+{
+  "version": 3,
+  "identidad": {
+    "paquete": "pew-religion-2024-0001",
+    "version_entrada": "validacion-continua-1",
+    "sha256_entrada": "e54f9c296d234cdc2867bcd3a2d508bb462edc98cfb64aeaf6b942e64408149e"
+  },
+  "filas": [
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-18-29-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.30400968526724487",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.24126921214557592",
+      "ic95_sup": "0.36524784843189934"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-30-44-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.21848575077522772",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.16393740264974638",
+      "ic95_sup": "0.27622574867596233"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-45-59-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.194563407058217",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.13952386491989383",
+      "ic95_sup": "0.2548396827870355"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.09675732516603867",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.052938100324194784",
+      "ic95_sup": "0.1491459069737755"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.13287381812974158",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0885922273188347",
+      "ic95_sup": "0.17837125833116238"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.29243095830508764",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.23010201265306818",
+      "ic95_sup": "0.3526084967468256"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.23763636056789472",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1821297104932041",
+      "ic95_sup": "0.29268351090126665"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2057668505626045",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.13445145919073587",
+      "ic95_sup": "0.27953343036953143"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-SEXO-HOMBRE-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2564288271722675",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.20954303515518172",
+      "ic95_sup": "0.3039445259790603"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-SEXO-MUJER-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.17592210554535923",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.14340608287491796",
+      "ic95_sup": "0.21081597316772488"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.21400378738662248",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.18481752729635723",
+      "ic95_sup": "0.24399058049620237"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-18-29-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6009577636471811",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5370584371542697",
+      "ic95_sup": "0.6681526661582349"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-30-44-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6242149620648074",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5610864637877636",
+      "ic95_sup": "0.6900954937404432"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-45-59-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7042593336237043",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6395139142665197",
+      "ic95_sup": "0.7634504933538986"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.8104906223610355",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.7508176022550918",
+      "ic95_sup": "0.8660161627224114"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7425577461847147",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6798236863871753",
+      "ic95_sup": "0.8003626356726831"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.591119698752469",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5268658339981668",
+      "ic95_sup": "0.65668523741341"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.651669788085736",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.59127800260063",
+      "ic95_sup": "0.7122981915222524"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6887448115719337",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6068362370422412",
+      "ic95_sup": "0.7678071808840213"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-SEXO-HOMBRE-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.631882567119365",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5812062447987435",
+      "ic95_sup": "0.6808757698922185"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-SEXO-MUJER-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.7066775122165221",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6644556159532036",
+      "ic95_sup": "0.7486612945830112"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6712976427476764",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6393372431197549",
+      "ic95_sup": "0.7039576572309562"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-18-29-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.917411913193221",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.8778388564417446",
+      "ic95_sup": "0.9532279628017775"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-30-44-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.939835031068557",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.9037661876282479",
+      "ic95_sup": "0.9717626272075167"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-45-59-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.9680179423556248",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.9379533662024606",
+      "ic95_sup": "0.9915774869959411"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.9944689736212753",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.9817855492617352",
+      "ic95_sup": "1.0"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.990894854963719",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.9740527107552177",
+      "ic95_sup": "1.0"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.9181764052940885",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.8802271485303339",
+      "ic95_sup": "0.9524181015256472"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.9768819837039168",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.9571320820831197",
+      "ic95_sup": "0.9919652310754367"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.8992267584738121",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.8418139049037934",
+      "ic95_sup": "0.9503734539007122"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-SEXO-HOMBRE-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.9337432686554321",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.9055005313814206",
+      "ic95_sup": "0.9587887419747712"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-SEXO-MUJER-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.9649214034734742",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.9455427814603413",
+      "ic95_sup": "0.9826291399941091"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.9502002141169351",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.933702478573298",
+      "ic95_sup": "0.9661405134312409"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-18-29-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3119515737908952",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.24802750985551275",
+      "ic95_sup": "0.3754080127733247"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-30-44-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.18870967526184138",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.14016973368779176",
+      "ic95_sup": "0.24077942927982476"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-45-59-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.17521951519228632",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.12241431148604832",
+      "ic95_sup": "0.23213484452575478"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.09445254497600372",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05160578799839251",
+      "ic95_sup": "0.1466133092865995"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.11971449836659849",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.07686316393896706",
+      "ic95_sup": "0.1633059859223913"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2752243067986299",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.21709300151316083",
+      "ic95_sup": "0.3352101857545579"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2080791824313821",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.15612435273145575",
+      "ic95_sup": "0.2624816297851951"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.22504151244415635",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.15098178879549998",
+      "ic95_sup": "0.3000755055225135"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-SEXO-HOMBRE-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.24663312659506312",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2019488730157125",
+      "ic95_sup": "0.2941878854428412"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-SEXO-MUJER-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1630197226593992",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1276957664206805",
+      "ic95_sup": "0.19831535906524286"
+    },
+    {
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona 18+)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2025709425078389",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.17455706230784568",
+      "ic95_sup": "0.230711677615323"
+    }
+  ]
+}
