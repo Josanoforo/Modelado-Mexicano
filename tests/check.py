@@ -3049,6 +3049,11 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # NC-DECISIONES-1 (FP …f2e5-12) que el tablero derivado cita. Ninguno es rótulo de un espacio nuevo.
     "forense/encargos/2026-09-28-GEN2-MEDICION-CARRILES-2.md",
     "forense/analisis/medicion-carriles-2/apertura-TABLERO-CARRILES.md",
+    # GEN2-TUBERIA-TABLERO-UNICO-1 (29/sep/2026): el tablero único lleva, dentro del bloque derivado
+    # TABLERO-UNICO:PENDIENTES/CARRILES (lo reescribe el canal), texto verbatim de firmas y NC cuyo
+    # `E1` es la letra de la hoja NC-DECISIONES-1 (FP …f2e5-12); no es un rótulo de espacio nuevo.
+    "forense/tablero/TABLERO-PROGRAMA.md",
+    "docs/tablero.md",
     "forense/prereg-caja/MC2-ENIF2024-spec-v1_0.md",
     "forense/analisis/medicion-carriles-2/ENIF2024-dictamenes.tsv",
     "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-01.md",
