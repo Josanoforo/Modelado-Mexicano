@@ -66,7 +66,10 @@ A la pregunta «¿un solo PR o uno por programa?» y al informe de lo que faltab
 Reserva por estimando sin marca en manifiesto ni cargador (nueve olas); marcador-segmento desfasado; ENGASTO 2013 sin tabla de lugar de compra; columna con mismo nombre y códigos nuevos → PARO y v1_1; ENDUTIH 2025 reservada y consumida; ENVIPE 2026 en la memoria como reservada entera.
 
 ## Verificación
-VERIFICACION_PENDIENTE
+- [EJECUTADO] `python3 -m pytest -q tests/test_prereg_aperturas.py tests/test_apertura_*.py` → `348 passed` (auditoría AST limpia y 9 mutaciones detectadas × 17 medidores; contrato `corrida0` con campos obligatorios y `resultados` == esquema; `_valida_outputs` sobre las ramas todas/parcial/cero/sin IC; input ajeno rechazado; vista casa; ids reservados sin fila: 0; contendientes declarados sin fila: 0; sintéticos por ola).
+- [EJECUTADO] `python3 forense/prereg-aperturas/escribe_expedientes.py --verifica` → 34 CASA, 0 NO-CASA.
+- [EJECUTADO] `python3 forense/prereg-aperturas/simula_apertura.py --todos` (receta §4 aplicada en worktree temporal, sin payload) → rc 0: 15 `PRE-FLIGHT: VERDE` (avisos NO-VISIBLE-EN-ESTE-CONTEXTO, FP-352); LAPOP-2023 y PEW-2025 bloquean sólo por `input_manifiesto_RAIZ_NO_CONFIGURADA` de `descargas_mx` (raíz inexistente en NUBE: NO-VERIFICABLE-AQUÍ; contrato sin otro bloqueo). `git worktree list` al terminar: 1.
+- [EJECUTADO] `python3 tests/check.py --rapido` → `0 FAIL · 467 WARN`. `check.py --baseline` (suite completa): la corre el CI del PR, que es el juez (P-A).
 
 ## Archivos leídos
 `forense/prereg-aperturas/archivos-leidos-v1_0.txt` (el test comprueba que ningún id ni archivo reservado del manifiesto aparece).
