@@ -58,13 +58,30 @@ def _es_tabla_de_valor(rel: str) -> bool:
 MARCA_BLOQUE = ("<!-- TABLERO-DERIVADO:BEGIN -->", "<!-- TABLERO-DERIVADO:END -->")
 
 
-def _fuera_del_bloque(texto: str) -> str | None:
-    """Texto sin el bloque TABLERO-DERIVADO; `None` si no trae el par de marcas."""
-    ini, fin = MARCA_BLOQUE
+# Bloques que el canal reescribe además del principal (tools/tablero_unico.py:MARCAS).
+MARCAS_UNICO = (("<!-- TABLERO-UNICO:CARRILES:BEGIN -->", "<!-- TABLERO-UNICO:CARRILES:END -->"),
+                ("<!-- TABLERO-UNICO:PENDIENTES:BEGIN -->", "<!-- TABLERO-UNICO:PENDIENTES:END -->"))
+
+
+def _sin_par(texto: str, ini: str, fin: str) -> str | None:
     a, b = texto.find(ini), texto.find(fin)
     if a < 0 or b < a:
         return None
     return texto[:a] + texto[b + len(fin):]
+
+
+def _fuera_del_bloque(texto: str) -> str | None:
+    """Texto sin los bloques derivados del tablero; `None` si no trae el par
+    TABLERO-DERIVADO. Los pares TABLERO-UNICO se quitan si están (el canal
+    los reescribe: defecto del PR [deriva] #1351, `check` rojo)."""
+    fuera = _sin_par(texto, *MARCA_BLOQUE)
+    if fuera is None:
+        return None
+    for ini, fin in MARCAS_UNICO:
+        quitado = _sin_par(fuera, ini, fin)
+        if quitado is not None:
+            fuera = quitado
+    return fuera
 
 
 def _solo_cambia_bloque(base: str, cabeza: str, rel: str) -> bool:
