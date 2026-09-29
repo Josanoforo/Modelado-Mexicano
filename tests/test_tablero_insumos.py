@@ -221,7 +221,54 @@ def caso_c():
 
 # ── (D) el libro real ───────────────────────────────────────────────────────────────────────
 ACTIVACION = "2026-09-29"  # filas nacidas desde este día deben cumplir; las anteriores solo avisan
-EXCEPCIONES = {}  # id -> razón: «nadie ocupó la fila» (se listan en cada corrida)
+# id -> razón: «nadie ocupó la fila» (se listan en cada corrida). Salen de P4 (28 → 29/sep/2026): la razón
+# declara el universo que se examinó (A.4/A.13); la evidencia por fila vive en forense/analisis/tablero-insumos-1/.
+EXCEPCIONES = {
+    "NC-260921-GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1-dd08-02":
+        "889463924487/500/524: cola 0/952, obtencion 0/179, sol 0/9, exp 0/8, FP 0/647; ENIGH_2024 (L572) y ENIGH_2024_NC (L159) no los listan. Abrir fila de cola ENIGH 2024 RNM 1116 docs.",
+    "NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-03":
+        "INPC/deflactor oficial: cola 0/952, obtencion 0/179, sol 0/9, exp 0/8; FP 2/647 ajenas (FP-54, FP-69); manifiesto sin id INPC. Abrir fila de cola INEGI INPC.",
+    "NC-260923-ASTRA5-U2-ENDIREH-6a2c-01":
+        "ENDIREH 2003 llave UPM/estrato o pesos replicados: cola 0/952 (solo FD), obtencion 0/179, sol 0/9, exp 0/8; FP 6a2c-05 solo ratifica la dependencia. Abrir fila o expediente INEGI.",
+    "NC-260923-ASTRA5-U3-POLITICA-COMPLETAR-d459-01":
+        "Doc metodológico ENCUP 2012: cola 0/952 (fila ENCUP = base 2012), obt 0/179, sol 0/9, exp 0/8; FP df0d-02 (en antes) fija dependencia, no pide. Abrir fila de cola SEGOB ENCUP 2012.",
+    "NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-06":
+        "16 constancias NO-ENCONTRADO: cola 0/952, obtencion 0/179, sol 0/9, exp 0/8, FP 0/647 por id de afirmación e instrumento; varias sin instrumento identificado. Abrir fila por constancia.",
+    "NC-260925-GEN2-CORPUS-COMPLETO-1-7813-01":
+        "112 afirmaciones sin programa citado (cobertura-mapa: 112/112 vacío): cola 0/952, obt 0/179, sol 0/9, exp 0/8, FP 0/647. Identificar instrumento antes de abrir fila de cola.",
+    "NC-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-05":
+        "Tabulados ENIGH 2016-2022: cola 0/952 (ENIGH_20xx sin tabulados), obtencion 0/179, sol 0/9, exp 0/8, FP 0/647. Abrir fila de cola de tabulados publicados ENIGH 2016-2022.",
+    "NC-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-02":
+        "EMIF Norte/Sur COLEF: cola 0/952, obtencion 0/179, sol 0/9, exp 0/8, FP 0/647; manifiesto sin ids emif. Abrir fila de cola EMIF con la receta de lista-cerrada P1 §4.",
+    "NC-260926-GEN2-DINERO-SERIES-CNBV-BANXICO-1-8dbe-02":
+        "Banxico RIB tarjetas y personales: cola 0/952, obtencion 0/179, sol 0/9, exp 0/8, FP 0/647; manifiesto sin id RIB. Abrir fila de cola Banxico RIB.",
+    "NC-260926-GEN2-ASTRA6-C2-ENVIPE-1-7045-02":
+        "Calendario de difusión INEGI 2027: cola 0/952, obtencion 0/179, sol 0/9, exp 0/8; FP 7045-01 firma activación, no pide el dato. Abrir fila de cola cuando INEGI lo publique.",
+    "NC-260926-GEN2-COLA-LOTE-1-3a49-03":
+        "Proyecciones CONAPO por edad y sexo: cola 0/952, obtencion 0/179, sol 0/9, exp 0/8; FP 5/647 ajenas. Abrir fila de cola CONAPO proyecciones de población.",
+    "NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01":
+        "fila en edición por el PR #1312 (GEN2-MAPA-DOMINIOS-Y-LICENCIAS-1): no se toca aquí; sin solicitud propia (cola 0/952, obtencion 0/179, solicitudes 0/9, expedientes 0/8); la FP 8560-02 elige el acto LICENCIAS-2 en caja",
+    "NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-02":
+        "inegi terminos.html sha 97e97599: cola 0/952, obt 0/179, sol 0/9, exp 0/8, FP 0/647; manifiesto sin ese sha. El bloqueador ya cerró: falta solo registrar con --registra.",
+    "NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-01":
+        "ninguna FP abre esta ola: la reserva la levanta un pre-registro futuro o mesa por escrito (E.6); propuesta N1 de FP con texto listo en resultado-p4-apertura.tsv, sin acuñar (D-19)",
+    "NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-02":
+        "ninguna FP abre esta ola: la reserva la levanta un pre-registro futuro o mesa por escrito (E.6); propuesta N1 de FP con texto listo en resultado-p4-apertura.tsv, sin acuñar (D-19)",
+    "NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-03":
+        "ninguna FP abre esta ola: la reserva la levanta un pre-registro futuro o mesa por escrito (E.6); propuesta N1 de FP con texto listo en resultado-p4-apertura.tsv, sin acuñar (D-19)",
+    "NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-05":
+        "ninguna FP abre esta ola: la reserva la levanta un pre-registro futuro o mesa por escrito (E.6); propuesta N2 de FP con texto listo en resultado-p4-apertura.tsv, sin acuñar (D-19)",
+    "NC-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-02":
+        "ninguna FP abre esta ola: la reserva la levanta un pre-registro futuro o mesa por escrito (E.6); propuesta N3 de FP con texto listo en resultado-p4-apertura.tsv, sin acuñar (D-19)",
+    "NC-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-07":
+        "ninguna FP abre esta ola: la reserva la levanta un pre-registro futuro o mesa por escrito (E.6); propuesta N4 de FP con texto listo en resultado-p4-apertura.tsv, sin acuñar (D-19)",
+    "NC-260926-GEN2-ASTRA6-C2-ENVIPE-1-7045-03":
+        "ninguna FP abre esta ola: la reserva la levanta un pre-registro futuro o mesa por escrito (E.6); propuesta N5 de FP con texto listo en resultado-p4-apertura.tsv, sin acuñar (D-19)",
+    "NC-260926-GEN2-RECIBO-ASTRA6-N-996b-04":
+        "ninguna FP abre esta ola: la reserva la levanta un pre-registro futuro o mesa por escrito (E.6); propuesta N6 de FP con texto listo en resultado-p4-apertura.tsv, sin acuñar (D-19)",
+    "NC-260928-GEN2-CORPUS-CACHE-PARQUET-1-01aa-02":
+        "ninguna FP abre esta ola: la reserva la levanta un pre-registro futuro o mesa por escrito (E.6); propuesta N7 de FP con texto listo en resultado-p4-apertura.tsv, sin acuñar (D-19)",
+}
 
 
 def caso_d():
