@@ -1,39 +1,75 @@
-# Nota de cierre · ACTO GEN2-APERTURAS-PREREGISTRADAS-1 · 28/sep/2026
+# Nota de cierre · ACTO GEN2-APERTURAS-PREREGISTRADAS-1 · 28–29/sep/2026
 
-ADR-260928-GEN2-APERTURAS-PREREGISTRADAS-1-68b3-01 · rama `claude/new-session-bhqoo8` · 0-bis `68b3c611` · base `9d2550b9` (= SHA de redacción; 0 commits detrás).
+ADR-260928-GEN2-APERTURAS-PREREGISTRADAS-1-68b3-01 · rama `claude/new-session-bhqoo8` · 0-bis `68b3c611` · base `9d2550b9` (= SHA de redacción; `git rev-list --count HEAD..origin/main` = 0 al cerrar) · PR #1313.
 
-**Contadores movidos: cero.** No abre, no mide, no adopta, no pide firmas.
+**Contadores movidos: cero.** No abre, no mide, no adopta, no pide firmas: la vista muestra qué firma abriría cada ola.
+
+## Respuesta de mesa (verbatim, 29/sep, en sesión)
+A la pregunta «¿un solo PR o uno por programa?» y al informe de lo que faltaba: «Hazlo como mejor creas conveniente pero termina el encargo completo». Decisión: **un solo PR** (#1313); la cabecera pedía «PR por programa», pero 17 expedientes comparten plantilla, guardia, prueba común y vista, y partirlos multiplicaría los conflictos en esos archivos compartidos.
 
 ## ARRANQUE
-- [EJECUTADO] Entorno (hook): `ENTORNO-DERIVADO = NUBE`, `montado=NO archivos_examinados=0`, red `DENEGADA-POR-POLITICA`. Coincide con el encargo (NUBE). `data/raw` ausente: no se crea (nada se descarga).
+- [EJECUTADO] Hook: `ENTORNO-DERIVADO = NUBE`, `montado=NO archivos_examinados=0`, red `DENEGADA-POR-POLITICA`. Coincide con el encargo (NUBE). `data/raw` ausente; nada se descarga.
 - [EJECUTADO] Duplicado: `git ls-remote --heads origin | grep -ic APERTURAS` → 0; un worktree.
 
-## P1 · Inventario por id
-- [EJECUTADO] Premisa §3 caída (logística, prevista): el campo no es `reserva` sino `estado_reserva`. Vocabulario (conteo por lector YAML sobre 7198 entradas): `RESERVADA-NO-ABIERTA-NO-INDEXAR-L` 173 · `RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR` 4 · `DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS` 45 (documentación, no reserva de respuestas: fuera).
-- [EJECUTADO] `python3 forense/prereg-aperturas/inventario_aperturas.py --escribe` → `filas=30 ids=198`: 27 programa×ola con campo (177 ids) + 3 por firma/encargo sin campo (ENVIPE 2026, ENIGH 2024, ENIF 2024).
-- [EJECUTADO] `cruces_vistos` derivado de todo `data/corrida0/CALC-*/spec.yaml`.
+## P1 · Inventario (universo declarado, A.4/A.15)
+- [EJECUTADO] Premisa §3 caída (logística, prevista): el campo es `estado_reserva`, no `reserva`. Pero el campo no es el universo completo: la definición operativa de «reservado» es `tools/corpus_loader.py::motivo_reserva` (campo que empieza por RESERVADA **o** `RESERVA_FUERA_DEL_MANIFIESTO`: firmas R04/R05/R06 y régimen de la memoria: ENVIPE 2026, ENIGH 2024, ENCO). Reserva **257** ids de 7 198.
+- [EJECUTADO] Segunda fuente: 27 CALC sellados declaran en su `spec.yaml` una ola «RESERVADA (E.6), no es input» (`inventario_aperturas.contendientes_declarados()`; regex `ola_reservada:|RESERVAD[AO]…no (es|son) input|RESERVADA para estos reactivos` sobre las 200 primeras líneas de los 390 `spec.yaml`, sólo CALC con `sello.json`).
+- [EJECUTADO] Tercera fuente: `data/corrida0/marcador-segmento.tsv` (csv.DictReader, 327 filas): 19 celdas `estado=RESERVADA` (ENIF 2024 14, ENVIPE 2025 4, ENUT 2024 1).
+- [LEÍDO] Estados cambiados por firma o por código congelado, cada uno con cita en `ESTADO_POR_FIRMA`: R09 (ADENDA-1 de TRAMITE-FIRMAS-21) levanta por escrito CAAS 2015, ENG 2009 (ENGPEE) y MIGRACIÓN 2002 (MSM) —payloads aún en custodia, NC-260928-GEN2-TRAMITE-FIRMAS-21-8560-01— y deja ENCRIGE 2016 como vista; ENVIPE 2026, ENIF 2024 (módulo 7 R06 + cruces), ENIGH 2024 (salvo AMAI y remesas) y ENUT 2024 son reservas parciales; ENCIG 2025 (FP-260923-…-657c-01) y ENVIPE 2025 (sus 38 celdas de cruce tienen R sellada en `CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001`) están abiertas por código congelado.
+- [EJECUTADO] `python3 forense/prereg-aperturas/inventario_aperturas.py --escribe` → `filas=41 ids=299`. `--verifica` → CASA.
 
 ## P2 · Expedientes
-- [LEÍDO] `forense/analisis/familias-2027/familias-2027-estado-v1_0.tsv`: las 8 familias apuntan a olas 2027 → **ninguna ola hoy reservada es R de una familia**.
-- Contendientes sellados que nombran una ola reservada como R: `CALC-ENSANUT-PISOS-SALUD-0001` (spec.yaml:22 `ola_reservada: ENSANUT 2025`; piso 2024 con ICC, spec §4) y `CALC-ENCODAT-PISOS-SUSTANCIAS-0001` (spec.yaml:22). Expediente completo en `forense/prereg-aperturas/{ENSANUT,ENCODAT}-2025/`: `APERTURA-<X>-spec-v1_0.md` + sidecar, `APERTURA-<X>-spec.yaml`, `medidor_apertura_<x>.py`, `RECETA-APERTURA-<X>.md`.
-- Rama prevista del encargo tomada: los cuestionarios 2025 están en el manifiesto pero no montados (NUBE); códigos fijados sobre el cuestionario de la ola del piso, rotulado; regla fijada: columna sin texto/códigos iguales en el catálogo 2025 → NO-ESTIMABLE al abrir.
-- Guardia común `forense/prereg-aperturas/guardia_apertura.py`: auditoría AST (groupby/value_counts multi-llave, crosstab, pivot, pivot_table, unstack, lectura fuera de `lee_payload_reservado`), agregador único de una variable, adjudicación de cobertura (Wilson; CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE).
-- [EJECUTADO] `python3 -m pytest -q tests/test_prereg_aperturas.py` → `29 passed`: 8 mutaciones × 2 medidores detectadas, borrado de la auditoría detectado, cruce rechazado, cuatro ramas del dictamen, medidores sobre sintético con el esquema de cada ola, vista cubre todo id reservado, ningún payload reservado en la lista de leídos.
-- 27 expedientes mínimos (`EXPEDIENTE-<X>.md`).
+- [EJECUTADO] Familias 2027: las 8 de `familias-2027-estado-v1_0.tsv` apuntan a olas 2027 → ninguna ola hoy reservada es R de una familia (`familia = NINGUNA` en toda fila).
+- 17 expedientes completos (6 673 celdas R), uno por ola con contendiente sellado pendiente; los dos del 28/sep (ENSANUT, ENCODAT) más 15 escritos por cinco subagentes con perímetro propio sobre la misma plantilla (REGLAS-DE-LECTURA: lote ≥ 3 piezas):
 
-## Premisas caídas (no PARO; declaradas)
-- **ENVIPE 2026 ya abierta**: `CALC-DUELO-ENVIPE2026-ADJUDICACION-0001` (ejecucion.json `2026-09-22T20:19:14Z`, veredictos `NADIE-VENCE`/`PISO`) y `-MARGINALES-ADJUDICACION-0001` (`2026-09-23T01:01:47Z`). Fila `PREMISA-CAIDA-YA-ABIERTA`.
-- **ENIF 2024 ya abierta** por `CALC-C2-COMPUESTO-IC-ENIF2024-0001` y otros cuatro CALC. Fila `PREMISA-CAIDA-YA-ABIERTA`.
-- **ENIGH 2024**: apertura parcial ya hecha (AMAI C7 y duelo nacional de remesas); resto: solo mesa.
-- **ENDUTIH 2025**: RESERVADA en el campo, consumida por tres CALC sellados (hallazgo en `forense/hallazgos.md`).
-- **ENCIG 2025 fuera del árbitro, ENSU/ENOE último periodo, CSES módulo 5**: sin contendiente sellado que las use como R → expediente mínimo (solo mesa por escrito). ENCIG 2025 está abierta según la memoria y no tiene id reservado: sin fila.
+| expediente | contendientes sellados | payloads | celdas R |
+|---|---|---|---|
+| `CENSO-2020` | `CALC-EIC-HOGARES-2015-0001`, `CALC-CCPV-FAM-PISOS-0001` | 32 | 800 |
+| `EDR-2024` | `CALC-EDR-SUICIDIO-PISOS-0001` | 1 | 288 |
+| `EMAT-2024` | `CALC-EMAT-PAREJA-PISOS-0001` | 1 | 225 |
+| `ENADID-2023` | `CALC-ENADID-FAMILIA-HOGARES-0001`, `CALC-ENADID-COLA-2018-0001` | 1 | 313 |
+| `ENASEM-2024` | `CALC-ENASEM-ESCOLARIDAD-2021-0001` | 1 | 14 |
+| `ENCODAT-2025` | `CALC-ENCODAT-PISOS-SUSTANCIAS-0001` | 2 | 130 |
+| `ENGASTO-2013` | `CALC-ENGASTO-CONSUMO-PISOS-0001` | 3 | 330 |
+| `ENIF-2024` | `CALC-C2-COMPUESTO-RESERVADAS-0001`, `CALC-C2-COMPUESTO-IC-ENIF2024-0001` | 1 | 68 |
+| `ENIGH-2024` | `CALC-ENIGH-CONSUMO-PISOS-0002`, `CALC-ENIGH-CONSUMO-PISOS-0001`, `CALC-PDR1-ENIGH2022-0001` | 5 | 1100 |
+| `ENOE-2026T2` | `CALC-ENOE-PARTICIPACION-2024T4-0001` | 1 | 144 |
+| `ENPECYT-2017` | `CALC-ENPECYT-CONOC-PISOS-0001` | 1 | 100 |
+| `ENSANUT-2025` | `CALC-ENSANUT-PISOS-SALUD-0001` | 4 | 167 |
+| `ENSU-2026` | `CALC-ENSU-PISOS-0001`, `CALC-ENSU-SERIE-0001` | 1 | 2025 |
+| `ENVIPE-2026` | `CALC-ENVIPE-PERCEPCION-2024-0001` | 1 | 138 |
+| `LAPOP-2023` | `CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001` | 1 | 260 |
+| `LATINOBAROMETRO-2024` | `CALC-LATINOBAROMETRO-PISOS-2023-0001`, `CALC-LATINOBAROMETRO-COLA-2023-0001` | 1 | 408 |
+| `PEW-2025` | `CALC-PEW-RELIGION-2024-0001`, `CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001`, `CALC-PEW-MIGRACION-MEX-0001` | 1 | 163 |
 
-## P3 · Vista y tablero
-- `data/corrida0/aperturas-pendientes-v1_0.tsv` registrada en `data/INFRAESTRUCTURA-v1_0.md`.
-- `tools/tablero_carriles.py`: F15, 9 líneas añadidas (≤ 10). [EJECUTADO] `--json` → el stopper RESERVA cita el expediente (ENCODAT-2025, ENDUTIH-2025, ENOE-2026T2). `--verifica` da `NO-CASA` en md/html **también sin mi cambio** (el job derivados lo regenera).
+- Cada expediente: `APERTURA-<X>-spec-v1_0.md` + sidecar (D-15, secciones 0–7 con módulo de auditoría v2.16), `APERTURA-<X>-spec.yaml` (contrato `corrida0` completo, `calc_id CALC-APERTURA-<X>-0001`, payloads con sha del manifiesto y todo código como input `origen: repo` con sha), `medidor_apertura_<x>.py` (auditoría AST de sí mismo como primera sentencia; `lee_payload_reservado` única lectura; `proporcion_por_grupo` único agregador), `RECETA-APERTURA-<X>.md` (firma → caja → preflight documental → un commit: levantar custodia + copiar contrato → preflight → run → asiento).
+- Regla de adjudicación fijada antes de abrir: cobertura «R dentro del IC del contendiente» con Wilson 95 %, dictamen CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE; en ENIF 2024 (piso vs retador C2) la regla del precedente sellado (ΔMAE, umbral 0.5 pp, `DIN-lote-enif2024-spec-v1_0.md:181-194`), dictaminada antes de abrir como NADIE-OCUPÓ-LA-FILA para `informal_cualquiera` (sin retador sellado; regla 6) → primaria la cobertura del piso.
+- Rama prevista del encargo §5 tomada en los 17: los códigos se fijan sobre la ola del piso (la documentación de la ola reservada no está montada en NUBE); columna ausente → NO-ESTIMABLE; columna con otros códigos → PARO y v1_1 (NC-…-68b3-01).
+- 24 expedientes mínimos (`EXPEDIENTE-<X>.md`): olas sin contendiente sellado → «sólo mesa por escrito» (o ya levantadas/abiertas, con su cita).
+
+## P3 · Vista, tablero, receta
+- `data/corrida0/aperturas-pendientes-v1_0.tsv` registrada en INFRAESTRUCTURA; viaja versionada con cabecera de procedencia (la marca `# DERIVADO — NO EDITAR` la reservaba al canal y rompía `enrutamiento-pr`: corregido en 00f928fa).
+- `tools/tablero_carriles.py`: F15, 9 líneas; el stopper RESERVA cita el expediente. `--verifica` md/html NO-CASA también sin este cambio (lo regenera el job de derivados).
+
+## Defectos corregidos en el camino (≤ 10 líneas, declarados)
+- `guardia_apertura.wilson` daba −3e-18 o 1+2e-16 con k = 0 o k = n y `_valida_outputs` lo rechazaba (lo encontró el subagente de ENIF): acotado a [0, 1].
+- `-MAE-PUNTO` en ENADID promediaba hogar con persona (§4 v2.16): se calcula sólo sobre celdas persona.
+- ENSANUT/ENCODAT: la spec prometía NO-ESTIMABLE por columna ausente pero el lector levantaba KeyError: ahora reactivo ausente entra vacío y diseño ausente es PARO (test con lector falso).
+
+## Premisas caídas (no PARO)
+- ENVIPE 2026 no está «reservada» entera ni «abierta»: los duelos leyeron sólo `tmod_vic` y `NIV`; `tper_vic1` (el piso de percepción) sigue reservada → expediente ENVIPE-2026.
+- ENIF 2024 «m7»: reserva por módulo en `corpus_loader` (R06); los cruces del marcador son otra reserva; ambos en su fila.
+- ENCIG 2025 «fuera del árbitro» y ENVIPE 2025: ya abiertas por código congelado; sin expediente.
+- ENDUTIH 2025 y CSES módulo 5: RESERVADAS por firma, sin contendiente sellado → sólo mesa. ENDUTIH además consumida por tres CALC (hallazgo).
+
+## Hallazgos (`forense/hallazgos.md`, 28/sep)
+Reserva por estimando sin marca en manifiesto ni cargador (nueve olas); marcador-segmento desfasado; ENGASTO 2013 sin tabla de lugar de compra; columna con mismo nombre y códigos nuevos → PARO y v1_1; ENDUTIH 2025 reservada y consumida; ENVIPE 2026 en la memoria como reservada entera.
+
+## Verificación
+VERIFICACION_PENDIENTE
 
 ## Archivos leídos
-`forense/prereg-aperturas/archivos-leidos-v1_0.txt` (test: ningún id ni archivo reservado del manifiesto aparece).
+`forense/prereg-aperturas/archivos-leidos-v1_0.txt` (el test comprueba que ningún id ni archivo reservado del manifiesto aparece).
 
 ## Auditoría (v2.16)
-PROSPECTIVA por construcción en los dos expedientes (contendiente sellado antes de R); unidad persona; un eje a la vez; oferta antes que preferencia en conductas de uso de servicios; nada se mezcla con RETROSPECTIVO. Cifras a mano: ninguna.
+PROSPECTIVA por construcción en los 17 (contendiente sellado antes de R); las celdas ya vistas (ENADID 18, Censo 7, ENIGH 3 con reserva) se reportan RETROSPECTIVAS y no puntúan. Unidad declarada por expediente; ninguna media de hogar con persona ni de delito con persona. Un eje a la vez, o una etiqueta de celda construida en los cruces de ENIF. Oferta antes que preferencia en conductas de uso de servicios y consumo. Cifras tecleadas a mano: ninguna (hashes y umbrales de la regla).
