@@ -43,3 +43,15 @@ def test_grafias_puras_inegi_unificadas():
     malas = [e["id"] for e in es if "inegi.org.mx" in str(e.get("url_origen") or "")
              and str(e.get("licencia") or "").strip() in viejas]
     assert not malas, malas[:20]
+
+
+def test_licencias_p2_solo_con_pagina_sellada():
+    """GEN2-MAPA-DOMINIOS-Y-LICENCIAS-1 (P2): cada regla de licencia cita una página sellada que existe, con su
+    sha256 y bytes del índice, y con la cita verbatim dentro (compuerta «licencia solo con página de términos
+    sellada»; PARO c: inventar una licencia). Una página alterada o una cita que ya no está la rompe."""
+    import sys
+    sys.path.insert(0, str(RAIZ / "forense/analisis/mapa-dominios-1-2"))
+    import aplica_licencias_p2 as p2
+    reglas = p2.lee_tsv(p2.D / "reglas-p2.tsv")
+    assert reglas, "reglas-p2.tsv vacío"
+    p2.verifica_evidencia(reglas, p2.lee_tsv(p2.D / "indice.tsv"))
