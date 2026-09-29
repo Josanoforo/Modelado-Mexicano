@@ -42,6 +42,11 @@ YA_ADJUDICADOS = {
     "CALC-C2-COMPUESTO-IC-ENVIPE2025-0001": "CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001 (23/sep): R sellada de las 38 celdas; C2 coincide 35/38 a 1e-6",
 }
 
+# CALC que declaran una ola RESERVADA como no-input y cuya ola aún no tiene expediente de apertura que los
+# liste; entran como contendientes cuando se escriba ese expediente (cita = ola y quién lo decide).
+CONTENDIENTE_SIN_EXPEDIENTE = {
+    "CALC-MC2-ENOE-0001": "ENOE 2026T1/2026T2 · GEN2-MEDICION-CARRILES-2 (#1327); decisión de mesa en sesión 28/sep: lista declarada; entra al expediente ENOE-2026T1 cuando exista",
+}
 # (programa, ola) -> (estado_vigente, cita). Sólo lo que una firma o un código congelado cambió.
 ESTADO_POR_FIRMA = {
     ("CAAS", "2015"): ("LEVANTADA-POR-ESCRITO", "R09 (a), ADENDA-1 de TRAMITE-FIRMAS-21; payloads siguen en reserva_respondentes: NC-260928-GEN2-TRAMITE-FIRMAS-21-8560-01"),

@@ -178,7 +178,8 @@ def test_todo_contendiente_declarado_esta_en_la_vista():
     contendiente de una fila, o en YA_ADJUDICADOS con su cita."""
     declarados = set(INV.contendientes_declarados())
     en_vista = {c for fila in _vista() for c in fila["contendientes"].split(";") if c}
-    assert declarados and sorted(declarados - en_vista - set(INV.YA_ADJUDICADOS)) == []
+    assert declarados and sorted(declarados - en_vista - set(INV.YA_ADJUDICADOS)
+                                 - set(INV.CONTENDIENTE_SIN_EXPEDIENTE)) == []
 
 
 def test_expediente_completo_donde_hay_contendiente():
