@@ -1,0 +1,42 @@
+{
+  "columnas_reales_no_autorizadas_en_codigo": [],
+  "comandos_con_red": [],
+  "init": {
+    "claude_code_version": "2.1.284",
+    "cwd": "/home/pc0/vyc27-rec/emat-pareja-pisos-0001",
+    "mcp_servers": [],
+    "model": "claude-opus-5-5",
+    "permissionMode": "acceptEdits",
+    "tools": [
+      "Bash",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Read",
+      "Write"
+    ]
+  },
+  "llamadas": 21,
+  "modelos": [
+    "claude-opus-5-5"
+  ],
+  "paquete": "emat-pareja-pisos-0001",
+  "resultado": {
+    "duration_ms": 301355,
+    "is_error": false,
+    "num_turns": 22,
+    "permission_denials": [],
+    "subtype": "success",
+    "total_cost_usd": 1.0075243999999999
+  },
+  "rutas_fuera_del_cwd": [
+    "/pdftotext"
+  ],
+  "session_id": "aa6467d9-b0b8-4d20-ab5a-c25992cc9e6a",
+  "veredicto": {
+    "CAMPOS-DENTRO": true,
+    "CERO-LECTURAS-FUERA": false,
+    "SIN-RED": true,
+    "SOLO-OPUS": true
+  }
+}

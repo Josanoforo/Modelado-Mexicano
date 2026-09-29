@@ -1,0 +1,308 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<title>WVS Database</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+	<META CONTENT="WVS Data ArchiveJDS,Survey, JDSurvey, online data analysis, encuestas,WVS Database,World Values Survey Data-Archive" NAME="keywords">
+	<META CONTENT="World Values Survey Data-Archive Online Survey analysis website" NAME="description">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, maximum-scale=10, minimum-scale=0.1, user-scalable=yes">
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@WVS_Survey" />
+<meta name="twitter:title" content="World Values Survey Association" />
+<meta name="twitter:description" content="World Values Survey Association" />
+<!-- <meta name="twitter:image" content="https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg" />	 -->
+	<script language="JavaScript" src="js/jds.js"></script>
+	<script language="JavaScript" src="/maps/FusionCharts.js"></script>
+	<link href="css/reset.css" rel="stylesheet" type="text/css">
+	
+	<link href="css/ajtypography.css" rel="stylesheet" type="text/css">
+	
+	<link href="css/sub.css?version=2020-07-22" rel="stylesheet" type="text/css">
+	
+	
+	<link href="css/news.css" rel="stylesheet" type="text/css">
+	
+	
+	<link href="css/events.css" rel="stylesheet" type="text/css">
+	
+	
+	<link href="css/custom_search.css" rel="stylesheet" type="text/css">
+	
+
+	<link href="css/ajWVS.css?version=2020-07-22" rel="stylesheet" type="text/css">
+	<script type='text/javascript' src="js/jquery.tools.min.js"></script>
+
+	<link rel="STYLESHEET" type="text/css" href="js/grid/dhtmlxtabbar.css">
+	<script src="js/grid/dhtmlxcommon.js"></script>
+	<script src="js/grid/dhtmlxtabbar.js"></script>
+	
+<script>
+dhtmlx.skin = "dhx_web";
+</script>
+
+</head>
+<body class="body" link="#000000" vlink="#000000" alink="#000000" ><div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_EN/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<form name=Datos method=Post action="">
+	<input type=hidden name=ulthost value="WVS">
+	<input type=hidden name=CMSID>
+<script language="JavaScript">
+	var datos=document.Datos;
+	var dialogBox=false;
+	var dialogDiv="";
+	
+	
+	function Home() {
+		datos.action="wvs.jsp";
+		datos.submit();
+	}
+	function SetContent(clave) {
+		datos.CMSID.value=clave;
+		if (clave=="#Home" || clave=="Home") {
+			datos.action="wvs.jsp";
+		} else if (clave.startsWith("#")) {
+			datos.action="WVS"+clave.substring(1)+".jsp";
+		} else {
+			datos.action="WVSContents.jsp";
+		}
+		datos.submit();
+	}
+	 function jdAddCssStyle(nombre,estilo) {
+	 	if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+	 		var x = document.styleSheets[0];
+	 		x.insertRule(nombre+" {"+estilo+"}",x.cssRules.length);
+	 	} else {
+	 		document.styleSheets[0].addRule(nombre,estilo);
+	 	}
+	 }
+	function Inicia() {
+		var w=$( window ).width();
+		if (w<960) w=960;
+		if (w>2000) w=2000;
+		jdAddCssStyle(".body","width:"+w+"px !important;");
+		jdAddCssStyle(".AJPage","width:"+w+"px !important;");
+		jdAddCssStyle(".AJFoot","width:"+w+"px !important;");
+		jdAddCssStyle(".bodyFrame","width:"+w+"px !important;");
+	}
+	
+</script>
+ 
+<div class="AJHead"></div>
+<div id=PAGE class="AJPage">
+	<div class=AJFondo>
+ 	
+<div id="page_content">
+	<div id="content_container">
+
+		<script type='text/javascript'>jQuery(function() {jQuery('#header_images > div:gt(0)').hide();setInterval(function() { jQuery('#header_images > div:first').fadeOut(3000).next().fadeIn(3000).end().appendTo('#header_images');},  5000);});</script><div id='content_header'><div id='content_header_image2'><div id='header_images'><div><img src='banners/mixed23.jpg' width=730 /></div><div><img src='banners/mixed23.jpg' width=730 /></div><div><img src='banners/mixed24.jpg' width=730 /></div><div><img src='banners/mixed25.jpg' width=730 /></div><div><img src='banners/mixed26.jpg' width=730 /></div></div><div id='content_header_left_fade'><a href='JavaScript:Home()'><img src='/banners/logoWVS215.png' alt='Archive Logo' class='archive_logo' /></a></div></div><div id='content_header_bottom_fade'></div></div>
+		
+			<div id="column_container">
+			 	<!--Columna0 -->
+				<div id="left_column">
+					<div id="left_column_header">
+						<div class="section_heading_label">In This Section</div>
+					</div>
+					<!--left-content -->
+					<div id="left_column_content">
+						<ul class='nav'><ul class='nav'><li><a href="javaScript:SetContent('#News')"  title="News">News</a><li><a href="javaScript:SetContent('WhoWeAre')"  title="Who we are">Who we are</a><li><a href="javaScript:SetContent('WhatWeDo')"  title="What we do">What we do</a><li><a href="javaScript:SetContent('wvswave7')"  title="WVS wave 8">WVS wave 8</a><li><a href="javaScript:SetContent('RINGLEHART')"  title="Ronald F. Inglehart<br>In Memoriam">Ronald F. Inglehart<br>In Memoriam</a><li><a href="javaScript:SetContent('Findings')"  title="Findings & Insights">Findings & Insights</a><li><a href="javaScript:SetContent('DataDoc')"  title="Data and Documentation">Data and Documentation</a><ul class='nav'><li><a href="javaScript:SetContent('Documentation')"  style='font-weight:600;'  title="Data Download">Data Download</a><ul class='nav'><li><a href="javaScript:SetContent('#EVStrend')"  title="WVS/EVS Trend 1981-2022">WVS/EVS Trend 1981-2022</a><li><a href="javaScript:SetContent('#EVSjoint2017')"  title="WVS/EVS Joint 2017">WVS/EVS Joint 2017</a><li><a href="javaScript:SetContent('#DocumentationWV7')"  title="Wave 7 (2017-2022)">Wave 7 (2017-2022)</a><li><a href="javaScript:SetContent('#DocumentationWV6')"  title="Wave 6 (2010-2014)">Wave 6 (2010-2014)</a><li><a href="javaScript:SetContent('#DocumentationWV5')"  title="Wave 5 (2005-2009)">Wave 5 (2005-2009)</a><li><a href="javaScript:SetContent('#DocumentationWV4')"  title="Wave 4 (1999-2004)">Wave 4 (1999-2004)</a><li><a href="javaScript:SetContent('#DocumentationWV3')"  title="Wave 3 (1995-1998)">Wave 3 (1995-1998)</a><li><a href="javaScript:SetContent('#DocumentationWV2')"  title="Wave 2 (1990-1994)">Wave 2 (1990-1994)</a><li><a href="javaScript:SetContent('#DocumentationWV1')"  title="Wave 1 (1981-1984)">Wave 1 (1981-1984)</a><li><a href="javaScript:SetContent('#DocumentationWVL')"  title="Timeseries (1981-2022)">Timeseries (1981-2022)</a><li><a href="javaScript:SetContent('regional')"  title="Regional WVS surveys">Regional WVS surveys</a></ul><li><a href="javaScript:SetContent('#Online')"  title="Online Analysis">Online Analysis</a><li><a href="javaScript:SetContent('Faqs')"  title="Frequently asked questions">Frequently asked questions</a><li><a href="javaScript:SetContent('#Support')"  title="Support">Support</a></ul><li><a href="javaScript:SetContent('Publications')"  title="Publications">Publications</a><li><a href="javaScript:SetContent('PaperSeries')"  title="Paper Series">Paper Series</a><li><a href="javaScript:SetContent('Webinar')"  title="Webinar Series">Webinar Series</a><li><a href="javaScript:SetContent('ContactUs')"  title="Contact Us">Contact Us</a></ul></ul>
+						<br class=clear/>
+					</div>
+				</div>	
+			 	<!--Fin Columna0 -->
+				<div id="right_column">
+					<div id="right_column_header">
+						<div id="page_heading_label">Documentation for Download</div>			
+					</div>
+					<!-- right content -->
+					<div id="right_column_content">
+						<div id="breadcrumb_container">
+							<a href="javaScript:SetContent('Home')">Home</a> <span>&rsaquo;</span><a href="javaScript:SetContent('DataDoc')">Data and Documentation</a> <span>&rsaquo;</span> Data Download
+					 	</div>
+						<div id="main_content">
+							
+							<p style="text-align:justify">The WVS has just completed wave 7&nbsp;data that comprises 64 surveys conducted in&nbsp;2017-2022. With 64&nbsp;countries and societies around the world and more than 80,000 respondents, this is the latest ressource made available for the research community.</p>
+
+<p style="text-align:justify">All the wave 7&nbsp;information is organized under <a href="https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp">WVS Wave 7 (2017-2022)</a>&nbsp;section in the left menu. You can download both aggregated an country documentation (questionnaires, pdf reports, data files). Files are available in several formats (SPSS, Stata, SAS, R, Excel).</p>
+
+<p style="text-align:justify">New sections have been created to allow download of the revised documentation for all waves. You may select any wave from the left menu.</p>
+
+<p style="text-align:justify"><strong>HOW DOCUMENTATION IS ORGANIZED</strong></p>
+
+<p style="text-align:justify">You can find now documentation at three levels: Country, Wave and Longitudinal.</p>
+
+<p style="text-align:justify"><strong>Country documentation&nbsp;</strong>allows you to download individual country files with either the data in Spss or Stata compatible formats, or else download PDF documents with the crossings by sex and age for all questions. You can as well download the original questionnaires used and the technical reports deposited at the archive.</p>
+
+<p style="text-align:justify"><strong>Wave documentation&nbsp;</strong>includes the revised official aggregates, a PDF report with the complete results for the wave (by country), the official questionnaire and some additional documents.</p>
+
+<p style="text-align:justify"><strong>Longitudinal documentation</strong>, to be included soon, comprises aggregates compatible with the EVS/WVS Integrated dictionnary, compatible and ready for merging. They allow working with time series.&nbsp;Select the <a href=WVSDocumentationWVL.jsp>WVS Longitudinal files</a> section to browse documentation. There are integrated codebooks, integrated files&nbsp;for the 1981-2022&nbsp;period and much more.</p>
+
+<p style="text-align:justify">When downloading files and result reports you will be asked to <strong>register</strong> at no charge and agree with the WVS non-redistribution data use license. All data and documentation is free of charge and has been produced by the WVS Data Archive in collaboration with the <a href=JavaScript:SetContent('#Participants')>WVS Participant network</a></p>
+
+<p style="text-align:justify"><strong>CITATION</strong></p>
+
+<p style="text-align:justify">When using the WVS data, please, make sure that you included a proper citation/ reference to the WVSA data-base as listed below. WVS data brought to you in free access is the result of work of a great number of scholars and survey researchers, and we believe their efforts should be acknowledged.</p>
+
+<p style="text-align:justify"><u>Citation format for WVS-7&nbsp;(2017-2022) data-set</u>:</p>
+
+<div style="background: rgb(238, 238, 238); padding: 5px 10px; border: 1px solid rgb(204, 204, 204); border-image: none; text-align: justify;">Haerpfer, C., Inglehart, R., Moreno, A., Welzel, C., Kizilova, K., Diez-Medrano, J., Lagos, M., Norris, P., Ponarin, E. &amp; Puranen B. (2022):&nbsp;World Values Survey Wave 7 (2017-2022) Cross-National Data-Set. Version: 4.0.0. World Values Survey Association. DOI:&nbsp;<a href="https://doi.org/10.14281/18241.18" style="color: rgb(17, 85, 204); font-family: Arial, Helvetica, sans-serif; font-size: small;" target="_blank">doi.org/10.14281/18241.18</a></div>
+
+<p style="text-align:justify"><u>Citation format for the aggregated (1981-2022) WVS data-file</u>:</p>
+
+<div style="background: rgb(238, 238, 238); padding: 5px 10px; border: 1px solid rgb(204, 204, 204); border-image: none; text-align: justify;">Inglehart, R., C. Haerpfer, A. Moreno, C. Welzel, K. Kizilova, J. Diez-Medrano, M. Lagos, P. Norris, E. Ponarin &amp; B. Puranen (eds.). 2022. World Values Survey:&nbsp;<u>All Rounds</u>&nbsp;- Country-Pooled Datafile.&nbsp;Madrid, Spain &amp; Vienna, Austria: JD Systems Institute &amp; WVSA Secretariat. Dataset Version 3.0.0.&nbsp;<a href="https://doi.org/10.14281/18241.17" style="color: rgb(17, 85, 204); font-family: Arial, Helvetica, sans-serif; font-size: small;" target="_blank">doi:10.14281/18241.17</a></div>
+
+<p style="text-align:justify">&nbsp;</p>		
+						</div>
+						<!--Fin content -->
+					</div>
+					<!--Fin right_column_content -->
+					<div>
+					
+				</div>	
+			 	<!--Fin right_column -->
+		
+			</div>
+			<!--column_container -->
+		
+	</div>
+</div>
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="CCJBL3X6T38WE">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+<script language=javascript>
+	function DOCDownload(id) {
+		datos.DOID.value=id;
+		datos.action="AJDownload.jsp";
+		datos.submit();
+		datos.action="";
+	}
+	function donate() {
+		console.log("DONATE");
+		datos.action="https://www.paypal.com/cgi-bin/webscr";
+		datos.target="_top";
+		datos.submit();
+	}
+</script>
+
+<div class=clear>&nbsp;</div>
+			</div> <!-- Fondo -->
+		</div><!-- Page -->
+		<div class=AJFoot >
+
+			<div id="footer_address">
+				<div class="vcard">
+					<div class="org" >PRESIDENT<br>&nbsp;</div>
+					<div class="street-address">Christian Haerpfer</div>
+					<div class="email"><a href="mailto:christian_haerpfer@univie.ac.at" title="Email of the President">christian_haerpfer@univie.ac.at</a></div>
+					<div class="locality">WVSA President</div> 
+					<div class="locality">University of Vienna</div>
+					<div class="locality">Institute of Political Science</div>
+					<div class="locality">Vienna 1010, Austria</div>
+				</div>
+			</div>
+ 
+			<div id="footer_address">
+				<div class="vcard">
+					<div class="org"  >SECRETARIAT<br>(WVSA Headquarters)</div>
+					<div class="street-address">Kseniya Kizilova</div>
+					<div class="email"><a href="mailto:wvsa.secretariat@gmail.com" title="Email of the Secretariat">wvsa.secretariat@gmail.com</a></div>
+					<div class="locality">Head of WVSA Secretariat</div> 
+					<div class="locality">Institute for Comparative</div>
+					<div class="locality">Survey Research</div>
+					<div class="locality">Vienna 1040, Austria</div>
+				</div>
+			</div>
+			<div id="footer_address">
+				<div class="vcard">
+					<div class="org" >LEGAL SEAT<br>&nbsp;</div>
+					<div class="street-address">Bi Puranen</div>
+					<div class="email" style="font-size:120%"><a href="mailto:bi.puranen@worldvaluessurvey.org" title="Email LEGAL SEAT">bi.puranen@worldvaluessurvey.org</a></div>
+					<div class="locality">Secretary-General</div>
+					<div class="locality">Institute for Future Studies</div>
+					<div class="locality">Stockholm, Sweden 101 31</div>
+				</div>
+			</div>
+			<div id="footer_address" style="width:200px;">
+				<div class="vcard">
+					<div class="org" >DATA ARCHIVE<br>&nbsp;</div>
+					<div class="street-address">Jaime Diez-Medrano</div>
+					<div class="email"><a href="mailto:jdiezmed@jdsurvey.net" title="Email WVSA Archive">jdiezmed@jdsurvey.net</a></div>
+					<div class="locality">Director of the WVSA Archive</div>
+					<span class="locality">Pza Manuel Rodrigo 1, B-1E</span>
+					<div class="locality">Madrid, Spain 28043</div>
+				</div>
+			</div>
+			<div class=clear></div>
+			<div style="width:100%;clear:both;text-align:center;">Copyright @2020 World Values Survey Association</div>
+<!-- 			<div id="footer_links" style="float:right;width:170px;margin-right:0px;"> -->
+<!-- 				<div id="footer_links_right" style="float:right;width:170px;"> -->
+<!-- 					<div class="footer_heading">Special pages</div> -->
+<!-- 					<ul> -->
+<!-- 						<li><a href="javaScript:SetContent('Links')" title="WVS interesting links">WVS links</a></li> -->
+<!-- 						<li><a href="WVSSiteMap.jsp" title="Site Map">Site Map</a></li> -->
+<!-- 						<li><a href="WVSNewsEventsMap.jsp" title="News and events index">Index of news & events</a></li> -->
+<!-- 						<li><a href="WVSPublicationsMap.jsp" title="Publications index">Index of publications</a></li> -->
+<!-- 						<li><a href="WVSSupport.jsp" title="Send support request">Support</a></li> -->
+<!-- 					</ul>	 -->
+<!-- 				</div> -->
+<!-- 				<br class="clear" /> -->
+<!-- 			</div> -->
+			<br class="clear" />
+		</div>
+
+			
+<input type=hidden name=DOID>			
+<input type=hidden name=INID>			
+<input type=hidden name=AJArchive value="WVS Data Archive">
+<input type=hidden name=EdFunction>
+<input type=hidden name=DOP value="">
+<input type=hidden name=PUB>
+<script language=JavaScript>
+	function  SetPubDoc(id) {
+		datos.PUB.value=id;
+		datos.action="WVSPublicationsDocuments.jsp";
+		datos.target="_top";
+		datos.submit();
+	}
+	function  SetPubBook(id) {
+		datos.PUB.value=id;
+		datos.action="WVSPublicationsBooks.jsp";
+		datos.target="_top";
+		datos.submit();
+	}
+	function  SetPubPaper(id) {
+		datos.PUB.value=id;
+		datos.action="WVSPublicationsPapers.jsp";
+		datos.target="_top";
+		datos.submit();
+	}
+	function  SetPubPres(id) {
+		datos.PUB.value=id;
+		datos.action="WVSPublicationsPresentations.jsp";
+		datos.target="_top";
+		datos.submit();
+	}
+</script>
+
+
+<script>
+		
+				var geodatos=encodeURIComponent("160.79.106.133\tx\tx\tx\tx\tx\tx\tx");
+				$.get("jdsStatJD.jsp?ID="+geodatos+
+					"&url=http%3A%2F%2F192.168.33.22%3A8380%2FWVSContents.jsp&referer=null&cms=Documentation",
+					function (resp2) {
+				});
+
+			
+</script>
+	</form>
+</body>
+</html>
+ 

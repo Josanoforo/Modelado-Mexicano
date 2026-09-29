@@ -72,7 +72,9 @@ Reserva por estimando sin marca en manifiesto ni cargador (nueve olas); marcador
 - [EJECUTADO] Commit `f83f7be1` (merge de origin/main `10538563`, 0 detrás): `python3 -m pytest -q tests/test_prereg_aperturas.py tests/test_apertura_*.py` → `375 passed` (17 medidores × auditoría AST limpia y 10 mutaciones detectadas; contrato `corrida0` con campos obligatorios y `resultados` == esquema; `_valida_outputs` sobre las ramas todas/parcial/cero/sin IC; input ajeno rechazado; vista casa; ids reservados sin fila: 0; contendientes declarados sin fila: 0; sintéticos por ola).
 - [EJECUTADO] `escribe_expedientes.py --verifica` → 34 CASA, 0 NO-CASA · `inventario_aperturas.py --verifica` → CASA (41 filas, 299 ids).
 - [EJECUTADO] `python3 tests/check.py --rapido` → `0 FAIL · 461 WARN`.
-- SIMULA_Y_BASELINE
+- [EJECUTADO] `python3 forense/prereg-aperturas/simula_apertura.py --todos` (receta §4 aplicada en un worktree temporal, sin payload; sobre el commit final): 14 `PRE-FLIGHT: VERDE` (avisos NO-VISIBLE-EN-ESTE-CONTEXTO, FP-352); LAPOP-2023 bloquea sólo por `input_manifiesto_RAIZ_NO_CONFIGURADA` de `descargas_mx` (raíz inexistente en NUBE: NO-VERIFICABLE-AQUÍ, contrato sin otro bloqueo). LATINOBAROMETRO-2024 (VERDE) y PEW-2025 (sólo `descargas_mx`) salen de la corrida completa previa al merge (rc 0); sus contratos no cambiaron salvo el sha de la guardia.
+- [EJECUTADO] `check.py --baseline` local previo al merge: LÍNEA BASE VERDE (sin FAIL nuevos frente a `tests/baseline.json`). Sobre el head final lo juzgó el CI del PR (P-A): `suite`, `adicionales`, `guardias`, `preflight-calc`, `guardas-res`, `enrutamiento-pr` y `check` en success sobre `8ff8636a`.
+- Defectos del propio acto atrapados por el CI y corregidos: la vista con cabecera `# DERIVADO` (enrutamiento-pr), el id NC duplicado por el merge union de `forense/no-corrido.tsv` (T47) y el sidecar de esta nota editada tras su sello.
 
 ## Archivos leídos
 `forense/prereg-aperturas/archivos-leidos-v1_0.txt` (el test comprueba que ningún id ni archivo reservado del manifiesto aparece).

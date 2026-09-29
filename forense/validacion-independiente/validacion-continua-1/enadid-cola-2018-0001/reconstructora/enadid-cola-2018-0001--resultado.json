@@ -1,0 +1,904 @@
+{
+ "version": 3,
+ "identidad": {
+  "paquete": "enadid-cola-2018-0001",
+  "version_entrada": "validacion-continua-1",
+  "sha256_entrada": "2907d439d3e41dc143848c606efdcce12b85fe3051d28be83afbcbfb56ac24fb"
+ },
+ "filas": [
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-01-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.605655930871956",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.45040485979322414",
+   "ic95_sup": "0.7563751400914581"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-02-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.43067659641895106",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.21733126240303086",
+   "ic95_sup": "0.6602012340695813"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-03-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.40298507462686567",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "19 de 2000 replicas bootstrap con denominador ponderado cero en el dominio; contrato conservador de la spec §4 (una replica degenerada -> sin EE ni IC)"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-04-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.15600350569675722",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0",
+   "ic95_sup": "0.4000225225225224"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-05-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4737185765589291",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2828709376871072",
+   "ic95_sup": "0.6712544162377138"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-06-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.46754468485418627",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.29408897898644115",
+   "ic95_sup": "0.62606401151186"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-07-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.47774720828613043",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.310101315012147",
+   "ic95_sup": "0.6430257940032188"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-08-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2707056214947176",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.13885744173972536",
+   "ic95_sup": "0.42103884361195376"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-09-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6696774193548387",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "4 de 2000 replicas bootstrap con denominador ponderado cero en el dominio; contrato conservador de la spec §4 (una replica degenerada -> sin EE ni IC)"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-10-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5008217377013258",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3495025646791548",
+   "ic95_sup": "0.643826257561312"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-11-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4601494664996328",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.31202063732980884",
+   "ic95_sup": "0.6049662923781225"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-12-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5273762965482061",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3883675431312296",
+   "ic95_sup": "0.6818490396458992"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-13-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.639562882015188",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.48252092179534795",
+   "ic95_sup": "0.7795428839885784"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-14-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.32655302487704724",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16256571807261935",
+   "ic95_sup": "0.5071533891923419"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-15-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.33464972527472525",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "1 de 2000 replicas bootstrap con denominador ponderado cero en el dominio; contrato conservador de la spec §4 (una replica degenerada -> sin EE ni IC)"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-16-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4307845084409136",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.31075982678443087",
+   "ic95_sup": "0.5550409141880118"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-17-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4391983041048372",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.26814249201927887",
+   "ic95_sup": "0.6054544158623283"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-18-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.44468429573664325",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.32002494171461293",
+   "ic95_sup": "0.5577531898635946"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-19-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5541038525963149",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "2 de 2000 replicas bootstrap con denominador ponderado cero en el dominio; contrato conservador de la spec §4 (una replica degenerada -> sin EE ni IC)"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-20-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3652059308072488",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.21006249742165983",
+   "ic95_sup": "0.514537661448648"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-21-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.43199651264167394",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.22064025507653662",
+   "ic95_sup": "0.6116558895121602"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-22-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5625317742755466",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.43461327283197765",
+   "ic95_sup": "0.72651419535755"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-23-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7781201848998459",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "17 de 2000 replicas bootstrap con denominador ponderado cero en el dominio; contrato conservador de la spec §4 (una replica degenerada -> sin EE ni IC)"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-24-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5220626534712404",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.39043992114068926",
+   "ic95_sup": "0.6545114331310563"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-25-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6033402922755741",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4197473829284883",
+   "ic95_sup": "0.7882502270630448"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-26-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5056468746505647",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.35883653214390043",
+   "ic95_sup": "0.6523618410707458"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-27-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.49464668094218417",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.19159950698434294",
+   "ic95_sup": "0.7870647530809539"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-28-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.29789358091244883",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1511058848593883",
+   "ic95_sup": "0.4498743172392424"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-29-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5318151373074347",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3670187216942017",
+   "ic95_sup": "0.7051893651997972"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-30-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.34871116986120293",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.13768744650738104",
+   "ic95_sup": "0.5691568503794511"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-31-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6177777777777778",
+   "estado_ic": "NO-IDENTIFICADA",
+   "motivo_ic": "96 de 2000 replicas bootstrap con denominador ponderado cero en el dominio; contrato conservador de la spec §4 (una replica degenerada -> sin EE ni IC)"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-32-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.569575974746182",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4603831549804819",
+   "ic95_sup": "0.6760433274764845"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-TAMLOC-100MIL-MAS-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.435655048425448",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3603388485277473",
+   "ic95_sup": "0.5179749081718812"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-TAMLOC-15MIL-99MIL-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4429186460807601",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3315632986827433",
+   "ic95_sup": "0.560585769212461"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-TAMLOC-2500-14999-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4270504565921811",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.35766601559566563",
+   "ic95_sup": "0.49583535724513034"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-TAMLOC-MENOS-2500-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4598473778210749",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4071454868490659",
+   "ic95_sup": "0.514376721691355"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-TOTAL-TODOS-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.44746265344617153",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4103417924343195",
+   "ic95_sup": "0.48506066199334946"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-01-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2743840312529905",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.25851669114803133",
+   "ic95_sup": "0.2901560267676159"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-02-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2723756092249954",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.258226847615678",
+   "ic95_sup": "0.28744775454100374"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-03-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2650248531405332",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.25069403749922586",
+   "ic95_sup": "0.27978896880353366"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-04-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2682727690455666",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2532216476946792",
+   "ic95_sup": "0.28379079903735577"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-05-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.23157857831536507",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2151513525071279",
+   "ic95_sup": "0.24849021700577234"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-06-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.30727845407338045",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.29198618224295847",
+   "ic95_sup": "0.3231342466241428"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-07-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.22580909522234843",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.21178254909120944",
+   "ic95_sup": "0.23994911575023878"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-08-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2920142894130864",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.27487751029968843",
+   "ic95_sup": "0.30837470178908993"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-09-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3533372305593054",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.33710221708270405",
+   "ic95_sup": "0.3703118248050454"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-10-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2622455096008764",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.24738163458999507",
+   "ic95_sup": "0.2782369041827153"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-11-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.25298043465860476",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.23613212166771097",
+   "ic95_sup": "0.2689345929522128"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-12-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.30263765781382873",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.28469751811072114",
+   "ic95_sup": "0.3192979315683145"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-13-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.26632594775696716",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.24944024444132942",
+   "ic95_sup": "0.2822894532183063"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-14-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2537976063388288",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.23993718320709026",
+   "ic95_sup": "0.26836178430337954"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-15-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.26175277452097684",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.245530583315909",
+   "ic95_sup": "0.27828051705240264"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-16-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.27783603150057096",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2620613369478822",
+   "ic95_sup": "0.29372774349313946"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-17-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3060310952249507",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2905785090883878",
+   "ic95_sup": "0.3216199427025318"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-18-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2753965126063847",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.26007019902737183",
+   "ic95_sup": "0.29198753352034046"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-19-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.21108532947876799",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.19743975539758304",
+   "ic95_sup": "0.22525858848990407"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-20-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.28909677783077414",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.27254153264712916",
+   "ic95_sup": "0.30536700552788104"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-21-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.27058526725691034",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2538008127581409",
+   "ic95_sup": "0.28619395355065463"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-22-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.29452088997869935",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.27779704350628315",
+   "ic95_sup": "0.31152146296267413"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-23-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.25060099281893106",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2353183684828418",
+   "ic95_sup": "0.2666839466699254"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-24-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2539227515577303",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.23796767289814447",
+   "ic95_sup": "0.2706483787939581"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-25-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.32019089370439224",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.30301217525036733",
+   "ic95_sup": "0.3375298682114433"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-26-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.30771213316180757",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2927454419826643",
+   "ic95_sup": "0.32331723685900304"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-27-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.28225973610650495",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2670341725926558",
+   "ic95_sup": "0.2975931185709129"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-28-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2617907854774569",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.24743816650071093",
+   "ic95_sup": "0.2767033347056442"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-29-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2512750301532407",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.23557401446170365",
+   "ic95_sup": "0.26723888506752413"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-30-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3004172323215806",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.28521661732444553",
+   "ic95_sup": "0.31568417414215993"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-31-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.26047175148190965",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.24665442085562567",
+   "ic95_sup": "0.2745222248213606"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-32-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.25491810799651327",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.24013494459860102",
+   "ic95_sup": "0.2705036525186528"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-TAMLOC-100MIL-MAS-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.29960140209471",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.29377973479249975",
+   "ic95_sup": "0.3055162379530804"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-TAMLOC-15MIL-99MIL-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.28733253068797177",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.27832640802589675",
+   "ic95_sup": "0.29587760460026596"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-TAMLOC-2500-14999-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2593584648915822",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.25067133759610377",
+   "ic95_sup": "0.2683765700876242"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-TAMLOC-MENOS-2500-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2200323240926943",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2130327505641419",
+   "ic95_sup": "0.22681370711902055"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-TOTAL-TODOS-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2751913688638152",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2715002987776504",
+   "ic95_sup": "0.2789887302525"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-EDAD-15-24-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.11969391410163936",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.11037080019787937",
+   "ic95_sup": "0.1292945768270973"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-EDAD-25-34-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1493962288191854",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.13943500383084345",
+   "ic95_sup": "0.15867604256981757"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-EDAD-35-44-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.18560829703340806",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17420811050440013",
+   "ic95_sup": "0.19795259681092559"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-EDAD-45-54-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2228543599766496",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.20675529112893018",
+   "ic95_sup": "0.23949815326058077"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.15352453711794561",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.14292922703454303",
+   "ic95_sup": "0.16474594917319796"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.164132273696319",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.15224567626493493",
+   "ic95_sup": "0.17622068585102568"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-ESCOLARIDAD-SECUNDARIA-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.16947939674895718",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16096164768597968",
+   "ic95_sup": "0.1785109710970861"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.15648477876555322",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.14041440187463536",
+   "ic95_sup": "0.17287598511485971"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-TAMLOC-100MIL-MAS-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17597304483630274",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16586983420449705",
+   "ic95_sup": "0.18531036351603425"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-TAMLOC-15MIL-99MIL-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17634584974869344",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16358612923291307",
+   "ic95_sup": "0.18995419854806644"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-TAMLOC-2500-14999-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1702224193973823",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1567976902230366",
+   "ic95_sup": "0.18431343599745761"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-TAMLOC-MENOS-2500-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.12700062265603615",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.11708895487105969",
+   "ic95_sup": "0.1365232657034159"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-TOTAL-TODOS-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.16270822608769964",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.15693888529042843",
+   "ic95_sup": "0.16860347016217445"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-EDAD-15-24-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.07324780006200367",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.06187443223373909",
+   "ic95_sup": "0.08495529571242899"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-EDAD-25-34-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08713773917086093",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0810330103967752",
+   "ic95_sup": "0.09368341556793977"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-EDAD-35-44-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.11931928166987543",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.11338392568224415",
+   "ic95_sup": "0.12574579377015013"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-EDAD-45-54-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.13481851567606687",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.12803003607283547",
+   "ic95_sup": "0.14138043091257319"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08644020031436636",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0797058933894965",
+   "ic95_sup": "0.09344438127999816"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.13111669571912402",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.12282014631442534",
+   "ic95_sup": "0.1397850891808582"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-ESCOLARIDAD-SECUNDARIA-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.11107710265314108",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.10534267550597336",
+   "ic95_sup": "0.1169525674210022"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.13302306779816883",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1237216600874079",
+   "ic95_sup": "0.142671983219609"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-TAMLOC-100MIL-MAS-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.14084428722477377",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1347673072728032",
+   "ic95_sup": "0.14716286407523632"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-TAMLOC-15MIL-99MIL-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1285173860781265",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.11966191016912725",
+   "ic95_sup": "0.13817917517603134"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-TAMLOC-2500-14999-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.09297545614847966",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.08501826525303777",
+   "ic95_sup": "0.10159351664953348"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-TAMLOC-MENOS-2500-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.06246606372427437",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.05718629481233817",
+   "ic95_sup": "0.06779728287920651"
+  },
+  {
+   "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-TOTAL-TODOS-P",
+   "unidad": "proporcion (hogar o mujer, según conducta)",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1145701892260711",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.11085256477113847",
+   "ic95_sup": "0.11838073323648259"
+  }
+ ]
+}
