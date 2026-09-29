@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Global Preferences Survey &ndash; Downloads</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://gps.econ.uni-bonn.de/js/jquery-3.0.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://gps.econ.uni-bonn.de/js/download.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magicsuggest/2.1.4/magicsuggest-min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://gps.econ.uni-bonn.de/css/gps-style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/r-2.2.5/datatables.min.css"/>
+    <!---->
+    </head>
+<body>
+<div class="wrapper">
+    <div class="page-header">
+        <div class="container headerLogo">
+            <a href="https://econ.uni-bonn.de/" target="_blank"><img class="mt-3" src="https://gps.econ.uni-bonn.de/images/logo_bn_ECON_kompakt_white.svg" height="70rem"></a>
+        </div>
+        <h1>Global Preferences Survey<br>
+            <p class="undertitle mt-3">Elicit risk, time, and social preferences</p></h1>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2683af;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav mx-auto w-100 justify-content-center">
+                <li class="nav-item index">
+                    <a class="nav-link" style="color: white; font-size: 1.25em;" href="https://gps.econ.uni-bonn.de/home">Home</a>
+                </li>
+                <li class="nav-item index">
+                    <a class="nav-link" style="color: white; font-size: 1.25em;" href="https://gps.econ.uni-bonn.de/about">About</a>
+                </li>
+                <li class="nav-item index">
+                    <a class="nav-link" style="color: white; font-size: 1.25em;" href="https://gps.econ.uni-bonn.de/maps">Maps</a>
+                </li>
+                <li class="nav-item index">
+                    <a class="nav-link" style="color: white; font-size: 1.25em;" href="https://gps.econ.uni-bonn.de/rankings">Rankings</a>
+                </li>
+                <li class="nav-item currentPage">
+                    <a class="nav-link" style="color: white; font-size: 1.25em;" href="https://gps.econ.uni-bonn.de/downloads">Downloads</a>
+                </li>
+                <li class="nav-item index">
+                    <a class="nav-link" style="color: white; font-size: 1.25em;" href="https://gps.econ.uni-bonn.de/publications">Publications</a>
+                </li>
+                <li class="nav-item index">
+                    <a class="nav-link" style="color: white; font-size: 1.25em;" href="https://gps.econ.uni-bonn.de/faq">FAQ</a>
+                </li>
+                <li class="nav-item index">
+                    <a class="nav-link" style="color: white; font-size: 1.25em;" href="https://gps.econ.uni-bonn.de/contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-content">
+        
+    <h2>Downloads</h2>
+    <p>
+        Our data can be accessed for further research. Please select the relevant datasets, questionnaires or supplementary
+        material and accept the citation agreement. Please note that these data must not be transferred to third parties without prior approval.
+    </p>
+    <hr>
+    <div id="page">
+                <div id="choose">
+            <div class="card" id="accordion">
+                <a class="accordion-toggle" data-toggle="collapse" data-target="#dataset" href="#dataset" aria-expanded="false" aria-controls="dataset" onclick="showDatasetForm()">
+                    <div class="card-header">
+                        <h6 class="panel-title">
+                            Dataset<i class="fa fa-angle-down pull-right"></i>
+                        </h6>
+                    </div>
+                </a>
+                <div id="dataset" class="collapse">
+                    <div class="card-body">
+                        <form id="dataset-form" method="POST" action="https://gps.econ.uni-bonn.de/questionnaires/dataset" style="display: none">
+    <input type="hidden" name="_token" value="ZuFhpaAXddQa3s0OQQtve3PreXb9j0HgvWXvV1Oz">
+    <h4><label class="form-control-label" for="questionnaires">Select dataset(s)</label></h4>
+    <label class="custom-control custom-checkbox">
+        <input type="checkbox" name="dataset[0]" id="dataset[0]"
+                              class="custom-control-input " value="0">
+        <span class="custom-control-description">Country level (Stata)</span>
+        <span class="custom-control-indicator"></span>
+    </label>
+    <label class="custom-control custom-checkbox">
+        <input type="checkbox" name="dataset[1]" id="dataset[1]"
+                              class="custom-control-input " value="1">
+        <span class="custom-control-description">Individual level (Stata)</span>
+        <span class="custom-control-indicator"></span>
+    </label>
+    <p>The individual-level dataset contains a personal identifier which allows you to link this data with the Gallup World Poll 2012. The latter contains individual covariates and additional measures.</p>
+    <hr>
+    <h4>Your contact information</h4>
+    <div class="form-group">
+        <label class="form-control-label" for="title">Title </label>
+        <select name="title" id="title" class="form-control custom-select ">
+            <option></option>
+            <option value="mr" >Mr.</option>
+            <option value="ms" >Ms.</option>
+            <option value="dr" >Dr.</option>
+            <option value="prof" >Prof.</option>
+        </select>
+            </div>
+    <div class="form-group">
+        <label class="form-control-label" for="name">Full name</label>
+        <input type="text" name="name" id="name" value="" class="form-control " placeholder="">
+            </div>
+    <div class="form-group">
+        <label class="form-control-label" for="organisation">Organisation</label>
+        <input type="text" name="organisation" id="organisation" value="" class="form-control " placeholder="">
+            </div>
+    <div class="form-group">
+        <label class="form-control-label" for="email">Email address</label>
+        <input type="email" name="email" id="email" value="" class="form-control " aria-describedby="emailHelp" placeholder="">
+            </div>
+    <div class="form-group">
+        This work is licensed under a
+        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. The following two papers have to be cited in all publications that make use of or refer in any kind to the files provided:<br><br>Falk, A., Becker, A., Dohmen, T., Enke, B., Huffman, D., & Sunde, U. (2018).
+        <a href="https://doi.org/10.1093/qje/qjy013 " target="_blank">Global evidence on economic preferences</a>.
+        <i>Quarterly Journal of Economics,</i> 133 (4), 1645–1692.<br /><br>
+        Falk, A., Becker, A., Dohmen, T. J., Huffman, D., & Sunde, U. (2016). The preference survey module: A validated instrument for measuring risk, time, and social preferences. IZA Discussion Paper No. 9674.<br><br>
+        We also kindly ask researchers using the GPS data or the preference module to
+        <a href="mailto:GPS@briq-institute.org">send us their paper</a>, or a link to their paper. We will continuously upload or add links to these papers to inform the research community about ongoing progress and related work.<br><br>
+        <label class="custom-control custom-checkbox ">
+            <input type="checkbox" name="accept" id="accept" value="yes" class="custom-control-input ">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">I agree</span>
+        </label>
+            </div>
+    <p>
+        <button type="submit" class="btn btn-primary" id="showBtn">Submit</button>
+    </p>
+</form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="card" id="accordion">
+                <a class="accordion-toggle" data-toggle="collapse" data-target="#questionnaires" href="#questionnaires" aria-expanded="false" aria-controls="questionnaires" onclick="showQuestionnairesForm()">
+                    <div class="card-header">
+                        <h6 class="panel-title">
+                            Questionnaires<i class="fa fa-angle-down pull-right"></i>
+                        </h6>
+                    </div>
+                </a>
+                <div id="questionnaires" class="collapse">
+                    <div class="card-body">
+                        <form id="questionnaires-form" method="POST" action="https://gps.econ.uni-bonn.de/questionnaires/questionnaire" style="display: none">
+    <input type="hidden" name="_token" value="ZuFhpaAXddQa3s0OQQtve3PreXb9j0HgvWXvV1Oz">
+    <div id="form-teil1">
+        <div class="form-group">
+            <h4><label class="form-control-label" for="questionnaires">Select file(s)</label></h4>
+            <label class="custom-control custom-checkbox">
+                <input type="checkbox" name="questionnaires[]" id="questionnaires[]"
+                                              class="custom-control-input " value="-1">
+                <span class="custom-control-description">Stakes by country (Excel)</span>
+                <span class="custom-control-indicator"></span>
+            </label>
+            <h4><label class="form-control-label" for="questionnaires">Select questionnaire(s)</label></h4>
+            <label class="form-control-label">Sort by:</label>
+            <label class="custom-control custom-radio">
+                <input id="sortC" name="sort" type="radio" class="custom-control-input" value="country">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Country</span>
+            </label>
+            <label class="custom-control custom-radio">
+                <input id="sortL" name="sort" type="radio" class="custom-control-input" value="language">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Language</span>
+            </label><br>
+            <label class="custom-control custom-checkbox selectAll">
+                <input type="checkbox" name="selectAll" id="selectAll" class="custom-control-input">
+                <span class="custom-control-description">Select all</span>
+                <span class="custom-control-indicator"></span>
+            </label><br>
+            <p id='sorts'>
+                                                            <label class="custom-control custom-checkbox questionnaire" country="Afghanistan" language="Dari">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="1" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Afghanistan (Dari)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Afghanistan" language="Pashto">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="2" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Afghanistan (Pashto)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Algeria" language="Arabic">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="3" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Algeria (Arabic)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Argentina" language="Spanish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="4" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Argentina (Spanish)</span>
+                        </label>
+                                                                                                                    <label class="custom-control custom-checkbox questionnaire" country="Austria" language="German">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="6" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Austria (German)</span>
+                        </label>
+                                                                                                                    <label class="custom-control custom-checkbox questionnaire" country="Bolivia" language="Spanish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="8" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Bolivia (Spanish)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Bosnia and Herzegovina" language="Bosnian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="9" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Bosnia and Herzegovina (Bosnian)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Bosnia and Herzegovina" language="Croatian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="10" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Bosnia and Herzegovina (Croatian)</span>
+                        </label>
+                                                                                                                    <label class="custom-control custom-checkbox questionnaire" country="Botswana" language="English">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="12" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Botswana (English)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Botswana" language="Setswana">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="13" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Botswana (Setswana)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Brazil" language="Portuguese">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="14" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Brazil (Portuguese)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Cambodia" language="Khmer">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="15" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Cambodia (Khmer)</span>
+                        </label>
+                                                                                                                    <label class="custom-control custom-checkbox questionnaire" country="Cameroon" language="French">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="17" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Cameroon (French)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Cameroon" language="Fulfulde">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="18" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Cameroon (Fulfulde)</span>
+                        </label>
+                                                                                                                    <label class="custom-control custom-checkbox questionnaire" country="Canada" language="French">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="20" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Canada (French)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Chile" language="Spanish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="21" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Chile (Spanish)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="China" language="Chinese">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="22" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">China (Chinese)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Colombia" language="Spanish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="23" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Colombia (Spanish)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Costa Rica" language="Spanish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="24" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Costa Rica (Spanish)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Croatia" language="Croatian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="25" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Croatia (Croatian)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Czechia" language="Czech">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="26" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Czechia (Czech)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Egypt" language="Arabic">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="27" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Egypt (Arabic)</span>
+                        </label>
+                                                                                                                                                        <label class="custom-control custom-checkbox questionnaire" country="Finland" language="Finnish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="30" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Finland (Finnish)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="France" language="French">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="31" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">France (French)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Georgia" language="Georgian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="32" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Georgia (Georgian)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Georgia" language="Russian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="33" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Georgia (Russian)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Germany" language="German">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="34" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Germany (German)</span>
+                        </label>
+                                                                                                                    <label class="custom-control custom-checkbox questionnaire" country="Ghana" language="Twi">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="36" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Ghana (Twi)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Ghana" language="Hausa">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="37" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Ghana (Hausa)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Ghana" language="Ewe">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="38" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Ghana (Ewe)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Ghana" language="Dagbani">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="39" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Ghana (Dagbani)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Greece" language="Greek">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="40" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Greece (Greek)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Guatemala" language="Spanish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="41" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Guatemala (Spanish)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Haiti" language="Creole">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="42" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Haiti (Creole)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Hungary" language="Hungarian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="43" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Hungary (Hungarian)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="India" language="Assamese">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="44" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">India (Assamese)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="India" language="Bengali">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="45" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">India (Bengali)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="India" language="Gujarati">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="46" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">India (Gujarati)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="India" language="Hindi">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="47" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">India (Hindi)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="India" language="Kannada">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="48" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">India (Kannada)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="India" language="Malayalam">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="49" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">India (Malayalam)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="India" language="Marathi">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="50" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">India (Marathi)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="India" language="Oriya">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="51" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">India (Oriya)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="India" language="Punjabi">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="52" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">India (Punjabi)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="India" language="Tamil">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="53" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">India (Tamil)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="India" language="Telugu">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="54" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">India (Telugu)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Indonesia" language="Bahasa Indonesia">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="55" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Indonesia (Bahasa Indonesia)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Iran" language="Farsi">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="56" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Iran (Farsi)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Iraq" language="Arabic">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="57" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Iraq (Arabic)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Iraq" language="Kurdish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="58" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Iraq (Kurdish)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Israel" language="Arabic">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="59" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Israel (Arabic)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Israel" language="Hebrew">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="60" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Israel (Hebrew)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Italy" language="Italian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="61" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Italy (Italian)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Japan" language="Japanese">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="62" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Japan (Japanese)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Jordan" language="Arabic">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="63" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Jordan (Arabic)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Kazakhstan" language="Kazakh">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="64" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Kazakhstan (Kazakh)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Kazakhstan" language="Russian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="65" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Kazakhstan (Russian)</span>
+                        </label>
+                                                                                                                    <label class="custom-control custom-checkbox questionnaire" country="Kenya" language="Kishwahili">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="67" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Kenya (Kishwahili)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="South Korea" language="Korean">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="68" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">South Korea (Korean)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Lithuania" language="Lithuanian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="69" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Lithuania (Lithuanian)</span>
+                        </label>
+                                                                                                                                                                                            <label class="custom-control custom-checkbox questionnaire" country="Mexico" language="Spanish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="73" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Mexico (Spanish)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Moldova" language="Romanian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="74" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Moldova (Romanian)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Moldova" language="Russian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="75" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Moldova (Russian)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Morocco" language="Moroccan Arabic">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="76" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Morocco (Moroccan Arabic)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Morocco" language="French">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="77" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Morocco (French)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Morocco" language="Berber">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="78" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Morocco (Berber)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Netherlands" language="Dutch">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="79" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Netherlands (Dutch)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Nicaragua" language="Spanish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="80" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Nicaragua (Spanish)</span>
+                        </label>
+                                                                                                                    <label class="custom-control custom-checkbox questionnaire" country="Nigeria" language="Hausa">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="82" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Nigeria (Hausa)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Nigeria" language="Igbo">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="83" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Nigeria (Igbo)</span>
+                        </label>
+                                                                                                                    <label class="custom-control custom-checkbox questionnaire" country="Nigeria" language="Pidgin English">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="85" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Nigeria (Pidgin English)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Pakistan" language="Urdu">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="86" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Pakistan (Urdu)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Peru" language="Spanish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="87" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Peru (Spanish)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Philippines" language="Filipino">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="88" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Philippines (Filipino)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Philippines" language="Iluko">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="89" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Philippines (Iluko)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Philippines" language="Cebuano">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="90" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Philippines (Cebuano)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Philippines" language="Hiligaynon">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="91" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Philippines (Hiligaynon)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Philippines" language="Bicol">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="92" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Philippines (Bicol)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Philippines" language="Waray">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="93" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Philippines (Waray)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Philippines" language="Maguindanaon">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="94" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Philippines (Maguindanaon)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Philippines" language="Tausug">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="95" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Philippines (Tausug)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Poland" language="Polish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="96" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Poland (Polish)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Portugal" language="Portuguese">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="97" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Portugal (Portuguese)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Romania" language="Romanian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="98" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Romania (Romanian)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Russia" language="Russian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="99" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Russia (Russian)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Rwanda" language="French">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="100" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Rwanda (French)</span>
+                        </label>
+                                                                                                                    <label class="custom-control custom-checkbox questionnaire" country="Rwanda" language="Kinyarwandan">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="102" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Rwanda (Kinyarwandan)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Saudi Arabia" language="Arabic">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="103" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Saudi Arabia (Arabic)</span>
+                        </label>
+                                                                                                                    <label class="custom-control custom-checkbox questionnaire" country="South Africa" language="Afrikaans">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="105" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">South Africa (Afrikaans)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="South Africa" language="English">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="106" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">South Africa (English)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="South Africa" language="Sotho">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="107" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">South Africa (Sotho)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="South Africa" language="Xhosa">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="108" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">South Africa (Xhosa)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="South Africa" language="Zulu">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="109" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">South Africa (Zulu)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Spain" language="Spanish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="110" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Spain (Spanish)</span>
+                        </label>
+                                                                                                                    <label class="custom-control custom-checkbox questionnaire" country="Sri Lanka" language="Tamil">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="112" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Sri Lanka (Tamil)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Suriname" language="Dutch">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="113" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Suriname (Dutch)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Sweden" language="Swedish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="114" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Sweden (Swedish)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Switzerland" language="French">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="115" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Switzerland (French)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Switzerland" language="German">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="116" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Switzerland (German)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Switzerland" language="Italian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="117" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Switzerland (Italian)</span>
+                        </label>
+                                                                                                                    <label class="custom-control custom-checkbox questionnaire" country="Tanzania" language="Swahili">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="119" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Tanzania (Swahili)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Thailand" language="Thai">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="120" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Thailand (Thai)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Turkey" language="Turkish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="121" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Turkey (Turkish)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Uganda" language="Ateso">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="122" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Uganda (Ateso)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Uganda" language="English">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="123" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Uganda (English)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Uganda" language="Luganda">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="124" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Uganda (Luganda)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Uganda" language="Runyankole">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="125" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Uganda (Runyankole)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Ukraine" language="Russian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="126" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Ukraine (Russian)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Ukraine" language="Ukrainian">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="127" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Ukraine (Ukrainian)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="United Arab Emirates" language="Arabic">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="128" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">United Arab Emirates (Arabic)</span>
+                        </label>
+                                                                                                                    <label class="custom-control custom-checkbox questionnaire" country="United States" language="Spanish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="130" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">United States (Spanish)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="United States" language="English">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="131" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">United States (English)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Venezuela" language="Spanish">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="132" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Venezuela (Spanish)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Vietnam" language="Vietnamese">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="133" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Vietnam (Vietnamese)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Zimbabwe" language="English">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="134" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Zimbabwe (English)</span>
+                        </label>
+                                                                                <label class="custom-control custom-checkbox questionnaire" country="Zimbabwe" language="Ndebele">
+                            <input type="checkbox" name="questionnaires[]" id="questionnaires"
+                                                                      value="135" class="custom-control-input questionnaire ">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Zimbabwe (Ndebele)</span>
+                        </label>
+                                                                                    </p>
+        </div>
+    </div>
+    <hr>
+    <div id="form-teil2">
+        <h4>Your contact information</h4>
+        <div class="form-group">
+            <label class="form-control-label" for="title">Title </label>
+            <select name="title_questionnaires" id="title_questionnaires" class="form-control custom-select ">
+                <option></option>
+                <option value="mr" >Mr.</option>
+                <option value="ms" >Ms.</option>
+                <option value="dr" >Dr.</option>
+                <option value="prof" >Prof.</option>
+            </select>
+                    </div>
+        <div class="form-group">
+            <label class="form-control-label" for="name_questionnaires">Full name</label>
+            <input type="text" name="name_questionnaires" id="name_questionnaires" value="" class="form-control  " placeholder="">
+                    </div>
+        <div class="form-group">
+            <label class="form-control-label" for="organisation_questionnaires">Organisation</label>
+            <input type="text" name="organisation_questionnaires" id="organisation_questionnaires" value="" class="form-control  " placeholder="">
+                    </div>
+        <div class="form-group">
+            <label class="form-control-label" for="email_questionnaires">Email address</label>
+            <input type="email" name="email_questionnaires" id="email_questionnaires" value="" class="form-control " aria-describedby="emailHelp" placeholder="">
+                    </div>
+        <div class="form-group">
+            This work is licensed under a
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. The following two papers have to be cited in all publications that make use of or refer in any kind to the files provided:<br><br>Falk, A., Becker, A., Dohmen, T., Enke, B., Huffman, D., & Sunde, U. (2018).
+            <a href="https://doi.org/10.1093/qje/qjy013 " target="_blank">Global evidence on economic preferences</a>.
+            <i>Quarterly Journal of Economics,</i> 133 (4), 1645–1692.<br /><br>
+            Falk, A., Becker, A., Dohmen, T. J., Huffman, D., & Sunde, U. (2016). The preference survey module: A validated instrument for measuring risk, time, and social preferences. IZA Discussion Paper No. 9674.<br><br>
+            We also kindly ask researchers using the GPS data or the preference module to
+            <a href="mailto:gps@briq-institute.org">send us their paper</a>, or a link to their paper. We will continuously upload or add links to these papers to inform the research community about ongoing progress and related work.<br><br>
+            <label class="custom-control custom-checkbox">
+                <input type="checkbox" name="accept_questionnaires" id="accept_questionnaires" value="yes" class="custom-control-input  ">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">I agree</span>
+            </label>
+        </div>
+        <p>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </p>
+    </div>
+</form>
+<script type="text/javascript">
+    $('#selectAll').click(function () {
+        $('input.questionnaire[type="checkbox"]').prop('checked', this.checked)
+    })
+</script>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="card mb-5" id="accordion">
+                <a class="accordion-toggle" data-toggle="collapse" data-target="#publications" href="#publications" aria-expanded="false" aria-controls="publications" onclick="showPublicationForm()">
+                    <div class="card-header">
+                        <h6 class="panel-title">
+                            Supplementary material for “Global evidence on economic preferences” (QJE, 2018)<i class="fa fa-angle-down pull-right"></i>
+                        </h6>
+                    </div>
+                </a>
+                <div id="publications" class="collapse">
+                    <div class="card-body">
+                        On this site we provide material that was used to produce the results described in the paper.
+                        <ul class="ml-3">
+                            <li><a href="https://doi.org/10.1093/qje/qjy013" target="_blank">Article</a></li>
+                            <li>
+                                <a href="https://academic.oup.com/qje/article/133/4/1645/5025666#122332011" target="_blank">Web appendix</a>
+                            </li>
+                            <li>Do-files (Stata)<br>We provide the statistical code that we used to generate the results in the paper above.
+                                <ul class="ml-3">
+                                    <li>Note: In order to run the do-files you need data from different sources.</li>
+                                    <li>
+                                        <b>To generate the country level results:</b> The country level data consist of data
+                                                                                      from the GPS that can be
+                                        <a href="#dataset" data-toggle="collapse" data-target="#dataset" aria-expanded="false" aria-controls="dataset" onclick="showDatasetForm()">downloaded here</a>
+                                                                                      and data from additional data sources that
+                                                                                      are described in the
+                                        <a href="https://academic.oup.com/qje/article/133/4/1645/5025666#122332011" target="_blank">web appendix</a>.
+                                                                                      You can download the merged country level dataset (GPS country plus additional measures)
+                                        <a onclick="contactInfo()" href="#">here</a>.
+                                    </li>
+                                    <li>
+                                        The Stata-code to replicate the country level results using the merged country level dataset can be
+                                        <a href="https://gps.econ.uni-bonn.de/file/GPS_do-files_country_level.zip">downloaded here</a>.
+                                    </li>
+                                    <br>
+                                    <li>
+                                        <b>To generate the individual level results:</b> The individual level data consist of data
+                                                                                         from the GPS that can be
+                                        <a href="#dataset" data-toggle="collapse" data-target="#dataset" aria-expanded="false" aria-controls="dataset" onclick="showDatasetForm()">downloaded here</a>.
+                                                                                         This dataset contains the six individual preference
+                                                                                         measures, country identifiers, subjective math score, interview date, language, and personal
+                                                                                         identifiers. These personal identifiers allow you to link the GPS individual dataset with the
+                                                                                         2012 Gallup World Poll microdata set. The latter provides additional data on the individual level.
+                                                                                         See the
+                                        <a href="https://gps.econ.uni-bonn.de/faq#faq8" target="_blank">FAQ</a> on how to merge these datasets.
+                                    </li>
+                                    <li>
+                                        The Stata-code to replicate the individual level results can be
+                                        <a href="https://gps.econ.uni-bonn.de/file/GPS_do-files_individual_level.zip">downloaded here</a>.
+                                        Note that running these files requires merging the GPS individual dataset with the
+                                        2012 Gallup World Poll microdata set.
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-contact-info" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Your contact information
+                    </h4>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="contact-form" method="POST" action="https://gps.econ.uni-bonn.de/questionnaires/datasetadd">
+                        <input type="hidden" name="_token" value="ZuFhpaAXddQa3s0OQQtve3PreXb9j0HgvWXvV1Oz">
+                        <div class="form-group">
+                            <label class="form-control-label" for="add_title">Title </label>
+                            <select name="add_title" id="add_title" class="form-control custom-select ">
+                                <option></option>
+                                <option value="mr" >Mr.</option>
+                                <option value="ms" >Ms.</option>
+                                <option value="dr" >Dr.</option>
+                                <option value="prof" >Prof.</option>
+                            </select>
+                                                    </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="add_name">Full name</label>
+                            <input type="text" name="add_name" id="add_name" value="" class="form-control " placeholder="">
+                                                    </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="add_organisation">Organisation</label>
+                            <input type="text" name="add_organisation" id="add_organisation" value="" class="form-control " placeholder="">
+                                                    </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="add_email">Email address</label>
+                            <input type="email" name="add_email" id="add_email" value="" class="form-control " aria-describedby="emailHelp" placeholder="">
+                                                    </div>
+                        <div class="form-group">
+                            This work is licensed under a
+                            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. The following two papers have to be cited in all publications that make use of or refer in any kind to the files provided:<br><br>Armin Falk, Thomas Dohmen, Benjamin Enke, David Huffman, and Uwe Sunde.
+                            <a href="https://doi.org/10.1093/qje/qjy013 " target="_blank">Global Evidence on Economic Preferences</a>.
+                            <i>Quarterly Journal of Economics,</i> 133 (4), 1645–1692.<br /><br>
+                            Armin Falk, Anke Becker, Thomas Dohmen, David Huffman, and Uwe Sunde. The preference survey module: A validated instrument for measuring risk, time, and social preferences. IZA Discussion Paper No. 9674, 2016.<br><br>
+                            We also kindly ask researchers using the GPS data or the preference module to
+                            <a href="mailto:GPS@briq-institute.org">send us their paper</a>, or a link to their paper. We will continuously upload or add links to these papers to inform the research community about ongoing progress and related work.<br><br>
+                            <label class="custom-control custom-checkbox ">
+                                <input type="checkbox" name="add_accept" id="add_accept" value="yes" class="custom-control-input ">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">I agree</span>
+                            </label>
+                                                    </div>
+                        <p>
+                            <button type="submit" class="btn btn-primary" id="showBtn">Submit</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="footer">
+        <div class="container pb-2 pt-2">
+            <div class="row">
+                <div class="col-md-4 text">
+                    © 2026 University of Bonn
+                </div>
+                <div class="col-md-4 text" style="text-align: center;">
+                    <a href="https://www.econ.uni-bonn.de/en/imprint">Imprint</a> |
+                    <a href="https://gps.econ.uni-bonn.de/privacy-policy">Privacy Policy</a>
+                </div>
+                <div class="logo col-md-4 mb-1 mt-2" style="text-align: right">
+                    <div>
+                        <a href="https://econ.uni-bonn.de/" target="_blank"><img src="https://gps.econ.uni-bonn.de/images/logo_bn_ECON_kompakt_white.svg" style="height: 2.5rem !important;"></a>
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="cookiebar">
+    <div class="container" style="padding-top: 0; padding-bottom: 0; margin: 0 auto;">
+        <div class="row">
+            <div class="col-md-10">
+                <!--We use Google Analytics in compliance with German Data Protection Law. The site gathers data for the sole purpose of improving its services.
+                You're able to decline <a href="#" class="cb-disable" style="background: none">Now</a> or later.-->
+                By using our services, you agree to our use of cookies. You will find more information in our <a href="https://gps.econ.uni-bonn.de/privacy-policy">privacy policy</a>.
+            </div>
+            <div class="col-md-2">
+                <a href="#" class="cb-enable">
+                    Accept
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://gps.econ.uni-bonn.de/scripts/jquery.cookiebar.js"></script>
+<script src="https://gps.econ.uni-bonn.de/js/magic.js"></script>
+<script src="https://gps.econ.uni-bonn.de/scripts/watermark.js"></script>
+<script src="https://gps.econ.uni-bonn.de/js/wordcloud.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/r-2.2.5/datatables.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#sortC').click()
+            var errors = "0"
+
+            var error_type = ""
+            if (errors > 0) {
+                if (error_type == 'questionnaire') {
+                    showQuestionnairesForm()
+                    $('#questionnaires').collapse('show')
+                } else if (error_type == 'dataset') {
+                    $('#dataset').collapse('show')
+                    showDatasetForm()
+                } else if (error_type == 'datasetAdd') {
+                    $('#publications').collapse('show')
+                    contactInfo()
+                }
+            }
+        })
+
+        $('#sortC,#sortL').on('change', function () {
+
+            var sortByText = function (a, b) {
+                var attr = $('input[name=\'sort\']:checked').val()
+                var ta   = $.trim($(a).attr(attr))
+                var tb   = $.trim($(b).attr(attr))
+                if (ta == tb)
+                    return 0
+                if (ta < tb)
+                    return -1
+                return 1
+            }
+            var sorted     = $('#sorts label').sort(sortByText)
+            $('#sorts').append(sorted)
+
+        })
+
+        function showQuestionnairesForm () {
+            $('#dataset').collapse('hide')
+            $('#publications').collapse('hide')
+            document.getElementById('questionnaires-form').style.display = 'block'
+        }
+
+        function showDatasetForm () {
+            $('#questionnaires').collapse('hide')
+            $('#publications').collapse('hide')
+            document.getElementById('dataset-form').style.display = 'block'
+        }
+
+        function showPublicationForm () {
+            $('#questionnaires').collapse('hide')
+            $('#dataset').collapse('hide')
+        }
+
+        function hideChoose () {
+            document.getElementById('choose').style.display = 'none'
+        }
+
+        function showChoose () {
+            document.getElementById('choose').style.display  = 'block'
+            document.getElementById('success').style.display = 'none'
+        }
+
+        function contactInfo () {
+            $('#modal-contact-info').modal('show')
+        }
+
+    </script>
+    <script type="application/javascript">
+        jQuery(document).ready(function() {
+            $.cookieBar({
+                fixed            : true,
+                acceptOnContinue : false,
+                acceptFunction   : function() {
+                    acceptGA();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

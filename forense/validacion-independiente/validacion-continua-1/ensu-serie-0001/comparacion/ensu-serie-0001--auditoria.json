@@ -1,0 +1,65 @@
+{
+  "columnas_reales_no_autorizadas_en_codigo": [],
+  "comandos_con_red": [],
+  "init": {
+    "claude_code_version": "2.1.284",
+    "cwd": "/home/pc0/vyc27-rec/ensu-serie-0001",
+    "mcp_servers": [],
+    "model": "claude-opus-5-5",
+    "permissionMode": "acceptEdits",
+    "tools": [
+      "Bash",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Read",
+      "Write"
+    ]
+  },
+  "llamadas": 29,
+  "modelos": [
+    "claude-opus-5-5"
+  ],
+  "paquete": "ensu-serie-0001",
+  "resultado": {
+    "duration_ms": 324877,
+    "is_error": false,
+    "num_turns": 30,
+    "permission_denials": [
+      {
+        "tool_input": {
+          "command": "python3 -c \"\nimport sys,glob; sys.path.insert(0,'paquete/lib')\nfrom dbfread import DBF\nimport csv\nfor f in sorted(glob.glob('paquete/datos/*')):\n    if f.endswith('.dbf'):\n        t=DBF(f,load=False); cols=t.field_names; enc=t.encoding; n=len(t) if hasattr(t,'__len__') else '?'\n        print(f.split('/')[-1], enc, len(cols), [ (x.name,x.type,x.length) for x in t.fields if x.name in ('CD','EST_DIS','EDIS','UPM_DIS','FAC_SEL','FACTOR','BP1_1','P1','SEX','EDA','EDAD','R_SEL','N_REN','UPM')])\n    else:\n        with open(f,newline='',encoding='latin-1') as fh: h=next(csv.reader(fh))\n        print(f.split('/')[-1], len(h), h[:12])\n\"\n",
+          "description": "Inspect column names and types in data files"
+        },
+        "tool_name": "Bash",
+        "tool_use_id": "toolu_0164UYBzBFt1WGDhHFKFmJ9s"
+      },
+      {
+        "tool_input": {
+          "command": "python3 -c \"\nimport json,collections\nd=json.load(open('salida/resultado.json'))\nprint(len(d['filas']), collections.Counter((f['estado'],f.get('estado_ic')) for f in d['filas']))\nfor f in d['filas']:\n    if f['estado']!='RECONSTRUIDO' or f.get('estado_ic')!='CALCULADO': print(f)\ng=json.load(open('salida/diagnostico.json'))\nimport statistics\nprint(sorted(v['n_valido'] for v in g['por_llave'].values() if 'n_valido' in v)[:10])\n\" | head -40; cat salida/archivos-leidos.txt | head -80; cat salida/entorno.txt",
+          "description": "Summarize result states and outputs"
+        },
+        "tool_name": "Bash",
+        "tool_use_id": "toolu_011FrQ9AD8p2HiZjJx77DTBn"
+      },
+      {
+        "tool_input": {
+          "command": "cd /home/pc0/vyc27-rec/ensu-serie-0001/salida && rm -rf codigo/__pycache__ && find . -type f ! -name SELLO.txt | sort | xargs sha256sum > SELLO.txt && cat SELLO.txt",
+          "description": "Remove pycache and write SHA-256 seal of outputs"
+        },
+        "tool_name": "Bash",
+        "tool_use_id": "toolu_011uLSoBRKQ9BMuSG3e2FmcL"
+      }
+    ],
+    "subtype": "success",
+    "total_cost_usd": 1.5270751999999999
+  },
+  "rutas_fuera_del_cwd": [],
+  "session_id": "5ee14573-9536-47e3-8c0a-a9449203da04",
+  "veredicto": {
+    "CAMPOS-DENTRO": true,
+    "CERO-LECTURAS-FUERA": true,
+    "SIN-RED": true,
+    "SOLO-OPUS": true
+  }
+}

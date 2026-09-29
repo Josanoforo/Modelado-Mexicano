@@ -1,0 +1,2261 @@
+{
+ "calc": "CALC-ENOE-PARTICIPACION-2024T4-0001",
+ "filas_microdato": 422408,
+ "exclusiones_globales_secuenciales": {
+  "r_def_distinto_de_0": 894,
+  "c_res_fuera_de_1_3": 8490,
+  "eda_fuera_de_15_98_o_vacia": 88783,
+  "fac_tri_no_positivo_o_vacio": 0,
+  "est_d_tri_vacio": 0,
+  "upm_vacia": 0
+ },
+ "n_universo_valido": 324241,
+ "diseno": {
+  "n_estratos": 1210,
+  "n_upm_estrato_par": 21056,
+  "estratos_con_upm_unica": 39,
+  "semilla": 20261004,
+  "replicas": 2000,
+  "bloque": 50
+ },
+ "decisiones": [
+  {
+   "id": "D1-codificacion-csv",
+   "frase": "Congelada en el COMMIT-1, antes de leer un solo valor de ENOE 2024T4 (sólo el descriptor de archivos y la línea de cabecera del CSV).",
+   "decision": "La spec no fija la codificación del CSV; no es UTF-8 válido. Se lee como latin-1 y todas las columnas como texto; los códigos se convierten a número tras quitar espacios (\"00\" y \"0\" equivalen)."
+  },
+  {
+   "id": "D2-unidad-de-remuestreo",
+   "frase": "Bootstrap de UPM (`upm`) dentro de estrato (`est_d_tri`).",
+   "decision": "La unidad remuestreada es el par (est_d_tri, upm). En el universo válido 532 valores de upm aparecen en más de un estrato; cada par se trata como UPM distinta de su estrato."
+  },
+  {
+   "id": "D3-tamano-remuestra-y-reescalado",
+   "frase": "Razón ponderada Σw·y/Σw con bootstrap de UPM dentro de estrato (UPM única del estrato = de certeza, multiplicidad 1 en toda réplica)",
+   "decision": "En cada estrato con n_h>=2 UPM se sacan n_h UPM con reemplazo (no n_h-1) y el peso de réplica es fac_tri × multiplicidad, sin reescalar por n_h/(n_h-1). Estratos con una sola UPM: multiplicidad 1 en toda réplica."
+  },
+  {
+   "id": "D4-orden-de-numeros-aleatorios",
+   "frase": "`PCG64(semilla)` (semilla del contrato de corrida, no fija en el código), réplicas del contrato (`bootstrap_replicas`), bloques de 50",
+   "decision": "numpy.random.Generator(PCG64(20261004)); 40 bloques de 50 réplicas; en cada bloque se recorren los estratos en orden numérico ascendente de est_d_tri y, por estrato, se llama rng.integers(0, n_h, size=(50, n_h)) sobre sus UPM ordenadas numéricamente. Estratos de certeza no consumen números. Las mismas réplicas se usan para las 136 llaves."
+  },
+  {
+   "id": "D5-percentiles",
+   "frase": "percentiles 2.5/97.5",
+   "decision": "numpy.percentile con interpolación lineal (método por defecto) sobre las 2000 réplicas."
+  },
+  {
+   "id": "D6-replica-degenerada",
+   "frase": "contrato conservador (una réplica degenerada → sin EE ni IC",
+   "decision": "Réplica degenerada = denominador de réplica Σw·m igual a 0 en el dominio o razón no finita. Si ocurre en alguna réplica, la llave conserva el punto con estado_ic NO-IDENTIFICADA. Una réplica con varianza nula (p. ej. razón constante 0 o 1) no se considera degenerada."
+  },
+  {
+   "id": "D7-nini-conocido",
+   "frase": "`CS_P17` = 9 («No sabe») y cualquier código fuera de {1,2} en `CS_P17`/`Clase2` quedan fuera de la conducta NINI (...) `conocido = CS_P17 ∈ {1,2} y Clase2 finito`",
+   "decision": "La frase admite dos lecturas para Clase2 ({1,2} o finito). Se usa la regla explícita de derivadas(): Clase2 finito, y CERO si Clase2=1 según la tabla de §2 (Clase2 3 y 4 cuentan como no ocupado). En el universo válido Clase2 solo toma 1-4, así que ambas lecturas de 'finito' coinciden; la lectura '{1,2}' se descarta por contradecir la tabla de §2."
+  },
+  {
+   "id": "D8-mujer-entre-nini-por-eje-sexo",
+   "frase": "`MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24` sólo tiene soporte donde la conducta NINI ya dio 1 (es un piso condicional, no un eje de la anterior).",
+   "decision": "Se estima como razón sobre el dominio NINI=1 ∩ segmento para todos los ejes del esquema, incluido SEXO (resultado trivial 0 para HOMBRE y 1 para MUJER, que se reporta tal cual). Personas NINI con sexo fuera de {1,2} quedarían fuera (no hay en el universo válido)."
+  },
+  {
+   "id": "D9-edad-65-mas",
+   "frase": "`eda`, cinco tramos: 15-17, 18-24, 25-44, 45-64, 65+",
+   "decision": "65+ = 65 a 98, por el tope del universo (eda 15 a 98)."
+  },
+  {
+   "id": "D10-escolaridad-no-especificado",
+   "frase": "el FD trae un quinto código 5 «No especificado» que el medidor no mapea —queda fuera del eje, no como categoría adicional",
+   "decision": "niv_ins=5 (y cualquier código fuera de 1-4) no entra a ningún segmento de ESCOLARIDAD; sí entra en los demás ejes."
+  },
+  {
+   "id": "D11-localidad-codigos",
+   "frase": "el FD trae los códigos 1-4 sin la etiqueta textual en esta edición del documento",
+   "decision": "El FD del paquete sí trae las etiquetas en la tabla de vivienda (1 >=100 000; 2 15 000-99 999; 3 2 500-14 999; 4 <2 500 habitantes); mapeo 100MIL-MAS=1, 15MIL-99MIL=2, 2500-14999=3, MENOS-2500=4."
+  },
+  {
+   "id": "D12-validez-diseno",
+   "frase": "Válido: peso > 0, estrato y UPM no vacíos (`M.prepara_diseno`).",
+   "decision": "Se exige fac_tri numérico > 0 y est_d_tri/upm no vacíos tras quitar espacios; las exclusiones se cuentan secuencialmente tras el filtro de universo."
+  }
+ ],
+ "llaves": [
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-18-24-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "EDAD",
+   "segmento": "18-24",
+   "n_valido": 8728,
+   "suma_pesos": "2921005.0",
+   "n_upm_con_casos": 5708,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 276715,
+    "en_segmento_fuera_de_la_conducta": 38798
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-01-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "01",
+   "n_valido": 287,
+   "suma_pesos": "35392.0",
+   "n_upm_con_casos": 179,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315278,
+    "en_segmento_fuera_de_la_conducta": 8676
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-02-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "02",
+   "n_valido": 331,
+   "suma_pesos": "79565.0",
+   "n_upm_con_casos": 249,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 312212,
+    "en_segmento_fuera_de_la_conducta": 11698
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-03-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "03",
+   "n_valido": 132,
+   "suma_pesos": "16398.0",
+   "n_upm_con_casos": 94,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 317598,
+    "en_segmento_fuera_de_la_conducta": 6511
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-04-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "04",
+   "n_valido": 277,
+   "suma_pesos": "19165.0",
+   "n_upm_con_casos": 190,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 311763,
+    "en_segmento_fuera_de_la_conducta": 12201
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-05-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "05",
+   "n_valido": 331,
+   "suma_pesos": "76294.0",
+   "n_upm_con_casos": 227,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 311979,
+    "en_segmento_fuera_de_la_conducta": 11931
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-06-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "06",
+   "n_valido": 177,
+   "suma_pesos": "11481.0",
+   "n_upm_con_casos": 124,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 316216,
+    "en_segmento_fuera_de_la_conducta": 7848
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-07-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "07",
+   "n_valido": 573,
+   "suma_pesos": "213440.0",
+   "n_upm_con_casos": 319,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 309151,
+    "en_segmento_fuera_de_la_conducta": 14517
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-08-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "08",
+   "n_valido": 331,
+   "suma_pesos": "83599.0",
+   "n_upm_con_casos": 245,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 312479,
+    "en_segmento_fuera_de_la_conducta": 11431
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-09-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "09",
+   "n_valido": 139,
+   "suma_pesos": "122414.0",
+   "n_upm_con_casos": 119,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 316038,
+    "en_segmento_fuera_de_la_conducta": 8064
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-10-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "10",
+   "n_valido": 276,
+   "suma_pesos": "41115.0",
+   "n_upm_con_casos": 196,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 314166,
+    "en_segmento_fuera_de_la_conducta": 9799
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-11-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "11",
+   "n_valido": 394,
+   "suma_pesos": "192148.0",
+   "n_upm_con_casos": 259,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 311979,
+    "en_segmento_fuera_de_la_conducta": 11868
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-12-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "12",
+   "n_valido": 315,
+   "suma_pesos": "100594.0",
+   "n_upm_con_casos": 187,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315089,
+    "en_segmento_fuera_de_la_conducta": 8837
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-13-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "13",
+   "n_valido": 182,
+   "suma_pesos": "63998.0",
+   "n_upm_con_casos": 115,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315826,
+    "en_segmento_fuera_de_la_conducta": 8233
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-14-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "14",
+   "n_valido": 284,
+   "suma_pesos": "181356.0",
+   "n_upm_con_casos": 193,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 313485,
+    "en_segmento_fuera_de_la_conducta": 10472
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-15-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "15",
+   "n_valido": 380,
+   "suma_pesos": "373110.0",
+   "n_upm_con_casos": 251,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 310298,
+    "en_segmento_fuera_de_la_conducta": 13563
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-16-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "16",
+   "n_valido": 231,
+   "suma_pesos": "117958.0",
+   "n_upm_con_casos": 137,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315256,
+    "en_segmento_fuera_de_la_conducta": 8754
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-17-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "17",
+   "n_valido": 210,
+   "suma_pesos": "40154.0",
+   "n_upm_con_casos": 147,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315738,
+    "en_segmento_fuera_de_la_conducta": 8293
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-18-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "18",
+   "n_valido": 198,
+   "suma_pesos": "23379.0",
+   "n_upm_con_casos": 126,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 314985,
+    "en_segmento_fuera_de_la_conducta": 9058
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-19-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "19",
+   "n_valido": 279,
+   "suma_pesos": "124869.0",
+   "n_upm_con_casos": 195,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 313793,
+    "en_segmento_fuera_de_la_conducta": 10169
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-20-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "20",
+   "n_valido": 281,
+   "suma_pesos": "109110.0",
+   "n_upm_con_casos": 151,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 313676,
+    "en_segmento_fuera_de_la_conducta": 10284
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-21-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "21",
+   "n_valido": 308,
+   "suma_pesos": "148874.0",
+   "n_upm_con_casos": 192,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 312994,
+    "en_segmento_fuera_de_la_conducta": 10939
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-22-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "22",
+   "n_valido": 216,
+   "suma_pesos": "44476.0",
+   "n_upm_con_casos": 141,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315319,
+    "en_segmento_fuera_de_la_conducta": 8706
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-23-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "23",
+   "n_valido": 226,
+   "suma_pesos": "47078.0",
+   "n_upm_con_casos": 160,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 316883,
+    "en_segmento_fuera_de_la_conducta": 7132
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-24-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "24",
+   "n_valido": 284,
+   "suma_pesos": "70794.0",
+   "n_upm_con_casos": 156,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315074,
+    "en_segmento_fuera_de_la_conducta": 8883
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-25-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "25",
+   "n_valido": 153,
+   "suma_pesos": "47621.0",
+   "n_upm_con_casos": 112,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315986,
+    "en_segmento_fuera_de_la_conducta": 8102
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-26-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "26",
+   "n_valido": 200,
+   "suma_pesos": "55853.0",
+   "n_upm_con_casos": 140,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315749,
+    "en_segmento_fuera_de_la_conducta": 8292
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-27-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "27",
+   "n_valido": 268,
+   "suma_pesos": "70094.0",
+   "n_upm_con_casos": 154,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 314890,
+    "en_segmento_fuera_de_la_conducta": 9083
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-28-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "28",
+   "n_valido": 334,
+   "suma_pesos": "76785.0",
+   "n_upm_con_casos": 253,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 312147,
+    "en_segmento_fuera_de_la_conducta": 11760
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-29-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "29",
+   "n_valido": 268,
+   "suma_pesos": "33161.0",
+   "n_upm_con_casos": 168,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 314922,
+    "en_segmento_fuera_de_la_conducta": 9051
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-30-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "30",
+   "n_valido": 367,
+   "suma_pesos": "208728.0",
+   "n_upm_con_casos": 222,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 310105,
+    "en_segmento_fuera_de_la_conducta": 13769
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-31-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "31",
+   "n_valido": 189,
+   "suma_pesos": "38845.0",
+   "n_upm_con_casos": 128,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315115,
+    "en_segmento_fuera_de_la_conducta": 8937
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-32-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "32",
+   "n_valido": 307,
+   "suma_pesos": "53157.0",
+   "n_upm_con_casos": 179,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315282,
+    "en_segmento_fuera_de_la_conducta": 8652
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR-Y-SUPERIOR",
+   "n_valido": 3751,
+   "suma_pesos": "1219368.0",
+   "n_upm_con_casos": 3149,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 427,
+    "fuera_del_segmento": 190412,
+    "en_segmento_fuera_de_la_conducta": 129651
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ESCOLARIDAD",
+   "segmento": "PRIMARIA-COMPLETA",
+   "n_valido": 1032,
+   "suma_pesos": "394965.0",
+   "n_upm_con_casos": 840,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 427,
+    "fuera_del_segmento": 273793,
+    "en_segmento_fuera_de_la_conducta": 48989
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ESCOLARIDAD",
+   "segmento": "PRIMARIA-INCOMPLETA",
+   "n_valido": 378,
+   "suma_pesos": "139154.0",
+   "n_upm_con_casos": 351,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 427,
+    "fuera_del_segmento": 292002,
+    "en_segmento_fuera_de_la_conducta": 31434
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA-COMPLETA",
+   "n_valido": 3563,
+   "suma_pesos": "1166612.0",
+   "n_upm_con_casos": 2771,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 427,
+    "fuera_del_segmento": 215235,
+    "en_segmento_fuera_de_la_conducta": 105016
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-100MIL-MAS-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "LOCALIDAD",
+   "segmento": "100MIL-MAS",
+   "n_valido": 4238,
+   "suma_pesos": "1140232.0",
+   "n_upm_con_casos": 3450,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 136775,
+    "en_segmento_fuera_de_la_conducta": 183228
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-15MIL-99MIL-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "LOCALIDAD",
+   "segmento": "15MIL-99MIL",
+   "n_valido": 1097,
+   "suma_pesos": "427528.0",
+   "n_upm_con_casos": 700,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 281656,
+    "en_segmento_fuera_de_la_conducta": 41488
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-2500-14999-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "LOCALIDAD",
+   "segmento": "2500-14999",
+   "n_valido": 1334,
+   "suma_pesos": "484089.0",
+   "n_upm_con_casos": 720,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 281934,
+    "en_segmento_fuera_de_la_conducta": 40973
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-MENOS-2500-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "LOCALIDAD",
+   "segmento": "MENOS-2500",
+   "n_valido": 2059,
+   "suma_pesos": "869156.0",
+   "n_upm_con_casos": 838,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 272358,
+    "en_segmento_fuera_de_la_conducta": 49824
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-HOMBRE-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "n_valido": 2407,
+   "suma_pesos": "776323.0",
+   "n_upm_con_casos": 2087,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 171991,
+    "en_segmento_fuera_de_la_conducta": 149843
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-MUJER-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "n_valido": 6321,
+   "suma_pesos": "2144682.0",
+   "n_upm_con_casos": 4441,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 152250,
+    "en_segmento_fuera_de_la_conducta": 165670
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-TOTAL-TODOS-P",
+   "conducta": "mujer-entre-no-estudia-ni-ocupado-18-24",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "n_valido": 8728,
+   "suma_pesos": "2921005.0",
+   "n_upm_con_casos": 5708,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 0,
+    "en_segmento_fuera_de_la_conducta": 315513
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-18-24-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "EDAD",
+   "segmento": "18-24",
+   "n_valido": 47520,
+   "suma_pesos": "14666575.0",
+   "n_upm_con_casos": 16401,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 276715,
+    "en_segmento_fuera_de_la_conducta": 6
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-01-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "01",
+   "n_valido": 1494,
+   "suma_pesos": "187892.0",
+   "n_upm_con_casos": 415,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315278,
+    "en_segmento_fuera_de_la_conducta": 7469
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-02-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "02",
+   "n_valido": 1919,
+   "suma_pesos": "477477.0",
+   "n_upm_con_casos": 729,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 312212,
+    "en_segmento_fuera_de_la_conducta": 10110
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-03-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "03",
+   "n_valido": 886,
+   "suma_pesos": "91943.0",
+   "n_upm_con_casos": 340,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 317598,
+    "en_segmento_fuera_de_la_conducta": 5757
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-04-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "04",
+   "n_valido": 1759,
+   "suma_pesos": "102613.0",
+   "n_upm_con_casos": 638,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 311763,
+    "en_segmento_fuera_de_la_conducta": 10719
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-05-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "05",
+   "n_valido": 1830,
+   "suma_pesos": "391845.0",
+   "n_upm_con_casos": 709,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 311979,
+    "en_segmento_fuera_de_la_conducta": 10432
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-06-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "06",
+   "n_valido": 1155,
+   "suma_pesos": "80119.0",
+   "n_upm_con_casos": 398,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 316216,
+    "en_segmento_fuera_de_la_conducta": 6870
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-07-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "07",
+   "n_valido": 2206,
+   "suma_pesos": "610537.0",
+   "n_upm_con_casos": 754,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 309151,
+    "en_segmento_fuera_de_la_conducta": 12884
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-08-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "08",
+   "n_valido": 1936,
+   "suma_pesos": "496379.0",
+   "n_upm_con_casos": 730,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 312479,
+    "en_segmento_fuera_de_la_conducta": 9826
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-09-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "09",
+   "n_valido": 981,
+   "suma_pesos": "941727.0",
+   "n_upm_con_casos": 464,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 316038,
+    "en_segmento_fuera_de_la_conducta": 7222
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-10-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "10",
+   "n_valido": 1521,
+   "suma_pesos": "212656.0",
+   "n_upm_con_casos": 535,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 314166,
+    "en_segmento_fuera_de_la_conducta": 8554
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-11-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "11",
+   "n_valido": 1924,
+   "suma_pesos": "736900.0",
+   "n_upm_con_casos": 626,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 311979,
+    "en_segmento_fuera_de_la_conducta": 10338
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-12-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "12",
+   "n_valido": 1252,
+   "suma_pesos": "364173.0",
+   "n_upm_con_casos": 416,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315089,
+    "en_segmento_fuera_de_la_conducta": 7900
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-13-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "13",
+   "n_valido": 1183,
+   "suma_pesos": "329597.0",
+   "n_upm_con_casos": 388,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315826,
+    "en_segmento_fuera_de_la_conducta": 7232
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-14-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "14",
+   "n_valido": 1643,
+   "suma_pesos": "1063173.0",
+   "n_upm_con_casos": 541,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 313485,
+    "en_segmento_fuera_de_la_conducta": 9113
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-15-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "15",
+   "n_valido": 2115,
+   "suma_pesos": "2084865.0",
+   "n_upm_con_casos": 709,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 310298,
+    "en_segmento_fuera_de_la_conducta": 11828
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-16-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "16",
+   "n_valido": 1333,
+   "suma_pesos": "537212.0",
+   "n_upm_con_casos": 422,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315256,
+    "en_segmento_fuera_de_la_conducta": 7652
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-17-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "17",
+   "n_valido": 1143,
+   "suma_pesos": "210599.0",
+   "n_upm_con_casos": 399,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315738,
+    "en_segmento_fuera_de_la_conducta": 7360
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-18-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "18",
+   "n_valido": 1328,
+   "suma_pesos": "136084.0",
+   "n_upm_con_casos": 411,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 314985,
+    "en_segmento_fuera_de_la_conducta": 7928
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-19-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "19",
+   "n_valido": 1618,
+   "suma_pesos": "768345.0",
+   "n_upm_con_casos": 534,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 313793,
+    "en_segmento_fuera_de_la_conducta": 8830
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-20-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "20",
+   "n_valido": 1383,
+   "suma_pesos": "397213.0",
+   "n_upm_con_casos": 433,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 313676,
+    "en_segmento_fuera_de_la_conducta": 9182
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-21-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "21",
+   "n_valido": 1685,
+   "suma_pesos": "763299.0",
+   "n_upm_con_casos": 538,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 312994,
+    "en_segmento_fuera_de_la_conducta": 9562
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-22-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "22",
+   "n_valido": 1340,
+   "suma_pesos": "291200.0",
+   "n_upm_con_casos": 421,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315319,
+    "en_segmento_fuera_de_la_conducta": 7582
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-23-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "23",
+   "n_valido": 1107,
+   "suma_pesos": "239691.0",
+   "n_upm_con_casos": 432,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 316883,
+    "en_segmento_fuera_de_la_conducta": 6251
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-24-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "24",
+   "n_valido": 1381,
+   "suma_pesos": "331600.0",
+   "n_upm_con_casos": 416,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315074,
+    "en_segmento_fuera_de_la_conducta": 7786
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-25-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "25",
+   "n_valido": 1157,
+   "suma_pesos": "349952.0",
+   "n_upm_con_casos": 426,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315986,
+    "en_segmento_fuera_de_la_conducta": 7098
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-26-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "26",
+   "n_valido": 1261,
+   "suma_pesos": "348129.0",
+   "n_upm_con_casos": 462,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315749,
+    "en_segmento_fuera_de_la_conducta": 7231
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-27-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "27",
+   "n_valido": 1358,
+   "suma_pesos": "299822.0",
+   "n_upm_con_casos": 398,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 314890,
+    "en_segmento_fuera_de_la_conducta": 7993
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-28-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "28",
+   "n_valido": 1744,
+   "suma_pesos": "402178.0",
+   "n_upm_con_casos": 773,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 312147,
+    "en_segmento_fuera_de_la_conducta": 10350
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-29-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "29",
+   "n_valido": 1410,
+   "suma_pesos": "173583.0",
+   "n_upm_con_casos": 408,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 314922,
+    "en_segmento_fuera_de_la_conducta": 7909
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-30-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "30",
+   "n_valido": 1771,
+   "suma_pesos": "786950.0",
+   "n_upm_con_casos": 715,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 310105,
+    "en_segmento_fuera_de_la_conducta": 12365
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-31-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "31",
+   "n_valido": 1338,
+   "suma_pesos": "279256.0",
+   "n_upm_con_casos": 397,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315115,
+    "en_segmento_fuera_de_la_conducta": 7788
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-32-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ENTIDAD",
+   "segmento": "32",
+   "n_valido": 1359,
+   "suma_pesos": "179566.0",
+   "n_upm_con_casos": 424,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315282,
+    "en_segmento_fuera_de_la_conducta": 7600
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR-Y-SUPERIOR",
+   "n_valido": 28973,
+   "suma_pesos": "8616786.0",
+   "n_upm_con_casos": 13735,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 427,
+    "fuera_del_segmento": 190412,
+    "en_segmento_fuera_de_la_conducta": 104429
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ESCOLARIDAD",
+   "segmento": "PRIMARIA-COMPLETA",
+   "n_valido": 2901,
+   "suma_pesos": "1068311.0",
+   "n_upm_con_casos": 1975,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 427,
+    "fuera_del_segmento": 273793,
+    "en_segmento_fuera_de_la_conducta": 47120
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ESCOLARIDAD",
+   "segmento": "PRIMARIA-INCOMPLETA",
+   "n_valido": 722,
+   "suma_pesos": "260869.0",
+   "n_upm_con_casos": 603,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 427,
+    "fuera_del_segmento": 292002,
+    "en_segmento_fuera_de_la_conducta": 31090
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA-COMPLETA",
+   "n_valido": 14892,
+   "suma_pesos": "4711965.0",
+   "n_upm_con_casos": 8275,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 427,
+    "fuera_del_segmento": 215235,
+    "en_segmento_fuera_de_la_conducta": 93687
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-100MIL-MAS-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "LOCALIDAD",
+   "segmento": "100MIL-MAS",
+   "n_valido": 27422,
+   "suma_pesos": "7265271.0",
+   "n_upm_con_casos": 12055,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 136775,
+    "en_segmento_fuera_de_la_conducta": 160044
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-15MIL-99MIL-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "LOCALIDAD",
+   "segmento": "15MIL-99MIL",
+   "n_valido": 6458,
+   "suma_pesos": "2349742.0",
+   "n_upm_con_casos": 1672,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 281656,
+    "en_segmento_fuera_de_la_conducta": 36127
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-2500-14999-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "LOCALIDAD",
+   "segmento": "2500-14999",
+   "n_valido": 6335,
+   "suma_pesos": "2191345.0",
+   "n_upm_con_casos": 1449,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 281934,
+    "en_segmento_fuera_de_la_conducta": 35972
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-MENOS-2500-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "LOCALIDAD",
+   "segmento": "MENOS-2500",
+   "n_valido": 7305,
+   "suma_pesos": "2860217.0",
+   "n_upm_con_casos": 1225,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 272358,
+    "en_segmento_fuera_de_la_conducta": 44578
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-HOMBRE-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "n_valido": 23651,
+   "suma_pesos": "7218803.0",
+   "n_upm_con_casos": 12360,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 171991,
+    "en_segmento_fuera_de_la_conducta": 128599
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-MUJER-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "n_valido": 23869,
+   "suma_pesos": "7447772.0",
+   "n_upm_con_casos": 12377,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 152250,
+    "en_segmento_fuera_de_la_conducta": 148122
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-TOTAL-TODOS-P",
+   "conducta": "no-estudia-ni-ocupado-18-24",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "n_valido": 47520,
+   "suma_pesos": "14666575.0",
+   "n_upm_con_casos": 16401,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 0,
+    "en_segmento_fuera_de_la_conducta": 276721
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-15-17-P",
+   "conducta": "participa-economicamente",
+   "eje": "EDAD",
+   "segmento": "15-17",
+   "n_valido": 21814,
+   "suma_pesos": "6942367.0",
+   "n_upm_con_casos": 11255,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 302427,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-18-24-P",
+   "conducta": "participa-economicamente",
+   "eje": "EDAD",
+   "segmento": "18-24",
+   "n_valido": 47526,
+   "suma_pesos": "14668718.0",
+   "n_upm_con_casos": 16401,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 276715,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-25-44-P",
+   "conducta": "participa-economicamente",
+   "eje": "EDAD",
+   "segmento": "25-44",
+   "n_valido": 116091,
+   "suma_pesos": "36380169.0",
+   "n_upm_con_casos": 20383,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 208150,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-45-64-P",
+   "conducta": "participa-economicamente",
+   "eje": "EDAD",
+   "segmento": "45-64",
+   "n_valido": 95563,
+   "suma_pesos": "30002822.0",
+   "n_upm_con_casos": 19994,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 228678,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-65-MAS-P",
+   "conducta": "participa-economicamente",
+   "eje": "EDAD",
+   "segmento": "65-MAS",
+   "n_valido": 43247,
+   "suma_pesos": "13942437.0",
+   "n_upm_con_casos": 14812,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 280994,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-01-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "01",
+   "n_valido": 8963,
+   "suma_pesos": "1151926.0",
+   "n_upm_con_casos": 490,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315278,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-02-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "02",
+   "n_valido": 12029,
+   "suma_pesos": "3024280.0",
+   "n_upm_con_casos": 950,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 312212,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-03-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "03",
+   "n_valido": 6643,
+   "suma_pesos": "680141.0",
+   "n_upm_con_casos": 480,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 317598,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-04-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "04",
+   "n_valido": 12478,
+   "suma_pesos": "734588.0",
+   "n_upm_con_casos": 840,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 311763,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-05-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "05",
+   "n_valido": 12262,
+   "suma_pesos": "2670164.0",
+   "n_upm_con_casos": 949,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 311979,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-06-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "06",
+   "n_valido": 8025,
+   "suma_pesos": "562716.0",
+   "n_upm_con_casos": 549,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 316216,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-07-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "07",
+   "n_valido": 15090,
+   "suma_pesos": "4229523.0",
+   "n_upm_con_casos": 952,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 309151,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-08-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "08",
+   "n_valido": 11762,
+   "suma_pesos": "3039374.0",
+   "n_upm_con_casos": 913,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 312479,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-09-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "09",
+   "n_valido": 8203,
+   "suma_pesos": "8003513.0",
+   "n_upm_con_casos": 643,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 316038,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-10-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "10",
+   "n_valido": 10075,
+   "suma_pesos": "1443026.0",
+   "n_upm_con_casos": 672,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 314166,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-11-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "11",
+   "n_valido": 12262,
+   "suma_pesos": "4837092.0",
+   "n_upm_con_casos": 752,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 311979,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-12-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "12",
+   "n_valido": 9152,
+   "suma_pesos": "2630783.0",
+   "n_upm_con_casos": 533,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315089,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-13-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "13",
+   "n_valido": 8415,
+   "suma_pesos": "2503579.0",
+   "n_upm_con_casos": 505,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315826,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-14-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "14",
+   "n_valido": 10756,
+   "suma_pesos": "6797452.0",
+   "n_upm_con_casos": 680,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 313485,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-15-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "15",
+   "n_valido": 13943,
+   "suma_pesos": "14246388.0",
+   "n_upm_con_casos": 869,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 310298,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-16-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "16",
+   "n_valido": 8985,
+   "suma_pesos": "3741006.0",
+   "n_upm_con_casos": 532,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315256,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-17-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "17",
+   "n_valido": 8503,
+   "suma_pesos": "1571529.0",
+   "n_upm_con_casos": 524,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315738,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-18-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "18",
+   "n_valido": 9256,
+   "suma_pesos": "957879.0",
+   "n_upm_con_casos": 500,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 314985,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-19-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "19",
+   "n_valido": 10448,
+   "suma_pesos": "4850390.0",
+   "n_upm_con_casos": 668,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 313793,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-20-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "20",
+   "n_valido": 10565,
+   "suma_pesos": "3184570.0",
+   "n_upm_con_casos": 547,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 313676,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-21-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "21",
+   "n_valido": 11247,
+   "suma_pesos": "5037442.0",
+   "n_upm_con_casos": 687,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 312994,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-22-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "22",
+   "n_valido": 8922,
+   "suma_pesos": "2010260.0",
+   "n_upm_con_casos": 529,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315319,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-23-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "23",
+   "n_valido": 7358,
+   "suma_pesos": "1516145.0",
+   "n_upm_con_casos": 577,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 316883,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-24-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "24",
+   "n_valido": 9167,
+   "suma_pesos": "2210765.0",
+   "n_upm_con_casos": 515,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315074,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-25-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "25",
+   "n_valido": 8255,
+   "suma_pesos": "2499009.0",
+   "n_upm_con_casos": 547,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315986,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-26-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "26",
+   "n_valido": 8492,
+   "suma_pesos": "2375507.0",
+   "n_upm_con_casos": 586,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315749,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-27-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "27",
+   "n_valido": 9351,
+   "suma_pesos": "1956030.0",
+   "n_upm_con_casos": 500,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 314890,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-28-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "28",
+   "n_valido": 12094,
+   "suma_pesos": "2826744.0",
+   "n_upm_con_casos": 1023,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 312147,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-29-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "29",
+   "n_valido": 9319,
+   "suma_pesos": "1132450.0",
+   "n_upm_con_casos": 485,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 314922,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-30-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "30",
+   "n_valido": 14136,
+   "suma_pesos": "6367397.0",
+   "n_upm_con_casos": 1037,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 310105,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-31-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "31",
+   "n_valido": 9126,
+   "suma_pesos": "1893317.0",
+   "n_upm_con_casos": 490,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315115,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-32-P",
+   "conducta": "participa-economicamente",
+   "eje": "ENTIDAD",
+   "segmento": "32",
+   "n_valido": 8959,
+   "suma_pesos": "1251528.0",
+   "n_upm_con_casos": 532,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 315282,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-P",
+   "conducta": "participa-economicamente",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR-Y-SUPERIOR",
+   "n_valido": 133402,
+   "suma_pesos": "39563443.0",
+   "n_upm_con_casos": 20606,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 427,
+    "fuera_del_segmento": 190412,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-P",
+   "conducta": "participa-economicamente",
+   "eje": "ESCOLARIDAD",
+   "segmento": "PRIMARIA-COMPLETA",
+   "n_valido": 50021,
+   "suma_pesos": "16754439.0",
+   "n_upm_con_casos": 15008,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 427,
+    "fuera_del_segmento": 273793,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-P",
+   "conducta": "participa-economicamente",
+   "eje": "ESCOLARIDAD",
+   "segmento": "PRIMARIA-INCOMPLETA",
+   "n_valido": 31812,
+   "suma_pesos": "11504369.0",
+   "n_upm_con_casos": 10072,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 427,
+    "fuera_del_segmento": 292002,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-P",
+   "conducta": "participa-economicamente",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA-COMPLETA",
+   "n_valido": 108579,
+   "suma_pesos": "33983484.0",
+   "n_upm_con_casos": 19610,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 427,
+    "fuera_del_segmento": 215235,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-100MIL-MAS-P",
+   "conducta": "participa-economicamente",
+   "eje": "LOCALIDAD",
+   "segmento": "100MIL-MAS",
+   "n_valido": 187466,
+   "suma_pesos": "51299870.0",
+   "n_upm_con_casos": 16080,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 136775,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-15MIL-99MIL-P",
+   "conducta": "participa-economicamente",
+   "eje": "LOCALIDAD",
+   "segmento": "15MIL-99MIL",
+   "n_valido": 42585,
+   "suma_pesos": "15612243.0",
+   "n_upm_con_casos": 1987,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 281656,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-2500-14999-P",
+   "conducta": "participa-economicamente",
+   "eje": "LOCALIDAD",
+   "segmento": "2500-14999",
+   "n_valido": 42307,
+   "suma_pesos": "14683303.0",
+   "n_upm_con_casos": 1678,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 281934,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-MENOS-2500-P",
+   "conducta": "participa-economicamente",
+   "eje": "LOCALIDAD",
+   "segmento": "MENOS-2500",
+   "n_valido": 51883,
+   "suma_pesos": "20341097.0",
+   "n_upm_con_casos": 1311,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 272358,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-SEXO-HOMBRE-P",
+   "conducta": "participa-economicamente",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "n_valido": 152250,
+   "suma_pesos": "47649912.0",
+   "n_upm_con_casos": 20976,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 171991,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-SEXO-MUJER-P",
+   "conducta": "participa-economicamente",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "n_valido": 171991,
+   "suma_pesos": "54286601.0",
+   "n_upm_con_casos": 21017,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 152250,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  },
+  {
+   "llave": "RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-TOTAL-TODOS-P",
+   "conducta": "participa-economicamente",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "n_valido": 324241,
+   "suma_pesos": "101936513.0",
+   "n_upm_con_casos": 21056,
+   "exclusiones": {
+    "universo_y_diseno_global": 98167,
+    "eje_sin_categoria_mapeada": 0,
+    "fuera_del_segmento": 0,
+    "en_segmento_fuera_de_la_conducta": 0
+   },
+   "resultado": "CALCULADO"
+  }
+ ]
+}

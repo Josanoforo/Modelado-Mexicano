@@ -1,0 +1,3826 @@
+{
+  "version": 3,
+  "identidad": {
+    "paquete": "endiseg-pisos-2021-0001",
+    "version_entrada": "validacion-continua-1",
+    "sha256_entrada": "abb596fb21b81b422a2d297fbe8627bd6c63107e976b0829e8335908bd3b2c36"
+  },
+  "filas": [
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-AFRO-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3810312886179857",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3743671698024097",
+      "ic95_sup": "0.38786613670606"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-AFRO-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3443681252176738",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.29867330981101703",
+      "ic95_sup": "0.38708667062729574"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-CONYUGAL-ALGUNA-VEZ-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0",
+      "ic95_sup": "0.0"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-CONYUGAL-SOLTERO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0",
+      "ic95_sup": "0.0"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-CONYUGAL-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6663874895414537",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6568531442042135",
+      "ic95_sup": "0.6753179283466058"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-EDAD-15-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.007028196175467633",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0033565347938553625",
+      "ic95_sup": "0.011441414008956242"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-EDAD-20-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.14650751672919202",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.13660091576683503",
+      "ic95_sup": "0.15666850840683041"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-EDAD-30-44-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.43580338417568126",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.42323167204084133",
+      "ic95_sup": "0.4482515223300592"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-EDAD-45-59-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5783446174857432",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.564870626412955",
+      "ic95_sup": "0.5916779910106152"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5189716660228486",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5043363503664602",
+      "ic95_sup": "0.5339645868796317"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-01-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.43625294256493086",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.40495713985091814",
+      "ic95_sup": "0.46933357912120527"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-02-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.326507536618478",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2971842846770855",
+      "ic95_sup": "0.3564049869252964"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-03-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.30393650477675055",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2769662552174092",
+      "ic95_sup": "0.3295888378426791"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-04-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4201654299241273",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.38983612686680763",
+      "ic95_sup": "0.4506011614257083"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-05-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.42944875035806507",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4000858116313259",
+      "ic95_sup": "0.45635092528479904"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-06-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3360440636390214",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.30299828752408353",
+      "ic95_sup": "0.36997893900647594"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-07-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4117740421965366",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.38059389814330874",
+      "ic95_sup": "0.442277192363475"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-08-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.38683443296759784",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3594749491554796",
+      "ic95_sup": "0.41402479728663216"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-09-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3320686182631861",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.30172845405261955",
+      "ic95_sup": "0.3614178472741394"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-10-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3888284865982519",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.35828199403321626",
+      "ic95_sup": "0.41707954809004116"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-11-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.45837487456792625",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.42956456959502454",
+      "ic95_sup": "0.48850270347286623"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-12-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4113046517144809",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.38292549622318306",
+      "ic95_sup": "0.4393471507751471"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-13-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3270278566009281",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.30332373106558524",
+      "ic95_sup": "0.3516091309340008"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-14-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4254882260007275",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3913846075321302",
+      "ic95_sup": "0.4596883699184864"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-15-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3484636797022744",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.32297268771834015",
+      "ic95_sup": "0.3752605635031153"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-16-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.42797856241101395",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3929386159358105",
+      "ic95_sup": "0.46275827571021916"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-17-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.33161569967923143",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3048531106893113",
+      "ic95_sup": "0.3584976688667585"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-18-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.368823242398335",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3447981425467875",
+      "ic95_sup": "0.39408407997271616"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4377456591536289",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.41106224628321647",
+      "ic95_sup": "0.46272917668103547"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-20-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.40113458643916167",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.367383010240323",
+      "ic95_sup": "0.4357364599433321"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-21-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3272705872788505",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.29521953979164933",
+      "ic95_sup": "0.359181413596287"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-22-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.36513287856654647",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.33157403706592237",
+      "ic95_sup": "0.4000559121624121"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-23-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.33449698639858233",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3062981861125481",
+      "ic95_sup": "0.36388950964805056"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-24-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4035422841503463",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.37462843471458357",
+      "ic95_sup": "0.4325238883630923"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-25-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4161406757999624",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.38763604544215857",
+      "ic95_sup": "0.445130278810782"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-26-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.35118603616816274",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.32619538798261094",
+      "ic95_sup": "0.376005819539196"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-27-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3627386909583144",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3341426213217667",
+      "ic95_sup": "0.39014006699598475"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-28-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.38569146906046287",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3566441862438613",
+      "ic95_sup": "0.415525949755354"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.32971619042831485",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2999887360308084",
+      "ic95_sup": "0.35929398857860034"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-30-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3462398643227602",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.31611497045686626",
+      "ic95_sup": "0.3770504147005727"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-31-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.43889892208748543",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4119932343896058",
+      "ic95_sup": "0.46567329827406884"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ENTIDAD-32-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.46387108600602883",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4355681623768832",
+      "ic95_sup": "0.4909246677421155"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4613855331311031",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.44855926245927624",
+      "ic95_sup": "0.4743647571459889"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.28978084279139066",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.27750564678223183",
+      "ic95_sup": "0.30261587861882716"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3925960110543047",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.37901896330953544",
+      "ic95_sup": "0.40518395576615024"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3699537474847717",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.35486138252469746",
+      "ic95_sup": "0.38448526371566105"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-INDIGENA-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.36551837697012746",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3569691851838267",
+      "ic95_sup": "0.37324916928141133"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-INDIGENA-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.41144354782296383",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3995996772837261",
+      "ic95_sup": "0.42441392996329164"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-LGBT-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3931348007311828",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3864905082613752",
+      "ic95_sup": "0.4002413857403214"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-LGBT-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.13899896550648178",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.12206760230857404",
+      "ic95_sup": "0.15588003251151547"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-SEXO-AL-NACER-HOMBRE-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4016963218037312",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.39245951084755376",
+      "ic95_sup": "0.41116638394628907"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-SEXO-AL-NACER-MUJER-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3608316833245475",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.35175290569163603",
+      "ic95_sup": "0.36975516865887437"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-CASADO-2021-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3800653984272313",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.37335342889713685",
+      "ic95_sup": "0.3868930483960445"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-AFRO-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.009284918867769587",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.008074043217884635",
+      "ic95_sup": "0.010543986267939967"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-AFRO-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.011602891176383311",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0058249406121745765",
+      "ic95_sup": "0.01877818351713025"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-CONYUGAL-ALGUNA-VEZ-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0021004090867779305",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.001196185477786064",
+      "ic95_sup": "0.003216956167196444"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-CONYUGAL-SOLTERO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.021378435870383152",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.01807449525258154",
+      "ic95_sup": "0.02486539297226409"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-CONYUGAL-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.005059473691301316",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.004055107760888967",
+      "ic95_sup": "0.006117147263440796"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-EDAD-15-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.026354193115811823",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.020896439574332463",
+      "ic95_sup": "0.032327861746213236"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-EDAD-20-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.016472322375221716",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.012887764910545352",
+      "ic95_sup": "0.020439424616868367"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-EDAD-30-44-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0066350633678541986",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.005027484577985499",
+      "ic95_sup": "0.008300912464440426"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-EDAD-45-59-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.005103053641398068",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0033335207946802664",
+      "ic95_sup": "0.007027176906878548"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0007415668980984977",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0002713449937007643",
+      "ic95_sup": "0.001355826069359699"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-01-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01706981577260021",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.00929924965877285",
+      "ic95_sup": "0.02518280018020256"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-02-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.003455482934656521",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0008818230351149481",
+      "ic95_sup": "0.007028674150899363"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-03-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.006156557978401478",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0027223164152938855",
+      "ic95_sup": "0.010232295663154239"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-04-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.016217843869324212",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.006717142103231066",
+      "ic95_sup": "0.027658125495453458"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-05-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.009713067104167035",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.004602452074930126",
+      "ic95_sup": "0.01607337909115861"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-06-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01698228424437744",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.008106342238896318",
+      "ic95_sup": "0.027266919156512703"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-07-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.010555842304322655",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.005827826819275427",
+      "ic95_sup": "0.015964740099026375"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-08-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.007065625790059381",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.002880175073419027",
+      "ic95_sup": "0.012155105064228634"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-09-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.003962601024073624",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0010711919867754463",
+      "ic95_sup": "0.00740391108058014"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-10-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01712002528604102",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.00810850707899133",
+      "ic95_sup": "0.026325618702970264"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-11-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.008814250592535188",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0044628390564464895",
+      "ic95_sup": "0.013650193565424816"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-12-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.011809992501086625",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.006141793685999775",
+      "ic95_sup": "0.01875600049863301"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-13-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0065070087983101705",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0022662048949643934",
+      "ic95_sup": "0.01126055123718136"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-14-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.013326757009995386",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.006947435690176244",
+      "ic95_sup": "0.020922574424507054"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-15-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.007423093964203904",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0028849171622053614",
+      "ic95_sup": "0.013221065125275044"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-16-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.005229785999593365",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0017752452861631532",
+      "ic95_sup": "0.009328451858116657"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-17-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.016179840274787256",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.006845739631562618",
+      "ic95_sup": "0.02643578752694993"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-18-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01005315336321321",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.005161266309820994",
+      "ic95_sup": "0.015753955891775938"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.008628861662031419",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.003995614936307603",
+      "ic95_sup": "0.014037297068167386"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-20-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.017299259825192065",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.010652319857732817",
+      "ic95_sup": "0.024803319716577215"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-21-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.009308789515589038",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.004360958989828635",
+      "ic95_sup": "0.01477385949770111"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-22-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.010204645054076148",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.005147197105704432",
+      "ic95_sup": "0.016250088279281105"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-23-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.014369055894695495",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.007555985392514475",
+      "ic95_sup": "0.02182352395078871"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-24-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.011423496534337715",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.005551009398972846",
+      "ic95_sup": "0.01805353607845989"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-25-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.010055961306921716",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.003881665015002861",
+      "ic95_sup": "0.017231803003881295"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-26-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.014515919858022076",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0079902642846318",
+      "ic95_sup": "0.021894475599000457"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-27-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.009916562184473022",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.004918685895121155",
+      "ic95_sup": "0.015384072804522524"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-28-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.004412818663671064",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.001058823834523528",
+      "ic95_sup": "0.008287149190991019"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.008849352201124101",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.004433940529399444",
+      "ic95_sup": "0.013741124142066297"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-30-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.00576353011058183",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0020305627306986223",
+      "ic95_sup": "0.01004929165097112"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-31-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.026287163913090654",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.01712235689507283",
+      "ic95_sup": "0.03560887768764278"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ENTIDAD-32-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0075250183309344704",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0032808284701076945",
+      "ic95_sup": "0.01291892063774506"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0050737104266545385",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0034075364001745993",
+      "ic95_sup": "0.006835857510599387"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.013959319470432972",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.011151715067395346",
+      "ic95_sup": "0.016929969761151437"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.010496494319890198",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.008270397601296312",
+      "ic95_sup": "0.012907080422710032"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.007396392843449157",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.005414647840540452",
+      "ic95_sup": "0.009717603813204467"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-INDIGENA-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.009406938369121645",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.00800511253872988",
+      "ic95_sup": "0.010880060889920997"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-INDIGENA-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.009356732091380915",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0072456186640935455",
+      "ic95_sup": "0.011557171191784127"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-LGBT-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0",
+      "ic95_sup": "0.0"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-LGBT-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1817336287200363",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1614356882789542",
+      "ic95_sup": "0.20394764868793056"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-SEXO-AL-NACER-HOMBRE-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.008482548767962434",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.007068089554102143",
+      "ic95_sup": "0.009944354698359267"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-SEXO-AL-NACER-MUJER-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.010113733961833956",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.00838339847306306",
+      "ic95_sup": "0.011996951431272098"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.009345985794561595",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.008190402720069956",
+      "ic95_sup": "0.010590484018401208"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-AFRO-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05075199032990557",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04773779292800662",
+      "ic95_sup": "0.05352275084129542"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-AFRO-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.07636777225426485",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05913973963303018",
+      "ic95_sup": "0.09524691038041876"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-CONYUGAL-ALGUNA-VEZ-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.016276587748091494",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.012884742934958776",
+      "ic95_sup": "0.020022911271483704"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-CONYUGAL-SOLTERO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.11584765862863138",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.10811850611730936",
+      "ic95_sup": "0.12341705258571903"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-CONYUGAL-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.02757449142531309",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.02503734864784822",
+      "ic95_sup": "0.03022066600177634"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-EDAD-15-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.15574590422327486",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.141604822312265",
+      "ic95_sup": "0.17039722501248214"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-EDAD-20-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0886993540615475",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.07976779261905087",
+      "ic95_sup": "0.09684006606652376"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-EDAD-30-44-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.037889464990300874",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03385626614016732",
+      "ic95_sup": "0.04218194212945137"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-EDAD-45-59-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.019498372140249142",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.01590934900364674",
+      "ic95_sup": "0.023036545894144944"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.009035697606350061",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.006486916702229166",
+      "ic95_sup": "0.011762094450537048"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-01-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.07294124456365933",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.058038913522307896",
+      "ic95_sup": "0.08984486004290781"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-02-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.03256118977902011",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.02277191787111285",
+      "ic95_sup": "0.042742803234345886"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-03-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05385824344651661",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04134588811433069",
+      "ic95_sup": "0.06718959425691283"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-04-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.07295060993625675",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05770342980375971",
+      "ic95_sup": "0.08886543901695834"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-05-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04498447939497381",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.031422011438589414",
+      "ic95_sup": "0.061137942043356354"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-06-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.08721735836131422",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.06856173352776809",
+      "ic95_sup": "0.1061670122702936"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-07-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05453801229692344",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.040248585235909386",
+      "ic95_sup": "0.07031335415753143"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-08-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.048544049684186345",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03488789694365729",
+      "ic95_sup": "0.06467934998485607"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-09-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.03963213126954346",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.027807794388650994",
+      "ic95_sup": "0.05292736942259859"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-10-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.07056824816610353",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05339947370605848",
+      "ic95_sup": "0.08803870588592053"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-11-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.049139624894777176",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03818087216392527",
+      "ic95_sup": "0.060877494949896124"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-12-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.07404261484402738",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05847741739994668",
+      "ic95_sup": "0.08941771862213939"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-13-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.046767542472671786",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03618463552415315",
+      "ic95_sup": "0.058281419797682095"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-14-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04744082462132195",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03475120089201434",
+      "ic95_sup": "0.061104697167652246"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-15-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.03703672043688736",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.02650287974772872",
+      "ic95_sup": "0.04780617661110835"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-16-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.037178123957860215",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.02565132702793584",
+      "ic95_sup": "0.049387645733871166"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-17-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.07209774195055185",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.056721682224392285",
+      "ic95_sup": "0.0884478408424893"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-18-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.047281017642944116",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03401171913959116",
+      "ic95_sup": "0.06210224587770044"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.061526732311789276",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04783813957615965",
+      "ic95_sup": "0.07490634073859748"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-20-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06907003091952109",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.054488852221766124",
+      "ic95_sup": "0.0847229536684842"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-21-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05401201143264151",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04033152872033184",
+      "ic95_sup": "0.06867665880754889"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-22-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.08242250425506252",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.06683662620036142",
+      "ic95_sup": "0.09743846695247893"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-23-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06670859223290918",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05110335725320438",
+      "ic95_sup": "0.0824123713806453"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-24-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06379293580836998",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04983424812870876",
+      "ic95_sup": "0.07829987660486909"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-25-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0511536894216855",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03798497809443508",
+      "ic95_sup": "0.06424511747038764"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-26-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.061963024115880165",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04962457023932655",
+      "ic95_sup": "0.07525375081363396"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-27-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06246352369434243",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.050450047430173804",
+      "ic95_sup": "0.07450794878629498"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-28-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.032687241663753516",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.022685847376075607",
+      "ic95_sup": "0.0439947707913602"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06059882485552374",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04550921262235695",
+      "ic95_sup": "0.07565813141856072"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-30-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.048147966264612534",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.033701458607781336",
+      "ic95_sup": "0.06336759950705304"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-31-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.08347033744042731",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.06645127518287501",
+      "ic95_sup": "0.10076881566798199"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ENTIDAD-32-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06387566873964641",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.048657065511189916",
+      "ic95_sup": "0.08189033879974228"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01963495815949255",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.01634496567350143",
+      "ic95_sup": "0.022959890429812963"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.07746004966164444",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.07069234056467957",
+      "ic95_sup": "0.08430510392461112"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.050164219841474435",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04516267435878996",
+      "ic95_sup": "0.05491576035237166"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06117473339346383",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05426362580016238",
+      "ic95_sup": "0.06848397577137649"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-INDIGENA-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05233400078128097",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04884594057680834",
+      "ic95_sup": "0.05589105836454069"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-INDIGENA-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04958345644622585",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04482402179402426",
+      "ic95_sup": "0.054729013194637764"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-LGBT-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0",
+      "ic95_sup": "0.0"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-LGBT-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "1.0",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "1.0",
+      "ic95_sup": "1.0"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-SEXO-AL-NACER-HOMBRE-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.045520866324726135",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.041492102143576924",
+      "ic95_sup": "0.049213075830114084"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-SEXO-AL-NACER-MUJER-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05667829003778035",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05259401917348193",
+      "ic95_sup": "0.06100509673643941"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05142683751150561",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04842279249602927",
+      "ic95_sup": "0.05425912761777263"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-AFRO-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.44737703094163356",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4405515652731642",
+      "ic95_sup": "0.45428537639794303"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-AFRO-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.543681564533737",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.49760975427806264",
+      "ic95_sup": "0.5891334108199942"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-CONYUGAL-ALGUNA-VEZ-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2937662055856983",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.27940025370239735",
+      "ic95_sup": "0.3087860345341155"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-CONYUGAL-SOLTERO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6616782032198024",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6490266032231532",
+      "ic95_sup": "0.6732596852196223"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-CONYUGAL-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3815701543625622",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.37318044528516636",
+      "ic95_sup": "0.39022033114599225"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-EDAD-15-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5673436525978093",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5460273216492131",
+      "ic95_sup": "0.5881984568170852"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-EDAD-20-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6713088653517818",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6565288783693071",
+      "ic95_sup": "0.6855138165476864"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-EDAD-30-44-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.49670959978136375",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4838058469659237",
+      "ic95_sup": "0.5096196907399551"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-EDAD-45-59-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.35060729416864567",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.33699094407377295",
+      "ic95_sup": "0.3634890595082118"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1903863820253198",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1788425800883044",
+      "ic95_sup": "0.20220499730524033"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-01-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4305816941034752",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.39720739754962203",
+      "ic95_sup": "0.466204397048576"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-02-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4976365559637997",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.46798436622928574",
+      "ic95_sup": "0.5253762418285579"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-03-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4992944440074296",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.47257589895404395",
+      "ic95_sup": "0.5287271425972396"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-04-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.43739971641392256",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4046242900201869",
+      "ic95_sup": "0.47108493982130456"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-05-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4610324520994223",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4362456658652085",
+      "ic95_sup": "0.48574828273536075"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-06-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4918219671217995",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.45831803462502896",
+      "ic95_sup": "0.5270527351625023"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-07-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.33608586835978665",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.31043878747588033",
+      "ic95_sup": "0.3631929721731135"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-08-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.46894808386307435",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4336300462612467",
+      "ic95_sup": "0.5044752640321545"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-09-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6019730881317205",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5707880132712787",
+      "ic95_sup": "0.633109778958878"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-10-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4536107969053866",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4190545617497447",
+      "ic95_sup": "0.4869349939802555"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-11-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.37318302681740434",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3432938005872452",
+      "ic95_sup": "0.40492063874077644"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-12-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.39301112418423445",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3572167437164027",
+      "ic95_sup": "0.4280070889712391"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-13-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4342136428483067",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4012305682959544",
+      "ic95_sup": "0.46563410798893995"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-14-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.41626981545523994",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.384245292077874",
+      "ic95_sup": "0.4485933637764968"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-15-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4892776396910815",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.46265882787508317",
+      "ic95_sup": "0.5138454862538895"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-16-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.36929999079370757",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3326405094214073",
+      "ic95_sup": "0.4130056190636645"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-17-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4541482676385918",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.41904591920095985",
+      "ic95_sup": "0.4878600608801819"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-18-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4556918573020026",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4230033621152474",
+      "ic95_sup": "0.4895062187007336"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5170826935260451",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4821032844832461",
+      "ic95_sup": "0.5532693200333604"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-20-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.32953875388126513",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2946758975341534",
+      "ic95_sup": "0.36689524431345083"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-21-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3909463073146296",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.35931851687858957",
+      "ic95_sup": "0.4235397897606335"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-22-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.449798303335701",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4183132580263674",
+      "ic95_sup": "0.48303867505194736"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-23-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4992906939739707",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.46512337718461694",
+      "ic95_sup": "0.5345724970813683"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-24-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4361254179427285",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4082193372346079",
+      "ic95_sup": "0.467866738268595"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-25-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.49996698758102237",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4697637446589133",
+      "ic95_sup": "0.5315292333220291"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-26-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.48767920230548756",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4606878770330146",
+      "ic95_sup": "0.5156184293612482"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-27-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.46509869406504156",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4304553848652045",
+      "ic95_sup": "0.4985138669986556"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-28-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4912939355828461",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.46474038431291204",
+      "ic95_sup": "0.5172651590307397"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.43498036592274364",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.40541595568868616",
+      "ic95_sup": "0.4651563078472826"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-30-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.40142380401119926",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.36981949417208343",
+      "ic95_sup": "0.43223902514937185"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-31-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4066893253559766",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.379537965230262",
+      "ic95_sup": "0.4335091852658444"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ENTIDAD-32-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3453845083236021",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.31988394035996015",
+      "ic95_sup": "0.37209515344599936"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0",
+      "ic95_sup": "0.0"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "1.0",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "1.0",
+      "ic95_sup": "1.0"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0",
+      "ic95_sup": "0.0"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "1.0",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "1.0",
+      "ic95_sup": "1.0"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-INDIGENA-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.49671147628429707",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4876864896445316",
+      "ic95_sup": "0.5055570372952136"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-INDIGENA-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3580750224735407",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3465037071113666",
+      "ic95_sup": "0.36948280285830054"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-LGBT-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.441081146684159",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.43428824813032496",
+      "ic95_sup": "0.4480764755477082"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-LGBT-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6128402007541481",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5861227430453173",
+      "ic95_sup": "0.6401942128405993"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-SEXO-AL-NACER-HOMBRE-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.47454809204228154",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.46440806283490954",
+      "ic95_sup": "0.48426946008141214"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-SEXO-AL-NACER-MUJER-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4280102612859542",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4187589338438096",
+      "ic95_sup": "0.43697792524201695"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-MEDIA-SUPERIOR-O-MAS-2021-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.44991417164894626",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4430987049201808",
+      "ic95_sup": "0.456749306470218"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-AFRO-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04684544662515735",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.043989804235338055",
+      "ic95_sup": "0.049547698328782266"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-AFRO-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.07286937386477753",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0558772777568255",
+      "ic95_sup": "0.09185162828487062"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-CONYUGAL-ALGUNA-VEZ-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.015283395867771662",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.011935716023446123",
+      "ic95_sup": "0.019008420195699975"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-CONYUGAL-SOLTERO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.11046615780885803",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.10274925695840216",
+      "ic95_sup": "0.11786831283387504"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-CONYUGAL-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0237103007864495",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.021446438069909774",
+      "ic95_sup": "0.02613587885564279"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-EDAD-15-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.14862263135634893",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.13455968129463536",
+      "ic95_sup": "0.16324409179266344"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-EDAD-20-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.08237530052813308",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.07407921290601173",
+      "ic95_sup": "0.09040634890955147"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-EDAD-30-44-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.03419554962500092",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.030262320611732348",
+      "ic95_sup": "0.03828227844008002"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-EDAD-45-59-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01613950462035617",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.012954751334082918",
+      "ic95_sup": "0.01924355039801039"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.00882597031397587",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.00630402039959472",
+      "ic95_sup": "0.011521201862144833"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-01-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0652568882924125",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05184708902657866",
+      "ic95_sup": "0.07953321628292005"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-02-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.03219802850441261",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.02224977446590335",
+      "ic95_sup": "0.0424416614262165"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-03-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05167174228182748",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.039546087165872226",
+      "ic95_sup": "0.06503643540541024"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-04-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.064457164506785",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.050931767815107956",
+      "ic95_sup": "0.07919989604947078"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-05-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04498447939497381",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.031422011438589414",
+      "ic95_sup": "0.061137942043356354"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-06-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.08128731146412305",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.06345320009494523",
+      "ic95_sup": "0.09943591917027264"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-07-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05124823468092878",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03812826296174278",
+      "ic95_sup": "0.06505880310432921"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-08-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.045623324899029975",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03263673047191339",
+      "ic95_sup": "0.060932757911189475"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-09-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.037780520055359604",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.02578455960345437",
+      "ic95_sup": "0.05069633151772981"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-10-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0595114584689946",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04451104219671409",
+      "ic95_sup": "0.07578464952873468"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-11-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.046566637170144635",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.036059209285393294",
+      "ic95_sup": "0.05762117505472307"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-12-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06663445265096937",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.051292687442734505",
+      "ic95_sup": "0.08210459531077419"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-13-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.045561305505583016",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03464660656700507",
+      "ic95_sup": "0.05717681563603928"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-14-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04316913042862794",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.030912668770887847",
+      "ic95_sup": "0.05638631539598269"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-15-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.034392148179561606",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.02483568049034587",
+      "ic95_sup": "0.04422434210694875"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-16-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.034379522313021174",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.02319438003549529",
+      "ic95_sup": "0.04672342303733636"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-17-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06863730628630882",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05390295600101127",
+      "ic95_sup": "0.08424481498049492"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-18-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04267705553684465",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.02983375619294835",
+      "ic95_sup": "0.057956465542739394"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05647878703276171",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.043244285456934914",
+      "ic95_sup": "0.06915769563379015"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-20-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05632968633174328",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0435306791677314",
+      "ic95_sup": "0.06978610040046469"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-21-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04994530605855983",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.036869920530850434",
+      "ic95_sup": "0.06387902513168185"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-22-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.08011847166195371",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.06459211544972304",
+      "ic95_sup": "0.09527964561332548"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-23-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05707238511140764",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.044158354882008415",
+      "ic95_sup": "0.07100315925963058"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-24-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05629915929950775",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.043560780484862886",
+      "ic95_sup": "0.07008091948141802"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-25-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.048164488477824695",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03561608779565217",
+      "ic95_sup": "0.06096289916203639"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-26-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.059416264619278604",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0472473882440192",
+      "ic95_sup": "0.07264023040625825"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-27-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.058742663130915265",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04726679668221319",
+      "ic95_sup": "0.07057597643602403"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-28-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.030404350439285875",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.020918563837130807",
+      "ic95_sup": "0.041483272341061174"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05502471902291706",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.040936856315056676",
+      "ic95_sup": "0.06973176048910615"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-30-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04555099954676245",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03119155381654469",
+      "ic95_sup": "0.06129169674057358"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-31-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.07102733527975551",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05590727285359407",
+      "ic95_sup": "0.08698541164391303"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ENTIDAD-32-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05988614452923444",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.045089014600940794",
+      "ic95_sup": "0.07770807085311056"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.015997813438452628",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.013122617189218783",
+      "ic95_sup": "0.01901349905082283"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.07333296220017135",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.06665476292989493",
+      "ic95_sup": "0.08010555468733215"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04593853309627743",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04109551930866631",
+      "ic95_sup": "0.05046534961961075"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.057718795781526215",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.050706193720655574",
+      "ic95_sup": "0.06503296539428047"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-INDIGENA-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.048714695016736836",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.045470080924198644",
+      "ic95_sup": "0.052130867109107755"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-INDIGENA-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04507432712496333",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.040641470722516705",
+      "ic95_sup": "0.04996904012318177"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-LGBT-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0",
+      "ic95_sup": "0.0"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-LGBT-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.9242459518340458",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.9100803276441211",
+      "ic95_sup": "0.9373462782047335"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-SEXO-AL-NACER-HOMBRE-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04165121908213855",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.037960145060572",
+      "ic95_sup": "0.04519408250837236"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-SEXO-AL-NACER-MUJER-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05275925237758767",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.048769195382722716",
+      "ic95_sup": "0.056874985064458296"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.047531046385636315",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04463233367206972",
+      "ic95_sup": "0.05021792282052049"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-AFRO-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2869740248375745",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2807166099800682",
+      "ic95_sup": "0.29336376353103716"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-AFRO-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.337418962881056",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.29949140320655054",
+      "ic95_sup": "0.3808405866780043"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-CONYUGAL-ALGUNA-VEZ-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0",
+      "ic95_sup": "0.0"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-CONYUGAL-SOLTERO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "1.0",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "1.0",
+      "ic95_sup": "1.0"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-CONYUGAL-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0",
+      "ic95_sup": "0.0"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-EDAD-15-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.9077323246166923",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.8929240674730436",
+      "ic95_sup": "0.9215558820414876"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-EDAD-20-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5303793187697138",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5142910195823664",
+      "ic95_sup": "0.5464008092028093"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-EDAD-30-44-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1781260296923617",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.168781285608755",
+      "ic95_sup": "0.1880611731030999"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-EDAD-45-59-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.09120327129274564",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0842008329000547",
+      "ic95_sup": "0.09809562120007582"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06979365355107336",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.06321572097191716",
+      "ic95_sup": "0.0767069406849738"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-01-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.32551302144330607",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2963516640753543",
+      "ic95_sup": "0.3555256837843444"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-02-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3034127280191188",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.27645658495508907",
+      "ic95_sup": "0.32983652378980277"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-03-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2941004602568898",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2660775097556281",
+      "ic95_sup": "0.32264651769925456"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-04-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.24632546803719133",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.22217222960631533",
+      "ic95_sup": "0.2721495947801327"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-05-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2513331116789008",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.22342188145325034",
+      "ic95_sup": "0.27470854588026555"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-06-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2810942562617524",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.24806195924068267",
+      "ic95_sup": "0.3145365895968149"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-07-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.23537553864539432",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.21043016266681605",
+      "ic95_sup": "0.2611705765703812"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-08-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.26871193270672505",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2427624656835098",
+      "ic95_sup": "0.29654852142012894"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-09-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.33021802722047017",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.30034414092756595",
+      "ic95_sup": "0.36157648932520026"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-10-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2852332739716205",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.25792798595542926",
+      "ic95_sup": "0.3113200323274104"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-11-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3134548331362707",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.28659049761271865",
+      "ic95_sup": "0.34006917369180495"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-12-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.27072350980988424",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2446303299257178",
+      "ic95_sup": "0.2971153399021723"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-13-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2719597825311386",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2513001263361236",
+      "ic95_sup": "0.29360089005331785"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-14-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.27098847324906583",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.24371299477598243",
+      "ic95_sup": "0.300895991193953"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-15-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2963358993327181",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.26826068310391105",
+      "ic95_sup": "0.3245020010159635"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-16-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2517431461099799",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.22776114629919006",
+      "ic95_sup": "0.27589329227354314"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-17-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.29409607955930633",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2662760841313167",
+      "ic95_sup": "0.32018146067768666"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-18-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.285538485452991",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.26192381548107174",
+      "ic95_sup": "0.3096412253361652"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3178122349050222",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.28958732713644375",
+      "ic95_sup": "0.34564168959981845"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-20-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.26921140528733606",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2375945932006993",
+      "ic95_sup": "0.30151732849219853"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-21-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.28927867296258747",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2640002740392789",
+      "ic95_sup": "0.31623879006070876"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-22-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.35493681064636745",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.32856162442081605",
+      "ic95_sup": "0.3818640596279987"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-23-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2810653603930418",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2502625467069752",
+      "ic95_sup": "0.31336988907405305"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-24-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.30817341756310834",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2812971674849217",
+      "ic95_sup": "0.3374224905021477"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-25-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2914298498712936",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2635925325499062",
+      "ic95_sup": "0.319189300119069"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-26-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.29502502804829966",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2690702648160767",
+      "ic95_sup": "0.3207456804867005"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-27-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.282395397605601",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2545334974349454",
+      "ic95_sup": "0.3112887652141671"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-28-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.25631619181360205",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.22794868546330743",
+      "ic95_sup": "0.2890363346725744"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3019964695396287",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2742172567106444",
+      "ic95_sup": "0.32900922403351107"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-30-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2788741879493863",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2551747935632444",
+      "ic95_sup": "0.3031890756341267"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-31-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.29406231084483203",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2678543326235115",
+      "ic95_sup": "0.31983884306973737"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ENTIDAD-32-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2356484058876246",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.21136617270962796",
+      "ic95_sup": "0.25917427857269737"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1107080010604235",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.10200395693548024",
+      "ic95_sup": "0.11934054283929608"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.43355738225601165",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.41977596714220305",
+      "ic95_sup": "0.4477495305544897"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.23350308841685619",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2224353935020053",
+      "ic95_sup": "0.24436820478760174"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.41255411631708927",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.39850171238393084",
+      "ic95_sup": "0.42715708974709976"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-INDIGENA-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3182219563077398",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.31056190184338317",
+      "ic95_sup": "0.32672664453982736"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-INDIGENA-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.22532791532199548",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.21524278990261425",
+      "ic95_sup": "0.2353538897908654"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-LGBT-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2687233611816924",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.26252128221400334",
+      "ic95_sup": "0.27500819764096013"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-LGBT-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.64945131039846",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6246995918897215",
+      "ic95_sup": "0.6730407439194657"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-SEXO-AL-NACER-HOMBRE-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.31489270554349813",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3061255541401744",
+      "ic95_sup": "0.32431376318993593"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-SEXO-AL-NACER-MUJER-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2646600424832365",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2554288383322075",
+      "ic95_sup": "0.2731433600154278"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-SOLTERO-2021-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2883029955621519",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.28201720442137074",
+      "ic95_sup": "0.29480915259175944"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-AFRO-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1895878063723244",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1839769790498684",
+      "ic95_sup": "0.1954175049277807"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-AFRO-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.21554077586354997",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.18166911280231757",
+      "ic95_sup": "0.25059880771468773"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-CONYUGAL-ALGUNA-VEZ-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0",
+      "ic95_sup": "0.0"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-CONYUGAL-SOLTERO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0",
+      "ic95_sup": "0.0"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-CONYUGAL-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.33361251045854634",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3246820716533942",
+      "ic95_sup": "0.3431468557957866"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-EDAD-15-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.08060858057324233",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.06832579351636577",
+      "ic95_sup": "0.09369187935224549"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-EDAD-20-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.27519691955552533",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2620016586312998",
+      "ic95_sup": "0.28894417218288143"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-EDAD-30-44-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2742982171824467",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.26342168322864334",
+      "ic95_sup": "0.2853111642233366"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-EDAD-45-59-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.16286332535021847",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.15277949135706065",
+      "ic95_sup": "0.17389874528539004"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06970699802068779",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.061748621064376195",
+      "ic95_sup": "0.07810420482842947"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-01-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.12467703004197139",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1039904247522942",
+      "ic95_sup": "0.14505210582818792"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-02-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2344045909581019",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.20891720180868953",
+      "ic95_sup": "0.25976864387374865"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-03-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2718549781430152",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.24735812488757267",
+      "ic95_sup": "0.29657748790309907"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-04-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.20192007283327373",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1763879123679029",
+      "ic95_sup": "0.23004063358465257"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-05-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.16492939182982858",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.14473842564845604",
+      "ic95_sup": "0.1892345795163726"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-06-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.20948911296670145",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.18239757368587992",
+      "ic95_sup": "0.23732668831548248"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-07-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.23931410819966187",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.208900840474054",
+      "ic95_sup": "0.2707710447015498"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-08-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1872544906887672",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.16317030830123874",
+      "ic95_sup": "0.21305758640687147"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-09-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.16078170128639796",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1381265755822955",
+      "ic95_sup": "0.18324900388476464"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-10-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.19667506120304779",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1682738354371077",
+      "ic95_sup": "0.2239959363094081"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-11-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.11129551527118657",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0938033151450917",
+      "ic95_sup": "0.12796131884475442"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-12-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.18943791584340486",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.16658234591874543",
+      "ic95_sup": "0.21278733099985592"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-13-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.26752030695923157",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2457798279143775",
+      "ic95_sup": "0.29044651089456275"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-14-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.15440352551159092",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.13198201280466132",
+      "ic95_sup": "0.17721496966924427"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-15-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.20720354885120837",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.183181261017135",
+      "ic95_sup": "0.23173967877644838"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-16-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.18835295534503155",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.16060656257803882",
+      "ic95_sup": "0.21618636653347278"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-17-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2087331209380033",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1842964633372534",
+      "ic95_sup": "0.23308294315708283"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-18-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.20837759182016805",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1848518647599014",
+      "ic95_sup": "0.23254639498064156"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.11592642305668603",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.09726995090890117",
+      "ic95_sup": "0.1357510710691129"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-20-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.20175297686096663",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1730255171052938",
+      "ic95_sup": "0.2338465619105538"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-21-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.25911520188222387",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.23245493281197957",
+      "ic95_sup": "0.28526318667339207"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-22-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1738853076376697",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.15124278635482952",
+      "ic95_sup": "0.19617726269935093"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-23-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.24913796019464324",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.22352221968723227",
+      "ic95_sup": "0.2767936408442828"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-24-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.16675281004988562",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1479160733768248",
+      "ic95_sup": "0.18607699405810363"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-25-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.13941670209719276",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.11895406013005602",
+      "ic95_sup": "0.15925732479526006"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-26-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.19839482779780157",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.17811895493502639",
+      "ic95_sup": "0.22000429254709664"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-27-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.19878948594760726",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.17623354936065413",
+      "ic95_sup": "0.22148525447856576"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-28-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.20775877088748468",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1838545993640457",
+      "ic95_sup": "0.23170348916987873"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.21932356688636984",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.19636944734830297",
+      "ic95_sup": "0.2416384582269844"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-30-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.22019681582634215",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.19421894761939718",
+      "ic95_sup": "0.2457967926473699"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-31-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.14814233446186165",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1276025155135262",
+      "ic95_sup": "0.16898945884222344"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ENTIDAD-32-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1748983312060397",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.15144915374826487",
+      "ic95_sup": "0.19947437217941297"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.19492016765872605",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.18432982402141224",
+      "ic95_sup": "0.20576911814001944"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.179270783747237",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.168385706291032",
+      "ic95_sup": "0.19004270539910906"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.23585619255003074",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.22562425846357467",
+      "ic95_sup": "0.24731755061963043"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.13129090959427792",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.12230057628102464",
+      "ic95_sup": "0.14088358518170896"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-INDIGENA-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.17242152294681493",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1659622618958304",
+      "ic95_sup": "0.1792919157927552"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-INDIGENA-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.22755582364874247",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.21753838072194642",
+      "ic95_sup": "0.23707103308891536"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-LGBT-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.19154354162901324",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.18593057762457524",
+      "ic95_sup": "0.19745011047936628"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-LGBT-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.16680927955887212",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.14900879002776304",
+      "ic95_sup": "0.18600190704905825"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-SEXO-AL-NACER-HOMBRE-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.19339822178450788",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.18555381103859417",
+      "ic95_sup": "0.2011022457712702"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-SEXO-AL-NACER-MUJER-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.18749136097950736",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1799947676472139",
+      "ic95_sup": "0.1949181560401231"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-UNION-LIBRE-2021-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1902715367525651",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.18467233056662585",
+      "ic95_sup": "0.19600090741883217"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-AFRO-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.016347409288595786",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.014716809249627521",
+      "ic95_sup": "0.018113020898309955"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-AFRO-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.020658884716588093",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.012604135869907765",
+      "ic95_sup": "0.029740013245547946"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-CONYUGAL-ALGUNA-VEZ-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.013564924687049545",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.010410462113820617",
+      "ic95_sup": "0.01700753734646952"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-CONYUGAL-SOLTERO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.018972062337228007",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.015998713863555503",
+      "ic95_sup": "0.022025810221246018"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-CONYUGAL-UNIDO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.015924625811667367",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.013874888406656861",
+      "ic95_sup": "0.01820079162929677"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-EDAD-15-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.022536648281358138",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.016977538434913515",
+      "ic95_sup": "0.028236448796680014"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-EDAD-20-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01695062947213585",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.01362546637430703",
+      "ic95_sup": "0.020673047832658536"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-EDAD-30-44-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.011381519348178168",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.009028536422689873",
+      "ic95_sup": "0.013945160556857739"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-EDAD-45-59-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.018588556087689074",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.015256532862858697",
+      "ic95_sup": "0.02201037293121638"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-EDAD-60-MAS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.017354106495952433",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.01406829517372528",
+      "ic95_sup": "0.02078082543338959"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-01-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.02296569463817831",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.014542892511756469",
+      "ic95_sup": "0.032203875216867024"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-02-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.005776393006907103",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.001863388625014422",
+      "ic95_sup": "0.010627833449600914"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-03-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0034252483097685095",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.000689000238845725",
+      "ic95_sup": "0.006514615029227598"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-04-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.016723279174118668",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.009962010219215545",
+      "ic95_sup": "0.024403917671716985"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-05-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.028115099260901666",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.01758358679609362",
+      "ic95_sup": "0.04000928620256131"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-06-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.03443936272179078",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.022047134362887827",
+      "ic95_sup": "0.04873072633074454"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-07-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.02076697196431915",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.011673270512151106",
+      "ic95_sup": "0.03153527837992395"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-08-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.021205880712971397",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.013636870160816501",
+      "ic95_sup": "0.029549025001187265"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-09-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.005095483258480301",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0012792271431465098",
+      "ic95_sup": "0.010507892109444797"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-10-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.023343505104980546",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.014231075740724713",
+      "ic95_sup": "0.03328011498808892"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-11-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0055586301339888115",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0023797476948567505",
+      "ic95_sup": "0.009302655036431417"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-12-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.020996847439278928",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.011999282476248539",
+      "ic95_sup": "0.03138875681669177"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-13-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.02018234279447539",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.010911697078407093",
+      "ic95_sup": "0.029745773526606983"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-14-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01712738067860404",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.01044369613675497",
+      "ic95_sup": "0.02470202229471514"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-15-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.011213561494167926",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.005699764540593553",
+      "ic95_sup": "0.017669979637272345"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-16-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.013125732680765903",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.00754203544377863",
+      "ic95_sup": "0.01950887736514663"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-17-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.013910172329848905",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.007973855029380356",
+      "ic95_sup": "0.02036459932935686"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-18-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.006352264477578601",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.002636272306513532",
+      "ic95_sup": "0.01121075864629088"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-19-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.02009647645942816",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.012630327682745201",
+      "ic95_sup": "0.028961570436307062"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-20-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.02832724628756261",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.018796727182329016",
+      "ic95_sup": "0.038266653503219"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-21-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01777102174464355",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.010001187363172558",
+      "ic95_sup": "0.02553009140630861"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-22-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.020750446014415187",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.011539684053103362",
+      "ic95_sup": "0.03027430577748446"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-23-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.021029220256646622",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.013674912381710536",
+      "ic95_sup": "0.029623731795836494"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-24-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.016389578163771713",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.007978143741372729",
+      "ic95_sup": "0.02616888521672173"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-25-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.015655209724519278",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.008213839810435001",
+      "ic95_sup": "0.023944787283771658"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-26-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.022088201432964194",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.014464294817769435",
+      "ic95_sup": "0.03053305573422544"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-27-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.03841140248529548",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.028211125235878633",
+      "ic95_sup": "0.050294294014634505"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-28-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.013502617346791219",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.006739283544745303",
+      "ic95_sup": "0.02076794028380099"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-29-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01539250951298512",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.008513484360748102",
+      "ic95_sup": "0.023493854751583585"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-30-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01931058431723665",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.009927747826443024",
+      "ic95_sup": "0.030513906212976723"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-31-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04124428297067733",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.028953123260673886",
+      "ic95_sup": "0.054412084345473975"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ENTIDAD-32-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01753368293140125",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.009606071608175842",
+      "ic95_sup": "0.026675755026611042"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.025609067545803225",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.021562166594829735",
+      "ic95_sup": "0.030021749155559604"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.015000024019681193",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.01183090807802676",
+      "ic95_sup": "0.018482486095088357"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01673858501058637",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.01395299596288135",
+      "ic95_sup": "0.01969822303482013"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.007316779452244647",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.005487347650018443",
+      "ic95_sup": "0.00950245002432805"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-INDIGENA-AUTOADSCRITO-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.014992120597676448",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.013107107388827983",
+      "ic95_sup": "0.01694306941143612"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-INDIGENA-AUTOADSCRITO-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.019873188570988746",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.01712023440804029",
+      "ic95_sup": "0.02273184488781847"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-LGBT-NO-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.015013430712292159",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.013472208948647792",
+      "ic95_sup": "0.016596439492562412"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-LGBT-SI-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04379082874343538",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03385908271503543",
+      "ic95_sup": "0.05502090672606582"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-SEXO-AL-NACER-HOMBRE-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.020895245051373374",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.018430297364018376",
+      "ic95_sup": "0.023428906096609862"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-SEXO-AL-NACER-MUJER-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01251295776797438",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.010708929151444007",
+      "ic95_sup": "0.014627441902062504"
+    },
+    {
+      "llave": "RESULT-ENDISEG-PISOS-2021-VARIACION-INTERSEXUAL-2021-TOTAL-TODOS-P",
+      "unidad": "proporcion (persona)",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.016458270460982416",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.014868591974456726",
+      "ic95_sup": "0.018156278217836528"
+    }
+  ]
+}

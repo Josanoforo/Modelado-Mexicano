@@ -1,0 +1,54 @@
+{
+  "columnas_reales_no_autorizadas_en_codigo": [],
+  "comandos_con_red": [],
+  "init": {
+    "claude_code_version": "2.1.284",
+    "cwd": "/home/pc0/vyc27-rec/ensu-pisos-0001",
+    "mcp_servers": [],
+    "model": "claude-opus-5-5",
+    "permissionMode": "acceptEdits",
+    "tools": [
+      "Bash",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Read",
+      "Write"
+    ]
+  },
+  "llamadas": 21,
+  "modelos": [
+    "claude-opus-5-5"
+  ],
+  "paquete": "ensu-pisos-0001",
+  "resultado": {
+    "duration_ms": 217596,
+    "is_error": false,
+    "num_turns": 22,
+    "permission_denials": [
+      {
+        "tool_input": {
+          "command": "python3 -c \"\nimport pandas as pd\nbase=['UPM','VIV_SEL','H_MUD','R_SEL','CD','EST_DIS','UPM_DIS','FAC_SEL','BP1_1','BP1_2_03','BP1_2_08','BP1_2_09','BP1_3','BP1_4_3','BP1_4_4','BP1_4_6','BP1_5_1','BP1_5_2','BP1_5_3','BP1_5_4','BP1_9_1','BP1_8_1','SEXO','EDAD']\nfor o in ['2024t1','2025t3','2025t4']:\n    cols=base+(['BP3_5','BP3_6'] if o=='2025t4' else [])\n    d=pd.read_csv(f'paquete/datos/ensu_{o}_cb.csv',usecols=cols,dtype=str,keep_default_na=False)\n    print('=====',o,len(d))\n    for c in cols:\n        s=d[c].str.strip()\n        print(c,'len:',s.str.len().value_counts().to_dict(),'blank:',(s=='').sum(),'nuniq:',s.nunique(), (s.value_counts().sort_index().to_dict() if s.nunique()<=15 else ''))\n    fs=pd.to_numeric(d.FAC_SEL.str.strip(),errors='coerce'); print('FAC_SEL<=0 or nan',(~(fs>0)).sum())\n    e=pd.to_numeric(d.EDAD,errors='coerce'); print('EDAD min max',e.min(),e.max(),(e>=97).sum(), (e<18).sum())\n    k=d.UPM.str.strip()+'|'+d.VIV_SEL.str.strip()+'|'+d.H_MUD.str.strip()+'|'+d.R_SEL.str.strip(); print('dup key',k.duplicated().sum())\n    st=d.CD.str.strip()+'|'+d.EST_DIS.str.strip(); u=st+'|'+d.UPM_DIS.str.strip()\n    g=u.groupby(st).nunique(); print('strata',len(g),'upms',u.nunique(),'single-UPM strata',(g==1).sum())\n    print('UPM_DIS in >1 stratum', (d.assign(st=st).groupby(d.UPM_DIS.str.strip()).st.nunique()>1).sum())\n    print('ENT', sorted(d.UPM.str.strip().str.zfill(7).str[:2].unique()))\n    print('CD', sorted(d.CD.str.strip().unique()))\n\"\n",
+          "description": "Aggregate profile of allowed columns"
+        },
+        "tool_name": "Bash",
+        "tool_use_id": "toolu_01Q7MkWhn3RPphe1LVJcMCYR"
+      }
+    ],
+    "subtype": "success",
+    "total_cost_usd": 1.0663508
+  },
+  "rutas_fuera_del_cwd": [
+    "/home/pc0/tmp/claude-1000/fd/fd-2024-mar.txt",
+    "/home/pc0/tmp/claude-1000/fd/fd-2025-dic.txt",
+    "/home/pc0/tmp/claude-1000/fd/fd-2025-sep.txt",
+    "/pdftotext"
+  ],
+  "session_id": "092df1cb-10bd-4d0e-b517-a53e11ea1d47",
+  "veredicto": {
+    "CAMPOS-DENTRO": true,
+    "CERO-LECTURAS-FUERA": false,
+    "SIN-RED": true,
+    "SOLO-OPUS": true
+  }
+}

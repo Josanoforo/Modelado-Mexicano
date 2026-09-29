@@ -1,0 +1,43 @@
+{
+ "paquete": "endiseg-pisos-2021-0001",
+ "calc": "CALC-ENDISEG-PISOS-2021-0001",
+ "docs": [
+  {
+   "src": "forense/prereg-caja/COLA-ENDISEG-PISOS-spec-v1_0.md",
+   "miembro": null,
+   "dst": "docs/spec-humana.md"
+  },
+  {
+   "src": "data/raw/ENDISEG/2021/endiseg_2021_fd_pdf.zip",
+   "miembro": "ENDISEG 2021 Descriptor de archivos (FD).xlsx",
+   "dst": "docs/endiseg_2021_fd.xlsx"
+  }
+ ],
+ "datos": [
+  {
+   "src": "data/raw/ENDISEG/2021/endiseg_2021_bd_csv.zip",
+   "sha256": "aca2fad1aae564f855cf91d160cb18689d24f009c2fe5a091c729b1f9fc2c2ab",
+   "miembro": "TMODULO.csv",
+   "dst": "datos/tmodulo.csv"
+  }
+ ],
+ "campos": {
+  "datos/tmodulo.csv": [
+   "P8_1",
+   "P9_1",
+   "P7_1",
+   "P7_1A",
+   "NIV",
+   "P4_2",
+   "P4_7",
+   "P4_4",
+   "ENT",
+   "P4_1",
+   "FACTOR",
+   "EST_DIS",
+   "UPM_DIS"
+  ]
+ },
+ "filtro_filas": "P4_1 entre 15 y 96; FACTOR>0; EST_DIS y UPM_DIS no vacios.",
+ "notas": "Unica ola 2021 (ENDISEG web 2022 excluido). 13 columnas existen en el encabezado real (228 cols), mayusculas exactas; sin discrepancias. FD: se incluye solo el miembro xlsx (no el PDF)."
+}

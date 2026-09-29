@@ -1,0 +1,203 @@
+{
+ "paquete": "enpecyt-conoc-pisos-0001",
+ "calc": "CALC-ENPECYT-CONOC-PISOS-0001",
+ "docs": [
+  {
+   "src": "forense/prereg-caja/ENPECYT-CONOC-PISOS-spec-v1_0.md",
+   "miembro": null,
+   "dst": "docs/spec-humana.md"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/enpecyt/2011/enpecyt2011_bd_dbf.zip",
+   "miembro": "ENPECYT2011_Cuestionario.pdf",
+   "dst": "docs/enpecyt2011-cuestionario.pdf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/enpecyt/2011/enpecyt2011_bd_dbf.zip",
+   "miembro": "ENPECYT2011_Descripcion_archivos.pdf",
+   "dst": "docs/enpecyt2011-descripcion-archivos.pdf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/enpecyt/2013/enpecyt2013_bd_dbf.zip",
+   "miembro": "enpecyt2013_cuest.pdf",
+   "dst": "docs/enpecyt2013-cuestionario.pdf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/enpecyt/2013/enpecyt2013_bd_dbf.zip",
+   "miembro": "enpecyt2013_fd.pdf",
+   "dst": "docs/enpecyt2013-fd.pdf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/enpecyt/2015/enpecyt2015_fd.pdf",
+   "miembro": null,
+   "dst": "docs/enpecyt2015-fd.pdf"
+  }
+ ],
+ "datos": [
+  {
+   "src": "data/raw/corpus-completo/inegi/enpecyt/2011/enpecyt2011_bd_dbf.zip",
+   "sha256": "a46fa2dac2fce922caf201dbbee76261d584d0d44642b553ca6786e7b592a042",
+   "miembro": "enpecyt2011_cb1.dbf",
+   "dst": "datos/enpecyt2011_cb1.dbf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/enpecyt/2011/enpecyt2011_bd_dbf.zip",
+   "sha256": "a46fa2dac2fce922caf201dbbee76261d584d0d44642b553ca6786e7b592a042",
+   "miembro": "enpecyt2011_cb2.dbf",
+   "dst": "datos/enpecyt2011_cb2.dbf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/enpecyt/2011/enpecyt2011_bd_dbf.zip",
+   "sha256": "a46fa2dac2fce922caf201dbbee76261d584d0d44642b553ca6786e7b592a042",
+   "miembro": "enpecyt2011_cs.dbf",
+   "dst": "datos/enpecyt2011_cs.dbf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/enpecyt/2013/enpecyt2013_bd_dbf.zip",
+   "sha256": "eef5a741be7f528828f7163611d8cd1bdbf998c3544a092db10e0194bfc43473",
+   "miembro": "enpecyt2013_cb1.dbf",
+   "dst": "datos/enpecyt2013_cb1.dbf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/enpecyt/2013/enpecyt2013_bd_dbf.zip",
+   "sha256": "eef5a741be7f528828f7163611d8cd1bdbf998c3544a092db10e0194bfc43473",
+   "miembro": "enpecyt2013_cb2.dbf",
+   "dst": "datos/enpecyt2013_cb2.dbf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/enpecyt/2013/enpecyt2013_bd_dbf.zip",
+   "sha256": "eef5a741be7f528828f7163611d8cd1bdbf998c3544a092db10e0194bfc43473",
+   "miembro": "enpecyt2013_cs.dbf",
+   "dst": "datos/enpecyt2013_cs.dbf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/enpecyt/2015/enpecyt2015_bd_dbf.zip",
+   "sha256": "97a64a6e8d6bb9fa1963da68a9e49a6edca7d53d81cae762fa2ac98828a3fa46",
+   "miembro": "enpecyt2015_cb1.dbf",
+   "dst": "datos/enpecyt2015_cb1.dbf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/enpecyt/2015/enpecyt2015_bd_dbf.zip",
+   "sha256": "97a64a6e8d6bb9fa1963da68a9e49a6edca7d53d81cae762fa2ac98828a3fa46",
+   "miembro": "enpecyt2015_cb2.dbf",
+   "dst": "datos/enpecyt2015_cb2.dbf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/enpecyt/2015/enpecyt2015_bd_dbf.zip",
+   "sha256": "97a64a6e8d6bb9fa1963da68a9e49a6edca7d53d81cae762fa2ac98828a3fa46",
+   "miembro": "enpecyt2015_cs.dbf",
+   "dst": "datos/enpecyt2015_cs.dbf"
+  }
+ ],
+ "campos": {
+  "datos/enpecyt2011_cb1.dbf": [
+   "CD",
+   "PER",
+   "CON",
+   "V_SEL",
+   "N_HOG",
+   "N_REN",
+   "FAC",
+   "S4P1_3",
+   "S4P14_13",
+   "S4P14_14",
+   "S4P14_4"
+  ],
+  "datos/enpecyt2011_cb2.dbf": [
+   "CD",
+   "PER",
+   "CON",
+   "V_SEL",
+   "N_HOG",
+   "N_REN",
+   "S4P26_1",
+   "S4P33_2_1"
+  ],
+  "datos/enpecyt2011_cs.dbf": [
+   "CD",
+   "PER",
+   "CON",
+   "V_SEL",
+   "N_HOG",
+   "N_REN",
+   "SEX",
+   "EDA",
+   "NIV"
+  ],
+  "datos/enpecyt2013_cb1.dbf": [
+   "CD_A",
+   "PER",
+   "CON",
+   "V_SEL",
+   "N_HOG",
+   "N_REN",
+   "FAC",
+   "S4P1_3",
+   "S4P14_13",
+   "S4P14_14",
+   "S4P14_4"
+  ],
+  "datos/enpecyt2013_cb2.dbf": [
+   "CD_A",
+   "PER",
+   "CON",
+   "V_SEL",
+   "N_HOG",
+   "N_REN",
+   "S4P26_1",
+   "S4P33_2_1"
+  ],
+  "datos/enpecyt2013_cs.dbf": [
+   "CD_A",
+   "PER",
+   "CON",
+   "V_SEL",
+   "N_HOG",
+   "N_REN",
+   "SEX",
+   "EDA",
+   "NIV",
+   "EST_DIS",
+   "UPM_DIS"
+  ],
+  "datos/enpecyt2015_cb1.dbf": [
+   "CD_A",
+   "PER",
+   "CON",
+   "V_SEL",
+   "N_HOG",
+   "N_REN",
+   "FAC",
+   "S4P1_3",
+   "S4P14_12",
+   "S4P14_13",
+   "S4P14_16",
+   "S4P14_17"
+  ],
+  "datos/enpecyt2015_cb2.dbf": [
+   "CD_A",
+   "PER",
+   "CON",
+   "V_SEL",
+   "N_HOG",
+   "N_REN",
+   "S4P25_1",
+   "S4P31_1_1"
+  ],
+  "datos/enpecyt2015_cs.dbf": [
+   "CD_A",
+   "PER",
+   "CON",
+   "V_SEL",
+   "N_HOG",
+   "N_REN",
+   "SEX",
+   "EDA",
+   "NIV",
+   "EST_DIS",
+   "UPM_DIS"
+  ]
+ },
+ "filtro_filas": "Persona elegida de 18+ (una fila de CB1, areas urbanas 100 000+); union CB1-CB2-CS por ciudad(CD|CD_A)+PER+CON+V_SEL+N_HOG+N_REN solo llaves unicas; FAC (CB1) > 0. Olas 2011, 2013, 2015; 2017 RESERVADA no incluida.",
+ "notas": "VIVHOG omitida (la spec no la usa). Todas las columnas verificadas en cabeceras DBF reales. Interes 'nuevos inventos' = S4P1_3 en CB1 (las 3 olas; la spec no da el nombre; ubicado por FD/descriptor de cada ola, no por medidor). Reactivos: gob invertir S4P26_1 (2011/13) / S4P25_1 (2015) en CB2; fe-ciencia S4P33_2_1 / S4P31_1_1 en CB2; respeto 1-10 en CB1 (S4P14_13 bombero,_14 enfermera,_4 investigador en 2011/13; _12,_13,_16 y inventor _17 en 2015 segun spec; el mapeo de sufijos a profesion lo da la spec). 2011 sin EST_DIS/UPM_DIS (segun spec); 2011 CS trae ademas FAC18/FAC_VIV y 2013/15 FACTOR/FAC18: no nombrados por la spec, no incluidos. Sexo=SEX, edad=EDA, escolaridad=NIV en CS: nombres no dados por la spec, tomados del descriptor. 2011 descriptor: cuestionario 2011 y descripcion en zip; 2015 sin cuestionario en corpus, solo FD."
+}

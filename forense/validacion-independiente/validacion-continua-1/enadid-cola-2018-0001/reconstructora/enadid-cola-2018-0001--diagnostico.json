@@ -1,0 +1,1667 @@
+{
+ "marcos": {
+  "MUJERES": {
+   "filas_archivo": 108439,
+   "exclusiones_marco": {
+    "edad_fuera_15_54_o_vacia": 0,
+    "fac_per_no_positivo_o_vacio": 0,
+    "est_dis_vacio": 0,
+    "upm_dis_vacio": 0
+   },
+   "filas_validas_marco": 108439,
+   "upm": 15012,
+   "estratos": 608,
+   "estratos_certeza_upm_unica": 0
+  },
+  "HOGARES": {
+   "filas_archivo_tsdem": 385978,
+   "exclusiones_marco": {
+    "paren_distinto_de_1": 276432,
+    "jefatura_fac_viv_no_positivo_o_vacio": 0,
+    "jefatura_est_dis_vacio": 0,
+    "jefatura_upm_dis_vacio": 0
+   },
+   "filas_validas_marco_jefaturas": 109546,
+   "llave_hog_duplicadas_en_jefaturas": 0,
+   "filas_tmigrante": 2611,
+   "migrantes_varon_fuera_de_mexico": 1179,
+   "hogares_tmigrante_con_marca": 1092,
+   "hogares_con_marca_sin_jefatura_valida": 0,
+   "hogares_validos_con_migrante_varon": 1092,
+   "hogares_validos_sin_migrante_varon": 108454,
+   "upm": 15216,
+   "estratos": 608,
+   "estratos_certeza_upm_unica": 0
+  }
+ },
+ "llaves": {
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-01-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "01",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1054
+   },
+   "n_valido": 38,
+   "n_uno": 23,
+   "ee_bootstrap": "0.07885999097413923",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-02-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "02",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1072
+   },
+   "n_valido": 20,
+   "n_uno": 9,
+   "ee_bootstrap": "0.11146025095674195",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-03-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "03",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1087
+   },
+   "n_valido": 5,
+   "n_uno": 2,
+   "replicas_degeneradas": 19
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-04-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "04",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1079
+   },
+   "n_valido": 13,
+   "n_uno": 2,
+   "ee_bootstrap": "0.10723117920919639",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-05-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "05",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1068
+   },
+   "n_valido": 24,
+   "n_uno": 12,
+   "ee_bootstrap": "0.1007033533262441",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-06-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "06",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1058
+   },
+   "n_valido": 34,
+   "n_uno": 16,
+   "ee_bootstrap": "0.08648318899284808",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-07-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "07",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1063
+   },
+   "n_valido": 29,
+   "n_uno": 13,
+   "ee_bootstrap": "0.08488973983118021",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-08-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "08",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1053
+   },
+   "n_valido": 39,
+   "n_uno": 10,
+   "ee_bootstrap": "0.07236701667031732",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-09-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "09",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1086
+   },
+   "n_valido": 6,
+   "n_uno": 4,
+   "replicas_degeneradas": 4
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-10-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "10",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1030
+   },
+   "n_valido": 62,
+   "n_uno": 30,
+   "ee_bootstrap": "0.07389061531102384",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-11-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "11",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1038
+   },
+   "n_valido": 54,
+   "n_uno": 26,
+   "ee_bootstrap": "0.0735376511897441",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-12-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "12",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1055
+   },
+   "n_valido": 37,
+   "n_uno": 19,
+   "ee_bootstrap": "0.073815214484066",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-13-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "13",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1047
+   },
+   "n_valido": 45,
+   "n_uno": 29,
+   "ee_bootstrap": "0.07599855146160377",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-14-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "14",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1061
+   },
+   "n_valido": 31,
+   "n_uno": 10,
+   "ee_bootstrap": "0.08798463541195548",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-15-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "15",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1084
+   },
+   "n_valido": 8,
+   "n_uno": 3,
+   "replicas_degeneradas": 1
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-16-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "16",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1015
+   },
+   "n_valido": 77,
+   "n_uno": 33,
+   "ee_bootstrap": "0.06286875180591237",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-17-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "17",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1058
+   },
+   "n_valido": 34,
+   "n_uno": 15,
+   "ee_bootstrap": "0.08644712695162568",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-18-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "18",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1015
+   },
+   "n_valido": 77,
+   "n_uno": 33,
+   "ee_bootstrap": "0.060074799894781705",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-19-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "19",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1085
+   },
+   "n_valido": 7,
+   "n_uno": 4,
+   "replicas_degeneradas": 2
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-20-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "20",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1045
+   },
+   "n_valido": 47,
+   "n_uno": 17,
+   "ee_bootstrap": "0.07810738642766031",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-21-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "21",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1066
+   },
+   "n_valido": 26,
+   "n_uno": 11,
+   "ee_bootstrap": "0.09916973165632831",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-22-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "22",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1037
+   },
+   "n_valido": 55,
+   "n_uno": 31,
+   "ee_bootstrap": "0.07239117587979124",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-23-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "23",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1088
+   },
+   "n_valido": 4,
+   "n_uno": 3,
+   "replicas_degeneradas": 17
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-24-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "24",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1024
+   },
+   "n_valido": 68,
+   "n_uno": 36,
+   "ee_bootstrap": "0.06695486358109211",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-25-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "25",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1060
+   },
+   "n_valido": 32,
+   "n_uno": 19,
+   "ee_bootstrap": "0.09162723127114451",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-26-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "26",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1058
+   },
+   "n_valido": 34,
+   "n_uno": 18,
+   "ee_bootstrap": "0.07510713016924878",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-27-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "27",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1080
+   },
+   "n_valido": 12,
+   "n_uno": 6,
+   "ee_bootstrap": "0.15222258597673521",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-28-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "28",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1060
+   },
+   "n_valido": 32,
+   "n_uno": 10,
+   "ee_bootstrap": "0.07603477897646077",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-29-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "29",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1061
+   },
+   "n_valido": 31,
+   "n_uno": 16,
+   "ee_bootstrap": "0.08561793039319344",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-30-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "30",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1069
+   },
+   "n_valido": 23,
+   "n_uno": 8,
+   "ee_bootstrap": "0.10850457094540157",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-31-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "31",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1089
+   },
+   "n_valido": 3,
+   "n_uno": 2,
+   "replicas_degeneradas": 96
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-32-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "32",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 1007
+   },
+   "n_valido": 85,
+   "n_uno": 48,
+   "ee_bootstrap": "0.05540556274531391",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-TAMLOC-100MIL-MAS-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "TAMLOC",
+   "segmento": "100MIL-MAS",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 880
+   },
+   "n_valido": 212,
+   "n_uno": 103,
+   "ee_bootstrap": "0.04006431361591064",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-TAMLOC-15MIL-99MIL-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "TAMLOC",
+   "segmento": "15MIL-99MIL",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 995
+   },
+   "n_valido": 97,
+   "n_uno": 42,
+   "ee_bootstrap": "0.05775035894225553",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-TAMLOC-2500-14999-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "TAMLOC",
+   "segmento": "2500-14999",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 879
+   },
+   "n_valido": 213,
+   "n_uno": 104,
+   "ee_bootstrap": "0.03593344307755727",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-TAMLOC-MENOS-2500-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "TAMLOC",
+   "segmento": "MENOS-2500",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 522
+   },
+   "n_valido": 570,
+   "n_uno": 269,
+   "ee_bootstrap": "0.027163396460082322",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-TOTAL-TODOS-P": {
+   "conducta": "jefatura-femenina-con-migrante-varon",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 108454,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 0
+   },
+   "n_valido": 1092,
+   "n_uno": 518,
+   "ee_bootstrap": "0.019113754332373525",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-01-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "01",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105223
+   },
+   "n_valido": 3231,
+   "n_uno": 891,
+   "ee_bootstrap": "0.007990223228895303",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-02-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "02",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 104866
+   },
+   "n_valido": 3588,
+   "n_uno": 975,
+   "ee_bootstrap": "0.007703100691601917",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-03-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "03",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 104796
+   },
+   "n_valido": 3658,
+   "n_uno": 976,
+   "ee_bootstrap": "0.007570229339848931",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-04-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "04",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105211
+   },
+   "n_valido": 3243,
+   "n_uno": 887,
+   "ee_bootstrap": "0.007790982396585072",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-05-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "05",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105372
+   },
+   "n_valido": 3082,
+   "n_uno": 737,
+   "ee_bootstrap": "0.008504011257141567",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-06-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "06",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 104839
+   },
+   "n_valido": 3615,
+   "n_uno": 1133,
+   "ee_bootstrap": "0.007792945362782162",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-07-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "07",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105168
+   },
+   "n_valido": 3286,
+   "n_uno": 747,
+   "ee_bootstrap": "0.007253934848200554",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-08-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "08",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105369
+   },
+   "n_valido": 3085,
+   "n_uno": 905,
+   "ee_bootstrap": "0.008706164426952004",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-09-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "09",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 104734
+   },
+   "n_valido": 3720,
+   "n_uno": 1316,
+   "ee_bootstrap": "0.00855515581402759",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-10-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "10",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105309
+   },
+   "n_valido": 3145,
+   "n_uno": 833,
+   "ee_bootstrap": "0.00785980296874864",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-11-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "11",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105186
+   },
+   "n_valido": 3268,
+   "n_uno": 829,
+   "ee_bootstrap": "0.008397911048860394",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-12-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "12",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105472
+   },
+   "n_valido": 2982,
+   "n_uno": 907,
+   "ee_bootstrap": "0.008825560249637867",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-13-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "13",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105138
+   },
+   "n_valido": 3316,
+   "n_uno": 885,
+   "ee_bootstrap": "0.008427555200028292",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-14-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "14",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 104948
+   },
+   "n_valido": 3506,
+   "n_uno": 892,
+   "ee_bootstrap": "0.007374234131602613",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-15-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "15",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105255
+   },
+   "n_valido": 3199,
+   "n_uno": 840,
+   "ee_bootstrap": "0.008284196938005356",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-16-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "16",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105172
+   },
+   "n_valido": 3282,
+   "n_uno": 926,
+   "ee_bootstrap": "0.00812793405238174",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-17-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "17",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 104919
+   },
+   "n_valido": 3535,
+   "n_uno": 1073,
+   "ee_bootstrap": "0.007810273650498519",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-18-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "18",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105351
+   },
+   "n_valido": 3103,
+   "n_uno": 865,
+   "ee_bootstrap": "0.008002098590708136",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-19-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "19",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 104849
+   },
+   "n_valido": 3605,
+   "n_uno": 768,
+   "ee_bootstrap": "0.007075170082284501",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-20-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "20",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105190
+   },
+   "n_valido": 3264,
+   "n_uno": 953,
+   "ee_bootstrap": "0.00845963238797831",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-21-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "21",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105269
+   },
+   "n_valido": 3185,
+   "n_uno": 869,
+   "ee_bootstrap": "0.008320925201252579",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-22-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "22",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 104770
+   },
+   "n_valido": 3684,
+   "n_uno": 1087,
+   "ee_bootstrap": "0.008625916917427822",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-23-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "23",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105001
+   },
+   "n_valido": 3453,
+   "n_uno": 866,
+   "ee_bootstrap": "0.00809009584504146",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-24-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "24",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 104812
+   },
+   "n_valido": 3642,
+   "n_uno": 935,
+   "ee_bootstrap": "0.008066679355918208",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-25-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "25",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 104982
+   },
+   "n_valido": 3472,
+   "n_uno": 1117,
+   "ee_bootstrap": "0.00866303151259815",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-26-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "26",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 104844
+   },
+   "n_valido": 3610,
+   "n_uno": 1123,
+   "ee_bootstrap": "0.007810719452759056",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-27-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "27",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 104975
+   },
+   "n_valido": 3479,
+   "n_uno": 977,
+   "ee_bootstrap": "0.007689101273057918",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-28-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "28",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 104931
+   },
+   "n_valido": 3523,
+   "n_uno": 940,
+   "ee_bootstrap": "0.007429364307875324",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-29-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "29",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105161
+   },
+   "n_valido": 3293,
+   "n_uno": 822,
+   "ee_bootstrap": "0.008133812052194375",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-30-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "30",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 104884
+   },
+   "n_valido": 3570,
+   "n_uno": 1058,
+   "ee_bootstrap": "0.007736319585050013",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-31-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "31",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 104779
+   },
+   "n_valido": 3675,
+   "n_uno": 967,
+   "ee_bootstrap": "0.0070491447067316665",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-32-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "ENTIDAD",
+   "segmento": "32",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 105299
+   },
+   "n_valido": 3155,
+   "n_uno": 813,
+   "ee_bootstrap": "0.007857130050145045",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-TAMLOC-100MIL-MAS-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "TAMLOC",
+   "segmento": "100MIL-MAS",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 59357
+   },
+   "n_valido": 49097,
+   "n_uno": 14947,
+   "ee_bootstrap": "0.002948672513024109",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-TAMLOC-15MIL-99MIL-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "TAMLOC",
+   "segmento": "15MIL-99MIL",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 91315
+   },
+   "n_valido": 17139,
+   "n_uno": 4915,
+   "ee_bootstrap": "0.004431390223902524",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-TAMLOC-2500-14999-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "TAMLOC",
+   "segmento": "2500-14999",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 91472
+   },
+   "n_valido": 16982,
+   "n_uno": 4504,
+   "ee_bootstrap": "0.004507815110425149",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-TAMLOC-MENOS-2500-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "TAMLOC",
+   "segmento": "MENOS-2500",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 83218
+   },
+   "n_valido": 25236,
+   "n_uno": 5546,
+   "ee_bootstrap": "0.0034768950163924176",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-TOTAL-TODOS-P": {
+   "conducta": "jefatura-femenina-sin-migrante-varon",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "exclusiones": {
+    "filtro_marco_hogares": 276432,
+    "fuera_de_particion_migrante": 1092,
+    "sexo_no_1_2_en_particion": 0,
+    "eje_sin_categoria_en_particion": 0,
+    "otro_segmento_del_eje_en_particion": 0
+   },
+   "n_valido": 108454,
+   "n_uno": 29912,
+   "ee_bootstrap": "0.0018879668709011826",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-EDAD-15-24-P": {
+   "conducta": "separada-entre-union-libre",
+   "eje": "EDAD",
+   "segmento": "15-24",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 78930,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 22090
+   },
+   "n_valido": 7419,
+   "n_uno": 890,
+   "ee_bootstrap": "0.004769947460561924",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-EDAD-25-34-P": {
+   "conducta": "separada-entre-union-libre",
+   "eje": "EDAD",
+   "segmento": "25-34",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 78930,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 19357
+   },
+   "n_valido": 10152,
+   "n_uno": 1467,
+   "ee_bootstrap": "0.004904081496563178",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-EDAD-35-44-P": {
+   "conducta": "separada-entre-union-libre",
+   "eje": "EDAD",
+   "segmento": "35-44",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 78930,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 22180
+   },
+   "n_valido": 7329,
+   "n_uno": 1305,
+   "ee_bootstrap": "0.006062952623582183",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-EDAD-45-54-P": {
+   "conducta": "separada-entre-union-libre",
+   "eje": "EDAD",
+   "segmento": "45-54",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 78930,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 24900
+   },
+   "n_valido": 4609,
+   "n_uno": 977,
+   "ee_bootstrap": "0.008264961217544218",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-ESCOLARIDAD-HASTA-PRIMARIA-P": {
+   "conducta": "separada-entre-union-libre",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 78930,
+    "eje_sin_categoria_en_subpoblacion": 2,
+    "otro_segmento_del_eje_en_subpoblacion": 22678
+   },
+   "n_valido": 6829,
+   "n_uno": 1020,
+   "ee_bootstrap": "0.005544684106949465",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-ESCOLARIDAD-MEDIA-SUPERIOR-P": {
+   "conducta": "separada-entre-union-libre",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 78930,
+    "eje_sin_categoria_en_subpoblacion": 2,
+    "otro_segmento_del_eje_en_subpoblacion": 22521
+   },
+   "n_valido": 6986,
+   "n_uno": 1111,
+   "ee_bootstrap": "0.005990190807695463",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-ESCOLARIDAD-SECUNDARIA-P": {
+   "conducta": "separada-entre-union-libre",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 78930,
+    "eje_sin_categoria_en_subpoblacion": 2,
+    "otro_segmento_del_eje_en_subpoblacion": 17340
+   },
+   "n_valido": 12167,
+   "n_uno": 1950,
+   "ee_bootstrap": "0.004644697903488924",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-ESCOLARIDAD-SUPERIOR-P": {
+   "conducta": "separada-entre-union-libre",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 78930,
+    "eje_sin_categoria_en_subpoblacion": 2,
+    "otro_segmento_del_eje_en_subpoblacion": 25982
+   },
+   "n_valido": 3525,
+   "n_uno": 558,
+   "ee_bootstrap": "0.008088965190839941",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-TAMLOC-100MIL-MAS-P": {
+   "conducta": "separada-entre-union-libre",
+   "eje": "TAMLOC",
+   "segmento": "100MIL-MAS",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 78930,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 17822
+   },
+   "n_valido": 11687,
+   "n_uno": 2005,
+   "ee_bootstrap": "0.004921938227000897",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-TAMLOC-15MIL-99MIL-P": {
+   "conducta": "separada-entre-union-libre",
+   "eje": "TAMLOC",
+   "segmento": "15MIL-99MIL",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 78930,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 24698
+   },
+   "n_valido": 4811,
+   "n_uno": 817,
+   "ee_bootstrap": "0.006806914672878136",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-TAMLOC-2500-14999-P": {
+   "conducta": "separada-entre-union-libre",
+   "eje": "TAMLOC",
+   "segmento": "2500-14999",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 78930,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 24399
+   },
+   "n_valido": 5110,
+   "n_uno": 827,
+   "ee_bootstrap": "0.007096595029547545",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-TAMLOC-MENOS-2500-P": {
+   "conducta": "separada-entre-union-libre",
+   "eje": "TAMLOC",
+   "segmento": "MENOS-2500",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 78930,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 21608
+   },
+   "n_valido": 7901,
+   "n_uno": 990,
+   "ee_bootstrap": "0.004972942309279286",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-TOTAL-TODOS-P": {
+   "conducta": "separada-entre-union-libre",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 78930,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 0
+   },
+   "n_valido": 29509,
+   "n_uno": 4639,
+   "ee_bootstrap": "0.0029794959153016084",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-EDAD-15-24-P": {
+   "conducta": "separada-o-divorciada-entre-matrimonio",
+   "eje": "EDAD",
+   "segmento": "15-24",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 61765,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 44058
+   },
+   "n_valido": 2616,
+   "n_uno": 201,
+   "ee_bootstrap": "0.0059254377027824715",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-EDAD-25-34-P": {
+   "conducta": "separada-o-divorciada-entre-matrimonio",
+   "eje": "EDAD",
+   "segmento": "25-34",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 61765,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 35331
+   },
+   "n_valido": 11343,
+   "n_uno": 1029,
+   "ee_bootstrap": "0.003274870791460991",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-EDAD-35-44-P": {
+   "conducta": "separada-o-divorciada-entre-matrimonio",
+   "eje": "EDAD",
+   "segmento": "35-44",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 61765,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 30224
+   },
+   "n_valido": 16450,
+   "n_uno": 2009,
+   "ee_bootstrap": "0.0031758750724055367",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-EDAD-45-54-P": {
+   "conducta": "separada-o-divorciada-entre-matrimonio",
+   "eje": "EDAD",
+   "segmento": "45-54",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 61765,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 30409
+   },
+   "n_valido": 16265,
+   "n_uno": 2237,
+   "ee_bootstrap": "0.0034087440479557483",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-ESCOLARIDAD-HASTA-PRIMARIA-P": {
+   "conducta": "separada-o-divorciada-entre-matrimonio",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 61765,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 36818
+   },
+   "n_valido": 9856,
+   "n_uno": 901,
+   "ee_bootstrap": "0.0035537241965788147",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-ESCOLARIDAD-MEDIA-SUPERIOR-P": {
+   "conducta": "separada-o-divorciada-entre-matrimonio",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 61765,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 36308
+   },
+   "n_valido": 10366,
+   "n_uno": 1372,
+   "ee_bootstrap": "0.0044071690421426495",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-ESCOLARIDAD-SECUNDARIA-P": {
+   "conducta": "separada-o-divorciada-entre-matrimonio",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 61765,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 28891
+   },
+   "n_valido": 17783,
+   "n_uno": 2033,
+   "ee_bootstrap": "0.0029274833800092227",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-ESCOLARIDAD-SUPERIOR-P": {
+   "conducta": "separada-o-divorciada-entre-matrimonio",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 61765,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 38005
+   },
+   "n_valido": 8669,
+   "n_uno": 1170,
+   "ee_bootstrap": "0.004919378802335702",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-TAMLOC-100MIL-MAS-P": {
+   "conducta": "separada-o-divorciada-entre-matrimonio",
+   "eje": "TAMLOC",
+   "segmento": "100MIL-MAS",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 61765,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 26405
+   },
+   "n_valido": 20269,
+   "n_uno": 2995,
+   "ee_bootstrap": "0.0031550901631330302",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-TAMLOC-15MIL-99MIL-P": {
+   "conducta": "separada-o-divorciada-entre-matrimonio",
+   "eje": "TAMLOC",
+   "segmento": "15MIL-99MIL",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 61765,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 39198
+   },
+   "n_valido": 7476,
+   "n_uno": 984,
+   "ee_bootstrap": "0.004709122451582411",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-TAMLOC-2500-14999-P": {
+   "conducta": "separada-o-divorciada-entre-matrimonio",
+   "eje": "TAMLOC",
+   "segmento": "2500-14999",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 61765,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 38927
+   },
+   "n_valido": 7747,
+   "n_uno": 780,
+   "ee_bootstrap": "0.004202666922599441",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-TAMLOC-MENOS-2500-P": {
+   "conducta": "separada-o-divorciada-entre-matrimonio",
+   "eje": "TAMLOC",
+   "segmento": "MENOS-2500",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 61765,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 35492
+   },
+   "n_valido": 11182,
+   "n_uno": 717,
+   "ee_bootstrap": "0.002744471264907487",
+   "replicas_degeneradas": 0
+  },
+  "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-TOTAL-TODOS-P": {
+   "conducta": "separada-o-divorciada-entre-matrimonio",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "exclusiones": {
+    "filtro_marco_mujeres": 0,
+    "p10_1_fuera_de_subpoblacion": 61765,
+    "eje_sin_categoria_en_subpoblacion": 0,
+    "otro_segmento_del_eje_en_subpoblacion": 0
+   },
+   "n_valido": 46674,
+   "n_uno": 5476,
+   "ee_bootstrap": "0.001907420543582121",
+   "replicas_degeneradas": 0
+  }
+ },
+ "parametros_bootstrap": {
+  "generador": "numpy.random.Generator(numpy.random.PCG64(20261001)), uno nuevo por marco",
+  "replicas": 2000,
+  "bloque": 50,
+  "ic": "percentil 2.5/97.5 (numpy.percentile lineal)"
+ },
+ "decisiones": [
+  {
+   "id": "D1-bootstrap-esquema",
+   "frase": "Razón ponderada Σw·y/Σw con bootstrap de UPM dentro de estrato (marco propio para mujeres y para hogares; UPM única del estrato = de certeza)",
+   "decision": "Bootstrap ingenuo con reemplazo: en cada estrato con n_h>=2 UPM se sortean n_h UPM de las n_h (multiplicidad = veces sorteada), sin reescalado Rao-Wu (n_h-1); pesos originales multiplicados por la multiplicidad. Estratos con una sola UPM se conservan fijos (multiplicidad 1) en cada réplica."
+  },
+  {
+   "id": "D2-consumo-rng",
+   "frase": "`numpy.PCG64(20261001)`, 2000 réplicas, bloques de 50",
+   "decision": "Un numpy.random.Generator(PCG64(20261001)) nuevo por marco (MUJERES y HOGARES, cada uno 'con bootstrap propio'). Por bloque de 50 réplicas, se recorren los estratos en orden lexicográfico de est_dis y por cada estrato se llama rng.integers(0, n_h, size=(50, n_h)); UPM ordenadas lexicográficamente dentro del estrato. Las mismas réplicas del marco se usan para todas sus llaves. El orden exacto de consumo del generador del motor original no está descrito, por lo que el IC no es reproducible bit a bit."
+  },
+  {
+   "id": "D3-intervalo",
+   "frase": "semilla y réplicas del contrato de la corrida ... contrato conservador (una réplica degenerada → sin EE ni IC)",
+   "decision": "La spec no nombra el tipo de IC95; se usa percentil 2.5/97.5 de las 2000 réplicas (numpy.percentile, interpolación lineal por defecto)."
+  },
+  {
+   "id": "D4-replica-degenerada",
+   "frase": "contrato conservador (una réplica degenerada → sin EE ni IC)",
+   "decision": "Réplica degenerada = réplica cuyo denominador ponderado del dominio (Σ w·mult) es 0 (o razón no finita). Si hay al menos una, la llave queda RECONSTRUIDO con estado_ic NO-IDENTIFICADA y motivo_ic. Un dominio con y constante (IC de ancho cero) no se trata como degenerado."
+  },
+  {
+   "id": "D5-niv-99",
+   "frase": "ESCOLARIDAD (`niv` ... 00 ninguno…11 doctorado; agrupado HASTA-PRIMARIA {00,01,02} · SECUNDARIA {03,04,05} · MEDIA-SUPERIOR {06,07} · SUPERIOR {08,09,10,11}",
+   "decision": "niv=99 (29 filas, fuera del rango FD 00...11) no pertenece a ningún grupo: se excluye solo del eje ESCOLARIDAD; se conserva en TOTAL, EDAD y TAMLOC."
+  },
+  {
+   "id": "D6-subpoblacion-dominio",
+   "frase": "Un eje a la vez dentro de cada marco ... Válido: peso > 0, estrato y UPM no vacíos.",
+   "decision": "Estimación de dominio: la subpoblación (P10_1 o partición migrante) y el segmento del eje se aplican como indicador de dominio sobre el marco completo; el bootstrap remuestrea todas las UPM del marco (no solo las del dominio)."
+  },
+  {
+   "id": "D7-particion-migrante",
+   "frase": "`P4_15` = 9 (no especificado) no cuenta como «vive fuera»: sólo 1 y 3 marcan la partición «con migrante»; el resto (incluido 9) cae del lado «sin».",
+   "decision": "Hogar 'con' si en TMigrante existe al menos una fila con misma llave_hog, p4_6='1' y p4_15 en {'1','3'}; todo otro hogar válido (incluidos los que no aparecen en TMigrante) es 'sin'."
+  },
+  {
+   "id": "D8-edad-bordes",
+   "frase": "EDAD (`edad_muj`: 15–24, 25–34, 35–44, 45–54)",
+   "decision": "Intervalos cerrados en años cumplidos enteros."
+  },
+  {
+   "id": "D9-total",
+   "frase": "Un eje a la vez; nunca cruces.",
+   "decision": "Las llaves con eje TOTAL/segmento TODOS (no enumeradas en §3) se estiman sobre la subpoblación completa de la conducta, sin partición por eje; se interpretan como el agregado nacional implícito."
+  }
+ ],
+ "archivos_leidos_por_codigo": [
+  "paquete/esquema-identidades.tsv",
+  "paquete/datos/tmujer2.csv",
+  "paquete/datos/tsdem.csv",
+  "paquete/datos/tmigrante.csv",
+  "salida/codigo/decisiones.json"
+ ]
+}

@@ -1,0 +1,367 @@
+{
+ "paquete": "emat-pareja-pisos-0001",
+ "calc": "CALC-EMAT-PAREJA-PISOS-0001",
+ "docs": [
+  {
+   "src": "forense/prereg-caja/EMAT-PAREJA-PISOS-spec-v1_0.md",
+   "miembro": null,
+   "dst": "docs/spec-humana.md"
+  },
+  {
+   "src": "data/raw/EMAT/2010-2014/matrimonios_base_datos_2010_2014_dbf.zip",
+   "miembro": "matrimonios_base_datos_2010_dbf/descripcion_bd_matrimonios_2010.pdf",
+   "dst": "docs/descriptor-2010.pdf"
+  },
+  {
+   "src": "data/raw/EMAT/2010-2014/matrimonios_base_datos_2010_2014_dbf.zip",
+   "miembro": "matrimonios_base_datos_2011_dbf/descripcion_bd_matrimonios_2011.pdf",
+   "dst": "docs/descriptor-2011.pdf"
+  },
+  {
+   "src": "data/raw/EMAT/2010-2014/matrimonios_base_datos_2010_2014_dbf.zip",
+   "miembro": "matrimonios_base_datos_2012_dbf/descripcion_bd_matrimonios_2012.pdf",
+   "dst": "docs/descriptor-2012.pdf"
+  },
+  {
+   "src": "data/raw/EMAT/2010-2014/matrimonios_base_datos_2010_2014_dbf.zip",
+   "miembro": "matrimonios_base_datos_2013_dbf/descripcion_bd_matrimonios_2013.pdf",
+   "dst": "docs/descriptor-2013.pdf"
+  },
+  {
+   "src": "data/raw/EMAT/2010-2014/matrimonios_base_datos_2010_2014_dbf.zip",
+   "miembro": "matrimonios_base_datos_2014_dbf/descripcion_bd_matrimonios_2014.pdf",
+   "dst": "docs/descriptor-2014.pdf"
+  },
+  {
+   "src": "data/raw/EMAT/2015-2019/matrimonios_base_datos_2015_2019_dbf.zip",
+   "miembro": "matrimonios_base_datos_2018/DBD_Matrimonios 2018.pdf",
+   "dst": "docs/descriptor-2018.pdf"
+  },
+  {
+   "src": "data/raw/EMAT/2015-2019/matrimonios_base_datos_2015_2019_dbf.zip",
+   "miembro": "matrimonios_base_datos_2019/DBD_Matrimonios 2019.pdf",
+   "dst": "docs/descriptor-2019.pdf"
+  },
+  {
+   "src": "data/raw/EMAT/2015-2019/matrimonios_base_datos_2015_2019_dbf.zip",
+   "miembro": "matrimonios_base_datos_2015/Descripcion BD_Matrimonios 2015_LOC_.pdf",
+   "dst": "docs/descriptor-2015.pdf"
+  },
+  {
+   "src": "data/raw/EMAT/2015-2019/matrimonios_base_datos_2015_2019_dbf.zip",
+   "miembro": "matrimonios_base_datos_2016/Descripcion BD_Matrimonios 2016(LOC).pdf",
+   "dst": "docs/descriptor-2016.pdf"
+  },
+  {
+   "src": "data/raw/EMAT/2015-2019/matrimonios_base_datos_2015_2019_dbf.zip",
+   "miembro": "matrimonios_base_datos_2017/Descripcion BD_Matrimonios 2017(LOC).pdf",
+   "dst": "docs/descriptor-2017.pdf"
+  },
+  {
+   "src": "data/raw/EMAT/2020/matrimonios_base_datos_2020_dbf.zip",
+   "miembro": "DBD_Matrimonios 2020.pdf",
+   "dst": "docs/descriptor-2020.pdf"
+  },
+  {
+   "src": "data/raw/EMAT/2021/matrimonios_base_datos_2021_dbf.zip",
+   "miembro": "DBD_Matrimonios_2021.pdf",
+   "dst": "docs/descriptor-2021.pdf"
+  },
+  {
+   "src": "data/raw/EMAT/2022/matrimonios_base_datos_2022_dbf.zip",
+   "miembro": "DBD_Matrimonios_2022.pdf",
+   "dst": "docs/descriptor-2022.pdf"
+  },
+  {
+   "src": "data/raw/EMAT/2023/matrimonios_base_datos_2023_dbf.zip",
+   "miembro": "DBD_Matrimonios_2023.pdf",
+   "dst": "docs/descriptor-2023.pdf"
+  }
+ ],
+ "datos": [
+  {
+   "src": "data/raw/EMAT/2010-2014/matrimonios_base_datos_2010_2014_dbf.zip",
+   "sha256": "789f53a8323338c651768b0f567f97c464c76f58617a5fc1ade7b6c988733f3f",
+   "miembro": "matrimonios_base_datos_2010_dbf/MATRI10.dbf",
+   "dst": "datos/matri10.dbf"
+  },
+  {
+   "src": "data/raw/EMAT/2010-2014/matrimonios_base_datos_2010_2014_dbf.zip",
+   "sha256": "789f53a8323338c651768b0f567f97c464c76f58617a5fc1ade7b6c988733f3f",
+   "miembro": "matrimonios_base_datos_2011_dbf/MATRI11.dbf",
+   "dst": "datos/matri11.dbf"
+  },
+  {
+   "src": "data/raw/EMAT/2010-2014/matrimonios_base_datos_2010_2014_dbf.zip",
+   "sha256": "789f53a8323338c651768b0f567f97c464c76f58617a5fc1ade7b6c988733f3f",
+   "miembro": "matrimonios_base_datos_2012_dbf/MATRI12.dbf",
+   "dst": "datos/matri12.dbf"
+  },
+  {
+   "src": "data/raw/EMAT/2010-2014/matrimonios_base_datos_2010_2014_dbf.zip",
+   "sha256": "789f53a8323338c651768b0f567f97c464c76f58617a5fc1ade7b6c988733f3f",
+   "miembro": "matrimonios_base_datos_2013_dbf/MATRI13.dbf",
+   "dst": "datos/matri13.dbf"
+  },
+  {
+   "src": "data/raw/EMAT/2010-2014/matrimonios_base_datos_2010_2014_dbf.zip",
+   "sha256": "789f53a8323338c651768b0f567f97c464c76f58617a5fc1ade7b6c988733f3f",
+   "miembro": "matrimonios_base_datos_2014_dbf/MATRI14.dbf",
+   "dst": "datos/matri14.dbf"
+  },
+  {
+   "src": "data/raw/EMAT/2015-2019/matrimonios_base_datos_2015_2019_dbf.zip",
+   "sha256": "607c4b8d8856bfcb1648ad7985f4eb6de8c8dbc422638a17f73174d03dbb864c",
+   "miembro": "matrimonios_base_datos_2018/MATRI18.DBF",
+   "dst": "datos/matri18.dbf"
+  },
+  {
+   "src": "data/raw/EMAT/2015-2019/matrimonios_base_datos_2015_2019_dbf.zip",
+   "sha256": "607c4b8d8856bfcb1648ad7985f4eb6de8c8dbc422638a17f73174d03dbb864c",
+   "miembro": "matrimonios_base_datos_2019/MATRI19.DBF",
+   "dst": "datos/matri19.dbf"
+  },
+  {
+   "src": "data/raw/EMAT/2015-2019/matrimonios_base_datos_2015_2019_dbf.zip",
+   "sha256": "607c4b8d8856bfcb1648ad7985f4eb6de8c8dbc422638a17f73174d03dbb864c",
+   "miembro": "matrimonios_base_datos_2015/MATRI15.dbf",
+   "dst": "datos/matri15.dbf"
+  },
+  {
+   "src": "data/raw/EMAT/2015-2019/matrimonios_base_datos_2015_2019_dbf.zip",
+   "sha256": "607c4b8d8856bfcb1648ad7985f4eb6de8c8dbc422638a17f73174d03dbb864c",
+   "miembro": "matrimonios_base_datos_2016/MATRI16.DBF",
+   "dst": "datos/matri16.dbf"
+  },
+  {
+   "src": "data/raw/EMAT/2015-2019/matrimonios_base_datos_2015_2019_dbf.zip",
+   "sha256": "607c4b8d8856bfcb1648ad7985f4eb6de8c8dbc422638a17f73174d03dbb864c",
+   "miembro": "matrimonios_base_datos_2017/MATRI17.DBF",
+   "dst": "datos/matri17.dbf"
+  },
+  {
+   "src": "data/raw/EMAT/2020/matrimonios_base_datos_2020_dbf.zip",
+   "sha256": "0fb9c29e6fa46ab6dd78c6499483fb161bbb2639d279bf3f1bf85b564131f3f3",
+   "miembro": "MATRI20.DBF",
+   "dst": "datos/matri20.dbf"
+  },
+  {
+   "src": "data/raw/EMAT/2021/matrimonios_base_datos_2021_dbf.zip",
+   "sha256": "2a09dc71128b4365b3bc429ae285ffe87e9ac078f616b160535fb9cf28f32164",
+   "miembro": "MATRI21.DBF",
+   "dst": "datos/matri21.dbf"
+  },
+  {
+   "src": "data/raw/EMAT/2022/matrimonios_base_datos_2022_dbf.zip",
+   "sha256": "ea3e0c544d16d209599163ebd5fff433e452ac40450a54032bd490e8a54edd9e",
+   "miembro": "MATRI22.dbf",
+   "dst": "datos/matri22.dbf"
+  },
+  {
+   "src": "data/raw/EMAT/2023/matrimonios_base_datos_2023_dbf.zip",
+   "sha256": "c2cde81ae8aee78f374812ec691bccfbaf7faa29b5223e555c08455e065475f0",
+   "miembro": "matri23.dbf",
+   "dst": "datos/matri23.dbf"
+  }
+ ],
+ "campos": {
+  "datos/matri10.dbf": [
+   "ENT_REGIS",
+   "TAM_LOC_RE",
+   "ANIO_REGIS",
+   "GENERO",
+   "SEXO_CON1",
+   "SEXO_CON2",
+   "EDAD_CON1",
+   "EDAD_CON2",
+   "CONACTCON1",
+   "CONACTCON2",
+   "ESCOL_CON1",
+   "ESCOL_CON2"
+  ],
+  "datos/matri11.dbf": [
+   "ENT_REGIS",
+   "TAM_LOC_RE",
+   "ANIO_REGIS",
+   "GENERO",
+   "SEXO_CON1",
+   "SEXO_CON2",
+   "EDAD_CON1",
+   "EDAD_CON2",
+   "CONACTCON1",
+   "CONACTCON2",
+   "ESCOL_CON1",
+   "ESCOL_CON2"
+  ],
+  "datos/matri12.dbf": [
+   "ENT_REGIS",
+   "TAM_LOC_RE",
+   "ANIO_REGIS",
+   "GENERO",
+   "SEXO_CON1",
+   "SEXO_CON2",
+   "EDAD_CON1",
+   "EDAD_CON2",
+   "CONACTCON1",
+   "CONACTCON2",
+   "ESCOL_CON1",
+   "ESCOL_CON2"
+  ],
+  "datos/matri13.dbf": [
+   "ENT_REGIS",
+   "TAM_LOC_RE",
+   "ANIO_REGIS",
+   "GENERO",
+   "SEXO_CON1",
+   "SEXO_CON2",
+   "EDAD_CON1",
+   "EDAD_CON2",
+   "CONACTCON1",
+   "CONACTCON2",
+   "ESCOL_CON1",
+   "ESCOL_CON2"
+  ],
+  "datos/matri14.dbf": [
+   "ENT_REGIS",
+   "TAM_LOC_RE",
+   "ANIO_REGIS",
+   "GENERO",
+   "SEXO_CON1",
+   "SEXO_CON2",
+   "EDAD_CON1",
+   "EDAD_CON2",
+   "CONACTCON1",
+   "CONACTCON2",
+   "ESCOL_CON1",
+   "ESCOL_CON2"
+  ],
+  "datos/matri18.dbf": [
+   "ENT_REGIS",
+   "TAM_LOC_RE",
+   "ANIO_REGIS",
+   "GENERO",
+   "SEXO_CON1",
+   "SEXO_CON2",
+   "EDAD_CON1",
+   "EDAD_CON2",
+   "CONACTCON1",
+   "CONACTCON2",
+   "ESCOL_CON1",
+   "ESCOL_CON2"
+  ],
+  "datos/matri19.dbf": [
+   "ENT_REGIS",
+   "TAM_LOC_RE",
+   "ANIO_REGIS",
+   "GENERO",
+   "SEXO_CON1",
+   "SEXO_CON2",
+   "EDAD_CON1",
+   "EDAD_CON2",
+   "CONACTCON1",
+   "CONACTCON2",
+   "ESCOL_CON1",
+   "ESCOL_CON2"
+  ],
+  "datos/matri15.dbf": [
+   "ENT_REGIS",
+   "TAM_LOC_RE",
+   "ANIO_REGIS",
+   "GENERO",
+   "SEXO_CON1",
+   "SEXO_CON2",
+   "EDAD_CON1",
+   "EDAD_CON2",
+   "CONACTCON1",
+   "CONACTCON2",
+   "ESCOL_CON1",
+   "ESCOL_CON2"
+  ],
+  "datos/matri16.dbf": [
+   "ENT_REGIS",
+   "TAM_LOC_RE",
+   "ANIO_REGIS",
+   "GENERO",
+   "SEXO_CON1",
+   "SEXO_CON2",
+   "EDAD_CON1",
+   "EDAD_CON2",
+   "CONACTCON1",
+   "CONACTCON2",
+   "ESCOL_CON1",
+   "ESCOL_CON2"
+  ],
+  "datos/matri17.dbf": [
+   "ENT_REGIS",
+   "TAM_LOC_RE",
+   "ANIO_REGIS",
+   "GENERO",
+   "SEXO_CON1",
+   "SEXO_CON2",
+   "EDAD_CON1",
+   "EDAD_CON2",
+   "CONACTCON1",
+   "CONACTCON2",
+   "ESCOL_CON1",
+   "ESCOL_CON2"
+  ],
+  "datos/matri20.dbf": [
+   "ENT_REGIS",
+   "TAM_LOC_RE",
+   "ANIO_REGIS",
+   "GENERO",
+   "SEXO_CON1",
+   "SEXO_CON2",
+   "EDAD_CON1",
+   "EDAD_CON2",
+   "CONACTCON1",
+   "CONACTCON2",
+   "ESCOL_CON1",
+   "ESCOL_CON2"
+  ],
+  "datos/matri21.dbf": [
+   "ENT_REGIS",
+   "TAM_LOC_RE",
+   "ANIO_REGIS",
+   "GENERO",
+   "SEXO_CON1",
+   "SEXO_CON2",
+   "EDAD_CON1",
+   "EDAD_CON2",
+   "CONACTCON1",
+   "CONACTCON2",
+   "ESCOL_CON1",
+   "ESCOL_CON2"
+  ],
+  "datos/matri22.dbf": [
+   "ENT_REGIS",
+   "TAM_LOC_RE",
+   "ANIO_REGIS",
+   "GENERO",
+   "SEXO_CON1",
+   "SEXO_CON2",
+   "EDAD_CON1",
+   "EDAD_CON2",
+   "CONACTCON1",
+   "CONACTCON2",
+   "ESCOL_CON1",
+   "ESCOL_CON2"
+  ],
+  "datos/matri23.dbf": [
+   "ENT_REGIS",
+   "TAM_LOC_RE",
+   "ANIO_REGIS",
+   "GENERO",
+   "SEXO_CON1",
+   "SEXO_CON2",
+   "EDAD_CON1",
+   "EDAD_CON2",
+   "CONACTCON1",
+   "CONACTCON2",
+   "ESCOL_CON1",
+   "ESCOL_CON2"
+  ]
+ },
+ "filtro_filas": null,
+ "notas": "Sin filtro global: matrimonio = todas las filas vivas del DBF; contrayente = dos filas (*_CON1, *_CON2) por matrimonio. Universos por conducta segun spec (M-MISMO-SEXO GENERO 1-2; M-AMBOS-TRABAJAN CONACT 1-2 ambos; M-MISMA-ESCOLARIDAD ESCOL 1-7 ambos; edad valida 12-98). Solo olas 2010-2023 (14 archivos MATRIyy); 2024 RESERVADA excluida. Columnas ENT_REGIS y TAM_LOC_RE: la spec dice 'entidad/localidad de registro' sin nombrar la columna; inferidas del encabezado. Todas las columnas existen en las 14 olas con mayuscula exacta. Discrepancia menor: la spec dice 33 campos, el encabezado DBF da 35. Descriptores PDF de las 14 olas incluidos (2010-2014 sin numeros publicados, solo diccionario)."
+}
