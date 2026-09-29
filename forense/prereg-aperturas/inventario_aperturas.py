@@ -39,6 +39,7 @@ COLUMNAS = ("programa", "ola", "estado_vigente", "n_ids", "ids", "fuente_reserva
 YA_ADJUDICADOS = {
     "CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001": "CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0001/0002 (ejecucion.json)",
     "CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-EMISIONES-0001": "CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001 (ejecucion.json)",
+    "CALC-C2-COMPUESTO-IC-ENVIPE2025-0001": "CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001 (23/sep): R sellada de las 38 celdas; C2 coincide 35/38 a 1e-6",
 }
 
 # (programa, ola) -> (estado_vigente, cita). Sólo lo que una firma o un código congelado cambió.
@@ -48,9 +49,9 @@ ESTADO_POR_FIRMA = {
     ("MIGRACION", "2002"): ("LEVANTADA-POR-ESCRITO", "R09 (a) (MSM 2002 en la firma), ADENDA-1 de TRAMITE-FIRMAS-21; NC-260928-GEN2-TRAMITE-FIRMAS-21-8560-01"),
     ("ENCRIGE", "2016"): ("ABIERTA-COMO-VISTA", "R09 (a): «ENCRIGE 2016 queda como ola vista», ADENDA-1 de TRAMITE-FIRMAS-21"),
     ("ENVIPE", "2026"): ("RESERVA-PARCIAL", "abierto sólo lo que emitieron CALC-DUELO-ENVIPE2026-ADJUDICACION-0001 (22/sep) y -MARGINALES-ADJUDICACION-0001 (23/sep): «lo que no emita este CALC sigue RESERVADA»"),
-    ("ENIF", "2024"): ("RESERVA-PARCIAL", "módulo 7 RESERVADA (R06, ADENDA-1 de TRAMITE-FIRMAS-21); 14 cruces RESERVADA en data/corrida0/marcador-segmento.tsv; lo demás abierto por CALC-C2-COMPUESTO-IC-ENIF2024-0001, CALC-DIN-* y CALC-ARBITRO-MARGINALES-ENIF2024-0001"),
+    ("ENIF", "2024"): ("RESERVA-PARCIAL", "módulo 7 RESERVADA (R06, ADENDA-1 de TRAMITE-FIRMAS-21); de los 14 cruces RESERVADA del marcador: 9 con emisión C2 (desenlace informal_cualquiera, 68 celdas) en el expediente ENIF-2024 (la mitad ahorra_solo_informal ya tiene R en CALC-DIN-LOTE-ENIF2024-ADJUDICACION-0001) y 5 sin emisión sólo por mesa; lo demás abierto por CALC-C2-COMPUESTO-IC-ENIF2024-0001, CALC-DIN-* y CALC-ARBITRO-MARGINALES-ENIF2024-0001"),
     ("ENIGH", "2024"): ("RESERVA-PARCIAL", "memoria §1 «salvo seis columnas AMAI (C7)»; abierto además la columna remesas (CALC-ENIGH-DUELO-ADJUDICACION-0001, guardián tools/enigh_duelo_guardian.py)"),
-    ("ENVIPE", "2025"): ("RESERVA-PARCIAL", "4 cruces RESERVADA en data/corrida0/marcador-segmento.tsv (emitidos por CALC-C2-COMPUESTO-RESERVADAS-0001, sin R); marginales abiertos por CALC-ARBITRO-MARGINALES-ENVIPE2025-0001"),
+    ("ENVIPE", "2025"): ("ABIERTA-POR-CODIGO-CONGELADO", "los 4 cruces que data/corrida0/marcador-segmento.tsv aún marca RESERVADA (38 celdas) tienen R sellada en CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001 (23/sep); el marcador está desfasado (pares_piloteados reconoce un par por programa: hallazgo); marginales por CALC-ARBITRO-MARGINALES-ENVIPE2025-0001; memoria §1: abierta"),
     ("ENUT", "2024"): ("RESERVA-PARCIAL", "1 cruce RESERVADA sin emisión en data/corrida0/marcador-segmento.tsv (NC-0328); ningún contendiente sellado"),
     ("ENCIG", "2025"): ("ABIERTA-POR-CODIGO-CONGELADO", "FP-260923-GEN2-DUELO-ENCIG2025-CIERRE-1-657c-01: cierre de la reserva por CALC-ENCIG-DUELO-2025-ADJUDICACION-0001/0002; «fuera del árbitro» (encargo) sin celda RESERVADA en el marcador"),
     ("ENDUTIH", "2025"): ("RESERVADA", "R05 RESERVADA (ADENDA-1 de TRAMITE-FIRMAS-21); hallazgo: tres CALC sellados ya consumen el payload (cruces_vistos)"),
