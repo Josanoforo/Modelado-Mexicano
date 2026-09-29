@@ -29,8 +29,8 @@ Detalle y cierre de cada una en el [estado y prueba]({{ '/estado.html#la-prueba'
 
 | Objeto | Valor |
 |---|---:|
-| Corridas selladas | 318 <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> |
-| RESULT GEN2 sellados | 213 063 <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> |
+| Corridas selladas | 320 <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> |
+| RESULT GEN2 sellados | 215 006 <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> |
 | RESULT GEN2 adoptados (piso publicado) | 128 <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_adoptados_activos=' --> |
 | Celdas validadas (contador rector) | 219 <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas=' --> |
 | Reports de evidencia en el corpus | 31 <!-- deriva: rg --files corpus/reports -g '*.md' | wc -l --> |
