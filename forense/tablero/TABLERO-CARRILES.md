@@ -923,7 +923,7 @@ Todo número de arriba sale de estos archivos por `python3 tools/tablero_carrile
 | F13 | `forense/encargos/*.md` | `ac8ac1fc9c60 (lista)` | glob; en vuelo = sin línea «## CONSUMIDO» | 817 |
 | F15 | `data/corrida0/aperturas-pendientes-v1_0.tsv` | `4c7f99590390` | lee_tsv, (programa, año de ola) -> expediente y qué la abre | — |
 | F16 | `forense/analisis/*/*dictamenes.tsv` | `a86d2e495926 (lista)` | pisos_pendientes(): glob; filas con dominio · calc · resultado_id | 56 |
-| F17 | `data/corrida0/resultados.tsv` | `c4f78d8e51f7` | pisos_pendientes(): conjunto de resultado_id registrados (salta líneas #) | — |
+| F17 | `data/corrida0/resultados.tsv` | `a5848fd3d3a4` | pisos_pendientes(): conjunto de resultado_id registrados (salta líneas #) | — |
 | F14 | `canon/crosswalk-carriles-v1_0.tsv` | `9539d131abd1` | crosswalk() (misma derivación; --verifica compara con el archivo) | 31 |
 | S | `tools/tablero_carriles.py` | `c23b28762de9` | constantes de la cabecera | — |
 <!-- TABLERO-DERIVADO:END -->
