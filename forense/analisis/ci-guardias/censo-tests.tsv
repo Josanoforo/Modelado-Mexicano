@@ -284,3 +284,6 @@ tests/test_pdr1_enigh2022.py	pytest	NO	numpy,pandas,pytest	NO	0.0	NECESITA-DEPEN
 tests/test_pdr1_ensu2024.py	pytest	NO	numpy,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	GEN2-PISOS-DOMINIOS-Y-REGLAS-1: prueba sintética del CALC PDR1 (fila añadida por línea)
 tests/test_pdr1_enut2024.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-PISOS-DOMINIOS-Y-REGLAS-1: prueba sintética del CALC PDR1 (fila añadida por línea)
 tests/test_pdr1_envipe2025.py	pytest	NO	numpy,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	GEN2-PISOS-DOMINIOS-Y-REGLAS-1: prueba sintética del CALC PDR1 (fila añadida por línea)
+tests/test_mc2_enif2024.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-MEDICION-CARRILES-2: prueba sintética del CALC MC2-ENIF2024 (fila añadida por línea)
+tests/test_mc2_ensanut2024.py	script	NO	numpy,pyreadstat	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-MEDICION-CARRILES-2: prueba sintética del CALC MC2-ENSANUT2024 (fila añadida por línea)
+tests/test_mc2_envipe2025.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-MEDICION-CARRILES-2: prueba sintética del CALC MC2-ENVIPE2025 (fila añadida por línea)
