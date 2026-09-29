@@ -43,7 +43,9 @@ No abre, no mide, no adopta, no pide firmas (la vista las muestra). Sucesores: c
 
 ## NO-CORRIDO / RESERVAS
 
-- Ninguno.
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| P2 · «códigos por texto de pregunta del cuestionario de esa ola (permitido: cuestionario y FD sí se leen), ponderador y diseño desde el descriptor» | NO-VERIFICABLE-AQUÍ -- entorno NUBE: 0 archivos del corpus montados y red denegada; rama prevista del encargo §5 tomada en los 17 expedientes (códigos sobre la ola del piso, rotulados; columna ausente → NO-ESTIMABLE; columna con otros códigos → PARO y v1_1) | ningún contador; una columna con otro texto o códigos detiene esa apertura y pide v1_1 (D-18) | cada acto de apertura: `forense/prereg-aperturas/<X>/RECETA-APERTURA-<X>.md` §3 · NC-260928-GEN2-APERTURAS-PREREGISTRADAS-1-68b3-01 |
 
 ## CONSUMIDO
 
