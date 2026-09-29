@@ -8,6 +8,7 @@ encoger: un id sin licencia fuera de ella es FAIL.
 import csv
 import pathlib
 
+import pytest  # noqa: F401  -- invocador pytest en ci_guardias: sin `__main__`, como script saldría 0 sin correr nada
 import yaml
 
 RAIZ = pathlib.Path(__file__).resolve().parents[1]

@@ -10,6 +10,8 @@ import csv
 import pathlib
 import sys
 
+import pytest  # invocador pytest en ci_guardias: sin `__main__`, como script saldría 0 sin correr nada
+
 RAIZ = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(RAIZ / "forense/analisis/mapa-dominios-1-2"))
 csv.field_size_limit(10**9)
@@ -37,7 +39,6 @@ def test_llaves_y_columnas_no_de_estado_identicas():
 
 
 def test_gen2_existente_solo_y_siempre_con_fila_en_la_vista():
-    import pytest
     import deriva_mapa_v1_2 as d
 
     usada = (RAIZ / "forense/analisis/mapa-dominios-1-2/vista-usada.txt").read_text().strip()

@@ -85,7 +85,7 @@ tests/test_consumo_pisos_gen2.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDEN
 tests/test_corpus.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_corpus_integridad_respaldo.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_corpus_loader.py	pytest	NO	pyarrow,zipfile_deflate64	SI	0.3	NECESITA-DEPENDENCIA(pyarrow)	sin pyarrow el modulo se salta (importorskip); con pyarrow corren 6 sinteticos; los 2 reales (GEN2-CORPUS-CACHE-PARQUET-1) solo en CAJA
-tests/test_corpus_licencias.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
+tests/test_corpus_licencias.py	pytest	NO	(ninguna)	NO	18.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_corredores_gen2.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_corrida0.py	script	SI	(ninguna)	SI		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_corrida0_oro.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
@@ -194,6 +194,7 @@ tests/test_manifiesto_alcance.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 s
 tests/test_manifiesto_clon.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_manifiesto_seguro.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_mapa_dominios_v1_1.py	script	NO	(ninguna)	NO	4.9	CORRE-EN-CI	exit 0 sin corpus
+tests/test_mapa_dominios_v1_2.py	pytest	NO	deriva_mapa_v1_2	NO	2.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_marcador_eje_nse.py	script	NO	(ninguna)	NO	3.4	CORRE-EN-CI	exit 0 sin corpus
 tests/test_marcador_metrica_y_prospectividad.py	script	NO	(ninguna)	NO	0.2	FALLA-DE-VERDAD	AttributeError: module 'tablero_programa' has no attribute '_celdas_d_adjudicadas'
 tests/test_marcador_segmento.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
