@@ -243,5 +243,10 @@
   "accion": "DUENO",
   "nuevo_sucesor": "APERTURA (CSES módulo 5 MEX_2018, el más reciente del corpus: reservable por E.6, base no abierta, firma de apertura pendiente)",
   "porque": "abrir una ola reservada es firma de mesa; GEN2-CALC-ALTERNOS-LOTE-2 no lo abre"
+ },
+ "NC-260927-GEN2-CIERRE-SEMANAL-2-facd-03": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (producto: canon/donde-cambio-el-mexicano-v1_1.md y forense/analisis/donde-cambio/tabla-dictamen-ensu-v1_1.tsv, fusionados en main por #1337 GEN2-CIERRE-Y-PRODUCTO-3; python3 con csv.DictReader sobre esa tabla da 201 series con dictamen 119 ESTABLE, 51 SALTO-SIN-EXPLICAR, 20 CAMBIO-SOSTENIDO y 11 SALTO-DE-INSTRUMENTO, que son los 201 RESULT-ENSU-DICTAMEN de CALC-ENSU-SERIE-0001, y grep -cw ENSU sobre el md da 25)",
+  "porque": "GEN2-CIERRE-Y-PRODUCTO-3 fusionó en main el dictamen de ENSU-SERIE integrado a Dónde cambió v1.1; era la pieza P2 (c) de PRODUCTO-CANON-2"
  }
 }
