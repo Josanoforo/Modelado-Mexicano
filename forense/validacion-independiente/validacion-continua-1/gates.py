@@ -18,6 +18,14 @@ CONTEXTO = "SI-POR-RECETA: R32 opción A (FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-
 CONTRATO = "SI: CONTRATO-v3.md sha256 821a5ecb…94eb (R31, FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-01)"
 
 
+# firma de mesa en el chat del acto (28/sep), FP f926-01: acceso C1 a los 14 paquetes de P1
+FIRMA_P1_CALC = {"CALC-CCPV-FAM-PISOS-0001", "CALC-EDR-SUICIDIO-PISOS-0001", "CALC-EMAT-PAREJA-PISOS-0001",
+                 "CALC-ENADID-COLA-2018-0001", "CALC-ENASEM-ESCOLARIDAD-2021-0001", "CALC-ENDISEG-PISOS-2021-0001",
+                 "CALC-ENOE-PARTICIPACION-2024T4-0001", "CALC-ENPECYT-CONOC-PISOS-0001", "CALC-ENSU-PISOS-0001",
+                 "CALC-ENSU-SERIE-0001", "CALC-ENVIPE-PERCEPCION-2024-0001", "CALC-LATINOBAROMETRO-COLA-2023-0001",
+                 "CALC-MMSI-PISOS-2016-0001", "CALC-PEW-RELIGION-2024-0001"}
+
+
 def _tsv(ruta):
     return list(csv.DictReader(open(ruta, encoding="utf-8"), delimiter="\t"))
 
@@ -48,8 +56,10 @@ def filas():
         y = yaml.safe_load(open(f"{d}/spec.yaml", encoding="utf-8"))
         sm = os.path.normpath(os.path.join(d, y["spec_md"]))
         casa = os.path.exists(sm) and hashlib.sha256(open(sm, "rb").read()).hexdigest() == y["spec_md_sha256"]
-        acc = acceso_c1(ins)
-        estado = "LANZABLE" if acc and casa else "NO-LANZADO (gate ACCESO)"
+        acc = acceso_c1(ins) or (["FP-260928-GEN2-VALIDACION-Y-2027-1-f926-01"] if calc in FIRMA_P1_CALC else [])
+        libro = {r["resultado_id"] for r in _tsv("data/corrida0/validaciones-independientes.tsv")}
+        validado = all(i in libro for i in ids)
+        estado = ("LANZADO · comparado (dictamen-vc1.tsv)" if validado else "LANZABLE") if acc and casa else "NO-LANZADO (gate ACCESO)"
         out.append({
             "paquete": calc.replace("CALC-", "").lower(), "instrumento": ins, "calc": calc, "n_result": str(len(ids)),
             "spec_humana": sm, "spec_humana_sha": y["spec_md_sha256"],
@@ -59,7 +69,7 @@ def filas():
             "acceso_autorizado": ("SI: " + ",".join(acc)) if acc else
                                  "NO: 0 filas FIRMADA con «Acceso C1» que nombren " + ins + " en forense/firmas-pendientes.tsv",
             "estado": estado,
-            "razon": "SIN-VALIDACION-CIEGA: gate ACCESO-AUTORIZADO sin firma; nada se abrió ni se comparó",
+            "razon": ("" if acc and casa else "SIN-VALIDACION-CIEGA: gate ACCESO-AUTORIZADO sin firma; nada se abrió ni se comparó"),
             "firma_que_lo_abre": f"«Autorizo el acceso C1 del paquete {calc} ({ins}): lectura por la reconstructora "
                                  f"sin historial de los inputs DATO de su spec.yaml, solo las columnas que nombre su spec "
                                  f"humana, con los cuatro gates y la receta de LANZAMIENTO-LOTE3. No adopta cifras.»",
@@ -69,7 +79,7 @@ def filas():
 
 def verifica():
     libro = {r["resultado_id"] for r in _tsv("data/corrida0/validaciones-independientes.tsv")}
-    razon = {r["calc"] for r in _tsv(SALIDA) if r["razon"]}
+    razon = {r["calc"] for r in _tsv(SALIDA) if r["razon"] or r["estado"].startswith("LANZADO")}
     faltan = [r["result_id"] for r in universo() if r["result_id"] not in libro and r["calc"] not in razon]
     print(f"universo={len(universo())} con_fila_ciega={sum(r['result_id'] in libro for r in universo())} "
           f"ids_sin_fila_ni_razon={len(faltan)}")

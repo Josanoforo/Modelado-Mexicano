@@ -61,3 +61,68 @@ La sesión preguntó así: «Tomo tu mensaje como firma de mesa del acceso C1 pa
 - **`.ots` (FP f926-03):** «Lo corro yo (Recomendado)».
 - **ENOE/ENSU (FP f926-04):** «1; deja lista la consulta a INEGI sobre el diseño de ENOE (C2-1 la redactó) como receta para que mesa la envíe con las solicitudes de mañana».
 - **Acceso P1 (FP f926-01):** firmado por el mensaje de arriba, con la interpretación declarada en la pregunta y sin objeción de mesa. Texto por paquete: columna `firma_que_lo_abre` de `gates-v1_3.tsv`.
+
+## Continuación · P1 ejecutado tras la firma (28/sep/2026, noche)
+
+Los apartados P1, P2 y P4 de arriba describen el estado antes de la firma de mesa; esta sección los sucede y no los reescribe.
+
+**Contadores movidos.** El libro `validaciones-independientes.tsv` sube de 748 a 21 266 filas (+20 518): PASA 5 718 · CONCUERDA-NO-APROBADA 14 048 · NO-PASA 752. `resultados_con_validacion_independiente` se deriva por el `[deriva]` tras el merge; el libro pasa de 199 a 5 917 filas PASA. No se adopta nada: E.2, la adopción es el merge de mesa. `celdas_validadas` no cambia (219).
+
+**P1 · 14 paquetes (orden E.2 por paquete, commit a commit en la rama):**
+1. Paquete con sha antes de entregar (`ed733a1e`).
+2. Reconstructora `claude -p` aislada, lanzada por mesa desde su terminal (`cola.sh`, 3 en paralelo, 17:51–18:20). El clasificador del modo automático negó el lanzamiento desde la sesión («Create Unsafe Agents»).
+3. Salida archivada y commiteada antes de abrir el sellado (`archiva.py`).
+4. Auditoría del transcript, `freeze-export` y `compare_v3 freeze`; referencia desde `resultados.json`; `compare_v3 compare` (`compara.py`).
+5. Dictamen y asiento con la regla de `LANZAMIENTO-VC1.md` (`asienta.py`).
+
+Tolerancia: la sellada en cada `spec.yaml` (flotante abs 1e-10). IC diagnóstico (R23), no adjudica.
+
+| CALC | llaves | SOSTENER | ACOTAR | PASA | CONCUERDA-NO-APROBADA | NO-PASA |
+|---|---:|---:|---:|---:|---:|---:|
+| CALC-CCPV-FAM-PISOS-0001 | 640 | 413 | 227 | 6 | 407 | 227 |
+| CALC-EDR-SUICIDIO-PISOS-0001 | 2578 | 2578 | 0 | 2290 | 288 | 0 |
+| CALC-EMAT-PAREJA-PISOS-0001 | 3304 | 3304 | 0 | 3079 | 225 | 0 |
+| CALC-ENADID-COLA-2018-0001 | 100 | 100 | 0 | 94 | 6 | 0 |
+| CALC-ENASEM-ESCOLARIDAD-2021-0001 | 14 | 14 | 0 | 0 | 14 | 0 |
+| CALC-ENDISEG-PISOS-2021-0001 | 424 | 424 | 0 | 15 | 409 | 0 |
+| CALC-ENOE-PARTICIPACION-2024T4-0001 | 136 | 136 | 0 | 2 | 134 | 0 |
+| CALC-ENPECYT-CONOC-PISOS-0001 | 280 | 280 | 0 | 90 | 190 | 0 |
+| CALC-ENSU-PISOS-0001 | 5445 | 5408 | 37 | 4 | 5404 | 37 |
+| CALC-ENSU-SERIE-0001 | 7189 | 6701 | 488 | 0 | 6701 | 488 |
+| CALC-ENVIPE-PERCEPCION-2024-0001 | 138 | 138 | 0 | 138 | 0 | 0 |
+| CALC-LATINOBAROMETRO-COLA-2023-0001 | 68 | 68 | 0 | 0 | 68 | 0 |
+| CALC-MMSI-PISOS-2016-0001 | 158 | 158 | 0 | 0 | 158 | 0 |
+| CALC-PEW-RELIGION-2024-0001 | 44 | 44 | 0 | 0 | 44 | 0 |
+| **total** | **20518** | **19766** | **752** | **5718** | **14048** | **752** |
+
+**Lectura.**
+- En 19 766 de 20 518 llaves el punto reconstruido desde la spec humana cae dentro de 1e-10 del sellado. En 5 718 de ellas coinciden también el IC y su estado: el comparador dice COINCIDE.
+- Las 752 fuera tienen causa identificada, y en los dos casos es una insuficiencia de la spec (D-15), no un defecto del cálculo sellado:
+  - 525 de ENSU (EDAD 60-MAS): la reconstructora incluyó el código 97 («97 o más años»), que la spec deja sin decir, y el sellado no. Es el mismo punto que firmó `c09b-01`. |Δ| ≤ 0.0045.
+  - 227 de CCPV (cinco conductas con edades o atributos del jefe): la spec no fija el tratamiento de EDAD 999 / NIVACAD 99 ni el universo conjunto de «60+ y menor de 18». |Δ| ≤ 0.0065.
+- Por la regla congelada se asientan como ACOTAR / NO-PASA. `specs-insuficientes-v1_3.tsv` suma 3 filas (las dos de arriba y la receta de bootstrap en código).
+- **«Coinciden» solo donde el comparador dice COINCIDE** (5 718); el resto es «punto dentro de tolerancia».
+
+**Auditoría de transcripts.**
+- 14/14 SOLO-OPUS; ninguno salió a la red.
+- 7 con marca automática revisada a mano y asentada en `<paq>--revision-auditoria.md`:
+  - ENADID y ENOE: tokens de columna internos, con `usecols` idéntico al autorizado.
+  - ENPECYT: `/d` de `sed` y un `git log` fallido, declarado como intento.
+  - EDR, CCPV, EMAT y ENSU-PISOS: derivados propios en `$TMPDIR` y nombres de binario.
+- **Reserva general:** la receta aísla `/tmp`, pero `$TMPDIR` de las reconstructoras resultó ser `/home/pc0/tmp/claude-1000`, en disco y compartido entre sesiones. En los 14 transcripts ninguna listó ni leyó contenido ajeno ahí; la ceguera se sostiene por la auditoría del transcript (rótulo `VC1-CIEGA-POR-CONTEXTO-NUEVO`), no por el aislamiento.
+
+**P2 · lote 4 (firma delimitada de mesa).** Verificación por id en `lote4-modulos.tsv`:
+- Ninguno de los 8 CALC de ENIF/ENUT 2024 usa m7.
+- Ningún módulo que usan tiene firma de apertura por id: `9c9e-01` difiere los permisos; `bda6-02` no nombra módulos de ENUT; `2868-01` es una adopción, y su microdato es ENIF 2015–2021.
+- Resultado: 8/8 NO-LANZADO (gate ACCESO). ENSANUT 2024 diferida por la firma. Nada se abrió.
+
+**`.ots` (P3).** `manifiesto-sellos-2026-09-28.tsv.ots`, sellado con cuatro calendarios; pendiente de anclaje. Tras el anclaje: `ots upgrade`.
+- El sha256 del archivo es `31f57ff2…0fbd`, y es el que cubre el `.ots`.
+- `ff020b94…a6e0` es el `sha256-manifiesto` del cuerpo, escrito al pie del TSV.
+
+**ENOE.** La solicitud a INEGI está lista para la PNT: `forense/analisis/familias-2027/solicitud-inegi-enoe-varianza-singleton.md`.
+
+**P4 · conteos finales.**
+- Cifras validadas a ciegas esta semana: 20 518 (SOSTENER 19 766 · ACOTAR 752 · SOSTENER-SIN-CORROBORACION 0 · PROPONER-SUSPENDER 0).
+- Specs insuficientes nuevas: 3.
+- Familias: LISTA 5 · BLOQUEADA 2 · SUSPENDIDA 1.
