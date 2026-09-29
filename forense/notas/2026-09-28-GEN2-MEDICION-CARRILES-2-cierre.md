@@ -51,3 +51,21 @@ Contadores: +1 regla con cifra, +32 afirmaciones. Todo RETROSPECTIVA; ninguna ci
 - **Criterio de «hecho» nuevo.** Por firma de mesa, el criterio de este acto y de los siguientes actos de medición pasa a ser **«menos carriles rojos o más naranjas»**. NARANJA = «piso sellado y registrado en la vista, pendiente de adopción por catálogo», entre AMARILLO y VERDE; estado de visibilidad, no de adopción. Implementado en `tools/tablero_carriles.py` (regla en la cabecera de umbrales; ADR `…-8fdf-05`).
 - **Estado al implementarlo:** NARANJA 0. La vista (`data/corrida0/resultados.tsv`, último `[deriva]` con «quedan 101 CALC») aún no registra los CALC PDR1 ni MC2; el tablero los lista como «sellados en disco, no registrados» (E.7). Tres ROJO quedan a un `[deriva]` de NARANJA: CARRIL-03 AUTORIDAD (`CALC-PDR1-ENCUCI2020-0002`), CARRIL-08 TIEMPO (`CALC-PDR1-ENUT2024-0001`, `CALC-MC2-ENIF2024-0001`), CARRIL-09 RURAL_INDIGENA (`CALC-PDR1-ENUT2024-0001`, `CALC-PDR1-ENADID2023-0001`, `CALC-MC2-ENSANUT2024-0001`).
 - **«Sigue»:** el acto continúa con ENOE → ENIGH → ENUT → ENDUTIH → resto → P3; olas reservadas se sustituyen por las vistas y se declara; lo que no cierre hoy queda para GEN2-MEDICION-CARRILES-3 con la tabla de apertura, no como NC.
+
+## 8 · Cierre final (29/sep, tras «sigue»; conteos por comando)
+
+`python3 forense/analisis/medicion-carriles-2/tabla_apertura_mc2.py` sobre `origin/main` con #1311–#1346 fusionados:
+
+| objeto | conteo |
+|---|---|
+| CALC MC2 sellados (verify REPRODUCE) | 8: ENIF 2024, ENIF 2024 m7, ENSANUT 2024, ENVIPE 2025, ENOE (2025T4/2023T3), ENIGH 2022, ENUT 2024, ENDUTIH 2024 |
+| afirmaciones MEDIBLE-EN-CORPUS con dictamen propio | 69 de 235 (19 CONFIRMA · 33 MATIZA · 9 ROMPE · 5 NO-CONSTRUIBLE · 4 piso sin dictamen, sumando la regla) |
+| citadas E.5 · con juicio C3 sin RESULT propio · NO-CONSTRUIBLE | 18 · 75 · 1 |
+| pendientes (a GEN2-MEDICION-CARRILES-3, con esta tabla; no NC por instrucción de mesa) | 72: SIN-TOKEN 11, ENCUCI 7, ENADID 7, ENDIREH 5, ENSANUT 4, INEGI 4, BANXICO 4, ENCIG 4, CPV2020 4, ENASEM 4, PEW 3, LATINOBAROMETRO 3, ENSAFI 2, ENBIARE 2, EDER 2, ENSU 2, LAPOP 1, ENASIC 1, ENDISEG 1, WVS 1 |
+| reglas SIN-CIFRA-GEN2 | 141 → 140 (RG-41d71be87f MATIZA) |
+| olas reservadas abiertas | 0 (ENIF 2024 m7 sólo las cuatro columnas firmadas; ENSANUT 2025, ENVIPE 2026, ENOE 2026T1/T2, ENIGH 2024, ENDUTIH 2025 no son input) |
+| payloads nuevos | 0 (P3 no corrido → GEN2-MEDICION-CARRILES-3) |
+
+**Criterio «menos carriles rojos o más naranjas»** (`tools/tablero_carriles.py --json`, 29/sep): ROJO 7 · AMARILLO 21 · NARANJA 0 · VERDE 0 · GRIS 3. No se cumple todavía por rezago de la vista: el último `[deriva]` es del 28/sep 10:20 («quedan 101 CALC») y no registra ningún CALC PDR1/MC2. Cuatro ROJO tienen piso sellado en disco, no registrado (E.7): CARRIL-03 AUTORIDAD, CARRIL-08 TIEMPO, CARRIL-09 RURAL_INDIGENA, CARRIL-22 JUVENTUD. Con un `[deriva]` que los registre, el tablero pasa a ROJO 3 · NARANJA 4 (derivado por la regla, no medido aún).
+
+Hallazgos de medición que conviene leer antes que el tablero: tres cifras de reports resultan muy distintas en su propia fuente declarada (ENIF «24 % con cuenta»: 65.5 %; ENOE «55 % de la fuerza de trabajo < 25 años»: 14.5 %; ENDUTIH «urbano 71.2 %»: 88.9 %); dos de cuidado (ENUT) no reproducen con la definición operativa declarada y probablemente vienen de otra fuente (ENASIC); el trabajo comunitario gratuito no recae más en mujeres (−1.7 pp).
