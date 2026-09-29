@@ -20,7 +20,7 @@ A la pregunta «¿un solo PR o uno por programa?» y al informe de lo que faltab
 
 ## P2 · Expedientes
 - [EJECUTADO] Familias 2027: las 8 de `familias-2027-estado-v1_0.tsv` apuntan a olas 2027 → ninguna ola hoy reservada es R de una familia (`familia = NINGUNA` en toda fila).
-- 17 expedientes completos (6 673 celdas R), uno por ola con contendiente sellado pendiente; los dos del 28/sep (ENSANUT, ENCODAT) más 15 escritos por cinco subagentes con perímetro propio sobre la misma plantilla (REGLAS-DE-LECTURA: lote ≥ 3 piezas):
+- 17 expedientes completos (6 910 celdas R), uno por ola con contendiente sellado pendiente; los dos del 28/sep (ENSANUT, ENCODAT) más 15 escritos por cinco subagentes con perímetro propio sobre la misma plantilla (REGLAS-DE-LECTURA: lote ≥ 3 piezas). Al fusionar origin/main entraron dos contendientes sellados nuevos de GEN2-MEDICION-CARRILES-2 (`CALC-MC2-ENSANUT2024-0001` → ENSANUT 2025, `CALC-MC2-ENVIPE2025-0001` → ENVIPE 2026); la prueba de contendientes declarados los atrapó y ambos expedientes se ampliaron (E.6: una apertura sirve a todos los sellados antes; una sola primaria): ENSANUT +35 celdas MC2 (4 duplicadas y 7 diferencias apartadas sin abrir); ENVIPE 2026 +170 celdas MC2 puntuables, 21 RETROSPECTIVAS (tmod_vic ya abierta por los duelos) y 11 duplicadas de PERCEPCION que no puntúan.
 
 | expediente | contendientes sellados | payloads | celdas R |
 |---|---|---|---|
@@ -35,12 +35,13 @@ A la pregunta «¿un solo PR o uno por programa?» y al informe de lo que faltab
 | `ENIGH-2024` | `CALC-ENIGH-CONSUMO-PISOS-0002`, `CALC-ENIGH-CONSUMO-PISOS-0001`, `CALC-PDR1-ENIGH2022-0001` | 5 | 1100 |
 | `ENOE-2026T2` | `CALC-ENOE-PARTICIPACION-2024T4-0001` | 1 | 144 |
 | `ENPECYT-2017` | `CALC-ENPECYT-CONOC-PISOS-0001` | 1 | 100 |
-| `ENSANUT-2025` | `CALC-ENSANUT-PISOS-SALUD-0001` | 4 | 167 |
+| `ENSANUT-2025` | `CALC-ENSANUT-PISOS-SALUD-0001`, `CALC-MC2-ENSANUT2024-0001` | 4 | 202 |
 | `ENSU-2026` | `CALC-ENSU-PISOS-0001`, `CALC-ENSU-SERIE-0001` | 1 | 2025 |
-| `ENVIPE-2026` | `CALC-ENVIPE-PERCEPCION-2024-0001` | 1 | 138 |
+| `ENVIPE-2026` | `CALC-ENVIPE-PERCEPCION-2024-0001`, `CALC-MC2-ENVIPE2025-0001` | 1 | 340 |
 | `LAPOP-2023` | `CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001` | 1 | 260 |
 | `LATINOBAROMETRO-2024` | `CALC-LATINOBAROMETRO-PISOS-2023-0001`, `CALC-LATINOBAROMETRO-COLA-2023-0001` | 1 | 408 |
 | `PEW-2025` | `CALC-PEW-RELIGION-2024-0001`, `CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001`, `CALC-PEW-MIGRACION-MEX-0001` | 1 | 163 |
+
 
 - Cada expediente: `APERTURA-<X>-spec-v1_0.md` + sidecar (D-15, secciones 0–7 con módulo de auditoría v2.16), `APERTURA-<X>-spec.yaml` (contrato `corrida0` completo, `calc_id CALC-APERTURA-<X>-0001`, payloads con sha del manifiesto y todo código como input `origen: repo` con sha), `medidor_apertura_<x>.py` (auditoría AST de sí mismo como primera sentencia; `lee_payload_reservado` única lectura; `proporcion_por_grupo` único agregador), `RECETA-APERTURA-<X>.md` (firma → caja → preflight documental → un commit: levantar custodia + copiar contrato → preflight → run → asiento).
 - Regla de adjudicación fijada antes de abrir: cobertura «R dentro del IC del contendiente» con Wilson 95 %, dictamen CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE; en ENIF 2024 (piso vs retador C2) la regla del precedente sellado (ΔMAE, umbral 0.5 pp, `DIN-lote-enif2024-spec-v1_0.md:181-194`), dictaminada antes de abrir como NADIE-OCUPÓ-LA-FILA para `informal_cualquiera` (sin retador sellado; regla 6) → primaria la cobertura del piso.
@@ -54,6 +55,8 @@ A la pregunta «¿un solo PR o uno por programa?» y al informe de lo que faltab
 ## Defectos corregidos en el camino (≤ 10 líneas, declarados)
 - `guardia_apertura.wilson` daba −3e-18 o 1+2e-16 con k = 0 o k = n y `_valida_outputs` lo rechazaba (lo encontró el subagente de ENIF): acotado a [0, 1].
 - `-MAE-PUNTO` en ENADID promediaba hogar con persona (§4 v2.16): se calcula sólo sobre celdas persona.
+- La auditoría AST sólo vedaba `read_*`, `lee_dta`, `lee_csv_zip`: ahora veda todo `lee*`/`_lee*` fuera de `lee_payload_reservado` (lectores propios de los medidores sellados) y `E.MUTACIONES` suma esa mutación (10).
+- La fila ENIF 2024: el módulo 7 quedó ABIERTA-PARCIAL (P7_1_1, P7_1_2, P7_2_1, P7_3_1) por la ADENDA-1 de GEN2-MEDICION-CARRILES-2, fusionada durante el acto; los cruces del expediente no se tocaron (CALC-MC2-ENIF2024-0001 mide marginales de un eje).
 - ENSANUT/ENCODAT: la spec prometía NO-ESTIMABLE por columna ausente pero el lector levantaba KeyError: ahora reactivo ausente entra vacío y diseño ausente es PARO (test con lector falso).
 
 ## Premisas caídas (no PARO)
@@ -65,11 +68,11 @@ A la pregunta «¿un solo PR o uno por programa?» y al informe de lo que faltab
 ## Hallazgos (`forense/hallazgos.md`, 28/sep)
 Reserva por estimando sin marca en manifiesto ni cargador (nueve olas); marcador-segmento desfasado; ENGASTO 2013 sin tabla de lugar de compra; columna con mismo nombre y códigos nuevos → PARO y v1_1; ENDUTIH 2025 reservada y consumida; ENVIPE 2026 en la memoria como reservada entera.
 
-## Verificación
-- [EJECUTADO] `python3 -m pytest -q tests/test_prereg_aperturas.py tests/test_apertura_*.py` → `348 passed` (auditoría AST limpia y 9 mutaciones detectadas × 17 medidores; contrato `corrida0` con campos obligatorios y `resultados` == esquema; `_valida_outputs` sobre las ramas todas/parcial/cero/sin IC; input ajeno rechazado; vista casa; ids reservados sin fila: 0; contendientes declarados sin fila: 0; sintéticos por ola).
-- [EJECUTADO] `python3 forense/prereg-aperturas/escribe_expedientes.py --verifica` → 34 CASA, 0 NO-CASA.
-- [EJECUTADO] `python3 forense/prereg-aperturas/simula_apertura.py --todos` (receta §4 aplicada en worktree temporal, sin payload) → rc 0: 15 `PRE-FLIGHT: VERDE` (avisos NO-VISIBLE-EN-ESTE-CONTEXTO, FP-352); LAPOP-2023 y PEW-2025 bloquean sólo por `input_manifiesto_RAIZ_NO_CONFIGURADA` de `descargas_mx` (raíz inexistente en NUBE: NO-VERIFICABLE-AQUÍ; contrato sin otro bloqueo). `git worktree list` al terminar: 1.
-- [EJECUTADO] `python3 tests/check.py --rapido` → `0 FAIL · 467 WARN`. `check.py --baseline` (suite completa): la corre el CI del PR, que es el juez (P-A).
+## Verificación (sobre el commit final con origin/main fusionado)
+- [EJECUTADO] Commit `f83f7be1` (merge de origin/main `10538563`, 0 detrás): `python3 -m pytest -q tests/test_prereg_aperturas.py tests/test_apertura_*.py` → `375 passed` (17 medidores × auditoría AST limpia y 10 mutaciones detectadas; contrato `corrida0` con campos obligatorios y `resultados` == esquema; `_valida_outputs` sobre las ramas todas/parcial/cero/sin IC; input ajeno rechazado; vista casa; ids reservados sin fila: 0; contendientes declarados sin fila: 0; sintéticos por ola).
+- [EJECUTADO] `escribe_expedientes.py --verifica` → 34 CASA, 0 NO-CASA · `inventario_aperturas.py --verifica` → CASA (41 filas, 299 ids).
+- [EJECUTADO] `python3 tests/check.py --rapido` → `0 FAIL · 461 WARN`.
+- SIMULA_Y_BASELINE
 
 ## Archivos leídos
 `forense/prereg-aperturas/archivos-leidos-v1_0.txt` (el test comprueba que ningún id ni archivo reservado del manifiesto aparece).
