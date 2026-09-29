@@ -1,0 +1,198 @@
+[
+  {
+    "id": "NC-260922-GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1-7357-02",
+    "verdict": "ABSORBER",
+    "rationale": "El producto pedido sigue sin existir: el informe v1.5 (l.776-778) aún dice que el detalle por celda del crédito 2024 no está. resultados.json (882 RESULT) está en main y la nota commit-2-3 tabula ΔMAE/IC por conducta, así que basta NUBE. Hallazgo aparte: la l.356 de v1.5 fecha el 7/9 como «2021→2024», pero la nota lo fecha 2012→2021.",
+    "cite": [
+      {"tipo": "comando", "ref": "canon/informe-programa-v1_5.md:776", "comando": "git show origin/main:canon/informe-programa-v1_5.md | sed -n '776,778p'", "salida": "- **El detalle por celda del backtest de crédito 2024 no está en este\n  informe** (heredado v1.2 §7, sin cambio: no alcanzable en NUBE sin abrir\n  el CALC completo)."},
+      {"tipo": "comando", "ref": "data/corrida0/CALC-DIN-CREDITO-PREDICCION-2024-ADJUDICACION-0001/resultados.json", "comando": "git show origin/main:data/corrida0/CALC-DIN-CREDITO-PREDICCION-2024-ADJUDICACION-0001/resultados.json | jq -c '.resultados | length'; ... | jq -r '.resultados|keys[]' | head -2", "salida": "882\nRESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-18-29-B-VALIDAS\nRESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-18-29-DEN-W"},
+      {"tipo": "archivo", "ref": "forense/notas/nota-2026-09-22-gen2-din-credito-prediccion-2024-commit-2-3.md:50-60", "comando": "git show origin/main:forense/notas/nota-2026-09-22-gen2-din-credito-prediccion-2024-commit-2-3.md | sed -n '50,60p'", "salida": "| conducta | retador | veredicto | ΔMAE (pp) | IC95 | cobertura ... | K1 ... | TENDENCIA-SERIE | **PROPUESTA-CON-RESERVA** | +1.90 | [+0.62, +2.65] | 0.56 (5/9) | ... | K6-P-TENEDORES ... | **PROPUESTA-CON-RESERVA** | +2.62 | [+0.45, +3.50] | 1.00 (9/9) |"},
+      {"tipo": "comando", "ref": "canon/informe-programa-v1_5.md:356 vs nota commit-2-3:27-28", "comando": "git show origin/main:canon/informe-programa-v1_5.md | sed -n 356p; git show origin/main:forense/notas/nota-2026-09-22-gen2-din-credito-prediccion-2024-commit-2-3.md | sed -n '27,28p'", "salida": "Crédito 2021→2024, backtest de persistencia: persistencia gana en 7 de 9\n---\npara nueve conductas de crédito, y midió que `PERSISTENCIA` ganaba el\n*backtest* histórico (2012→2021) en 7 de 9."},
+      {"tipo": "comando", "ref": "canon/catalogo-del-mexicano-v1_{0..3}.tsv", "comando": "for v in 1_0 1_1 1_2 1_3; do git show origin/main:canon/catalogo-del-mexicano-v$v.tsv | rg -c 'RESULT-DIN-CREDITO-PREDICCION-2024-ADJ'; done", "salida": "(sin salida en los 4 archivos: rg -c no imprime nada con 0 coincidencias) → NO-ENCONTRADO en el catálogo; ningún producto de canon lleva el detalle"}
+    ],
+    "lote": "OTRO:INFORME-V1_6",
+    "entorno": "NUBE",
+    "hecho_comando": "git show origin/main:canon/informe-programa-v1_6.md | rg -c 'RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-|K6-P-TENEDORES' (≥1) y la misma búsqueda de 'detalle por celda del backtest de crédito 2024 no está' da 0",
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-01",
+    "verdict": "ABSORBER",
+    "rationale": "Sigue abierto por objeto: ninguna de las 327 filas del marcador ni de las 21 celdas-D cita los dos CALC de adjudicación. El duelo sella 42 VS-PERSISTENCIA (39 EMAS + 3 G). La delegación propone (a): reconciliar 24 contra 42 y diseñar el lector de CALC suelto. Es reversible (vista derivada) y no es el duelo v2 de la regla 6. El encargo deriva el mapeo del spec sellado.",
+    "cite": [
+      {"tipo": "comando", "ref": "data/corrida0/marcador-segmento.tsv", "comando": "git show origin/main:data/corrida0/marcador-segmento.tsv > ms.tsv; python3 (csv.DictReader, sin la línea '#'): filas; filas cuyo texto contiene 'DUELO-ENVIPE2026'|'DUELO26'|'LOTE-ENIF2024'|'ENIF2024-ADJUDICACION'", "salida": "327 filas · DUELO-ENVIPE2026 0 · DUELO26 0 · LOTE-ENIF2024 0 · ENIF2024-ADJUDICACION 0"},
+      {"tipo": "comando", "ref": "data/curacion-registro/celdas-d/", "comando": "git ls-tree --name-only origin/main data/curacion-registro/celdas-d/ | wc -l; git grep -l -E 'DUELO-ENVIPE2026-ADJUDICACION|DIN-LOTE-ENIF2024-ADJUDICACION' origin/main -- data/curacion-registro/celdas-d/ | wc -l; (idem) -- tools/marcador_segmento.py | wc -l", "salida": "21\n0\n0"},
+      {"tipo": "comando", "ref": "data/corrida0/CALC-DUELO-ENVIPE2026-ADJUDICACION-0001/resultados.json", "comando": "git show origin/main:.../resultados.json | jq -r '.resultados|keys[]' | rg 'VS-PERSISTENCIA' | sed -E 's/RESULT-DUELO26-ADJ-([A-Z0-9]+)-.*/\\1/' | sort | uniq -c", "salida": "762 claves; 42 VS-PERSISTENCIA: 39 EMAS, 3 G (p.ej. RESULT-DUELO26-ADJ-EMAS-T3-D1-VS-PERSISTENCIA … EMAS-T3-S4, EMAS-T5-D1 …)"},
+      {"tipo": "regla", "ref": "forense/encargos/2026-09-28-GEN2-DEMANDA-DICTAMEN-1.md:1", "comando": "rg -o -i '.{0,120}duelo v2.{0,120}' forense/encargos/2026-09-28-GEN2-DEMANDA-DICTAMEN-1.md", "salida": "70 de los 236 son celdas del duelo v2 que la regla 6 dejó sin camino de emisión … consumidor `forense/prereg-duelo-v2/marco-M-so…` → el «duelo v2» es el marco-M, no CALC-DUELO-ENVIPE2026"},
+      {"tipo": "comando", "ref": "forense/encargos/", "comando": "git ls-tree -r --name-only origin/main forense/encargos | rg -c 'MARCADOR-CONSUMO-Y-ADOPCION-3|ENUT-ENLACE|CROSSWALK-EJES-2'; ... | wc -l", "salida": "(0 coincidencias) de 1219 rutas → NO-ENCONTRADO sucesor archivado"}
+    ],
+    "lote": "OTRO:MARCADOR-ENLACES-2",
+    "entorno": "NUBE",
+    "hecho_comando": "tras el canal: python3 -c \"import csv,subprocess;t=subprocess.run(['git','show','origin/main:data/corrida0/marcador-segmento.tsv'],capture_output=True,text=True).stdout;r=list(csv.DictReader([l for l in t.splitlines(True) if not l.startswith('#')],delimiter='\\t'));print(sum(1 for x in r if 'DUELO26' in x['resultado_id']+x['fuente'] or 'LOTE-ENIF2024' in x['resultado_id']+x['fuente']))\" > 0, y la nota del acto declara el mapeo 24↔42 citando el spec del duelo",
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-02",
+    "verdict": "ABSORBER",
+    "rationale": "La firma (b′) está FIRMADA: reparto_hogar se enlaza sin medir (piso 2019 0.2379 del núcleo, R = RAZON-NUCLEO-NACIONAL) y las 10 sexo_edad quedan NO-CONSTRUIBLE-POR-CRUCE. En main las 11 filas siguen SIN-PISO (SIN-PISO-POR-DISEÑO:C1). GEN2-ENUT-ENLACE-MARCADOR-1 no se encontró en las 1219 rutas de encargos. Hace falta un acto NUBE sin CALC-id. No es CERRAR-FIRMA, porque el producto que exige la firma no existe.",
+    "cite": [
+      {"tipo": "firma", "ref": "data/corrida0/decisiones.tsv · FP-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01:(b′)", "comando": "python3 csv.DictReader sobre git show origin/main:data/corrida0/decisiones.tsv, objeto contiene '308c-01'", "salida": "«(b′) no se mide nada nuevo. Las 10 celdas sexo_edad del marcador son cruce: quedan NO-CONSTRUIBLE-POR-CRUCE (o RESERVADA donde ya lo estén)… La celda reparto_hogar (la razón) se enlaza sin medir: piso 2019 = 0.238 sobre el núcleo (sellado) y R 2024 = RAZON-NUCLEO-NACIONAL… el sucesor es un acto de nube que re-derive el marcador, cero mediciones, sin CALC-id.»"},
+      {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv", "comando": "python3 tools/consulta.py fp FP-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01", "salida": "estado=FIRMADA · … ejecutada_en=ASENTADA por ACTO GEN2-ENUT-NUCLEO-CELDAS-1 (22/sep/2026, A.12), que paró por PARO-PREMISA sin medir; (c) sin cambio material (ya SI); (a) y (b′) los ejecuta G[EN2-ENUT-ENLACE-MARCADOR-1]"},
+      {"tipo": "comando", "ref": "data/corrida0/marcador-segmento.tsv", "comando": "python3 csv.DictReader (sin '#'): filas con 'reparto_mujeres40' en celda_id → estado|piso_tipo|piso_fuente", "salida": "12 filas: 11 SIN-PISO|SIN-PISO|SIN-PISO-POR-DISEÑO:C1 (conducta sellada, PR #976, GEN2-ENUT-PISOS-Y-SERIE-1)…; 1 reparto_hogarxsexo_edad RESERVADA. Ninguna SOLO-PISO ni NO-CONSTRUIBLE-POR-CRUCE"},
+      {"tipo": "archivo", "ref": "tools/marcador_segmento.py:102-108", "comando": "git show origin/main:tools/marcador_segmento.py | sed -n '102,108p'", "salida": "# (4) F-ENUT (GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1, 22/sep/2026): las 11 filas de (2) SUCEDEN aquí -- … status SIN-PISO-POR-DISEÑO en vez de NO-CONSTRUIBLE … PREREG / \"PISOS-ENUT2019-ejes-metadatos-v1_1.tsv\" → la tabla vigente contradice (b′); el acto la sucede con una v1_2, no edita la v1_1"},
+      {"tipo": "comando", "ref": "forense/encargos/", "comando": "git ls-tree -r --name-only origin/main forense/encargos | rg -c 'ENUT-ENLACE'; ... | wc -l", "salida": "(0 coincidencias) · 1219 rutas"}
+    ],
+    "lote": "OTRO:MARCADOR-ENLACES-2",
+    "entorno": "NUBE",
+    "hecho_comando": "tras el canal, python3 csv sobre git show origin/main:data/corrida0/marcador-segmento.tsv: la fila MARG::familia.cuidado.reparto_mujeres40_ejes_enut2024::reparto_hogar::* tiene piso_tipo=='SOLO-PISO' y piso_fuente con 'CALC-ENUT2019-NUCLEO-EJES-0001'; las 10 filas ::sexo_edad:: tienen estado=='NO-CONSTRUIBLE-POR-CRUCE'",
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260921-GEN2-MARCADOR-E-INFORME-1-48d4-03",
+    "verdict": "ABSORBER",
+    "rationale": "Los IC de C3 piloto 1 y C1A piloto 3 no se pueden reconstruir: los pilotos cerraron por la regla 6. La regla pedida tampoco existe (0 coincidencias en v2.17 ni en la plantilla v2.2), y el defecto vive en el frente prospectivo: CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001 emite P0=0.673 sin IC. Falta una guardia: una emisión sin IC declarado (o NO-APLICA con razón) no pasa preflight.",
+    "cite": [
+      {"tipo": "comando", "ref": "gobierno/PEGAR-EN-PROYECTO-v2_17.md; gobierno/pendiente-de-pegado/instrucciones-proyecto-v2_17.md; DELTA-v2_17-a-v2_17_1.md; forense/encargos/PLANTILLA-ENCARGO-v2_2.md", "comando": "for f in <4 archivos>; do git show origin/main:$f | rg -n -i '\\bIC\\b|intervalo|cobertura'; done  (y git grep -i 'declar[ea] (su |el )?IC|IC antes de emitir|SIN-IC' en gobierno/ y plantillas)", "salida": "Solo aparecen reglas de adjudicación y cobertura (v2_17 l.42/l.30). Ninguna regla dice «declarar IC antes de emitir»; la segunda búsqueda no devuelve nada → NO-ENCONTRADO en 4 archivos"},
+      {"tipo": "comando", "ref": "data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/resultados.json", "comando": "git show origin/main:data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/resultados.json | jq -c '.resultados'", "salida": "{\"RESULT-FAMILIA-2027-ENCIG-PAGO-DIGITAL-P0\":0.6733930340661712,\"RESULT-FAMILIA-2027-ENCIG-PAGO-DIGITAL-P0-ESTADO\":\"SELLADO-INTERNAMENTE-SIN-R-FUTURA\",\"RESULT-FAMILIA-2027-ENCIG-PAGO-DIGITAL-P0-FUENTE\":\"RESULT-ENCIG-MOR-C-P-ADOPTA\"}  (spec: estimando EMISION-PROSPECTIVA-PUNTO-FIJO,SIN-R-FUTURA)"},
+      {"tipo": "regla", "ref": "canon/MEMORIA-OPERATIVA.md:10", "comando": "git grep -n -i 'regla 6' origin/main -- canon/MEMORIA-OPERATIVA.md", "salida": "- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."},
+      {"tipo": "archivo", "ref": "tools/informe_pilotos.py:289", "comando": "grep -n 'SIN-IC-EN-NINGUNA-CELDA' tools/informe_pilotos.py (REPORTADO por prop-A4; re-leído el rótulo en el NC)", "salida": "289: ... if n_cob else \"SIN-IC-EN-NINGUNA-CELDA\""}
+    ],
+    "lote": "TUBERIA-TESTS-LOTE",
+    "entorno": "NUBE",
+    "hecho_comando": "pytest -q tests/<test nuevo de emisión con IC> | tail -n 1 → passed; el mismo test falla sobre un spec.yaml sintético con estimando 'EMISION-*' sin campo de IC (ni NO-APLICA con razón), y corrida0 preflight bloquea ese caso",
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260921-GEN2-MARCADOR-E-INFORME-1-48d4-04",
+    "verdict": "ABSORBER",
+    "rationale": "El informe v1.5 sigue en Wilson (l.327) y declara pendiente el intervalo correcto (l.769-770). Además, «conglomerado» no aparece, aunque v2.16 §4 exige cobertura por celda y por conglomerado. Decido lo reversible: Clopper-Pearson exacto (se implementa sin scipy) y cobertura por ola, en NUBE, desde conteos sellados. El bootstrap compartido en CAJA no se lanza: la etapa está cerrada y sería retrospectiva.",
+    "cite": [
+      {"tipo": "comando", "ref": "canon/informe-programa-v1_5.md:327-333,769-770", "comando": "git show origin/main:canon/informe-programa-v1_5.md | sed -n '327,333p;769,770p'", "salida": "**Intervalo binomial: Wilson (score), z = 1.959964** — heredado de v1.1/v1.2, sin `scipy` en este entorno de nube. > **ADVERTENCIA …** Las celdas de una misma ola comparten marco muestral, estratos, UPM y réplicas… **No son ensayos independientes.** … - **El intervalo binomial correcto sigue pendiente**, heredado de v1.1/v1.2: Wilson es lo que hay sin `scipy`."},
+      {"tipo": "comando", "ref": "canon/informe-programa-v1_5.md", "comando": "git show origin/main:canon/informe-programa-v1_5.md | rg -n -i 'conglomerado|clopper'", "salida": "(sin salida: 0 coincidencias en 778 líneas)"},
+      {"tipo": "regla", "ref": "gobierno/instrucciones-proyecto-v2_16.md:43", "comando": "grep -n 'por conglomerado' gobierno/instrucciones-proyecto-v2_16.md", "salida": "43:Cobertura es «R dentro del IC del candidato». … La cobertura se reporta con intervalo binomial, por celda y por conglomerado (las celdas de una misma ola comparten muestra y no son independientes)…"},
+      {"tipo": "comando", "ref": "entorno NUBE de esta sesión", "comando": "python3 -c \"import scipy;print(scipy.__version__)\"", "salida": "ModuleNotFoundError: No module named 'scipy' (en CAJA: scipy 1.16.3, REPORTADO por prop-A4)"}
+    ],
+    "lote": "OTRO:INFORME-V1_6",
+    "entorno": "NUBE",
+    "hecho_comando": "git show origin/main:canon/informe-programa-v1_6.md | rg -c -i 'clopper|conglomerado' → ≥2, y la línea 'El intervalo binomial correcto sigue pendiente' ya no aparece",
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260928-GEN2-OBTENCION-EXTERNA-1-81e1-08",
+    "verdict": "ABSORBER",
+    "rationale": "No cierro SIN-OBJETO, como recomendaba la delegación, porque al verificarlo no se sostiene. El test cuenta «no declarada» como sin licencia (29 en la base, requisito I2), y 'NO-DECLARADA-EN-ORIGEN' lo evade por el guion. Los 123 oe1_* entraron después de congelar la base, que tiene 0 de ellos. R50, FIRMADA, manda lo sin licencia a CORPUS-LICENCIAS-2. Falta normalizar la regla y encauzar los 123.",
+    "cite": [
+      {"tipo": "comando", "ref": "data/manifiesto.yaml", "comando": "git show origin/main:data/manifiesto.yaml > manif.yaml; python3 yaml: entradas; licencia contiene 'NO-DECLARADA-EN-ORIGEN'; id empieza oe1_; cuenta con la regla _sin_licencia del test", "salida": "entradas 7198 · NO-DECLARADA-EN-ORIGEN 123 · oe1_ 123 · sin_licencia(regla test) 598 · top: 93 'NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)'"},
+      {"tipo": "archivo", "ref": "tests/test_corpus_licencias.py:1-6,17-19", "comando": "git show origin/main:tests/test_corpus_licencias.py | sed -n '1,20p'", "salida": "Defecto que atrapa: 554 entradas registradas sin campo `licencia` y 29 con «no declarada por la fuente» … requisito I2 para ir públicos. … def _sin_licencia(v): v = str(v or \"\").strip().lower(); return v in (\"\", \"none\") or \"no declarada\" in v"},
+      {"tipo": "comando", "ref": "forense/analisis/corpus-licencias-1/sin-licencia-base.tsv", "comando": "git show origin/main:forense/analisis/corpus-licencias-1/sin-licencia-base.tsv | rg -c '^oe1_'; ... | wc -l", "salida": "(0 coincidencias)\n599"},
+      {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv · R50", "comando": "python3 csv.DictReader, renglon=='R50'", "salida": "objeto: licencia de 598 payloads sin licencia declarada … estado: FIRMADA (GEN2-TRAMITE-FIRMAS-21, ADENDA-1 28/sep) · opciones: (a) acto GEN2-CORPUS-LICENCIAS-2 en caja (con red) || (b) no publicar… · recomendacion: PROPUESTO-POR-EJECUTOR: (a)"},
+      {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01", "salida": "estado=ABIERTA · … sucesor=ADQUISICION (paginas de terminos de ~43 hosts; sin fila en cola; receta en aplica_licencias.py) · antes: GEN2-CORPUS-LICENCIAS-2"}
+    ],
+    "lote": "CURACION-CORPUS-LOTE",
+    "entorno": "NUBE",
+    "hecho_comando": "cd <repo> && python3 -c \"import sys;sys.path.insert(0,'tests');import test_corpus_licencias as t;print(t._sin_licencia('NO-DECLARADA-EN-ORIGEN (x)'))\" → True, y pytest -q tests/test_corpus_licencias.py | tail -n 1 → passed (los 123 van a la base con enmienda fechada o a la cola de CORPUS-LICENCIAS-2)",
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260922-GEN2-PENDIENTES-CAJA-1-c09b-02",
+    "verdict": "ABSORBER",
+    "rationale": "R40 está FIRMADA-DELEGADA y NC-0270 CERRADA, pero la fila localidad del crosswalk no se ha editado: evidencia_grado sigue igual y no cita PR #1004 (0 coincidencias). Ninguna spec.yaml de CALC fija el archivo, así que editarlo es reversible y no toca sellos. GEN2-CROSSWALK-EJES-2 no se encontró en las 1219 rutas de encargos. Va en el mismo commit que c09b-04.",
+    "cite": [
+      {"tipo": "comando", "ref": "data/crosswalk-ejes-arbitro-modelo-v1_0.tsv", "comando": "python3 csv.DictReader sobre git show origin/main:data/crosswalk-ejes-arbitro-modelo-v1_0.tsv; fila eje=='localidad' → evidencia_grado; conteos de 'PR #1004' y '#1004'", "salida": "evidencia_grado: ABIERTA-EN-ESTE-ACTO (el colapso del arbitro y el corte del modelo) + REGISTRADA (identidad tloc.csv == tam_loc.csv, leida por ACTO cal-conf fase B el 3/ago/2026…). FD de ENIF NO-ACCESIBLE-AQUI… · PR #1004: 0 · #1004: 0"},
+      {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-0270", "salida": "NC-0270 · estado=CERRADA · acto=GEN2-CROSSWALK-EJES-1 · pr=#820"},
+      {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv · R40", "comando": "python3 csv.DictReader, renglon=='R40'", "salida": "objeto: NC-260922-GEN2-PENDIENTES-CAJA-1-c09b-02: acto que suba la fila NC-0270 al crosswalk de ejes · estado: FIRMADA-DELEGADA (GEN2-TRAMITE-FIRMAS-21: decidida por el trámite; nota §P3)"},
+      {"tipo": "comando", "ref": "data/corrida0/*/spec.yaml", "comando": "git grep -l 'crosswalk-ejes-arbitro-modelo' origin/main -- 'data/corrida0/*/spec.yaml' 'data/corrida0/*/sello.json' | wc -l", "salida": "0"}
+    ],
+    "lote": "OTRO:MARCADOR-ENLACES-2",
+    "entorno": "NUBE",
+    "hecho_comando": "git show origin/main:data/crosswalk-ejes-arbitro-modelo-v1_0.tsv | rg -c 'PR #1004' → ≥1 (fila localidad, evidencia_grado subido con la cita)",
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260922-GEN2-PENDIENTES-CAJA-1-c09b-04",
+    "verdict": "ABSORBER",
+    "rationale": "FP c09b-01, FIRMADA con la opción (b), pide re-declarar 60+ como 60-96 y dejar 97+ en reserva. La fila edad sigue en «18-29 | 30-44 | 45-59 | 60+» y '60-96' no aparece. Es un cambio de texto que no toca ningún sello, en la misma tabla y el mismo acto que c09b-02. No es CERRAR-FIRMA, porque la edición que exige la firma no se ha hecho.",
+    "cite": [
+      {"tipo": "comando", "ref": "data/crosswalk-ejes-arbitro-modelo-v1_0.tsv", "comando": "python3 csv.DictReader; fila eje=='edad' → celdas|celdas_modelo; txt.count('60-96')", "salida": "celdas: 18-29 | 30-44 | 45-59 | 60+ · celdas_modelo: 18-29 | 30-44 | 45-59 | 60+ · '60-96': 0"},
+      {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv", "comando": "python3 tools/consulta.py fp FP-260922-GEN2-PENDIENTES-CAJA-1-c09b-01", "salida": "estado=FIRMADA · firmada_en=FIRMA DE MESA 22/sep/2026 en la sesion del acto, opcion (b), verbatim en forense/notas/2026-09-22-GEN2-PENDIENTES-CAJA-1-nota.md §7; ejecucion pendiente: NC-26… · qué_se_firma=Edad 97 = edad real en ENVIPE 2025, ENCIG 2025 y ENIF 2024 («97 o más años»…)"},
+      {"tipo": "comando", "ref": "git log", "comando": "git log origin/main --oneline -n 5 --follow -- data/crosswalk-ejes-arbitro-modelo-v1_0.tsv", "salida": "26f83a70 Merge … codex/astra6-c3-cuidado-migracion-pareja-1 · bf5fc5e7 Merge PR #1196 … (ningún commit de CROSSWALK-EJES-2 ni de re-declaración de edad)"}
+    ],
+    "lote": "OTRO:MARCADOR-ENLACES-2",
+    "entorno": "NUBE",
+    "hecho_comando": "git show origin/main:data/crosswalk-ejes-arbitro-modelo-v1_0.tsv | rg -c '60-96' → ≥1 y la fila edad declara 97+ como reserva; rg -l '60\\+' en las celdas con tramos_edad que enumere el acto → 0 sin la aclaración 60-96",
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-01",
+    "verdict": "HOJA-DECISION",
+    "rationale": "Medir HUM-006 exige Latinobarómetro 2024, que está RESERVADA (E.6) y ya se abrió por un defecto (#1292, cerrado sin fusionar). Levantar la reserva es decisión de mesa (D-19). AUTOR-026 no la necesita: usa 2023 (LIBRE), ya sellada en CALC-LATINOBAROMETRO-PISOS-2023-0001 (765 CONFIA-*, P13STGBS). Esa parte se absorbe en PISOS-DOMINIOS-Y-REGLAS-2 citando lo sellado (E.5).",
+    "cite": [
+      {"tipo": "comando", "ref": "forense/analisis/pisos-dominios-1/tabla-apertura-v1_0.tsv", "comando": "python3 csv.DictReader sobre git show origin/main:<tabla>; id in (ASTRA5-U0-HUM-006, ASTRA5-U0-AUTOR-026)", "salida": "HUM-006 · Latinobarómetro 2024 · reserva: E.6: RESERVADA en COLA-/CONFIANZA-LATINOBAROMETRO-PISOS-spec-v1_0.md · decision: DIFERIDO-A apertura … | AUTOR-026 · latinobarometro2023 · P13STGBS A-I … · reserva: LIBRE · decision: DIFERIDO: su B-bis se congeló en la pieza retirada (#1292, no ciega)"},
+      {"tipo": "archivo", "ref": "forense/notas/2026-09-28-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-cierre.md:22", "comando": "git show origin/main:<nota> | sed -n 22p", "salida": "Reserva E.6 rota (PARO a, D-19), por categoría: … Dos piezas abrieron olas declaradas RESERVADAS…: Latinobarómetro 2024 (sellado y PR #1292, **cerrado sin fusionar**) y Censo 2020 ITER … Mesa decidió seguir con la opción 1 (retirar y continuar)."},
+      {"tipo": "comando", "ref": "data/corrida0/CALC-LATINOBAROMETRO-PISOS-2023-0001", "comando": "git show origin/main:.../resultados.json | jq -r '.resultados|keys[]' | rg CONFIA | sed … | uniq -c; spec.yaml | rg -n P13", "salida": "85 × CONFIA-{CONGRESO,FFAA,GOBIERNO,IGLESIA,INSTITUCION,PARTIDOS,PODER,POLICIA,PRESIDENTE} (=765) · spec l.51 variable: P13STGBS_A … · FP ac7b-02 FIRMADA (CON-RESERVA-DE-ANCHO)"},
+      {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv", "comando": "python3 csv (647 filas FP): patrón '7cd0|PISOS-DOMINIOS-Y-REGLAS|LATINOBAR[OÓ]METRO|EDER ?2025|CPV ?2020|Censo 2020'", "salida": "Ninguna FP levanta la reserva de Latinobarómetro 2024 (coinciden FP-29, FP-58, ac7b-02, 0d4a-01 [LB 2023], b544-02 [EDER exposición]) → NO-ENCONTRADO apertura escrita"}
+    ],
+    "owner_detalle": "MESA (2026-10-05) · apertura escrita de Latinobarómetro 2024 para HUM-006; AUTOR-026 → GEN2-PISOS-DOMINIOS-Y-REGLAS-2 sin esperar",
+    "hoja": {
+      "situacion": "HUM-006 (satisfacción con la democracia) pide Latinobarómetro 2024. Esa ola está RESERVADA por E.6, pero un defecto ya la abrió y la selló en #1292 (cerrado sin fusionar).",
+      "opciones": [
+        {"letra": "A", "texto": "Mesa levanta por escrito la reserva E.6 de Latinobarómetro 2024 para HUM-006. GEN2-PISOS-DOMINIOS-Y-REGLAS-2 (CAJA) lo mide rotulado RETROSPECTIVA.", "costo": "Un acto CAJA. Como la ola ya se derivó en #1292 antes de cualquier emisión nueva, no puede dar una marca PROSPECTIVA: no se pierde nada adicional."},
+        {"letra": "B", "texto": "Mantener la reserva. HUM-006 espera a Latinobarómetro 2025, con emisión sellada antes de abrirla.", "costo": "HUMOR sin estimador durante al menos un año. La reserva protege una ola cuyo orden de sellos ya está comprometido."},
+        {"letra": "C", "texto": "Declarar la ola 2024 consumida (E.6) y dejar HUM-006 SIN-CIFRA, sin medir.", "costo": "Ningún acto, pero HUMOR queda sin estimador y la afirmación sin dictamen."}
+      ],
+      "recomendacion": "A. AUTOR-026 se absorbe en GEN2-PISOS-DOMINIOS-Y-REGLAS-2 citando CALC-LATINOBAROMETRO-PISOS-2023-0001, sea cual sea la opción.",
+      "porque": "El valor prospectivo de 2024 se perdió con el defecto. E.6 permite usar un cruce visto para describir y evaluar en retrospectiva, siempre que se rotule así.",
+      "plazo": "2026-10-05",
+      "texto_firma": "«PISOS-DOMINIOS-Y-REGLAS-1 7cd0-01 (Latinobarómetro 2024, HUM-006): opción (__). Si (A): levanto por escrito la reserva E.6 de Latinobarómetro 2024 solo para HUM-006, rotulada RETROSPECTIVA, en GEN2-PISOS-DOMINIOS-Y-REGLAS-2.»"
+    },
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-02",
+    "verdict": "HOJA-DECISION",
+    "rationale": "El Censo 2020 ITER está RESERVADO (COLA-EIC-HOGARES-spec-v1_0.md:108) para proteger la lectura de hogares 2015→2020. Abrirlo para las cinco afirmaciones es decisión de mesa (D-19). El «-0002 congelado (e0842841)» que cita el NC no está en main (0 rutas CPV2020 en data/corrida0 y prereg-caja; ninguna rama remota): habrá que volver a congelarlo.",
+    "cite": [
+      {"tipo": "archivo", "ref": "forense/prereg-caja/COLA-EIC-HOGARES-spec-v1_0.md:108", "comando": "git show origin/main:forense/prereg-caja/COLA-EIC-HOGARES-spec-v1_0.md | sed -n '106,110p'", "salida": "(2015); ninguna cifra PROSPECTIVA; el Censo 2020 queda RESERVADO y fuera de este CALC, así que no hay lectura de tendencia 2015→2020 en este procedimiento."},
+      {"tipo": "comando", "ref": "forense/analisis/pisos-dominios-1/tabla-apertura-v1_0.tsv", "comando": "python3 csv.DictReader; payload_id=='cpv2020_iter_nal_csv'", "salida": "AUTOR-021 (PCATOLICA/PRO_CRIEVA), TIME-027 (edad), RURAL-026 (PERTE_INDIGENA/HLENGUA), RURAL-027 (P3HLINHE), FAM-037 (autoadscripción) · reserva: E.6: Censo 2020 RESERVADO en COLA-EIC-HOGARES-spec-v1_0.md:108 · decision: DIFERIDO-A apertura"},
+      {"tipo": "comando", "ref": "origin/main data/corrida0, forense/prereg-caja, ramas remotas", "comando": "git ls-tree -r --name-only origin/main | rg 'PDR1' | sed -E 's#/[^/]+$##' | sort -u; git grep -l CPV2020ITER origin/main; git ls-remote --heads origin | rg -i 'cpv|pisos-dominios'; git cat-file -t e0842841", "salida": "PDR1: ENADID2023-0001, ENCUCI2020-0001/-0002, ENIGH2022-0001, ENSU2024-0001, ENUT2024-0001, ENVIPE2025-0001 (sin CPV2020ITER) · CPV2020ITER solo en prop-A8.tsv y la nota de cierre · 10 heads remotos, ninguno coincide · e0842841: Not a valid object name (clon superficial)"}
+    ],
+    "owner_detalle": "MESA (2026-10-05) · apertura escrita (total o por columnas) del Censo 2020 ITER; luego GEN2-PISOS-DOMINIOS-Y-REGLAS-2 en CAJA",
+    "hoja": {
+      "situacion": "Cinco afirmaciones (TIME-027, RURAL-026/027, FAM-037, AUTOR-021) necesitan el ITER del Censo 2020. Está RESERVADO para la prueba de hogares 2015→2020. La corrida -0001 leyó el payload y el conducto la rechazó sin escribir valores; su sucesor -0002 no está en main.",
+      "opciones": [
+        {"letra": "A", "texto": "Levantar por escrito la reserva completa del Censo 2020 ITER, volver a congelar el -0002 y correrlo.", "costo": "Un acto CAJA de dos commits. El Censo 2020 deja de servir como ola de contraste de la serie EIC-hogares."},
+        {"letra": "B", "texto": "Levantar solo las columnas ITER de las cinco afirmaciones (religión, indigeneidad, lengua, edad) con guardia de columnas en el medidor. Las columnas de hogar y jefatura siguen RESERVADAS y se declara lo que se aparta.", "costo": "Un acto CAJA de dos commits, más una prueba por mutación de la guardia de columnas."},
+        {"letra": "C", "texto": "Mantener la reserva.", "costo": "JUVENTUD sin estimador y RURAL_INDIGENA sin dictamen: la huella indígena difusa queda sin mapear."}
+      ],
+      "recomendacion": "B",
+      "porque": "La reserva protege la tendencia de hogares 2015→2020 (spec:108). Religión, indigeneidad y lengua no son ese estimando, y E.6 pide declarar lo que se aparta sin abrir.",
+      "plazo": "2026-10-05",
+      "texto_firma": "«PISOS-DOMINIOS-Y-REGLAS-1 7cd0-02 (Censo 2020 ITER): opción (__). Si (B): levanto por escrito la reserva E.6 del Censo 2020 ITER solo para las columnas de TIME-027, RURAL-026, RURAL-027, FAM-037 y AUTOR-021; las de hogar y jefatura siguen RESERVADAS para COLA-EIC-HOGARES.»"
+    },
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-03",
+    "verdict": "HOJA-DECISION",
+    "rationale": "EDER 2025 es la ola más reciente de EDER (historia 2011/2017) y está RESERVADA por E.6, sin apertura escrita. No se abrió. FP b544-02 adjudicó solo la exposición documental y «no autoriza lectura futura». Levantar la reserva es decisión de mesa (D-19). Es la única de las tres olas que no se ha visto, así que todavía puede dar una comparación PROSPECTIVA.",
+    "cite": [
+      {"tipo": "comando", "ref": "forense/analisis/pisos-dominios-1/tabla-apertura-v1_0.tsv", "comando": "python3 csv.DictReader; id in (ASTRA5-U0-JUV-001, ASTRA5-U0-JUV-002)", "salida": "JUV-001 · EDER 2025 · #39 edad_dejar … | JUV-002 · EDER 2025 · #42 edo_civil1 … · reserva: E.6: ola más reciente de EDER (historia 2011/2017), sin apertura escrita · decision: DIFERIDO-A apertura: ola reservada E.6; PISOS-DOMINIOS-Y-REGLAS-2"},
+      {"tipo": "firma", "ref": "forense/firmas-pendientes.tsv · FP-260927-ASTRA6-C3-SALUD-JUVENTUD-TIEMPO-1-b544-02", "comando": "python3 csv.DictReader, id == FP-…b544-02 → qué_se_firma, gatea", "salida": "FIRMADA · Adjudicar exposición documental EDER2025/ENADID2023/ENCODAT2025 …; recomendar recepción del producto saneado, exclusión y ninguna autorización retroactiva · GATEA: … no altera RESULT ni autoriza lectura futura"},
+      {"tipo": "regla", "ref": "canon/MEMORIA-OPERATIVA.md:10", "comando": "git grep -n -i 'regla 6' origin/main -- canon/MEMORIA-OPERATIVA.md", "salida": "Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."}
+    ],
+    "owner_detalle": "MESA (2026-10-05) · apertura de EDER 2025 (directa, o por código congelado tras sellar el piso); luego GEN2-PISOS-DOMINIOS-Y-REGLAS-2 en CAJA",
+    "hoja": {
+      "situacion": "JUV-001 y JUV-002 (edad al dejar el hogar y primera unión, por cohorte) necesitan EDER 2025. La ola está RESERVADA, sin apertura escrita, y no se ha abierto.",
+      "opciones": [
+        {"letra": "A", "texto": "Mesa levanta por escrito la reserva y JUV-001/002 se miden como pisos RETROSPECTIVA.", "costo": "Un acto CAJA. EDER 2025 deja de servir como ola prospectiva."},
+        {"letra": "B", "texto": "Antes de abrir, sellar como emisión punto-fijo, con IC, el piso por cohorte de EDER 2017 (misma forma que las familias 2027). Después abre la ola el código congelado de la prueba.", "costo": "Un commit de spec más (NUBE) y un acto CAJA de tres commits. Deja una marca PROSPECTIVA. No es retador: la regla 6 solo prohíbe retadores sobre olas vistas."},
+        {"letra": "C", "texto": "Mantener la reserva sin medir.", "costo": "JUVENTUD sin estimador."}
+      ],
+      "recomendacion": "B",
+      "porque": "La ola no se ha visto, así que es la única de las tres que aún puede dar una comparación PROSPECTIVA. Sellar antes el piso cuesta solo un commit, y E.6 prevé que la reserva la levante el código congelado.",
+      "plazo": "2026-10-05",
+      "texto_firma": "«PISOS-DOMINIOS-Y-REGLAS-1 7cd0-03 (EDER 2025, JUV-001/002): opción (__). Si (B): la reserva E.6 de EDER 2025 la levanta solo el código congelado de GEN2-PISOS-DOMINIOS-Y-REGLAS-2, después de sellar como emisión con IC el piso por cohorte de EDER 2017.»"
+    },
+    "confianza": "media"
+  }
+]

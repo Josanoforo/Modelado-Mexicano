@@ -1,0 +1,16 @@
+[
+  {
+    "id": "NC-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-05",
+    "veredicto": "CONFIRMA",
+    "razon": "La fila es SUSTITUIDO-POR:CALC-...-0002 y pide ese sustituto. -0002 está sellado en origin/main (exit 0, error null, 573 RESULT, COMMIT-2 6162c89d ancestro). Spec v1_1 declara único cambio: forma de salida; estimandos, universos, semilla 42, réplicas y B-bis idénticos. Registro en corridas.tsv pendiente de canal no es objeto de esta fila.",
+    "comando": "git ls-tree -r --name-only origin/main data/corrida0/CALC-PDR1-ENCUCI2020-0002; git show origin/main:.../0002/ejecucion.json | jq -c '{exit_code,error,n:(.resultado_ids|length)}'; git diff origin/main:...spec-v1_0.md origin/main:...spec-v1_1.md",
+    "salida": "ejecucion.json medidor.py resultados.json sello.json sello.sha256 spec.yaml · {exit_code:0,error:null,n:573} · 'Único cambio: la forma de salida … Estimandos, universos, códigos, filtros, ponderador, diseño, réplicas (2000), semilla (42) y B-bis: idénticos a v1.0.'"
+  },
+  {
+    "id": "NC-260927-GEN2-RECIBO-ASTRA6-1-beee-04",
+    "veredicto": "REFUTA",
+    "razon": "La «firma» citada no es firma: decididas-por-delegacion.tsv la clasifica DUEÑO-MESA (no CIERRA) y su texto es «Recomiendo…» a mesa. FP 39de-01 no nombra beee-04 ni acepta causa. El dictamen C1 del 28/sep la deja SIGUE-ABIERTA. informe-p2 reproduce 683 puntos, no determina la causa de los 685.",
+    "comando": "git show origin/main:forense/analisis/pendientes-3/decididas-por-delegacion.tsv | python3 csv.DictReader (opcion por id; Counter); git grep -n beee-04 origin/main -- forense/analisis/astra-continuidad-c1/",
+    "salida": "Counter DUEÑO-MESA 138, CIERRA 30 · beee-04 opcion=DUEÑO-MESA razon='…Recomiendo aceptar ese diagnostico…' · nc-c1-dictamen-v1_0.tsv:12 beee-04 C1 SIGUE-ABIERTA 'DIFERIDO-A:GEN2-CONTRAFACTUAL-ENDIREH2011-1 (caja); nada nuevo en main'"
+  }
+]

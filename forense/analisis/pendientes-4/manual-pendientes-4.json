@@ -1,0 +1,247 @@
+{
+ "NC-0026": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D25)",
+  "porque": "renglón D25: cablear o no la envoltura por celda de emite_m.py; toca la M emitida y solo mesa decide"
+ },
+ "NC-0170": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D26)",
+  "porque": "renglón D26: categoría exenta o excepción rotulada aparte para [COLA] y [ADQ]; toca canon"
+ },
+ "NC-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-04": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D24)",
+  "porque": "renglón D24: el Anexo A archivado tiene otro sha256; sellos, solo mesa"
+ },
+ "NC-260921-GEN2-TUBERIA-SIDECAR-CUERPO-1-3d08-01": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D23)",
+  "porque": "renglón D23: el sidecar del insumo codex cita un archivo ausente; re-sellar es de mesa"
+ },
+ "NC-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-07": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D21)",
+  "porque": "renglón D21: ENADID 2023 y Pew GAS Spring 2025 y su reserva E.6; abrir una ola reservada es de mesa"
+ },
+ "NC-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-04": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D1)",
+  "porque": "renglón D1: régimen de aislamiento de la sesión ciega de C1"
+ },
+ "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-10": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D1)",
+  "porque": "renglón D1: régimen de aislamiento de la sesión ciega de C1"
+ },
+ "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-02": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D19)",
+  "porque": "renglón D19: fechar o dejar sin fecha M12 M14 M15 M16 y M17 (R08 b)"
+ },
+ "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-03": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D19)",
+  "porque": "renglón D19: fechar o dejar sin fecha M12 M14 M15 M16 y M17 (R08 b)"
+ },
+ "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-04": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D19)",
+  "porque": "renglón D19: fechar o dejar sin fecha M12 M14 M15 M16 y M17 (R08 b)"
+ },
+ "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-05": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D19)",
+  "porque": "renglón D19: fechar o dejar sin fecha M12 M14 M15 M16 y M17 (R08 b)"
+ },
+ "NC-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D27)",
+  "porque": "renglón D27: auto-merge del [deriva]; la FP f18c-01 ya formula las opciones"
+ },
+ "NC-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-02": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D28)",
+  "porque": "renglón D28: regla del semáforo SIN-UNION del tablero de carriles"
+ },
+ "NC-260928-GEN2-MEDICION-CARRILES-2-8fdf-04": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (firma: FP-260928-GEN2-MEDICION-CARRILES-2-8fdf-01 está FIRMADA, con el punto 1 por ADENDA-2 de GEN2-MEDICION-CARRILES-2 en la opción b, NARANJA como estado de visibilidad, y ejecutada por ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-05; tools/tablero_carriles.py línea 57 define NARANJA y línea 62 fija que ROJO viene después de NARANJA)",
+  "porque": "la decisión de mesa ya está firmada y ejecutada; el renglón D29 quedaba obsoleto"
+ },
+ "NC-0246": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "DIRECCION-ENCARGO (GEN2-CURACION-CORPUS-2)",
+  "porque": "CURACION-CORPUS-2 P1 c dictamina las tres patas del overlay y pregunta a mesa donde la firma del 16/sep no es ejecutable"
+ },
+ "NC-0307": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "DIRECCION-ENCARGO (GEN2-CALC-ALTERNOS-LOTE-2)",
+  "porque": "CALC-ALTERNOS-LOTE-2 lo absorbe con la regla de extracción del intervalo pre-registrada"
+ },
+ "NC-0448": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "DIRECCION-ENCARGO (GEN2-CALC-ALTERNOS-LOTE-2)",
+  "porque": "CALC-ALTERNOS-LOTE-2 lo absorbe: re-medir el árbitro bajo cadena GEN2"
+ },
+ "NC-0056": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-ACCION (2026-10-05)",
+  "porque": "receta A23 de la hoja de recetas: convenios y credenciales personales de tandas y Findex"
+ },
+ "NC-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-ACCION (2026-10-05)",
+  "porque": "receta A24: pedir la revisión independiente de los tres reports C3; la pasada editorial de R17 ya la hizo GEN2-ASTRA-CONTINUIDAD-C3-1"
+ },
+ "NC-260928-GEN2-VALIDACION-Y-2027-1-f926-03": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-ACCION (2026-10-05)",
+  "porque": "receta A10: la firma f926-04 eligió esperar la regla de varianza de INEGI; la solicitud está lista"
+ },
+ "NC-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-03": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "CANAL (derivados/auto-*)",
+  "porque": "data/derivados/suite-resumen.tsv lo publica el job resumen-suite en su PR [deriva]; no existe en main hoy"
+ },
+ "NC-260928-GEN2-VALIDACION-Y-2027-1-f926-05": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "CANAL (derivados/auto-*)",
+  "porque": "la fila de las cinco familias de C2 en corridas.tsv la publica el job [deriva]"
+ },
+ "NC-260928-GEN2-APERTURAS-PREREGISTRADAS-1-68b3-01": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "APERTURA (los 17 expedientes de forense/prereg-aperturas: preflight documental en caja al abrir cada ola, RECETA-APERTURA-X sección 3)",
+  "porque": "cada acto de apertura corre su propio preflight documental en caja; ningún ejecutor de nube puede"
+ },
+ "NC-260928-GEN2-VALIDACION-Y-2027-1-f926-02": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "APERTURA (lote 4 de C1: ENIF 2024, ENUT 2024 y ENSANUT 2024; firma de apertura por módulo pendiente en FIRMAS-22, lote4-modulos.tsv con 8 NO-LANZADO)",
+  "porque": "abrir una ola reservada es firma de mesa por módulo"
+ },
+ "NC-0029": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (diseño: regla 6 sin retadores en canon/MEMORIA-OPERATIVA.md línea 10 y ADENDA-1 letra a de GEN2-PENDIENTES-4; los residuales L y motor de esta fila paraguas ya se descompusieron y NC-0018, NC-0019, NC-0146 y NC-0152 están CERRADAS en forense/no-corrido.tsv; la etapa de retadores está cerrada y no queda corredor R o L nuevo, ensamble E ni adopción de parámetros por hacer)",
+  "porque": "fila paraguas GEN1 de retadores retirada por regla 6; ADENDA-1 (a) autoriza cerrar por diseño con cita"
+ },
+ "NC-0212": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (firma: delegación de PENDIENTES-3 reafirmada en la ADENDA-1 de este acto, que deja al ejecutor decidir la opción reversible; se ejecuta la opción a de forense/analisis/pendientes-3/decididas-por-delegacion.tsv fila NC-0212, aceptar el rótulo NO-DERIVABLE-DESDE-LA-SPEC como estado final documentado sin reescribir CALC-ENIF-0002 sellado por E.3; data/corrida0/relevo-usos-v1_0.tsv rotula RES-0065 YA-ADOPTADO con control_c0 NO-DERIVABLE-DESDE-LA-SPEC y data/corrida0/validaciones-independientes.tsv línea 28 da PASA con alcance ENLACE para RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P)",
+  "porque": "opción a de la delegación, reversible: se reabre con una NC nueva si mesa quiere el enlace declarado"
+ },
+ "NC-0338": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (diseño: se ejecuta la opción b de la delegación de PENDIENTES-3, SIN-PISO permanente para las 9 celdas nacionales de TRIADA-B-PISO; los RESULT-TBP-* de data/corrida0/CALC-TRIADA-B-PISO-0001/resultados.json son el formato agregado del piloto B y no un RESULT por celda, el marcador es por eje y las 97 filas NACIONAL de data/corrida0/marcador-segmento.tsv tienen piso_tipo NO-APLICA; el piso de un marginal es la ola anterior por eje según forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md línea 6, y la triada del duelo v2 quedó retirada por regla 6 en gobierno/PEGAR-EN-PROYECTO-v2_17.md línea 41)",
+  "porque": "opción b de la delegación, reversible: se reabre con una NC nueva si mesa quiere el piso nacional"
+ },
+ "NC-0251": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (producto: el encargo de la cola ya está consumido y registrado, forense/encargos/cola/2026-09-10-GEN2-POST-685/06-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md línea 1 dice «ESTADO: CONSUMIDO — PR #693» y su línea 103 es el encabezado «## CONSUMIDO»; la nota de cierre existe en forense/notas/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-Y-DIN-cierre.md)",
+  "porque": "ADENDA-1 letra a: producto que otro acto ya entregó en main"
+ },
+ "NC-0412": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (diseño: E.2 en gobierno/instrucciones-proyecto-v2_16.md línea 100 fija que la adopción es por merge de mesa, y el PR que sustituyó test_una_emitida_nunca_trae_IC por test_una_emitida_nunca_FABRICA_IC ya está fusionado en main; tests/test_c2_compuesto.py línea 414 define la función nueva y python3 tests/test_c2_compuesto.py da «Ran 30 tests» y OK)",
+  "porque": "E.2: el merge de mesa ya hecho es la ratificación; ADENDA-1 letra a"
+ },
+ "NC-0294": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (diseño: milpa/src/theta.py líneas 13-14 dicen que valor lanza para las 43 entradas y que matriz.g no es camino de emisión vigente; gobierno/instrucciones-proyecto-v2_16.md línea 39 fija que la capa θ y matriz.g son generador de retadores y no camino de emisión; canon/MEMORIA-OPERATIVA.md línea 10 cierra la etapa de retadores; forense/encargos/2026-09-28-GEN2-DEMANDA-DICTAMEN-1.md línea 11 dice que θ es generador de retadores, no camino de emisión)",
+  "porque": "procedimiento retirado por regla 6: θ sin camino de emisión"
+ },
+ "NC-0296": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (diseño: la entrada es un coeficiente GEN1 sellado, RES-0072 rotulado LEGACY-GEN1 en forense/analisis/astra4-relevo/inventario-operativo.tsv línea 35 y parte de coeficientes_generador_sellados en milpa/procedencia.yaml; E.1 en gobierno/instrucciones-proyecto-v2_16.md línea 99 dice que GEN1 es historia, no se reescribe ni es fuente de GEN2; canon/gobernanza-v1_15.md línea 1196 registra procedencia.yaml como GEN1 sellado e intocado)",
+  "porque": "objeto GEN1 (E.1)"
+ },
+ "NC-0311": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (diseño: regla 6 en gobierno/PEGAR-EN-PROYECTO-v2_17.md línea 41 y canon/MEMORIA-OPERATIVA.md línea 10, sin retadores sobre olas vistas; la dieta L+corpus del retador C3 sobre ENIF 2024 es un retador sobre una ola ya vista, y el sucesor que la propia fila nombraba era GEN2-RETIRO-NC-POR-REGLA-6-1)",
+  "porque": "procedimiento retirado por regla 6"
+ },
+ "NC-0360": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (producto: forense/analisis/pendientes-2/razones-normalizadas.tsv trae 78 filas y en las 78 la razón del libro empieza hoy por el token declarado en esa hoja, comprobado por lector CSV; python3 tools/nc_por_razon.py da la distribución vigente por token)",
+  "porque": "producto ya entregado por PENDIENTES-2"
+ },
+ "NC-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-04": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (duplicada: NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01 ABIERTA, misma deuda de licencias sin declarar, con sus 111 payloads en forense/analisis/corpus-licencias-1/sin-licencia-base.tsv, entre ellos los 9 de gesis.org y los 4 de za6980 que esta fila citaba; R50 en forense/analisis/hoja-firmas-21/decisiones-21.tsv está FIRMADA y los lleva a GEN2-CORPUS-LICENCIAS-2)",
+  "porque": "duplicada de 1997-01, que sigue abierta"
+ },
+ "NC-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-02": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (producto: las tres filas que esta NC pedía cerrar ya están cerradas, NC-0085 y NC-260923-GEN2-TUBERIA-PARSER-FP-1-9641-03 por GEN2-PENDIENTES-3 el 2026-09-28 y NC-260922-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1-ef6f-01 por este mismo acto con la vista publicada en data/corrida0/corridas.tsv)",
+  "porque": "sus tres filas ya están cerradas"
+ },
+ "NC-260921-GEN2-TUBERIA-RES-LLAVE-1-5573-01": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (firma: mesa 21/sep/2026 confirmó en el cuerpo del PR #949, sección «Lo que mesa confirmó» punto 1, que el 149→150 de dependencias_numericas_legacy_activas es la deriva en vivo ya declarada y ajena al PR y que queda registrada en NC-…-5573-01 no como bloqueo; el PR se fusionó el 2026-09-21T15:47:02Z y declara ADR-587; forense/encargos/2026-09-21-GEN2-TUBERIA-RES-LLAVE-1.md línea 203 es la enmienda fechada que lo asienta)",
+  "porque": "firma de mesa registrada en el PR y en el encargo"
+ },
+ "NC-260923-ASTRA5-U3-POLITICA-df0d-04": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (producto: data/corrida0/corridas.tsv publica los tres CALC activos de U3-POLITICA, CALC-INE-PISOS-2024-0001, CALC-ENCUP-PISOS-2012-0003 y CALC-LAPOP-PISOS-2019-0001, los tres SELLADA con replay REPRODUCE e IDENTICO, y data/corrida0/resultados.tsv trae sus 7 RESULT; los publicó el canal [deriva])",
+  "porque": "la vista ya está en main"
+ },
+ "NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-2-e0db-05": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (duplicada: NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-06 para RES-0171 a RES-0175 y NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-07 para RES-0211, ambas ABIERTA y con su renglón D15 en forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md; misma deuda de relevar las seis lecturas legacy de celdas-D, con el precedente de GEN2-PENDIENTES-3 que cerró NC-260926-GEN2-RELEVO-CONSUMIDORES-3-72d9-04 como duplicada de esas dos)",
+  "porque": "duplicada de e760-06 y e760-07"
+ },
+ "NC-0070": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (diseño: regla 6 en canon/MEMORIA-OPERATIVA.md línea 10; forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md línea 6 fija que el marcador se deriva nunca sobre el emisor y que el emisor aparece como diagnóstico; forense/prereg-caja/S17-MODULACION-OLA-R5-1-spec-v1_0.md línea 19 compara M contra el R arbitrado de cada celda y forense/prereg-caja/S18-MODULACION-OLA-R3-1-spec-v1_0.md línea 66 declara TRA-M-02 NO-CONSTRUIBLE-SIN-CROSSWALK; forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md línea 9 autoriza cerrar por diseño lo retirado por regla 6)",
+  "porque": "procedimiento retirado por regla 6"
+ },
+ "NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-03": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (producto: data/corrida0/usos.tsv trae 16 filas con consumidor marcador:CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::*, todas con aptitud_uso APTA-POR-LINAJE y origen_numerico NUEVO, y data/corrida0/decisiones.tsv trae 16 filas origen:CALC-GOB-DIGITAL-EXE-EMISIONES-0002:RESULT-GOB-EXE15-2025-*-C2-P; ambos conteos se comprueban por lector CSV)",
+  "porque": "producto ya publicado en las vistas"
+ },
+ "NC-0273": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (diseño: tests/test_motor_holdout.py líneas 117-127 sustituyeron la aserción con SHA iguales por un salto rotulado NO-PROCEDE-HISTÓRICO en GEN2-MOTOR-DEUDA-LOTE-1 P2, porque catálogo y motor entraron en el mismo commit previo a la exigencia de ADR-68 y no se reescribe historia; PYTHONDONTWRITEBYTECODE=1 python3 tests/test_motor_holdout.py da «5 pruebas ok, 1 saltada» sin FAIL)",
+  "porque": "historia no se reescribe; el test ya salta con rótulo"
+ },
+ "NC-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-01": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (producto: tools/escribe_relevo_consumo.py líneas 772 y 1176 escriben valor_gen2 como repr de valor, precisión completa; milpa/catalogo-momentos-v0_1.tsv trae valor_gen2 de 16 decimales en M04 y M08; FP-365 está EJECUTADA y la vara de adopción no cambia)",
+  "porque": "el escritor ya escribe a precisión completa"
+ },
+ "NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-03": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (diseño: etapa de retadores cerrada, canon/MEMORIA-OPERATIVA.md línea 10 y canon/estado-programa-v1_18.md línea 869; con_seguro no aparece en forense/analisis/familias-2027, forense/analisis/familias-2027-enoe-inferencia-1 ni tools/familias-2027, que es el frente prospectivo; la reserva de ENVIPE 2026 sigue firmada en data/corrida0/decisiones.tsv líneas 181 y 263 y esta fila no la abre)",
+  "porque": "etapa de retadores cerrada"
+ },
+ "NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-02": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (diseño: etapa de retadores cerrada, canon/MEMORIA-OPERATIVA.md línea 10 y canon/estado-programa-v1_18.md línea 869; la reserva de ENVIPE 2026 sigue firmada en data/corrida0/decisiones.tsv líneas 181 y 263 y esta fila no la abre)",
+  "porque": "etapa de retadores cerrada"
+ },
+ "NC-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-05": {
+  "accion": "CERRAR",
+  "cerrado_por": "GEN2-PENDIENTES-4 · CERRADA (producto: los 14 ids de F6 tienen COINCIDE de sha y tamaño contra data/manifiesto.yaml en salida cruda de caja, 10 en forense/analisis/corpus-integridad-1/verifica-2026-09-21.txt, las 2 ENCO reservadas en forense/notas/2026-09-28-GEN2-PISOS-Y-ADENDAS-1/p3-verifica-enco.txt y los 2 PDF de MOCIBA en forense/notas/2026-09-28-GEN2-PISOS-Y-ADENDAS-1/p3-verifica-mociba.txt; ningún sha nuevo se sella y el residuo de la herramienta vive en NC-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-03 ABIERTA)",
+  "porque": "producto ya entregado con salida cruda de caja"
+ },
+ "NC-260927-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-4b11-03": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D16)",
+  "porque": "renglón D16: pedir o no al Laboratorio de INEGI el microdato de ENCRIGE 2020; R10 d lo dejó aparte y no es receta"
+ },
+ "NC-0324": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D12)",
+  "porque": "renglón D12: familia F6, retirar o reactivar; solo mesa firma el enlace científico pre-R"
+ },
+ "NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "ADQUISICION (licencias de 111 payloads: mesa amplía el acceso de red del entorno de nube a los hosts denegados y relanza el procedimiento por portal; barreras propias del sitio y PDF sin licencia hallada según el detalle de la fila)",
+  "porque": "el paso siguiente es una adquisición con acción de mesa sobre el entorno; ya nombraba ADQUISICION"
+ },
+ "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-06": {
+  "accion": "DUENO",
+  "nuevo_sucesor": "APERTURA (CSES módulo 5 MEX_2018, el más reciente del corpus: reservable por E.6, base no abierta, firma de apertura pendiente)",
+  "porque": "abrir una ola reservada es firma de mesa; GEN2-CALC-ALTERNOS-LOTE-2 no lo abre"
+ }
+}

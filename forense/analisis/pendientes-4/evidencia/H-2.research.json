@@ -1,0 +1,198 @@
+[
+ {
+  "id": "NC-260925-GEN2-CORPUS-COMPLETO-1-7813-02",
+  "verdict": "HOJA-RECETA",
+  "rationale": "Sigue ABIERTA; ningún registro con identidad hecho. LAPOP, WVS/EVS, EMOVI y Latinobarómetro son la misma acción física que R46 (DIFERIDA-POR-MESA al 29/sep; FP f2e5-12 y 43d6-01 ABIERTA); Pew Religion 2014 es la acción REGISTRO-PEW-RELIGION-LATAM-2014. El corpus ya trae LAPOP 2006/2019/2021/2023, WVS7 México y Latinobarómetro 2023/2024; EMOVI: 0 ids en el manifiesto.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-260925-GEN2-CORPUS-COMPLETO-1-7813-02", "salida": "NC-260925-GEN2-CORPUS-COMPLETO-1-7813-02 · estado=ABIERTA · acto=GEN2-CORPUS-COMPLETO-1 · pr=PR #1145 · razon=DIFERIDO-A:GEN2-CORPUS-COMPLETO-2 — NO OBTENIDO POR ESTE AGENTE EN 1 INTENTOS: registro, formulario o reto anti-bot (A.5, no se intentan credenciales); receta …"},
+   {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R46", "comando": "python3 csv.DictReader(decisiones-21.tsv) fila renglon=='R46'", "salida": "objeto => registros con identidad: EMOVI 2011/2023, WVS 7 EE.UU./Japón, WVS longitudinal, IFPS, MCPS, LAPOP completo · tipo => ACCION-CON-IDENTIDAD · estado => DIFERIDA-POR-MESA plazo 2026-09-29 (ABIERTA) · recomendacion => de NC-DECISIONES-1: (1)"},
+   {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv", "comando": "python3 tools/consulta.py fp FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-12 ; python3 tools/consulta.py fp FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01", "salida": "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-12 · estado=ABIERTA · creado=2026-09-27 · qué_se_firma=[E1] 6 fuentes de microdato (EMOVI 2023/2011 de CEEY, WVS ola 7 EE.UU./Japón, WVS longitudinal 1981-2022, IFPS México 2020-2021, MCPS) siguen bloqueadas… | FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01 · estado=ABIERTA"},
+   {"tipo": "archivo", "ref": "forense/analisis/obtencion-externa-1/solicitudes/registros-con-identidad.md:7-10", "comando": "Read registros-con-identidad.md", "salida": "LAPOP … https://www.vanderbilt.edu/cgd/data-access/ (200) | WVS longitudinal 1981–2022 … https://www.worldvaluessurvey.org/WVSEVStrend.jsp (200) | EMOVI (CEEY) bases 2011 y 2023 … https://ceey.org.mx/emovi/ (200) | Latinobarómetro olas no bajadas (2023 y 2024 ya OBTENIDO) https://www.latinobarometro.org/latContents.jsp (200)"},
+   {"tipo": "comando", "ref": "data/manifiesto.yaml (126272 líneas, por id)", "comando": "rg -n -i 'id:.*(pew|latinob|lapop|wvs|evs|emovi)' data/manifiesto.yaml", "salida": "latinobarometro2024_bd_stata; latinobarometro2023_bd_stata_zip; f00013084_wvs_wave_7_mexico_stata_v5_1 (+5 formatos WVS7 MX); 1008973606mexico_lapop_final_2006_data_set_092906; mexico_lapop_americasbarometer_2019_v1_0_w; mex_2021_lapop_americasbarometer_v1_2_w; mex_2023_lapop_americasbarometer_v1_0_w; pew_gas_spring2013…2025 (Global Attitudes); 0 ids con 'emovi'; 0 Pew Religion 2014"},
+   {"tipo": "comando", "ref": "forense/analisis/corpus-completo/catalogo-v1_0.tsv", "comando": "rg -o -i 'https?://[^ \"|]*pewresearch[^ \"|]*' forense/analisis/corpus-completo/catalogo-v1_0.tsv", "salida": "https://www.pewresearch.org/religion/dataset/religion-in-latin-america-2014-dataset/"}
+  ],
+  "owner_detalle": "2026-09-29 · R46-REGISTROS-CON-IDENTIDAD (+ REGISTRO-PEW-RELIGION-LATAM-2014)",
+  "entorno": "CAJA",
+  "hoja": {
+   "accion_clave": "R46-REGISTROS-CON-IDENTIDAD",
+   "accion_clave_tambien": "REGISTRO-PEW-RELIGION-LATAM-2014",
+   "receta_un_minuto": "Navegador normal, correo institucional de mesa: registrarse y aceptar términos académicos en (1) https://ceey.org.mx/emovi/ (EMOVI 2011/2017/2023), (2) https://www.worldvaluessurvey.org/WVSEVStrend.jsp (WVS/EVS longitudinal: olas 1–6 de México), (3) https://www.vanderbilt.edu/cgd/data-access/ (rondas LAPOP México que faltan), (4) https://www.latinobarometro.org/latContents.jsp (olas 1995–2022), (5) https://www.pewresearch.org/religion/dataset/religion-in-latin-america-2014-dataset/ (Pew 2014). Descargar a Descargas MX, avisar y firmar R46 con fecha. Mínimo de R46 opción (1): EMOVI + WVS.",
+   "destino": "Descargas MX → registro por /adquiere con sha y licencia a cargo de GEN2-OBTENCION-EXTERNA-2 (encargo NO-ENCONTRADO en origin/main: 0 de 1219 rutas bajo forense/encargos con 'OBTENCION-EXTERNA-2') · firma en forense/analisis/hoja-firmas-21/decisiones-21.tsv R46"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01",
+  "verdict": "HOJA-RECETA",
+  "rationale": "Sigue ABIERTA; el corpus sigue en un solo disco. Es la misma acción física que R47, que fundió FP f2e5-20, f2e5-26 y 3d56-01 (las tres ABIERTA), y que NC a307-01. R47 quedó diferida por mesa al 29/sep. Mesa elige el destino, lo monta y da la ruta. Después, un acto CAJA corre INSTRUCCION-RESPALDO.md con --destino.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01", "salida": "NC-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01 · estado=ABIERTA · acto=GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1 · pr=PR #974 · razon=DECISIÓN-DE-MESA-PENDIENTE: mesa contesto «Sin destino por ahora» a la bifurcacion del §2 …"},
+   {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R47", "comando": "python3 csv.DictReader(decisiones-21.tsv) fila renglon=='R47'", "salida": "ids_fundidos => FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-20 ; FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-26 ; FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01 · objeto => respaldo del corpus fuera de la máquina (19.8 GB, 1 914 archivos) · estado => DIFERIDA-POR-MESA plazo 2026-09-29 (ABIERTA) · opciones => (a) disco propio … || (b) nube cifrada … || (c) aceptar el riesgo"},
+   {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv", "comando": "python3 tools/consulta.py fp FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01 ; … fp FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-20", "salida": "FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01 · estado=ABIERTA · creado=2026-09-21 · qué_se_firma=Destino del respaldo del corpus (P3 del encargo, §2): disco externo que mesa conecte (rec… | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-20 · estado=ABIERTA"},
+   {"tipo": "archivo", "ref": "forense/analisis/corpus-integridad-1/INSTRUCCION-RESPALDO.md:3,17-27", "comando": "rg -n -- '--destino' forense/analisis/corpus-integridad-1/INSTRUCCION-RESPALDO.md", "salida": "3: Primera corrida: /home/pc0/mm-respaldo-corpus/2026-09-21/ — **todavía no es un respaldo** (vive en el mismo disco que el corpus …) | 17: python3 $R --destino \"$DEST\" --indexa | 20: --copia | 23: --verifica | 27: --restaura 20"},
+   {"tipo": "comando", "ref": "origin/main:forense/encargos", "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c RESPALDO-EJECUCION-2", "salida": "0 (universo: 1219 rutas bajo forense/encargos en origin/main)"}
+  ],
+  "owner_detalle": "2026-09-29 · R47-RESPALDO-CORPUS-FUERA-DE-MAQUINA",
+  "entorno": "CAJA",
+  "hoja": {
+   "accion_clave": "R47-RESPALDO-CORPUS-FUERA-DE-MAQUINA",
+   "receta_un_minuto": "Conectar el disco externo reformateado (o crear el remoto cifrado de mesa) y anotar su ruta de montaje. Firmar R47: «Respaldo del corpus: opción (a|b) con fecha ____». Con esa ruta, un acto CAJA (GEN2-CORPUS-RESPALDO-EJECUCION-2) corre los cuatro pasos de INSTRUCCION-RESPALDO.md: --indexa, --copia, --verifica y --restaura 20. Luego asienta 3d56-01, f2e5-20 y f2e5-26 juntas.",
+   "destino": "$DEST de forense/analisis/corpus-integridad-1/INSTRUCCION-RESPALDO.md (la ruta que mesa nombre) · firma en forense/analisis/hoja-firmas-21/decisiones-21.tsv R47"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260923-GEN2-CORPUS-RESPALDO-EJECUCION-1-a307-01",
+  "verdict": "HOJA-RECETA",
+  "rationale": "Sigue ABIERTA. Es la misma acción física que 3d56-01 y que R47 (H3 = FP f2e5-26, ABIERTA, fundida en R47, diferida al 29/sep). Comparte accion_clave. No se cierra como duplicada porque además pide aplicar las 4 propuestas de propuestas-manifiesto-2026-09-21.tsv, que saldrán en el acto CAJA posterior al montaje.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-260923-GEN2-CORPUS-RESPALDO-EJECUCION-1-a307-01", "salida": "NC-260923-GEN2-CORPUS-RESPALDO-EJECUCION-1-a307-01 · estado=ABIERTA · acto=GEN2-CORPUS-RESPALDO-EJECUCION-1 · pr=PR#(pendiente) · razon=PARO-PREMISA: el encargo mismo declara (parrafo f del S7) que el disco externo no montado al abrir no es PARO sino EN-ESPERA con fecha …"},
+   {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv", "comando": "python3 tools/consulta.py fp FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-26", "salida": "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-26 · estado=ABIERTA · creado=2026-09-27 · qué_se_firma=[H3] El respaldo del corpus fuera de sitio sigue pendiente de que mesa reformatee un disco duro propio; la fecha límite fijada por mesa el 23/sep ('esta semana…"},
+   {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R47", "comando": "python3 csv.DictReader(decisiones-21.tsv) fila renglon=='R47'", "salida": "ids_fundidos => … f2e5-20 ; … f2e5-26 ; FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01 · estado => DIFERIDA-POR-MESA plazo 2026-09-29 (ABIERTA)"},
+   {"tipo": "comando", "ref": "forense/analisis/corpus-integridad-1/propuestas-manifiesto-2026-09-21.tsv", "comando": "python3 -c \"import csv; print(len(list(csv.DictReader(open(...),delimiter='\\t'))))\"", "salida": "4 ['n', 'entradas', 'hallazgo', 'propuesta', 'recomendacion', 'decide']"}
+  ],
+  "owner_detalle": "2026-09-29 · R47-RESPALDO-CORPUS-FUERA-DE-MAQUINA",
+  "entorno": "CAJA",
+  "hoja": {
+   "accion_clave": "R47-RESPALDO-CORPUS-FUERA-DE-MAQUINA",
+   "receta_un_minuto": "Es la misma que en 3d56-01: montar el disco o el remoto cifrado, dar la ruta y firmar R47 con opción y fecha. El acto CAJA sucesor corre los cuatro comandos con --destino, verifica 1914/1914 por sha256 en destino y aplica en el mismo acto las 4 propuestas de propuestas-manifiesto-2026-09-21.tsv.",
+   "destino": "$DEST de forense/analisis/corpus-integridad-1/INSTRUCCION-RESPALDO.md · forense/analisis/corpus-integridad-1/propuestas-manifiesto-2026-09-21.tsv · firma R47 (decisiones-21.tsv)"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-01",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "La fila pide correr L1/L2 (704 llamadas) con el paquete v1_0 del lote. FP 8e53-01, FIRMADA en TRAMITE-FIRMAS-6, decide exactamente no correrlo: «No se corre L1/L2 con presupuesto sobre los 14 cruces: sería RETROSPECTIVA sobre reserva consumida». Es el mismo paquete (88 prompts, sha ad774cec). La NC gemela 8e53-01 ya está CERRADA por esa firma. La regla 6 lo refuerza.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv", "comando": "python3 tools/consulta.py fp FP-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-01", "salida": "FP-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-01 · estado=FIRMADA · creado=2026-09-21 · firmada_en=ADR-260922-GEN2-TRAMITE-FIRMAS-6-7c2c-01, 2026-09-22 -- ACTO GEN2-TRAMITE-FIRMAS-6, forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-6.md §2 · qué_se_firma=¿Se corre L1/L2 con presupuesto dedicado sobre el lote de 14 cruces …"},
+   {"tipo": "firma", "ref": "forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-6.md:16", "comando": "rg -n '8e53-01' forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-6.md", "salida": "16:- `DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-01`: «No se corre L1/L2 con presupuesto sobre los 14 cruces: sería RETROSPECTIVA sobre reserva consumida y L perdió 8/8 en DIN.»"},
+   {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv (campo gatea)", "comando": "python3 csv.DictReader(firmas-pendientes.tsv) id==FP-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-01", "salida": "gatea => si mesa firma SI: un acto sucesor corre PAQUETE-L-LOTE-ENIF2024-v1_0 (88 prompts, sha ad774cec...) y sella L1/L2; no gatea nada de este acto"},
+   {"tipo": "comando", "ref": "forense/prereg-duelo-v2/paquete-l-lote-enif2024-v1_0/prompts.jsonl", "comando": "wc -l …/prompts.jsonl; sha256sum …/prompts.jsonl | cut -c1-16", "salida": "88 forense/prereg-duelo-v2/paquete-l-lote-enif2024-v1_0/prompts.jsonl | ad774cece8ddd64b"},
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 csv.DictReader(no-corrido.tsv) filas que contienen '8e53-01'", "salida": "NC-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-01 CERRADA | La firma de mesa del encargo (SS2) sello no correr L1/L2 por presupuesto … | ACTO GEN2-TRAMITE-FIRMAS-6 (ADR-260922-GEN2-TRAMITE-FIRMAS-6-7c2c-01): firma de mesa FP-…-8e53-01 resuelve «No se corre L1/L2 con presupuesto dedicado sobre los 14 cruces» — decisión definitiva (NO)"},
+   {"tipo": "regla", "ref": "canon/MEMORIA-OPERATIVA.md:10", "comando": "rg -n 'Regla 6' canon/MEMORIA-OPERATIVA.md", "salida": "10:- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."}
+  ],
+  "cerrado_por_detalle": "firma: FP-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-01 FIRMADA (ADR-260922-GEN2-TRAMITE-FIRMAS-6-7c2c-01; forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-6.md:16): «No se corre L1/L2 con presupuesto sobre los 14 cruces: sería RETROSPECTIVA sobre reserva consumida y L perdió 8/8 en DIN.» · mismo paquete PAQUETE-L-LOTE-ENIF2024-v1_0 (88 prompts, sha ad774cec) · regla 6 canon/MEMORIA-OPERATIVA.md:10",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260923-GEN2-FRONT-1-4296-02",
+  "verdict": "HOJA-RECETA",
+  "rationale": "El adjunto nunca llegó: la nota de FRONT-1 (línea 21) lo declara NO-RECIBIDO. Tampoco está en origin/main: 0 de 12 375 rutas contienen «visibiliz». FRONT-2:13 dice que FRONT-1 lo archivó, sin sustento. Ninguna FP decide no consumirlo (0 coincidencias). Solo mesa tiene el archivo: lo adjunta con su sha o declara en una línea que no se consume.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-260923-GEN2-FRONT-1-4296-02", "salida": "NC-260923-GEN2-FRONT-1-4296-02 · estado=ABIERTA · acto=GEN2-FRONT-1 · razon=DIFERIDO-A · NO-RECIBIDO · sucesor=MESA (2026-10-05) · HUMANO: Receta de un minuto: mesa deja el archivo y corre `sha256sum PLAN-VISIBILIZACION-2026-09-23.md`; entrega archivo y sha en el chat. …"},
+   {"tipo": "comando", "ref": "origin/main (árbol completo)", "comando": "git ls-tree -r --name-only origin/main | wc -l ; git ls-tree -r --name-only origin/main | rg -i 'visibiliz'", "salida": "12375 | (sin salida: 0 rutas)"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-23-GEN2-FRONT-1-cierre.md:21,89", "comando": "rg -n -i 'VISIBILIZACION' forense/notas/2026-09-23-GEN2-FRONT-1-cierre.md", "salida": "21:`PLAN-VISIBILIZACION-2026-09-23.md`: **NO-RECIBIDO**. Se buscó en el repositorio y en `/mnt/c/Users/PC0/Downloads/` … | 89:- PLAN-VISIBILIZACION: `NO-RECIBIDO`; impacto: no se archivó ni se usó; sucesor: mesa lo aporta si desea incorporarlo."},
+   {"tipo": "archivo", "ref": "forense/encargos/2026-09-24-GEN2-FRONT-2.md:13 ; forense/encargos/2026-09-23-GEN2-FRONT-1.md:55", "comando": "rg -n -i 'VISIBILIZACION' forense/encargos/2026-09-24-GEN2-FRONT-2.md forense/encargos/2026-09-23-GEN2-FRONT-1.md", "salida": "FRONT-2.md:13: … **PLAN-VISIBILIZACION** archivado por FRONT-1. | FRONT-1.md:55:- ADJUNTOS: `PLAN-VISIBILIZACION-2026-09-23.md` (sha256 al lado; se archiva en `forense/encargos/fuentes/`)"},
+   {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv ; forense/analisis/hoja-firmas-21/decisiones-21.tsv", "comando": "python3 csv.DictReader: filas que contengan 'PLAN-VISIBILIZACION' / 'VISIBILIZ'", "salida": "firmas-pendientes.tsv: 0 filas · decisiones-21.tsv: 0 de 86 filas"}
+  ],
+  "owner_detalle": "2026-10-05 · ADJUNTAR-PLAN-VISIBILIZACION-20260923",
+  "entorno": "NUBE",
+  "hoja": {
+   "accion_clave": "ADJUNTAR-PLAN-VISIBILIZACION-20260923",
+   "receta_un_minuto": "Adjuntar PLAN-VISIBILIZACION-2026-09-23.md al chat del próximo acto de trámite, junto con la salida de `sha256sum PLAN-VISIBILIZACION-2026-09-23.md`. El acto lo archiva verbatim con sidecar en forense/encargos/fuentes/. Si mesa no lo va a consumir, basta una línea («PLAN-VISIBILIZACION no se consume») y la fila cierra con esa firma.",
+   "destino": "forense/encargos/fuentes/ (FRONT-1.md:55; el directorio existe con 23 entradas)"
+  },
+  "hecho_comando": "git ls-tree -r --name-only origin/main forense/encargos/fuentes | grep -c PLAN-VISIBILIZACION   # ≥1, o fila CERRADA con la firma de no-consumo",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260927-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-4b11-01",
+  "verdict": "HOJA-RECETA",
+  "rationale": "Ninguno de los dos adjuntos está en origin/main (0 rutas coinciden por nombre) y adjuntos/ no existe. El primero es el informe «Benchmark del Mexicano: fuentes alternas para 10 incógnitas»; el segundo, REVISION-repo-y-fuentes-alternas-2026-09-27.md. Solo mesa los tiene. Reenviarlos sirve también a OBTENCION-EXTERNA-1, que cita el mismo informe, y confirma la identidad de «Sandoval 2026» (NC 81e1-06).",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-260927-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-4b11-01", "salida": "NC-260927-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-4b11-01 · estado=ABIERTA · acto=GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1 · pr=#1255 · razon=NO-VERIFICABLE-AQUÍ -- los adjuntos no llegaron: ni en Descargas MX ni en Downloads …"},
+   {"tipo": "comando", "ref": "origin/main (12375 rutas)", "comando": "git ls-tree -r --name-only origin/main | grep -i -E 'fuentes-alternas|benchmark-del-mexicano|incognitas'", "salida": "forense/notas/2026-08-05-m2-incognitas.md   (ajeno: nota del 5/ago; 0 rutas de los adjuntos)"},
+   {"tipo": "comando", "ref": "forense/analisis/mapa-instrumentos-alternos/", "comando": "ls forense/analisis/mapa-instrumentos-alternos/", "salida": "acceso-rnm.tsv arma_mapa.py hoja-para-mesa-mapa-instrumentos-alternos.md lotes propuesta-R03.md universo-por-instrumento.tsv   (sin adjuntos/)"},
+   {"tipo": "archivo", "ref": "forense/encargos/2026-09-27-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1.md:30", "comando": "sed -n '30p' forense/encargos/2026-09-27-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1.md", "salida": "ADJUNTOS (mesa los adjunta; el acto los archiva verbatim con el sha que calcule al recibirlos …): (1) informe de investigación «Benchmark del Mexicano: fuentes alternas para 10 incógnitas» (md exportado del artefacto); (2) `REVISION-repo-y-fuentes-alternas-2026-09-27.md`. Si alguno no llega, el acto sigue: son mapa, no fuente."},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-27-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-cierre.md:54", "comando": "rg -n 'Adjuntos no recibidos' forense/notas/2026-09-27-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-cierre.md", "salida": "54:1. **Adjuntos no recibidos.** Ni «Benchmark del Mexicano…» ni `REVISION-repo-y-fuentes-alternas-2026-09-27.md` están en `Descargas MX` ni en `Downloads`. …"}
+  ],
+  "owner_detalle": "2026-10-05 · ADJUNTAR-INFORME-Y-REVISION-MAPA-20260927",
+  "entorno": "NUBE",
+  "hoja": {
+   "accion_clave": "ADJUNTAR-INFORME-Y-REVISION-MAPA-20260927",
+   "receta_un_minuto": "Adjuntar al chat del próximo acto de trámite los dos .md: el informe exportado del artefacto «Benchmark del Mexicano: fuentes alternas para 10 incógnitas» y REVISION-repo-y-fuentes-alternas-2026-09-27.md, cada uno con su `sha256sum`. El acto los archiva verbatim con sidecar en forense/analisis/mapa-instrumentos-alternos/adjuntos/. Si ya no existen del lado de mesa, basta decirlo en una línea y la fila cierra con esa firma.",
+   "destino": "forense/analisis/mapa-instrumentos-alternos/adjuntos/ (MAPA encargo:30; el directorio padre existe y adjuntos/ está NO-ENCONTRADO hoy)"
+  },
+  "hecho_comando": "git ls-tree -r --name-only origin/main forense/analisis/mapa-instrumentos-alternos/adjuntos | grep -c -E 'REVISION-repo-y-fuentes-alternas|[Bb]enchmark'   # ≥2",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0153",
+  "verdict": "HOJA-RECETA",
+  "rationale": "El expediente 04 está LISTO-PARA-TITULAR, sin fecha_presentacion ni acuse, y la cola sigue en SOLICITUD-PREPARADA. Ninguna FP decide sobre él (0 coincidencias). Es la misma acción física que NC-0111: BANDEJA-TITULAR 7-bis dice «en el mismo envío que la entrada 6». Falta el envío con identidad real por Contacto INEGI.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-0153", "salida": "NC-0153 · estado=ABIERTA · acto=GEN2-MOTOR-USOS-Y-COMPLEMENTOS · pr=#695 · razon=DIFERIDO-A · OBTENIDO-PARCIAL; EXPEDIENTE-TECNICO-LISTO; DECISION-DE-MESA-PENDIENTE · sucesor=MESA (2026-10-05) · HUMANO: Nada enviado aun. Receta: abrir https://www.inegi.org.mx/inegi/contacto.html …"},
+   {"tipo": "comando", "ref": "forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/REGISTRO-RECEPCION.tsv", "comando": "python3 csv.DictReader(REGISTRO-RECEPCION.tsv) fila expediente=='ENCIG-NC-0153'", "salida": "{'expediente': 'ENCIG-NC-0153', 'estado': 'LISTO-PARA-TITULAR', 'fecha_presentacion': '', 'canal': 'Contacto INEGI / atencion.usuarios@inegi.org.mx', 'acuse_no_personal': '', 'fecha_respuesta': '' …}"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-22-BANDEJA-TITULAR.md:46-51,58-64", "comando": "sed -n '46,52p;58,66p' forense/notas/2026-09-22-BANDEJA-TITULAR.md", "salida": "**6 · NC-0153 · INEGI: enlace ENCIG 8.5 evento × canal** … A quién: Contacto INEGI … Qué adjuntar: `EXP/04-INEGI-ENCIG-NC-0153.md` … **7-bis · NC-0111** … esta NC queda cubierta por la solicitud de la entrada 6 … A quién: Contacto INEGI, en el mismo envío que la entrada 6."},
+   {"tipo": "comando", "ref": "data/cola-adquisicion-v1_0.tsv", "comando": "python3 csv.DictReader (saltando cabecera #) filas con 'SOLICITUD' y origen NC-0153", "salida": "{'fuente_canonica': 'ENCIG_TASA_NACIONAL_PAGO_INFORMAL_POR_CANAL', 'estado_A4A5': 'SOLICITUD-PREPARADA', 'prioridad': '0', 'url_conocida': 'https://www.inegi.org.mx/inegi/contacto.html', 'origen': 'NC-0153; GEN2-CRON-DEMANDA-A-DATO-Y-PRODUCCION' …}"},
+   {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv", "comando": "python3 csv.DictReader: filas que contengan 'NC-0153'", "salida": "0 filas"}
+  ],
+  "owner_detalle": "2026-10-05 · INEGI-CONTACTO-EXP21-04-ENCIG-EVENTO-CANAL (el mismo envío cubre NC-0111)",
+  "entorno": "NUBE",
+  "hoja": {
+   "accion_clave": "INEGI-CONTACTO-EXP21-04-ENCIG-EVENTO-CANAL",
+   "receta_un_minuto": "Con identidad de mesa, abrir https://www.inegi.org.mx/inegi/contacto.html (o escribir a atencion.usuarios@inegi.org.mx). Pegar forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/04-INEGI-ENCIG-NC-0153.md y añadir una línea que pida la tasa general evento × canal (NC-0111). Enviar y pasar al chat el folio de atención.",
+   "destino": "REGISTRO-RECEPCION.tsv fila ENCIG-NC-0153 (fecha_presentacion, acuse_no_personal), asentado por el acto que reciba el folio; cierra NC-0153 y alimenta NC-0111 (ADQUISICION)"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0166",
+  "verdict": "HOJA-RECETA",
+  "rationale": "No hay correo ni acuse en el repo, y ninguna FP lo decide (0 coincidencias). No hay expediente redactado: la entrada 2 de BANDEJA-TITULAR da el contenido. El paper está en el corpus (payload do_workers_value_formal_jobs_mexico_20260316, sha 8a71718f…), de donde sale el autor de correspondencia. Falta un correo con identidad real al autor.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-0166", "salida": "NC-0166 · estado=ABIERTA · acto=GEN2-N35-PREFERENCIAS-LABORALES-Y-FUENTES · pr=#747 · razon=NO-VERIFICABLE-AQUÍ: se adquirieron paper y presentación públicos del estudio exacto, pero el PDF termina en Appendix B … · sucesor=MESA (2026-10-05) · HUMANO: No hay borrador ni acuse en el repo. …"},
+   {"tipo": "comando", "ref": "data/manifiesto.yaml", "comando": "python3 tools/consulta.py payload do_workers_value_formal_jobs_mexico_20260316", "salida": "do_workers_value_formal_jobs_mexico_20260316 · archivo=do_workers_value_formal_jobs_mexico_20260316.pdf · sha256=8a71718fc15bcb3c77845ee3a926238f1028bc5a5f146fb6cc752b77cc5121b3 · tamano_bytes=899285 · fecha_descarga=2026-09-11"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-22-BANDEJA-TITULAR.md:18-23", "comando": "sed -n '18,24p' forense/notas/2026-09-22-BANDEJA-TITULAR.md", "salida": "**2 · NC-0166 (H2) · *Do Workers Value Formal Jobs?*: paquete reproducible** - Qué escribir: pedir el Appendix C/cuestionario, la asignación de los 64 bloques, el microdato anonimizado y el código de las tablas 2–5. - A quién: el autor de correspondencia del paper. … - Qué cierra: NC-0166."},
+   {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv ; decisiones-21.tsv", "comando": "python3 csv.DictReader: filas que contengan 'NC-0166'", "salida": "firmas-pendientes.tsv: 0 filas · decisiones-21.tsv: 0 de 86 filas"}
+  ],
+  "owner_detalle": "2026-10-05 · CORREO-AUTOR-DO-WORKERS-VALUE-FORMAL-JOBS",
+  "entorno": "NUBE",
+  "hoja": {
+   "accion_clave": "CORREO-AUTOR-DO-WORKERS-VALUE-FORMAL-JOBS",
+   "receta_un_minuto": "Abrir el PDF do_workers_value_formal_jobs_mexico_20260316.pdf (versión de marzo de 2026, 48 pp.) y copiar el correo del autor de correspondencia (no verificado aquí: el PDF vive en el corpus de caja). Escribirle con identidad de mesa, con la cita completa, y pedirle el Appendix C/cuestionario, la asignación de los 64 bloques, el microdato anonimizado y el código de las tablas 2–5, para reproducir antes de proponer una regla DCE. Pasar el acuse al chat.",
+   "destino": "correo del autor de correspondencia (dato en el PDF del payload do_workers_value_formal_jobs_mexico_20260316) · acuse asentado por un acto de trámite; cierra NC-0166 (BANDEJA-TITULAR entrada 2)"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-OBTENCION-EXTERNA-1-81e1-06",
+  "verdict": "HOJA-RECETA",
+  "rationale": "Los dos títulos siguen SIN-FETCH (obtencion.tsv y la cola), con 0 intentos. No tienen renglón en decisiones-21 (0 de 86) ni FP (0 filas). La fila declara impacto de medición «ninguno». Es acceso con identidad de mesa: biblioteca institucional o préstamo interbibliotecario, y compra solo si mesa la decide. La identidad de «Sandoval 2026» depende también de ADJUNTAR-INFORME-Y-REVISION-MAPA.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-260928-GEN2-OBTENCION-EXTERNA-1-81e1-06", "salida": "NC-260928-GEN2-OBTENCION-EXTERNA-1-81e1-06 · estado=ABIERTA · acto=GEN2-OBTENCION-EXTERNA-1 · pr=#1259 · razon=DECISIÓN-DE-MESA-PENDIENTE -- acceso institucional o compra; no se piratea. La identidad de «Sandoval 2026» con DOI 10.1111/lamp.70057 está por confirmar (el i…"},
+   {"tipo": "comando", "ref": "forense/analisis/obtencion-externa-1/obtencion.tsv", "comando": "python3 csv.DictReader(obtencion.tsv) filas con 'Sandoval' o 'Pellegrini'", "salida": "P3 · Sandoval et al. 2026 (Latin American Policy) · «The Power of the Older Vote in Culiacan in 2021», DOI 10.1111/lamp.70057 · estado SIN-FETCH · intentos 0 · receta: De pago: acceso institucional de mesa o solicitud al autor | P3 · Pellegrini & Scandura 2008 (Journal of Management 34(3)) · DOI 10.1177/0149206308316063 · SIN-FETCH · receta: De pago: acceso institucional de mesa"},
+   {"tipo": "comando", "ref": "data/cola-adquisicion-v1_0.tsv", "comando": "python3 csv.DictReader (saltando cabecera #) fila fuente_canonica SANDOVAL_2026_LATIN_AMERICAN_POLICY", "salida": "{'fuente_canonica': 'SANDOVAL_2026_LATIN_AMERICAN_POLICY', 'estado_A4A5': 'SIN-FETCH', 'prioridad': 'OBTENCION-EXTERNA-1', 'url_conocida': 'https://doi.org/10.1111/lamp.70057' …}"},
+   {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv ; forense/analisis/hoja-firmas-21/decisiones-21.tsv", "comando": "python3 csv.DictReader: filas que contengan 'Sandoval' o 'Pellegrini'", "salida": "firmas-pendientes.tsv: 0 filas · decisiones-21.tsv: 0 de 86 filas"}
+  ],
+  "owner_detalle": "2026-10-05 · ACCESO-INSTITUCIONAL-PAPERS-PAGO-OE1-P3",
+  "entorno": "CAJA",
+  "hoja": {
+   "accion_clave": "ACCESO-INSTITUCIONAL-PAPERS-PAGO-OE1-P3",
+   "receta_un_minuto": "Abrir https://doi.org/10.1111/lamp.70057 y confirmar que es «The Power of the Older Vote in Culiacan in 2021» (Sandoval, Latin American Policy). Pedir ese PDF y el de https://doi.org/10.1177/0149206308316063 (Pellegrini & Scandura 2008) por la biblioteca institucional o el préstamo interbibliotecario de mesa. Si no hay acceso: decidir en una línea entre compra y dejarlos SIN-FETCH con DOI. Dejar los PDF en Descargas MX.",
+   "destino": "Descargas MX → registro por /adquiere con sha y licencia a cargo de GEN2-OBTENCION-EXTERNA-2 (encargo NO-ENCONTRADO en origin/main); filas SANDOVAL_2026_LATIN_AMERICAN_POLICY y Pellegrini de data/cola-adquisicion-v1_0.tsv"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-OBTENCION-EXTERNA-1-81e1-07",
+  "verdict": "HOJA-RECETA",
+  "rationale": "La decisión está tomada: R48 y FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-01 están FIRMADA, con ejecutada_en=PENDIENTE-ACCIÓN-DE-MESA. Pero no se envió ninguna: las seis siguen SOLICITUD-PREPARADA con 0 intentos en lote-P4.tsv y en la cola. No es CERRAR-FIRMA, porque la firma exige el envío y su acuse, y ninguno de los dos está en el repo.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-260928-GEN2-OBTENCION-EXTERNA-1-81e1-07", "salida": "NC-260928-GEN2-OBTENCION-EXTERNA-1-81e1-07 · estado=ABIERTA · acto=GEN2-OBTENCION-EXTERNA-1 · pr=#1259 · razon=DECISIÓN-DE-MESA-PENDIENTE -- redactadas y no enviadas por diseño («Las solicitudes las envía mesa»); (g) archivada como no necesaria tras #1255 · sucesor=MESA (2026-10-05) · HUMANO: R48 FIRMADA …"},
+   {"tipo": "firma", "ref": "forense/firmas-pendientes.tsv FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-01", "comando": "python3 tools/consulta.py fp FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-01", "salida": "FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-01 · estado=FIRMADA · creado=2026-09-28 · firmada_en=28/sep/2026, verbatim, mesa (chat de dirección, maestra 54): «Las R46, R47, R49 y R51 ponlas para mañana, todo lo demás queda afirmado.» … · ejecutada_en=PENDIENTE-ACCIÓN-DE-MESA (envío con identidad de mesa; este acto no envía) · qué_se_firma=R48 · enviar las seis solicitudes (a)–(f)"},
+   {"tipo": "comando", "ref": "forense/analisis/obtencion-externa-1/lote-P4.tsv", "comando": "python3 csv.DictReader(lote-P4.tsv) columnas objeto/estado/intentos/url", "salida": "(a) Banxico SOLICITUD-PREPARADA 0 plataformadetransparencia · (b) IECM SOLICITUD-PREPARADA 0 · (c) Segob SOLICITUD-PREPARADA 0 · (d) Félix-Brasdefer SOLICITUD-PREPARADA 0 mailto:cfelixbr@iu.edu · (e) Delaney SOLICITUD-PREPARADA 0 digitalcommons.fiu.edu/etd/4710/ · (f) Worldpanel SOLICITUD-PREPARADA 0 worldpanelbynumerator.com/latin-america/mexico · (g) ARCHIVADA-NO-NECESARIA"},
+   {"tipo": "archivo", "ref": "forense/analisis/obtencion-externa-1/solicitudes/00-LEEME.md:3,12,17-24", "comando": "Read 00-LEEME.md", "salida": "3: Estado de todas: **PREPARADA, NO ENVIADA.** Las envía mesa … | 12: El Chrome headless de la caja recibe un reto de Cloudflare («Attention Required!»): **mesa la abre en su navegador normal** | índice (a)–(f): a-banxico-codi-tag-research.md … f-worldpanel-convenio.md"},
+   {"tipo": "comando", "ref": "origin/main:forense/encargos", "comando": "git ls-tree -r --name-only origin/main | grep -c OBTENCION-EXTERNA-2", "salida": "0"}
+  ],
+  "owner_detalle": "2026-10-05 · R48-ENVIAR-SEIS-SOLICITUDES-OE1",
+  "entorno": "NUBE",
+  "hoja": {
+   "accion_clave": "R48-ENVIAR-SEIS-SOLICITUDES-OE1",
+   "receta_un_minuto": "Con identidad de mesa y en navegador normal: (a) Banxico, (b) IECM y (c) Segob por https://www.plataformadetransparencia.org.mx/, pegando a-/b-/c-*.md. (d) Correo a cfelixbr@iu.edu con d-felix-brasdefer-role-plays.md. (e) Delaney, vía https://digitalcommons.fiu.edu/etd/4710/, con e-fiu-delaney-microdato.md. (f) Formulario de https://worldpanelbynumerator.com/latin-america/mexico con f-worldpanel-convenio.md. Guardar el folio o acuse de cada una y pasarlo al chat.",
+   "destino": "forense/analisis/obtencion-externa-1/solicitudes/ (textos a–f) · acuses por adenda de GEN2-OBTENCION-EXTERNA-2 (FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-01; encargo NO-ENCONTRADO en origin/main)"
+  },
+  "confianza": "alta"
+ }
+]

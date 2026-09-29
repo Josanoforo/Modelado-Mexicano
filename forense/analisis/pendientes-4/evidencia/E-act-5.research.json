@@ -1,0 +1,180 @@
+[
+ {
+  "id": "NC-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-07",
+  "verdict": "ABSORBER",
+  "rationale": "La delegación (28/sep) difiere APUEST-006 a una spec LAPOP EXC 2004/2006 dentro de un lote de pisos. El mapa la dictamina MEDIBLE-EN-CORPUS (payload no reservado). Ninguna de las 392 spec.yaml de data/corrida0 usa EXC en 2004/2006: solo M05 usa exc18, y en 2019 y 2021. Un piso descriptivo no es retador: la regla 6 no lo veda.",
+  "cite": [
+   {"tipo": "comando", "ref": "canon/mapa-dominios-v1_1.tsv#ASTRA5-U0-APUEST-006", "comando": "git show origin/main:canon/mapa-dominios-v1_1.tsv | python3 -c 'csv.DictReader … id_afirmacion==ASTRA5-U0-APUEST-006'", "salida": "instrumento_ola : LAPOP/AmericasBarometer México 2004 y 2006 (módulo EXC) · dictamen : MEDIBLE-EN-CORPUS · gen2_existente : ninguna corrida con <payload_id> (… LAPOP 2023/piso ya adoptado para otras preguntas … pero no para EXC18/EXC19) · dominio : CONFIANZA"},
+   {"tipo": "comando", "ref": "data/corrida0/*/spec.yaml", "comando": "git ls-tree -r --name-only origin/main data/corrida0 | grep -c 'spec.yaml$'; git grep -l -i -E '\\bexc(2|6|7|11|13|14|15|16|18|20)\\b' origin/main -- 'data/corrida0/*/spec.yaml'", "salida": "392 · origin/main:data/corrida0/CALC-ALT-M05-LAPOP2019-0001/spec.yaml · origin/main:data/corrida0/CALC-ALT-M05-LAPOP2021-0001/spec.yaml (NO-ENCONTRADO para 2004/2006)"},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv#ac7b-07", "comando": "csv.DictReader sobre decididas-por-delegacion.tsv, id=…ac7b-07", "salida": "opcion : DUEÑO-MESA · razon : … Recomiendo: dejar como afirmacion diferida hasta una spec LAPOP EXC 2004/2006 dentro de un lote de pisos futuro; reversible."}
+  ],
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "CAJA",
+  "hecho_comando": "git grep -l -i -E '\\bexc1[89]\\b' origin/main -- 'data/corrida0/CALC-*/spec.yaml' | grep -E '2004|2006' (≥1) y ese CALC tiene sello.json en origin/main",
+  "que_falta": "Spec y CALC de piso LAPOP México 2004/2006, módulo EXC (EXC18/EXC19: justificación de la mordida), con segmentación; APUEST-006 queda como afirmación diferida hasta entonces.",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-03",
+  "verdict": "ABSORBER",
+  "rationale": "La delegación decidió el alcance: ENTIDAD sustituye a la región; formalidad y el decil de ENGASTO quedan fuera del piso de hogar. Su premisa de que NSE ya lo cubre CLASE-AMAI-1/2 no se sostiene para el cruce: los CALC AMAI solo traen la distribución del NSE (33 RESULT) y el piso de consumo no tiene eje NSE. Falta el cruce consumo × NSE sobre ENIGH 2022.",
+  "cite": [
+   {"tipo": "comando", "ref": "data/corrida0/CALC-ENIGH-CONSUMO-PISOS-0002/spec.yaml", "comando": "git grep -h -o 'RESULT-[A-Z0-9-]*' origin/main -- data/corrida0/CALC-ENIGH-CONSUMO-PISOS-0002/spec.yaml | sed -E 's/.*-(SEXO|EDAD|ESCOLARIDAD|LOCALIDAD|ENTIDAD|TOTAL|REGION|NSE|DECIL|FORMALIDAD)-.*/\\1/' | sort | uniq -c", "salida": "7748 DECIL · 3140 EDAD · 3468 ENTIDAD · 3140 ESCOLARIDAD · 1604 SEXO · 836 TOTAL (sin NSE, sin FORMALIDAD, sin REGION)"},
+   {"tipo": "comando", "ref": "data/corrida0/CALC-AMAI-NSE-ENIGH-2022-0001/spec.yaml", "comando": "git grep -c -i 'consumo\\|gasto' origin/main -- data/corrida0/CALC-AMAI-NSE-ENIGH-2022-0001/spec.yaml data/corrida0/CALC-AMAI-NSE-ENIGH-2024-0001/spec.yaml forense/notas/2026-09-24-GEN2-CLASE-AMAI-1-nota.md forense/notas/2026-09-25-GEN2-CLASE-AMAI-2-nota.md; git grep -h -o 'RESULT-[A-Z0-9-]*' … CALC-AMAI-NSE-ENIGH-2022-0001/spec.yaml | cut -d- -f1-5 | sort | uniq -c", "salida": "(sin salida: 0 coincidencias en 4 archivos) · 33 RESULT-AMAI-NSE-ENIGH-2022 · sello.json presente"},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv#2d37-03", "comando": "csv.DictReader, id=…2d37-03", "salida": "opcion : DUEÑO-MESA · razon : NSE ya lo cubre GEN2-CLASE-AMAI-1/2 … Recomiendo aceptar ENTIDAD como region y declarar formalidad/decil fuera de piso de hogar; reabrir solo con un encargo nuevo."}
+  ],
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "CAJA",
+  "hecho_comando": "git grep -l -i 'NSE\\|AMAI' origin/main -- 'data/corrida0/CALC-ENIGH-CONSUMO-*/spec.yaml' (≥1 con sello.json); la nota declara ENTIDAD como región y formalidad y decil de ENGASTO como NO-APLICA",
+  "que_falta": "Un CALC de pisos de las conductas de consumo de ENIGH 2022 cruzadas por NSE AMAI (a partir de CALC-AMAI-NSE-ENIGH-2022-0001). ENIGH 2024 queda fuera por reserva, salvo las seis columnas AMAI.",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-10",
+  "verdict": "ABSORBER",
+  "rationale": "Re-verificado en origin/main. verify.yml:449 ya instala numpy, pytest y pytest-xdist, pero el censo mantiene test_consumo_pisos_gen2.py como NECESITA-DEPENDENCIA(numpy), y ci_guardias.py:407-413 salta todo NECESITA-DEPENDENCIA. El test sigue sin correr en CI. La delegación pide regenerar el censo en un acto de tubería.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/analisis/ci-guardias/censo-tests.tsv", "comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | grep -F test_consumo_pisos_gen2", "salida": "tests/test_consumo_pisos_gen2.py\tscript\tNO\tnumpy,pandas\tNO\t0.0\tNECESITA-DEPENDENCIA(numpy)\tModuleNotFoundError: No module named 'numpy'"},
+   {"tipo": "archivo", "ref": ".github/workflows/verify.yml:449", "comando": "git show origin/main:.github/workflows/verify.yml | grep -n -i 'pip install'", "salida": "449:          python3 -m uv pip install --python \"$RUNNER_TEMP/venv/bin/python\" -r requirements.txt numpy pytest pytest-xdist"},
+   {"tipo": "archivo", "ref": "tools/ci_guardias.py:407-413", "comando": "git show origin/main:tools/ci_guardias.py | sed -n '400,420p'", "salida": "if f[\"veredicto\"].startswith(\"NECESITA-DEPENDENCIA\"): print(\"SKIP %s: dependencia-pendiente %s (FP de mesa, no decidida aqui)\" …) saltados += 1; continue"},
+   {"tipo": "comando", "ref": "censo-tests.tsv (conteo)", "comando": "csv.DictReader sobre censo-tests.tsv; Counter(veredicto)", "salida": "Counter({'CORRE-EN-CI': 155, 'NECESITA-DEPENDENCIA': 111, 'FALLA-DE-VERDAD': 18})"}
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | grep -F tests/test_consumo_pisos_gen2.py | cut -f7  → distinto de NECESITA-DEPENDENCIA(…), y el log de guardias no imprime 'SKIP tests/test_consumo_pisos_gen2.py'",
+  "que_falta": "Que CI ejecute el test: regenerar el censo con las dependencias ya instaladas en CI, o que ci_guardias corra un NECESITA-DEPENDENCIA cuando su dependencia esté instalada (así lo dice su docstring, líneas 22-25).",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260924-GEN2-CONTADORES-CONSUMO-2-749c-03",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "La falla era GH001: resultados.tsv pesaba más de 100 MB y ningún PR derivados/auto-* llegaba. Hoy resultados.tsv pesa 15.6 MB en main, hay una guarda de 50 MB en verify.yml, y [deriva] #1268 (1f4bf1cc, 28/sep) publicó marcador-segmento.tsv, resultados.tsv y usos.tsv. La NC 749c-02, que esta bloqueaba, está CERRADA. La re-litigación de G1-B vive en la NC 247d-01.",
+  "cite": [
+   {"tipo": "comando", "ref": "data/corrida0/resultados.tsv", "comando": "git cat-file -s origin/main:data/corrida0/resultados.tsv", "salida": "15611540"},
+   {"tipo": "commit", "ref": "1f4bf1cc (#1268)", "comando": "git log origin/main --format='%h %ad %s' --date=short -n 2 -- data/corrida0/marcador-segmento.tsv", "salida": "1f4bf1cc 2026-09-28 [deriva] trozo 1 tras 429ec004d: 20 CALC, quedan 101 (#1268) · bf5fc5e7 2026-09-27 Merge pull request #1196 …"},
+   {"tipo": "comando", "ref": "1f4bf1cc", "comando": "git show 1f4bf1cc --stat | tail -8", "salida": "data/corrida0/marcador-segmento.tsv | 543 +- · data/corrida0/resultados.tsv | 131602 +++--- · data/corrida0/usos.tsv | 51 +- · 76 files changed"},
+   {"tipo": "archivo", "ref": ".github/workflows/verify.yml:694-713", "comando": "git show origin/main:.github/workflows/verify.yml | rg -n '50 ?MB|GH001'", "salida": "694: # GEN2-TUBERIA-VISTA-NORMALIZADA-3 · COMMIT-B: guarda de tamaño · 695: # ANTES de commitear -- un GH001 silencioso … · 713: echo \"GUARDA-TAMANO: $f es ${MB} MB, sobre el límite de 50 MB …\""},
+   {"tipo": "comando", "ref": "NC-260924-GEN2-CONTADORES-CONSUMO-2-749c-02", "comando": "python3 tools/consulta.py nc NC-260924-GEN2-CONTADORES-CONSUMO-2-749c-02", "salida": "estado=CERRADA · acto=GEN2-CONTADORES-CONSUMO-2 · pr=PR #1096"}
+  ],
+  "cerrado_por_detalle": "producto: [deriva] #1268 (1f4bf1cc) publica marcador-segmento.tsv y resultados.tsv en main; resultados.tsv 15 611 540 B < 100 MB · git cat-file -s origin/main:data/corrida0/resultados.tsv; git log origin/main -n1 -- data/corrida0/marcador-segmento.tsv",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-CORPUS-CACHE-PARQUET-1-01aa-01",
+  "verdict": "ABSORBER",
+  "rationale": "Mesa ya decidió (R06 FIRMADA: el módulo 7 de ENIF 2024 queda RESERVADO), y corpus_loader.py:228 aplica la reserva a toda ENIF 2024, que así no se convierte. Falta lo que la NC pedía: convertir los módulos no reservados, excluyendo el 7 con guardia por módulo. En el manifiesto, ninguna de las seis entradas ENIF 2024 trae estado_reserva. Es trabajo sobre el corpus.",
+  "cite": [
+   {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv#R06", "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | csv.DictReader renglon==R06", "salida": "objeto : estado de reserva de la ola ENIF 2024 módulo 7 (pagos) (manifiesto) · estado : FIRMADA · VIAJA-EN GEN2-CALC-ALTERNOS-LOTE-1 … · recomendacion : … RESERVADA … se abre por módulo/columna solo cuando una spec concreta lo necesite, no en bloque"},
+   {"tipo": "archivo", "ref": "tools/corpus_loader.py:228", "comando": "git grep -n -i 'enif.\\?2024' origin/main -- tools/corpus_loader.py", "salida": "tools/corpus_loader.py:228:    (r\"enif.*2024\", \"h→firmada R06 RESERVADA: ENIF 2024 (reservas por módulo; módulo 7)\"),"},
+   {"tipo": "comando", "ref": "data/manifiesto.yaml", "comando": "yaml.safe_load(git show origin/main:data/manifiesto.yaml); ids con 'enif' y '2024' y sus campos de reserva", "salida": "enif2024_csv {} · enif2024_fd_xlsx {} · enif2024_cuestionario_pdf {} · enif_2024_enif_2024_bd_csv {} · enif_2024_enif_2024_modelo_logico_pdf {} · enif2024_diseno_muestral_pdf {} (6 de 7198, ninguna con estado_reserva)"},
+   {"tipo": "comando", "ref": "forense/encargos/", "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -i 'CACHE-PARQUET'", "salida": "forense/encargos/2026-09-28-GEN2-CORPUS-CACHE-PARQUET-1.md · …-1.md.cuerpo.sha256 (NO-ENCONTRADO: -2, sobre 1217 archivos)"}
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "python3 tools/corpus_loader.py verifica enif2024_csv enif_2024_enif_2024_bd_csv → constancias de las tablas de los módulos 1-6 en data/cache/constancias.tsv, y ninguna del módulo 7 (grep -ci 'modulo_\\?7\\|tmodulo7' data/cache/constancias.tsv = 0)",
+  "que_falta": "Reserva por módulo en corpus_loader (la del 7) y conversión a Parquet de las tablas no reservadas de ENIF 2024, con constancia.",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-CORPUS-CACHE-PARQUET-1-01aa-03",
+  "verdict": "ABSORBER",
+  "rationale": "Re-verificado en origin/main: requirements.txt no trae pyarrow ni zipfile-deflate64 (sí numpy, pandas y pytest), y el censo mantiene test_corpus_loader.py como NECESITA-DEPENDENCIA(pyarrow). En CI no corre ninguno de sus casos sintéticos. La delegación lo da por reversible y barato (segundos de pip); es un acto de tubería.",
+  "cite": [
+   {"tipo": "comando", "ref": "requirements.txt", "comando": "git show origin/main:requirements.txt | grep -n -i -e pyarrow -e deflate -e numpy -e pytest -e pandas", "salida": "29:numpy · 30:pandas · 32:pytest (0 coincidencias de pyarrow/deflate)"},
+   {"tipo": "comando", "ref": "forense/analisis/ci-guardias/censo-tests.tsv", "comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | grep -F test_corpus_loader", "salida": "tests/test_corpus_loader.py\tpytest\tNO\tpyarrow,zipfile_deflate64\tSI\t0.3\tNECESITA-DEPENDENCIA(pyarrow)\tsin pyarrow el modulo se salta (importorskip); con pyarrow corren 6 sinteticos; los 2 reales (GEN2-CORPUS-CACHE-PARQUET-1) solo en CAJA"},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv#01aa-03", "comando": "csv.DictReader, id=…01aa-03", "salida": "opcion : DUEÑO-MESA · razon : FP-398 (a) solo trajo numpy/pytest; sin pyarrow el modulo se salta … Reversible; costo ~segundos de pip."}
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "grep -c -i 'pyarrow' requirements.txt (≥1) y git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | grep -F tests/test_corpus_loader.py | cut -f7 distinto de NECESITA-DEPENDENCIA(pyarrow)",
+  "que_falta": "Añadir pyarrow y zipfile-deflate64 a las dependencias de CI y re-censar, para que corran los 6 sintéticos.",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260925-GEN2-CORPUS-COMPLETO-1-7813-03",
+  "verdict": "ABSORBER",
+  "rationale": "R09 (a) está FIRMADA: se levanta por escrito la reserva de CAAS 2015, ENG 2009 y MIGRACIÓN 2002, y ENCRIGE 2016 se conserva. La FP dice que la ejecución material le toca al acto dueño de la ruta. En el manifiesto, 15 payloads cc1_inegi_* siguen en RESERVADA dentro de reserva_respondentes; moverlos exige el corpus.",
+  "cite": [
+   {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv#R09", "comando": "csv.DictReader renglon==R09", "salida": "estado : FIRMADA (GEN2-TRAMITE-FIRMAS-21, ADENDA-1 28/sep) · texto_de_firma : «Firmo D1: se levanta por escrito la reserva E.6 de CAAS 2015, ENG 2009 y MIGRACIÓN 2002; ENCRIGE 2016 conserva la preservación de F5 R08. …»"},
+   {"tipo": "comando", "ref": "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-10", "comando": "python3 tools/consulta.py fp FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-10", "salida": "estado=FIRMADA · ejecutada_en=ADR-260928-GEN2-TRAMITE-FIRMAS-21-8560-01 (asiento; la ejecución material la hace el acto dueño de la ruta)"},
+   {"tipo": "comando", "ref": "data/manifiesto.yaml", "comando": "yq -r '.[] | select(.id | test(\"^cc1_inegi_(caas_2015|eng_2009|migracion_2002|encrige_2016)\")) | .id + \" \" + (.estado_reserva // \"-\")' manifiesto | awk … | sort | uniq -c", "salida": "1 cc1_inegi_caas_2015 RESERVADA-NO-ABIERTA-NO-INDEXAR-L · 1 cc1_inegi_encrige_2016 RESERVADA-… · 12 cc1_inegi_eng_2009 RESERVADA-… · 2 cc1_inegi_migracion_2002 RESERVADA-… (raíz reserva_respondentes)"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md:12", "comando": "git grep -n -i 'reserva_respondentes' origin/main -- forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md", "salida": "12:- R09: … Sus payloads `cc1_inegi_*` viven en la raíz de custodia `reserva_respondentes` y el validador exige `estado_reserva` ahí: quitarlo exige mover el archivo, en CAJA → NO-CORRIDO."}
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "yq '.[] | select(.id | test(\"^cc1_inegi_(caas_2015|eng_2009|migracion_2002)\")) | .estado_reserva' data/manifiesto.yaml | grep -c RESERVADA → 0; y la misma consulta sobre cc1_inegi_encrige_2016 → 1",
+  "que_falta": "Mover los 15 payloads de CAAS 2015, ENG 2009 y MIGRACIÓN 2002 fuera de reserva_respondentes y quitarles estado_reserva en el manifiesto, citando R09; ENCRIGE 2016 no se toca.",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-03",
+  "verdict": "ABSORBER",
+  "rationale": "La clave payloads_sin_licencia no aparece en tools/corrida0.py de origin/main (0 coincidencias); sin_licencia solo vive en tests/test_corpus_licencias.py. La delegación decidió agregarla a status en un acto de tubería: cambio pequeño y reversible. El sucesor GEN2-CORPUS-LICENCIAS-2 está registrado (FP 8560-02), pero su encargo no está en forense/encargos.",
+  "cite": [
+   {"tipo": "comando", "ref": "tools/corrida0.py", "comando": "git grep -n 'sin_licencia' origin/main -- tools tests; git grep -c 'sin_licencia' origin/main -- tools/corrida0.py", "salida": "tests/test_corpus_licencias.py:17:def _sin_licencia(v): · :22:def test_ningun_payload_nuevo_sin_licencia(): · :26: … (tools/corrida0.py: sin salida, 0)"},
+   {"tipo": "comando", "ref": "forense/encargos/", "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -i licencia", "salida": "forense/encargos/2026-09-27-GEN2-CORPUS-LICENCIAS-1.md · …-1.md.cuerpo.sha256 (NO-ENCONTRADO: LICENCIAS-2)"},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv#1997-03", "comando": "csv.DictReader, id=…1997-03", "salida": "opcion : DUEÑO-MESA · razon : Propuesta: agregar la clave a status (derivada: 554 sin licencia hoy vs base 599) en un acto de tuberia; cambio pequeno y reversible."}
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "grep -c 'payloads_sin_licencia' tools/corrida0.py (≥1) y python3 tools/corrida0.py status | grep -E '^payloads_sin_licencia = [0-9]+'",
+  "que_falta": "Una clave derivada, payloads_sin_licencia, en corrida0 status (el conteo sobre data/manifiesto.yaml), con test.",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02",
+  "verdict": "ABSORBER",
+  "rationale": "La delegación decidió conservar la vista de dictamen y regenerarla al cerrar cada acto, en vez del arreglo de raíz. Esa regeneración no está cableada: construye_dictamen.py no se cita desde ningún workflow, skill ni tool (solo desde ADR, INFRAESTRUCTURA, la cabecera de la vista y la nota). TUBERIA-3, ya fusionado, solo detecta el desalineo (dictamen_alineado).",
+  "cite": [
+   {"tipo": "comando", "ref": "origin/main (12345 archivos)", "comando": "git grep -n 'construye_dictamen' origin/main -- . ':!forense/analisis/demanda-dictamen-1/construye_dictamen.py'", "salida": "canon/gobernanza-v1_15.md:10353 (ADR) · data/INFRAESTRUCTURA-v1_0.md:805 · data/corrida0/demanda-dictamen-v1_0.tsv:1 (cabecera) · forense/notas/2026-09-28-GEN2-DEMANDA-DICTAMEN-1-nota.md:41 «si la demanda cambia, se regenera con construye_dictamen.py --entrada <copias> --escribe» (0 en .github/, .claude/, tools/)"},
+   {"tipo": "archivo", "ref": "tools/corrida0.py:1432-1436", "comando": "git show origin/main:tools/corrida0.py | sed -n '1425,1450p'", "salida": "desalineado = _dictamen_desalineado(…) · print(f\"dictamen_alineado = {'SI' if not any(desalineado) else 'NO'}  (demanda sin fila de dictamen: …\")"},
+   {"tipo": "commit", "ref": "GEN2-TUBERIA-3 (#1294)", "comando": "git log origin/main --oneline -n 600 | rg -i 'TUBERIA-3'", "salida": "3d8b83ab GEN2-TUBERIA-3: canal publica las vistas de demanda (P2/P3) … · be39d098 GEN2-TUBERIA-3: … status lee dictamen (P3) …"},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv#c133-02", "comando": "csv.DictReader, id=…c133-02", "salida": "opcion : DUEÑO-MESA · razon : … Recomiendo mantener la vista de dictamen y regenerarla al cerrar cada acto; reversible."}
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "grep -c 'construye_dictamen' .github/workflows/verify.yml .claude/skills/acto/SKILL.md (≥1 en total) y python3 tools/corrida0.py status | grep 'dictamen_alineado = SI'",
+  "que_falta": "Cablear la regeneración de demanda-dictamen-v1_0.tsv (construye_dictamen.py) en el canal o en la cascada de cierre, para que ninguna fila nueva de la demanda quede sin dictamen.",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-DEMANDA-DICTAMEN-1-c133-04",
+  "verdict": "HOJA-DECISION",
+  "rationale": "El contador de 63 depende de firmas de mesa. A1/A2 (f2e5-01/-02) ya están FIRMADAS y ejecutadas en CALC-ALTERNOS-LOTE-1. B1 y B2 (FP c133-01/-02) siguen ABIERTAS, con texto listo; decidirlas es de mesa, y B1(c) abriría una reserva. Los 26 pins son adopción irreversible y ya esperan en la hoja de NC-e760-06. RELEVO-CONSUMIDORES-4 no tiene encargo.",
+  "cite": [
+   {"tipo": "comando", "ref": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01/-02", "comando": "csv.DictReader forense/firmas-pendientes.tsv id in (…c133-01, …c133-02)", "salida": "c133-01 · [B1] dinero.ahorro.tiene_ahorros (RES-0029/0030) … estado : ABIERTA · c133-02 · [B2] M03 … SIN-ESTIMANDO-RECONSTRUIBLE … estado : ABIERTA"},
+   {"tipo": "comando", "ref": "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-01", "comando": "python3 tools/consulta.py fp FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-01", "salida": "estado=FIRMADA · ejecutada_en=ADR-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-01; GEN2-CALC-ALTERNOS-LOTE-1: CALC-ALT-M05-LAPOP2021-0001, CALC-ALT-M05-LAPOP2019-0001, CALC-ALT-M23-ENSAFI2023-0001"},
+   {"tipo": "comando", "ref": "NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-06", "comando": "python3 tools/consulta.py nc NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-06", "salida": "estado=ABIERTA · razon=PARO-PREMISA: no hay champion GEN2 vigente … · sucesor=MESA (2026-10-05) · hoja de irreversibles · antes: GEN2-RELEVO-CONSUMIDORES-4 (SIN-ASIGNAR: 0 encargos en forense/encargos)"},
+   {"tipo": "archivo", "ref": "forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md:36-59", "comando": "git show origin/main:forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md | sed -n '36,60p'", "salida": "B1 opciones (a) HISTÓRICO-SIN-RELEVO (b) spec de caja solo ola 2 (c) mesa abre ola 3 ENNViH · Recomendación (a) · B2 opciones (a) aceptar dictamen (b) mesa fija instrumento (ENCIG 2025) y CALC descriptivo · Recomendación (a)"}
+  ],
+  "owner_detalle": "MESA · FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01 y -c133-02 (hoja-para-mesa-demanda-dictamen-1.md §B1/§B2); pins en NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-06",
+  "hoja": {
+   "situacion": "La demanda conserva 63 RESULT pendientes. A1 y A2 ya están firmadas y ejecutadas; B1 (ahorro, ENNViH) y B2 (M03, gobierno digital coercitivo) esperan firma, y 26 celdas esperan un pin de champion que es adopción.",
+   "opciones": [
+    {"letra": "a", "texto": "Firmar B1 (a) y B2 (a): los dos pasan a HISTÓRICO-SIN-RELEVO y el dictamen se regenera", "costo": "Tres RESULT y un momento quedan como GEN1 rotulado, sin relevo. No abre dato."},
+    {"letra": "b", "texto": "B1 (b): spec de caja solo con la ola 2 de ENNViH. B2 (b): mesa fija un instrumento (p. ej. ENCIG 2025) y se encarga un CALC descriptivo", "costo": "Dos CALC de caja. El estimando de B1 cambia de dos olas a una."},
+    {"letra": "c", "texto": "B1 (c): abrir la ola 3 de ENNViH para esta conducta", "costo": "Gasta una reserva de forma irreversible, por un número que ningún consumidor vivo usa."}
+   ],
+   "recomendacion": "a",
+   "porque": "Es coherente con FP-339 (las celdas hermanas ya son históricas). Sin instrumento, M03 no tiene qué medir. No gasta ninguna reserva. Los pins siguen su propia hoja (NC-e760-06).",
+   "plazo": "2026-10-05",
+   "texto_firma": "«Firmo B1 (a): `dinero.ahorro.tiene_ahorros` (RES-0029/0030) queda HISTÓRICO-SIN-RELEVO, igual que sus celdas por FP-339; la ola 3 de ENNViH sigue reservada.» «Firmo B2 (a): M03 queda HISTÓRICO-SIN-RELEVO por SIN-ESTIMANDO-RECONSTRUIBLE; si aparece instrumento, entra como momento nuevo.»"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-1-6c10-02",
+  "verdict": "ABSORBER",
+  "rationale": "F4 (FP 8a1f-04) está FIRMADA y sin ejecutar. `corrida0 ensayo` sigue NO-ENCONTRADO: 0 coincidencias de «ensayo» en tools/corrida0.py y ningún subcomando en sus add_parser. Ningún encargo de forense/encargos (1217 archivos) lo construye: solo lo citan. La delegación pide abrir un encargo TUBERIA con el mandato ya firmado.",
+  "cite": [
+   {"tipo": "comando", "ref": "tools/corrida0.py", "comando": "git show origin/main:tools/corrida0.py | grep -c 'ensayo'; git show origin/main:tools/corrida0.py | grep -c '_valida_outputs'", "salida": "0 · 7 (control: el patrón sí halla _valida_outputs)"},
+   {"tipo": "comando", "ref": "forense/encargos/", "comando": "git grep -l -i 'corrida0 ensayo\\|corrida0.py ensayo' origin/main -- forense/encargos", "salida": "2026-09-21-GEN2-DIN-LOTE-ENIF2024-A.md · 2026-09-21-GEN2-DIN-LOTE-ENIF2024-COMMIT-1.md · 2026-09-21-GEN2-TRAMITE-FIRMAS-4.md · 2026-09-22-PENDIENTES-PROGRAMA.md (citan; ninguno lo construye)"},
+   {"tipo": "firma", "ref": "FP-260921-GEN2-TRAMITE-FIRMAS-4-8a1f-04", "comando": "csv.DictReader forense/firmas-pendientes.tsv id=…8a1f-04", "salida": "estado : FIRMADA · «TUBERÍA construye corrida0 ensayo <CALC> --corre el punto de entrada sobre sintético, valida con _valida_outputs, no sella ni escribe-- y la regla \"nada se sella contra un libro vivo\" …» Mandato firmado, ejecución pendiente de acto propio TUBERÍA."}
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 tools/corrida0.py --help | grep -c ensayo (≥1); python3 tools/corrida0.py ensayo CALC-DIN-LOTE-ENIF2024-EMISIONES-0001; echo $? → 0 y git status --porcelain vacío (no escribe)",
+  "que_falta": "Construir el subcomando `corrida0 ensayo <CALC>`: corre el punto de entrada sobre sintético, valida con _valida_outputs y no sella ni escribe.",
+  "confianza": "alta"
+ }
+]

@@ -1,0 +1,397 @@
+[
+ {
+  "id": "NC-260928-GEN2-TUBERIA-3-f18c-01",
+  "verdict": "ABSORBER",
+  "rationale": "Decido (a), reversible. La firma 1269-01 (FIRMADA) ya mete el [deriva] al auto-merge; falta el mecanismo: automerge-rutinas.yml corre solo por workflow_run, fusiones-automaticas.tsv tiene 0 filas y ningún [deriva] entró tras #1268 (#1315 cerrado sin fusionar, #1318 abierto). Un acto de tubería añade el schedule y su test huérfano; mesa revisa el encargo antes de lanzarlo.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv (f18c-01 y 1269-01)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c 'import csv,sys;csv.field_size_limit(10**9);[print(r[\"id\"],r[\"estado\"],\"|\",r[\"firmada_en\"][:210]) for r in csv.DictReader(sys.stdin,delimiter=\"\\t\") if r[\"id\"] in (\"FP-260928-GEN2-TUBERIA-3-f18c-01\",\"FP-260923-GEN2-TUBERIA-RUTINAS-AUTOMERGE-2-1269-01\")]'",
+    "salida": "FP-260923-GEN2-TUBERIA-RUTINAS-AUTOMERGE-2-1269-01 FIRMADA | 24/sep/2026, verbatim, mesa (ADENDA-1 de GEN2-TRAMITE-FIRMAS-15, «formado con tus recomendaciones»): «Se activa Require merge queue con el alcance de R(a); el auto-merge cubre [deriva], claude/encola-* y acto/g ⏎ FP-260928-GEN2-TUBERIA-3-f18c-01 ABIERTA |"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/automerge-rutinas.yml (disparadores)",
+    "comando": "git show origin/main:.github/workflows/automerge-rutinas.yml | rg -n '^on:|^  (workflow_run|schedule|push|pull_request|workflow_dispatch)'; echo \"schedule:|cron: $(git show origin/main:.github/workflows/automerge-rutinas.yml | rg -c 'schedule:|cron:' || echo 0) coincidencias en $(git show origin/main:.github/workflows/automerge-rutinas.yml | wc -l) líneas\" ",
+    "salida": "24:on: ⏎ 25: workflow_run: ⏎ schedule:|cron: 0 coincidencias en 166 líneas"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/fusiones-automaticas.tsv",
+    "comando": "git show origin/main:forense/fusiones-automaticas.tsv | wc -l; git show origin/main:forense/fusiones-automaticas.tsv | head -n 1",
+    "salida": "1 ⏎ fecha_utc pr rama sha_merge condicion run_id"
+   },
+   {
+    "tipo": "commit",
+    "ref": "origin/main --first-parent [deriva]",
+    "comando": "git log origin/main --first-parent --format='%h %ad %s' --date=short | rg -n -F '[deriva]' | cut -c1-110",
+    "salida": "23:1f4bf1cc 2026-09-28 [deriva] trozo 1 tras 429ec004d: 20 CALC, quedan 101 (#1268)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "GitHub Josanoforo/Modelado-Mexicano PR (MCP)",
+    "comando": "mcp github list_pull_requests state=all sort=created desc perPage=12 fields=number,title,state,merged_at,closed_at,created_at",
+    "salida": "#1318 [deriva] state=open created 2026-09-29T00:32:07Z · #1315 [deriva] closed 00:32:10Z sin merged_at · #1309 closed 00:03:18Z sin merged_at · #1308 closed 2026-09-28T23:02:49Z sin merged_at · #1317/#1316/#1314/#1311/#1307 (PR de acto) con merged_at"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "git log origin/main --first-parent --format='%h %ad %s' --date=iso | rg -m1 -F '[deriva]' (merge posterior a 1f4bf1cc) y git show origin/main:forense/fusiones-automaticas.tsv | awk -F'\\t' 'NR>1 && $3 ~ /^derivados\\/auto-/' | wc -l >= 1 (run_id en la columna 6, fusión a menos de 60 min del created_at del PR)",
+  "owner_detalle": "",
+  "decision_declarada": {
+   "opcion": "a",
+   "razon": "Reversible (un workflow que se revierte por commit) y dentro del alcance ya FIRMADO en 1269-01 («el auto-merge cubre [deriva]»). (a) no depende de que GitHub encadene eventos de GITHUB_TOKEN ni de cambiar Settings; (c) exige una acción de mesa con identidad y no está probado; (b) choca con el tope de 30 min del job. No adopta ni fusiona nada por sí: el encargo queda propuesto y mesa lo lanza."
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0048",
+  "verdict": "ABSORBER",
+  "rationale": "La objeción se sostiene: E.1 manda calcular el delta, no lo retira. De los 211 hay 27 con par y delta; 35 más traen valor GEN2 y legacy pero no par (diagnóstico inline: |Δ| ≤ 4.8e-07); 149 no tienen valor GEN2 completo y siguen NO-COMPARABLE hasta medirse. Falta declarar esos 35 pares y correr corrida0 delta.",
+  "cite": [
+   {
+    "tipo": "regla",
+    "ref": "gobierno/instrucciones-proyecto-v2_16-HISTORIA.md:444 (E.1)",
+    "comando": "git show origin/main:gobierno/instrucciones-proyecto-v2_16-HISTORIA.md | sed -n '444p' | rg -o 'La diferencia contra GEN1[^.]*\\.'",
+    "salida": "La diferencia contra GEN1 se calcula después de medir y por script (delta), nunca antes."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/relevo-usos-v1_0.tsv + forense/relevo-usos/relevo-usos-delta.tsv (lector CSV)",
+    "comando": "python3 - <<'E'\nimport csv,io,re,subprocess\ng=lambda p:subprocess.run(['git','show','origin/main:'+p],capture_output=True,text=True).stdout\nt=lambda p:list(csv.DictReader(io.StringIO('\\n'.join(l for l in g(p).splitlines() if not l.startswith('#'))),delimiter='\\t'))\nru=t('data/corrida0/relevo-usos-v1_0.tsv'); d=t('forense/relevo-usos/relevo-usos-delta.tsv')\ncov={re.match(r'RELEVO-(RES-\\d+)-',r['par_id']).group(1) for r in d}\namb=[r for r in ru if r['valor_gen2'] and r['valor_legacy']]\nprint('RESULT',len(ru),'| con valor_gen2 y valor_legacy',len(amb),'| con par en relevo-usos-delta.tsv',len(cov),'| con ambos valores y sin par',sum(1 for r in amb if r['resultado_id'] not in cov))\nE",
+    "salida": "RESULT 211 | con valor_gen2 y valor_legacy 62 | con par en relevo-usos-delta.tsv 27 | con ambos valores y sin par 35"
+   },
+   {
+    "tipo": "comando",
+    "ref": "desglose de los 35 sin par y de los 149 sin ambos valores (diagnóstico, no producto)",
+    "comando": "python3 - <<'E'\nimport csv,io,re,subprocess,collections\ng=lambda p:subprocess.run(['git','show','origin/main:'+p],capture_output=True,text=True).stdout\nt=lambda p:list(csv.DictReader(io.StringIO('\\n'.join(l for l in g(p).splitlines() if not l.startswith('#'))),delimiter='\\t'))\nru=t('data/corrida0/relevo-usos-v1_0.tsv'); d=t('forense/relevo-usos/relevo-usos-delta.tsv')\ncov={re.match(r'RELEVO-(RES-\\d+)-',r['par_id']).group(1) for r in d}\npend=[r for r in ru if r['valor_gen2'] and r['valor_legacy'] and r['resultado_id'] not in cov]\nsin=[r for r in ru if not (r['valor_gen2'] and r['valor_legacy'])]\nprint('sin par:',dict(collections.Counter(r['veredicto'] for r in pend)),'| max|gen2-legacy|=%.2e'%max(abs(float(r['valor_gen2'])-float(r['valor_legacy'])) for r in pend),'| sin ambos valores:',len(sin),dict(collections.Counter(r['veredicto'] for r in sin)))\nE",
+    "salida": "sin par: {'YA-ADOPTADO': 11, 'RELEVADO-POR-PIN-DE-MESA': 24} | max|gen2-legacy|=4.79e-07 | sin ambos valores: 149 {'SIN-CANDIDATO': 133, 'YA-ADOPTADO': 9, 'LISTADO-PARA-MESA': 7}"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-15-GEN2-RELEVO-USOS-1-cierre.md:287-296",
+    "comando": "git show origin/main:forense/notas/2026-09-15-GEN2-RELEVO-USOS-1-cierre.md | sed -n '287,296p'",
+    "salida": "## `NC-0048` ⏎  ⏎ Sigue **ABIERTA**, y este acto la mueve sin cerrarla. Aporta **27 ⏎ correspondencias declaradas por identidad** con consumidor, uso, fuente legacy ⏎ anterior a adopción, CALC+RESULT sellado y las ocho dimensiones — ⏎ exactamente la forma que `NC-0048` pide — y 24 deltas calculados. No la cierra ⏎ porque son 27 de los 211 RESULT históricos, y porque `valor_legacy` / ⏎ `delta_lega…"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:DELTA-RELEVO-USOS-RESTO",
+  "entorno": "NUBE",
+  "hecho_comando": "el PY1 de la cita 2 imprime «con ambos valores y sin par 0» (hoy 35) tras extender tools/relevo_usos.py --contrato y correr corrida0 delta; los 149 restantes quedan asentados NO-COMPARABLE por falta de valor GEN2, no por E.1",
+  "owner_detalle": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0055",
+  "verdict": "ABSORBER",
+  "rationale": "El defecto persiste: §9 lista A1–A6 como pendientes aunque A1 (v1_1:1), A2 (tablero_vista.py, 556 líneas) y A3 (dominios_activos, 0 coincidencias) ya están, y §2 conserva el corte del 8/sep. Pegar un adjunto v2.3 lo veda PROTOCOLO-TABLERO:22. Falta marcar §2 y §9 como histórico, sin tocar el bloque derivado.",
+  "cite": [
+   {
+    "tipo": "regla",
+    "ref": "docs/PROTOCOLO-TABLERO.md:20-24",
+    "comando": "git show origin/main:docs/PROTOCOLO-TABLERO.md | sed -n '20,24p'",
+    "salida": "en `main`, o de [esta página en Pages]({{ '/tablero.html' | relative_url }}) ⏎ una vez activada (FP-260923-GEN2-FRONT-1-4296-01). Cítalo e interprétalo; ⏎ **nunca lo regeneres ni subas una versión nueva** — eso es trabajo del job ⏎ de CI, no de una sesión de chat. Un bloque cuya línea de Procedencia dice ⏎ `¿árbol == origin/main? False` es inválido: viene de una corrida con"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/tablero/TABLERO-PROGRAMA-v1_1.md:1 (A1/A6 ejecutadas por TRAMITE-TABLERO-1)",
+    "comando": "git show origin/main:forense/tablero/TABLERO-PROGRAMA-v1_1.md | sed -n '1p' | cut -c1-260",
+    "salida": "**(8/sep/2026 — ACTO GEN2-TRAMITE-TABLERO-1, A6.) `forense/tablero/TABLERO-PROGRAMA.md` ya NO lleva este mismo contenido**: A1 de ese acto lo reemplazó por el cuerpo reconstruido para Gen 2. La nota de abajo (7/sep/2026, MAESTRA38-TRAMITE-3) sigue siendo el"
+   },
+   {
+    "tipo": "comando",
+    "ref": "A2 y A3 del §9 (tablero_vista.py y dominios_activos)",
+    "comando": "echo \"tablero_vista.py líneas: $(git show origin/main:tools/tablero_vista.py | wc -l)\"; echo \"dominios_activos en tools/tablero_programa.py: $(git show origin/main:tools/tablero_programa.py | rg -c dominios_activos || echo 0) coincidencias\" ",
+    "salida": "tablero_vista.py líneas: 556 ⏎ dominios_activos en tools/tablero_programa.py: 0 coincidencias"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/tablero/TABLERO-PROGRAMA.md:231-237 y 106-107 (§9 y §2 vigentes)",
+    "comando": "git show origin/main:forense/tablero/TABLERO-PROGRAMA.md | sed -n '231p;237p;106,107p' | cut -c1-170",
+    "salida": "| **`N_corridas_selladas`** | **0** | | ⏎ | `N_resultados_gen2_sellados` | 0 | | ⏎ ## 9 · Ajustes pendientes en el repo, referentes al tablero ⏎ | **A1** | **Reemplazar el cuerpo curado de `forense/tablero/TABLERO-PROGRAMA.md`** por el reconstruido de Gen 2, conservando intactos los dos marcadores de apertura y ci"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:forense/tablero/TABLERO-PROGRAMA.md | sed -n '/^## 9 · /,$p' | rg -c 'EJECUTAD[AO]|HISTORIC' devuelve 6 (A1–A6; A4 y A5 se re-verifican al ejecutar) y git diff -U0 origin/main -- forense/tablero/TABLERO-PROGRAMA.md no toca líneas entre TABLERO-DERIVADO:BEGIN y END",
+  "owner_detalle": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0170",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "Decisión reversible declarada: [COLA]/[ADQ] no se suman a los exentos; quedan como EXCEPCIÓN-COLA/ADQ rotulada aparte (10 filas del censo del 14/sep). Ninguna lista viva de exentos existe en tools, tests, .github, canon o gobierno (0 de 5 rutas) y el digesto no las trata: la decisión no tiene consumidor. Mitad 1 hecha (#759, #795, NC-0227 CERRADA).",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md:38-41,166-170",
+    "comando": "git show origin/main:forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md | sed -n '38,41p;166,170p' | cut -c1-140",
+    "salida": "- **EXCEPCIÓN-COLA/ADQ**: PR cuyo título es `[COLA] ...` o `[ADQ] ...` — el ⏎  mecanismo que **entrega** encargos a `forense/encargos/(cola/)` o a ⏎  `data/cola-adquisicion-*`, no un acto que los ejecute. Por construcción no ⏎  tiene \"obligación propia\" que fichar más allá de \"los archivos llegaron\", ⏎  anota la excepción sin más trabajo. ⏎ 2. **Las 10 EXCEPCIÓN-COLA/ADQ**: decidir si `[COLA]`/`[…"
+   },
+   {
+    "tipo": "comando",
+    "ref": "censo P3: filas rotuladas EXCEPCIÓN-COLA/ADQ",
+    "comando": "git show origin/main:forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md | rg -c '^\\| #[0-9]+ .*EXCEPCI.N-COLA/ADQ'",
+    "salida": "10"
+   },
+   {
+    "tipo": "comando",
+    "ref": "A.4/A.13: lista viva de exentos (NO-ENCONTRADO en tools, tests, .github, canon, gobierno)",
+    "comando": "echo \"archivos examinados: $(git ls-tree -r --name-only origin/main tools tests .github canon gobierno | wc -l)\"; echo \"con merge-intermedio: $(git grep -l -i 'merge-intermedio' origin/main -- tools tests .github canon gobierno | wc -l)\"; echo \"digesto_tramite.py con [COLA]/[ADQ]/EXCEPCIÓN-COLA: $(git show origin/main:tools/digesto_tramite.py | rg -c -i '\\[COLA\\]|\\[ADQ\\]|EXCEPCI.N-COLA' || echo 0)\" ",
+    "salida": "archivos examinados: 1047 ⏎ con merge-intermedio: 0 ⏎ digesto_tramite.py con [COLA]/[ADQ]/EXCEPCIÓN-COLA: 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "mitad 1: retro-sellos con PR",
+    "comando": "git grep -n '^## CONSUMIDO' origin/main -- forense/encargos/2026-09-14-GEN2-CONSUMIDO-RETRO-3.md forense/encargos/2026-09-11-GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA.md forense/encargos/2026-09-09-GEN2-R-COMPLETA-MARCO.md forense/encargos/2026-09-10-GEN2-PUBLICACION-POST693-Y-CIERRES.md | cut -c1-140",
+    "salida": "origin/main:forense/encargos/2026-09-09-GEN2-R-COMPLETA-MARCO.md:53:## CONSUMIDO · PR #680 ⏎ origin/main:forense/encargos/2026-09-10-GEN2-PUBLICACION-POST693-Y-CIERRES.md:75:## CONSUMIDO ⏎ origin/main:forense/encargos/2026-09-11-GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA.md:76:## CONSUMIDO · PR #737 ⏎ origin/main:forense/encargos/2026-09-14-GEN2-CONSUMIDO-RETRO-3.md:7:## CONSUMIDO · PR #759"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-0227 (reasiento de los 4 sin encargo)",
+    "comando": "python3 tools/consulta.py nc NC-0227 | cut -c1-200",
+    "salida": "NC-0227 · estado=CERRADA · acto=GEN2-MANTENIMIENTO-Y-ARCHIVO-2 · pr=#795 · razon=DECISION-DE-MESA-PENDIENTE ENMIENDA FECHADA 2026-09-19 (ACTO GEN2-RECIBO-CODEX-3): CIERRA. FIRMA DE MESA 17/sep/202"
+   },
+   {
+    "tipo": "regla",
+    "ref": "forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md (rama del acto; delegación de lo reversible)",
+    "comando": "rg -o 'toda bifurcación reversible la decides[^.]*\\.' forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md",
+    "salida": "toda bifurcación reversible la decides y la declaras en `decididas-por-delegacion."
+   }
+  ],
+  "cerrado_por_detalle": "diseño: decisión reversible declarada por delegación (ADENDA-1 de PENDIENTES-4 y PENDIENTES-3): [COLA]/[ADQ] se mantienen como EXCEPCIÓN-COLA/ADQ aparte, no exentas · forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md:38-41 (10 filas; rg -c '^\\| #[0-9]+ .*EXCEPCI.N-COLA/ADQ' = 10) · sin lista viva de exentos (git grep -l -i merge-intermedio origin/main -- tools tests .github canon gobierno = 0 de N archivos) · mitad 1: PR #759, PR #795, NC-0227 CERRADA",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "decision_declarada": {
+   "opcion": "mantener como EXCEPCIÓN-COLA/ADQ explícita y separada (ni exenta ni fuga), sin tocar canon ni el digesto",
+   "razon": "Es reversible; es la opción que el propio censo ya materializa (10 filas rotuladas) y que la delegación del 28/sep propone. Sumarlas a una cuarta categoría exenta exigiría una lista viva que no existe; darles a cada una su línea de cierre no cambiaría ninguna medición: por construcción su obligación (que los archivos lleguen) la demuestra el propio commit."
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0246",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "No es duplicada de NC-0324 (esa cubre R01 MOCIBA 2021). Tres patas: enut2024/enfih2019 con residual 0; ENADID: P3_27_AG localizada, es agrupación y gobierna P3_27 (CALC-ENADID-0001, tramite.yaml:1174-1189); MOCIBA 2015-17 no tienen celda en F6 (0 coincidencias) y son olas vistas (pisos sellados): regla 6 y ADENDA-1(a). La lectura literal de la firma del 16/sep no se ejecuta.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1-cierre.md:54-57,93",
+    "comando": "git show origin/main:forense/notas/2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1-cierre.md | sed -n '54,57p;93p' | cut -c1-330",
+    "salida": "identifica `P3_27` como el reactivo original: 1 unión libre, 2 separada de ⏎ unión libre, 3 separada de matrimonio, 4 divorciada, 5 viuda, 6 casada y 7 ⏎ soltera. `P3_27_AG` está documentada aparte como agrupación; no gobierna esta ⏎ operación. ⏎ | RES-0043 `union_libre` | ENADID 15+, situación actual, bruto | 0.1905 | 0.1905406 | COMPATIBLE con renombre de `situacion` | Mismo evento/unidad/denom…"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "milpa/tramite.yaml:1174,1189",
+    "comando": "git show origin/main:milpa/tramite.yaml | sed -n '1174p;1189p'",
+    "salida": "descriptivo_situacion_conyugal_actual_enadid2023: ⏎  corrida0_resultado_id: RESULT-ENADID-UA-G-P-BRUTA"
+   },
+   {
+    "tipo": "comando",
+    "ref": "CALC-ENADID-0001 con sello en origin/main",
+    "comando": "git cat-file -e origin/main:data/corrida0/CALC-ENADID-0001/sello.json && echo 'sello.json EXISTE'; git show origin/main:data/corrida0/CALC-ENADID-0001/spec.md | sed -n '13p'",
+    "salida": "sello.json EXISTE ⏎ `P3_27_AG` es una agrupación derivada y no gobierna códigos. El cuestionario"
+   },
+   {
+    "tipo": "comando",
+    "ref": "panel F6: celdas y coincidencias MOCIBA 2015-17 (A.13: 3 archivos en el directorio)",
+    "comando": "d=forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0; git ls-tree -r --name-only origin/main $d | wc -l; git show origin/main:$d/tarjetas.yaml | rg -o 'id_celda: \\S+'; echo \"coincidencias mociba 2015-17: $(git grep -n -i -E 'mociba.{0,3}201[567]' origin/main -- $d | wc -l)\" ",
+    "salida": "3 ⏎ id_celda: R01-MOCIBA-2021 ⏎ id_celda: R01-MOCIBA-2022 ⏎ id_celda: R09-ISSP-2017-SEX-1 ⏎ id_celda: R09-ISSP-2017-SEX-2 ⏎ coincidencias mociba 2015-17: 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "olas MOCIBA 2015-17 ya vistas (pisos sellados)",
+    "comando": "git ls-tree -r --name-only origin/main data/corrida0 | rg 'CALC-MOCIBA-(PISOS-201[567]-0001|SERIE-DICTAMEN-0001)/sello\\.json'",
+    "salida": "data/corrida0/CALC-MOCIBA-PISOS-2015-0001/sello.json ⏎ data/corrida0/CALC-MOCIBA-PISOS-2016-0001/sello.json ⏎ data/corrida0/CALC-MOCIBA-PISOS-2017-0001/sello.json ⏎ data/corrida0/CALC-MOCIBA-SERIE-DICTAMEN-0001/sello.json"
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:10 (regla 6)",
+    "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | rg -n 'Regla 6' | cut -c1-200",
+    "salida": "10:- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-16-GEN2-RESIDUAL-81-1-cierre.md:68,70 (enut2024 y enfih2019 completos)",
+    "comando": "git show origin/main:forense/notas/2026-09-16-GEN2-RESIDUAL-81-1-cierre.md | rg -n '^\\| `(enut2024|enfih2019)`' | cut -c1-150",
+    "salida": "68:| `enut2024` | 885 | 0 | **completo** — es el instrumento de `CORR-0014` | ⏎ 70:| `enfih2019` | 664 | 0 | **completo** — es el instrumento de `CORR-0012` |"
+   }
+  ],
+  "cerrado_por_detalle": "diseño y producto, por pata: (1) enut2024/enfih2019 sin acción por la propia firma del 16/sep (residual 0, RESIDUAL-81-1-cierre:70,73); (2) ENADID: P3_27_AG localizada y documentada como agrupación, CALC-ENADID-0001 sellado con P3_27, milpa/tramite.yaml:1174-1189 · NC-0194 CERRADA; (3) MOCIBA 2015-17 → F6: sin celda en forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0 (git grep = 0), olas vistas (CALC-MOCIBA-PISOS-2015/16/17-0001 con sello), regla 6 (MEMORIA-OPERATIVA.md:10) y autorización de ADENDA-1(a) de PENDIENTES-4",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260921-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1-7ef3-01",
+  "verdict": "ABSORBER",
+  "rationale": "La fila describe el hueco con exactitud: compara.py:192-197 compara C2-IC solo en el piloto 3; en los pilotos 1 y 2 solo R-IC. Los IC de C2 propios y sellados existen (8 y 12 celdas). Diagnóstico inline con la regla de compara.py:46: 8/8 y 12/12 dentro de tolerancia, sin asentar. Falta asentarlo, unas 20 líneas.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-v1_0/compara.py:46 (regla) y :104,148,194,197 (filas R-IC y C2-IC)",
+    "comando": "f=forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-v1_0/compara.py; git show origin/main:$f | sed -n '46p' | cut -c1-110; git show origin/main:$f | rg -o -n '\"tipo\": \"(R-IC|C2-IC)\"'",
+    "salida": "ok = abs(dlo) <= 1.0 and abs(dhi) <= 1.0 and razon is not None and 0.80 <= razon <= 1.25 ⏎ 104:\"tipo\": \"R-IC\" ⏎ 148:\"tipo\": \"R-IC\" ⏎ 194:\"tipo\": \"R-IC\" ⏎ 197:\"tipo\": \"C2-IC\""
+   },
+   {
+    "tipo": "comando",
+    "ref": "diagnóstico inline (no es producto): IC95 de C2 propio vs sellado con la regla de compara.py:46 en pilotos 1 y 2",
+    "comando": "python3 - <<'E'\nimport json,subprocess\ng=lambda p:subprocess.run(['git','show','origin/main:'+p],capture_output=True,text=True).stdout\nP=json.loads(g('forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-v1_0/resultados_propios.json'))\ndef ok(p,s):\n    dl=(p[0]-s[0])*100; dh=(p[1]-s[1])*100; z=(p[1]-p[0])/(s[1]-s[0])\n    return abs(dl)<=1.0 and abs(dh)<=1.0 and 0.80<=z<=1.25, max(abs(dl),abs(dh)), z\nfor calc,pk,pre in (('CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001','piloto1_DIN_ENIF2024','RESULT-DIN-LXE8-C2-IC95'),('CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001','piloto2_TRA_ENVIPE2025','RESULT-TRA-SXD12-C2-IC95')):\n    r=json.loads(g(f'data/corrida0/{calc}/resultados.json'))['resultados']\n    x=[ok(v['C2_ic95_marginales_propios'],[r[f'{pre}INF-{c}'],r[f'{pre}SUP-{c}']]) for c,v in P[pk]['celdas'].items()]\n    print(pk,'celdas',len(x),'dentro de tolerancia',sum(a for a,_,_ in x),'max|d| pp %.3f'%max(m for _,m,_ in x),'razon semiancho %.3f-%.3f'%(min(z for *_,z in x),max(z for *_,z in x)))\nE",
+    "salida": "piloto1_DIN_ENIF2024 celdas 8 dentro de tolerancia 8 max|d| pp 0.122 razon semiancho 0.977-1.023 ⏎ piloto2_TRA_ENVIPE2025 celdas 12 dentro de tolerancia 12 max|d| pp 0.160 razon semiancho 0.982-1.025"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "informe-pilotos.md:49 (la cobertura sellada = propia, pero no es la comparación del IC)",
+    "comando": "git show origin/main:forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-v1_0/informe-pilotos.md | sed -n '49p' | cut -c1-260",
+    "salida": "Los tres MAE coinciden con los sellados (`…-G-MAE-C2` = 0.014668 / 1.568 pp; `…-C2-MAE-PP` = 3.411) a la sexta cifra. La cobertura sellada (IC95 de `C2` sellado sobre `R` sellado) da lo mismo: 7/8, 11/12, 8/15."
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:VALIDACION-PILOTOS-IC-C2",
+  "entorno": "NUBE",
+  "hecho_comando": "jq -r '.pilotos | to_entries[] | [.key, ([.value.filas[] | select(.tipo==\"C2-IC\")] | length)] | @tsv' forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-v1_0/comparacion-pilotos.json (o su adenda) → piloto1 8, piloto2 12, piloto3 16, cada fila con clase COINCIDE|DIFERENCIA-IC",
+  "owner_detalle": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-03",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "Las 16 filas marcador CRUCE::GOB…edad_x_escolaridad están en usos.tsv (APTA-POR-LINAJE, origen NUEVO) y sus 16 origen:… en decisiones.tsv (23/sep); derivado en memoria, la condición (g) de T35 no falla en ninguna. Cita 4 corregida con DictReader. Aviso: resultados.tsv publicado aún dice INDETERMINADO en esos RESULT (vista desfasada; lo publica el canal, fila 749c-03).",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/usos.tsv (lector CSV; reemplaza la cita 4 del prior)",
+    "comando": "python3 - <<'E'\nimport csv,io,subprocess,collections\ncsv.field_size_limit(10**9)\nt=subprocess.run(['git','show','origin/main:data/corrida0/usos.tsv'],capture_output=True,text=True).stdout\nu=list(csv.DictReader(io.StringIO('\\n'.join(l for l in t.splitlines() if not l.startswith('#'))),delimiter='\\t'))\nm=[r for r in u if r['consumidor'].startswith('marcador:CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::')]\nprint(len(m),dict(collections.Counter((r['activo'],r['aptitud_uso'],r['origen_numerico'],r['corrida0_generacion']) for r in m)))\nprint(m[0]['camino_linaje'][:210])\nE",
+    "salida": "16 {('SI', 'APTA-POR-LINAJE', 'NUEVO', 'GEN2'): 16} ⏎ marcador:CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::18-29xHASTA-PRIMARIA -> RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-P -> CALC-GOB-DIGITAL-EXE-EMISIONES-0002/RESULT-GOB-EXE15-2025-18-29-HAST"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/decisiones.tsv: origen_numerico=NUEVO de los 16 RESULT",
+    "comando": "python3 - <<'E'\nimport csv,io,subprocess\ncsv.field_size_limit(10**9)\nt=subprocess.run(['git','show','origin/main:data/corrida0/decisiones.tsv'],capture_output=True,text=True).stdout\nd=list(csv.DictReader(io.StringIO('\\n'.join(l for l in t.splitlines() if not l.startswith('#'))),delimiter='\\t'))\nm=[r for r in d if r['objeto'].startswith('origen:CALC-GOB-DIGITAL-EXE-EMISIONES-0002:RESULT-GOB-EXE15-2025-') and r['decision'].startswith('origen_numerico=NUEVO')]\nprint(len(m),sorted({r['fecha'] for r in m}),m[0]['fuente'][:120])\nE",
+    "salida": "16 ['2026-09-23'] FP-260923-GEN2-CONTADORES-CONSUMO-1-988c-01 (respuesta de mesa, ejecutada por GEN2-CONTADORES-CONSUMO-2); data/corrida0/"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tests/check.py::T35 (g), reproducido en memoria: C._filas_registro(verifica=False) sobre el árbol de trabajo HEAD 57c36a78 (247.6 s, sin escribir estado)",
+    "comando": "python3 -c \"import sys;sys.path.insert(0,'.');from tools import corrida0 as C;v=C._filas_registro(verifica=False);idx={f['resultado_id']:f for f in v['resultados']};us=[u for u in v['usos'] if u['consumidor'].startswith('marcador:CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::')];print(len(us),{(idx[u['corrida0_resultado_id']]['origen_numerico'],u['aptitud_uso'],C.aptitud_para_uso(idx[u['corrida0_resultado_id']]['origen_numerico'],u.get('uso_solicitado',''),idx[u['corrida0_resultado_id']].get('validacion_independiente','NO-HECHA'),idx[u['corrida0_resultado_id']].get('rol_evaluacion',''))[0]) for u in us})\"",
+    "salida": "derivado en 247.6s · 16 · {('NUEVO','APTA-POR-LINAJE','APTA-POR-LINAJE')} → aptitud_uso del registro == contrato compartido y ninguna NO-APTA: la condición de FAIL de T35 (g) (tests/check.py:7957-7961) no se cumple en las 16"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tests/check.py:7950-7961 (condición de FAIL de T35 (g))",
+    "comando": "git show origin/main:tests/check.py | sed -n '7950,7961p' | cut -c1-120",
+    "salida": "# El registro y T35 comparten exactamente el contrato de aptitud. ⏎  # Generacion, contador y sello no limpian un origen heredado, mixto ⏎  # o indeterminado. ⏎  aptitud, motivo = C.aptitud_para_uso( ⏎  destino[\"origen_numerico\"], u.get(\"uso_solicitado\", \"\"), ⏎  destino.get(\"validacion_independiente\", \"NO-HECHA\"), ⏎  destino.get(\"rol_evaluacion\", \"\")) ⏎  if u.get(\"aptitud_uso\") != aptitud: ⏎  fai…"
+   },
+   {
+    "tipo": "comando",
+    "ref": "aviso: la vista resultados.tsv publicada aún no refleja el origen de esos RESULT (canal)",
+    "comando": "python3 - <<'E'\nimport csv,io,subprocess,collections\ncsv.field_size_limit(10**9)\ndef tsv(p):\n    t=subprocess.run(['git','show','origin/main:'+p],capture_output=True,text=True).stdout\n    return list(csv.DictReader(io.StringIO('\\n'.join(l for l in t.splitlines() if not l.startswith('#'))),delimiter='\\t'))\nids={r['resultado_id'] for r in tsv('data/corrida0/usos.tsv') if r['consumidor'].startswith('marcador:CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::')}\nprint('resultados.tsv publicado, origen_numerico de esos RESULT:',dict(collections.Counter(r['origen_numerico'] for r in tsv('data/corrida0/resultados.tsv') if r['resultado_id'] in ids)))\nE",
+    "salida": "resultados.tsv publicado, origen_numerico de esos RESULT: {'INDETERMINADO': 16}"
+   }
+  ],
+  "cerrado_por_detalle": "producto: data/corrida0/usos.tsv (16 filas marcador:CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::*, APTA-POR-LINAJE, origen NUEVO, camino_linaje a DECISION-DE-MESA) + data/corrida0/decisiones.tsv (16 filas origen:CALC-GOB-DIGITAL-EXE-EMISIONES-0002:RESULT-GOB-EXE15-2025-*-C2-P, 23/sep) · comandos PY6a y PY6b de las citas 1 y 2 (lector CSV)",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260924-GEN2-CONTADORES-CONSUMO-2-749c-03",
+  "verdict": "CANAL",
+  "rationale": "La premisa de más de 100 MB cayó (resultados.tsv 15.6 MB, guarda de 50 MB), pero el impacto sigue: #1268 fue el trozo 1 y 123 CALC sellados no tienen fila en corridas.tsv; ningún [deriva] fusionó después (#1315 cerrado, #1318 abierto). Solo espera al canal; la decisión G1 vive en 247d-01.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "tamaño de resultados.tsv en origin/main (bytes)",
+    "comando": "git cat-file -s origin/main:data/corrida0/resultados.tsv",
+    "salida": "15611540"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml (guarda de 50 MB)",
+    "comando": "git show origin/main:.github/workflows/verify.yml | rg -n 'GUARDA-TAMANO' | cut -c1-150",
+    "salida": "713: echo \"GUARDA-TAMANO: $f es ${MB} MB, sobre el límite de 50 MB de la firma de mesa (GEN2-TUBERIA-VISTA-NORMALIZADA-2 §2 + COMMIT-"
+   },
+   {
+    "tipo": "comando",
+    "ref": "backlog del canal: CALC sellados sin fila en corridas.tsv (lector CSV; verificación tras publicar = 0)",
+    "comando": "python3 - <<'E'\nimport csv,io,re,subprocess\ncsv.field_size_limit(10**9)\ng=lambda p:subprocess.run(['git','show','origin/main:'+p],capture_output=True,text=True).stdout\ntree=subprocess.run(['git','ls-tree','-r','--name-only','origin/main','data/corrida0/'],capture_output=True,text=True).stdout.splitlines()\nsel={m.group(1) for p in tree for m in [re.match(r'data/corrida0/(CALC-[^/]+)/sello\\.json$',p)] if m}\nrd=csv.DictReader(io.StringIO('\\n'.join(l for l in g('data/corrida0/corridas.tsv').splitlines() if not l.startswith('#'))),delimiter='\\t')\nvista={r['spec_id'] for r in rd}\nprint('CALC con sello.json',len(sel),'| spec_id en corridas.tsv',len(vista),'| sellados sin fila en la vista',len(sel-vista))\nE",
+    "salida": "CALC con sello.json 369 | spec_id en corridas.tsv 279 | sellados sin fila en la vista 123"
+   },
+   {
+    "tipo": "comando",
+    "ref": "GitHub Josanoforo/Modelado-Mexicano PR (MCP)",
+    "comando": "mcp github list_pull_requests state=all sort=created desc perPage=12 fields=number,title,state,merged_at,closed_at,created_at",
+    "salida": "#1318 [deriva] open (created 2026-09-29T00:32:07Z) · #1315 [deriva] closed 00:32:10Z sin merged_at · #1309 closed 00:03:18Z sin merged_at · #1308 closed 23:02:49Z sin merged_at; último [deriva] fusionado en la línea primaria de main: 1f4bf1cc (#1268, 28/sep)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC 247d-01 (re-litigación de G1 y estado de 749c-03)",
+    "comando": "python3 tools/consulta.py nc NC-260928-GEN2-TUBERIA-Y-CURACION-1-247d-01 | cut -c1-400",
+    "salida": "NC-260928-GEN2-TUBERIA-Y-CURACION-1-247d-01 · estado=ABIERTA · acto=GEN2-TUBERIA-Y-CURACION-1 · pr=#1280 · razon=PARO-PREMISA -- la premisa de la firma (GH001 por superar 100 MB) ya no sostiene: resultados.tsv mide hoy 15.6 MB (verificado 429ec004=89.95MB -> 1f4bf1cc=15.6… · sucesor=MESA (2026-10-05) · hoja de irreversibles · antes: SIN-ASIGNAR -- re-litigar G1 con mesa citando este halla"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-23",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c 'import csv,sys;csv.field_size_limit(10**9);[print(r[\"id\"],r[\"estado\"],\"|\",r[\"firmada_en\"][:180]) for r in csv.DictReader(sys.stdin,delimiter=\"\\t\") if r[\"id\"]==\"FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-23\"]'",
+    "salida": "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-23 FIRMADA | GEN2-TUBERIA-Y-CURACION-1 §2, 28/sep/2026 -- firma de mesa verbatim \"firmado\" sobre la hoja v2 de dirección (INTERPRETACIÓN-DECLARADA en 2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1-AD"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "PY7 de la cita 3 imprime «sellados sin fila en la vista 0» (hoy 123) tras fusionarse los [deriva] pendientes; python3 tools/consulta.py corrida CALC-GOB-DIGITAL-EXE-EMISIONES-0002 deja de dar NO-ENCONTRADO",
+  "owner_detalle": "CANAL ([deriva] #1318 abierto; drena tras FP-260928-GEN2-TUBERIA-3-f18c-01; la decisión de fondo G1 vive en NC-260928-GEN2-TUBERIA-Y-CURACION-1-247d-01)",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-17",
+  "verdict": "ABSORBER",
+  "rationale": "No es duplicada: NC-0253 decide si citar RESULT-L8CONV como legado DESCRIPTIVO (las opciones a y b no relevan). Esta fila pide relevar RES-0050 con un CALC que no ingiera el JSON GEN1 (IN-L8-JSON). Falta ese CALC, desde cómputos crudos (CAJA), con las gemelas -18 y -19 (RES-0051, RES-0052). No cierra NC-0253.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "data/corrida0/CALC-L8-CONVERSION-0001/spec.yaml:30-33 (IN-L8-JSON)",
+    "comando": "git show origin/main:data/corrida0/CALC-L8-CONVERSION-0001/spec.yaml | sed -n '30,33p'",
+    "salida": "- id: IN-L8-JSON ⏎  origen: repo ⏎  ruta: data/l8-resultados-tipo-boleta-v1_0.json ⏎  sha256: 30f3e16dd6ea770ad72ab957547159c5427788a97a24a0ef30f2765752ef8f99"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/pendientes-3/hoja-mesa-pendientes-3.md:19 (NC-0253: decisión de consumo y opciones a/b/c)",
+    "comando": "git show origin/main:forense/analisis/pendientes-3/hoja-mesa-pendientes-3.md | sed -n '19p' | cut -c1-400",
+    "salida": "- **NC-0253** — El bloqueo tecnico de linaje ya se levanto (GEN2-L8-LINAJE-HEREDADO-1); queda solo la decision de consumo, que es adopcion (D-19). Opciones: (a) conservar los 3 RESULT-L8CONV como legado explicito con uso DESCRIPTIVO y citarlos en tramite.yaml (bin 1); (b) mantenerlos sin cita GEN2; (c) CALC nuevo que no dependa del JSON. No prometer que baja dependencias_numericas_legacy_activas"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-0253 (ABIERTA) y gemelas a157-18 y a157-19 (ABIERTA)",
+    "comando": "python3 - <<'E'\nimport csv,io,subprocess\ncsv.field_size_limit(10**9)\nt=subprocess.run(['git','show','origin/main:forense/no-corrido.tsv'],capture_output=True,text=True).stdout\nfor r in csv.DictReader(io.StringIO(t),delimiter='\\t'):\n    if r['id'] in ('NC-0253','NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-17','NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-18','NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-19'):\n        print(r['id'][-8:],r['estado'],r['que_no_se_corrio'][:70])\nE",
+    "salida": "NC-0253 ABIERTA Citar corrida0_resultado_id=RESULT-L8CONV-A-P-MINIMO/MAXIMO/MEDIA (cor ⏎ -a157-17 ABIERTA relevar RES-0050 (milpa/tramite.yaml:civico.participacion.concurrencia ⏎ -a157-18 ABIERTA relevar RES-0051 (milpa/tramite.yaml:civico.participacion.concurrencia ⏎ -a157-19 ABIERTA relevar RES-0052 (milpa/tramite.yaml:civico.participacion.concurrencia"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-17-GEN2-L8-LINAJE-HEREDADO-1-cierre.md:38-47 (lo que sí levantó y su límite)",
+    "comando": "git show origin/main:forense/notas/2026-09-17-GEN2-L8-LINAJE-HEREDADO-1-cierre.md | sed -n '38,47p' | cut -c1-140",
+    "salida": "Opus, la integración serial sólo necesita: (1) reflejar que la indeterminación ⏎ técnica de NC-0253 está resuelta sin cerrar su decisión de consumo y (2), si ⏎ mesa acepta la propuesta, registrar por separado el uso `DESCRIPTIVO` y la ⏎ cita futura de los tres resultados. No se reserva numeración. ⏎  ⏎ ## Decisión pendiente de mesa ⏎  ⏎ Una sola: aceptar o rechazar conservar los tres resultados c…"
+   },
+   {
+    "tipo": "comando",
+    "ref": "RES-0050 hoy",
+    "comando": "python3 tools/consulta.py result RES-0050 | cut -c1-260",
+    "salida": "RES-0050 · valor=PENDIENTE · unidad=NO-DECLARADO-EN-EL-REGISTRO · tipo=conducta_p_medido · corrida_id=CORR-0016 · sello=PENDIENTE · estado=PENDIENTE · generacion=GEN2-PENDIENTE · cuenta_gen2=SI · validacion_independiente=NO-HECHA · n_usos=1"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "RELEVO-TRAMITE-CAJA-2",
+  "entorno": "CAJA",
+  "hecho_comando": "python3 tools/consulta.py result RES-0050 muestra generacion=GEN2 y estado distinto de PENDIENTE, y git grep -l 'l8-resultados-tipo-boleta' origin/main -- 'data/corrida0/*/spec.yaml' lista solo CALC-L8-CONVERSION-0001 (el CALC nuevo no ingiere el JSON GEN1); lo mismo para RES-0051 y RES-0052",
+  "owner_detalle": "",
+  "confianza": "media"
+ }
+]

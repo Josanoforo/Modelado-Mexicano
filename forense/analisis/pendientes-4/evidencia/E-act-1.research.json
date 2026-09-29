@@ -1,0 +1,392 @@
+[
+ {
+  "id": "NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-02",
+  "verdict": "ABSORBER",
+  "rationale": "NO-ENCONTRADO por objeto: 6 specs CALC-ENOE-* en origin/main, ninguno estima transición individual (PERSISTENCIA lo excluye; ENOE-PISOS v1_2 la declara NO IDENTIFICADA sin llave ni peso longitudinal). Delegación firmada 28/sep: encargo de spec, reversible. Regla 6 no lo veda (descriptivo retrospectivo). Falta contrato longitudinal (llave, elegibilidad, peso) y CALC en caja.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/CALC-ENOE-*/spec.yaml",
+    "comando": "for d in $(git ls-tree -d --name-only origin/main data/corrida0/ | rg 'ENOE'); do git show origin/main:$d/spec.yaml | rg -c -i 'transici[oó]n individual|flujo|matriz de transici|longitudinal'; done",
+    "salida": "CALC-ENOE-PARTICIPACION-2024T4-0001 0 · CALC-ENOE-PERSISTENCIA-0001 2 · CALC-ENOE-PISOS-0001 1 · -0002 1 · -0003 1 · CALC-ENOE-SERIE-DICTAMEN-0001 0; las coincidencias: 'estimando: Error retrospectivo de persistencia ...; no es transición individual ni cambio inferencial' y 'calibracion: SIN-COVARIANZA-LONGITUDINAL-PARA-CALIBRAR'"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-caja/ENOE-PISOS-spec-v1_2.md:95-97",
+    "comando": "git show origin/main:forense/prereg-caja/ENOE-PISOS-spec-v1_2.md | sed -n '95,97p'",
+    "salida": "Transición formal/informal **NO IDENTIFICADA CON ESTOS INSUMOS**: el panel\nrotatorio de cinco visitas existe, pero los pesos publicados son transversales;\nno hay ponderador longitudinal por persona ni attrition acreditada para el"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv#NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-02",
+    "comando": "csv.DictReader sobre decididas-por-delegacion.tsv, fila id",
+    "salida": "opcion=DUEÑO-MESA · razon: No es dato ausente: exige un acto de spec (contrato longitudinal con llave, elegibilidad y peso). Ningun encargo archivado ni en vuelo lo cubre ... Propuesta: un encargo de spec, reversible."
+   },
+   {
+    "tipo": "regla",
+    "ref": "gobierno/PEGAR-EN-PROYECTO-v2_17.md:41",
+    "comando": "rg -n -i 'regla 6' gobierno/PEGAR-EN-PROYECTO-v2_17.md",
+    "salida": "41:- Regla 6: sin retadores, pilotos ni duelos sobre olas ya vistas. El frente prospectivo son las familias 2027. Un cruce visto sirve para describir, calibrar y evaluar en retrospectiva, rotulado así."
+   }
+  ],
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "CAJA",
+  "hecho_comando": "git ls-tree -r --name-only origin/main data/corrida0 | rg -c 'CALC-ENOE-TRANSICION[^/]*/sello.json' (>=1; spec forense/prereg-caja/ENOE-TRANSICION-spec-v1_0.md congela llave, elegibilidad y peso longitudinal antes del dato)",
+  "owner_detalle": "DIRECCION-ENCARGO (GEN2-PISOS-DOMINIOS-Y-REGLAS-2)",
+  "falta": "Spec y CALC de caja con contrato longitudinal ENOE (llave de persona entre visitas, elegibilidad, peso/attrition) que emita tasas de transición formal↔informal rotuladas RETROSPECTIVA; el IC hereda el bloqueo singleton de 2024T4 y se declara.",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-04",
+  "verdict": "HOJA-RECETA",
+  "rationale": "El bloqueo (varianza no identificada en 39 estratos singleton; sin réplica conjunta de panel) solo lo levanta un insumo oficial. Mesa ya firmó R27 (FP 310e-01 FIRMADA): «autorizo enviar a INEGI la solicitud de regla de varianza para los 39 estratos singleton de ENOE 2024T4». Falta el envío con identidad; el CALC nuevo viene después de la respuesta.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "FP-260927-GEN2-ASTRA6-C2-ENOE-INFERENCIA-1-310e-01",
+    "comando": "csv.DictReader sobre git show origin/main:forense/firmas-pendientes.tsv, fila id",
+    "salida": "estado=FIRMADA · firmada_en: ... renglón R27 de decisiones-21.tsv, opción (2) ... «... ENOE-INFORMALIDAD 2027T4 queda NO-LANZAR-TODAVIA; autorizo enviar a INEGI la solicitud de regla de varianza para los 39 estratos singleton de ENOE 2024T4. No adopto la receta sucesora...»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-caja/ENOE-PERSISTENCIA-spec-v1_0.md:27-35",
+    "comando": "sed -n '27,35p' forense/prereg-caja/ENOE-PERSISTENCIA-spec-v1_0.md",
+    "salida": "**IC predictivo calibrado: no estimable.** Un bootstrap separado de puntos trimestrales no reproduce la dependencia de panel rotatorio ... El corpus no acredita peso longitudinal por persona ni réplica conjunta entre olas. ... Cualquier reconstrucción de panel/intervalo posterior necesitaría CALC sucesor con llave, seguimiento, ponderación y método congelados"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/familias-2027-enoe-inferencia-1/enoe-hoja-decision.md:17",
+    "comando": "rg -n 'Solicitar a INEGI' forense/analisis/familias-2027-enoe-inferencia-1/enoe-hoja-decision.md",
+    "salida": "17:Solicitar a INEGI, para ENOE2024T4 / ENOE_SDEMT424.csv y esos39 códigos EST_D_TRI enumerados en la auditoría agregada, **la instrucción oficial de estimación de varianza aplicable a estratos co"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/obtencion-externa-1/solicitudes/",
+    "comando": "git grep -n -i 'singleton\\|ENOE' origin/main -- forense/analisis/obtencion-externa-1 (8 solicitudes a-g + LEEME + registros)",
+    "salida": "solo registra_obtencion_externa.py:33 (EXENTOS enoe_2026_1t); ninguna solicitud a-g ni R46-R49 trata la varianza singleton ENOE: NO-ENCONTRADO"
+   }
+  ],
+  "owner_detalle": "MESA-ACCION (2026-10-05)",
+  "hoja": {
+   "accion_clave": "INEGI-SOLICITUD-VARIANZA-SINGLETON-ENOE2024T4",
+   "receta_un_minuto": "Abrir forense/analisis/familias-2027-enoe-inferencia-1/enoe-hoja-decision.md §«Insumo específico para decidir» (l.15-23); copiar la solicitud (regla oficial de varianza para los 39 EST_D_TRI con una UPM en ENOE 2024T4, lista en diagnostico/enoe-auditoria.json; crosswalk de unidad de selección, certeza o pesos de réplica); enviarla por el canal de atención a usuarios de INEGI desde la cuenta de mesa; guardar el acuse y asentarlo por adenda (regla FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-01).",
+   "destino": "INEGI · atención a usuarios / área ENOE",
+   "autorizada_por": "R27 · FP-260927-GEN2-ASTRA6-C2-ENOE-INFERENCIA-1-310e-01 FIRMADA",
+   "despues": "con la respuesta, CALC nuevo en CAJA (réplica conjunta de panel y covarianza acreditada); sin respuesta, la persistencia queda descriptiva"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260923-ASTRA5-U2-ENDIREH-6a2c-02",
+  "verdict": "ABSORBER",
+  "rationale": "EXISTE-NO-SATISFACE: CALC-ENDIREH-SERIE-DICTAMEN-0001 dictaminó 6311/6311 series SIN-SERIE y τ² null porque los 760 pares ENDIREH del mapa son NO-DOCUMENTADO (falta tabla de comparabilidad por texto); además su τ² usa los pares juzgados. Falta la matriz literal homologada (misma deuda previa que NC 96ee-02) y un CALC con transición fuera del ajuste. Delegación: encargar.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/CALC-ENDIREH-SERIE-DICTAMEN-0001/resultados.json",
+    "comando": "git show origin/main:data/corrida0/CALC-ENDIREH-SERIE-DICTAMEN-0001/resultados.json | jq -c '.resultados | to_entries[] | {k:.key, v:(.value|tostring|.[0:60])}'",
+    "salida": "RESULT-DC-ENDIREH-N-CAMBIO-SOSTENIDO 0 · N-ESTABLE 0 · N-SALTO-DE-INSTRUMENTO 0 · N-SALTO-SIN-EXPLICAR 0 · N-SERIES 6311 · N-SIN-SERIE 6311 · TAU2-FUENTE CALCULADO-AQUI · TAU2-edad/entidad/escolaridad/localidad/nacional/pareja null"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/donde-cambio/mapa/resto.tsv",
+    "comando": "git show origin/main:forense/analisis/donde-cambio/mapa/resto.tsv | python3 (csv.DictReader; instrumento ENDIREH; Counter par_con_anterior, cita_par)",
+    "salida": "6979 filas ENDIREH · [('PRIMERA', 6219), ('NO-DOCUMENTADO', 760)] · cita: 'sin-fuente-texto: no existe forense/prereg-caja/ENDIREH-PISOS-spec-v*.md ni tabla data/*-comparabilidad-texto-v*.tsv par' (760)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-caja/DONDE-CAMBIO-spec-v1_0.md:73-75",
+    "comando": "sed -n '73,75p' forense/prereg-caja/DONDE-CAMBIO-spec-v1_0.md",
+    "salida": "Pares `CAMBIO-DOCUMENTADO` **no** entran al cálculo de τ² (son los que se quieren detectar).\nDeclarado, no corregido: τ² incluye los pares que después se juzgan, lo que empuja el dictamen\nhacia `ESTABLE`"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv#NC-260924-GEN2-DONDE-CAMBIO-EL-MEXICANO-1-96ee-02",
+    "comando": "csv.DictReader sobre git show origin/main:forense/no-corrido.tsv, fila id",
+    "salida": "ABIERTA · pieza 'P3: series ENDIREH dictaminables' · que_no_se_corrio 'crosswalk de módulos entre olas y tabla de comparabilidad por texto' · sucesor 'MESA ... encargo por escribir ... antes: GEN2-DONDE-CAMBIO-EL-MEXICANO-2'"
+   }
+  ],
+  "lote": "OTRO:DONDE-CAMBIO-EL-MEXICANO-2",
+  "entorno": "CAJA",
+  "hecho_comando": "git ls-tree -r --name-only origin/main data | rg -c 'endireh-comparabilidad-texto-v1_0.tsv$' (=1) && git ls-tree -r --name-only origin/main data/corrida0 | rg -c 'CALC-ENDIREH-SERIE-DICTAMEN-0002/sello.json' (=1, spec con τ² dejando fuera la transición juzgada)",
+  "owner_detalle": "DIRECCION-ENCARGO (GEN2-DONDE-CAMBIO-EL-MEXICANO-2; comparte prerrequisito con NC-260924-GEN2-DONDE-CAMBIO-EL-MEXICANO-1-96ee-02)",
+  "falta": "Tabla de comparabilidad por texto ENDIREH 2006-2021 (crosswalk literal de módulos) y re-dictamen de series con IC predictivo calibrado cuya τ² excluye la transición evaluada.",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260923-ASTRA5-U2-ENDIREH-6a2c-03",
+  "verdict": "ABSORBER",
+  "rationale": "NO-ENCONTRADO: 21 specs CALC ENDIREH en origin/main, ninguno une ámbitos por mujer ni reproduce el 70.1 (solo uniones de actos por módulo/pareja). Delegación firmada: (a) pre-registrar la unión por mujer con definición oficial sobre ENDIREH 2021 (ola vista, CALC nuevo); (b) subregistro total no identificable sin validación externa: se declara por diseño dentro del encargo.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/CALC-ENDIREH-*/spec.yaml",
+    "comando": "for d in $(git ls-tree -d --name-only origin/main data/corrida0/ | rg 'ENDIREH'); do git show origin/main:$d/spec.yaml | rg -c -i '70\\.1|cualquier (tipo de )?violencia|uni[oó]n de [aá]mbitos|todos los [aá]mbitos'; done",
+    "salida": "specs_examinados=21 con_termino=0"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/dominios/corte-endireh-v1_0.py:25",
+    "comando": "git grep -n -e '70\\.1' origin/main -- forense/analisis/dominios/corte-endireh-v1_0.py",
+    "salida": "25: componente_contrastable=\"Prevalencia de agresión física por esposo/pareja actual ...; subcomponente, no prevalencia total 70.1%.\""
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv#NC-260923-ASTRA5-U2-ENDIREH-6a2c-03",
+    "comando": "csv.DictReader sobre decididas-por-delegacion.tsv, fila id",
+    "salida": "opcion=DUEÑO-MESA · Sin acto archivado (GEN2-ASTRA5-U2-ENDIREH-CIERRE-1 no lo toma). Opciones: (a) preregistrar la union por mujer con la definicion oficial y correrla sobre ENDIREH (ola abierta, CALC nuevo); (b) cerrar por diseno el «subregistro total» ... Propongo (a) para la union y (b) para el subregistro."
+   }
+  ],
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "CAJA",
+  "hecho_comando": "git ls-tree -r --name-only origin/main data/corrida0 | rg -c 'CALC-ENDIREH-PISOS-2021-UNION[^/]*/sello.json' (>=1; RESULT cotejado contra el 70.1 publicado; spec declara 'subregistro total: NO-IDENTIFICABLE sin validación externa')",
+  "owner_detalle": "DIRECCION-ENCARGO (GEN2-PISOS-DOMINIOS-Y-REGLAS-2)",
+  "falta": "CALC que una por mujer los ámbitos con la definición oficial INEGI y reproduzca (o no) el 70.1 de ENDIREH 2021; el subregistro total queda cerrado por diseño en la spec.",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260923-ASTRA5-U3-POLITICA-COMPLETAR-d459-02",
+  "verdict": "ABSORBER",
+  "rationale": "NO-ENCONTRADO en 3910 archivos de data/corrida0, tools, milpa, tests y prereg-caja: ningún CALC usa a6_sicee_participacion_entidad_1991_2024 (control positivo: la nacional aparece en 2 specs). PISOS-DOMINIOS-Y-REGLAS-1 (#1302) solo dictaminó la nacional y JUDICIAL 2025. El payload está en el manifiesto. FP df0d-01 es regla, no ejecutor.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/*/spec.yaml",
+    "comando": "git grep -l 'a6_sicee_participacion_nacional' origin/main -- 'data/corrida0/*/spec.yaml' | wc -l; git grep -l 'a6_sicee_participacion_entidad_1991_2024' origin/main -- 'data/corrida0/*/spec.yaml' | wc -l",
+    "salida": "2\n0"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/pisos-dominios-1/INE-dictamenes.tsv",
+    "comando": "git show origin/main:forense/analisis/pisos-dominios-1/INE-dictamenes.tsv | cut -c1-250",
+    "salida": "3 líneas: RG-7c6dd83a03 POLITICA INCOMPARABLE RESULT-INE-PISOS-SICEE-TABLA CALC-INE-PISOS-SICEE-0002 ... nacional, cargo PRE · RG-b723d6e18b POLITICA NO-CONSTRUIBLE ... eleccion judicial federal 2025"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/dominios/politica/ine-objetos-restantes-v1_0.tsv",
+    "comando": "git show origin/main:forense/analisis/dominios/politica/ine-objetos-restantes-v1_0.tsv | rg -i 'entidad'",
+    "salida": "a6_sicee_participacion_entidad 1 ... participacion_federal_por_entidad_publicada DICTAMINADO:unidad_publicada_entidad_disponible_no_medida_en_este_acto · misma fuente a escala entidad; DIFERIDO a sucesor por NC; no se estima entidad desde la nacional"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260923-ASTRA5-U3-POLITICA-df0d-01",
+    "comando": "csv.DictReader sobre firmas-pendientes.tsv, fila id",
+    "salida": "FIRMADA · «INE: cómputos definitivos como universo; cuadernillos censales solo como constancia; no se equiparan denominadores.» (dictamen de política, sin ejecutor -- regla para actos futuros)"
+   }
+  ],
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "CAJA",
+  "hecho_comando": "git grep -l 'a6_sicee_participacion_entidad_1991_2024' origin/main -- 'data/corrida0/*/spec.yaml' | wc -l (>=1, con sello.json en el mismo CALC)",
+  "owner_detalle": "DIRECCION-ENCARGO (GEN2-PISOS-DOMINIOS-Y-REGLAS-2)",
+  "falta": "CALC PISO-ADMINISTRATIVO de participación federal por entidad 1991-2024 desde el payload SICEE por entidad, bajo la regla df0d-01 (cómputos definitivos como universo; sin equiparar denominadores).",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260923-ASTRA5-U3-POLITICA-COMPLETAR-d459-03",
+  "verdict": "ABSORBER",
+  "rationale": "NO-ENCONTRADO: ningún spec de CALC en origin/main lee sicee_federal_* (14 payloads por casilla en el manifiesto). El dictamen de objetos restantes lo deja 'reagregacion_de_control_diferida'. Es control reversible de la serie SICEE-0002; sin adopción. Mismo lote de caja que d459-02.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/*/spec.yaml",
+    "comando": "git grep -l 'sicee_federal_' origin/main -- 'data/corrida0/*/spec.yaml' | wc -l; rg -c '^- id: sicee_federal_' data/manifiesto.yaml",
+    "salida": "0\n14"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/dominios/politica/ine-objetos-restantes-v1_0.tsv",
+    "comando": "git show origin/main:forense/analisis/dominios/politica/ine-objetos-restantes-v1_0.tsv | rg -i 'sicee_federal'",
+    "salida": "sicee_federal_por_casilla 14 ^sicee_federal_ computo_federal_por_casilla DICTAMINADO:votos_por_opcion_no_son_participacion; reagregacion_de_control_diferida · cómputos por casilla con votos por partido/candidatura y lista nominal de casilla; mezclar marcas por opción con participación está vedado;"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv#NC-260923-ASTRA5-U3-POLITICA-COMPLETAR-d459-03",
+    "comando": "csv.DictReader sobre decididas-por-delegacion.tsv, fila id",
+    "salida": "opcion=DUEÑO-MESA · Reagregar computos por casilla sicee_federal_* como control de la serie publicada; datos en corpus, sin acto asignado. Reversible (solo mide control; sin adopcion)."
+   }
+  ],
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "CAJA",
+  "hecho_comando": "git grep -l 'sicee_federal_' origin/main -- 'data/corrida0/*/spec.yaml' | wc -l (>=1, con sello.json; RESULT de diferencia reagregado-casilla vs SICEE publicado por cargo×año)",
+  "owner_detalle": "DIRECCION-ENCARGO (GEN2-PISOS-DOMINIOS-Y-REGLAS-2)",
+  "falta": "CALC de control que reagregue cómputos por casilla (votos totales y lista nominal, sin marcas por opción) y compare con la serie SICEE publicada de CALC-INE-PISOS-SICEE-0002.",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "El recibo técnico existe (RECIBO-ASTRA6-3) y mesa firmó R17 (FP 3a1f-01 FIRMADA): recibe los tres reports y sus reglas como propuesta, sin adopción, condicionado a una pasada editorial C3. Esa condición ya está en main: c6e273ea (CONTINUIDAD-C3-1) añadió firewall genético y preguntas [v2.16] a los tres reports. Reglas asentadas PROPUESTA en reglas-propuestas-v1_0.tsv.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "FP-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01",
+    "comando": "csv.DictReader sobre git show origin/main:forense/firmas-pendientes.tsv, fila id",
+    "salida": "estado=FIRMADA · firmada_en: 28/sep/2026 ... renglón R17 de decisiones-21.tsv, opción (2) · ejecutada_en: ADR-260928-GEN2-TRAMITE-FIRMAS-21-8560-01"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv#R17",
+    "comando": "csv.DictReader sobre decisiones-21.tsv, renglon R17: estado, texto_de_firma",
+    "salida": "FIRMADA (GEN2-TRAMITE-FIRMAS-21, ADENDA-1 28/sep) · «Recibo los tres reports v2 (autoridad, civismo, comunalidad) y sus reglas SI-ENTONCES como propuesta para revisión independiente, sin adopción en motor ni catálogo, condicionado a que una pasada editorial C3 añada firewall genético a Autoridad y México Rural y las preguntas [v2.16] del módulo de auditoría a los tres.»"
+   },
+   {
+    "tipo": "commit",
+    "ref": "c6e273ea",
+    "comando": "git merge-base --is-ancestor c6e273ea origin/main && echo ANCESTRO; para cada report (Autoridad_y_jerarquía..., El_México_Rural_e_Indígena..., Psicología_Política_y_Comportamiento_Cívico...): git show origin/main:<ruta> | rg -c -i 'firewall gen'; rg -c '\\[v2\\.16\\]'",
+    "salida": "ANCESTRO · Autoridad 2/1 (l.105 '## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)') · México Rural 2/1 (l.102) · Cívico 2/1 (l.87)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/reports-v2/reglas-propuestas-v1_0.tsv",
+    "comando": "git show origin/main:forense/analisis/reports-v2/reglas-propuestas-v1_0.tsv | python3 (Counter por report y estado)",
+    "salida": "107 filas · ('autoridad','PROPUESTA'): 7, ('comunalidad','PROPUESTA'): 3, ('rural','PROPUESTA'): 3"
+   }
+  ],
+  "cerrado_por_detalle": "firma: FP-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01 FIRMADA (R17 opción (2), forense/analisis/hoja-firmas-21/decisiones-21.tsv); condición cumplida por c6e273ea (GEN2-ASTRA-CONTINUIDAD-C3-1) · rg -c 'firewall gen' y '\\[v2\\.16\\]' en los tres reports → 2/1 cada uno",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-2-e0db-05",
+  "verdict": "CERRAR-DUPLICADA",
+  "rationale": "Misma deuda: relevar las 6 lecturas legacy de celdas-D (RES-0171..0175, RES-0211) ya vive en NC-...RELEVO-CONSUMIDORES-2-e760-06 (5) y e760-07 (1), ambas ABIERTA con dueño MESA · hoja de irreversibles. Precedente: PENDIENTES-3 cerró 72d9-04 como duplicada de e760-06/07 por las mismas 6 celdas-D.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv",
+    "comando": "csv.DictReader sobre git show origin/main:forense/no-corrido.tsv; ids e760-06, e760-07, 72d9-04",
+    "salida": "NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-06 ABIERTA | relevar 5 lecturas legacy de celdas_D (RES-0171..RES-0175) | MESA (2026-10-05) · hoja de irreversibles · NC-...-e760-07 ABIERTA | relevar 1 lecturas legacy de celdas_D (RES-0211) | MESA · hoja de irreversibles · NC-260926-...-72d9-04 CERRADA | GEN2-PENDIENTES-3 · CERRADA (duplicada: ... e760-06 y e760-07 [6 celdas-D] ...)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/consulta.py",
+    "comando": "python3 tools/consulta.py result RES-0171 (idem 0172-0175, 0211)",
+    "salida": "RES-0171 · valor=PENDIENTE · tipo=celda_D · corrida_id=CORR-0077 · sello=PENDIENTE · generacion=GEN2-PENDIENTE · n_usos=1 (las seis: tipo=celda_D, n_usos=1)"
+   }
+  ],
+  "cerrado_por_detalle": "duplicada: NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-06 [RES-0171..0175] y NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-07 [RES-0211], ambas ABIERTA (MESA · hoja de irreversibles)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-04",
+  "verdict": "CERRAR-DUPLICADA",
+  "rationale": "Misma deuda que NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01 (ABIERTA): su línea base de 598 ids sin licencia contiene las 554 entradas vacías y las 4 de ISSP ZA6980 (GESIS). R50 (a) FIRMADA la envía a CORPUS-LICENCIAS-2; esta fila no añade objeto propio.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/corpus-licencias-1/sin-licencia-base.tsv",
+    "comando": "git show origin/main:forense/analisis/corpus-licencias-1/sin-licencia-base.tsv | python3 (Counter vacía/no-declarada; conteo gesis); | rg -i za6980",
+    "salida": "598 {'vacia': 554, 'no-declarada': 44} · gesis 9 · za6980_q_mx www.gesis.org · za6980_backgroundvar_mx www.gesis.org · za6980_v2_0_0_dta www.gesis.org · za6980_v2_0_0_sav www.gesis.org"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv#NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01",
+    "comando": "csv.DictReader sobre git show origin/main:forense/no-corrido.tsv, fila id",
+    "salida": "NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01 ABIERTA | licencia de 598 payloads (ENSANUT 149, UNAM 119, IETAM 46, L4, L5 58) | ADQUISICION (paginas de terminos de ~43 hosts; sin fila en cola; receta en aplica_licencias.py) · antes: GEN2-CORPUS-LICENCIAS-2"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-02",
+    "comando": "csv.DictReader sobre firmas-pendientes.tsv, fila id",
+    "salida": "R50 · licencias residuales (598 payloads; NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01) · FIRMADA · texto: «Licencias residuales: opción (a).» · sucesor GEN2-CORPUS-LICENCIAS-2 registrado en la NC 1997-01"
+   }
+  ],
+  "cerrado_por_detalle": "duplicada: NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01 (ABIERTA; línea base forense/analisis/corpus-licencias-1/sin-licencia-base.tsv con 554 vacías + 4 za6980 GESIS; R50 (a) FIRMADA → GEN2-CORPUS-LICENCIAS-2)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-05",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "La verificación A.1 en caja con corpus montado ya está en main: verifica-2026-09-21.txt (CORPUS-INTEGRIDAD-Y-RESPALDO-1) da COINCIDE para los 10 ids F6 no reservados (6 data_raw + 4 descargas_mx, 1286+335 archivos) y FUERA_DE_PERIMETRO por diseño para las 2 ENCO reservadas (residuo de NC fa42-03). Sha del manifiesto idéntico hoy.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/corpus-integridad-1/verifica-2026-09-21.txt",
+    "comando": "git show origin/main:forense/analisis/corpus-integridad-1/verifica-2026-09-21.txt | rg -F -e 'mociba_2021_mociba2021_fd [' -e ... -e 'enco_2026_agosto_dbf [' (10 ids) | rg -v '^\\s'",
+    "salida": "mociba_2021/2022/2023_fd, mociba_2022_bd_csv, enpol2016_bd_csv_zip, enpol2016_fd_pdf [data_raw]: COINCIDE · za6980_q_mx, conjunto_de_datos_encrige_2020_csv, c_enco_b_v4, enco_2026_agosto_dbf [descargas_mx]: COINCIDE -- sha256 y tamaño verificados contra data/manifiesto.yaml"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/corpus-integridad-1/verifica-2026-09-21.txt",
+    "comando": "... | rg -i 'reserva_respondentes|FUERA'",
+    "salida": "enco_2025_junio_dbf_reservado [reserva_respondentes]: FUERA_DE_PERIMETRO -- raíz histórica no inspeccionable · enco_2026_junio_dbf_reservado [idem] · data_raw: coincide=1286 no_coincide=0 ausente=2 · descargas_mx: coincide=335 no_coincide=0 ausente=0 · reserva_respondentes: fuera_de_perimetro=4"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "por id: yq '.[]|select(.id==X)|.sha256' en bf5fc5e7 vs origin/main (10 ids)",
+    "salida": "mociba_2021_mociba2021_fd 375bf7c1bcdb IGUAL · ... · za6980_q_mx 61bc0c804155 IGUAL · conjunto_de_datos_encrige_2020_csv 06864904426a IGUAL · c_enco_b_v4 f7e9d6b99e92 IGUAL · enco_2026_agosto_dbf 5eb3fd6850c6 IGUAL (10/10 IGUAL)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-22-GEN2-ADQ-F6-DIRIGIDA-1-nota.md:61",
+    "comando": "sed -n '61p' forense/notas/2026-09-22-GEN2-ADQ-F6-DIRIGIDA-1-nota.md",
+    "salida": "AUSENTE (data_raw) ×6 ... RAÍZ NO CONFIGURADA (descargas_mx) ×4 (za6980_q_mx, conjunto_de_datos_encrige_2020_csv, c_enco_b_v4, enco_2026_agosto_dbf) · FUERA_DE_PERIMETRO (reserva_respondentes) ×2 ... 0 archivos examinados, de modo que no es un negativo (A.13)."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv#NC-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-03",
+    "comando": "csv.DictReader sobre no-corrido.tsv, fila id",
+    "salida": "ABIERTA · añadir reserva_respondentes a RAICES_ESCANEABLES (tests/manifiesto.py:358) y a raices.local.yaml"
+   }
+  ],
+  "cerrado_por_detalle": "producto: forense/analisis/corpus-integridad-1/verifica-2026-09-21.txt · git show origin/main:<ruta> | rg -F -e '<id> [' → 10 COINCIDE (data_raw 6, descargas_mx 4), 2 FUERA_DE_PERIMETRO (reserva_respondentes; residuo en NC-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-03); sha del manifiesto sin cambio",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260921-GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1-dd08-01",
+  "verdict": "HOJA-DECISION",
+  "rationale": "Indexar envipe2026 exige leer cuestionario/FD de una ola RESERVADA; reserva:envipe2026 (decisiones.tsv:181) solo permite bajar, mientras reserva:enigh2024 (l.192) sí abre documentos de instrumento. Ampliar una reserva es de mesa (D-19, E.6). Verificado: el overlay de main tiene 43024 líneas (no se commiteó el de 0 filas) y 0 filas envipe2026.",
+  "cite": [
+   {
+    "tipo": "regla",
+    "ref": "data/corrida0/decisiones.tsv:181",
+    "comando": "git show origin/main:data/corrida0/decisiones.tsv | sed -n '181p' | cut -c1-260",
+    "salida": "reserva:envipe2026\t«ENVIPE 2026 queda RESERVADA desde hoy, entera: nacional, marginales por eje y cruces. Bajar el payload está permitido; abrirlo, derivar de él o leer sus tabulados, no, fuera del código que se congele para ello. Rige E.6.»"
+   },
+   {
+    "tipo": "regla",
+    "ref": "data/corrida0/decisiones.tsv:192",
+    "comando": "git show origin/main:data/corrida0/decisiones.tsv | sed -n '192p' | rg -o 'ALCANCE.{0,200}'",
+    "salida": "ALCANCE (A.10): microdato, tabulados, comunicados y presentaciones de resultados de ENIGH 2024; cuestionario, descriptor de archivos y nota metodológica SÍ se pueden leer (son documentos de instrumento, no dato)."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/inventario-reactivos-contexto-v1_1.tsv",
+    "comando": "git show origin/main:data/inventario-reactivos-contexto-v1_1.tsv | python3 -c 'líneas y filas con envipe2026'; idem sobre data/reactivos-contexto-fuentes-v1_0.tsv y -fd26-v1_0.tsv",
+    "salida": "lineas 43024 envipe2026 0 · reactivos-contexto-fuentes-v1_0.tsv 0 · reactivos-contexto-fuentes-fd26-v1_0.tsv 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/decisiones.tsv",
+    "comando": "git show origin/main:data/corrida0/decisiones.tsv | rg -n -i 'envipe ?2026' | rg -i 'cuestionario|descriptor|documentos de instrumento|nota metodol'",
+    "salida": "solo 192 (reserva:enigh2024, que hereda términos de envipe2026); filas_envipe2026=7; ninguna extiende a ENVIPE 2026 la lectura de documentos de instrumento: NO-ENCONTRADO"
+   }
+  ],
+  "owner_detalle": "MESA-DECISION (hoja de decisiones de GEN2-PENDIENTES-4)",
+  "hoja": {
+   "situacion": "El overlay de reactivos no tiene texto de ENVIPE 2026 (0 filas) porque indexarla exige leer su cuestionario/FD, y la reserva de ENVIPE 2026 solo permite bajar; ENIGH 2024 sí tiene permiso de leer documentos de instrumento.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Extender a ENVIPE 2026 el alcance de lectura de reserva:enigh2024 (cuestionario, descriptor de archivos y nota metodológica sí; microdato, tabulados, comunicados y presentaciones no). Un acto NUBE indexa envipe2026 en las tablas de fuentes y publica el overlay.",
+     "costo": "Expone texto de instrumento (no desenlaces) de una ola reservada; un acto NUBE corto."
+    },
+    {
+     "letra": "b",
+     "texto": "Mantener la reserva íntegra; el overlay espera a que el código congelado de una prueba o mesa levante la reserva; la NC pasa a APERTURA.",
+     "costo": "Búsqueda de reactivos sin ENVIPE 2026 hasta la apertura; deuda viva sin plazo."
+    },
+    {
+     "letra": "c",
+     "texto": "Cerrar por diseño: ninguna medición abierta necesita el overlay de una ola reservada.",
+     "costo": "Se pierde la traza; al levantarse la reserva alguien debe redescubrir el hueco."
+    }
+   ],
+   "recomendacion": "(a)",
+   "porque": "El precedente ENIGH 2024 (decisiones.tsv:192) ya separa documentos de instrumento de resultados; E.6 veda microdato, tabulados y comunicados, no el cuestionario; indexar no deriva ninguna cifra.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«ENVIPE 2026, overlay de reactivos: opción (a). Extiendo a ENVIPE 2026 el alcance de lectura de reserva:enigh2024: su cuestionario, descriptor de archivos y nota metodológica se pueden leer; microdato, tabulados, comunicados y presentaciones de resultados siguen reservados. Un acto NUBE indexa envipe2026 en las tablas de fuentes de tools/actualiza_reactivos_contexto.py y publica el overlay.»"
+  },
+  "confianza": "alta"
+ }
+]

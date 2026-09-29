@@ -1,0 +1,9 @@
+[
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-06",
+  "veredicto": "REFUTA",
+  "razon": "R04 ya regía cuando el mismo acto abrió la NC (su razón la cita): es la causa del diferimiento, no su cierre. R04 dice que los CALC descriptivos «esperan a un pre-registro»: es aplazamiento, no retiro. El CALC de CIDE-CSES 2015 (intermedia) no cubre el par presidencial concurrente 2018 que la fila declara como faltante.",
+  "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | csv.DictReader renglon=R04 ; git show origin/main:forense/no-corrido.tsv | rg 795b-06",
+  "salida": "R04 opciones: «RESERVADA: solo la abre el código congelado de una prueba pre-registrada. Cuesta: los CALC descriptivos que la usan esperan a un pre-registro» · NC 795b-06: DIFERIDO-A:GEN2-CALC-ALTERNOS-LOTE-2: CSES Módulo 5 RESERVADA (R04); impacto: falta el par presidencial concurrente 2018"
+ }
+]

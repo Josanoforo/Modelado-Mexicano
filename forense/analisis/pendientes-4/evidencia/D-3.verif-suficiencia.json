@@ -1,0 +1,9 @@
+[
+ {
+  "id": "NC-0029",
+  "veredicto": "CONFIRMA",
+  "razon": "Corredores R/L y ensamble E (corredor E del duelo v2) son retadores: regla 6 (MEMORIA-OPERATIVA:10, main) los retira; ADENDA-1 firma cierre por regla 6/duelo v2. NC-0018/19/146/152 cerradas; adopciones residuales (NC-0111, NC-0153) tienen fila propia abierta; ninguna otra abierta menciona ensamble.",
+  "comando": "git show origin/main:forense/no-corrido.tsv | csv.DictReader; ABIERTA con regex 'ensamble'",
+  "salida": "335 abiertas; solo NC-0029 menciona ensamble; NC-0085/0107 CERRADA, NC-0111/0153 ABIERTA (filas propias); NC-0018/0019/0146/0152 CERRADA"
+ }
+]

@@ -1,0 +1,30 @@
+[
+ {
+  "id": "NC-0364",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproduce: 154 slots unicos de P5 (lector CSV sin comentarios) 154/154 en el dictamen; 2dce3f05 ancestro de origin/main; delegacion linea 91. Cautela: corrida_id del dictamen no coincide con el registro en 142/154 slots, asi que la cifra 71/71 corridas es coincidencia de ids; no citarla.",
+  "comando": "python3 csv.DictReader sobre git show origin/main: P5-demanda-agrupada.tsv y demanda-dictamen-v1_0.tsv; git merge-base --is-ancestor 2dce3f05 origin/main",
+  "salida": "154 slots, 154 unicos, faltan 0; dictamen NO-RELEVAR-POR-REGLA-6 43, YA-RELEVADO-GEN2 31...; ANCESTRO; delegacion 91: NC-0364 DUEÑO-MESA cerrar por diseno"
+ },
+ {
+  "id": "NC-0365",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproduce: firma a157-03 FIRMADA linea 538, TIPOS_FUERA_DEL_CONTADOR={corte_pi} en corrida0.py:340, seis filas RES-0165..0170 NO-RELEVAR-POR-FIRMA, nota lineas 129-130. Cautela: el dictamen las rotula CORR-0079 y el registro CORR-0076.",
+  "comando": "git show origin/main:forense/firmas-pendientes.tsv | sed -n 538p; git show origin/main:tools/corrida0.py | rg -n TIPOS_FUERA_DEL_CONTADOR; git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv | rg 'RES-016[5-9]|RES-0170'",
+  "salida": "538 FP-...-a157-03 FIRMADA 24/sep/2026; 340:TIPOS_FUERA_DEL_CONTADOR = frozenset({\"corte_pi\"}); 6 filas CORR-0079 RES-0165..0170 NO-RELEVAR-POR-FIRMA"
+ },
+ {
+  "id": "NC-0392",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproduce: tramite.yaml:640 lleva corrida0_resultado_id RESULT-ENVIPE-RES0028-Q-C2-U4 y GEN2; usos.tsv RES-0028 origen NUEVO, APTA-POR-LINAJE, iii-DERIVADO-DE-GEN2; dictamen YA-RELEVADO-GEN2; nota de cierre TANDA-4 lineas 20 y 47. El bloqueo de origen INDETERMINADO ya no existe.",
+  "comando": "git show origin/main:milpa/tramite.yaml | sed -n 640p | rg -o 'corrida0_[a-z_]+: [^,}]+'; csv.DictReader usos.tsv resultado_id==RES-0028",
+  "salida": "corrida0_resultado_id: RESULT-ENVIPE-RES0028-Q-C2-U4; corrida0_generacion: GEN2; origen_numerico NUEVO; aptitud_uso APTA-POR-LINAJE; via_relevo iii-DERIVADO-DE-GEN2"
+ },
+ {
+  "id": "NC-0412",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproduce: test_c2_compuesto.py:414 existe, 30 tests OK (archivo identico a origin/main), cableado en check.py:3256 y 7223 (lineas corridas 5 vs lo declarado), E.2 en linea 100, delegacion linea 97 recomienda ratificar. Es ratificacion por merge, no firma FP.",
+  "comando": "PYTHONDONTWRITEBYTECODE=1 timeout 150 python3 tests/test_c2_compuesto.py 2>&1 | tail -4; git show origin/main:tests/test_c2_compuesto.py | rg -n 'def test_una_emitida'",
+  "salida": "Ran 30 tests in 11.162s OK; 414: def test_una_emitida_nunca_FABRICA_IC; delegacion 97: NC-0412 ratificar por el merge ya hecho"
+ }
+]

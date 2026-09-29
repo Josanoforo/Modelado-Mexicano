@@ -1,0 +1,16 @@
+[
+ {
+  "id": "NC-0056",
+  "veredicto": "REFUTA",
+  "razon": "Ninguna firma nombra NC-0056: FP-286 solo difiere lo comercial y remite los accesos personales a NC-0151, que no incluye Findex ni ENAFIN-Lab. «No se persigue sin demanda nueva» es preferencia, no retiro; D17 empuja la cuenta gratuita del Banco Mundial. La opción (a) era propuesta sin firmar.",
+  "comando": "git show origin/main:forense/firmas-pendientes.tsv | csv FP-286 gatea; no-corrido.tsv NC-0151 que_no_se_corrio",
+  "salida": "gatea: «adquisiciones personales sobreviven por objeto en NC-0151»; NC-0151 = ICPSR/OECD/ENJUVE, sin Findex/ENAFIN. D17: «avanzar obtención»."
+ },
+ {
+  "id": "NC-260927-GEN2-TUBERIA-CI-TIEMPO-2-a387-02",
+  "veredicto": "CONFIRMA",
+  "razon": "La cita ahora es el run del push de #1198 (414fcf7d, ancestro de main), como pedía el encargo l.10: check success, 5m59s (05:24:42→05:30:41). El fallo global es derivados, fuera de needs de check (verify.yml:1017); responde la objeción previa.",
+  "comando": "curl actions/runs/36297122285/jobs (check, derivados); git show origin/main:.github/workflows/verify.yml | sed -n '1017p'",
+  "salida": "check success 05:24:42->05:30:41; derivados failure; head_sha 414fcf7d; needs de check sin derivados"
+ }
+]

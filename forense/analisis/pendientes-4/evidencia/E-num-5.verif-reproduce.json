@@ -1,0 +1,16 @@
+[
+  {
+    "id": "NC-0426",
+    "veredicto": "CONFIRMA",
+    "razon": "Los cinco cites reproducen en origin/main 25b5e7f0: FP e760-03 FIRMADA con ejecutada_en ADR-...6cf3-01; nota l.47 idéntica; encargo l.125 contiene la frase; relevo-usos 70 filas marco-M con los mismos conteos (L=28 se parte en L-solo 14 + L+corpus 14); dictamen RES-0126/0136/0141/0146 y 43 filas marco-M REGLA-6 idénticos.",
+    "comando": "git show origin/main:<archivo> | sed -n 'Np'; csv.DictReader (saltando líneas '#') sobre firmas-pendientes, relevo-usos-v1_0, demanda-dictamen-v1_0",
+    "salida": "FP-260925-...-e760-03 FIRMADA ejecutada_en ADR-260926-GEN2-TRAMITE-FIRMAS-18-6cf3-01 | l47 '| marco | 43 | **1** ... | 42 (H3) |' | marcoM=70 {PIN R:14, PIN M:10, SIN-CAND M:4, AGREGADO:14, L-solo:14, L+corpus:14} | RES-0126 REGLA-6, 0136/0141/0146 YA-RELEVADO-GEN2 | marco-M dict 43 REGLA-6"
+  },
+  {
+    "id": "NC-0448",
+    "veredicto": "CONFIRMA",
+    "razon": "Los cinco cites reproducen en origin/main: git grep devuelve líneas 17 y 99; tramite-ola5 líneas 2-5 idénticas (MAESTRA32-E18, motor no lo carga); 18 RESULT con 'ola5' → 14 YA-RELEVADO-GEN2 + 4 NO-RELEVAR-POR-FIRMA; 4 CALC SELLADA cuenta_gen2=SI; FP-395/396/397 FIRMADA con 3D.",
+    "comando": "git grep -n ... origin/main -- gobierno/instrucciones-proyecto-v2_16.md; git show origin/main:milpa/tramite-ola5-propuesta-v0.yaml | sed -n '2,5p'; csv.DictReader (field_size_limit ampliado) sobre demanda-resultados, demanda-dictamen, corridas, firmas-pendientes",
+    "salida": "17:Los encargos salen de la demanda... | 99:E.1 GEN1 es historia... | '# PROPUESTA · ACTO MAESTRA32-E18 · REGLAS-OLA5-FASE1 · 31/ago/2026' | ola5=18 Counter{YA-RELEVADO-GEN2:14, NO-RELEVAR-POR-FIRMA:4} | 4 CALC SELLADA SI | FP-395/396/397 FIRMADA"
+  }
+]

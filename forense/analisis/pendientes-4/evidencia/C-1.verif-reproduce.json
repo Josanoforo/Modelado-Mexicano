@@ -1,0 +1,51 @@
+[
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-02",
+  "veredicto": "CONFIRMA",
+  "razon": "Las 5 citas reproducen en origin/main 90345dff: #1304=20ff4c05; FP fb50-02 FIRMADA ejecutada ADR-2385-01; R21 verbatim idéntico; r21 tiene 15 filas; NC 2385-05 ABIERTA DIFERIDO-A CIERRE-SEMANAL-3.",
+  "comando": "git log origin/main --first-parent --oneline | rg #1304; consulta.py (sobre git archive origin/main) fp fb50-02; nc 2385-05; DictReader decisiones-21 R21 y r21-envipe-15-llaves.tsv",
+  "salida": "20ff4c05 Merge PR #1304 | FP fb50-02 estado=FIRMADA ejecutada_en=ADR-260928-...-2385-01 | R21 «Recibo los dictámenes ENDIREH 2006...» | r21: 15 filas | NC 2385-05 ABIERTA"
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-04",
+  "veredicto": "CONFIRMA",
+  "razon": "Las 6 citas reproducen: FP fb50-04 FIRMADA ejecutada ADR-2385-01; r22 1797 filas ENDUTIH 1548/MOCIBA 249; NC fb50-03 ABIERTA; FP 2385-01 ABIERTA; línea 9 de MEMORIA-OPERATIVA en origin/main idéntica.",
+  "comando": "git log origin/main --first-parent --oneline | rg #1304; consulta.py (sobre git archive origin/main) fp fb50-04; nc fb50-03; fp 2385-01; DictReader r22; git show origin/main:canon/MEMORIA-OPERATIVA.md | rg Reservas:",
+  "salida": "FP fb50-04 FIRMADA | r22 1797 Counter({'ENDUTIH':1548,'MOCIBA':249}) | NC fb50-03 ABIERTA DECISIÓN-DE-MESA-PENDIENTE | FP 2385-01 ABIERTA | 9:- Reservas: ola más reciente..."
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-01",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproducen: FP 157c-01 FIRMADA ejecutada ADR-2385-01; R23 verbatim idéntico; dictamen-lote3-v1_1 404 filas con motivos 188 y 90 como declarado; NC 2385-04 ABIERTA por margen R23.",
+  "comando": "git log origin/main --first-parent --oneline | rg #1304; consulta.py (sobre git archive origin/main) fp 157c-01; nc 2385-04; DictReader decisiones-21 R23; Counter(motivo) dictamen-lote3-v1_1.tsv",
+  "salida": "FP 157c-01 FIRMADA | R23 «Apruebo el protocolo como contrato DIAGNÓSTICO...» | dictamen 404; 'IC diagnóstico R23...no adjudica':188; 'IC fuera...157c-01':90 | NC 2385-04 ABIERTA"
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-1-beee-06",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproducen: NC 2385-04 ABIERTA pr=1304 DECISIÓN-DE-MESA-PENDIENTE sin margen R23; FP 2385-01 ABIERTA sobre margen de equivalencia IC C1; R23 verbatim. La deuda de la fila (vara inferencial) tiene fila viva propia.",
+  "comando": "git log origin/main --first-parent --oneline | rg #1304; consulta.py (sobre git archive origin/main) nc 2385-04; fp 2385-01; DictReader decisiones-21 R23",
+  "salida": "NC 2385-04 estado=ABIERTA acto=GEN2-C1-SUCESORES-Y-LOTE-3 pr=1304 razon=DECISIÓN-DE-MESA-PENDIENTE: R23 sin margen... | FP 2385-01 ABIERTA Margen de equivalencia y control simultáneo..."
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-2-627e-07",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproducen: FP 26a2-04 FIRMADA ejecutada ADR-2385-01; r28 130 filas, asiento 126 CONCUERDA-NO-APROBADA/4 PASA, recomparacion 126/4 idéntico; NC 2385-03 y 2385-01 ABIERTA con razones declaradas; R28 verbatim coincide.",
+  "comando": "git log origin/main --first-parent --oneline | rg #1304; consulta.py (sobre git archive origin/main) fp 26a2-04; nc 2385-03; nc 2385-01; DictReader r28-130-no-ciegas.tsv",
+  "salida": "FP 26a2-04 FIRMADA | r28 130 {'CONCUERDA-NO-APROBADA':126,'PASA':4}; {'LOTE-3 paquete enbiare-pisos-bienestar-0001':126,'SIN-PAQUETE-EN-LOTE-3...':4} | NC 2385-03 ABIERTA | NC 2385-01 ABIERTA"
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-2-627e-08",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproducen: FP 26a2-05 FIRMADA; spec v1_1 en origin/main líneas 1 y 5 con R33 y 1e-10; validaciones-independientes REMESAS-MEDIA NO-PASA delta -1.82e-12; NC 2385-06 ABIERTA DIFERIDO-A RELEVO-TRAMITE-CAJA-2.",
+  "comando": "git log origin/main --first-parent --oneline | rg #1304; consulta.py (sobre git archive origin/main) fp 26a2-05; nc 2385-06; git show origin/main:forense/prereg-caja/ENIGH2020-INTENSIDAD-REMESAS-spec-v1_1.md | rg -n '1e-10|tolerancia'; DictReader validaciones-independientes.tsv",
+  "salida": "FP 26a2-05 FIRMADA | 1:# ...sucesora v1.1 · tolerancia de coma flotante; 5:...R33 (1)): «Queda el NO-PASA formal... 1e-10...» | RESULT-ENIGH20-REMINT-REMESAS-MEDIA NO-PASA tol=0.0...delta=-1.82e-12 | NC 2385-06 ABIERTA"
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-2-627e-09",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproducen: excluidas 119 FUERA-DE-767-OMISIONES; cruce por llave 119/119: DISCREPA 111 (IC,SOSTENER 109; PUNTO,ACOTAR 2), 8 D15 SOSTENER-SIN-CORROBORACION; specs-insuficientes NF-BC D15 8 llaves; r24 767 (471/100/96/100); NC beee-01 ABIERTA.",
+  "comando": "git log origin/main --first-parent --oneline | rg #1304; consulta.py (sobre git archive origin/main) nc beee-01; DictReader excluidas-historico.tsv × tabla-result-estado-efecto.tsv por llave; specs-insuficientes-v1_2.tsv; r24-transporte-ventana-767.tsv",
+  "salida": "excluidas 119; {'DISCREPA':111,'NO-RECALCULABLE-DESDE-SPEC':8}; (IC,SOSTENER)109,(PUNTO,ACOTAR)2,(SPEC,SOSTENER-SIN-CORROBORACION)8 | NF-BC D15-RECODIFICACION-AUSENTE llaves 8 | r24 767 | beee-01 ABIERTA"
+ }
+]

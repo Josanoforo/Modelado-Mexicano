@@ -1,0 +1,63 @@
+[
+  {
+    "id": "NC-260927-GEN2-TUBERIA-CI-TIEMPO-2-a387-03",
+    "verdict": "CERRAR-DUPLICADA",
+    "rationale": "Meta-NC: su objeto son otras NC. c6d9-05 y 25 NC del canal (26 con esta, por criterio declarado sobre origin/main) son filas propias, ABIERTAS y con dueño; ninguna fila nombra a a387-03 y su P5 no produce nada. El sucesor TUBERIA-3 nunca la tomó. La causa viva es la FP f18c-01 (ABIERTA). Cerrarla no pierde deuda.",
+    "cite": [
+      {
+        "tipo": "comando",
+        "ref": "forense/no-corrido.tsv (origin/main): universo completo de las NC del canal",
+        "comando": "python3 - <<'EOF'\nimport csv,io,re,subprocess\ncsv.field_size_limit(10**9)\nt=subprocess.run(['git','show','origin/main:forense/no-corrido.tsv'],capture_output=True,text=True,check=True).stdout\nR=list(csv.DictReader(io.StringIO(t,newline=''),delimiter='\\t'))\nc1=re.compile(r'\\[deriva\\]|derivados protegidos|derivados no viajan|job publicador|job derivados|CANAL-MAIN|canal T6|canal-\\[deriva\\]',re.I)\nc2=re.compile(r'cerrable al fusionar el \\[deriva\\]',re.I)\nM={r['id'] for r in R if r['estado']=='ABIERTA' and (c1.search(r['razon']) or c2.search(r['sucesor']))}\nprint(len(R),len(M),len(M)-1,[r['id'] for r in R if any('a387-03' in v for k,v in r.items() if k!='id')])\nEOF",
+        "salida": "1093 26 25 []   (1093 filas leidas con lector CSV; 26 ABIERTA por razon [23] o sucesor [7], interseccion 4, incluida a387-03; 25 otras; 0 filas nombran a387-03 en algun campo)"
+      },
+      {
+        "tipo": "comando",
+        "ref": "origin/main (todo el arbol)",
+        "comando": "git grep -l 'a387-03' origin/main",
+        "salida": "origin/main:forense/analisis/pendientes-3/PENDIENTES-PROGRAMA-v4.md · origin/main:forense/analisis/pendientes-3/dictamen-pendientes-3.tsv · origin/main:forense/analisis/pendientes-3/evidencia/prop-A8.tsv · origin/main:forense/no-corrido.tsv (solo inventarios, dictamen previo y su propia fila: nada depende de ella)"
+      },
+      {
+        "tipo": "archivo",
+        "ref": "forense/encargos/2026-09-26-GEN2-TUBERIA-CI-TIEMPO-2.md:45",
+        "comando": "git show origin/main:forense/encargos/2026-09-26-GEN2-TUBERIA-CI-TIEMPO-2.md | rg -n '^\\| \\(P5\\)'",
+        "salida": "45:| (P5) Cerrar `…c6d9-05` y las NC del canal abiertas por «sin [deriva]» | DIFERIDO-A:post-merge de #1198 — cerrarlas exige el run de main y el `[deriva]` fusionado | NC siguen ABIERTAS | esta sesión tras el merge de #1198 |  (P5 es el cierre contable de CI-TIEMPO-2; P1-P4 fueron el job, el troceo, el drenaje y la guardia)"
+      },
+      {
+        "tipo": "commit",
+        "ref": "9d2550b9 (#1294, GEN2-TUBERIA-3) · A.17: el dueño EN-CURSO(TUBERIA-3) no la tomó",
+        "comando": "git show origin/main:forense/notas/nota-2026-09-28-gen2-tuberia-3-cierre.md | rg -c 'a387|c6d9' ; git show origin/main:forense/encargos/2026-09-28-GEN2-TUBERIA-3.md | rg -n 'a387|c6d9|CI-TIEMPO' | cut -c1-150 ; git branch -r | rg -c 5j6lbu",
+        "salida": "(nota: sin salida, rc=1 = 0 menciones) · encargo:24:- [EXISTE] Derivador del canal y `automerge-rutinas.yml` (CI-TIEMPO-2, RUTINAS-AUTOMERGE-2) … / 27:… Consumidos y citados: CI-TIEMPO-1/2 … (solo como EXISTE, no como pieza) · ramas remotas 5j6lbu: 0. #1294 fusionado: 9d2550b9 Merge pull request #1294"
+      },
+      {
+        "tipo": "firma",
+        "ref": "FP-260928-GEN2-TUBERIA-3-f18c-01 (ABIERTA): donde vive el disparador real",
+        "comando": "python3 tools/consulta.py fp FP-260928-GEN2-TUBERIA-3-f18c-01",
+        "salida": "FP-260928-GEN2-TUBERIA-3-f18c-01 · estado=ABIERTA · creado=2026-09-28 · qué_se_firma=P4 · el [deriva] no se fusiona solo: (a) automerge-rutinas.yml gana schedule (cada 15 min) que fusiona PR derivados/auto-* … (firmada_en vacío en origin/main)"
+      },
+      {
+        "tipo": "commit",
+        "ref": "1f4bf1cc ([deriva] trozo 1, #1268): la precondición ya no es un evento único",
+        "comando": "git log origin/main --oneline --grep='\\[deriva\\] trozo' -n 3 ; git show origin/main:.github/workflows/verify.yml | rg -n \"cron: '0 9\"",
+        "salida": "1f4bf1cc [deriva] trozo 1 tras 429ec004d: 20 CALC, quedan 101 (#1268) · 41:    - cron: '0 9 * * *'  (un [deriva] sí se fusionó el 28/sep y el nocturno está en el workflow; cada miembro cierra con su propia evidencia, no con una pieza P5)"
+      }
+    ],
+    "cerrado_por_detalle": "duplicada: meta-NC cuyo objeto es …c6d9-05 + 25 NC del canal (criterio razon/sucesor declarado; 26 miembros ABIERTA incluida esta), cada una fila propia con dueño y evidencia propia; 0 filas la nombran · python3 inline csv sobre git show origin/main:forense/no-corrido.tsv → 1093 26 25 []; disparador vivo: FP-260928-GEN2-TUBERIA-3-f18c-01 (ABIERTA)",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "Ejecutar el python inline de la primera cita sobre el commit final: debe imprimir 0 en la lista final (nadie nombra a a387-03) y a387-03 debe salir CERRADA con cerrado_por que cite los 25 miembros; cada miembro sigue como fila propia (python3 tools/consulta.py nc <id>).",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "media",
+    "respuesta_a_objeciones": {
+      "cubre_menos_5_vs_20": "Universo re-derivado con lector CSV y criterio declarado (razon: 23 filas; sucesor 'cerrable al fusionar el [deriva]': 7; union 26 incluida a387-03 = 25 otras; 1093 filas examinadas, 335 ABIERTA). Los 12 ids que enumera la propuesta de la rama de #1319 estan dentro de la union salvo 8dbe-05 (su razon dice '/deriva', no '[deriva]').",
+      "abiertas_no_cerradas": "Una duplicada cita el estado de su destino (definicion de CERRAR-DUPLICADA); lo que cuenta es que la fila cerrada no cargue deuda propia. Verificado por comando: 0 filas la nombran (git grep en origin/main: 4 archivos, todos inventarios/dictamen/su propia fila), y sus 25 miembros son filas propias con dueño y razon propia. Ademas su P5 (linea 45 del encargo) es contabilidad sin producto.",
+      "circular": "El circulo c6d9-05 -> CI-TIEMPO-2 -> a387-03 -> c6d9-05 solo existe en el texto del encargo (P5 apunta a 'esta sesion tras el merge de #1198', es decir a nadie) y en el 'antes:' de c6d9-05; ninguna fila la nombra como sucesor o bloqueador. El sucesor EN-CURSO(TUBERIA-3) fue una inferencia del dictamen de PENDIENTES-3 (prop-A8 nota), no una pieza del encargo de TUBERIA-3 (solo lo cita como EXISTE). La causa real de que los miembros sigan abiertos es una decision de mesa con FP propia (f18c-01)."
+    },
+    "nota_coordinacion": [
+      "PREMISA CAIDA (LEIDO por API de GitHub, solo lectura, 29/sep): el PR [deriva] #1309 ya no esta abierto: state=closed, merged=false, closed_at 2026-09-29T00:03:18Z (el job cierra los [deriva] previos como superados: #1309, #1315 y #1318 cerrados sin fusionar; #1320 abierto sobre base 25b5e7f0). El unico [deriva] fusionado en origin/main es 1f4bf1cc (#1268, 28/sep, 'quedan 101'). El encargo del lote dice '#1309 abierto': ya no es cierto, y es un ejemplo de por que ninguna NC debe esperar 'el PR' sino la vista publicada.",
+      "COLISION POSIBLE (tipo 3, rama sin fusionar; se re-lee en main antes de citar): el PR #1319 (GEN2-TUBERIA-TABLERO-INSUMOS-1, abierto, rama claude/sharp-einstein-ftblyy) trae forense/analisis/tablero-insumos-1/dictamen-p3-tuberia3.tsv que ya dictamina a387-03 (CERRADA-POR-DISEÑO, mismo argumento de meta-NC), c6d9-05 (CERRADA por producto) y a387-04 (CERRADA), y asigna a MESA·f18c-01 doce NC del canal. Si #1319 fusiona antes que el PR de PENDIENTES-4, estas filas ya estaran CERRADA; el aplicador debe re-leer origin/main y omitir toda fila ya cerrada (la nota de TUBERIA-3 documenta 25 ids repetidos en no-corrido.tsv por merge=union sobre filas editadas). Regla del encargo: nunca la misma fila dos veces.",
+      "OTRA FILA (no es este veredicto, sirve a quien resuelva c6d9-05): su 'hecho' (push a main < 25 min y primer nocturno citados) se cumple hoy y se verifica por API de GitHub (LEIDO, no reproducible solo con el repo): run push 36495085433 (sha 9d2550b9 = #1294) creado 22:54:24Z, job check terminado 23:02:06Z = 7 min 42 s, conclusion success; nocturnos event=schedule en main: 36326473274 (27/sep, success) y 36458154737 (28/sep, success); el cron esta en verify.yml:41. Por tanto c6d9-05 es cerrable por producto con esos run_id y ABSORBER no haria falta; la cita de runs no es cita de este cierre, que es repo-only.",
+      "MIEMBROS CON DUEÑO OBSOLETO (A.17, para la pasada de P3): 14 de los 26 miembros de la union tienen sucesor 'EN-CURSO (GEN2-TUBERIA-3 · rama claude/new-session-5j6lbu)': el acto esta fusionado (#1294) y la rama no existe en origin (0 ramas remotas). Cada uno se resuelve en su propia fila; ninguno depende de a387-03."
+    ]
+  }
+]

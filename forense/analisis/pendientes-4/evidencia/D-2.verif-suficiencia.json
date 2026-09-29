@@ -1,0 +1,23 @@
+[
+ {
+  "id": "NC-0026",
+  "veredicto": "REFUTA",
+  "razon": "Firma (5) de MARCADOR-REDISENO-1 cierra 0024/0076/0239/0300 y omite 0026. La adenda solo autoriza categorías. Cablear la envoltura no es retador ni procedimiento retirado; emite_m sigue vivo (/emite-m) y el CALC ola-v2 consume las funciones. Es preferencia, no retiro.",
+  "comando": "git show origin/main:forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md | sed -n 6p | rg -o 'NC-0024/0076/0239/0300'; git grep -n ola_previa_estricta origin/main -- '*.py' | wc -l",
+  "salida": "NC-0024/0076/0239/0300 (sin NC-0026); 9 líneas en 3 archivos, incl. CALC-M-...-ola-v2/medidor.py. ADENDA-1 no está en origin/main (solo rama)."
+ },
+ {
+  "id": "NC-0070",
+  "veredicto": "CONFIRMA",
+  "razon": "El objeto son CALC que comparan M contra R arbitrado de olas 2016/2018/2020, ya vistas: retador retirado por regla 6. TRA-M-02 es además NO-CONSTRUIBLE-SIN-CROSSWALK. Cae bajo la categoría de la adenda. El sucesor GEN2-MODULACION-C0-D-CALC-1 no existe. Confianza media.",
+  "comando": "git show origin/main:forense/prereg-caja/S17-MODULACION-OLA-R5-1-spec-v1_0.md | sed -n 19p | cut -c1-200; git ls-tree -r origin/main --name-only forense/encargos | grep -ci MODULACION",
+  "salida": "El marcador M emite... se compara contra el R arbitrado de esa celda; 0 encargos con MODULACION en 1221 archivos."
+ },
+ {
+  "id": "NC-0218",
+  "veredicto": "REFUTA",
+  "razon": "El sello existe (CALC-TRIADA-B-PISO-0001), pero la fila pedía incorporarlo al informe y eso no ocurrió: v1_5 tiene 0 menciones. La omisión no es un retiro. El ADR citado no menciona tríada ni D-A. La propia fila exigía verificar que v1_5 absorbe el objeto, y no lo absorbe.",
+  "comando": "git grep -c -i 'tr[ií]ada' origin/main -- canon/informe-programa-v1_5.md; git show origin/main:canon/L0/ADR-260924-GEN2-INFORME-V1-3-1-b1aa-01.md | grep -c -i 'tr[ií]ada\\|D-A\\|NC-0218'",
+  "salida": "v1_5: 0 tríada; ADR: 0 menciones de tríada/D-A/NC-0218. ANEXO v1_0 §A.3 sigue diciendo 'D-A no existe'. Nota: corrí 'corrida0 demanda' por error y revertí los dos TSV que modificó."
+ }
+]

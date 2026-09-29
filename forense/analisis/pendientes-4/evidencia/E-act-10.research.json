@@ -1,0 +1,207 @@
+[
+  {
+    "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-18",
+    "verdict": "ABSORBER",
+    "rationale": "RES-0051 sigue con literal GEN1 en milpa/tramite.yaml:1413 (consulta: estado=PENDIENTE). El único CALC L8 (1 de 390) ingiere data/l8-resultados-tipo-boleta-v1_0.json, número GEN1: por E.2 no releva. Delegación 28/sep: (a) CALC nuevo en CAJA que re-mida la conversión desde cómputos crudos (el manifiesto trae 112 ids electorales). Va junto con a157-17 y a157-19.",
+    "cite": [
+      {"tipo": "comando", "ref": "data/corrida0/", "comando": "git ls-tree --name-only origin/main data/corrida0/ | rg 'L8'; git ls-tree --name-only origin/main data/corrida0/ | rg -c '^data/corrida0/CALC-'", "salida": "data/corrida0/CALC-L8-CONVERSION-0001\n390"},
+      {"tipo": "archivo", "ref": "milpa/tramite.yaml:1413", "comando": "git show origin/main:milpa/tramite.yaml | rg -n 'participa_p0_maximo'", "salida": "1413:      - {conducta: participa_p0_maximo, p: 0.750567, clase: \"MEDIDO·Δ\"}      # p0=0.7104 (Veracruz 2017->2021, n=209)"},
+      {"tipo": "comando", "ref": "RES-0051", "comando": "python3 tools/consulta.py result RES-0051", "salida": "RES-0051 · valor=PENDIENTE · unidad=NO-DECLARADO-EN-EL-REGISTRO · tipo=conducta_p_medido · corrida_id=CORR-0016 · sello=PENDIENTE · estado=PENDIENTE · generacion=GEN2-PENDIENTE · cuenta_gen2=SI · validacion_independiente=NO-HECHA · n_usos=1"},
+      {"tipo": "regla", "ref": "gobierno/instrucciones-proyecto-v2_16.md:100 (E.2)", "comando": "git grep -n 'ingerir un número GEN1 no cuenta nunca' origin/main -- gobierno/instrucciones-proyecto-v2_16.md | cut -c1-80", "salida": "origin/main:gobierno/instrucciones-proyecto-v2_16.md:100:E.2 Ningún número entra a GEN2 sin cadena nacida con él (… ingerir un número GEN1 no cuenta nunca)"},
+      {"tipo": "archivo", "ref": "forense/notas/2026-09-24-GEN2-RELEVO-MOTOR-34-1-nota.md:63", "comando": "git show origin/main:forense/notas/2026-09-24-GEN2-RELEVO-MOTOR-34-1-nota.md | rg -n 'L8'", "salida": "63:| 3 L8 (0050–0052) | — | `CALC-L8-CONVERSION-0001` reproduce pero **ingiere** un JSON GEN1 | NC; DIFERIDO-A CAJA (4.1: ingerir GEN1 no cuenta nunca) |"},
+      {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv (a157-17, a157-18)", "comando": "python3 csv.DictReader sobre decididas-por-delegacion.tsv, id en {a157-17,a157-18}", "salida": "a157-17 DUEÑO-MESA: Opciones: (a) encargo CAJA que re-mida la conversion desde computos crudos SICEE/INE (CALC nuevo, COMMIT-1); (b) mesa declara RES-0050..0052 RESIDUO historico. Propongo (a); 71 y 72 van en el mismo encargo. | a157-18: Mismo procedimiento y mismo encargo que a157-17 (participa_p0_maximo)"},
+      {"tipo": "comando", "ref": "data/manifiesto.yaml", "comando": "git show origin/main:data/manifiesto.yaml | rg -ic 'id:.*(computo|sicee|ine_|iepc|ieem|prep)'", "salida": "112 (ej.: ieez_zacatecas_2018_computos_municipales_xlsx, ieeh_hidalgo_2020_computos_x_casilla_xlsx)"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "RELEVO-TRAMITE-CAJA-2",
+    "entorno": "CAJA",
+    "hecho_comando": "python3 tools/consulta.py result RES-0051  # estado≠PENDIENTE y generacion=GEN2 desde CALC-L8-CONVERSION-000[2-9]; y rg -c 'l8-resultados-tipo-boleta' data/corrida0/CALC-L8-CONVERSION-0002/spec.yaml → 0",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-19",
+    "verdict": "ABSORBER",
+    "rationale": "Mismo objeto que a157-18: RES-0052 (participa_p0_media) sigue con literal GEN1 en milpa/tramite.yaml:1414; CALC-L8-CONVERSION-0001 ingiere JSON GEN1 y por E.2 no releva. Delegación 28/sep: (a) re-medición desde cómputos crudos en CAJA, las tres filas (0050–0052) en el mismo encargo.",
+    "cite": [
+      {"tipo": "archivo", "ref": "milpa/tramite.yaml:1414", "comando": "git show origin/main:milpa/tramite.yaml | rg -n 'participa_p0_media'", "salida": "1414:      - {conducta: participa_p0_media,  p: 0.619867, clase: \"MEDIDO·Δ\"}      # p0=0.5797 (media de las 40 transiciones)"},
+      {"tipo": "comando", "ref": "data/corrida0/", "comando": "git ls-tree --name-only origin/main data/corrida0/ | rg 'L8'", "salida": "data/corrida0/CALC-L8-CONVERSION-0001  (único de 390 CALC)"},
+      {"tipo": "archivo", "ref": "forense/analisis/astra4-relevo/lote-l8-conversion.md", "comando": "git show origin/main:forense/analisis/astra4-relevo/lote-l8-conversion.md | sed -n 7,9p", "salida": "`forense/replay-evidencia.tsv` registra contexto idéntico y resultado reproducido. El insumo es el JSON versionado `data/l8-resultados-tipo-boleta-v1_0.json`, no un microdato nuevo."},
+      {"tipo": "regla", "ref": "gobierno/instrucciones-proyecto-v2_16.md:100 (E.2)", "comando": "git grep -n 'ingerir un número GEN1 no cuenta nunca' origin/main -- gobierno/instrucciones-proyecto-v2_16.md | cut -c1-80", "salida": "origin/main:gobierno/instrucciones-proyecto-v2_16.md:100:E.2 …"},
+      {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv (a157-19)", "comando": "python3 csv.DictReader sobre decididas-por-delegacion.tsv, id a157-19", "salida": "DUEÑO-MESA: Mismo procedimiento y mismo encargo que a157-17 (participa_p0_media); decidir las tres juntas."}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "RELEVO-TRAMITE-CAJA-2",
+    "entorno": "CAJA",
+    "hecho_comando": "python3 tools/consulta.py result RES-0052  # estado≠PENDIENTE y generacion=GEN2 desde CALC-L8-CONVERSION-000[2-9] sin input data/l8-resultados-tipo-boleta-v1_0.json",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260922-GEN2-RELEVO-TANDA-7-9a4c-01",
+    "verdict": "CERRAR-FIRMA",
+    "rationale": "Las 18 lecturas L (CIV M-01/02/04/10/12/13 y FAM M-05/06/07, L-solo y L+corpus) están entre las 42 L/AGREGADO de marco-M-sorteado-v1_3 que mesa declaró HISTÓRICO-SIN-RELEVO (FP e760-03, H3, FIRMADA 25/sep, posterior a F-L). RELEVO-CONSUMIDORES-3 ya las sacó del contador legacy (tools/corrida0.py:350-383). No queda pin que escribir; la delegación de PENDIENTES-3 no vio H3.",
+    "cite": [
+      {"tipo": "firma", "ref": "FP-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-03 (forense/firmas-pendientes.tsv)", "comando": "python3 csv.DictReader sobre git show origin/main:forense/firmas-pendientes.tsv, id e760-03", "salida": "FIRMADA | 25/sep/2026, verbatim, mesa en chat («firmo» sobre H3 de la hoja FIRMAS-17), viaja en forense/encargos/2026-09-25-GEN2-TRAMITE-FIRMAS-18.md §2: «Mesa declara HISTÓRICO-SIN-RELEVO las 42 lecturas L/AGREGADO de marco-M-sorteado-v1_3 y las saca del contador legacy; ejecuta RELEVO-CONSUMIDORES-3.»"},
+      {"tipo": "archivo", "ref": "tools/corrida0.py:350-358", "comando": "git show origin/main:tools/corrida0.py | sed -n 350,358p", "salida": "# FIRMAS-18 H1/H2/H3 (FP e760-01/02/03, FIRMADA 25/sep/2026; ejecuta\n# RELEVO-CONSUMIDORES-3): una lectura declarada HISTÓRICO-SIN-RELEVO sale del\n# contador legacy y se cuenta aparte; ...\nTIPOS_HISTORICO_H3 = frozenset({\"celda_L\", \"celda_AGREGADO\"})\nPREFIJO_MARCO_H3 = \"forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:\""},
+      {"tipo": "archivo", "ref": "forense/notas/2026-09-26-GEN2-RELEVO-CONSUMIDORES-3-nota.md:47", "comando": "git show origin/main:forense/notas/2026-09-26-GEN2-RELEVO-CONSUMIDORES-3-nota.md | rg -n 'H3'", "salida": "11:- **H3** «Mesa declara HISTÓRICO-SIN-RELEVO las 42 lecturas L/AGREGADO de marco-M-sorteado-v1_3 y las saca del contador legacy; ejecuta RELEVO-CONSUMIDORES-3.»\n47:| marco | 43 | **1** (esperado ≤ 1 ✔) | 42 (H3) | 0 | DIN-M-01:M (CAJA) |"},
+      {"tipo": "comando", "ref": "data/corrida0/demanda-dictamen-v1_0.tsv", "comando": "python3 csv.DictReader (sin líneas #) sobre git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv; celdas con dictamen NO-RELEVAR-POR-REGLA-6", "salida": "341 filas; 43 NO-RELEVAR-POR-REGLA-6: 3 CIV-M-01, 3 CIV-M-02, 3 CIV-M-04, 3 CIV-M-10, 3 CIV-M-12, 3 CIV-M-13, 3 FAM-M-05, 3 FAM-M-06, 3 FAM-M-07 (+DIN-M-01, FAM-M-01, TRA-M-02/03/07); sucesor 'NINGUNO (histórico)'"},
+      {"tipo": "comando", "ref": "data/corrida0/pines-de-mesa.tsv", "comando": "git show origin/main:data/corrida0/pines-de-mesa.tsv | rg -c 'L-DESDE-CAPTURAS|LDESC' || echo 0", "salida": "0 (51 líneas examinadas)"}
+    ],
+    "cerrado_por_detalle": "firma: FP-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-03 (H3, FIRMADA 25/sep: HISTÓRICO-SIN-RELEVO de las 42 L/AGREGADO de marco-M-sorteado-v1_3) · ejecutada por GEN2-RELEVO-CONSUMIDORES-3: tools/corrida0.py:350-383",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260924-GEN2-REPLAY-NO-VERIFICADOS-1-822a-03",
+    "verdict": "ABSORBER",
+    "rationale": "Sigue viva: en origin/main y en la rama del [deriva] abierto (#1309) los seis CALC muestran resultado_replay=NO-VERIFICADO, aunque forense/replay-evidencia.tsv trae REPRODUCE·IDENTICO del 22/sep. lote_pendiente() solo recupera asientos ausentes de corridas.tsv, así que el canal no lo arregla solo. Delegación: (b) encargo de tubería que re-proyecte asientos ya publicados.",
+    "cite": [
+      {"tipo": "comando", "ref": "data/corrida0/corridas.tsv", "comando": "git show origin/main:data/corrida0/corridas.tsv | python3 (csv.DictReader sin '#', corrida_id ~ ^CALC-(EDER2017-…-000[12]|ENFIH2019-…-000[12]|ENSAFI2023-…-0001|WBES2023-…-0001)) → resultado_replay, contexto_replay, fuente_replay", "salida": "EDER-0001 NO-VERIFICADO SIN-FUENTE · EDER-0002 NO-VERIFICADO VERIFY-DIRIGIDO · ENFIH-0001 NO-VERIFICADO SIN-FUENTE · ENFIH-0002 NO-VERIFICADO SIN-FUENTE · ENSAFI-0001 NO-VERIFICADO SIN-FUENTE · WBES-0001 NO-VERIFICADO SIN-FUENTE (357 filas); idéntico en origin/derivados/auto-36495085433 (422 filas)"},
+      {"tipo": "comando", "ref": "forense/replay-evidencia.tsv", "comando": "git show origin/main:forense/replay-evidencia.tsv | python3 csv.DictReader, mismo patrón de calc_id", "salida": "l.189 EDER-0001 REPRODUCE IDENTICO 2026-09-22; l.190 EDER-0002; l.192 ENFIH-0001; l.193 ENFIH-0002; l.205 ENSAFI-0001; l.212 WBES-0001 (todas REPRODUCE IDENTICO 2026-09-22; 374 filas)"},
+      {"tipo": "archivo", "ref": "tools/lote_desde_asientos.py:141-147", "comando": "git show origin/main:tools/lote_desde_asientos.py | sed -n 141,147p", "salida": "def lote_pendiente(...):\n    \"\"\"Asientos sellados todavía ausentes de la vista publicada.\n    Recupera un push cuyo job de publicación falló, sin autorizar cambios\n    de replay en corridas ya publicadas. El asiento sigue siendo la fuente.\"\"\""},
+      {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv (822a-03)", "comando": "python3 csv.DictReader sobre decididas-por-delegacion.tsv, id 822a-03", "salida": "DUEÑO-MESA: … Opciones: (a) mesa dispara el job [deriva] con lote explicito de los seis ids (workflow_dispatch …); (b) encargo TUBERIA para que lote_desde_asientos recupere asientos no proyectados (cubre tambien las ~13 del drift de 9428-01). Propongo (b) y (a) como puente."},
+      {"tipo": "comando", "ref": "forense/encargos/", "comando": "git grep -l 'lote_desde_asientos' origin/main -- forense/encargos | wc -l; revisión de los 8: ninguno re-proyecta asientos ya publicados", "salida": "8 encargos (CONTADORES-CONSUMO-1, DUELO-ENCIG2025-CIERRE-1, TUBERIA-TABLERO-EN-CANAL-1 (+ADENDA), TUBERIA-CI-TIEMPO-1/2, TUBERIA-RESUMEN-SUITE-1, RELEVO-TRAMITE-CAJA-1): NO-ENCONTRADO un encargo que cubra la re-proyección"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "TUBERIA-TESTS-LOTE",
+    "entorno": "NUBE",
+    "hecho_comando": "git show origin/main:data/corrida0/corridas.tsv | python3 -c \"import csv,sys,re;L=[l for l in sys.stdin if not l.startswith('#')];p=re.compile(r'^CALC-(EDER2017-PRIMERA-UNION-SEXO-COHORTE-000[12]|ENFIH2019-COBERTURA-SALDOS-CATPOS-000[12]|ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001|WBES2023-PRECISION-INTERACCIONES-0001)--');print(sum(1 for r in csv.DictReader(L,delimiter='\\t') if p.match(r['corrida_id']) and r['resultado_replay']=='NO-VERIFICADO'))\"  # → 0",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-02",
+    "verdict": "ABSORBER",
+    "rationale": "Ningún CALC mide ENSANUT 2018 ni 2020: de 390, solo CALC-ENSANUT-0001 y CALC-ENSANUT-PISOS-SALUD-0001 (serie 2021–2024, adoptada por 6d56-01). Delegación 28/sep: (a) pieza PISOS-2 para 2018 con reglas propias (cambian llaves y ventanas); (b) 2020 (cuestionario COVID) declarado fuera de serie dentro del mismo encargo. Hay payloads 2018 en el manifiesto; 2018 no es la ola más reciente.",
+    "cite": [
+      {"tipo": "comando", "ref": "data/corrida0/", "comando": "git ls-tree --name-only origin/main data/corrida0/ | rg -i 'ENSANUT'", "salida": "data/corrida0/CALC-ENSANUT-0001\ndata/corrida0/CALC-ENSANUT-PISOS-SALUD-0001  (de 390 CALC)"},
+      {"tipo": "comando", "ref": "data/manifiesto.yaml", "comando": "git show origin/main:data/manifiesto.yaml | rg -ic 'id:.*ensanut.*2018'", "salida": "140 (ej.: ensanut_2018__cs_hogares_stata_stata_zip, ensanut_2018__cs_residentes_stata_stata_zip)"},
+      {"tipo": "firma", "ref": "FP-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-01", "comando": "python3 csv.DictReader sobre forense/firmas-pendientes.tsv, id 6d56-01", "salida": "FIRMADA | «Se adopta ENSANUT 2021–2024 (13 conductas, 3 854 RESULT, IC calibrado sobre 2024) como CON-RESERVA-DE-ANCHO …; ejecuta GEN2-CATALOGO-V1-1-1.»"},
+      {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv (6d56-02)", "comando": "python3 csv.DictReader sobre decididas-por-delegacion.tsv, id 6d56-02", "salida": "DUEÑO-MESA: GEN2-SALUD-Y-BIENESTAR-PISOS-2 no tiene encargo; … Ola no reservada. Opciones: (a) redactar el encargo PISOS-2 (una sola sesion CAJA para 62-65); (b) cerrar por diseno 2018 … y 2020 (cuestionario COVID) como fuera de serie. Propongo (a) para 2018 con reglas propias y (b) para 2020."},
+      {"tipo": "comando", "ref": "forense/encargos/", "comando": "git ls-tree -r --name-only origin/main forense/encargos | rg -c 'PISOS-2'", "salida": "0 (1217 archivos examinados)"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+    "entorno": "CAJA",
+    "hecho_comando": "git ls-tree --name-only origin/main data/corrida0/ | rg 'CALC-ENSANUT-PISOS-SALUD-000[2-9]' && git show origin/main:data/corrida0/CALC-ENSANUT-PISOS-SALUD-0002/spec.yaml | rg -c '2018'  # ≥1, y la spec declara 2020 fuera de serie",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-03",
+    "verdict": "ABSORBER",
+    "rationale": "Las 12 afirmaciones (APUEST-024/025/037, CONOC-010/018, SALUD-014/016/024/025/031/032/037) siguen con gen2_existente «ninguna corrida» en canon/mapa-dominios-v1_1.tsv y ninguna spec las cita (390 spec.yaml + 502 archivos de prereg-caja). Cinco son MEDIBLE-EN-CORPUS; siete MEDIBLE-CON-ADQUISICIÓN (antes hay que adquirir). Delegación: (a) incluir los módulos en PISOS-2.",
+    "cite": [
+      {"tipo": "comando", "ref": "data/corrida0/CALC-*/spec.yaml + forense/prereg-caja", "comando": "git grep -l -E 'APUEST-02[45]|APUEST-037|CONOC-01[08]|SALUD-01[46]|SALUD-02[45]|SALUD-03[127]' origin/main -- 'data/corrida0/CALC-*/spec.yaml' forense/prereg-caja | wc -l", "salida": "0 (NO-ENCONTRADO; examinados 390 spec.yaml y 502 archivos de forense/prereg-caja)"},
+      {"tipo": "comando", "ref": "canon/mapa-dominios-v1_1.tsv", "comando": "python3 csv.DictReader sobre git show origin/main:canon/mapa-dominios-v1_1.tsv; filas con esos 12 ids → dictamen, gen2_existente", "salida": "APUEST-024 MEDIBLE-CON-ADQUISICIÓN · APUEST-025 MEDIBLE-EN-CORPUS · APUEST-037 CON-ADQ · SALUD-014 CON-ADQ · SALUD-016 CON-ADQ · SALUD-024 EN-CORPUS · SALUD-025 CON-ADQ · SALUD-031 EN-CORPUS · SALUD-032 EN-CORPUS · SALUD-037 EN-CORPUS · CONOC-010 CON-ADQ · CONOC-018 CON-ADQ; gen2_existente: 'ninguna corrida …' en las 12 (1396 filas)"},
+      {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv (6d56-03)", "comando": "python3 csv.DictReader sobre decididas-por-delegacion.tsv, id 6d56-03", "salida": "DUEÑO-MESA: Mismo encargo PISOS-2 (sin archivar): los modulos etiquetado, vacunacion, HbA1c, antropometria, actividad fisica, anticoncepcion, motivos de atencion estan en la cola de medicion como DIFERIDO. Opciones: (a) incluirlos en el encargo PISOS-2; (b) elegir un subconjunto por prioridad de mapa. Propongo (a)."}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+    "entorno": "CAJA",
+    "hecho_comando": "git grep -l -E 'APUEST-02[45]|APUEST-037|CONOC-01[08]|SALUD-01[46]|SALUD-02[45]|SALUD-03[127]' origin/main -- 'data/corrida0/CALC-*/spec.yaml' | wc -l  # ≥1, y la nota del acto da dictamen (MEDIDO / NO-CONSTRUIBLE / ADQUISICION) a las 12",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-02",
+    "verdict": "ABSORBER",
+    "rationale": "SEXO/EDAD 2017T1 sigue sin medir: solo existen CALC-ENSU-SERIE-0001 y CALC-ENSU-PISOS-0001 (2 CALC-ENSU de 390), con código congelado (D-18). La firma A1 (5916-01) adoptó con reserva «2017T1 sin sexo/edad». Delegación 28/sep: spec nueva ENSU SEXO/EDAD 2017T1 en CAJA que diagnostique el JOIN CB↔CS por valor de llave. El payload 2017 está en el manifiesto.",
+    "cite": [
+      {"tipo": "comando", "ref": "data/corrida0/", "comando": "git ls-tree --name-only origin/main data/corrida0/ | rg 'CALC-ENSU'", "salida": "data/corrida0/CALC-ENSU-PISOS-0001\ndata/corrida0/CALC-ENSU-SERIE-0001  (de 390; además CALC-PDR1-ENSU2024-0001, solo 2024T1)"},
+      {"tipo": "firma", "ref": "FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01", "comando": "python3 csv.DictReader sobre forense/firmas-pendientes.tsv, id 5916-01", "salida": "FIRMADA | «**A1** `SEGURIDAD-ENSU-5916-01` → **CON-RESERVA-DE-ANCHO** (tres conductas reproducen INEGI al decimal; cuatro hábitos con «No aplica» en denominador no comparables con comunicados; 2017T1 sin sexo/edad).»"},
+      {"tipo": "comando", "ref": "data/manifiesto.yaml", "comando": "git show origin/main:data/manifiesto.yaml | rg -i 'id:.*ensu.*2017'", "salida": "- id: cc1_inegi_ensu_2017__ensu_bd_2017_dbf\n- id: cc1_inegi_ensu_2017__ensu_fd_2017_pdf"},
+      {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv (5916-02)", "comando": "python3 csv.DictReader sobre decididas-por-delegacion.tsv, id 5916-02", "salida": "DUEÑO-MESA: Las columnas de llave existen y el esquema de marzo = junio 2017; la causa (formato de valor) exige leer valores de llave… Codigo congelado (D-18): opcion, spec nueva ENSU SEXO/EDAD 2017T1 en CAJA. Ningun encargo la cubre."}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+    "entorno": "CAJA",
+    "hecho_comando": "git grep -l '2017T1' origin/main -- 'data/corrida0/CALC-ENSU-*/spec.yaml' | rg -v 'CALC-ENSU-SERIE-0001|CALC-ENSU-PISOS-0001'  # ≥1 CALC nuevo con RESULT SEXO/EDAD 2017T1 o dictamen NO-CONSTRUIBLE que cite el valor de llave",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-03",
+    "verdict": "ABSORBER",
+    "rationale": "No se encontró CALC-ENSU-PISOS-0002 (390 CALC examinados). Lo más cercano, CALC-PDR1-ENSU2024-0001, mide solo C09/SANC-007 en 2024T1 sin «No aplica»: EXISTE-NO-SATISFACE para C09–C12 en 2024T1/2025T3/2025T4. Re-medir es spec nueva en CAJA, porque el universo congelado incluye «No aplica». Delegación: sucesor en el próximo lote ENSU.",
+    "cite": [
+      {"tipo": "comando", "ref": "data/corrida0/", "comando": "git ls-tree --name-only origin/main data/corrida0/ | rg -c 'CALC-ENSU-PISOS-0002' || echo 0", "salida": "0 (390 CALC examinados)"},
+      {"tipo": "archivo", "ref": "data/corrida0/CALC-PDR1-ENSU2024-0001/spec.yaml:28,48,51", "comando": "git show origin/main:data/corrida0/CALC-PDR1-ENSU2024-0001/spec.yaml | rg -n -i 'no aplica|estimando'", "salida": "28:  rol: 'reactivo 1.5 llevar cosas de valor (FD marzo 2024 p.24): 1 Sí 2 No 3 No aplica 9 NS/NR'\n48:filtros: 'PRINCIPAL: denominador códigos 1,2 (No aplica y NS/NR fuera). …'\n51:estimando: Proporción ponderada … llevar cosas de valor por temor al delito, 2024T1 …"},
+      {"tipo": "archivo", "ref": "data/corrida0/CALC-ENSU-PISOS-0001/spec.yaml:142-163,244-257", "comando": "git show origin/main:data/corrida0/CALC-ENSU-PISOS-0001/spec.yaml | rg -n 'C09|C10|C11|C12|2024T1|2025T'", "salida": "142: rol: reactivo C09-HABITO-OBJETOS-VALOR … 148: C10-HABITO-CAMINAR-NOCHE … 154: C11-HABITO-VISITAR … 160: C12-HABITO-MENORES … 244: estimando: Pisos por segmento ENSU 2024T1, 2025T3, 2025T4 de 15 proporciones"},
+      {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv (5916-03)", "comando": "python3 csv.DictReader sobre decididas-por-delegacion.tsv, id 5916-03", "salida": "DUEÑO-MESA: Re-medir C09-C12 sin \"No aplica\" es spec nueva en CAJA; no hay encargo archivado ni en vuelo. El id CALC-ENSU-PISOS-0002 sigue libre. Recomiendo dejarlo como sucesor sin dueno hasta el proximo lote ENSU (la rama -ensu2024 de PISOS-DOMINIOS mide ENSU 2024 SANC-007, otro objeto)."}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+    "entorno": "CAJA",
+    "hecho_comando": "python3 tools/consulta.py corrida CALC-ENSU-PISOS-0002  # SELLADA, con RESULT C09–C12 de denominador sin «No aplica» para 2024T1/2025T3/2025T4",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-04",
+    "verdict": "ABSORBER",
+    "rationale": "R43 (FIRMADA-DELEGADA, letra 15) eligió (a): la serie por ciudad C02–C15 se mide, con sucesor GEN2-SEGURIDAD-ENSU-CIUDAD-1, que no tiene encargo (0 de 1217 archivos). La cola de medición v1_1 no la lista (ENSU sale MEDIDO). Entra al lote de pisos en CAJA. Como son ~250 000 RESULT, el encargo la acota por demanda: conductas con afirmación en el mapa.",
+    "cite": [
+      {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R43", "comando": "python3 csv.DictReader sobre decisiones-21.tsv, renglon R43", "salida": "objeto: NC-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-04: serie ENSU por ciudad: medir o retirar | estado: FIRMADA-DELEGADA (GEN2-TRAMITE-FIRMAS-21: decidida por el trámite; nota §P3)"},
+      {"tipo": "archivo", "ref": "forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md:38", "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md | rg -n '5916-04'", "salida": "38:| 15 | …5916-04 | (a) en cola con dueño | sucesor GEN2-SEGURIDAD-ENSU-CIUDAD-1 |"},
+      {"tipo": "comando", "ref": "forense/encargos/", "comando": "git grep -l 'ENSU-CIUDAD' origin/main -- forense/encargos | wc -l; git ls-tree -r --name-only origin/main forense/encargos | wc -l", "salida": "0\n1217"},
+      {"tipo": "comando", "ref": "forense/analisis/dominios/cola-medicion-v1_1.tsv", "comando": "python3 csv.DictReader (sin '#') sobre la cola; filas con programa ENSU", "salida": "4 filas ENSU (VIOLENCIA, CONFIANZA, GENERO, SANCION_SOCIAL), todas estado_fila=MEDIDO con CALC-ENSU-PISOS-0001; ninguna fila de serie por ciudad (61 filas)"},
+      {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv (5916-04)", "comando": "python3 csv.DictReader sobre decididas-por-delegacion.tsv, id 5916-04", "salida": "DUEÑO-MESA: Decidido por delegacion (renglon R43 FIRMADA-DELEGADA): (a) queda en cola de medicion. Pero GEN2-SEGURIDAD-ENSU-CIUDAD-1 no tiene encargo … ~250 000 RESULT: D-14/regla de senal."}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+    "entorno": "CAJA",
+    "hecho_comando": "git grep -l -i 'CIUDAD' origin/main -- 'data/corrida0/CALC-ENSU-*/spec.yaml' | rg -v 'CALC-ENSU-SERIE-0001|CALC-ENSU-PISOS-0001'  # ≥1 CALC sellado con serie por ciudad de C02–C15 (o el subconjunto acotado por demanda, declarado en su spec)",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260928-GEN2-TABLERO-CARRILES-1-e2eb-01",
+    "verdict": "CANAL",
+    "rationale": "Solo espera al canal. En origin/main ningún [deriva] tocó el tablero tras #1300 (el último [deriva] de main, 1f4bf1cc, es anterior al merge 484d56cb). El primero posterior (de9c04c8, trozo 1 tras 9d2550b9) está en derivados/auto-36495085433 (PR #1309, sin fusionar) y regenera forense/tablero/TABLERO-CARRILES.md y docs/tablero-carriles.html. Cuando fusione, se cita el commit y su run.",
+    "cite": [
+      {"tipo": "comando", "ref": "forense/tablero/TABLERO-CARRILES.md", "comando": "git log origin/main --format='%h %ad %s' --date=iso -n 5 -- forense/tablero/TABLERO-CARRILES.md docs/tablero-carriles.html | cut -c1-110", "salida": "ec28fc58 2026-09-28 20:13:43 +0000 GEN2-TABLERO-CARRILES-1 · CONSUMIDO por #1300; NC con PR real; tablero regenerado\nb266ef0a … cascada …\ncb29e3c8 … P1-P4 … (ningún [deriva])"},
+      {"tipo": "commit", "ref": "1f4bf1cc / 484d56cb", "comando": "git log origin/main --format='%h %ad %s' --date=iso | rg -m1 '\\[deriva\\]'; git log -1 --format='%h %ad' --date=iso 484d56cb", "salida": "1f4bf1cc 2026-09-28 10:20:35 -0600 [deriva] trozo 1 tras 429ec004d: 20 CALC, quedan 101 (#1268)\n484d56cb 2026-09-28 14:20:39 -0600"},
+      {"tipo": "comando", "ref": "origin/derivados/auto-36495085433", "comando": "git log origin/derivados/auto-36495085433 --format='%h %s' -n 2 -- forense/tablero/TABLERO-CARRILES.md; git merge-base --is-ancestor origin/derivados/auto-36495085433 origin/main || echo NO-FUSIONADA", "salida": "de9c04c8 [deriva] trozo 1 tras 9d2550b92: 20 CALC, quedan 93\nec28fc58 GEN2-TABLERO-CARRILES-1 · CONSUMIDO por #1300 …\nNO-FUSIONADA"},
+      {"tipo": "comando", "ref": "git diff --stat origin/main...origin/derivados/auto-36495085433", "comando": "git diff --stat origin/main...origin/derivados/auto-36495085433 | rg 'carriles|CARRILES'", "salida": "docs/tablero-carriles.html | 304 +-\nforense/tablero/TABLERO-CARRILES.md | 231 +-"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "git log origin/main --format='%h %s' -- forense/tablero/TABLERO-CARRILES.md | rg -m1 '\\[deriva\\]'  # no vacío tras fusionar #1309; el /tramite siguiente cita ese commit y el run 36495085433",
+    "owner_detalle": "CANAL (PR #1309, rama derivados/auto-36495085433: [deriva] de9c04c8 regenera forense/tablero/TABLERO-CARRILES.md y docs/tablero-carriles.html)",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260922-GEN2-TRAMITE-COLA-VIEJA-1-0eca-02",
+    "verdict": "ABSORBER",
+    "rationale": "R55 (FIRMADA-DELEGADA, letra 11) ya decidió (a)+(b): CONSUMIDO donde haya PR, HISTÓRICO en el resto, como anotación sin borrar. Falta el producto: los 14 archivos de forense/encargos/cola/ siguen sin marca «## CONSUMIDO/HISTÓRICO» (14 de 14) y no hay encargo COLA-VIEJA-2. PENDIENTES-4 no puede anotarlos: los encargos archivados son ajenos a su perímetro. Es trabajo de forma en NUBE.",
+    "cite": [
+      {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R55", "comando": "python3 csv.DictReader sobre decisiones-21.tsv, renglon R55", "salida": "objeto: NC-260922-GEN2-TRAMITE-COLA-VIEJA-1-0eca-02: 14 encargos de cola vieja: CONSUMIDO o HISTÓRICO | tipo FORMA | estado: FIRMADA-DELEGADA (GEN2-TRAMITE-FIRMAS-21: decidida por el trámite; nota §P3)"},
+      {"tipo": "archivo", "ref": "forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md:34", "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md | rg -n '0eca'", "salida": "34:| 11 | …0eca-02 | (a)+(b) CONSUMIDO/HISTÓRICO | sucesor GEN2-TRAMITE-COLA-VIEJA-2 |"},
+      {"tipo": "comando", "ref": "forense/encargos/cola/ (14 archivos)", "comando": "git ls-tree -r --name-only origin/main forense/encargos/cola | rg '\\.md$' | rg 'MAESTRA34-N3-AGREGA-2|GEN2-E[124]-|GEN2-E5-0-|GEN2-E5-CALC|POST-685/0[1-4]-|POST-693/(09|13)-|POST-701/17-|POST-707/20-' | while read f; do git show origin/main:\"$f\" | rg -q '^## (CONSUMIDO|HISTÓRICO)' || echo \"$f\"; done | wc -l", "salida": "14 (14 archivos examinados, los 14 sin marca; en el resto de cola/, 24 llevan '## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1')"},
+      {"tipo": "comando", "ref": "forense/encargos/", "comando": "git ls-tree -r --name-only origin/main forense/encargos | rg -c 'COLA-VIEJA-2' || echo 0", "salida": "0 (1217 archivos examinados)"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "OTRO:TRAMITE-COLA-VIEJA-2",
+    "entorno": "NUBE",
+    "hecho_comando": "git ls-tree -r --name-only origin/main forense/encargos/cola | rg '\\.md$' | rg 'MAESTRA34-N3-AGREGA-2|GEN2-E[124]-|GEN2-E5-0-|GEN2-E5-CALC|POST-685/0[1-4]-|POST-693/(09|13)-|POST-701/17-|POST-707/20-' | while read f; do git show origin/main:\"$f\" | rg -q '^## (CONSUMIDO|HISTÓRICO)' || echo \"$f\"; done | wc -l  # → 0",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  }
+]

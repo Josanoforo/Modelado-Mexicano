@@ -1,0 +1,217 @@
+[
+ {
+  "id": "NC-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-02",
+  "verdict": "ABSORBER",
+  "rationale": "El canal no basta: la proyección toma el estado de un TSV tecleado (resultado-por-afirmacion-v1_0.tsv, 10 filas EN-MEDICIÓN), no de resultados.tsv. De los 10 contratos, 7 ya tienen RESULT en la vista de main (ENOE-PISOS-0003, ENDUTIH-2024-0001). Los otros 3 (ENDIREH-0004, LAPOP×5) viajan en #1309. Falta re-rotular y re-ensamblar. Premisa «sin editar el mapa»: cae.",
+  "cite": [
+   {"tipo": "archivo", "ref": "forense/analisis/dominios/ensambla_mapa.py:226", "comando": "rg -n 'resultado-por-afirmacion' forense/analisis/dominios/ensambla_mapa.py", "salida": "14:- resultado-por-afirmacion-v1_0.tsv: correspondencia exacta afirmación → RESULT.\n226:    res = {r[\"id_afirmacion\"]: r for r in lee(D / \"resultado-por-afirmacion-v1_0.tsv\")}"},
+   {"tipo": "comando", "ref": "origin/main:forense/analisis/dominios/proyeccion-dominios-v1_0.tsv", "comando": "git show origin/main:forense/analisis/dominios/proyeccion-dominios-v1_0.tsv | python3 -c \"import csv,sys;r=list(csv.DictReader(sys.stdin,delimiter='\\t'));print(sum(int(x['medido']) for x in r),sum(int(x['en_medicion']) for x in r))\"; (idem resultado-por-afirmacion con Counter de estado_result)", "salida": "0 10\nCounter({'EN-MEDICIÓN': 10, 'SIN-RESULT': 2})"},
+   {"tipo": "comando", "ref": "data/corrida0/corridas.tsv (origin/main vs origin/derivados/auto-36495085433)", "comando": "csv.DictReader sobre git show <ref>:data/corrida0/corridas.tsv, spec_id por CALC (357 filas en main, 422 en la rama)", "salida": "main: ENOE-PISOS-0003 1 · ENDUTIH-PISOS-2024-0001 1 · ENDIREH-PISOS-2021-PAREJA-FISICA-0004 0 · LAPOP-PISOS-2004/2006/2019/2021/2023 0. rama #1309: los ocho = 1. consulta.py result: RESULT-ENOE-PISOS-TABLA y RESULT-ENDUTIH-PISOS-2024-TABLA presentes; RESULT-ENDIREH2021-PF-TABLA y RESULT-LAPOP-PISOS-2023-POL001 NO-ENCONTRADO (66313 filas)"},
+   {"tipo": "comando", "ref": "forense/analisis/dominios/ensambla_mapa.py --verifica", "comando": "python3 forense/analisis/dominios/ensambla_mapa.py --verifica", "salida": "mapa canónico: 1396 afirmaciones · MEDIBLE-EN-CORPUS 208 · MEDIBLE-CON-ADQUISICIÓN 768 · NO-MEDIBLE-POR-DISEÑO 420 · fusionadas 10 · unidades de cobertura 1439 (exit 0, git status limpio)"}
+  ],
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:forense/analisis/dominios/proyeccion-dominios-v1_0.tsv | python3 -c \"import csv,sys;r=list(csv.DictReader(sys.stdin,delimiter='\\t'));print(sum(int(x['medido']) for x in r),sum(int(x['en_medicion']) for x in r))\" imprime '10 0' y python3 forense/analisis/dominios/ensambla_mapa.py --verifica sale 0 (tras fusionar #1309 para ENDIREH-0004 y LAPOP×5)",
+  "owner_detalle": "DIRECCION-ENCARGO (PISOS-DOMINIOS-Y-REGLAS-2: re-rotular las 10 filas de resultado-por-afirmacion-v1_0.tsv a MEDIDO con result_ids verificados y re-ensamblar; 3 de 10 esperan #1309)",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260924-GEN2-ENCIG-PISOS-GEN2-1-19a3-05",
+  "verdict": "CANAL",
+  "rationale": "El cambio de champion ya está publicado en marcador-segmento.tsv de main (16 filas con ADJUDICACION-0002). Faltan corridas.tsv y resultados.tsv para los dos CALC: 0 de 2 en main. GOBDIGITAL-0001 viaja en #1309 (sin fusionar); ADJUDICACION-0002 es la posición 41 de la cola, en el trozo siguiente. Los asientos de replay ya están en main.",
+  "cite": [
+   {"tipo": "comando", "ref": "data/corrida0/corridas.tsv", "comando": "git show <ref>:data/corrida0/corridas.tsv | python3 -c \"...csv.DictReader (saltando '#')...; S={'CALC-ENCIG2025-PISOS-GOBDIGITAL-0001','CALC-ENCIG-DUELO-2025-ADJUDICACION-0002'}; print(sum(x['spec_id'] in S for x in r))\"", "salida": "origin/main 0\norigin/derivados/auto-36495085433 1"},
+   {"tipo": "comando", "ref": "data/corrida0/marcador-segmento.tsv, resultados.tsv, forense/replay-evidencia.tsv", "comando": "git show origin/main:<vista> | grep -c -- <CALC>", "salida": "ENCIG-DUELO-2025-ADJUDICACION-0002 marcador=16 resultados=0 replay=1 · ENCIG2025-PISOS-GOBDIGITAL-0001 marcador=0 resultados=0 (rama #1309: 171) replay=1"},
+   {"tipo": "comando", "ref": "tools/lote_desde_asientos.py", "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes | rg -n 'GOBDIGITAL-0001|ADJUDICACION-0002'", "salida": "asientos nuevos examinados: 113 · lote: 113 · descartados: 0\n40:CALC-ENCIG2025-PISOS-GOBDIGITAL-0001\n41:CALC-ENCIG-DUELO-2025-ADJUDICACION-0002 (la rama #1309 lleva 2 trozos = 40 CALC; 'quedan 73')"},
+   {"tipo": "firma", "ref": "FP-260928-GEN2-TUBERIA-3-f18c-01", "comando": "python3 tools/consulta.py fp FP-260928-GEN2-TUBERIA-3-f18c-01", "salida": "estado=ABIERTA · qué_se_firma=P4 · el [deriva] no se fusiona solo: (a) automerge-rutinas.yml gana schedule (cada 15 min)…"}
+  ],
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "git show origin/main:data/corrida0/corridas.tsv | python3 -c \"import csv,sys;csv.field_size_limit(sys.maxsize);r=csv.DictReader((l for l in sys.stdin if not l.startswith('#')),delimiter='\\t');S={'CALC-ENCIG2025-PISOS-GOBDIGITAL-0001','CALC-ENCIG-DUELO-2025-ADJUDICACION-0002'};print(sum(x['spec_id'] in S for x in r))\" imprime 2",
+  "owner_detalle": "CANAL (derivados/auto-36495085433 · PR #1309 trae GOBDIGITAL-0001; ADJUDICACION-0002 en el trozo 3; el auto-merge del [deriva] depende de FP-260928-GEN2-TUBERIA-3-f18c-01, ABIERTA)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260924-GEN2-PISOS-GEN2-2-2518-01",
+  "verdict": "CANAL",
+  "rationale": "El cambio de champion ya está en marcador-segmento.tsv de main: 8+12=20 filas apuntan a los -0002, que son las 20 celdas que la fila esperaba. Las cuatro corridas faltan en corridas.tsv, tanto en main como en #1309. Ocupan las posiciones 42 a 45 de la cola, en el trozo siguiente. Los cuatro asientos de replay ya están en main.",
+  "cite": [
+   {"tipo": "comando", "ref": "data/corrida0/corridas.tsv", "comando": "igual one-liner con S={ENIF2024-PISOS-AHORRO-INFORMAL-LXE-0001, ENVIPE2025-PISOS-EVADE-NORMA-SXD-0001, DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0002, TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002}", "salida": "origin/main 0\norigin/derivados/auto-36495085433 0"},
+   {"tipo": "comando", "ref": "data/corrida0/marcador-segmento.tsv", "comando": "git show origin/main:data/corrida0/marcador-segmento.tsv | grep -c -- <CALC>", "salida": "DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0002 marcador=8 · TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002 marcador=12 · ENIF2024-PISOS-AHORRO-INFORMAL-LXE-0001 0 · ENVIPE2025-PISOS-EVADE-NORMA-SXD-0001 0; replay-evidencia: 1 asiento por cada uno de los 4"},
+   {"tipo": "comando", "ref": "tools/lote_desde_asientos.py", "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes | rg -n '<los 4 CALC>'", "salida": "42:CALC-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-0001\n43:CALC-ENVIPE2025-PISOS-EVADE-NORMA-SXD-0001\n44:CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0002\n45:CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002 (lote 113; #1309 cubre 1..40)"},
+   {"tipo": "comando", "ref": "origin/derivados/auto-36495085433", "comando": "git merge-base --is-ancestor origin/derivados/auto-36495085433 origin/main || echo NO-FUSIONADA", "salida": "NO-FUSIONADA"}
+  ],
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "git show origin/main:data/corrida0/corridas.tsv | python3 -c \"import csv,sys;csv.field_size_limit(sys.maxsize);r=csv.DictReader((l for l in sys.stdin if not l.startswith('#')),delimiter='\\t');S={'CALC-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-0001','CALC-ENVIPE2025-PISOS-EVADE-NORMA-SXD-0001','CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0002','CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002'};print(sum(x['spec_id'] in S for x in r))\" imprime 4",
+  "owner_detalle": "CANAL (cola del [deriva], trozo 3 tras #1309 en derivados/auto-*; auto-merge pendiente de FP-260928-GEN2-TUBERIA-3-f18c-01)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0026",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "La envoltura por ola iba a C0-D, el marcador por ola. La firma (1) de MARCADOR-REDISENO-1 deriva el marcador del catálogo y las celdas-D, nunca del emisor, que queda como diagnóstico. Modular M contra R en olas vistas es un retador, retirado por la regla 6. Mesa autorizó el cierre el 28/sep. El CALC demo sigue usando las funciones.",
+  "cite": [
+   {"tipo": "firma", "ref": "forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md:6", "comando": "grep -n 'nunca sobre el emisor' forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md", "salida": "6:> Diseño del marcador … §9: \"(1) el marcador se deriva sobre el catálogo y las celdas-D, nunca sobre el emisor; el emisor aparece como diagnóstico. … (4) Tres guardias: T-RESERVA, T-EMISOR-NO-COMPARA, T-PISO-NO-CIRCULAR. (5) NC-0024/0076/0239/0300 cierran por superación…\""},
+   {"tipo": "regla", "ref": "canon/MEMORIA-OPERATIVA.md:10", "comando": "grep -n 'Regla 6' canon/MEMORIA-OPERATIVA.md", "salida": "10:- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."},
+   {"tipo": "firma", "ref": "forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md:6,9", "comando": "sed -n 9p forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md", "salida": "«Ok» firma … (a) el acto cierra por diseño, con cita, toda NC cuyo objeto sea GEN1 (E.1), un procedimiento retirado por regla 6 (duelo v2 sin camino de emisión, θ, motor legacy), un archivo que ya no existe, o un producto que otro acto ya entregó en main"},
+   {"tipo": "comando", "ref": "tools/emite_m.py:612-688", "comando": "awk 'NR>=612 && NR<=688' tools/emite_m.py | grep -c 'ola_previa_estricta\\|origen_de_entrada_serie'; grep -rln ola_previa_estricta --include=*.py .", "salida": "0\n./tests/test_corredores_gen2.py\n./data/corrida0/CALC-M-marco-M-sorteado-v1_3-ola-v2/medidor.py\n./tools/emite_m.py  (NC-0024, hermana, CERRADA por GEN2-MARCADOR-REDISENO-1 el 2026-09-19)"}
+  ],
+  "cerrado_por_detalle": "regla 6 (canon/MEMORIA-OPERATIVA.md:10) + firma (1)/(4) de GEN2-MARCADOR-REDISENO-1 (encargo :6: marcador nunca sobre el emisor) + autorización de mesa 28/sep (PENDIENTES-4-ADENDA-1:9) · grep -c ola_previa_estricta en emite_celda = 0",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0070",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "Los CALC de modulación por ola de las 6 celdas M comparan M contra el R arbitrado de olas ya vistas (S17:19): es un retador, y la regla 6 los retiró. La firma (1) de MARCADOR-REDISENO-1 deja al emisor solo como diagnóstico. TRA-M-02 es además NO-CONSTRUIBLE-SIN-CROSSWALK (S18:66). Las specs S17/S18 quedan selladas como historia. Mesa autorizó el cierre el 28/sep.",
+  "cite": [
+   {"tipo": "archivo", "ref": "forense/prereg-caja/S17-MODULACION-OLA-R5-1-spec-v1_0.md:19", "comando": "grep -n 'se compara contra el `R` arbitrado' forense/prereg-caja/S17-MODULACION-OLA-R5-1-spec-v1_0.md", "salida": "19:El marcador `M` emite, para cada celda del marco, un punto que se compara contra el `R` arbitrado de esa celda. … sus tres celdas arbitran olas 2016, 2018 y 2020."},
+   {"tipo": "regla", "ref": "canon/MEMORIA-OPERATIVA.md:10", "comando": "grep -n 'Regla 6' canon/MEMORIA-OPERATIVA.md", "salida": "10:- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."},
+   {"tipo": "firma", "ref": "forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md:6", "comando": "grep -n 'nunca sobre el emisor' forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md", "salida": "(1) el marcador se deriva sobre el catálogo y las celdas-D, nunca sobre el emisor; el emisor aparece como diagnóstico."},
+   {"tipo": "archivo", "ref": "forense/prereg-caja/S18-MODULACION-OLA-R3-1-spec-v1_0.md:66", "comando": "grep -n 'NO-CONSTRUIBLE-SIN-CROSSWALK' forense/prereg-caja/S18-MODULACION-OLA-R3-1-spec-v1_0.md", "salida": "66:**Veredicto de esta spec para `TRA-M-02`: `NO-CONSTRUIBLE-SIN-CROSSWALK`.**"},
+   {"tipo": "firma", "ref": "forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md:9", "comando": "find forense/encargos -name '*.md' | rg -c MODULACION-C0-D (955 archivos)", "salida": "autorización 'Ok con pendientes 4' (cierre por diseño de procedimiento retirado por regla 6); sucesor GEN2-MODULACION-C0-D-CALC-1: 0 de 955 encargos"}
+  ],
+  "cerrado_por_detalle": "regla 6 (canon/MEMORIA-OPERATIVA.md:10) + firma (1) de GEN2-MARCADOR-REDISENO-1 (encargo :6) + S17:19 (M contra R de olas 2016/2018/2020) + S18:66 (TRA-M-02 NO-CONSTRUIBLE-SIN-CROSSWALK) + autorización de mesa 28/sep (PENDIENTES-4-ADENDA-1:9)",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0218",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "El sello de D-A existe desde el 15/sep: CALC-TRIADA-B-PISO-0001, corrida de registro de D-2, SELLADA y con REPRODUCE. Las re-verificaciones lo buscaron por nombre y no por objeto (A.8). La tabla de 9 celdas solo vive en el ANEXO histórico de v1_0 («no se edita ésta»). El informe vigente v1_5 no la trae: 0 menciones de tríada.",
+  "cite": [
+   {"tipo": "archivo", "ref": "data/corrida0/CALC-TRIADA-B-PISO-0001/spec.md:16-18", "comando": "sed -n 16,18p data/corrida0/CALC-TRIADA-B-PISO-0001/spec.md", "salida": "Es una **corrida de registro**. `D-2` de la firma de mesa del 15/sep/2026 la\nautoriza como comparación **descriptiva**: sin pareadas nuevas, sin IC nuevos,\nsin adjudicación."},
+   {"tipo": "comando", "ref": "data/corrida0/corridas.tsv", "comando": "python3 tools/consulta.py corrida CALC-TRIADA-B-PISO-0001--f1cf4cc7bbc6", "salida": "CALC-TRIADA-B-PISO-0001--f1cf4cc7bbc6 · spec_id=CALC-TRIADA-B-PISO-0001 · estado=SELLADA · generacion=GEN2 · cuenta_gen2=SI · sello=COINCIDE · n_resultados=117 · resultado_replay=REPRODUCE · contexto_replay=IDENTICO · fecha=2026-09-15T19:53:15Z"},
+   {"tipo": "archivo", "ref": "forense/encargos/2026-09-15-GEN2-INFORME-INTERNO-F5-1.md:44", "comando": "rg -n 'D2 · D-A' forense/encargos/2026-09-15-GEN2-INFORME-INTERNO-F5-1.md", "salida": "44:D2 · D-A. Se registra la comparación descriptiva (9 celdas comunes, puntos de la tríada limpia, B de persistencia, errores y cobertura) como corrida de registro; sin pareadas nuevas ni adjudicación"},
+   {"tipo": "comando", "ref": "canon/informe-programa-v1_*.md", "comando": "for f in canon/informe-programa-v1_*.md; do grep -c 'TRIADA-B-PISO' $f; grep -ci 'tr[ií]ada' $f; grep -c 'D-A' $f; done", "salida": "v1_0-ANEXO D-A=6 · v1_0 D-A=3 · v1_1..v1_5: TRIADA-B-PISO=0, D-A=0; v1_3/v1_4/v1_5 tríada=0 (v1_5: 778 líneas)"},
+   {"tipo": "commit", "ref": "canon/L0/ADR-260924-GEN2-INFORME-V1-3-1-b1aa-01.md:1", "comando": "sed -n 1p canon/L0/ADR-260924-GEN2-INFORME-V1-3-1-b1aa-01.md | cut -c1-300", "salida": "ADR-260924-GEN2-INFORME-V1-3-1-b1aa-01 (24/sep/2026, NUBE): canon/informe-programa-v1_3.md, reencuadre del programa como «Benchmark del Mexicano» (firma D2, FIRMAS-12) con el cierre de la etapa de retadores (6 evaluaciones prospectivas…"}
+  ],
+  "cerrado_por_detalle": "objeto que ya no existe en el informe vigente: sello de D-A = CALC-TRIADA-B-PISO-0001 (spec.md:16, SELLADA, REPRODUCE, consulta.py corrida) y la tabla §A.3 solo vive en canon/informe-programa-v1_0-ANEXO.md (histórico); v1_5 sin tríada (grep -ci = 0) por ADR-260924-GEN2-INFORME-V1-3-1-b1aa-01",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0253",
+  "verdict": "HOJA-DECISION",
+  "rationale": "El bloqueo técnico ya no existe: el JSON de L8 está en INSUMOS_LEGACY_ARCHIVO (corrida0.py:3990) y CALC-L8-CONVERSION-0001 quedó con origen HEREDADO. Queda la decisión de consumo, que es adopción (D-19). tramite.yaml:1412-1414 sigue sin cita (0 menciones de RESULT-L8CONV). linaje.py niega MEDICION-GEN2 a HEREDADO y admite DESCRIPTIVO. No hay FP abierta.",
+  "cite": [
+   {"tipo": "archivo", "ref": "tools/corrida0.py:3990-3991", "comando": "grep -n '^INSUMOS_LEGACY_ARCHIVO\\|l8-resultados-tipo-boleta' tools/corrida0.py", "salida": "3990:INSUMOS_LEGACY_ARCHIVO = {\n3993:    \"data/l8-resultados-tipo-boleta-v1_0.json\","},
+   {"tipo": "comando", "ref": "data/corrida0/corridas.tsv · resultados.tsv", "comando": "busca spec_id CALC-L8-CONVERSION-0001; python3 tools/consulta.py result RESULT-L8CONV-A-P-MEDIA", "salida": "origen_numerico=HEREDADO · envuelto_legacy=SI · estado=SELLADA · RESULT-L8CONV-A-P-MEDIA valor=0.619867 · sello=COINCIDE · cuenta_gen2=SI · validacion_independiente=NO-HECHA · n_usos=0"},
+   {"tipo": "comando", "ref": "milpa/tramite.yaml:1412-1414", "comando": "grep -c 'RESULT-L8CONV' milpa/tramite.yaml; grep -n participa_p0_ milpa/tramite.yaml", "salida": "0\n1412: {conducta: participa_p0_minimo, p: 0.345267, clase: \"MEDIDO·Δ\"}\n1413: … participa_p0_maximo, p: 0.750567 …\n1414: … participa_p0_media, p: 0.619867 …"},
+   {"tipo": "archivo", "ref": "milpa/src/linaje.py:21,63-72", "comando": "grep -n 'USOS_CON_HERENCIA' milpa/src/linaje.py", "salida": "21:USOS_CON_HERENCIA = {\"HISTORICO\", \"BASELINE\", \"DESCRIPTIVO\", \"CALIBRACION\"}; MEDICION-GEN2 con origen≠NUEVO → NO_APTA"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-17-GEN2-L8-LINAJE-HEREDADO-1-cierre.md:43-48", "comando": "sed -n 43,48p <nota>", "salida": "Una sola: aceptar o rechazar conservar los tres resultados como legado explícito bajo `DESCRIPTIVO`. … Mientras no haya decisión/cita, se mantienen sin consumo GEN2."}
+  ],
+  "lote": "RELEVO-TRAMITE-CAJA-2",
+  "entorno": "NUBE",
+  "hecho_comando": "grep -c 'RESULT-L8CONV-A-P-M' milpa/tramite.yaml imprime 3 (si mesa firma (a))",
+  "owner_detalle": "MESA-DECISION (hoja de irreversibles de PENDIENTES-4; no figura en hoja-cierre-irreversible-21.md ni en decisiones-21.tsv)",
+  "hoja": {
+   "situacion": "Tres probabilidades de participación electoral (mín/máx/media) que el modelo usa hoy como número tecleado ya tienen gemelo GEN2 sellado que reproduce exacto (CALC-L8-CONVERSION-0001); falta decidir si se citan, y citarlas es adoptar.",
+   "opciones": [
+    {"letra": "a", "texto": "Citar RESULT-L8CONV-A-P-MINIMO/MAXIMO/MEDIA en milpa/tramite.yaml como legado explícito con uso DESCRIPTIVO (linaje APTA_CON_HERENCIA).", "costo": "Un acto pequeño vía tools/escribe_relevo_consumo.py. Adopta (D-19). No cuenta como MEDICION-GEN2 y no se promete que baje dependencias_numericas_legacy_activas."},
+    {"letra": "b", "texto": "Mantenerlos sin cita GEN2 y cerrar la NC por decisión de mesa.", "costo": "Cero hoy. Los tres consumidores siguen con el valor tecleado, sin cadena GEN2 visible, aunque el gemelo sellado existe."},
+    {"letra": "c", "texto": "CALC nuevo que re-derive p0 desde las boletas sin pasar por data/l8-resultados-tipo-boleta-v1_0.json (origen NUEVO).", "costo": "Acto CAJA con dos commits y microdato electoral. Es la única vía que habilita MEDICION-GEN2 y baja el contador legacy."}
+   ],
+   "recomendacion": "a",
+   "porque": "Es la propuesta del acto de origen (GEN2-L8-LINAJE-HEREDADO-1). Cuesta un acto pequeño y hace visible la cadena GEN2 sin disfrazarla de medición nueva. (c) solo vale si mesa necesita que cuente como MEDICION-GEN2.",
+   "plazo": "2026-10-05",
+   "texto_firma": "NC-0253: opción (a). Autorizo citar RESULT-L8CONV-A-P-MINIMO, RESULT-L8CONV-A-P-MAXIMO y RESULT-L8CONV-A-P-MEDIA (CALC-L8-CONVERSION-0001) en milpa/tramite.yaml para participa_p0_minimo/maximo/media con uso DESCRIPTIVO, como legado explícito de origen HEREDADO; no cuenta como MEDICION-GEN2."
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0290",
+  "verdict": "HOJA-DECISION",
+  "rationale": "A.17: la regla de adopción en bloque sigue vigente (decisiones.tsv:119). Su bin 1 está refutado y la 4ª condición sin sellar. Ni GEN2-TRAMITE-REGLA-ADOPCION-BLOQUE-1 ni FIRMAS-22 están archivados (0 de 955). La letra 3 se delegó solo en lo reversible; el sello cambia qué se adopta en bloque (D-19) y sigue sin firmar en la hoja.",
+  "cite": [
+   {"tipo": "archivo", "ref": "forense/analisis/hoja-firmas-21/hoja-cierre-irreversible-21.md:7", "comando": "grep -n 'NC-0290' forense/analisis/hoja-firmas-21/hoja-cierre-irreversible-21.md | cut -c1-200", "salida": "7:| 3 · NC-0290 (sello de la 4ª condición del bin 1) | cambia qué se adopta en bloque | (a) sellar la 4ª condición «un sellado o una firma vigente prohíbe la cita» · (b) regla sin cambio | (a), tras la redacción PROPUESTA…"},
+   {"tipo": "comando", "ref": "forense/encargos/", "comando": "find forense/encargos -name '*.md' | wc -l; … | rg -c 'REGLA-ADOPCION-BLOQUE|TRAMITE-FIRMAS-22'; git log origin/main --oneline | rg -c idem", "salida": "955 · 0 · 0"},
+   {"tipo": "archivo", "ref": "data/corrida0/decisiones.tsv:119", "comando": "sed -n 119p data/corrida0/decisiones.tsv | cut -c1-200", "salida": "regla-adopcion-en-bloque\tregla=ADOPTADA para los relevos GEN1->GEN2 de slots demandados: el merge de mesa del PR que trae un bloque ES la adopcion de ese bloque"},
+   {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R34", "comando": "csv.DictReader de decisiones-21.tsv, renglon R34", "salida": "R34 | FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01#3 | NC-0290: cuarta condición del bin 1 | FIRMADA-DELEGADA (decidida por el trámite; lo irreversible → hoja-cierre-irreversible-21.md)"},
+   {"tipo": "archivo", "ref": "forense/encargos/2026-09-15-GEN2-RELEVO-USOS-1-ADENDA-REGLA-ADOPCION-EN-BLOQUE.md:57,69", "comando": "rg -n 'bin 1|se estrecha' <adenda>", "salida": "57: 1 · NO-MATERIAL — … Las tres condiciones a la vez … 69: … la regla se estrecha (no se retira) y el caso se cita."}
+  ],
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "rg -c -i 'cuarta condici|\\(iv\\)' data/corrida0/decisiones.tsv ≥ 1 y existe canon/L0/ADR-*-GEN2-TRAMITE-REGLA-ADOPCION-BLOQUE-1-*.md (si mesa firma (a))",
+  "owner_detalle": "MESA-DECISION (hoja-cierre-irreversible-21.md, letra 3 → GEN2-TRAMITE-FIRMAS-22)",
+  "hoja": {
+   "situacion": "La regla que decide qué relevos GEN1→GEN2 se adoptan en bloque con solo fusionar el PR tiene un bin 1 que ya se equivocó: admite por texto slots que un sellado o una firma vigente prohíben citar.",
+   "opciones": [
+    {"letra": "a", "texto": "Sellar la 4ª condición del bin 1: «(iv) ningún sellado ni firma vigente prohíbe la cita del slot, con independencia de su materialidad», con ADR propio y fila en data/corrida0/decisiones.tsv.", "costo": "Un acto NUBE pequeño de redacción y ADR. El bin 1 se estrecha, así que algunos slots pasan a revisión uno por uno (bin 2)."},
+    {"letra": "b", "texto": "Dejar la regla sin cambio.", "costo": "Cero hoy. El texto sellado sigue refutado y cada relevo tiene que atrapar a mano la prohibición por firma o sello; ya falló una vez (RELEVO-USOS-1: de 7 NO-MATERIAL solo 2 eran adoptables)."},
+    {"letra": "c", "texto": "Diferir el sello hasta que GEN2-RELEVO-CONSUMIDORES-4 traiga un caso concreto.", "costo": "La fila sigue abierta y ningún bloque nuevo se fusiona con la regla corregida mientras tanto."}
+   ],
+   "recomendacion": "a",
+   "porque": "El defecto ya ocurrió y la propia regla prevé estrecharse ante un caso así (adenda :69). La condición ya está redactada en la razón de la NC, y el costo es un acto de redacción sin dato.",
+   "plazo": "2026-10-05",
+   "texto_firma": "NC-0290: opción (a). Sello como cuarta condición del bin 1 de la regla de adopción en bloque: «(iv) ningún sellado ni firma vigente prohíbe la cita del slot, con independencia de su materialidad». Se asienta con ADR propio (GEN2-TRAMITE-REGLA-ADOPCION-BLOQUE-1) y fila en data/corrida0/decisiones.tsv."
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0318",
+  "verdict": "HOJA-DECISION",
+  "rationale": "A.17: ENCO sigue reservada (MEMORIA-OPERATIVA:9). Ninguna FP firmada decide las tres piezas. La letra 4 está en la hoja de irreversibles, sin firmar, y FIRMAS-22 no está archivado. Autorizar P10 o el puente abre dato reservado y adopta una equivalencia (D-19). El producto preparado vive en forense/produccion/enco-dos-olas-reservadas-1/ (03-spec.md) y no está sellado.",
+  "cite": [
+   {"tipo": "regla", "ref": "canon/MEMORIA-OPERATIVA.md:9", "comando": "grep -n 'Reservas' canon/MEMORIA-OPERATIVA.md", "salida": "9:- Reservas: ola más reciente de todo programa con historia; ENVIPE 2026; ENCO; ENIGH 2024 salvo seis columnas AMAI (C7). ENCIG 2025 y ENVIPE 2025: abiertas."},
+   {"tipo": "archivo", "ref": "forense/analisis/hoja-firmas-21/hoja-cierre-irreversible-21.md:8", "comando": "grep -n 'NC-0318' forense/analisis/hoja-firmas-21/hoja-cierre-irreversible-21.md | cut -c1-220", "salida": "8:| 4 · NC-0318 (tres piezas antes de abrir R; P10 de ENCO) | abre dato reservado (ENCO) y adopta un puente | (a) autorizar las tres · (b) solo el contrato de varianza · (c) mantener la reserva | (c)…"},
+   {"tipo": "archivo", "ref": "forense/encargos/2026-09-17-GEN2-ENCO-DOS-OLAS-RESERVADAS-1.md:53", "comando": "sed -n 53p <encargo>", "salida": "- Comparación con `dinero.ahorro.tiene_ahorros`: el salto entre stock existente y posibilidad percibida no está identificado. No definir `P(posibilidad)=P(tenencia)` …"},
+   {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv; decisiones-21.tsv", "comando": "csv.DictReader sobre 647 filas de firmas-pendientes buscando NC-0318; decisiones-21.tsv R35", "salida": "firmas-pendientes: 0 FP propias; R35 = FIRMADA-DELEGADA solo en lo reversible → irreversible a hoja-cierre-irreversible-21.md"}
+  ],
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "",
+  "owner_detalle": "MESA-DECISION (hoja-cierre-irreversible-21.md, letra 4 → GEN2-TRAMITE-FIRMAS-22)",
+  "hoja": {
+   "situacion": "Para medir el ahorro percibido con la ENCO (dos olas reservadas) faltan tres permisos: medir P10, aceptar un puente con «tiene ahorros» y fijar cómo se calcula la varianza entre años. Los dos primeros abren una reserva y adoptan algo.",
+   "opciones": [
+    {"letra": "a", "texto": "Autorizar las tres piezas: medición descriptiva de P10, puente con dinero.ahorro.tiene_ahorros y contrato de varianza interanual.", "costo": "Abre ENCO reservada (D-19; E.6, tres commits en CAJA) y consume su valor prospectivo. Adopta un puente que el propio encargo declara no identificado (:53)."},
+    {"letra": "b", "texto": "Solo el contrato de varianza interanual, documental y sin abrir microdato.", "costo": "Un acto sin dato. La reserva queda intacta, pero la medición sigue sin punto y la NC sigue viva para las otras dos piezas."},
+    {"letra": "c", "texto": "Mantener la reserva de ENCO y cerrar la NC por decisión de mesa; lo preparado queda como historia.", "costo": "Cero. El ahorro percibido se queda sin punto GEN2 desde ENCO mientras la reserva siga."}
+   ],
+   "recomendacion": "c",
+   "porque": "ENCO está en la lista de reservas vigentes, y la regla 6 dejó el frente prospectivo a las familias 2027. El puente con tiene_ahorros no está identificado según su propio encargo. Si mesa quiere avanzar sin abrir dato, (b) es compatible y barata.",
+   "plazo": "2026-10-05",
+   "texto_firma": "NC-0318: opción (c). ENCO sigue reservada; no se autorizan la medición descriptiva de P10 ni el puente con dinero.ahorro.tiene_ahorros; lo preparado en forense/produccion/enco-dos-olas-reservadas-1/ queda como historia y la fila se cierra por decisión de mesa."
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0346",
+  "verdict": "HOJA-DECISION",
+  "rationale": "La parte (b) sigue vigente: 0 de 76 spec.yaml de CALC-*PISOS* fijan el sha del medidor (solo script:). Existe el campo script_sha256_congelado, pero únicamente en 19 de 390 CALC y en ningún PISOS. Fijarlo en los sellados edita sellos (E.3). La parte (a), acreditación documental del catálogo, es reversible, ya está decidida y falta producirla. Letra 7(b) sin firmar.",
+  "cite": [
+   {"tipo": "comando", "ref": "data/corrida0/CALC-*/spec.yaml", "comando": "ls data/corrida0/CALC-*/spec.yaml | wc -l; grep -h -o -E '^[a-z_]*(blob|script)[a-z_0-9]*:' data/corrida0/CALC-*/spec.yaml | sort | uniq -c; grep -l '^script_sha256_congelado:' data/corrida0/CALC-*PISOS*/spec.yaml | wc -l", "salida": "390\n    390 script:\n     19 script_sha256_congelado:\n0   (76 directorios CALC-*PISOS*)"},
+   {"tipo": "archivo", "ref": "forense/analisis/hoja-firmas-21/hoja-cierre-irreversible-21.md:9", "comando": "grep -n 'NC-0346' forense/analisis/hoja-firmas-21/hoja-cierre-irreversible-21.md | cut -c1-200", "salida": "9:| 7(b) · NC-0346 (fijar blob en spec.yaml de CALC-PISOS sellados) | edita sellos (E.3) | (a) no re-sellar; la acreditación documental (7a) basta · (b) CALC nuevos con blob fijado | (a) |"},
+   {"tipo": "comando", "ref": "forense/prereg-caja/PISOS-REJILLA-escolaridad-catalogos-v1_0.tsv", "comando": "head -1 forense/prereg-caja/PISOS-REJILLA-escolaridad-catalogos-v1_0.tsv; find forense/encargos -name '*.md' | rg -c ACREDITA-CATALOGOS-PISOS", "salida": "instrumento\tedicion\tarchivo_fuente\tmiembro_catalogo\tvariable\tcodigo\ttexto_catalogo\tcategoria_piso  (sin columna de cita FD) · encargo GEN2-ACREDITA-CATALOGOS-PISOS-1: 0 de 955"},
+   {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R38", "comando": "csv.DictReader renglon R38", "salida": "R38 | FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01#7 | NC-0346: demanda por texto + blob del medidor | FIRMADA-DELEGADA (parte reversible (a)); (b) → hoja de irreversibles"}
+  ],
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "NUBE",
+  "hecho_comando": "parte (a): la rejilla sucesora de PISOS-REJILLA-escolaridad-catalogos-v1_0.tsv trae una columna de cita FD (documento, página/sección) no vacía en todas sus filas: python3 -c \"import csv,glob;f=sorted(glob.glob('forense/prereg-caja/PISOS-REJILLA-escolaridad-catalogos-v1_*.tsv'))[-1];r=list(csv.DictReader(open(f),delimiter='\\t'));print(sum(bool((x.get('cita_fd') or '').strip()) for x in r),len(r))\" imprime dos números iguales",
+  "owner_detalle": "MESA-DECISION (hoja-cierre-irreversible-21.md, letra 7(b) → GEN2-TRAMITE-FIRMAS-22); la parte (a) va a DIRECCION-ENCARGO (PISOS-DOMINIOS-Y-REGLAS-2, NUBE)",
+  "hoja": {
+   "situacion": "Los 76 cálculos de pisos no llevan, dentro de su spec, la huella del código que los midió; esa huella solo aparece en el sello escrito después de correr. Ponérsela a los ya sellados significa re-sellar.",
+   "opciones": [
+    {"letra": "a", "texto": "No re-sellar. El medidor queda protegido por el orden de commits (COMMIT-1) y por el hash en sello.json; la parte (a) sigue por acreditación documental.", "costo": "Cero sobre los sellos. Solo el acto documental NUBE de la parte (a)."},
+    {"letra": "b", "texto": "CALC nuevos (-000N) de los pisos con el sha del medidor fijado en spec.yaml.", "costo": "Re-correr hasta 76 CALC en CAJA con microdato, con cambio de champion y re-publicación por el canal. E.3 impide editar los sellados."},
+    {"letra": "c", "texto": "No re-sellar, y exigir script_sha256_congelado (campo ya usado en 19 de 390 spec.yaml) en todo CALC-*PISOS* nuevo, vía preflight.", "costo": "Un cambio pequeño de tubería. Por D-14 hay que declarar qué defecto ya ocurrido evita, y la NC no cita ninguno."}
+   ],
+   "recomendacion": "a",
+   "porque": "No hay defecto observado de un medidor editado antes de sellar: la NC lo describe como riesgo, y §1 pide anotarlo sin instrumentarlo. E.3 vuelve costosa la vía (b). La acreditación documental (a) cubre el riesgo real, que un consumidor lea la categoría como si viniera del FD.",
+   "plazo": "2026-10-05",
+   "texto_firma": "NC-0346 (b): opción (a). No se re-sellan los CALC-*PISOS*; el medidor queda protegido por COMMIT-1 y sello.json. La parte (a) se cumple con la acreditación documental del catálogo de escolaridad (GEN2-ACREDITA-CATALOGOS-PISOS-1)."
+  },
+  "confianza": "alta"
+ }
+]

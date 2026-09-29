@@ -1,0 +1,16 @@
+[
+ {
+  "id": "NC-260928-GEN2-TRAMITE-FIRMAS-21-8560-01",
+  "veredicto": "CONFIRMA",
+  "razon": "7813-03 sigue ABIERTA en origin/main 7312797c y su sucesor pide lo mismo: mover los payloads fuera de reserva_respondentes, por R09 (a). Cubre más, no menos: además trae ENCRIGE 2016, que se conserva. E-act-5 la ABSORBE y no la cierra, así que la deuda no se pierde. R09 está FIRMADA y el manifiesto marca 15/15 como reservados.",
+  "comando": "git show origin/main:forense/no-corrido.tsv | csv.DictReader filtro id endswith 7813-03/8560-01; json res/E-act-5.research.json id 7813-03",
+  "salida": "NC-260925-...-7813-03 | ABIERTA | reserva de olas «más recientes» (CAAS 2015, ENG 2009, ENCRIGE 2016, MIGRACION 2002) | MESA (2026-10-05) · encargo por escribir: R09 (a): falta mover payloads fuera de reserva_respondentes ; E-act-5: verdict ABSORBER"
+ },
+ {
+  "id": "NC-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-02",
+  "veredicto": "CONFIRMA",
+  "razon": "Las tres retenciones tienen cada una su destino. NC-0085 cerró contra NC-0392, que sigue ABIERTA y lleva la procedencia de RES-0028. 9641-03 cerró por producto, y su retención («falta la enmienda en 9a2c-01») está resuelta: la ENMIENDA del 22/sep está en esa fila de firmas-pendientes.tsv. Solo queda ef6f-01, ABIERTA y con sucesor propio.",
+  "comando": "git show origin/main:forense/firmas-pendientes.tsv | grep '^FP-260921-GEN2-TUBERIA-ENRUTAMIENTO-PR-1-9a2c-01' | grep -c 'ENMIENDA (22/sep/2026' ; no-corrido.tsv csv ids NC-0085,NC-0392,ef6f-01,9641-03",
+  "salida": "1 ; NC-0085 CERRADA (duplicada: NC-0392) · NC-0392 ABIERTA · ef6f-01 ABIERTA (sucesor: mesa confirma NO y cierra por firma) · 9641-03 CERRADA (producto: FIRMAS-8-ADENDA-1.md)"
+ }
+]

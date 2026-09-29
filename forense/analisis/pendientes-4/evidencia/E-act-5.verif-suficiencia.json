@@ -1,0 +1,9 @@
+[
+  {
+    "id": "NC-260924-GEN2-CONTADORES-CONSUMO-2-749c-03",
+    "veredicto": "REFUTA",
+    "razon": "#1268 es solo trozo 1: 20 CALC publicados y quedan 101, así que no está demostrado que se publiquen los 59 CALC del impacto. La firma FP f2e5-23 (opción B) nombra esta NC y su gate pide un push real con el backlog completo. Además, NC 247d-01 (ABIERTA) dice «749c-03 sigue ABIERTA» hasta que mesa re-litigue G1.",
+    "comando": "git log origin/main --format='%h %s' -n 3 -- data/corrida0/resultados.tsv; consulta de forense/no-corrido.tsv con csv.DictReader, id 247d-01; consulta de forense/firmas-pendientes.tsv con csv.DictReader, id f2e5-23, columna gatea",
+    "salida": "1f4bf1cc [deriva] trozo 1 tras 429ec004d: 20 CALC, quedan 101 (#1268) · 247d-01 estado=ABIERTA impacto: NC-...749c-03 sigue ABIERTA; sucesor MESA 2026-10-05 re-litigar G1 · f2e5-23 gatea: confirma con un push real que un [deriva] con el backlog completo ya no dispara GH001"
+  }
+]

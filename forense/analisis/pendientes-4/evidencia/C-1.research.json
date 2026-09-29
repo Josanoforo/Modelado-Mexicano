@@ -1,0 +1,549 @@
+[
+ {
+  "id": "NC-260926-ASTRA6-C1-REEMPAQUETA-VENTANA-1-ee49-03",
+  "verdict": "HOJA-DECISION",
+  "rationale": "#1304 está fusionado pero no acreditó aislamiento por broker: R32 autorizó el reconstructor opción A solo para el lote 3 («el broker sigue como meta»). De las 859, C1-LOTE-3 hizo las 92 de 2016; las 767 de ENDIREH 2021 siguen sin sesión. Falta que mesa decida el régimen de aislamiento de la próxima sesión (misma exigencia que NC beee-08, ABIERTA).",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "20ff4c05 (#1304)",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1304'",
+    "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R32 (FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-02)",
+    "comando": "python3 csv.DictReader decisiones-21.tsv renglon==R32 → texto_de_firma",
+    "salida": "R32 FIRMADA · VIAJA-EN GEN2-C1-SUCESORES-Y-LOTE-3 (A.12) | «Autorizo el reconstructor de opción A para el lote 3 de C1: una sesión nueva de Claude Code, sin historial, […] Sus resultados llevan el rótulo CIEGA-POR-CONTEXTO-NUEVO y no se presentan como aislamiento por broker. El broker sigue como meta.»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/validacion-independiente/catalogo-1-lote3/LANZAMIENTO-LOTE3.md:53",
+    "comando": "git show origin/main:forense/validacion-independiente/catalogo-1-lote3/LANZAMIENTO-LOTE3.md | sed -n '53p'",
+    "salida": "Se lanza con la configuración de la sonda 3. Reserva, dicha también en el rótulo `CIEGA-POR-CONTEXTO-NUEVO`: el proceso `claude` sí sale a la red (API), y el aislamiento es de sandbox y namespace, no de broker."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/validaciones-independientes.tsv",
+    "comando": "python3 (csv.DictReader sobre data/corrida0/validaciones-independientes.tsv; filas con resultado_id RESULT-ENDIREH2021-*)",
+    "salida": "748 filas examinadas; RESULT-ENDIREH2021-COM-TABLA | NO-PASA | C1-LOTE1 … recalculadas 0/100; ESC recalculadas 0/96; LAB recalculadas 0/100 (ninguna fila de sesión c1-ventana-v1)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260927-GEN2-RECIBO-ASTRA6-1-beee-08",
+    "comando": "python3 tools/consulta.py nc NC-260927-GEN2-RECIBO-ASTRA6-1-beee-08",
+    "salida": "estado=ABIERTA · razon=NO-VERIFICABLE-AQUÍ — requiere la caja de Astra (log del materializador, ls de /raw); el siguiente lote debe aislar red salvo el host de la API · sucesor=CAJA (forense/encargos/2026-09-27-ASTRA6-C1-EJECUTOR-AISLADO-3.md)"
+   }
+  ],
+  "owner_detalle": "MESA · hoja: régimen de aislamiento (extender R32 opción A o exigir broker) para la sesión ciega de las 767 ENDIREH 2021 c1-ventana-v1, antes de C1-LOTE-4",
+  "hoja": {
+   "situacion": "La sesión ciega de las 767 identidades ENDIREH 2021 (paquetes c1-ventana-v1) necesita el gate CONTEXTO-NUEVO-ACREDITADO; R32 autorizó el reconstructor opción A (sin broker) solo para el lote 3.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Extender R32 a la sesión de las 767 con la receta de LANZAMIENTO-LOTE3 §4 (sonda 3: namespace con /tmp vacío, herramientas sin red, transcript archivado y auditado antes de revelar); rótulo CIEGA-POR-CONTEXTO-NUEVO.",
+     "costo": "La ceguera no es por broker: el proceso claude sale a la API (misma reserva que el lote 3)."
+    },
+    {
+     "letra": "b",
+     "texto": "Exigir broker de red acreditado antes de lanzar (receta-sesion-futura.md paso 5; NC beee-08).",
+     "costo": "Un acto de infraestructura en CAJA sin fecha (EJECUTOR-AISLADO-3 dejó el broker sin provisionar); las 767 siguen sin validación independiente mientras tanto."
+    },
+    {
+     "letra": "c",
+     "texto": "No validar las 767 a ciegas: quedan SOSTENER-SIN-CORROBORACION con la ventana transportada por R24.",
+     "costo": "767 identidades (COM 100, ESC 96, LAB 100, NF 471) sin validación independiente de forma permanente."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "Mesa ya aceptó la opción A para las 92 y las 312 con transcript auditado (0 lecturas fuera, herramientas sin red); el broker no tiene acto que lo provisione. La opción (a) convierte 767 NO-HECHA en validación rotulada, sin presentarla como broker.",
+   "plazo": "Antes de redactar GEN2-ASTRA6-C1-LOTE-4 (NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01: MESA 2026-10-05)",
+   "texto_firma": "«Extiendo la autorización del reconstructor de opción A (R32) a la sesión ciega de las 767 identidades ENDIREH 2021 de los paquetes c1-ventana-v1, con la receta de LANZAMIENTO-LOTE3 §4: namespace con /tmp vacío, herramientas sin red, transcript archivado y auditado antes de revelar. Sus resultados llevan el rótulo CIEGA-POR-CONTEXTO-NUEVO y no se presentan como aislamiento por broker. El broker sigue como meta.»"
+  },
+  "confianza": "media",
+  "cerrado_por_detalle": null,
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-02",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "R21 (FP fb50-02 FIRMADA) decide lo que la fila dejaba a mesa: recibe los dictámenes ENDIREH 2006/2016 como base de sucesores y manda el retiro de las 15 llaves ENVIPE a catálogo como PROPONER-SUSPENDER. #1304 lo ejecutó (r21-envipe-15-llaves.tsv, 15 filas). Lo que queda tiene fila propia: NC 2385-05 (catálogo v1.4) y NC fb50-01 (contratos por identidad).",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "20ff4c05 (#1304)",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1304'",
+    "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-02",
+    "comando": "python3 tools/consulta.py fp FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-02",
+    "salida": "estado=FIRMADA · ejecutada_en=ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01; EJECUTA: GEN2-C1-SUCESORES-Y-LOTE-3 (dictámenes ENDIREH 2006/2016 recibidos como base de sucesores; 15 llaves RETIRADA-DEL-UNIVERSO-C1 y PROPONER-SUSPENDER a CIERRE-SEMANAL-3 (r21-envipe-15-llaves.tsv)…"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R21",
+    "comando": "python3 csv.DictReader decisiones-21.tsv renglon==R21 → texto_de_firma",
+    "salida": "«Recibo los dictámenes ENDIREH 2006 (separar MD postseparación del anual) y ENDIREH 2016 (bins NIV propios desde FD) como base de contratos sucesores, sin reescribir llaves ni sellos. El retiro de las quince llaves ENVIPE 2015 se propone al circuito de catálogo como PROPONER-SUSPENDER con sucesor por CALC nuevo; no se ejecuta por esta firma.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/validacion-independiente/catalogo-1-sucesores/r21-envipe-15-llaves.tsv",
+    "comando": "python3 csv.DictReader r21-envipe-15-llaves.tsv → len",
+    "salida": "15 filas; columnas llave_historica, estado_c1, propuesta_catalogo, llave_sucesora_propuesta…"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-05",
+    "comando": "python3 tools/consulta.py nc NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-05",
+    "salida": "estado=ABIERTA · razon=DIFERIDO-A:GEN2-CIERRE-SEMANAL-3: el catálogo es ajeno (encargo §9) · sucesor=MESA (2026-10-05) · encargo por escribir: GEN2-CIERRE-SEMANAL-3"
+   }
+  ],
+  "cerrado_por_detalle": "firma: FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-02 FIRMADA (R21), ejecutada ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 · producto forense/validacion-independiente/catalogo-1-sucesores/r21-envipe-15-llaves.tsv · resto en NC-…-2385-05 y NC-…-fb50-01",
+  "confianza": "alta",
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null,
+  "owner_detalle": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-04",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "R22 (FP fb50-04 FIRMADA) fija las tolerancias por identidad ENDUTIH/MOCIBA que la fila dejaba a mesa. #1304 produjo CONTRATO-TOLERANCIAS.md y r22 (1 797 identidades). Lo demás ya tiene fila o regla: acceso a microdatos por R14 (NC fb50-03 ABIERTA), IC por FP 2385-01 (ABIERTA); ENDUTIH 2025 sigue reservada por la regla de ola más reciente.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "20ff4c05 (#1304)",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1304'",
+    "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-04",
+    "comando": "python3 tools/consulta.py fp FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-04",
+    "salida": "estado=FIRMADA · ejecutada_en=ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01; EJECUTA: GEN2-C1-SUCESORES-Y-LOTE-3 (CONTRATO-TOLERANCIAS.md + r22-tolerancias-por-identidad.tsv (1797 identidades, proporción abs 1e-8 rel 0))"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/validacion-independiente/catalogo-1-sucesores/r22-tolerancias-por-identidad.tsv",
+    "comando": "python3 csv.DictReader r22-tolerancias-por-identidad.tsv → len, Counter(instrumento)",
+    "salida": "1797 filas; instrumento {'ENDUTIH': 1548, 'MOCIBA': 249}"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-03",
+    "comando": "python3 tools/consulta.py nc NC-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-03",
+    "salida": "estado=ABIERTA · razon=DECISIÓN-DE-MESA-PENDIENTE · sucesor=MESA (2026-10-05) · encargo por escribir: R14: falta la etapa 1 (inventario de miembros)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01",
+    "comando": "python3 tools/consulta.py fp FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01",
+    "salida": "estado=ABIERTA · qué_se_firma=Margen de equivalencia y control simultáneo para IC reimplementados de C1 (R23: «se fijarán por mesa antes del siguiente conjunto sin revelar»)…"
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:9",
+    "comando": "rg -n 'Reservas:' canon/MEMORIA-OPERATIVA.md",
+    "salida": "9:- Reservas: ola más reciente de todo programa con historia; ENVIPE 2026; ENCO; ENIGH 2024 salvo seis columnas AMAI (C7). ENCIG 2025 y ENVIPE 2025: abiertas."
+   }
+  ],
+  "cerrado_por_detalle": "firma: FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-04 FIRMADA (R22), ejecutada ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 · producto forense/validacion-independiente/catalogo-1-sucesores/CONTRATO-TOLERANCIAS.md + r22-tolerancias-por-identidad.tsv · acceso en NC-…-fb50-03, IC en FP-…-2385-01",
+  "confianza": "media",
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null,
+  "owner_detalle": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-01",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "R23 (FP 157c-01 FIRMADA) resuelve exactamente lo pendiente: el protocolo queda como contrato DIAGNÓSTICO, no adoptable y sin recertificar IC. #1304 lo aplicó: dictamen-lote3-v1_1.tsv marca los IC como diagnóstico R23 que no adjudica. El margen de equivalencia que R23 difiere tiene su propia FP 2385-01 (ABIERTA) y su NC 2385-04.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "20ff4c05 (#1304)",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1304'",
+    "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-01",
+    "comando": "python3 tools/consulta.py fp FP-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-01",
+    "salida": "estado=FIRMADA · ejecutada_en=ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01; EJECUTA: GEN2-C1-SUCESORES-Y-LOTE-3 (protocolo como contrato DIAGNÓSTICO; IC de las 92 ENDIREH 2016 y de las 312 residuales: IC-DIAGNOSTICO-R23-NO-ADJUDICA (dictamen-lote3-v1_1.tsv); margen pendiente en FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01)"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R23",
+    "comando": "python3 csv.DictReader decisiones-21.tsv renglon==R23 → texto_de_firma",
+    "salida": "«Apruebo el protocolo como contrato DIAGNÓSTICO de reproducción de IC para intentos futuros; no es estimador de IC adoptable ni recertifica IC históricos. El margen de equivalencia y el control simultáneo se fijarán por mesa antes del siguiente conjunto sin revelar.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/validacion-independiente/catalogo-1-lote3/dictamen-lote3-v1_1.tsv",
+    "comando": "python3 csv.DictReader dictamen-lote3-v1_1.tsv → Counter(motivo)",
+    "salida": "404 filas; 'punto dentro de tolerancia; IC diagnóstico R23 (otra semilla/receta por R26 b), no adjudica': 188; 'punto dentro; IC fuera (bootstrap con otro generador; sin margen de equivalencia firmado, 157c-01)': 90"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-04",
+    "comando": "python3 tools/consulta.py nc NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-04",
+    "salida": "estado=ABIERTA · razon=DECISIÓN-DE-MESA-PENDIENTE: R23 sin margen de equivalencia ni control simultáneo firmados · sucesor=MESA (2026-10-05) · encargo por escribir: firma FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01"
+   }
+  ],
+  "cerrado_por_detalle": "firma: FP-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-01 FIRMADA (R23), ejecutada ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 · producto forense/validacion-independiente/catalogo-1-lote3/dictamen-lote3-v1_1.tsv · margen en FP-…-2385-01 / NC-…-2385-04",
+  "confianza": "alta",
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null,
+  "owner_detalle": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-03",
+  "verdict": "HOJA-DECISION",
+  "rationale": "R24 (FP 157c-02 FIRMADA) firmó solo el carril de transporte y dejó expresamente sin firmar los contratos nuevos NIV-terminal-v1 y P14_22_14 («pendientes de firma por bloque»). La exclusión EDAD 98/99 ya la cubre R25 (39de-01 FIRMADA, «elegibilidad nacional 99») para los sucesores. En el libro de firmas (647 filas) ninguna otra FP decide esos contratos.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "20ff4c05 (#1304)",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1304'",
+    "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R24 (FP-…-157c-02)",
+    "comando": "python3 csv.DictReader decisiones-21.tsv renglon==R24 → texto_de_firma",
+    "salida": "«Autorizo el carril de transporte: copiar la ventana literal del catálogo v1.2 a las 767 identidades, sin cambiar método ni el DISCREPA/NO-RECALCULABLE histórico. Los contratos nuevos (NIV-terminal-v1, P14_22_14 leyes, exclusión EDAD 98/99) quedan pendientes de firma por bloque; ninguno se presenta como equivalente del histórico.»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R25 (FP-260926-ASTRA6-C1-ADJUDICACION-PUNTOS-1-39de-01)",
+    "comando": "python3 csv.DictReader decisiones-21.tsv renglon==R25 → texto_de_firma",
+    "salida": "FIRMADA · «En lo no cubierto por FP-…-beee-02: autorizo el retiro temporal de identidades con defecto documental, el denominador institucional, la elegibilidad nacional 99 y la ejecución de sucesores nuevos, sin adopción automática.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv",
+    "comando": "python3 csv.DictReader firmas-pendientes.tsv; regex NIV-terminal|P14_22_14|98/99|EDAD ?98|escolaridad|aclaración ayuda sobre qué_se_firma+ejecutada_en",
+    "salida": "filas examinadas 647; única fila C1 que nombra esos contratos: FP-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-02 | FIRMADA | «…decidir contratos nuevos por bloque incluyendo escolaridad, leyes/servicios y exclusión de EDAD98/99» (las demás coincidencias son de pilotos ENVIPE/ENIF/ENCIG)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/validacion-independiente/catalogo-1-incertidumbre-spec/p3/astra6-c1-p3-spec-hoja-firma.md",
+    "comando": "head -30 forense/validacion-independiente/catalogo-1-incertidumbre-spec/p3/astra6-c1-p3-spec-hoja-firma.md",
+    "salida": "| Elegir composición escolar para31 dominios | Recomendada: NIV-terminal-v1 … | Cambio material de composición … Mesa firma contenido antes del intento. | Precisar leyes frente a servicios en ayuda115 | Recomendada: contrato nuevo P14_22_14 … Mesa decide antes del intento."
+   }
+  ],
+  "owner_detalle": "MESA · hoja: contratos nuevos C1 ENDIREH 2021 (NIV-terminal-v1, P14_22_14) por bloque",
+  "hoja": {
+   "situacion": "El carril «contrato nuevo» de C1 ENDIREH 2021 (escolaridad NIV-terminal-v1 en 31 dominios; P14_22_14 leyes frente a servicios en ayuda 115) quedó sin firmar por R24; sin firma no hay contrato nuevo que entregar a validadores.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Firmar por bloque NIV-terminal-v1 y P14_22_14 como contrato NUEVO con identidades sucesoras.",
+     "costo": "Un acto de preparación en CAJA más una sesión ciega; cifras nuevas sobre ola vista, no equivalentes al histórico."
+    },
+    {
+     "letra": "b",
+     "texto": "No abrir el carril nuevo: C1 sigue solo por transporte (R24) con el método anterior; EDAD 98/99 queda como la firmó R25 para los sucesores 2011/2021.",
+     "costo": "Escolaridad y ayuda conservan el bin histórico y su D-15 de recodificación NIV/GRA (23 + 8 llaves en specs-insuficientes-v1_2), que se resuelve por adenda de spec, no por contrato nuevo."
+    },
+    {
+     "letra": "c",
+     "texto": "Diferir hasta que un consumidor (informe o catálogo) pida escolaridad terminal o desconocimiento de leyes.",
+     "costo": "La fila queda abierta sin fecha."
+    }
+   ],
+   "recomendacion": "b",
+   "porque": "C1 existe para reproducir cifras ya selladas; un contrato nuevo crea estimandos nuevos sobre una ola vista sin consumidor que los pida, y el transporte de R24 ya cubre las 767. La recomendación es del ejecutor; el contenido lo decide mesa.",
+   "plazo": "Antes de redactar GEN2-ASTRA6-C1-LOTE-4 (MESA 2026-10-05)",
+   "texto_firma": "«NC-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-03: opción (b). No firmo los contratos nuevos NIV-terminal-v1 ni P14_22_14; C1 sigue por el carril de transporte de R24 con el método anterior. La exclusión de EDAD 98/99 queda como la firmó R25 (FP-260926-ASTRA6-C1-ADJUDICACION-PUNTOS-1-39de-01) para los sucesores 2011/2021. Si un consumidor pide escolaridad terminal o desconocimiento de leyes, se abre hoja nueva.»"
+  },
+  "confianza": "media",
+  "cerrado_por_detalle": null,
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-1-beee-01",
+  "verdict": "ABSORBER",
+  "rationale": "R24 transportó la ventana a las 767 (r24: 767 filas), pero ninguna sesión las recalculó: en validaciones-independientes, COM, ESC y LAB siguen «recalculadas 0/100, 0/96 y 0/100» (lote 1); #1304 recalculó otras 312. Falta la sesión ciega sobre c1-ventana-v1 con comparación y asiento. Depende de la hoja ee49-03 y debe declarar comparabilidad no 1:1.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "20ff4c05 (#1304)",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1304'",
+    "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/validacion-independiente/catalogo-1-sucesores/r24-transporte-ventana-767.tsv",
+    "comando": "python3 csv.DictReader r24-transporte-ventana-767.tsv → len, Counter(paquete)",
+    "salida": "767 filas; paquete {'endireh-pisos-2021-comunitaria-0001': 100, 'endireh-pisos-2021-escolar-0001': 96, 'endireh-pisos-2021-laboral-0001': 100, 'endireh-pisos-2021-nofisica-bc-0001': 471}"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/validaciones-independientes.tsv",
+    "comando": "python3 (csv.DictReader sobre data/corrida0/validaciones-independientes.tsv; filas con resultado_id RESULT-ENDIREH2021-*)",
+    "salida": "748 filas examinadas; RESULT-ENDIREH2021-COM-TABLA | NO-PASA | …catalogo-1-ejecucion-lote1… recalculadas 0/100; ESC recalculadas 0/96; LAB recalculadas 0/100; NF-BC punto-coincide 109/111 (lote 1). Ninguna fila de otra ref."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/validacion-independiente/catalogo-1-lote3/dictamen-lote3-v1_1.tsv",
+    "comando": "python3 csv.DictReader dictamen-lote3-v1_1.tsv → Counter(instrumento)",
+    "salida": "404 filas; instrumento {'ENBIARE': 180, 'ENCODAT': 130, 'ENCUCI': 1, 'ENDIREH': 92, 'ENIGH': 1} (ENDIREH = 2016 pareja física; cero ENDIREH 2021)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3.md §2",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3.md | rg -o 'R24: transporte literal[^·]*'",
+    "salida": "R24: transporte literal de la ventana del catálogo v1.2 a las 767 identidades sin ventana (sin recálculo)"
+   }
+  ],
+  "lote": "OTRO:C1-LOTE-4",
+  "entorno": "CAJA",
+  "hecho_comando": "python3 -c \"import csv;print(sum(1 for r in csv.DictReader(open('data/corrida0/validaciones-independientes.tsv'),delimiter='\\t') if r['resultado_id'] in ('RESULT-ENDIREH2021-COM-TABLA','RESULT-ENDIREH2021-ESC-TABLA','RESULT-ENDIREH2021-LAB-TABLA','RESULT-ENDIREH2021-NF-BC-TABLA') and 'catalogo-1-ejecucion-lote1' not in r['validacion_ref']))\"  # esperado ≥ 4",
+  "confianza": "alta",
+  "cerrado_por_detalle": null,
+  "owner_detalle": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-1-beee-06",
+  "verdict": "CERRAR-DUPLICADA",
+  "rationale": "Lo que falta es la vara de equivalencia de los IC reimplementados de C1. R23 (157c-01 FIRMADA) difirió el margen hasta «antes del siguiente conjunto sin revelar», y #1304 lo abrió como FP 2385-01 (ABIERTA) con NC 2385-04 (ABIERTA, MESA 5/oct). Es la misma deuda. Aplicarla a las 1 873 ya reveladas sería RETROSPECTIVA.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "20ff4c05 (#1304)",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1304'",
+    "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-04",
+    "comando": "python3 tools/consulta.py nc NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-04",
+    "salida": "estado=ABIERTA · acto=GEN2-C1-SUCESORES-Y-LOTE-3 · pr=1304 · razon=DECISIÓN-DE-MESA-PENDIENTE: R23 sin margen de equivalencia ni control simultáneo firmados · sucesor=MESA (2026-10-05) · encargo por escribir: firma FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01",
+    "comando": "python3 tools/consulta.py fp FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01",
+    "salida": "estado=ABIERTA · qué_se_firma=Margen de equivalencia y control simultáneo para IC reimplementados de C1 (R23: «se fijarán por mesa antes del siguiente conjunto sin revelar»). Opciones: (a) margen en unidades de SE … (b) sin margen: los IC de C1 quedan diagnósticos para siempre …"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R23",
+    "comando": "python3 csv.DictReader decisiones-21.tsv renglon==R23 → texto_de_firma",
+    "salida": "«Apruebo el protocolo como contrato DIAGNÓSTICO de reproducción de IC para intentos futuros; no es estimador de IC adoptable ni recertifica IC históricos. El margen de equivalencia y el control simultáneo se fijarán por mesa antes del siguiente conjunto sin revelar.»"
+   }
+  ],
+  "cerrado_por_detalle": "duplicada: NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-04 (ABIERTA → firma FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01, ABIERTA)",
+  "confianza": "media",
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null,
+  "owner_detalle": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-1-beee-07",
+  "verdict": "HOJA-DECISION",
+  "rationale": "Las 10 celdas frágiles ya están ACOTADA en el catálogo v1.3 (beee-02 FIRMADA, ejecutada en #1227). Falta lo que la fila difería: si hay regla de publicación con margen (o RNG fijado) para los sucesores. #1304 no la trató, y FP 2385-01 cubre solo el margen de IC, no la supresión.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "20ff4c05 (#1304)",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1304'",
+    "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260927-GEN2-RECIBO-ASTRA6-1-beee-02",
+    "comando": "python3 csv.DictReader firmas-pendientes.tsv id==FP-260927-GEN2-RECIBO-ASTRA6-1-beee-02",
+    "salida": "FIRMADA · qsf: … ACOTAR 689 (columna recomendacion); el sello no se toca, el sucesor es un CALC nuevo · ejec: ADR-260927-GEN2-CIERRE-SEMANAL-2-facd-01; EJECUTA: GEN2-CIERRE-SEMANAL-2 (PR #1227) …: 7 SUSPENDIDA-POR-FIRMA y 689 ACOTADA en catálogo v1.3"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/nota-recibo.md:60,76",
+    "comando": "rg -n -i 'publicab' forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/nota-recibo.md",
+    "salida": "60: Regla de la spec (ambas olas): publicable con n ≥ 100, ≥ 5 UPM, ancho IC ≤ 0.20 y CV ≤ 0.30. El validador suprimió; el sello publicó. … banda de ruido Monte Carlo … = 0.100. 76: … ACOTAR = rótulo «publicabilidad frágil al RNG» (10)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01",
+    "comando": "python3 tools/consulta.py fp FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01",
+    "salida": "estado=ABIERTA · qué_se_firma=Margen de equivalencia y control simultáneo para IC reimplementados de C1 … (no menciona publicabilidad ni supresión)"
+   }
+  ],
+  "owner_detalle": "MESA · hoja: regla de publicación con margen para las 10 celdas de publicabilidad frágil (junto con FP 2385-01)",
+  "hoja": {
+   "situacion": "10 celdas ENDIREH del lote 1 cambian de publicabilidad según la realización del bootstrap (margen al umbral ≤ banda Monte Carlo 0.100); hoy están ACOTADA con el rótulo «publicabilidad frágil al RNG» (beee-02).",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Dejar las 10 en ACOTADA de forma permanente, sin regla nueva.",
+     "costo": "10 celdas quedan con rótulo en vez de dictamen; no requiere trabajo."
+    },
+    {
+     "letra": "b",
+     "texto": "Firmar una regla de publicación con margen para los CALC sucesores: publicable solo si el margen al umbral supera la banda Monte Carlo, o con semilla y orden de RNG fijados en la spec sucesora.",
+     "costo": "Spec sucesora y CALC nuevo en CAJA por paquete, congelados antes de abrir el dato."
+    },
+    {
+     "letra": "c",
+     "texto": "Decidirla junto con FP 2385-01 (margen de IC de C1).",
+     "costo": "Espera a esa firma."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "El trato en producto ya está firmado y ejecutado (beee-02, #1227). La regla solo cambiaría un rótulo en olas vistas y ningún consumidor la pide. Es coherente con la opción (b) que recomienda FP 2385-01: sin consumidor, diagnóstico.",
+   "plazo": "Con FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 (MESA 2026-10-05)",
+   "texto_firma": "«NC-260927-GEN2-RECIBO-ASTRA6-1-beee-07: opción (a). Las 10 celdas de publicabilidad frágil quedan ACOTADA como firmó FP-260927-GEN2-RECIBO-ASTRA6-1-beee-02; no fijo regla de publicación con margen mientras ningún consumidor la pida. El sello no se toca.»"
+  },
+  "confianza": "media",
+  "cerrado_por_detalle": null,
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-2-627e-07",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "R28 (26a2-04 FIRMADA) eligió re-comparar en el lote 3, y #1304 lo ejecutó: r28-130-no-ciegas.tsv (126 ENBIARE CONCUERDA-NO-APROBADA; 4 ENCIG conservan su PASA) y 60 re-comparadas a ciegas. Lo que queda tiene fila propia: 66 D-15 en NC 2385-03 y 4 ENCIG en NC 2385-01, ambas ABIERTA.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "20ff4c05 (#1304)",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1304'",
+    "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-04",
+    "comando": "python3 tools/consulta.py fp FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-04",
+    "salida": "estado=FIRMADA · ejecutada_en=ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01; EJECUTA: GEN2-C1-SUCESORES-Y-LOTE-3 (ENBIARE 126: 60 re-comparadas ciegas (56 SOSTENER, 4 ACOTAR/NO-PASA por R26a) y 66 NO-CIEGA-PENDIENTE sin punto (D-15); ENCIG 4: PASA de otra validación intacto, re-comparación a C1-LOTE-4 (NC 2385-01))"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/validacion-independiente/catalogo-1-sucesores/r28-130-no-ciegas.tsv",
+    "comando": "python3 csv.DictReader r28-130-no-ciegas.tsv → len, Counter(asiento_vigente)",
+    "salida": "130 filas; asiento_vigente {'CONCUERDA-NO-APROBADA': 126, 'PASA': 4}; recomparacion {'LOTE-3 paquete enbiare-pisos-bienestar-0001': 126, 'SIN-PAQUETE-EN-LOTE-3 (ENCIG sin acceso C1 firmado)': 4}"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-03",
+    "comando": "python3 tools/consulta.py nc NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-03",
+    "salida": "estado=ABIERTA · razon=DIFERIDO-A:GEN2-SPEC-ENBIARE-ESCALAS-1: D-15, el esquema pide unidad proporcion y la spec define media 0–10 · sucesor=MESA (2026-10-05)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01",
+    "comando": "python3 tools/consulta.py nc NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01",
+    "salida": "estado=ABIERTA · razon=DIFERIDO-A:GEN2-ASTRA6-C1-LOTE-4: el lote 3 no tiene paquete ENCIG ni acceso C1 a ENCIG firmado · sucesor=MESA (2026-10-05) · encargo por escribir: GEN2-ASTRA6-C1-LOTE-4"
+   }
+  ],
+  "cerrado_por_detalle": "firma: FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-04 FIRMADA (R28), ejecutada ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 · producto forense/validacion-independiente/catalogo-1-sucesores/r28-130-no-ciegas.tsv · resto en NC-…-2385-03 y NC-…-2385-01",
+  "confianza": "alta",
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null,
+  "owner_detalle": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-2-627e-08",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "R33 (26a2-05 FIRMADA) resuelve la disyuntiva de la fila: queda el NO-PASA formal y se autoriza una spec sucesora con tolerancia 1e-10. #1304 escribió forense/prereg-caja/ENIGH2020-INTENSIDAD-REMESAS-spec-v1_1.md, y el NO-PASA sigue en la vista. Correr el CALC sucesor queda en NC 2385-06 (ABIERTA, RELEVO-TRAMITE-CAJA-2).",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "20ff4c05 (#1304)",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1304'",
+    "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-05",
+    "comando": "python3 tools/consulta.py fp FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-05",
+    "salida": "estado=FIRMADA · ejecutada_en=ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01; EJECUTA: GEN2-C1-SUCESORES-Y-LOTE-3 (NO-PASA formal conservado; spec sucesora forense/prereg-caja/ENIGH2020-INTENSIDAD-REMESAS-spec-v1_1.md (CALC: GEN2-RELEVO-TRAMITE-CAJA-2))"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-caja/ENIGH2020-INTENSIDAD-REMESAS-spec-v1_1.md:1",
+    "comando": "git show origin/main:forense/prereg-caja/ENIGH2020-INTENSIDAD-REMESAS-spec-v1_1.md | rg -n '1e-10|tolerancia' | head -3",
+    "salida": "1:# ENIGH2020-INTENSIDAD-REMESAS · especificación humana sucesora v1.1 · tolerancia de coma flotante | 5:Firma de mesa, verbatim (28/sep/2026 …, R33 (1)): «Queda el NO-PASA formal … Autorizo una spec sucesora con tolerancia absoluta 1e-10 …"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/validaciones-independientes.tsv",
+    "comando": "python3 csv.DictReader validaciones-independientes.tsv; resultado_id contiene REMESAS",
+    "salida": "RESULT-ENIGH20-REMINT-REMESAS-MEDIA | NO-PASA | …catalogo-1-ejecucion-lote2/p3/dictamenes/… | tol=0.0(spec L51, preexistente): delta=-1.82e-12"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-06",
+    "comando": "python3 tools/consulta.py nc NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-06",
+    "salida": "estado=ABIERTA · razon=DIFERIDO-A:GEN2-RELEVO-TRAMITE-CAJA-2: el encargo dice «solo spec» · sucesor=MESA (2026-10-05) · encargo por escribir: GEN2-RELEVO-TRAMITE-CAJA-2"
+   }
+  ],
+  "cerrado_por_detalle": "firma: FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-05 FIRMADA (R33), ejecutada ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 · producto forense/prereg-caja/ENIGH2020-INTENSIDAD-REMESAS-spec-v1_1.md · CALC sucesor en NC-…-2385-06",
+  "confianza": "alta",
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null,
+  "owner_detalle": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-2-627e-09",
+  "verdict": "CERRAR-DUPLICADA",
+  "rationale": "El transporte de solo ventana ya existe (R24: r24, 767 filas). Las 119 NF no están huérfanas: 111 ya se recalcularon en el lote 1 (DISCREPA solo por IC: 109 SOSTENER, 2 ACOTAR) y 8 son D-15 asentadas en specs-insuficientes-v1_2. Solo falta declarar la comparabilidad no 1:1 en la sesión de las 767, que es deuda de NC beee-01 (ABIERTA).",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "20ff4c05 (#1304)",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1304'",
+    "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/validacion-independiente/catalogo-1-reempaqueta-ventana/procedencia/excluidas-historico.tsv × forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/2026-09-27-gen2-recibo-astra6-1--tabla-result-estado-efecto.tsv",
+    "comando": "python3 csv.DictReader de ambos; cruce por llave → Counter(estado_comparador), Counter(componente,recomendacion)",
+    "salida": "excluidas 119 (FUERA-DE-767-OMISIONES); estado_comparador {'DISCREPA': 111, 'NO-RECALCULABLE-DESDE-SPEC': 8}; DISCREPA: ('IC','SOSTENER') 109, ('PUNTO','ACOTAR') 2; las 8: causa_spec D15-RECODIFICACION-AUSENTE, SOSTENER-SIN-CORROBORACION"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/validacion-independiente/specs-insuficientes-v1_2.tsv",
+    "comando": "python3 csv.DictReader specs-insuficientes-v1_2.tsv; filas con NF-BC",
+    "salida": "CALC-ENDIREH-PISOS-2021-NOFISICA-BC-0001 | RESULT-ENDIREH2021-NF-BC-TABLA | D15-RECODIFICACION-AUSENTE | mapa de códigos NIV/GRA … | llaves_afectadas 8 | ADENDA-DE-SP…"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/validacion-independiente/catalogo-1-sucesores/r24-transporte-ventana-767.tsv",
+    "comando": "python3 csv.DictReader r24-transporte-ventana-767.tsv → len",
+    "salida": "767 filas (nofisica-bc 471, comunitaria 100, escolar 96, laboral 100)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260927-GEN2-RECIBO-ASTRA6-1-beee-01",
+    "comando": "python3 tools/consulta.py nc NC-260927-GEN2-RECIBO-ASTRA6-1-beee-01",
+    "salida": "estado=ABIERTA · razon=DIFERIDO-A:ASTRA6-C1-REEMPAQUETA-VENTANA-1 — paquete v2 con columna ventana y sesión nueva; el primer intento no se reescribe"
+   }
+  ],
+  "cerrado_por_detalle": "duplicada: NC-260927-GEN2-RECIBO-ASTRA6-1-beee-01 (ABIERTA; sesión ciega de las 767 sobre c1-ventana-v1, que debe declarar la comparabilidad no 1:1 con el lote 1) · 119 NF verificadas: 111 recalculadas en el lote 1 y 8 D-15 en specs-insuficientes-v1_2",
+  "confianza": "media",
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null,
+  "owner_detalle": null,
+  "hoja": null
+ }
+]

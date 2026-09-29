@@ -1,0 +1,9 @@
+[
+ {
+  "id": "NC-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-04",
+  "veredicto": "CONFIRMA",
+  "razon": "Los 7 comandos de cite reproducen la salida declarada (sha bd1dcfd8 = sidecar, gobernanza 226-231, spec 64bb52f2, 0 de 395, 11 variantes sin f9ea6d4f). Salvedad fuera de la lente: la opción (b) es decisión de mesa (hoja-mesa L23); sin firma verbatim.",
+  "comando": "git show origin/main:forense/prereg-caja/DISENO-LOTE-CRUCES-ENIF2024-protocolo-unico-v0_1.md | sha256sum; git grep -c -E 'bd1dcfd8|f9ea6d4f' origin/main -- 'data/corrida0/CALC-*/spec.yaml' ... | wc -l",
+  "salida": "bd1dcfd89a10...f5da (= sidecar); coincidencias 0; examinados 395; variantes 11, coincidencias f9ea6d4f 0; origin/main bafb1c1b"
+ }
+]
