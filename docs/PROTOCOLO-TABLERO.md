@@ -30,3 +30,12 @@ a mano con este bloque adentro. El estado vigente es el que está en
 `origin/main` ahora mismo, con `¿árbol == origin/main? True`; cualquier
 otra copia es, a lo sumo, una fotografía de un momento pasado o de una
 rama que nunca se fusionó.
+
+**Un solo tablero** (ACTO GEN2-TUBERIA-TABLERO-UNICO-1, 29/sep/2026; firma de mesa 5-bis (b)). El programa tiene un
+solo tablero, `forense/tablero/TABLERO-PROGRAMA.md`, y una sola página, `docs/tablero.md`. CI reescribe únicamente lo
+que está entre tres pares de marcadores: `TABLERO-DERIVADO` (estado vivo), `TABLERO-UNICO:CARRILES` (los 31 carriles,
+de `tools/tablero_carriles.py`) y `TABLERO-UNICO:PENDIENTES` (firmas abiertas y deuda por dueño, de
+`tools/tablero_unico.py`). Todo lo que queda fuera de los marcadores es el cuerpo curado del puesto de tablero: entra al
+repo por `/tramite` como adjunto, nunca por CI ni por una conversación. `TABLERO-CARRILES.md`, su página HTML y el
+inventario `PENDIENTES-PROGRAMA` dejaron de publicarse; las versiones del catálogo, las reglas y las familias que leen
+los carriles se resuelven del puntero `docs/data/catalogo-vigente.json` o de la serie más alta del árbol.

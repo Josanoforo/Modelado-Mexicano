@@ -10,7 +10,8 @@ número se teclea. Falla si:
   (1) algún carril queda sin semáforo, o no son 31 tarjetas;
   (2) una línea del bloque derivado trae un número sin `⟨F…⟩` (derivado_de),
       o con una clave que no está en la cadena de procedencia;
-  (3) el HTML trae un número que el md no trae;
+  (3) [TABLERO-UNICO-1] los carriles no leen lo vigente: F2 no es el catálogo del puntero, F1/F3/F11 no son la
+      versión más alta del árbol, `c6aa-01` (firma sobre el aparato) es stopper, o `43d6-01` (control positivo) no lo es;
   (4) la derivación no es determinista (dos corridas, dos resultados);
   (5) el crosswalk no casa con la derivación, no tiene 31 filas, o tiene una
       celda vacía (sin SIN-UNION);
@@ -38,11 +39,6 @@ FAILS = []
 def afirma(cond, msg):
     if not cond:
         FAILS.append(msg)
-
-
-def bloque(texto):
-    a, b = texto.find(TC.MARCAS[0]), texto.find(TC.MARCAS[1])
-    return texto[a + len(TC.MARCAS[0]):b]
 
 
 def prueba_semaforo_sintetico():
@@ -80,14 +76,14 @@ def prueba_manifiesto():
 def prueba_tablero():
     D1 = TC.derivar()
     D2 = TC.derivar()
-    md1, h1 = TC.genera(D1)
-    md2, h2 = TC.genera(D2)
-    afirma(md1 == md2 and h1 == h2, "la derivación no es determinista")
+    md1 = TC.genera(D1)
+    md2 = TC.genera(D2)
+    afirma(md1 == md2, "la derivación no es determinista")
     C = D1["carriles"]
     afirma(len(C) == 31, f"se esperaban 31 carriles (reports en corpus/reports/ del mapa); hay {len(C)}")
     afirma(all(c["semaforo"] in TC.ICONO for c in C), "un carril quedó sin semáforo válido")
     afirma(all(c["siguiente"]["sucesor"] for c in C), "un carril quedó sin siguiente acción")
-    cuerpo = bloque(md1)
+    cuerpo = md1
     tarjetas = re.findall(r"(?m)^### (\S+) (CARRIL-\d{2}) ", cuerpo)
     afirma(len(tarjetas) == len(C), f"tarjetas {len(tarjetas)} != carriles {len(C)}")
     afirma(all(ic in TC.ICONO.values() for ic, _ in tarjetas), "una tarjeta sin icono de semáforo")
@@ -110,13 +106,6 @@ def prueba_tablero():
     pie = cuerpo.split("## Cadena de procedencia", 1)[1]
     for k in claves:
         afirma(f"| {k} |" in pie, f"la cadena de procedencia no declara {k}")
-    # (3) HTML ⊆ md en números
-    num = re.compile(r"\d+(?:[.,]\d+)?")
-    txt_h = re.sub(r"<[^>]+>", " ", bloque(h1))
-    import html as H
-    txt_h = H.unescape(txt_h)
-    faltan = set(num.findall(txt_h)) - set(num.findall(md1))
-    afirma(not faltan, f"el HTML trae números que el md no trae: {sorted(faltan)[:10]}")
     # (5) crosswalk
     cw = TC.crosswalk_texto(D1)
     real = open(os.path.join(ROOT, TC.CROSSWALK), encoding="utf-8").read()
@@ -129,15 +118,48 @@ def prueba_tablero():
         afirma(all(x.strip() for x in f), f"crosswalk: celda vacía en {f[0]}")
 
 
+def prueba_vigentes():
+    """Criterio 3 de GEN2-TUBERIA-TABLERO-UNICO-1, sobre la salida de `tablero_carriles.py --json`."""
+    import json
+    import subprocess
+    salida = subprocess.run([sys.executable, os.path.join(ROOT, "tools", "tablero_carriles.py"), "--json"],
+                            capture_output=True, text=True, cwd=ROOT)
+    afirma(salida.returncode == 0, f"--json falló: {salida.stderr[-200:]}")
+    D = json.loads(salida.stdout)
+    proc = {k: v["archivo"] for k, v in D["procedencia"].items()}
+    vig = json.load(open(os.path.join(ROOT, "docs/data/catalogo-vigente.json"), encoding="utf-8"))["catalogo"]
+    afirma(proc["F2"] == f"canon/catalogo-del-mexicano-{vig}.tsv", f"F2 no es el catálogo del puntero ({vig}): {proc['F2']}")
+
+    def alta(dirrel, patron):
+        rx = re.compile(patron + r"-v(\d+)_(\d+)\.tsv$")
+        vs = [(int(m.group(1)), int(m.group(2)), f) for f in os.listdir(os.path.join(ROOT, dirrel))
+              for m in [rx.match(f)] if m]
+        return dirrel + "/" + max(vs)[2]
+    for k, d, p in (("F1", "canon", "mapa-dominios"), ("F3", "canon", "reglas-contrastadas"),
+                    ("F11", "forense/analisis/familias-2027", "familias-2027-estado")):
+        afirma(proc[k] == alta(d, p), f"{k} no es la versión más alta de su serie: {proc[k]} != {alta(d, p)}")
+    stop = {}
+    for c in D["carriles"]:
+        for st in c["stoppers"].get("FIRMA", []):
+            stop.setdefault(st["id"], set()).add(c["carril"])
+    afirma("FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01" not in stop,
+           "c6aa-01 (firma sobre el aparato) es stopper de " + str(sorted(stop.get("FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01", []))))
+    afirma("FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01" not in json.dumps([c["siguiente"] for c in D["carriles"]]),
+           "c6aa-01 es siguiente acción de un carril")
+    ctl = stop.get("FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01", set())
+    afirma({"CARRIL-03", "CARRIL-18"} <= ctl, f"control positivo 43d6-01: debe frenar CARRIL-03 y CARRIL-18; frena {sorted(ctl)}")
+
+
 def main():
     prueba_semaforo_sintetico()
     prueba_tablero()
     prueba_manifiesto()
+    prueba_vigentes()
     if FAILS:
         for f in FAILS:
             print("FAIL:", f)
         sys.exit(1)
-    print("OK test_tablero_carriles: semáforo sintético, 31 tarjetas, derivado_de por línea, HTML ⊆ md, determinismo, crosswalk, manifiesto")
+    print("OK test_tablero_carriles: semáforo sintético, 31 tarjetas, derivado_de por línea, determinismo, crosswalk, manifiesto, versiones vigentes y firmas de aparato")
 
 
 if __name__ == "__main__":

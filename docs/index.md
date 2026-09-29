@@ -20,5 +20,5 @@ No respondemos preguntas que las encuestas oficiales no hicieron, no prometemos 
 
 - [Estado y prueba]({{ '/estado.html' | relative_url }}) · [Guía de lectura]({{ '/guia-lectura-publica.html' | relative_url }})
 - [Contrato de consulta]({{ '/consulta.html' | relative_url }}) · [Ejemplos de consulta]({{ '/ejemplos.html' | relative_url }})
-- [One-pager]({{ '/one-pager.html' | relative_url }}) · [Deck]({{ '/deck.html' | relative_url }}) · [Tablero del programa]({{ '/tablero.html' | relative_url }}) · [Tablero por carriles]({{ '/tablero-carriles.html' | relative_url }})
+- [One-pager]({{ '/one-pager.html' | relative_url }}) · [Deck]({{ '/deck.html' | relative_url }}) · [Tablero del programa]({{ '/tablero.html' | relative_url }})
 - [Sello externo]({{ '/sello-externo.html' | relative_url }}) · [Glosario]({{ '/registro-glosario.html' | relative_url }}) · [Protocolo del tablero]({{ '/PROTOCOLO-TABLERO.html' | relative_url }})
