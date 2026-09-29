@@ -57,7 +57,8 @@ def git(cwd, *args, fecha=None):
                GIT_COMMITTER_NAME="t", GIT_COMMITTER_EMAIL="t@t")
     if fecha:
         env["GIT_COMMITTER_DATE"] = env["GIT_AUTHOR_DATE"] = fecha
-    r = subprocess.run(["git", *args], cwd=cwd, env=env, capture_output=True, text=True)
+    r = subprocess.run(["git", "-c", "commit.gpgsign=false", "-c", "tag.gpgsign=false", *args],
+                       cwd=cwd, env=env, capture_output=True, text=True)
     assert r.returncode == 0, (args, r.stderr)
     return r.stdout.strip()
 
