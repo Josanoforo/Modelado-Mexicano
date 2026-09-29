@@ -1,0 +1,692 @@
+# CALC-APERTURA-ENOE-2026T2-0001 -- contrato ejecutable del expediente de apertura (D-15), GEN2-APERTURAS-PREREGISTRADAS-1.
+# NO CORRIDO. La apertura es copiar este archivo a data/corrida0/CALC-APERTURA-ENOE-2026T2-0001/spec.yaml;
+# el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
+calc_id: CALC-APERTURA-ENOE-2026T2-0001
+spec_md: ../../../forense/prereg-aperturas/ENOE-2026T2/APERTURA-ENOE-2026T2-spec-v1_0.md
+spec_md_sha256: 4ab66cedd533d9145b3355a20a0cb67774c6728483bd055bf6a28c80b321972f
+script: forense/prereg-aperturas/ENOE-2026T2/medidor_apertura_enoe_2026t2.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: 'NO'
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+  tipo: APERTURA-PRE-REGISTRADA (COMMIT-3 de la ola reservada)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: PROSPECTIVA
+  unidad_transferencia: PERSONA
+  contendientes:
+  - CALC-ENOE-PARTICIPACION-2024T4-0001
+  ola_reservada: ENOE 2026T2 (se abre sólo al correr este CALC)
+  congelado: NO -- expediente; se congela cuando mesa firme su apertura
+inputs:
+- id: cc1_inegi_enoe_2026t2__enoe_2026_trim2_csv
+  origen: manifiesto
+  sha256: 020811fa989a3e4e3e0daae39b32df6bb055f3ca59653b76ecc454f9b231d91e
+  funcion: DATO
+  nota: ENOE 2026T2 base de datos CSV (tabla SDEMT) -- ola RESERVADA; sólo este medidor la lee
+- id: contendiente_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-ENOE-PARTICIPACION-2024T4-0001/medidor.py
+  sha256: ba28dfa911966774e3bf8066dd819ba7d75349b0b2ec3f8a290019a1d7bcfaa2
+  funcion: CODIGO
+  nota: 'medidor sellado del contendiente: CONDUCTAS, MAPAS, EDADES, EJES_CATS, derivadas'
+- id: contendiente_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENOE-PARTICIPACION-2024T4-0001/resultados.json
+  sha256: 4cb128dd64510fffee781568f61712d3086a84d117eb34f3a8a3bc7e61934c6d
+  funcion: DATO
+  nota: 'piso 2024T4 sellado: P, IC-LO, IC-HI por celda'
+- id: receta_pisos_salud
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: lee_csv_zip y num de la receta de pisos
+- id: motor_pisos_confianza
+  origen: repo
+  ruta: tools/dominios/confianza/motor_pisos.py
+  sha256: 7d0494f43052e0ea39ce0baf5f6505ccf889b386cfa3c0775b0dbdfb56ef958e
+  funcion: CODIGO
+  nota: prepara_diseno, recodifica, eje_mapa, eje_rango del motor de pisos
+- id: guardia_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/guardia_apertura.py
+  sha256: b9fee881070a00c46ad3238d9ee65f6d3cfd3028594b29ee055727f9501771c0
+  funcion: CODIGO
+  nota: auditoría AST, agregador de una variable, adjudicación
+- id: expediente_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/expediente_apertura.py
+  sha256: db003b18b9bc8213d0aba9bed900a9b7f5620ebc4e9a2173727f53356c7ef9f7
+  funcion: CODIGO
+  nota: esquema, salida y contrato comunes
+variables:
+- nombre: PARTICIPA-ECONOMICAMENTE
+  definicion: clase1 = 1 frente a 2, 15+ (spec contendiente §2)
+- nombre: NO-ESTUDIA-NI-OCUPADO-18-24
+  definicion: '18-24: cs_p17 = 2 y clase2 != 1 frente a asiste u ocupado (spec contendiente §2)'
+- nombre: MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24
+  definicion: 'entre quienes cumplen la anterior: sex = 2 frente a 1 (spec contendiente §2)'
+universo: Residente habitual o nuevo (c_res 1,3) con entrevista completa (r_def 0), 15-98 años, ENOE 2026T2 (SDEMT);
+  fac_tri > 0, est_d_tri y upm no vacíos (el universo del contendiente)
+filtros: Un eje a la vez (TOTAL, SEXO, EDAD, LOCALIDAD, ESCOLARIDAD, ENTIDAD); nunca cruces (guardia E.6)
+ponderador: fac_tri
+transformacion: Recodificación del contendiente (spec COLA-ENOE-PARTICIPACION §2, derivadas() del medidor sellado);
+  columna ausente en el catálogo 2026T2 -> NO-ESTIMABLE (R None), sin recodificación ad hoc
+estimando: R = Σw·y/Σw por conducta×eje×categoría en ENOE 2026T2; cobertura de R en el IC de diseño del piso 2024T4
+seed:
+  aplica: false
+  razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
+parametros:
+  nominal: 0.95
+  z: 1.959964
+  regla: cobertura R en [lo, hi] del contendiente; Wilson 95%; NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificación ad hoc)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'determinista: sumas float64 sin remuestreo'
+resultados:
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-EDAD-15-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-EDAD-18-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-EDAD-25-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-EDAD-45-64-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-EDAD-65-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-LOCALIDAD-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-LOCALIDAD-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-LOCALIDAD-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-LOCALIDAD-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ESCOLARIDAD-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ESCOLARIDAD-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ESCOLARIDAD-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-PARTICIPA-ECONOMICAMENTE-ENTIDAD-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-EDAD-15-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-EDAD-18-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-EDAD-25-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-EDAD-45-64-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-EDAD-65-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-LOCALIDAD-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-LOCALIDAD-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-LOCALIDAD-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-LOCALIDAD-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ESCOLARIDAD-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ESCOLARIDAD-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ESCOLARIDAD-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-EDAD-15-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-EDAD-18-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-EDAD-25-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-EDAD-45-64-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-EDAD-65-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-LOCALIDAD-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-LOCALIDAD-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-LOCALIDAD-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-LOCALIDAD-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ESCOLARIDAD-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ESCOLARIDAD-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ESCOLARIDAD-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-ENTIDAD-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-DICTAMEN
+  tipo: texto
+  unidad: vocabulario cerrado CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE
+- id: RESULT-APERTURA-ENOE-2026T2-K
+  tipo: entero
+  unidad: celdas con R dentro del IC del contendiente
+- id: RESULT-APERTURA-ENOE-2026T2-N
+  tipo: entero
+  unidad: celdas puntuadas
+- id: RESULT-APERTURA-ENOE-2026T2-WILSON-LO
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, inferior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-WILSON-HI
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, superior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MAE-PUNTO
+  tipo: flotante
+  unidad: error absoluto medio punto del contendiente vs R (descriptivo)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENOE-2026T2-MARCA
+  tipo: texto
+  unidad: PROSPECTIVA (contendiente sellado antes de R)

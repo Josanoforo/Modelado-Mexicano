@@ -1,0 +1,3549 @@
+# CALC-APERTURA-CENSO-2020-0001 -- contrato ejecutable del expediente de apertura (D-15), GEN2-APERTURAS-PREREGISTRADAS-1.
+# NO CORRIDO. La apertura es copiar este archivo a data/corrida0/CALC-APERTURA-CENSO-2020-0001/spec.yaml;
+# el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
+calc_id: CALC-APERTURA-CENSO-2020-0001
+spec_md: ../../../forense/prereg-aperturas/CENSO-2020/APERTURA-CENSO-2020-spec-v1_0.md
+spec_md_sha256: 713544b50fddde5b41d1fe1a459b7e3a3d26039846a2fb989388e9ccfbd2ed2d
+script: forense/prereg-aperturas/CENSO-2020/medidor_apertura_censo_2020.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: 'NO'
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+  tipo: APERTURA-PRE-REGISTRADA (COMMIT-3 de la ola reservada)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: PROSPECTIVA
+  unidad_transferencia: HOGAR
+  contendientes:
+  - CALC-EIC-HOGARES-2015-0001
+  - CALC-CCPV-FAM-PISOS-0001
+  ola_reservada: CCPV 2020 (se abre sólo al correr este CALC)
+  congelado: NO -- expediente; se congela cuando mesa firme su apertura
+inputs:
+- id: cc1_inegi_ccpv_2020__censo2020_ca_ags_csv
+  origen: manifiesto
+  sha256: 9bf7ad01e6863959dff45f7644f742f4650d744f6188ad347e5c47b6c24e9920
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 01: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_bc_csv
+  origen: manifiesto
+  sha256: 09f7c4f5ea46e1f8142d24ea7520cbc6ca6181c1ab3a5af143245ab9ebbd802f
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 02: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_bcs_csv
+  origen: manifiesto
+  sha256: df03a37275f59f890e5886829f9369f61ba4906edacc422499b9e4ef377e4f76
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 03: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_cam_csv
+  origen: manifiesto
+  sha256: 9aa3bd99745a6fc1bd05c29fd6b13495a45856c7a6ca799affe2e8c3177f847e
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 04: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_coa_csv
+  origen: manifiesto
+  sha256: 8a16abc1ccdfb45d73d69a5f28fc7b9f36f08e163aebea8e06393b61811e9d8c
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 05: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_col_csv
+  origen: manifiesto
+  sha256: abad95baf7cce01ff137a13140f3b06901aac796700e0fdaa862031e5f27f0ae
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 06: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_chs_csv
+  origen: manifiesto
+  sha256: 4d66445f606894442aa1537e76ada7c075ff3e563708261ce3cf27840a14b39d
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 07: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_chh_csv
+  origen: manifiesto
+  sha256: 5b3b2fc7b772e5de57b713b5ef89216bbb92d339daf4dc3653d4a0967f1aec87
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 08: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_cdmx_csv
+  origen: manifiesto
+  sha256: 204325a75339582df7df72083889f4081dd06fdb24b2551f2aedd5c2f32e1428
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 09: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_dgo_csv
+  origen: manifiesto
+  sha256: 1f524fe0f66dfdc7dc01ba177e8197d452b8b440baa36531961dcee54f7de667
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 10: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_gto_csv
+  origen: manifiesto
+  sha256: f4160d075c9d737a5ca2d23bd975f44b324e863157bbd40d34e049fdcf689441
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 11: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_gro_csv
+  origen: manifiesto
+  sha256: 6c241e331c467a4c561e0eaf14c579c11cdf3640334347ce94a2dae6005e1db3
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 12: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_hgo_csv
+  origen: manifiesto
+  sha256: 5d0ff2b338acb93f8558ef2fed0500c1b4af004cdfc5ee34fb1fec7faa21e865
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 13: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_jal_csv
+  origen: manifiesto
+  sha256: 3e8fa91039d8f5b959adaaa454100c1f0e698458ded490a97f1d11e9cfde72d6
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 14: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_mex_csv
+  origen: manifiesto
+  sha256: 178a2a5c3a0b7b08a1ac878a5e94ca4e6c9b9d5851d98b8b07fe2f9d35672c2b
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 15: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_mich_csv
+  origen: manifiesto
+  sha256: 3f47fe8c4f066f18b2a0451c56036aefe216be700fa365ffd23ae3088ea67086
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 16: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_mor_csv
+  origen: manifiesto
+  sha256: f0fd8daa4046fb59ad6524ad403542b72fe04a50b9297e92f8e94166476ad2f1
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 17: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_nay_csv
+  origen: manifiesto
+  sha256: 861ea85566a02638ff48553808cf0c28e6c2e2c78aebba8a396afaa07ae7e26e
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 18: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_nl_csv
+  origen: manifiesto
+  sha256: ef0a3b759599f6339dcbf1ce30e7462973ac659cdb767e84a41823f370759d1d
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 19: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_oax_csv
+  origen: manifiesto
+  sha256: 896801fca00e4ab6ca8aea2f40e2e28b22c357b4a35539797bfb0e60c6633f1c
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 20: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_pue_csv
+  origen: manifiesto
+  sha256: 1abaf359b03373a3c56ff75aecfcd75d98cdc753c4adaf399f4c19c919dbcbf0
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 21: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_qro_csv
+  origen: manifiesto
+  sha256: 07e97516b002653b50cf5c3487d0d4d85c075cb288e1349a777ea4c9e567c01a
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 22: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_qroo_csv
+  origen: manifiesto
+  sha256: 928f5f8ef7ce84307acde9a68bde3fd4995e50898f6020d618fed4e267da248e
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 23: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_slp_csv
+  origen: manifiesto
+  sha256: bfb239ba5b825411dcca1f4a4a0e12d34f4014712665137fe6803cdb413fb369
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 24: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_sin_csv
+  origen: manifiesto
+  sha256: 47b083a9ca8954ee65e76de6b6ef62a667557d0619391017f48d3d4c38a5b0ff
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 25: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_son_csv
+  origen: manifiesto
+  sha256: 4ebcfeae65b07e2422413bc2c1bda307c420b7b23dab8c770d116f4c6d712907
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 26: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_tab_csv
+  origen: manifiesto
+  sha256: 70d3f68a48b24cbbe65b2f578997a08a5ef7655d899ba78ae0ff1dbbe9329597
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 27: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_tam_csv
+  origen: manifiesto
+  sha256: 3911b386e9e30876f64449e9210a4bfbf731d9a1882cb7799d831ac7557b6242
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 28: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_tla_csv
+  origen: manifiesto
+  sha256: b8af2a061feb8ce6607e16a17a440ccd6dea0079dd0e436c5b0b03266fb535c4
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 29: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_ver_csv
+  origen: manifiesto
+  sha256: bcd8e12ed51165e9252403a82dbf47eda1db40a61c8c6a6bcbc3c665b1c4516d
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 30: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_yuc_csv
+  origen: manifiesto
+  sha256: e198afc19916ba271cb11ddf7183843025d5f9bc14f9f7985cc15de3a6a9be75
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 31: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: cc1_inegi_ccpv_2020__censo2020_ca_zac_csv
+  origen: manifiesto
+  sha256: 03b06a029df7add4694d998d647f1830ea3aae1c1255ef14c24d7d07303b7e1c
+  funcion: DATO
+  nota: 'Censo 2020, muestra censal (cuestionario ampliado), entidad 32: tablas VIVIENDAS y PERSONAS -- ola RESERVADA
+    por los contendientes; sólo este medidor la lee'
+- id: eic_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-EIC-HOGARES-2015-0001/medidor.py
+  sha256: 70143371f65ec58c4c87d2ee5bfa016e53a4066bed27bf678584a28c9389b0cb
+  funcion: CODIGO
+  nota: 'medidor sellado EIC 2015: CONDUCTAS, MAPAS, EJES_CATS, PESO/ESTRATO/UPM'
+- id: eic_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-EIC-HOGARES-2015-0001/resultados.json
+  sha256: 9f92fc2f6484cd136c31f142c69092208b5bfc74e13ea988327b36c985b704f1
+  funcion: DATO
+  nota: 'piso EIC 2015 sellado: P, IC-LO, IC-HI por celda'
+- id: ccpv_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-CCPV-FAM-PISOS-0001/medidor.py
+  sha256: 61de9a68a70ae2db02d0968f2a1d045c0793ffae5240cc8fe0f344940df92808
+  funcion: CODIGO
+  nota: 'medidor sellado CCPV 2010: prepara, conducta_hogar, conducta_persona, EJES_*'
+- id: ccpv_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-CCPV-FAM-PISOS-0001/resultados.json
+  sha256: 5cbf8273f2859b7b3e24368db03f9f811914e8b3413a48ca862c6f48d0b553a3
+  funcion: DATO
+  nota: 'piso CCPV 2010 sellado: P, IC-LO, IC-HI por celda'
+- id: receta_pisos
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: lee_csv_zip y num de la receta de pisos
+- id: motor_pisos_confianza
+  origen: repo
+  ruta: tools/dominios/confianza/motor_pisos.py
+  sha256: 7d0494f43052e0ea39ce0baf5f6505ccf889b386cfa3c0775b0dbdfb56ef958e
+  funcion: CODIGO
+  nota: prepara_diseno, recodifica, eje_mapa del motor de pisos (contendiente EIC)
+- id: guardia_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/guardia_apertura.py
+  sha256: b9fee881070a00c46ad3238d9ee65f6d3cfd3028594b29ee055727f9501771c0
+  funcion: CODIGO
+  nota: auditoría AST, agregador de una variable, adjudicación
+- id: expediente_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/expediente_apertura.py
+  sha256: db003b18b9bc8213d0aba9bed900a9b7f5620ebc4e9a2173727f53356c7ef9f7
+  funcion: CODIGO
+  nota: esquema, salida y contrato comunes
+variables:
+- nombre: EIC15-HOGAR-AMPLIADO
+  definicion: tipo de hogar de TIPOHOG (spec COLA-EIC-HOGARES §2)
+- nombre: EIC15-HOGAR-NUCLEAR
+  definicion: tipo de hogar de TIPOHOG (spec COLA-EIC-HOGARES §2)
+- nombre: EIC15-HOGAR-UNIPERSONAL
+  definicion: tipo de hogar de TIPOHOG (spec COLA-EIC-HOGARES §2)
+- nombre: EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES
+  definicion: tipo de hogar de TIPOHOG (spec COLA-EIC-HOGARES §2)
+- nombre: CCPV10-HOG-NUCLEAR
+  definicion: conducta de hogar o persona 60+ (spec CCPV-FAM-PISOS §2)
+- nombre: CCPV10-HOG-AMPLIADO
+  definicion: conducta de hogar o persona 60+ (spec CCPV-FAM-PISOS §2)
+- nombre: CCPV10-HOG-COMPUESTO
+  definicion: conducta de hogar o persona 60+ (spec CCPV-FAM-PISOS §2)
+- nombre: CCPV10-HOG-UNIPERSONAL
+  definicion: conducta de hogar o persona 60+ (spec CCPV-FAM-PISOS §2)
+- nombre: CCPV10-HOG-CORRESIDENTES
+  definicion: conducta de hogar o persona 60+ (spec CCPV-FAM-PISOS §2)
+- nombre: CCPV10-HOG-CON-60MAS
+  definicion: conducta de hogar o persona 60+ (spec CCPV-FAM-PISOS §2)
+- nombre: CCPV10-HOG-CON-MENOR-18
+  definicion: conducta de hogar o persona 60+ (spec CCPV-FAM-PISOS §2)
+- nombre: CCPV10-HOG-60MAS-Y-MENOR-18
+  definicion: conducta de hogar o persona 60+ (spec CCPV-FAM-PISOS §2)
+- nombre: CCPV10-HOG-TRES-GENERACIONES
+  definicion: conducta de hogar o persona 60+ (spec CCPV-FAM-PISOS §2)
+- nombre: CCPV10-HOG-JEFA-MUJER
+  definicion: conducta de hogar o persona 60+ (spec CCPV-FAM-PISOS §2)
+- nombre: CCPV10-HOG-TAMANO-MEDIO
+  definicion: conducta de hogar o persona 60+ (spec CCPV-FAM-PISOS §2)
+- nombre: CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO
+  definicion: conducta de hogar o persona 60+ (spec CCPV-FAM-PISOS §2)
+- nombre: CCPV10-AM-HOG-UNIPERSONAL
+  definicion: conducta de hogar o persona 60+ (spec CCPV-FAM-PISOS §2)
+- nombre: CCPV10-PER60-VIVE-SOLO
+  definicion: conducta de hogar o persona 60+ (spec CCPV-FAM-PISOS §2)
+universo: 'Muestra censal 2020: viviendas particulares habitadas de la tabla VIVIENDAS (EIC15: TIPOHOG en 1,2,3,5,6;
+  CCPV10: universo de cada conducta en su spec §2) y personas 60+ de PERSONAS (PER60-*); FACTOR > 0, ESTRATO y UPM
+  no vacíos'
+filtros: 'Un eje a la vez (EIC15: TOTAL, JEFATURA, TAMLOC, ENTIDAD; CCPV10 hogar: TOTAL, SEXO-JEFE, EDAD-JEFE, ESCOLARIDAD-JEFE,
+  TLOC, ENT; persona: TOTAL, SEXO, EDAD, TLOC, ENT); nunca cruces (guardia E.6)'
+ponderador: FACTOR (VIVIENDAS para hogar; PERSONAS para PER60-*)
+transformacion: Recodificación de cada contendiente con los nombres y códigos de su ola (EIC 2015; muestra 2010);
+  columna ausente en 2020 (p. ej. tam_loc, parent) -> vacía -> NO-ESTIMABLE, sin recodificación ad hoc
+estimando: R = Σw·y/Σw por conducta×eje×categoría en la muestra censal 2020 (media ponderada en HOG-TAMANO-MEDIO);
+  cobertura de R en el IC de diseño de cada piso (EIC 2015, CCPV 2010)
+seed:
+  aplica: false
+  razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
+parametros:
+  nominal: 0.95
+  z: 1.959964
+  regla: cobertura R en [lo, hi] del contendiente; Wilson 95%; NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificación ad hoc)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'determinista: sumas float64 sin remuestreo'
+resultados:
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-JEFATURA-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-JEFATURA-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-TAMLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-TAMLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-TAMLOC-15MIL-49999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-TAMLOC-50MIL-99999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTIDAD-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-JEFATURA-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-JEFATURA-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-TAMLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-TAMLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-TAMLOC-15MIL-49999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-TAMLOC-50MIL-99999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-NUCLEAR-ENTIDAD-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-JEFATURA-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-JEFATURA-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-TAMLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-TAMLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-TAMLOC-15MIL-49999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-TAMLOC-50MIL-99999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-UNIPERSONAL-ENTIDAD-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-JEFATURA-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-JEFATURA-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-TAMLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-TAMLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-TAMLOC-15MIL-49999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-TAMLOC-50MIL-99999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-EIC15-HOGAR-AMPLIADO-ENTRE-FAMILIARES-ENTIDAD-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ESCOLARIDAD-JEFE-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-NUCLEAR-ENT-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ESCOLARIDAD-JEFE-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-AMPLIADO-ENT-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ESCOLARIDAD-JEFE-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-COMPUESTO-ENT-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ESCOLARIDAD-JEFE-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-UNIPERSONAL-ENT-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ESCOLARIDAD-JEFE-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CORRESIDENTES-ENT-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ESCOLARIDAD-JEFE-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-60MAS-ENT-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ESCOLARIDAD-JEFE-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-CON-MENOR-18-ENT-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ESCOLARIDAD-JEFE-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-60MAS-Y-MENOR-18-ENT-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ESCOLARIDAD-JEFE-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TRES-GENERACIONES-ENT-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ESCOLARIDAD-JEFE-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-JEFA-MUJER-ENT-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-TOTAL-TODOS-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-SEXO-JEFE-HOMBRE-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-SEXO-JEFE-MUJER-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-EDAD-JEFE-HASTA-29-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-EDAD-JEFE-30-44-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-EDAD-JEFE-45-59-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-EDAD-JEFE-60-MAS-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ESCOLARIDAD-JEFE-BASICA-O-MENOS-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-TLOC-MENOS-2500-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-TLOC-2500-14999-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-TLOC-15MIL-99MIL-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-TLOC-100MIL-MAS-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-01-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-02-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-03-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-04-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-05-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-06-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-07-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-08-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-09-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-10-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-11-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-12-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-13-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-14-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-15-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-16-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-17-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-18-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-19-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-20-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-21-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-22-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-23-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-24-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-25-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-26-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-27-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-28-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-29-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-30-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-31-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-HOG-TAMANO-MEDIO-ENT-32-R
+  tipo: flotante
+  unidad: media ponderada de personas por hogar en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ESCOLARIDAD-JEFE-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-NUCLEAR-O-AMPLIADO-ENT-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ESCOLARIDAD-JEFE-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-AM-HOG-UNIPERSONAL-ENT-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-EDAD-60-69-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-EDAD-70-79-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-EDAD-80-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-CCPV10-PER60-VIVE-SOLO-ENT-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-DICTAMEN
+  tipo: texto
+  unidad: vocabulario cerrado CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE
+- id: RESULT-APERTURA-CENSO-2020-K
+  tipo: entero
+  unidad: celdas con R dentro del IC del contendiente
+- id: RESULT-APERTURA-CENSO-2020-N
+  tipo: entero
+  unidad: celdas puntuadas
+- id: RESULT-APERTURA-CENSO-2020-WILSON-LO
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, inferior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-WILSON-HI
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, superior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-MAE-PUNTO
+  tipo: flotante
+  unidad: error absoluto medio punto del contendiente vs R (descriptivo)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-CENSO-2020-MARCA
+  tipo: texto
+  unidad: PROSPECTIVA (contendiente sellado antes de R)
