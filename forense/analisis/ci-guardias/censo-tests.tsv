@@ -231,6 +231,7 @@ tests/test_motor_usos_complementos.py	script	NO	(ninguna)	NO	1.0	CORRE-EN-CI	exi
 tests/test_motral2015_valoracion.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_n34_producto_dano.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_no_corrido_estructura.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
+tests/test_pendientes_4_duenos.py	script	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exit 0 sin corpus (GEN2-PENDIENTES-4)
 tests/test_perimetro_raices.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_piloto3_guardias.py	script	NO	numpy,pandas	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_piloto3_v11.py	pytest	NO	numpy	SI	0.4	NECESITA-DEPENDENCIA(numpy)	E   ModuleNotFoundError: No module named 'numpy'
