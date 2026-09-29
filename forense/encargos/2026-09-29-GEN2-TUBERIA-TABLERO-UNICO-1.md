@@ -208,3 +208,7 @@ Adenda citada desde el cierre (no desde el cuerpo): `forense/encargos/2026-09-29
 | P5 · asiento de `FP-260928-GEN2-CIERRE-Y-PRODUCTO-3-3c2e-01` como FIRMADA con PR #1337 | DECISIÓN-DE-MESA-PENDIENTE: el asiento fue bloqueado dos veces por el control de permisos de la sesión; el diff no retiró ningún instrumento | la FP sigue ABIERTA y el criterio 5 de «hecho» no se cumple | NC-260929-GEN2-TUBERIA-TABLERO-UNICO-1-22ee-01 (MESA-ACCION; texto de asiento en la nota §5) |
 | Criterio 1, regeneración sobre `origin/main` | NO-VERIFICABLE-AQUÍ: la nube corrió `--actualiza --permitir-rama`; los bloques derivados quedan rotulados NO-ES-ORIGIN-MAIN | el canal los regenera en el push a main; idempotencia comprobada por md5 en dos corridas | el job `[deriva]` (sin acto nuevo) |
 | Portar `tablero_vista.py` como página | SUSTITUIDO-POR:este mismo acto (la página única es `docs/tablero.md`) | queda huérfano el HTML con vista de carriles del puesto; el adjunto se archiva con sufijo `.adjunto` | Ninguno (hallazgo en `forense/hallazgos.md`) |
+
+## CONSUMIDO
+
+Ejecutado por el PR #1350 (Josanoforo/Modelado-Mexicano), rama `claude/new-session-dpju77`; ADR `ADR-260929-GEN2-TUBERIA-TABLERO-UNICO-1-22ee-01`; nota `forense/notas/2026-09-29-GEN2-TUBERIA-TABLERO-UNICO-1-cierre.md`.
