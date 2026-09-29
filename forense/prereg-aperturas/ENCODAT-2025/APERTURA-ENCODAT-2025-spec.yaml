@@ -1,41 +1,649 @@
-# Contrato ejecutable del expediente de apertura ENCODAT 2025 (D-15). NO CORRIDO: se congela
-# como COMMIT-1 de la apertura cuando mesa lo firme; el primer resultado que produzca es el que se reporta.
-apertura_id: APERTURA-ENCODAT-2025
-spec_md: APERTURA-ENCODAT-2025-spec-v1_0.md
-spec_md_sha256: cbb10e279e67435c6a366a3ef7aead5a051abab062220eb97d4f5f855243d0ec
+# CALC-APERTURA-ENCODAT-2025-0001 -- contrato ejecutable del expediente de apertura (D-15), GEN2-APERTURAS-PREREGISTRADAS-1.
+# NO CORRIDO. La apertura es copiar este archivo a data/corrida0/CALC-APERTURA-ENCODAT-2025-0001/spec.yaml;
+# el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
+calc_id: CALC-APERTURA-ENCODAT-2025-0001
+spec_md: ../../../forense/prereg-aperturas/ENCODAT-2025/APERTURA-ENCODAT-2025-spec-v1_0.md
+spec_md_sha256: bfe092c82d938806a259164c01ee1208acdeea0cd1c2b7be00700e2e6cb493ba
 script: forense/prereg-aperturas/ENCODAT-2025/medidor_apertura_encodat_2025.py
-script_sha256: 14e757ca1eabfd97d78747ae5ebb149a6607c762a114c95eaf5d83afd5dba2ad
-guardia: forense/prereg-aperturas/guardia_apertura.py
-guardia_sha256: 02a04c1063483bc0441e41c41c02469b325eca2b1aad41f1ec41344f8a57efad
-prueba_mutacion: tests/test_prereg_aperturas.py
+dependencias_materiales:
+- numpy
+- pandas
 etiquetas:
   generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
   cuenta_gen2: 'NO'
-  adopta: 'NO'
-  marca: PROSPECTIVA
-  unidad: PERSONA
-  agrupacion: UNA-SOLA-VARIABLE
   fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
-contendiente:
-  calc: CALC-ENCODAT-PISOS-SUSTANCIAS-0001
-  medidor_sha256: d2123bfb393dba0d770824d04a7ef66118544f6502d9347197b1e292cb882b9b
-  resultados_sha256: a905034448cd3631b5b541c8ebee0e57cff5aa826ef8d859da37fb7dfe54389d
-  ola_piso: '2016'
-receta_repo:
-  ruta: tools/dominios/salud/pisos_diseno.py
-  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
-inputs_reservados:
+  tipo: APERTURA-PRE-REGISTRADA (COMMIT-3 de la ola reservada)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: PROSPECTIVA
+  unidad_transferencia: PERSONA
+  contendientes:
+  - CALC-ENCODAT-PISOS-SUSTANCIAS-0001
+  ola_reservada: ENCODAT 2025 (se abre sólo al correr este CALC)
+  congelado: NO -- expediente; se congela cuando mesa firme su apertura
+inputs:
 - id: encodat_2025__encodat_2025_adolescentes_adultos_stata_stata_zip
   origen: manifiesto
+  sha256: 007c6af2c3dd5b41e8de1694b8c436da27fe79cd7230c43f244dde9c8138b4fd
+  funcion: DATO
+  nota: ENCODAT 2025 IND -- ola RESERVADA; sólo este medidor la lee
 - id: encodat_2025__encodat_2025_hogar_stata_stata_zip
   origen: manifiesto
-regla:
-  primaria: cobertura R en [lo, hi] del contendiente, IC de Wilson 95%
-  nominal: 0.95
-  z: 1.959964
-  vocabulario: [CALIBRADO, SUBCUBRE, SOBRECUBRE, NO-ESTIMABLE]
-  precedencia: NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
-  secundarias: [cobertura por conglomerado (conducta), MAE punto-vs-R]
-  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificacion ad hoc)
+  sha256: 84bce6d9db8e0ddb59ede8c2f16a4f92c854e45a85ff147c1ce3a6d854a2ae2d
+  funcion: DATO
+  nota: ENCODAT 2025 HOG -- ola RESERVADA; sólo este medidor la lee
+- id: contendiente_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-ENCODAT-PISOS-SUSTANCIAS-0001/medidor.py
+  sha256: d2123bfb393dba0d770824d04a7ef66118544f6502d9347197b1e292cb882b9b
+  funcion: CODIGO
+  nota: 'medidor sellado del contendiente: prepara/conducta_y/EJES/CONDUCTAS'
+- id: contendiente_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENCODAT-PISOS-SUSTANCIAS-0001/resultados.json
+  sha256: a905034448cd3631b5b541c8ebee0e57cff5aa826ef8d859da37fb7dfe54389d
+  funcion: DATO
+  nota: 'piso 2016-17 sellado: P, IC-LO, IC-HI por celda'
+- id: receta_pisos_salud
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: lee_dta y num de la receta de pisos
+- id: guardia_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/guardia_apertura.py
+  sha256: 02a04c1063483bc0441e41c41c02469b325eca2b1aad41f1ec41344f8a57efad
+  funcion: CODIGO
+  nota: auditoría AST, agregador de una variable, adjudicación
+- id: expediente_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/expediente_apertura.py
+  sha256: f616f60b8d9d7acb18482db39f2a390b90b3442792bd070733b833543d6f5114
+  funcion: CODIGO
+  nota: esquema, salida y contrato comunes
+variables:
+- nombre: ALCOHOL-12M
+  definicion: conducta del contendiente (spec SALUD-ENCODAT-PISOS)
+- nombre: ALCOHOL-30D
+  definicion: conducta del contendiente (spec SALUD-ENCODAT-PISOS)
+- nombre: ALCOHOL-EXCESIVO-12M
+  definicion: conducta del contendiente (spec SALUD-ENCODAT-PISOS)
+- nombre: FUMA-ACTUAL
+  definicion: conducta del contendiente (spec SALUD-ENCODAT-PISOS)
+- nombre: CIGARRO-ELECTRONICO-ALGUNA-VEZ
+  definicion: conducta del contendiente (spec SALUD-ENCODAT-PISOS)
+- nombre: DROGA-ILEGAL-ALGUNA-VEZ
+  definicion: conducta del contendiente (spec SALUD-ENCODAT-PISOS)
+- nombre: MARIGUANA-ALGUNA-VEZ
+  definicion: conducta del contendiente (spec SALUD-ENCODAT-PISOS)
+- nombre: DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ
+  definicion: conducta del contendiente (spec SALUD-ENCODAT-PISOS)
+- nombre: OPIACEOS-SIN-RECETA-ALGUNA-VEZ
+  definicion: conducta del contendiente (spec SALUD-ENCODAT-PISOS)
+- nombre: CONSULTO-PROFESIONAL-POR-CONSUMO
+  definicion: conducta del contendiente (spec SALUD-ENCODAT-PISOS)
+universo: Personas de 12 a 65 años de ENCODAT 2025 (adolescentes_adultos unido a hogar por los 20 primeros caracteres
+  de id_pers); ponde_ss > 0 con est_var y code_upm no vacíos (prepara() del contendiente)
+filtros: Un eje a la vez (TOTAL, SEXO, EDAD, ESTRATO, ESCOLARIDAD 18+); nunca cruces (guardia E.6)
+ponderador: ponde_ss
+transformacion: Recodificación del contendiente (spec SALUD-ENCODAT-PISOS); columna ausente o con texto/códigos
+  distintos en el catálogo 2025 -> NO-ESTIMABLE
+estimando: R = Σw·y/Σw por conducta×eje×categoría en ENCODAT 2025; cobertura de R en el IC de diseño del piso 2016-17
 seed:
   aplica: false
+  razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
+parametros:
+  nominal: 0.95
+  z: 1.959964
+  regla: cobertura R en [lo, hi] del contendiente; Wilson 95%; NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificación ad hoc)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'determinista: sumas float64 sin remuestreo'
+resultados:
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-12M-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-12M-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-12M-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-12M-EDAD-12-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-12M-EDAD-18-34-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-12M-EDAD-35-65-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-12M-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-12M-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-12M-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-12M-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-12M-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-12M-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-12M-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-30D-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-30D-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-30D-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-30D-EDAD-12-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-30D-EDAD-18-34-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-30D-EDAD-35-65-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-30D-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-30D-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-30D-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-30D-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-30D-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-30D-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-30D-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-EXCESIVO-12M-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-EXCESIVO-12M-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-EXCESIVO-12M-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-EXCESIVO-12M-EDAD-12-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-EXCESIVO-12M-EDAD-18-34-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-EXCESIVO-12M-EDAD-35-65-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-EXCESIVO-12M-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-EXCESIVO-12M-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-EXCESIVO-12M-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-EXCESIVO-12M-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-EXCESIVO-12M-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-EXCESIVO-12M-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-ALCOHOL-EXCESIVO-12M-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-FUMA-ACTUAL-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-FUMA-ACTUAL-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-FUMA-ACTUAL-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-FUMA-ACTUAL-EDAD-12-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-FUMA-ACTUAL-EDAD-18-34-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-FUMA-ACTUAL-EDAD-35-65-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-FUMA-ACTUAL-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-FUMA-ACTUAL-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-FUMA-ACTUAL-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-FUMA-ACTUAL-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-FUMA-ACTUAL-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-FUMA-ACTUAL-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-FUMA-ACTUAL-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CIGARRO-ELECTRONICO-ALGUNA-VEZ-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CIGARRO-ELECTRONICO-ALGUNA-VEZ-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CIGARRO-ELECTRONICO-ALGUNA-VEZ-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CIGARRO-ELECTRONICO-ALGUNA-VEZ-EDAD-12-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CIGARRO-ELECTRONICO-ALGUNA-VEZ-EDAD-18-34-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CIGARRO-ELECTRONICO-ALGUNA-VEZ-EDAD-35-65-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CIGARRO-ELECTRONICO-ALGUNA-VEZ-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CIGARRO-ELECTRONICO-ALGUNA-VEZ-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CIGARRO-ELECTRONICO-ALGUNA-VEZ-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CIGARRO-ELECTRONICO-ALGUNA-VEZ-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CIGARRO-ELECTRONICO-ALGUNA-VEZ-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CIGARRO-ELECTRONICO-ALGUNA-VEZ-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CIGARRO-ELECTRONICO-ALGUNA-VEZ-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-ILEGAL-ALGUNA-VEZ-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-ILEGAL-ALGUNA-VEZ-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-ILEGAL-ALGUNA-VEZ-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-ILEGAL-ALGUNA-VEZ-EDAD-12-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-ILEGAL-ALGUNA-VEZ-EDAD-18-34-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-ILEGAL-ALGUNA-VEZ-EDAD-35-65-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-ILEGAL-ALGUNA-VEZ-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-ILEGAL-ALGUNA-VEZ-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-ILEGAL-ALGUNA-VEZ-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-ILEGAL-ALGUNA-VEZ-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-ILEGAL-ALGUNA-VEZ-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-ILEGAL-ALGUNA-VEZ-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-ILEGAL-ALGUNA-VEZ-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-MARIGUANA-ALGUNA-VEZ-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-MARIGUANA-ALGUNA-VEZ-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-MARIGUANA-ALGUNA-VEZ-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-MARIGUANA-ALGUNA-VEZ-EDAD-12-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-MARIGUANA-ALGUNA-VEZ-EDAD-18-34-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-MARIGUANA-ALGUNA-VEZ-EDAD-35-65-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-MARIGUANA-ALGUNA-VEZ-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-MARIGUANA-ALGUNA-VEZ-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-MARIGUANA-ALGUNA-VEZ-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-MARIGUANA-ALGUNA-VEZ-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-MARIGUANA-ALGUNA-VEZ-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-MARIGUANA-ALGUNA-VEZ-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-MARIGUANA-ALGUNA-VEZ-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-EDAD-12-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-EDAD-18-34-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-EDAD-35-65-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-EDAD-12-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-EDAD-18-34-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-EDAD-35-65-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CONSULTO-PROFESIONAL-POR-CONSUMO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CONSULTO-PROFESIONAL-POR-CONSUMO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CONSULTO-PROFESIONAL-POR-CONSUMO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CONSULTO-PROFESIONAL-POR-CONSUMO-EDAD-12-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CONSULTO-PROFESIONAL-POR-CONSUMO-EDAD-18-34-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CONSULTO-PROFESIONAL-POR-CONSUMO-EDAD-35-65-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CONSULTO-PROFESIONAL-POR-CONSUMO-ESTRATO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CONSULTO-PROFESIONAL-POR-CONSUMO-ESTRATO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CONSULTO-PROFESIONAL-POR-CONSUMO-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CONSULTO-PROFESIONAL-POR-CONSUMO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CONSULTO-PROFESIONAL-POR-CONSUMO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CONSULTO-PROFESIONAL-POR-CONSUMO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-CONSULTO-PROFESIONAL-POR-CONSUMO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-DICTAMEN
+  tipo: texto
+  unidad: vocabulario cerrado CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE
+- id: RESULT-APERTURA-ENCODAT-2025-K
+  tipo: entero
+  unidad: celdas con R dentro del IC del contendiente
+- id: RESULT-APERTURA-ENCODAT-2025-N
+  tipo: entero
+  unidad: celdas puntuadas
+- id: RESULT-APERTURA-ENCODAT-2025-WILSON-LO
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, inferior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-WILSON-HI
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, superior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-MAE-PUNTO
+  tipo: flotante
+  unidad: error absoluto medio punto del contendiente vs R (descriptivo)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENCODAT-2025-MARCA
+  tipo: texto
+  unidad: PROSPECTIVA (contendiente sellado antes de R)

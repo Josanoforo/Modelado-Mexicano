@@ -33,7 +33,7 @@ R es un punto; no se calcula IC de R (la cobertura se mide contra el IC del cont
 levanta `ParoDeGuardia`. Antes de leer un byte, `medir()` corre `auditoria_ast` sobre su propio archivo:
 `groupby`/`value_counts` con dos llaves, `crosstab`, `pivot`, `pivot_table`, `unstack` o una lectura fuera
 de `lee_payload_reservado` → PARO. Probado por mutación sobre sintético con el esquema de la ola:
-`tests/test_prereg_aperturas.py` (8 mutaciones × medidor + borrado de la llamada a la auditoría).
+`tests/test_prereg_aperturas.py` (las 9 mutaciones de `expediente_apertura.MUTACIONES` + borrado de la llamada a la auditoría; `corrida0._valida_outputs` sobre cada rama terminal de la adjudicación) y `tests/test_apertura_salud_2025.py` (sintético con el esquema de la ola: con soporte, conducta sin soporte, categoría vacía).
 
 ## 4 · Regla y umbral de adjudicación (fijados antes de abrir)
 
@@ -58,8 +58,12 @@ y se declara en la nota de apertura. Leer el catálogo y el cuestionario no es a
 
 ## 6 · Salidas
 
-`RESULT-APERTURA-ENSANUT-2025-<conducta>|<eje>|<cat>-R`, `-DICTAMEN`, `-K`, `-N`, `-WILSON-LO/HI`,
-`-MAE-PUNTO`, `-MARCA` (= PROSPECTIVA). Ningún None/NaN fuera de R de celdas NO-ESTIMABLE.
+`RESULT-APERTURA-ENSANUT-2025-<conducta>-<eje>-<cat>-R`, `-DICTAMEN`, `-K`, `-N`, `-WILSON-LO/HI`,
+`-MAE-PUNTO`, `-MARCA` (= PROSPECTIVA). Ningún None/NaN fuera de R de celdas NO-ESTIMABLE, Wilson y MAE cuando n = 0.
+
+Contrato: `APERTURA-<X>-spec.yaml` en formato `corrida0` (calc_id `CALC-APERTURA-<X>-0001`; payloads con sha del manifiesto;
+medidor sellado del contendiente, su `resultados.json`, la receta y la guardia como inputs `origen: repo` con sha).
+La apertura es copiarlo a `data/corrida0/CALC-APERTURA-<X>-0001/spec.yaml` y correr (receta).
 
 ## 7 · Módulo de auditoría (v2.16; afirma qué se medirá sobre México)
 
