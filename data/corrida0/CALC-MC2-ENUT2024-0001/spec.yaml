@@ -1,0 +1,174 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-MC2-ENUT2024-0001
+spec_md: ../../../forense/prereg-caja/MC2-ENUT2024-spec-v1_0.md
+spec_md_sha256: d42cd154ec40e3c47e288417756893f043062669c51030344ddca22285009f7a
+script: data/corrida0/CALC-MC2-ENUT2024-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  cuenta_gen2_nota: "encargo GEN2-MEDICION-CARRILES-2 (ADENDA-2: «sigue»); no adopta"
+  acto: GEN2-MEDICION-CARRILES-2
+  tipo: PISO-DESCRIPTIVO-RETROSPECTIVO
+  temporalidad: RETROSPECTIVA
+
+inputs:
+  - {id: enut2024_bd_csv, origen: manifiesto}
+
+lectura_de_estructura_previa: "FD enut2024_fd_xlsx (TMODULO §5.10-5.11, §6.11, §6.17; TVAR_CREA) y cabeceras; ningún registro leído antes del COMMIT-1"
+
+variables:
+  - {archivo: tmodulo.csv, variable: LLAVEMOD, rol: "llave"}
+  - {archivo: tmodulo.csv, variable: SEXO, rol: "sexo"}
+  - {archivo: tmodulo.csv, variable: EDAD_V, rol: "edad"}
+  - {archivo: tmodulo.csv, variable: TLOC, rol: "tamaño de localidad; 4 rural"}
+  - {archivo: tmodulo.csv, variable: EST_DIS, rol: "estrato"}
+  - {archivo: tmodulo.csv, variable: UPM_DIS, rol: "UPM"}
+  - {archivo: tmodulo.csv, variable: FAC_PER, rol: "ponderador"}
+  - {archivo: tmodulo.csv, variable: P6_17_3, rol: "trabajo comunitario gratuito 1/2"}
+  - {archivo: tvar_crea.csv, variable: LLAVEMOD, rol: "llave"}
+  - {archivo: tvar_crea.csv, variable: TRAB_NO_REM_VOL, rol: "TNR doméstico, cuidados y voluntario"}
+  - {archivo: tvar_crea.csv, variable: TRAB_NO_REM_CON_CP, rol: "cuidado a integrantes con pasivos"}
+  - {archivo: tvar_crea.csv, variable: CUID_ESP_INT_HOG_CON_CP, rol: "cuidados especiales por enfermedad o discapacidad"}
+  - {archivo: tvar_crea.csv, variable: CUID_INT_60MAS_CON_CP, rol: "cuidado a integrantes 60+"}
+  - {archivo: tvar_crea.csv, variable: ESCOLARIDAD, rol: "escolaridad 1-5"}
+
+universo: "Persona de 12 años y más en tmodulo.csv de ENUT 2024 (base nacional), unida 1:1 a tvar_crea.csv."
+filtros: "Variables creadas inválidas fuera del denominador; P6_17_3 fuera de 1/2 fuera."
+ponderador: FAC_PER sin normalizar
+transformacion: "Ver spec humana §1: proporciones y medias ponderadas; razón y diferencias en la misma réplica."
+estimando: "Proporciones, medias y razones ponderadas con IC95 de diseño; RETROSPECTIVO; dictámenes B-bis §2."
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap de UPM_DIS con reemplazo dentro de EST_DIS; percentiles 2.5/97.5
+  singleton: autorremuestreo; varianza cero; contado en DIAG-N-ESTRATOS-UPM-UNICA
+  hash_medidor_sha256: 694eb80c4c0f1713a62afa00279e7e3b6821d94877e007f7700efa3ebfe1bbb9
+  hash_payload_sha256: "enut2024_bd_csv 25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba"
+  hash_prereg_sha256: d42cd154ec40e3c47e288417756893f043062669c51030344ddca22285009f7a
+  hash_encargo_sha256: 791d0a894ac00d25d51e8001b686ac0db05dd5411e4ebfd412e9882173f1e6d5
+
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-8
+  razon: misma semilla y sumas deterministas; enteros comparan exacto
+
+resultados:
+  - {id: RESULT-MC2-ENUT2024-CUIDADOR-DEP-MUJER-PROP-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUIDADOR-DEP-MUJER-PROP-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUIDADOR-DEP-MUJER-PROP-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUIDADOR-DEP-MUJER-PROP-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-CUIDADOR-TOTAL-MUJER-PROP-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUIDADOR-TOTAL-MUJER-PROP-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUIDADOR-TOTAL-MUJER-PROP-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUIDADOR-TOTAL-MUJER-PROP-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-CUID-INT-MUJER-P, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-INT-MUJER-IC95-INF, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-INT-MUJER-IC95-SUP, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-INT-MUJER-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-CUID-DEP-INT-MUJER-P, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-DEP-INT-MUJER-IC95-INF, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-DEP-INT-MUJER-IC95-SUP, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-DEP-INT-MUJER-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-CUID-INT-HOMBRE-P, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-INT-HOMBRE-IC95-INF, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-INT-HOMBRE-IC95-SUP, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-INT-HOMBRE-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-CUID-DEP-INT-HOMBRE-P, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-DEP-INT-HOMBRE-IC95-INF, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-DEP-INT-HOMBRE-IC95-SUP, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-DEP-INT-HOMBRE-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-CUID-INT-NAC-P, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-INT-NAC-IC95-INF, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-INT-NAC-IC95-SUP, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-INT-NAC-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-CUID-DEP-INT-NAC-P, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-DEP-INT-NAC-IC95-INF, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-DEP-INT-NAC-IC95-SUP, tipo: flotante, unidad: "horas por semana, media ponderada entre quienes cuidan", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-CUID-DEP-INT-NAC-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-TNR-MEDIA-MUJERES-SOBRE-TODOS-P, tipo: flotante, unidad: "horas por semana, media ponderada", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-TNR-MEDIA-MUJERES-SOBRE-TODOS-IC95-INF, tipo: flotante, unidad: "horas por semana, media ponderada", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-TNR-MEDIA-MUJERES-SOBRE-TODOS-IC95-SUP, tipo: flotante, unidad: "horas por semana, media ponderada", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-TNR-MEDIA-MUJERES-SOBRE-TODOS-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-TNR-MEDIA-TODOS-P, tipo: flotante, unidad: "horas por semana, media ponderada", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-TNR-MEDIA-TODOS-IC95-INF, tipo: flotante, unidad: "horas por semana, media ponderada", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-TNR-MEDIA-TODOS-IC95-SUP, tipo: flotante, unidad: "horas por semana, media ponderada", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-TNR-MEDIA-TODOS-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-12-17-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-12-17-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-12-17-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-12-17-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-30-39-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-30-39-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-30-39-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-30-39-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-40-59-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-40-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-40-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-40-59-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-RURAL-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-RURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-RURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-RURAL-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-URBANO-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-URBANO-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-URBANO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-URBANO-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-ESC-HASTA-BASICA-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-ESC-HASTA-BASICA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-ESC-HASTA-BASICA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-ESC-HASTA-BASICA-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-ESC-MEDIA-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-ESC-MEDIA-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-ESC-MEDIA-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-ESC-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-ESC-SUPERIOR-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-ESC-SUPERIOR-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-ESC-SUPERIOR-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-ESC-SUPERIOR-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-COMUN-PART-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-COMUN-PART-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-COMUN-PART-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-COMUN-PART-MUJER-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-COMUN-PART-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-COMUN-PART-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-COMUN-PART-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-COMUN-PART-HOMBRE-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-TNR-PROPORCION-HORAS-MUJERES-P, tipo: flotante, unidad: "razón de totales ponderados de horas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-TNR-PROPORCION-HORAS-MUJERES-IC95-INF, tipo: flotante, unidad: "razón de totales ponderados de horas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-TNR-PROPORCION-HORAS-MUJERES-IC95-SUP, tipo: flotante, unidad: "razón de totales ponderados de horas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-TNR-PROPORCION-HORAS-MUJERES-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-DIF-18-29-MENOS-60MAS-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-DIF-18-29-MENOS-60MAS-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-DIF-18-29-MENOS-60MAS-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-DIF-18-29-MENOS-60MAS-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-DIF-URBANO-RURAL-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-DIF-URBANO-RURAL-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-DIF-URBANO-RURAL-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-DIF-URBANO-RURAL-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-DIF-SUPERIOR-BASICA-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-DIF-SUPERIOR-BASICA-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-DIF-SUPERIOR-BASICA-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-HOMBRES-CUID-PART-DIF-SUPERIOR-BASICA-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-COMUN-PART-DIF-MUJER-HOMBRE-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-COMUN-PART-DIF-MUJER-HOMBRE-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-COMUN-PART-DIF-MUJER-HOMBRE-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENUT2024-COMUN-PART-DIF-MUJER-HOMBRE-N, tipo: entero, unidad: "n no ponderado (persona 12+)"}
+  - {id: RESULT-MC2-ENUT2024-DIAG-FILAS-TMODULO, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENUT2024-DIAG-LLAVEMOD-DUPLICADAS, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENUT2024-DIAG-SIN-PAREJA-TVAR, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENUT2024-DIAG-CUIDADORES-DEP, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENUT2024-DIAG-ESCOLARIDAD-FUERA-1-5, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENUT2024-DIAG-N-ESTRATOS, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENUT2024-DIAG-N-UPM, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENUT2024-DIAG-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo de diagnóstico"}
