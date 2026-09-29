@@ -332,7 +332,7 @@ def libro():
         hoja_txt = open(ruta_hoja, encoding="utf-8").read()
     h = parsea_hoja(hoja_txt)
     anclas = {(HOJA, k) for k in h}
-    fuera, frases, decision = [], [], 0
+    fuera, frases, decision, usadas = [], [], 0, set()
     for f in abiertas:
         s = (f.get("sucesor") or "").strip()
         ok, why = dueno_valido(s, enc, anclas)
@@ -343,19 +343,28 @@ def libro():
             frases.append((f["id"], fr))
         if s.startswith("MESA-DECISION"):
             decision += 1
+            m = RE_DUENO_ESTRICTO.match(s)
+            if m and m.group("ancla"):
+                usadas.add(m.group("ancla"))
     incompletas = [k for k, v in h.items() if not (v["opciones"] and v["firma"])]
+    huerfanos = sorted(set(h) - usadas)
+    # INTERPRETACIÓN-DECLARADA (GEN2-PENDIENTES-4, cláusula v1.0 §2): «MESA-DECISION ≤ renglones de la hoja»
+    # cuenta DECISIONES (renglones distintos que las filas citan), no filas: varias NC comparten una decisión
+    # (D1 agrupa cuatro) y el encargo pide agruparlas. Se imprimen las dos cifras.
     print(f"libro: {len(filas)} filas · {len(abiertas)} ABIERTA · fuera de la lista cerrada: {len(fuera)} · "
-          f"con frase prohibida: {len(frases)} · MESA-DECISION {decision} ≤ renglones de la hoja {len(h)} · "
-          f"renglones sin opciones/firma: {len(incompletas)}")
+          f"con frase prohibida: {len(frases)} · MESA-DECISION: {decision} NC en {len(usadas)} renglones distintos ≤ "
+          f"renglones de la hoja {len(h)} · renglones sin opciones/firma: {len(incompletas)} · renglones sin NC: {len(huerfanos)}")
     for fid, why in fuera[:40]:
         print(f"  fuera: {fid}: {why}")
     for fid, fr in frases[:20]:
         print(f"  frase: {fid}: «{fr}»")
     for k in incompletas:
         print(f"  hoja: {k} sin opciones o sin texto de firma")
-    mal = bool(fuera or frases or incompletas or decision > len(h))
-    if decision > len(h):
-        print(f"  MESA-DECISION {decision} > renglones {len(h)}")
+    for k in huerfanos:
+        print(f"  hoja: {k} no lo cita ninguna NC ABIERTA")
+    mal = bool(fuera or frases or incompletas or huerfanos or len(usadas) > len(h))
+    if len(usadas) > len(h):
+        print(f"  MESA-DECISION cita {len(usadas)} renglones > {len(h)} de la hoja")
     return 1 if mal else 0
 
 

@@ -581,7 +581,7 @@ Generada por `arma_hoja_decisiones_pendientes_4.py` a partir de la evidencia arc
 
 **Opciones.**
 
-- **(FP)** Las que trae la firma pendiente, verbatim: «Regla ROJO del tablero de carriles y ENIF 2024 módulo 7. (1) Tablero: tools/tablero_carriles.py:53 cuenta ROJO = núcleo sin cifra ADOPTADA; ningún acto que mide sin adoptar lo mueve. Opciones: (a) mantener; (b) añadir NARANJA = núcleo con RESULT GEN2 sellado sin adoptar (recomendado). (2) ENIF 2024 m7 (R06 RESERVADA): (a) mantener; (b) ABIERTA-PARCIAL P7_1_1, P7_1_2, P7_2_1, P7_3_1 (recomendado); (c) ABIERTA-COMO-VISTA. Texto de firma en forense/analisis/medicion-carriles-2/hoja-rh.md. · 28/sep/2026: punto (2) FIRMADO en sesión, opción (b) ABIERTA-PARCIAL (ADENDA-1), ejecutado por ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-04; punto (1) sigue abierto.» — *Costo:* El de cada opción según el texto de la FP.
+- **(FP)** Las que trae la firma pendiente, verbatim: «Regla ROJO del tablero de carriles y ENIF 2024 módulo 7. (1) Tablero: tools/tablero_carriles.py:53 cuenta ROJO = núcleo sin cifra ADOPTADA; ningún acto que mide sin adoptar lo mueve. Opciones: (a) mantener; (b) añadir NARANJA = núcleo con RESULT GEN2 sellado sin adoptar (recomendado). (2) ENIF 2024 m7 (R06 RESERVADA): (a) mantener; (b) ABIERTA-PARCIAL P7_1_1, P7_1_2, P7_2_1, P7_3_1 (recomendado); (c) ABIERTA-COMO-VISTA. Texto de firma en forense/analisis/medicion-carriles-2/hoja-rh.md. · 28/sep/2026: punto (2) FIRMADO en sesión, opción (b) ABIERTA-PARCIAL (ADENDA-1), ejecutado por ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-04; punto (1) sigue abierto. · 28/sep/2026: punto (1) FIRMADO (ADENDA-2), NARANJA implementado por ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-05.» — *Costo:* El de cada opción según el texto de la FP.
 
 **Recomendación.** (la que marca la FP) La decisión ya está formulada con sus opciones en `FP-260928-GEN2-MEDICION-CARRILES-2-8fdf-01` (ABIERTA); este renglón la trae para que la hoja sea autónoma y no acuña otra ranura.
 
@@ -590,4 +590,42 @@ Generada por `arma_hoja_decisiones_pendientes_4.py` a partir de la evidencia arc
 **Texto de firma.** «Firmo la opción (__) de FP-260928-GEN2-MEDICION-CARRILES-2-8fdf-01.»
 
 *Fuente del renglón: FP existente (verbatim).*
+
+## D30 · Estado final de RES-0065 (ENIF, POB-P corto no trabaja): aceptar NO-DERIVABLE-DESDE-LA-SPEC o abrir un CALC sucesor con enlace declarado
+
+**NC que decide (1):** `NC-0212`
+
+**Situación.** `CALC-ENIF-0002` está sellado y no se reescribe (E.3): ninguna spec sellada declara la pareja consumidor↔RESULT de `RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P`, aunque la cita `corrida0_resultado_id` existe en `milpa/tramite.yaml` y es coherente. `data/corrida0/relevo-usos-v1_0.tsv` rotula RES-0065 `YA-ADOPTADO` con `control_c0=NO-DERIVABLE-DESDE-LA-SPEC`, y la validación independiente del RESULT dice PASA con ENLACE dentro de su alcance (`data/corrida0/validaciones-independientes.tsv:28`). La delegación de PENDIENTES-3 recomendó (a) pero dejó la fila con mesa (`opcion` DUEÑO-MESA en `decididas-por-delegacion.tsv`).
+
+**Opciones.**
+
+- **(a)** Aceptar el rótulo `NO-DERIVABLE-DESDE-LA-SPEC` como estado final documentado de RES-0065 y cerrar NC-0212; `CALC-ENIF-0002` no se toca. — *Costo:* Ninguno de código ni de sellos. Reversible: si mesa quiere el enlace declarado se abre una NC nueva.
+- **(b)** Encargar un CALC sucesor con el enlace declarado (`sucesion.json`) y su validación independiente. — *Costo:* Un CALC nuevo y un replay; no cambia ninguna cifra, pero mueve la vista y añade un sello a un RESULT ya adoptado.
+
+**Recomendación.** (a) La adopción no es falsa: está acreditada por un RESULT sellado y una validación independiente que PASA; reescribir o sustituir el sellado no añade evidencia (E.3).
+
+**Plazo.** 2026-10-05
+
+**Texto de firma.** «NC-0212: opción (a); el rótulo NO-DERIVABLE-DESDE-LA-SPEC es el estado final documentado de RES-0065 y CALC-ENIF-0002 no se reescribe (E.3).»
+
+*Fuente del renglón: MANUAL (supervisor).*
+
+## D31 · Piso nacional de TRIADA-B (RESULT-TBP-*): unirlo al marcador por segmento o declarar SIN-PISO permanente
+
+**NC que decide (1):** `NC-0338`
+
+**Situación.** `CALC-TRIADA-B-PISO-0001` trae 117 RESULT en el formato agregado del piloto B (`RESULT-TBP-*`), no un RESULT por (entrada de ejes, eje, categoría) serializado como las celdas-D. `tools/marcador_segmento.py` solo une por identidad exacta y reporta SIN-PISO sin inventar una correspondencia. Las nueve celdas que el encargo original citaba como piso son nacionales y el marcador es por eje: hoy las 97 filas NACIONAL de `data/corrida0/marcador-segmento.tsv` tienen `piso_tipo` NO-APLICA. No existe encargo `GEN2-MARCADOR-PISO-TRIADA-B-1`.
+
+**Opciones.**
+
+- **(a)** Escribir un lector que una los `RESULT-TBP-*` a celdas nacionales del marcador, con la tabla de correspondencia declarada y firmada. — *Costo:* Un encargo nuevo, una tabla de correspondencia que hay que firmar y una lectura más del marcador sobre un piloto de olas ya vistas (regla 6).
+- **(b)** Declarar SIN-PISO permanente para esas nueve celdas nacionales. — *Costo:* Ninguno de código; se pierde el piso nacional de la triada B, que el marcador por eje no usa.
+
+**Recomendación.** (b) Las nueve celdas son nacionales y el marcador es por eje; el piso de un marginal es la ola anterior por eje (v2.16 §4), y la triada del duelo v2 quedó retirada por la regla 6, así que unirla no compra una comparación que se pueda emitir.
+
+**Plazo.** 2026-10-05
+
+**Texto de firma.** «NC-0338: opción (b); las nueve celdas nacionales de TRIADA-B-PISO quedan SIN-PISO de forma permanente en el marcador por segmento.»
+
+*Fuente del renglón: MANUAL (supervisor).*
 

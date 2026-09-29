@@ -51,6 +51,8 @@ RENGLONES = {
     "D27": ("Auto-merge del [deriva] (P4 de GEN2-TUBERIA-3)", ["c6aa-01"], "FP-260928-GEN2-TUBERIA-3-f18c-01"),
     "D28": ("Regla del semáforo del tablero de carriles: SIN-UNION", ["c6aa-02"], "FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01"),
     "D29": ("Regla ROJO del tablero de carriles: ¿cuenta solo cifra adoptada?", ["8fdf-04"], "FP-260928-GEN2-MEDICION-CARRILES-2-8fdf-01"),
+    "D30": ("Estado final de RES-0065 (ENIF, POB-P corto no trabaja): aceptar NO-DERIVABLE-DESDE-LA-SPEC o abrir un CALC sucesor con enlace declarado", ["NC-0212"], ""),
+    "D31": ("Piso nacional de TRIADA-B (RESULT-TBP-*): unirlo al marcador por segmento o declarar SIN-PISO permanente", ["NC-0338"], ""),
 }
 
 # Renglones cuya decisión, opciones y recomendación YA viven en una FP ABIERTA: se citan verbatim (no se reescriben).
@@ -68,6 +70,28 @@ MANUAL = {
         "porque": "El consumidor que la justificaba ya no existe y la vía prospectiva son las familias 2027; cablearla mediría sobre olas vistas, que la regla 6 no autoriza para retadores.",
         "plazo": "2026-10-05",
         "texto_firma": "«NC-0026: opción (a); las dos funciones de ola previa estricta de tools/emite_m.py quedan puras y no se cablean a emite_celda; se cierra citando la firma (1) de GEN2-MARCADOR-REDISENO-1.»",
+    },
+    "D30": {
+        "situacion": "`CALC-ENIF-0002` está sellado y no se reescribe (E.3): ninguna spec sellada declara la pareja consumidor↔RESULT de `RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P`, aunque la cita `corrida0_resultado_id` existe en `milpa/tramite.yaml` y es coherente. `data/corrida0/relevo-usos-v1_0.tsv` rotula RES-0065 `YA-ADOPTADO` con `control_c0=NO-DERIVABLE-DESDE-LA-SPEC`, y la validación independiente del RESULT dice PASA con ENLACE dentro de su alcance (`data/corrida0/validaciones-independientes.tsv:28`). La delegación de PENDIENTES-3 recomendó (a) pero dejó la fila con mesa (`opcion` DUEÑO-MESA en `decididas-por-delegacion.tsv`).",
+        "opciones": [
+            {"letra": "a", "texto": "Aceptar el rótulo `NO-DERIVABLE-DESDE-LA-SPEC` como estado final documentado de RES-0065 y cerrar NC-0212; `CALC-ENIF-0002` no se toca.", "costo": "Ninguno de código ni de sellos. Reversible: si mesa quiere el enlace declarado se abre una NC nueva."},
+            {"letra": "b", "texto": "Encargar un CALC sucesor con el enlace declarado (`sucesion.json`) y su validación independiente.", "costo": "Un CALC nuevo y un replay; no cambia ninguna cifra, pero mueve la vista y añade un sello a un RESULT ya adoptado."},
+        ],
+        "recomendacion": "a",
+        "porque": "La adopción no es falsa: está acreditada por un RESULT sellado y una validación independiente que PASA; reescribir o sustituir el sellado no añade evidencia (E.3).",
+        "plazo": "2026-10-05",
+        "texto_firma": "«NC-0212: opción (a); el rótulo NO-DERIVABLE-DESDE-LA-SPEC es el estado final documentado de RES-0065 y CALC-ENIF-0002 no se reescribe (E.3).»",
+    },
+    "D31": {
+        "situacion": "`CALC-TRIADA-B-PISO-0001` trae 117 RESULT en el formato agregado del piloto B (`RESULT-TBP-*`), no un RESULT por (entrada de ejes, eje, categoría) serializado como las celdas-D. `tools/marcador_segmento.py` solo une por identidad exacta y reporta SIN-PISO sin inventar una correspondencia. Las nueve celdas que el encargo original citaba como piso son nacionales y el marcador es por eje: hoy las 97 filas NACIONAL de `data/corrida0/marcador-segmento.tsv` tienen `piso_tipo` NO-APLICA. No existe encargo `GEN2-MARCADOR-PISO-TRIADA-B-1`.",
+        "opciones": [
+            {"letra": "a", "texto": "Escribir un lector que una los `RESULT-TBP-*` a celdas nacionales del marcador, con la tabla de correspondencia declarada y firmada.", "costo": "Un encargo nuevo, una tabla de correspondencia que hay que firmar y una lectura más del marcador sobre un piloto de olas ya vistas (regla 6)."},
+            {"letra": "b", "texto": "Declarar SIN-PISO permanente para esas nueve celdas nacionales.", "costo": "Ninguno de código; se pierde el piso nacional de la triada B, que el marcador por eje no usa."},
+        ],
+        "recomendacion": "b",
+        "porque": "Las nueve celdas son nacionales y el marcador es por eje; el piso de un marginal es la ola anterior por eje (v2.16 §4), y la triada del duelo v2 quedó retirada por la regla 6, así que unirla no compra una comparación que se pueda emitir.",
+        "plazo": "2026-10-05",
+        "texto_firma": "«NC-0338: opción (b); las nueve celdas nacionales de TRIADA-B-PISO quedan SIN-PISO de forma permanente en el marcador por segmento.»",
     },
     "D26": {
         "situacion": "La firma del 16/sep encargó retro-sellar 18 EXCEPCIONES del censo de PR sin `## CONSUMIDO`: los 8 actos GEN2 reales ya están retro-sellados (#759, #795; NC-0227 CERRADA). Falta decidir el estatus de las 10 filas [COLA]/[ADQ] (PR cuyo título es `[COLA] …` o `[ADQ] …`, el mecanismo que entrega encargos): ¿una cuarta categoría exenta, como `censo/*` y `claude/tramite-*`? El censo ya las rotula EXCEPCIÓN-COLA/ADQ aparte, pero `tools/digesto_tramite.py` no las trata (0 coincidencias) y no existe una lista viva de exentos en tools, tests, .github, canon ni gobierno (1047 archivos examinados). Los verificadores rechazaron cerrarla por diseño: la fila pedía una firma entre dos opciones.",
