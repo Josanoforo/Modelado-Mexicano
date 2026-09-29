@@ -50,13 +50,12 @@ RENGLONES = {
     "D26": ("[COLA] y [ADQ]: ¿categoría exenta o excepción rotulada aparte?", ["NC-0170"], ""),
     "D27": ("Auto-merge del [deriva] (P4 de GEN2-TUBERIA-3)", ["c6aa-01"], "FP-260928-GEN2-TUBERIA-3-f18c-01"),
     "D28": ("Regla del semáforo del tablero de carriles: SIN-UNION", ["c6aa-02"], "FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01"),
-    "D29": ("Regla ROJO del tablero de carriles: ¿cuenta solo cifra adoptada?", ["8fdf-04"], "FP-260928-GEN2-MEDICION-CARRILES-2-8fdf-01"),
     "D30": ("Estado final de RES-0065 (ENIF, POB-P corto no trabaja): aceptar NO-DERIVABLE-DESDE-LA-SPEC o abrir un CALC sucesor con enlace declarado", ["NC-0212"], ""),
     "D31": ("Piso nacional de TRIADA-B (RESULT-TBP-*): unirlo al marcador por segmento o declarar SIN-PISO permanente", ["NC-0338"], ""),
 }
 
 # Renglones cuya decisión, opciones y recomendación YA viven en una FP ABIERTA: se citan verbatim (no se reescriben).
-DESDE_FP = {"D27", "D28", "D29"}
+DESDE_FP = {"D27", "D28"}
 
 MANUAL = {
     "D25": {

@@ -571,26 +571,6 @@ Generada por `arma_hoja_decisiones_pendientes_4.py` a partir de la evidencia arc
 
 *Fuente del renglón: FP existente (verbatim).*
 
-## D29 · Regla ROJO del tablero de carriles: ¿cuenta solo cifra adoptada?
-
-**NC que decide (1):** `NC-260928-GEN2-MEDICION-CARRILES-2-8fdf-04`
-
-**FP existente:** `FP-260928-GEN2-MEDICION-CARRILES-2-8fdf-01` (la decisión ya tiene su ranura; este renglón no acuña otra).
-
-**Situación.** menos carriles ROJO en el commit final — DECISIÓN-DE-MESA-PENDIENTE -- la regla ROJO cuenta sólo cifra adoptada (tools/tablero_carriles.py:53); propuesta NARANJA
-
-**Opciones.**
-
-- **(FP)** Las que trae la firma pendiente, verbatim: «Regla ROJO del tablero de carriles y ENIF 2024 módulo 7. (1) Tablero: tools/tablero_carriles.py:53 cuenta ROJO = núcleo sin cifra ADOPTADA; ningún acto que mide sin adoptar lo mueve. Opciones: (a) mantener; (b) añadir NARANJA = núcleo con RESULT GEN2 sellado sin adoptar (recomendado). (2) ENIF 2024 m7 (R06 RESERVADA): (a) mantener; (b) ABIERTA-PARCIAL P7_1_1, P7_1_2, P7_2_1, P7_3_1 (recomendado); (c) ABIERTA-COMO-VISTA. Texto de firma en forense/analisis/medicion-carriles-2/hoja-rh.md. · 28/sep/2026: punto (2) FIRMADO en sesión, opción (b) ABIERTA-PARCIAL (ADENDA-1), ejecutado por ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-04; punto (1) sigue abierto. · 28/sep/2026: punto (1) FIRMADO (ADENDA-2), NARANJA implementado por ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-05.» — *Costo:* El de cada opción según el texto de la FP.
-
-**Recomendación.** (la que marca la FP) La decisión ya está formulada con sus opciones en `FP-260928-GEN2-MEDICION-CARRILES-2-8fdf-01` (ABIERTA); este renglón la trae para que la hoja sea autónoma y no acuña otra ranura.
-
-**Plazo.** 2026-10-05
-
-**Texto de firma.** «Firmo la opción (__) de FP-260928-GEN2-MEDICION-CARRILES-2-8fdf-01.»
-
-*Fuente del renglón: FP existente (verbatim).*
-
 ## D30 · Estado final de RES-0065 (ENIF, POB-P corto no trabaja): aceptar NO-DERIVABLE-DESDE-LA-SPEC o abrir un CALC sucesor con enlace declarado
 
 **NC que decide (1):** `NC-0212`
