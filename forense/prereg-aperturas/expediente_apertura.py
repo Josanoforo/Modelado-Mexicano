@@ -85,8 +85,10 @@ GLOBALES = (
 )
 
 
-def esquema(P: str, celdas: list[str], unidad_r: str = "proporción ponderada en la ola reservada") -> list[dict]:
-    out = [{"id": f"{P}-{c}-R", "tipo": "proporcion", "unidad": unidad_r, "permite_no_estimable": True}
+def esquema(P: str, celdas: list[str], unidad_r: str = "proporción ponderada en la ola reservada",
+            tipo_r: str = "proporcion") -> list[dict]:
+    """`tipo_r` = "flotante" cuando R no es una proporción (media, gasto): la cobertura no cambia."""
+    out = [{"id": f"{P}-{c}-R", "tipo": tipo_r, "unidad": unidad_r, "permite_no_estimable": True}
            for c in celdas]
     for k, tipo, unidad, ne in GLOBALES:
         f = {"id": f"{P}-{k}", "tipo": tipo, "unidad": unidad}
