@@ -1,0 +1,95 @@
+# ENCARGO · ACTO GEN2-CALC-ALTERNOS-LOTE-2 · dos CALC-caja de instrumentos alternos (M19 con AP5_4 de ENVIPE 2025; M13 con p17/p18) y dos deudas de L y del árbitro cerradas con medición o con dictamen A.15
+
+> ENTORNO: **CAJA** — las piezas P1 y P2 abren microdato (ENVIPE 2025, CIDE-CSES 2015, CSES M4) y P3 lee las capturas y los sellos del duelo; todo requiere el corpus montado. El hook de arranque imprime ENTORNO-DERIVADO; si no coincide, PARA en una línea.
+
+CABECERA · SHA de redacción `a7a91f41` (origin/main al redactar; re-deriva al abrir) · una sola sesión (D-17) · MODELO: **Opus** (D-13) · MODO: **ABIERTO** · CONTADOR: mueve `celdas_validadas` y `cuenta_gen2` solo por los CALC que P1 y P2 sellen (si miden); NO debe moverse nada por P3 (descriptiva, RETROSPECTIVA) ni por P4 (dictamen documental) · CALC-id reservado: uno por instrumento medido en P1 y P2 (ids de raíz de acto que acuña el acto; se citan por su llave hasta que su número entre a main) · FP/ADR/NC candidatos: raíz de acto (D-24) — no se derivan aquí, los deriva `tools/cierre_acto.py` contra el 0-bis; no se renumeran nunca.
+REDACCIÓN: PROPUESTO-POR-EJECUTOR (GEN2-PENDIENTES-4, 29/sep/2026). Este encargo NO está lanzado: dirección o mesa lo lanza adjuntando su archivo `.md` (§0), y `/acto` lo archiva verbatim en su 0-bis con su propio sello de cuerpo.
+
+## 1 · OBJETIVO
+Cerrar las cuatro deudas que `GEN2-CALC-ALTERNOS-LOTE-1` dejó a este sucesor, con medición o con dictamen A.15 y sin tocar sellos: (P1) M19: la covariable de enforcement por entidad `AP5_4_*` de ENVIPE 2025 unida al contraste de ENCUCI 2020; (P2) M13: `p17`/`p18` respondidas, en el payload CIDE-CSES que sí las traiga o en CSES M4, o `NO-CONSTRUIBLE` con universo declarado; (P3) el intervalo al 80 % de L en las 64 capturas de C3, con regla declarada como post-hoc y rotulada RETROSPECTIVA; (P4) la tabla de qué regla del árbitro re-midió qué CALC GEN2 para las cuatro celdas 3D.
+
+«Hecho» son estos comandos sobre el commit final con `origin/main` fusionado (hoy dan el «antes»):
+- P1: `ls data/corrida0 | grep -c 'CALC-ALT-M19-ENVIPE2025'` → ≥ 1 (hoy 0) con `sello.json` presente en cada uno.
+- P2: `ls data/corrida0 | grep -c -E 'CALC-ALT-M13-.*(CSES4|CIDE.*P1718)'` → ≥ 1, o una constancia `forense/analisis/calc-alternos-lote-2/m13-p17p18-no-construible.md` que cita las secciones del cuestionario recorridas y el conteo de archivos examinados (hoy ninguna de las dos).
+- P3: `python3 -c "import csv;r=list(csv.DictReader(open('forense/analisis/calc-alternos-lote-2/intervalo-l-c3.tsv',newline='',encoding='utf-8'),delimiter='\t'));print(len(r))"` → 64 filas de capturas con `extraible ∈ {SI,NO}` y el motivo de cada NO (hoy el archivo no existe).
+- P4: `python3 -c "import csv;r=list(csv.DictReader(open('forense/analisis/calc-alternos-lote-2/cobertura-arbitro-3d.tsv',newline='',encoding='utf-8'),delimiter='\t'));print(len(r))"` → una fila por regla `_ejes_` de las cuatro CALC 3D (hoy el archivo no existe).
+- Cierre: `python3 tools/consulta.py nc <id>` de cada NC de §4 con `estado=CERRADA` y cita, y `python3 tests/check.py --baseline` VERDE.
+
+## 2 · FIRMAS DE MESA
+Ninguna firma nueva es necesaria: las piezas P1 y P2 pertenecen a un mapa de instrumentos alternos ya aceptado y no adoptan; P3 es descriptiva y P4 documental. Si el ejecutor descubre que P1 o P2 exigen abrir una ola reservada (E.6: la ola más reciente de un programa con historia), esa pieza queda `NO-LANZADO (decisión de mesa pendiente)` y las demás siguen. Firma citada sin cambio: `FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01` conserva reserva de ancho y no aplica aquí.
+
+## 3 · LO QUE DIRECCIÓN SABE — cada línea con su rótulo
+- [EJECUTADO] `git grep -c 'AP5_4' -- data/corrida0/ | wc -l` → 0; `ls data/corrida0 | grep 'CALC-ALT-M1[39]'` → `CALC-ALT-M13-CIDECSES2015-0001`, `CALC-ALT-M19-ENCUCI2020-0001`, `CALC-ALT-M19-WVS2018-REPRO-0001` (ningún CALC sellado abre `AP5_4_*`).
+- [LEÍDO] `canon/mapa-instrumentos-alternos-v1_0.tsv` fila 57 (lector CSV): M19 · ENVIPE 2025 · `AP5_4_*` · reserva «ABIERTA (canon/MEMORIA-OPERATIVA.md §1: ENCIG 2025 y ENVIPE 2025 abiertas)» · propuesta «CALC-CAJA (confianza en autoridades por entidad como covariable de contexto)»; fila 53 (ENCUCI, `AP5_1_1`, `AP5_1_2`, `AP5_3_3`) dice que el enforcement tiene que venir de otra fuente por entidad.
+- [LEÍDO] `canon/MEMORIA-OPERATIVA.md:9`: «ENCIG 2025 y ENVIPE 2025: abiertas»; ENVIPE 2026 reservada.
+- [LEÍDO] `forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md:72`: en LOTE-1 «`AP5_4_*` no se abrió» porque el encargo restringía ENVIPE 2025 a lo que su árbitro abrió; y `:53,69`: `p17`/`p18` quedaron NO-ESTIMABLE, n = 0 (las 1 200 filas vienen vacías).
+- [EJECUTADO] `yq -r '.[] | select(.id | test("cide_cses")) | .id + " " + .sha256' data/manifiesto.yaml` → tres payloads: `cide_cses2015_estatal_preelectoral` (`7cf0e9e9…`), `cide_cses2015_nacional_poselectoral` (`1ef01a17…`), `cide_cses2015_nacional_preelectoral` (`85432d32…`); la nota de procedencia del último dice «byte-idéntico a cide_cses2015_estatal_poselectoral … error de etiquetado del propio repositorio CIDE».
+- [EJECUTADO] `yq -r '.[] | select(.id | test("cses4")) | .id' data/manifiesto.yaml` → `cses4_module4_full`.
+- [LEÍDO] `canon/mapa-instrumentos-alternos-v1_0.tsv` fila 33: CSES Módulo 5 (MEX_2018) es el módulo más reciente en el corpus → «reservable por letra de E.6 … base no abierta aquí»; por eso este encargo no lo abre.
+- [EJECUTADO] `git ls-files forense/prereg-duelo-v2/corridas-L | grep -c 'L-solo.*celda-d-piloto-v1_2'` → 64: ocho celdas (`CD-DIN-L{1,2}xE{1..4}`) × ocho capturas cada una.
+- [LEÍDO] `forense/notas/2026-09-16-GEN2-CELDA-D-PILOTO-1-cierre.md:221-222`: «El intervalo al 80 % NO se extrae (NC-0307): la regla congelada devuelve un punto, y escribir una segunda regla después de leer las 64 capturas sería post-hoc»; `:284`: el sucesor pedido era una regla pre-registrada «antes de mirar capturas».
+- [LEÍDO] `tools/extrae_l_v1_3.py:104-108`: la regla vigente excluye del candidato de punto («es banda») los párrafos que contengan «rango de incertidumbre», «intervalo de incertidumbre», «banda de incertidumbre», «ic95» o «intervalo de confianza», entre otras expresiones: no extrae bandas.
+- [LEÍDO] `forense/encargos/2026-09-21-GEN2-ARBITRO-MARGINALES-1.md:9,13`: el árbitro es `milpa/tramite-ola5-propuesta-v0.yaml` con 53 reglas GEN1; la mitad (b) de la firma 3D es re-medirlas en GEN2.
+- [EJECUTADO] `python3` sobre `forense/prereg-caja/ARBITRO-MARGINALES-2-clasificacion-v1_0.tsv` → 40 filas: 24 RE-MEDIDA, 12 FUERA-DE-ALCANCE, 3 SIN-PAYLOAD, 1 SUSTITUIDO-POR; `ls data/corrida0 | grep -c CALC-ARBITRO-MARGINALES` → 6 CALC.
+- [REPORTADO] El investigador de este acto (28/sep) dice que seis de las siete reglas `_ejes_` de las CALC 3D ya están re-medidas y la séptima (`horizonte_corto` ENIF 2024) sigue en `NC-0413`; lo re-deriva P4 antes de cerrar nada.
+- [SUPUESTO] Que el diseño de M19 sea «unir el contraste de ENCUCI con AP5_4 por entidad» sale de la propuesta del mapa, no de una spec; la spec la escribe el ejecutor y puede descubrir que el puente no es estimable.
+
+## 4 · YA HECHO / YA DECIDIDO — búsqueda por OBJETO, no por frase
+Búsqueda por objeto (universo: `forense/no-corrido.tsv` 1 102 filas; `data/corrida0/` 2 613 rutas con `git ls-tree -r`; `data/manifiesto.yaml` 7 198 ids por `yq`; `forense/encargos/**` 1 231 rutas; `data/corrida0/corridas.tsv` 357 filas):
+- No existe ningún CALC de M19 con `AP5_4_*` (0 coincidencias en 2 613 rutas; control positivo: `AP5_1_1` aparece en `CALC-ALT-M19-ENCUCI2020-0001`).
+- No existe encargo previo con el rótulo `GEN2-CALC-ALTERNOS-LOTE-2` en `forense/encargos/**` (`git ls-tree -r origin/main forense/encargos | grep -c 'CALC-ALTERNOS-LOTE-2'` → 0); este es su sucesor nombrado por LOTE-1 y por las filas 795b-07 y 795b-08.
+- Homónimos descartados: `GEN2-ARBITRO-MARGINALES-1/-2` (ya hechos; P4 los cita, no los repite), `GEN2-L-DESDE-CAPTURAS-1` (extrae PUNTOS con la regla congelada; no toca el intervalo).
+NC que este encargo absorbe (sucesor `DIRECCION-ENCARGO (GEN2-CALC-ALTERNOS-LOTE-2)`):
+- NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-07 (M19 con `AP5_4_*`)
+- NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-08 (M13 `p17`/`p18`)
+- NC-0307 (intervalo al 80 % de L en C3)
+- NC-0448 (árbitro 3D re-medido bajo cadena GEN2)
+NC de otro encargo que P4 cita sin absorber: `NC-0413` (la séptima regla `_ejes_`), que lleva `GEN2-MARCADOR-Y-SERIES-2`.
+
+## 5 · PIEZAS — resultado esperado de cada una, no receta
+**P1 · M19 con enforcement por entidad.** Dos commits: COMMIT-1 congela spec humana (`forense/prereg-caja/…-spec-v*.md` con sidecar) y `spec.yaml`, con la compuerta de apertura de `AP5_4_*` (cita `canon/MEMORIA-OPERATIVA.md:9` y comprueba por id que ninguna apertura preregistrada la lista como reservada), la regla B-bis (qué pasa si el falsador NO refuta) y el vocabulario cerrado del dictamen; COMMIT-2 trae resultados. Unidad y escala declaradas: ENCUCI es persona, `AP5_4_*` es persona agregada por entidad; no se promedian con unidad delito o trámite. Bien hecho: `sello.json` presente, replay afirmativo en `RESULTADO` y fila en la vista. Rama prevista: si `AP5_4_*` no trae variación por entidad utilizable o el puente por entidad no es estimable, el dictamen es `NO-ESTIMABLE` con la columna y los conteos, no se ajusta el procedimiento.
+
+**P2 · M13 `p17`/`p18`.** Recorre por A.15 el inventario por instrumento completo: `cide_cses2015_estatal_preelectoral`, `cide_cses2015_nacional_poselectoral` y `cide_cses2015_nacional_preelectoral` (el manifiesto declara este último byte-idéntico al estatal poselectoral) y `cses4_module4_full`, buscando el texto de la pregunta «dónde ubicaría lo que piensa: NO importa qué partido gobierna / GRAN DIFERENCIA» y la del voto que hace diferencia, no el nombre de la variable. Si hay respuestas, mide el peso percibido del voto con la misma spec de concurrencia de LOTE-1 (dos commits); si no, escribe la constancia `NO-CONSTRUIBLE` con texto de pregunta buscado, secciones recorridas y conteo de archivos. Bien hecho: los comandos de §1. Rama prevista: si el payload que las trae es el más reciente de su programa (reservable), P2 no lo abre y queda `NO-LANZADO (decisión de mesa pendiente)`.
+
+**P3 · intervalo al 80 % de L en C3 (RETROSPECTIVA).** La regla se escribe después de haber leído las capturas, así que no es pre-registro y se rotula RETROSPECTIVA-post-hoc, sin cambiar la adjudicación sellada (C3 pierde por punto). Procedimiento: probar la regla contra un caso sintético con bandas conocidas antes de congelarla (E.6), congelarla en COMMIT-1 sin abrir las 64 capturas para calibrarla, aplicarla en COMMIT-2 y publicar `intervalo-l-c3.tsv` (una fila por captura: extraíble sí/no y por qué) más la cobertura del intervalo contra R, definida como «R dentro del intervalo de L», con intervalo binomial por celda y por conglomerado (las celdas de una ola comparten muestra) y el apellido del instrumento; el punto de L dentro del IC de R se reporta aparte y nunca se mezcla. No es un IC del candidato ni se presenta como tal. Rama prevista: si la regla no extrae banda en la mayoría de las capturas, el resultado es «NO-EXTRAÍBLE en k de 64», con conteo, y la NC-0307 se cierra por producto con ese hallazgo.
+
+**P4 · árbitro 3D re-medido.** Produce `cobertura-arbitro-3d.tsv`: por cada regla `_ejes_` que usan `CALC-C2-COMPUESTO-RESERVADAS-0001`, `CALC-C2-COMPUESTO-IC-ENIF2024-0001`, `CALC-C2-COMPUESTO-IC-ENVIPE2025-0001` y `CALC-PISOS-ENIF2021-FORMALIDAD-0001`, la CALC GEN2 sellada que la re-midió (o `SUSTITUIDO-POR`, o la NC abierta que la lleva), derivada por comando desde `ARBITRO-MARGINALES-2-clasificacion-v1_0.tsv` y `corridas.tsv`. Bien hecho: cada fila con CALC o con NC nombrada; ninguna vacía. La NC-0448 se cierra por producto solo si cada fila queda cubierta o con sucesor nombrado; la séptima regla se cita como `NC-0413` sin re-medirla aquí.
+
+## 6 · LATITUD
+Cláusula de autonomía v1.0 (`forense/encargos/CLAUSULA-AUTONOMIA-v1_0.md`) vigente por norma (v2.17 §0): no se pega aquí. Discrepancias con el repo, interpretación declarada (`INTERPRETACIÓN-DECLARADA`), redacción rotulada (`PROPUESTO-POR-EJECUTOR`) y opción recomendada: del ejecutor.
+DECIDES TÚ, y lo dices en la nota: el cómo · el orden · las herramientas · los nombres de archivo · remover obstáculos reversibles y baratos (enlazar `data/raw`, `git fetch --unshallow`, instalar una dependencia, regenerar un derivado por comando, corregir una cita rota) · arreglar un defecto adyacente de ≤ 10 líneas que te impide terminar, declarándolo.
+PREGUNTAS A MESA, con 2–3 opciones y tu recomendación, y SIGUES con lo demás mientras tanto: bifurcaciones no previstas que cambian qué se entrega.
+NO DECIDES: nada de la sección 7.
+
+## 7 · PAROS — lista cerrada. Fuera de ella, no se para: se resuelve o se pregunta.
+  a) abrir, derivar o imprimir dato de una ola reservada fuera del código autorizado
+  b) borrar, forzar (`-D`, `--force`, `clean`) o reescribir algo sellado
+  c) adoptar, o mover un contador que el encargo dice que no debe moverse
+  d) cambiar estimando, universo, umbral, candidato o código de un procedimiento congelado
+  e) entorno equivocado: este encargo abre microdato o corpus montado y va a CAJA; si el arranque no monta el corpus compartido, PARA en una línea (microdato se baja siempre desde CAJA)
+  f) el OBJETIVO dejó de ser alcanzable o dejó de tener sentido → PARO, y eso es el entregable; leído estricto (D-19): solo sin ruta legítima
+Enmienda de cableado (D-18): mientras el CALC no tenga `ejecucion.json`, un bloqueo de preflight de cableado puro (ruta de spec, sha de un input origen-repo, `dependencias_materiales`, constancia en lugar de archivo vivo, `permite_no_estimable`) se corrige en commit propio, declarado, y NO es PARO.
+
+## 8 · COMPUERTAS — cada una declara qué protege
+- «Abrir microdato de ENVIPE 2025, CIDE-CSES 2015 y CSES M4 solo desde CAJA; no abrir CSES M5 ni ninguna ola reservada» protege: abrir dato.
+- «COMMIT-1 (spec + medidor + preflight VERDE) antes de tocar el microdato de P1 y de P2, y regla de extracción probada contra el sintético antes de congelarla en P3» protege: congelar spec.
+- «Ninguna regla de extracción se ajusta después de aplicarla a las capturas» protege: congelar spec.
+- «Ningún resultado se adopta ni se pide adopción; el dictamen es del vocabulario cerrado de cada spec» protege: adoptar.
+- «Ninguna NC se cierra sin la cita al archivo o CALC que la respalda» protege: borrar.
+
+## 9 · PERÍMETRO Y CONCURRENCIA
+Propio: `forense/analisis/calc-alternos-lote-2/**` · `forense/prereg-caja/` (specs nuevas de P1, P2 y P3 con sidecar) · los `data/corrida0/CALC-ALT-*` nuevos · `forense/no-corrido.tsv` (estado y cierre de las cuatro NC) · nota, ADR y fragmento L0 propios.
+Ajeno que no se toca: los CALC sellados de LOTE-1 y del duelo (`CALC-ALT-M13-CIDECSES2015-0001`, `CALC-ALT-M19-*`, `CALC-DIN-LOTE-ORO-PILOTO1-*`, `CALC-L-DESDE-CAPTURAS-v1_0`), `forense/prereg-duelo-v2/corridas-L/**` (las capturas se leen, no se editan), `milpa/tramite-ola5-propuesta-v0.yaml`, `canon/mapa-instrumentos-alternos-v1_0.tsv` (se cita; su actualización es de otro acto).
+ARCHIVOS QUE OTRO ACTO EN VUELO ESTÁ TOCANDO (`git diff --name-only origin/main...origin/<rama>` filtrado a tools, tests, canon, libro, firmas y CI; corrido el 29/sep/2026 sobre `a7a91f41`; re-derívalo al abrir):
+- `origin/acto/gen2-medicion-carriles-2--{enigh,enoe,naranja}`: `tests/test_mc2_*.py`, `tests/test_tablero_carriles.py`, `tools/tablero_carriles.py`, `tests/check.py`, `canon/gobernanza-v1_15.md`, `canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-0{5,6}.md`, `forense/firmas-pendientes.tsv`.
+- `origin/claude/new-session-8tmg5a` (GEN2-CIERRE-Y-PRODUCTO-3): `canon/informe-programa-v1_6.*`, `canon/catalogo-del-mexicano-v1_4.*`, `canon/tabla-de-piso-v1_3.tsv`, `canon/reglas-bloque-adopcion-1.*`, `tools/cierre_acto.py`, `tools/genera_deck.py`, `tools/genera_tabla_piso_v1_3.py`, `tests/check.py`, `tests/test_cierre_acto.py`, `canon/gobernanza-v1_15.md`, `canon/registro-rotulos.tsv`, `forense/no-corrido.tsv`, `forense/firmas-pendientes.tsv`.
+- El PR de `GEN2-PENDIENTES-4` (#1326) mientras esté abierto (`forense/no-corrido.tsv`, `forense/firmas-pendientes.tsv`, `canon/gobernanza-v1_15.md`, `canon/registro-rotulos.tsv`, `tests/check.py`, `forense/analisis/pendientes-4/**`) y el PR [deriva] (`derivados/auto-*`, rota en cada push a main: `data/corrida0/*.tsv` y demás vistas).
+Los apéndices compartidos dan conflicto de apéndice al fusionar: se conservan ambas tandas.
+«Si te encuentras escribiendo fuera de esta lista, PARA.» Si te encuentras escribiendo fuera de esta lista, PARA.
+PERÍMETRO DE CIERRE — permanente, no hay que pedirlo: el test propio entra a CI como HUÉRFANO (`ci_guardias --ejecuta-huerfanos`), sin editar `verify.yml` ni `check.py` (D-21) · publicar en la vista las filas propias y su asiento de replay (E.7) · registrar en INFRAESTRUCTURA la tabla propia · dejar el fragmento L0 propio en `canon/L0/<ADR-raíz>.md`, nunca en la línea `L0` compartida ni en `canon/estado-programa-v1_N.md` · la cascada de /acto · hallazgos, NC y FP propios, con ids de raíz de acto (D-24) — nunca «el siguiente número libre». Fuera del perímetro y necesario para terminar → es LATITUD (≤ 10 líneas, declarado) o es PREGUNTA. «FUERA-DE-PERÍMETRO» como razón de una NC queda para lo que de verdad es de otro acto, y se nombra ese acto.
+
+## 10 · LO QUE NO HACE · SUCESORES · AUDITORÍA · CIERRE
+Lo que NO hace: no abre CSES M5 ni ENVIPE 2026 ni ninguna ola reservada; no adopta ningún resultado; no re-mide el árbitro fuera de la tabla de P4; no crea retadores nuevos (regla 6: P3 describe un cruce ya visto y lo rotula así); no edita el yaml del árbitro.
+Sucesores: `NC-0413` (`GEN2-MARCADOR-Y-SERIES-2`) lleva la séptima regla; si P1 o P2 dan un resultado, mesa decide su adopción; `L+corpus` (NC-0311) sigue con su propio dueño.
+Auditoría (afirma sobre México): ¿la confianza en policía o en autoridades por entidad se confunde con cultura cuando es incentivo o enforcement local (P1)? Se rotula «asociación, no identificación» y se reporta el marginal sin condicionar y el condicionado; ¿hay sobregeneralización desde la clase media urbana en ENCUCI/ENVIPE (cobertura de localidades)?; la participación declarada en CSES sobrerreporta (fila 32 del mapa: «participación declarada (sobre-reporte)») y no se lee como participación real; ¿qué cifra es PROSPECTIVA y cuál RETROSPECTIVA? (P3 es RETROSPECTIVA; P1 y P2 salen del orden de sellos); ¿en qué escala está cada cantidad (persona vs. entidad) y contra qué se compara?; ¿cuántos contadores movió el trabajo? (una línea al inicio de la nota; si cero, también).
+El cuerpo de este encargo no lleva campos para rellenar ni líneas de estado: `## NO-CORRIDO / RESERVAS` y `## CONSUMIDO` las añade /acto al final del archivo archivado (A.3), nunca editando lo de arriba. Adendas de mesa recibidas durante la ejecución: archivo propio `<este-encargo>-ADENDA-N.md`, sellado al recibirse, citado sólo en el CIERRE.

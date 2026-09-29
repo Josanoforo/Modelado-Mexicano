@@ -19,7 +19,7 @@ ENCARGOS = {
         "P1 · dependencias declaradas en requirements y CI": ["308c-03", "01aa-03", "NC-0332", "e897-04"],
         "P2 · censo de tests regenerado con ejecución real": ["8796-06", "2868-06", "19a3-06", "2518-04", "2d37-10", "3a49-06", "3fc6-03", "NC-0439"],
         "P3 · guardia de huérfanos que no salta lo ya instalado": ["NC-0381", "NC-0403"]}},
-    "GEN2-TUBERIA-CORRIDA0-2": {"entorno": "NUBE", "modelo": "Sonnet", "modo": "ABIERTO", "piezas": {
+    "GEN2-TUBERIA-CORRIDA0-2": {"entorno": "NUBE", "modelo": "Opus", "modo": "ABIERTO", "piezas": {
         "P1 · caché y derivación compartida": ["baca-02", "c6d9-06", "NC-0298"],
         "P2 · ensayo y guardas de valor": ["6c10-02", "996b-08", "NC-0292"],
         "P3 · vista, canal y registro": ["18fa-02", "822a-03", "c133-02", "c133-04", "1997-03", "f18c-01"],
@@ -46,10 +46,10 @@ ENCARGOS = {
         "P1 · relevo de RES-0051/0052 (L8CONV) sin literal GEN1": ["a157-17", "a157-18", "a157-19"],
         "P2 · remesas ENIGH 2020 (spec sucesora v1.1)": ["2385-06"],
         "P3 · relevo de M13, M19, M22 y M05/M23": ["e760-10", "72d9-03"]}},
-    "GEN2-CURACION-CORPUS-2": {"entorno": "CAJA", "modelo": "Sonnet", "modo": "ABIERTO", "piezas": {
+    "GEN2-CURACION-CORPUS-2": {"entorno": "CAJA", "modelo": "Opus", "modo": "ABIERTO", "piezas": {
         "P1 · reservas por módulo y payloads fuera de reserva_respondentes": ["7813-03", "01aa-01", "NC-0246"],
-        "P2 · inventarios de reactivos y filas ciegas": ["3a49-02", "NC-0260", "NC-0136", "0d4a-03"],
-        "P3 · cola y payloads con hash (INPC, CONAPO, Intercensal, licencias)": ["e422-03", "43d6-04", "7813-01", "0d4a-02", "3a49-03", "1997-02"],
+        "P2 · inventarios de reactivos y filas ciegas": ["3a49-02", "0d4a-03", "43d6-04", "NC-0260", "NC-0136"],
+        "P3 · cola y payloads con hash (INPC, CONAPO, Intercensal, licencias)": ["e422-03", "7813-01", "0d4a-02", "3a49-03", "1997-02"],
         "P4 · CNBV y Banxico NO-ACCESIBLE con dato ya obtenido": ["8dbe-01", "8dbe-02"]}},
     "GEN2-ADQUISICION-DOCUMENTAL-1": {"entorno": "NUBE", "modelo": "Sonnet", "modo": "ABIERTO", "piezas": {
         "P1 · documentos y calendario de INEGI (ENIGH 2024, ENVIPE 2027, tabulados)": ["dd08-02", "7045-02", "2d37-05"],
