@@ -1,0 +1,16 @@
+[
+ {
+  "id": "NC-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-05",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproducen sobre origin/main 7312797c: ls-tree (6 archivos, incl. sello.json y ejecucion.json), jq (spec_id, 573), 6162c89d ancestro de main, nota:23. La rama derivados citada (auto-36495085433) ya no existe; en auto-36500584875 (444 filas) aparecen -0001 y -0002; main (358) sin PDR1-ENCUCI2020. Mismo hecho.",
+  "comando": "git ls-tree -r --name-only origin/main data/corrida0/CALC-PDR1-ENCUCI2020-0002; git show origin/main:.../resultados.json | jq -c '.spec_id,(.resultados|length)'; git merge-base --is-ancestor 6162c89d origin/main; corridas.tsv por csv.DictReader (field_size_limit alto) en origin/main y origin/derivados/auto-36500584875",
+  "salida": "ejecucion.json medidor.py resultados.json sello.json sello.sha256 spec.yaml · \"CALC-PDR1-ENCUCI2020-0002\" 573 · 6162c89d COMMIT-2 ... ANCESTRO-DE-MAIN · nota:23 sucesor -0002 sellado · main 358 filas sin PDR1; derivados auto-36500584875 444 filas con -0001 y -0002--d0e6eceeb8a9; auto-36495085433: filas 0 (ref inexistente)"
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-1-beee-04",
+  "veredicto": "REFUTA",
+  "razon": "Las salidas reproducen literalmente, pero el hecho no sostiene el cierre: la delegación eligió opcion DUEÑO-MESA (no CIERRA; 30 CIERRA entre 168 filas) y su razon dice «Recomiendo aceptar», no acepta. La fila sigue ABIERTA con sucesor MESA (2026-10-05); la hoja dice que esas filas siguen abiertas.",
+  "comando": "git show origin/main:forense/analisis/pendientes-3/decididas-por-delegacion.tsv | python3 csv.DictReader (id beee-04; Counter de opcion); git show origin/main:forense/no-corrido.tsv | csv.DictReader id beee-04; hoja-mesa-pendientes-3.md:3",
+  "salida": "opcion DUEÑO-MESA · razon: ...Recomiendo aceptar ese diagnostico como causa CAUSA-DIAGNOSTICADA-NO-CIEGA...; Counter DUEÑO-MESA 138, CIERRA 30 · NC estado ABIERTA, sucesor MESA (2026-10-05) encargo por escribir · informe-p2 683/683 y resumen 685 reproducen"
+ }
+]

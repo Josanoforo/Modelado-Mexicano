@@ -1,0 +1,141 @@
+[
+  {
+    "id": "NC-260926-GEN2-TUBERIA-CABLEADO-SESIONES-1-0038-03",
+    "verdict": "CERRAR-PRODUCTO",
+    "rationale": "Los logs del runner existen y se leen sin identidad por la API pública de Actions (EJECUTADO aquí). En el paso «Guardias huérfanas»: antes 5m12s (push de la base 2b97d517), después 3m23s (PR #1165) y 3m11s (merge 8c416336). No es acción de titular. El cierre pega estos tiempos con sus run_id y el comando.",
+    "cite": [
+      {"tipo": "comando", "ref": "api.github.com runs/{36264691703,36264914155,36265254589}/jobs", "comando": "for run in 36264691703 36264914155 36265254589; do curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/actions/runs/$run/jobs | python3 -c \"import json,sys;d=json.load(sys.stdin);[print('$run',j['head_sha'][:8],s['started_at'],s['completed_at']) for j in d['jobs'] if j['name']=='guardias' for s in j['steps'] if s['name'].startswith('Guardias huérfanas')]\"; done", "salida": "36264691703 2b97d517 2026-09-26T19:03:31Z 2026-09-26T19:08:43Z\n36264914155 e080cebd 2026-09-26T19:07:35Z 2026-09-26T19:10:58Z\n36265254589 8c416336 2026-09-26T19:13:41Z 2026-09-26T19:16:52Z"},
+      {"tipo": "comando", "ref": "PR #1165", "comando": "curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/pulls/1165 | python3 -c \"import json,sys;d=json.load(sys.stdin);print(d['merge_commit_sha'],d['merged_at'])\"", "salida": "8c4163365c23a35edc4669fe0968b8f3302984d4 2026-09-26T19:12:43Z (base.sha 2b97d5173150; head.sha e080cebd6dbe)"},
+      {"tipo": "archivo", "ref": "forense/notas/2026-09-26-GEN2-TUBERIA-CABLEADO-SESIONES-1-cierre.md:29,34", "comando": "rg -n 'antes 9 min|Tiempos de CI leídos' forense/notas/2026-09-26-GEN2-TUBERIA-CABLEADO-SESIONES-1-cierre.md", "salida": "29:- `ci_guardias.py --ejecuta-huerfanos`: **antes 9 min 38 s**, **después 6 min 29 s**. ...\n34:- Tiempos de CI leídos de los logs del PR: ver NC (-03)."}
+    ],
+    "cerrado_por_detalle": "producto: logs de Actions, job guardias, paso «Guardias huérfanas»: antes 5m12s (run 36264691703, push base 2b97d517) → después 3m23s (run 36264914155, PR #1165 head e080cebd) y 3m11s (run 36265254589, merge 8c416336) · curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/actions/runs/<run>/jobs",
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260927-GEN2-TUBERIA-CI-TIEMPO-2-a387-01",
+    "verdict": "CANAL",
+    "rationale": "El disparo manual ya no hace falta: el job derivados corre en cada push a main (el run 36500584875 abrió #1315). Falta que un [deriva] se fusione y drene el pendiente: hoy quedan 113, y el último [deriva] fusionado es #1268 (28/sep). El #1309 tenía check verde y se cerró superado. Depende de FP-260928-GEN2-TUBERIA-3-f18c-01, ABIERTA.",
+    "cite": [
+      {"tipo": "comando", "ref": "tools/lote_desde_asientos.py", "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes --json | python3 -c \"import json,sys;d=json.load(sys.stdin);print({k:(len(v) if isinstance(v,list) else v) for k,v in d.items()})\"", "salida": "{'calc_ids': 113, 'descartados': 0, 'examinados': 113}"},
+      {"tipo": "comando", "ref": "git origin/main", "comando": "git log origin/main --oneline | rg -i '\\[deriva\\]' | head -3", "salida": "1f4bf1cc [deriva] trozo 1 tras 429ec004d: 20 CALC, quedan 101 (#1268)\neaea10c9 CI: exime CALC-* del veto de auto-merge cuando el commit es [deriva]\nf70eea0f GEN2-TUBERIA-RESUMEN-SUITE-1: ..."},
+      {"tipo": "comando", "ref": "PR #1315 / #1309", "comando": "GitHub API: pulls/1315/commits; commits/0482c810/check-runs; issues/1309/comments", "salida": "#1315 (derivados/auto-36500584875, abierto): '[deriva] trozo 1 tras 4a0d94aab: 20 CALC, quedan 93'; 'trozo 2 ...: quedan 73'. #1309: check success 2026-09-28T23:17:36Z, cerrado sin merge 00:03:18Z: 'Superado por #1315'."},
+      {"tipo": "firma", "ref": "FP-260928-GEN2-TUBERIA-3-f18c-01", "comando": "python3 tools/consulta.py fp FP-260928-GEN2-TUBERIA-3-f18c-01", "salida": "FP-260928-GEN2-TUBERIA-3-f18c-01 · estado=ABIERTA · creado=2026-09-28 · qué_se_firma=P4 · el [deriva] no se fusiona solo: (a) automerge-rutinas.yml gana schedule (cada 15 min) que fusiona PR derivados/auto-* con su último SHA verde..."}
+    ],
+    "owner_detalle": "canal [deriva] · vistas corridas.tsv, resultados.tsv, usos.tsv, marcador-segmento.tsv y tablero; valor esperado: lote pendiente 0 (hoy 113); PR vivo #1315; el auto-merge depende de FP-260928-GEN2-TUBERIA-3-f18c-01 (ABIERTA; NC-260928-GEN2-TUBERIA-3-f18c-01)",
+    "hecho_comando": "git log origin/main --oneline | rg -c '\\[deriva\\].*quedan 0' (≥1) && python3 tools/lote_desde_asientos.py --incluir-pendientes --json → 'examinados': 0",
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260927-GEN2-TUBERIA-CI-TIEMPO-2-a387-02",
+    "verdict": "CERRAR-PRODUCTO",
+    "rationale": "El run que la fila pedía ya existe: push a main (merge de #1294, 9d2550b9, posterior a #1198 = 414fcf7d). check terminó en success en 7m42s (22:54:24Z→23:02:06Z) y el run completo, con derivados, tardó 15m50s. Los dos quedan bajo 25 min. Se lee por la API pública; el cierre lo cita con run_id.",
+    "cite": [
+      {"tipo": "comando", "ref": "run 36495085433", "comando": "curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/actions/runs/36495085433 | python3 -c \"import json,sys;d=json.load(sys.stdin);print({k:d[k] for k in ['event','head_branch','head_sha','conclusion','run_started_at','updated_at']})\"", "salida": "{'event': 'push', 'head_branch': 'main', 'head_sha': '9d2550b920782e6aaf1c9483a2d9022fb6c6daa7', 'conclusion': 'success', 'run_started_at': '2026-09-28T22:54:24Z', 'updated_at': '2026-09-28T23:10:14Z'}"},
+      {"tipo": "comando", "ref": "run 36495085433 jobs", "comando": "curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/actions/runs/36495085433/jobs | python3 -c \"import json,sys;d=json.load(sys.stdin);print([(j['name'],j['conclusion'],j['completed_at']) for j in d['jobs'] if j['name'] in ('check','suite','derivados')])\"", "salida": "[('suite', 'success', '2026-09-28T23:02:01Z'), ('derivados', 'success', '2026-09-28T23:10:13Z'), ('check', 'success', '2026-09-28T23:02:06Z')]"},
+      {"tipo": "commit", "ref": "414fcf7d", "comando": "git show -s --format='%h %ci %s' 414fcf7d", "salida": "414fcf7d 2026-09-26 23:24:39 -0600 Merge pull request #1198 from Josanoforo/claude/new-session-9r01b0"}
+    ],
+    "cerrado_por_detalle": "producto: run 36495085433 (push a main, merge #1294, 9d2550b9): check success en 7m42s (22:54:24Z→23:02:06Z), run completo 15m50s · curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/actions/runs/36495085433/jobs",
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260927-GEN2-TUBERIA-RESUMEN-SUITE-1-6127-01",
+    "verdict": "CANAL",
+    "rationale": "El disparo ya ocurrió: el nocturno (run 36458154737, schedule, success) abrió #1278, «[deriva] resumen de suite VERDE». Josanoforo lo cerró sin fusionar el 28/sep a las 17:38Z, sin comentario; motivo NO-ENCONTRADO. data/derivados/suite-resumen.tsv tiene 0 archivos en origin/main (se revisaron 12375). Falta que un [deriva] de resumen se fusione, y eso cuelga del mismo auto-merge (FP f18c-01 ABIERTA).",
+    "cite": [
+      {"tipo": "comando", "ref": "origin/main", "comando": "git ls-tree -r origin/main --name-only | wc -l; git ls-tree -r origin/main --name-only | rg -c 'suite-resumen'", "salida": "12375\n(sin coincidencias: rg -c no imprime nada, exit 1) → 0 archivos suite-resumen; data/derivados/ ausente"},
+      {"tipo": "comando", "ref": "PR #1278 y run 36458154737", "comando": "curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/issues/1278/events; curl -sS .../actions/runs/36458154737", "salida": "closed Josanoforo 2026-09-28T17:38:00Z; head_ref_deleted Josanoforo 2026-09-28T17:38:00Z | run: schedule 060990423f success 2026-09-28T17:26:38Z | #1278 merged_at=None, 0 comentarios"},
+      {"tipo": "archivo", "ref": "tools/tablero_programa.py:581", "comando": "rg -n 'suite-resumen' tools/tablero_programa.py", "salida": "581:    put(\"suite\", RS.linea(RS.lee()), \"python3 tools/resumen_suite.py lee (data/derivados/suite-resumen.tsv, del job suite nocturno)\")"}
+    ],
+    "owner_detalle": "canal [deriva] (resumen de suite, job nocturno de verify.yml) · vista data/derivados/suite-resumen.tsv más su línea en el tablero; el primer PR (#1278) se cerró sin fusionar; se espera el próximo nocturno fusionado; depende de FP-260928-GEN2-TUBERIA-3-f18c-01 (ABIERTA) o de que mesa fusione",
+    "hecho_comando": "git ls-tree -r origin/main --name-only | rg -c '^data/derivados/suite-resumen.tsv$' (=1) && python3 tools/resumen_suite.py lee (no vacío, con commit y run_id)",
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260921-GEN2-TUBERIA-SIDECAR-CUERPO-1-3d08-02",
+    "verdict": "CERRAR-FIRMA",
+    "rationale": "La firma de mesa del 21/sep «Semillas sin ejecutar» (2), verbatim en el cuerpo sellado (SELLO_COINCIDE), decide que las adendas sin rastro «no se archivan retroactivamente»; solo se listan en la nota, y eso ya está hecho. Pedir el texto la contradice. Si se exige FP asentada: HOJA-RECETA MESA-PEGA-TEXTO-ADENDAS-19-21SEP (BANDEJA-TITULAR, entrada 10).",
+    "cite": [
+      {"tipo": "firma", "ref": "forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md:30", "comando": "sed -n '30p' forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md", "salida": "Semillas sin ejecutar — «(1) … (2) Las adendas sin rastro del 19 al 21/sep: no se archivan retroactivamente … Pero lista en tu nota las que SÍ puedas nombrar por los mensajes de commit … para que quede escrito qué actos corrieron bajo un texto que el repo no guarda.»"},
+      {"tipo": "comando", "ref": "sello de cuerpo", "comando": "python3 tools/sella_sha256.py --verifica --cuerpo forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md", "salida": "SELLO_COINCIDE ... sha256=b0f861aa2877bd14899228025cceabb704f11e798942af45d1a96c1744ba6894 candidato=prefijo-antes-de-linea-88: ## NO-CORRIDO / RESERVAS"},
+      {"tipo": "archivo", "ref": "forense/notas/2026-09-21-sello-de-cuerpo-y-adendas-sin-rastro.md", "comando": "rg -c '4d4131df|352c7aed|2802e63b|adbdb3c0' forense/notas/2026-09-21-sello-de-cuerpo-y-adendas-sin-rastro.md", "salida": "2"},
+      {"tipo": "comando", "ref": "universo A.13", "comando": "rg -l '4d4131df|352c7aed|2802e63b|adbdb3c0' forense canon gobierno; git ls-tree -r origin/main --name-only -- forense | wc -l", "salida": "8164 archivos en forense/; ningún *-ADENDA-* para PILOTO-3-P0 ni LIMPIEZA-RAMAS-LOCALES-3 (NO-ENCONTRADO: solo aparecen el encargo, las notas, no-corrido.tsv, BANDEJA-TITULAR, censo-raiz y PENDIENTES v4)"}
+    ],
+    "cerrado_por_detalle": "firma: «Semillas sin ejecutar» (2), mesa 21/sep, verbatim en forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md:30 (cuerpo sellado): «no se archivan retroactivamente … lista en tu nota»; la lista está en forense/notas/2026-09-21-sello-de-cuerpo-y-adendas-sin-rastro.md",
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260924-GEN2-TUBERIA-TABLERO-EN-CANAL-1-3726-02",
+    "verdict": "HOJA-RECETA",
+    "rationale": "Pages sigue sin activarse: la API del repo da has_pages=False. FP-260923-GEN2-FRONT-1-4296-01 está ABIERTA y R49 fue DIFERIDA-POR-MESA con plazo 2026-09-29. Los dos archivos (docs/tablero.md y docs/PROTOCOLO-TABLERO.md) están en main. Es la misma acción física que R49, así que comparte su accion_clave.",
+    "cite": [
+      {"tipo": "comando", "ref": "api.github.com/repos/Josanoforo/Modelado-Mexicano", "comando": "curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano | python3 -c \"import json,sys;print('has_pages',json.load(sys.stdin).get('has_pages'))\"", "salida": "has_pages False"},
+      {"tipo": "firma", "ref": "FP-260923-GEN2-FRONT-1-4296-01 / R49", "comando": "python3 tools/consulta.py fp FP-260923-GEN2-FRONT-1-4296-01; csv DictReader decisiones-21.tsv renglon R49", "salida": "FP-260923-GEN2-FRONT-1-4296-01 · estado=ABIERTA · qué_se_firma=Activar GitHub Pages desde main/docs y decidir DOI Zenodo... | R49 estado: DIFERIDA-POR-MESA plazo 2026-09-29 (ABIERTA); recomendación (c) Pages y metadatos ahora; DOI después"},
+      {"tipo": "comando", "ref": "docs/", "comando": "git ls-tree origin/main --name-only -- docs/tablero.md docs/PROTOCOLO-TABLERO.md", "salida": "docs/PROTOCOLO-TABLERO.md\ndocs/tablero.md"}
+    ],
+    "owner_detalle": "MESA · R49 (FP-260923-GEN2-FRONT-1-4296-01 ABIERTA; plazo 2026-09-29)",
+    "hoja": {
+      "accion_clave": "R49-PUBLICACION-GITHUB-PAGES",
+      "receta_un_minuto": "Abrir github.com/Josanoforo/Modelado-Mexicano/settings/pages → Source: «Deploy from a branch» → rama main, carpeta /docs → Save. Esperar ~1 min, abrir https://josanoforo.github.io/Modelado-Mexicano/tablero y .../PROTOCOLO-TABLERO y contestar «Pages activo <fecha>» (R49 opción (c)). El DOI puede ir después.",
+      "destino": "https://github.com/Josanoforo/Modelado-Mexicano/settings/pages (receta en forense/notas/2026-09-23-GEN2-FRONT-1-cierre.md:64-66; firma en forense/analisis/hoja-firmas-21/decisiones-21.tsv R49)"
+    },
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-0056",
+    "verdict": "HOJA-DECISION",
+    "rationale": "La fila agrupa tres trámites sin consumidor vivo. N19 ya se cubre con el tabulado ENAFIN 2024 (EXISTE-SATISFACE por 11 dominios); el Findex público EXISTE-NO-SATISFACE y su microdato «no se persigue» (DECISION-DE-MESA-PENDIENTE); el convenio de tandas es inversión comercial diferida por D18. D17 empuja la obtención y D18 la frena: decide mesa. No es una receta de un minuto.",
+    "cite": [
+      {"tipo": "archivo", "ref": "data/cola-adquisicion-v1_0.tsv (filas GLOBAL_FINDEX_2025_MEXICO, ENAFIN, REGISTRO_OPERATIVO_DE_TANDAS_DIGITALES)", "comando": "python3 csv.DictReader sobre data/cola-adquisicion-v1_0.tsv, filtro por clave", "salida": "GLOBAL_FINDEX_2025_MEXICO OBTENIDO: '...EXISTE-NO-SATISFACE. Microdato individual ... EXIGE-CUENTA ... no se persigue ... DECISION-DE-MESA-PENDIENTE de bajo rendimiento esperado' | ENAFIN OBTENIDO-PARCIAL: '...EXISTE-SATISFACE para N19 ... El microdato individual de Laboratorio INEGI queda residual no bloqueante; no se tramita sin consumidor nuevo.' | TANDAS SOLICITUD-PREPARADA"},
+      {"tipo": "firma", "ref": "forense/encargos/2026-09-10-MESA-CONCILIACION-E01.md:42-44,73-74", "comando": "sed -n '42,45p;73,74p' forense/encargos/2026-09-10-MESA-CONCILIACION-E01.md", "salida": "D17- Todo lo que sea obtención de datos las movemos ... D18- ahorita no invertiremos, lo dejamos en B ... | D18 | FP-286/343 y tandas | diferir inversión comercial; habilitar búsqueda académica dirigida |"},
+      {"tipo": "comando", "ref": "NC-0061", "comando": "python3 tools/consulta.py nc NC-0061", "salida": "NC-0061 · estado=ABIERTA · acto=GEN2-TRAMITE-BANDEJA · razon=DIFERIDO-A · EJECUCION-AUTORIZADA-POR-D17; REQUIERE-IDENTIDAD-Y-COMPROBANTE-EXTERNO (envío físico del correo a equipo@tandamas.mx)"}
+    ],
+    "owner_detalle": "MESA · hoja de decisión (tres accesos residuales sin consumidor; D17 contra D18)",
+    "hoja": {
+      "situacion": "NC-0056 pide tres trámites con identidad (convenio Tanda+/tanda.mx, Laboratorio de Microdatos INEGI para ENAFIN-empresa y cuenta del World Bank para Findex 2025 individual), y ninguno tiene hoy un consumidor que lo necesite.",
+      "opciones": [
+        {"letra": "a", "texto": "Cerrar NC-0056. El convenio de tandas queda diferido por D18; el correo informativo a Tanda+ sigue vivo en NC-0061. ENAFIN-empresa y Findex-individual se reabren solo si aparece un consumidor nuevo.", "costo": "Nada inmediato; R8.2/N29 (tandas) sigue sin microdato de reputación, como hoy"},
+        {"letra": "b", "texto": "Abrir solo la cuenta gratuita en microdata.worldbank.org para Findex 2025 y cerrar lo demás como en (a).", "costo": "1 minuto de mesa con datos personales; rendimiento esperado bajo (el archivo público ya no trae la razón de rechazo)"},
+        {"letra": "c", "texto": "Mantener los tres trámites como HUMANO abiertos.", "costo": "Trámite presencial en INEGI (horas) y un convenio comercial contra D18; la fila sigue abierta sin fecha"}
+      ],
+      "recomendacion": "a",
+      "porque": "Los encargos salen de la demanda (§1). N19 ya está satisfecho por el tabulado ENAFIN 2024, el Findex público ya descarta el reactivo, y D18 difiere lo comercial. El correo a Tanda+ no se pierde: sigue en NC-0061.",
+      "plazo": "2026-10-05",
+      "texto_firma": "«NC-0056: opción (a). Se cierra; el correo informativo a Tanda+ sigue en NC-0061; ENAFIN-empresa y Findex-individual se reabren solo con consumidor nuevo.»"
+    },
+    "confianza": "media"
+  },
+  {
+    "id": "NC-0159",
+    "verdict": "HOJA-RECETA",
+    "rationale": "No se ha enviado nada. La cola marca ENVIPE_ROSTER_UPM_O_SERVICIO_VARIANZA como SOLICITUD-PREPARADA, sin folio. El consumidor sigue vivo: CIV-M-10/12/13 están en canon/tabla-de-piso-v1_0.tsv. La solicitud a INEGI exige identidad real. No hay expediente redactado, pero BANDEJA-TITULAR (entrada 7) dice qué pedir. No coincide con R46–R49 ni con las siete solicitudes de OBTENCION-EXTERNA-1 (a–g). Va por el mismo canal que NC-0153.",
+    "cite": [
+      {"tipo": "archivo", "ref": "data/cola-adquisicion-v1_0.tsv:148", "comando": "python3 csv.DictReader data/cola-adquisicion-v1_0.tsv, clave ENVIPE_ROSTER_UPM_O_SERVICIO_VARIANZA", "salida": "SOLICITUD-PREPARADA · https://www.inegi.org.mx/inegi/contacto.html · consumidor CIV-M-10;CIV-M-12;CIV-M-13;NC-0159 · siguiente_accion: titular presenta solicitud a INEGI y aporta folio; receptor congela spec prospectiva antes de recalcular"},
+      {"tipo": "archivo", "ref": "forense/notas/2026-09-22-BANDEJA-TITULAR.md:53-58", "comando": "sed -n '53,58p' forense/notas/2026-09-22-BANDEJA-TITULAR.md", "salida": "**7 · NC-0159 · ENVIPE: roster de UPM o servicio de varianza** - Qué escribir: pedir el roster completo de las UPM seleccionadas, o un servicio oficial de varianza ... - A quién: Contacto INEGI (el mismo canal que la entrada 6)."},
+      {"tipo": "comando", "ref": "consumidor vivo", "comando": "rg -l 'CIV-M-10' canon", "salida": "canon/tabla-de-piso-v1_0.tsv"}
+    ],
+    "owner_detalle": "MESA · titular (Contacto INEGI; BANDEJA-TITULAR entrada 7)",
+    "hoja": {
+      "accion_clave": "INEGI-CONTACTO-ENVIPE-ROSTER-UPM",
+      "receta_un_minuto": "Abrir https://www.inegi.org.mx/inegi/contacto.html (o escribir a atencion.usuarios@inegi.org.mx), si se puede en la misma sesión del envío de NC-0153. Pegar: «Para ENVIPE 2021, 2023 y 2024 solicitamos el listado completo de UPM seleccionadas por estrato, incluidas las que no aportaron viviendas, o en su defecto los errores estándar oficiales de los dominios validados; no pedimos geografía identificable.» Adjuntar la sección de diseño de forense/notas/2026-09-11-GEN2-VALIDACION-R-ENVIPE-CSV-cierre.md y pegar el folio en el chat.",
+      "destino": "https://www.inegi.org.mx/inegi/contacto.html (data/cola-adquisicion-v1_0.tsv, fila ENVIPE_ROSTER_UPM_O_SERVICIO_VARIANZA)"
+    },
+    "confianza": "media"
+  },
+  {
+    "id": "NC-0151",
+    "verdict": "HOJA-RECETA",
+    "rationale": "No se ha presentado nada. En REGISTRO-RECEPCION.tsv (7 filas examinadas), ICPSR-35024, OECD-TRUST-PUM y ENJUVE siguen LISTO-PARA-TITULAR, sin fecha ni acuse. Los expedientes y sus destinos existen en el repo. D17 (FP-314) ordena mover la obtención. El envío a la OCDE es la misma acción física que NC-0061 [a]. No coincide con R46–R49 ni con OBTENCION-EXTERNA-1 (a–g).",
+    "cite": [
+      {"tipo": "archivo", "ref": "forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/REGISTRO-RECEPCION.tsv", "comando": "python3 csv.DictReader REGISTRO-RECEPCION.tsv (7 filas)", "salida": "ICPSR-35024 LISTO-PARA-TITULAR fecha_presentacion='' | OECD-TRUST-PUM LISTO-PARA-TITULAR canal govtrustinfo@oecd.org fecha_presentacion='' | ENJUVE-2000-2005-2010 LISTO-PARA-TITULAR canal PNT/IMJUVE fecha_presentacion='' | acuse_no_personal vacío en las 7"},
+      {"tipo": "comando", "ref": "destinos en expedientes", "comando": "rg -c 'govtrustinfo@oecd.org' 02-OECD-TRUST-PUM.md; rg -n 'icpsr' 01-ICPSR-35024-RDUA.md; rg -n 'plataformadetransparencia' 05-IMJUVE-ENJUVE.md", "salida": "1 | 8:- Estudio oficial: [Mexico Panel Study, 2012 — ICPSR 35024](https://www.icpsr.umich.edu/web/RCMD/studies/35024). | 9:- Presentación: [Plataforma Nacional de Transparencia](https://www.plataformadetransparencia.org.mx/)."},
+      {"tipo": "firma", "ref": "FP-314", "comando": "python3 tools/consulta.py fp FP-314", "salida": "FP-314 · estado=FIRMADA-PARCIALMENTE-EJECUTADA ... firmada_en=FIRMA DE MESA D17, 10/sep/2026: todo lo que sea obtencion de datos se mueve; identidad y reutilizacion obligatorias. · ejecutada_en=PARCIAL 2026-09-10 en E09; residual desglosado en NC-0151"}
+    ],
+    "owner_detalle": "MESA · titular (bandeja del titular, BANDEJA-TITULAR entrada 3; D17/FP-314)",
+    "hoja": {
+      "accion_clave": "EXPEDIENTES-ACCESO-21-ICPSR-OECD-IMJUVE",
+      "receta_un_minuto": "Tres envíos de un minuto cada uno, llenando solo datos personales verdaderos. (1) ICPSR: iniciar sesión en icpsr.umich.edu, estudio 35024, y pedir el RDUA según 01-ICPSR-35024-RDUA.md. (2) OCDE: correo a govtrustinfo@oecd.org con 02-OECD-TRUST-PUM.md y el .docx adjunto; este envío cierra también NC-0061 [a]. (3) IMJUVE: solicitud en la PNT según 05-IMJUVE-ENJUVE.md. Pegar en el chat fecha y acuse de cada uno.",
+      "destino": "forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/ (01-ICPSR-35024-RDUA.md, 02-OECD-TRUST-PUM.md + .docx, 05-IMJUVE-ENJUVE.md); acuse en REGISTRO-RECEPCION.tsv"
+    },
+    "confianza": "alta"
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {
+    "id": "NC-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-01",
+    "veredicto": "CONFIRMA",
+    "razon": "Las seis citas reproducen sobre origin/main 7312797c: FP 8e53-01 FIRMADA (ADR-260922-...-7c2c-01) con gatea sobre PAQUETE-L v1_0; linea 16 del encargo FIRMAS-6; prompts.jsonl 88 lineas, sha ad774cece8ddd64b; NC gemela CERRADA; Regla 6 en MEMORIA:10. v1_0 es el v0_1 sustituido (44x2x8=704), mismo paquete.",
+    "comando": "git show origin/main:<ruta> | rg/wc/sha256sum; csv.DictReader sobre firmas-pendientes.tsv y no-corrido.tsv en origin/main; tools/consulta.py fp FP-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-01",
+    "salida": "FP 8e53-01 estado=FIRMADA firmada_en=ADR-260922-GEN2-TRAMITE-FIRMAS-6-7c2c-01 | 16:- `DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-01`: «No se corre L1/L2 ...» | 88 / ad774cece8ddd64b | NC ...8e53-01 CERRADA | 10:...Regla 6: sin retadores, pilotos ni duelos sobre olas vistas."
+  }
+]

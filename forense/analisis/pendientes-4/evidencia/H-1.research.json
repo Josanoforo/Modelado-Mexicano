@@ -1,0 +1,171 @@
+[
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C2-CIERRE-MATERIAL-1-ad01-02",
+  "verdict": "HOJA-RECETA",
+  "rationale": "Sigue ABIERTA. En origin/main no hay ningún .ots ni .tsr (0 de 12345 archivos) y solo existe el manifiesto del 23/sep. La receta del acto pide que mesa integre el paquete al siguiente manifiesto y genere la prueba OTS. Es la misma acción física que fde0-01, 7045-01 y la FP fde0-02 FIRMADA («mesa genera el .ots»).",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-260926-GEN2-ASTRA6-C2-CIERRE-MATERIAL-1-ad01-02", "salida": "NC-260926-GEN2-ASTRA6-C2-CIERRE-MATERIAL-1-ad01-02 · estado=ABIERTA · acto=ASTRA6-C2-CIERRE-MATERIAL-1 · pr=PR-1182 · razon=DIFERIDO-A:mesa y canal OTS aprobado; sin comprobante real"},
+   {"tipo": "comando", "ref": "origin/main (12345 archivos)", "comando": "git ls-tree -r --name-only origin/main | rg -c '\\.(ots|tsr)$'; git ls-tree --name-only origin/main forense/sellos/", "salida": "(rg sin coincidencias, exit=1) · forense/sellos/manifiesto-sellos-2026-09-23.tsv"},
+   {"tipo": "archivo", "ref": "forense/analisis/familias-2027/astra6-cierre-material-1/receta-atestacion.md", "comando": "git show origin/main:forense/analisis/familias-2027/astra6-cierre-material-1/receta-atestacion.md", "salida": "Mesa, por canal aprobado: integrar estos objetos al siguiente manifiesto de sellos; generar/enviar la prueba OTS; conservar comprobante real con identidad exacta del manifiesto/paquete; verificarlo en un acto independiente y registrar la transición de estado."},
+   {"tipo": "firma", "ref": "FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-02", "comando": "python3 tools/consulta.py fp FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-02", "salida": "estado=FIRMADA · «B2 fde0-02 → sí: los hashes de COMMIT-1/2 de ENCIG (y de ENIF y ENVIPE) entran al siguiente manifiesto de sellos y se envían a OTS; estado ENVIADO-A-ATESTACIÓN hasta comprobante. EJECUTA: SELLO-EXTERNO-2 (mesa genera el .ots este fin de semana).»"}
+  ],
+  "owner_detalle": "MESA-ACCION (OTS-SELLO-EXTERNO-2; hoja de recetas PENDIENTES-4)",
+  "hoja": {
+   "accion_clave": "OTS-SELLO-EXTERNO-2",
+   "receta_un_minuto": "En máquina con red y clon con historia: (1) python3 tools/familias-2027/cierre-material-1/verifica_cierre_material.py --verifica --hoja --pruebas --evidencia; (2) python3 tools/sello_externo.py stamp --desde forense/sellos/manifiesto-sellos-2026-09-23.tsv --fecha <hoy> (escribe el manifiesto delta con los sellos nuevos de familias 2027); (3) pip install opentimestamps-client && ots stamp <manifiesto delta>; (4) commitear el .ots junto al manifiesto; horas después, ots upgrade + ots verify → «Success! Bitcoin block…».",
+   "destino": "forense/sellos/ (.ots junto al manifiesto delta; receta docs/sello-externo.md §Mecanismo (a)); estado ENVIADO-A-ATESTACIÓN hasta el comprobante"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-01",
+  "verdict": "HOJA-RECETA",
+  "rationale": "Sigue ABIERTA. La FP fde0-02 está FIRMADA y le asigna a mesa generar el .ots (EJECUTA: SELLO-EXTERNO-2), pero ese producto no está en main: 0 .ots y ningún encargo SELLO-EXTERNO-2 archivado. No cabe CERRAR-FIRMA porque la firma exige un producto que falta. Comparte acción física con ad01-02 y 7045-01.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-01", "salida": "estado=ABIERTA · acto=ASTRA6-C2-ENCIG-1 · pr=#1172 · razon=NO-VERIFICABLE-AQUÍ: inventario entregado; sin comprobante OTS ni envío acreditado por circuito de mesa"},
+   {"tipo": "firma", "ref": "FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-02", "comando": "python3 (csv.DictReader) sobre forense/firmas-pendientes.tsv, fila fde0-02", "salida": "estado FIRMADA · ejecutada_en: ADR-260927-GEN2-TRAMITE-FIRMAS-20-96f9-01; EJECUTA: SELLO-EXTERNO-2 · «(mesa genera el .ots este fin de semana)»"},
+   {"tipo": "comando", "ref": "origin/main", "comando": "git ls-tree -r --name-only origin/main | rg -i 'sello-externo|\\.ots$'", "salida": "canon/L0/ADR-260923-GEN2-TUBERIA-SELLO-EXTERNO-1-cfce-01.md · docs/sello-externo.md · forense/encargos/2026-09-23-GEN2-TUBERIA-SELLO-EXTERNO-1.md(+sidecar) · forense/notas/2026-09-23-GEN2-TUBERIA-SELLO-EXTERNO-1-cierre.md — ningún .ots, ningún SELLO-EXTERNO-2"}
+  ],
+  "owner_detalle": "MESA-ACCION (OTS-SELLO-EXTERNO-2; hoja de recetas PENDIENTES-4)",
+  "hoja": {
+   "accion_clave": "OTS-SELLO-EXTERNO-2",
+   "receta_un_minuto": "La misma receta que ad01-02: python3 tools/sello_externo.py stamp --desde forense/sellos/manifiesto-sellos-2026-09-23.tsv --fecha <hoy>; comprobar que el delta trae los COMMIT-1/2 de ENCIG listados en forense/analisis/familias-2027/astra6-encig/inventario-sellos.json; ots stamp <delta>; commitear el .ots; ots upgrade + ots verify.",
+   "destino": "forense/sellos/ (.ots junto al manifiesto delta); inventario de origen: forense/analisis/familias-2027/astra6-encig/inventario-sellos.json"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C2-ENVIPE-1-7045-01",
+  "verdict": "HOJA-RECETA",
+  "rationale": "Sigue ABIERTA. El inventario de ENVIPE en main dice «SELLADO-INTERNAMENTE» y «atestaciones_verificadas»: 0, y su dependencia es «Mesa: incluir sellos en siguiente manifiesto y OTS». La firma fde0-02 también nombra a ENVIPE. Es la misma acción física que fde0-01 y ad01-02.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-260926-GEN2-ASTRA6-C2-ENVIPE-1-7045-01", "salida": "estado=ABIERTA · acto=ASTRA6-C2-ENVIPE-1 · pr=#1170 · razon=NO-VERIFICABLE-AQUÍ: sin envío ni comprobante OTS; inventario exacto preparado"},
+   {"tipo": "archivo", "ref": "forense/analisis/familias-2027/astra6-envipe/inventario-atestacion.json", "comando": "git show origin/main:forense/analisis/familias-2027/astra6-envipe/inventario-atestacion.json | head -c 600", "salida": "\"estado\": \"SELLADO-INTERNAMENTE\", \"atestaciones_verificadas\": 0, ... \"sellos\": {\"data/corrida0/CALC-FAMILIA-2027-ENVIPE-EVASION-NORMA/sello.json\": \"229a4f0b…\", \"data/corrida0/CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4/sello.json\": \"4ba2cbcb…\"}, \"dependencia\": \"Mesa: incluir sellos en siguiente manifiesto y OTS"},
+   {"tipo": "comando", "ref": "origin/main", "comando": "git ls-tree -r --name-only origin/main | rg -c '\\.(ots|tsr)$'", "salida": "(sin coincidencias sobre 12345 archivos)"}
+  ],
+  "owner_detalle": "MESA-ACCION (OTS-SELLO-EXTERNO-2; hoja de recetas PENDIENTES-4)",
+  "hoja": {
+   "accion_clave": "OTS-SELLO-EXTERNO-2",
+   "receta_un_minuto": "La misma receta que ad01-02. El delta de tools/sello_externo.py stamp debe traer los dos sello.json de CALC-FAMILIA-2027-ENVIPE-* (229a4f0b…, 4ba2cbcb…); ots stamp <delta>; commitear el .ots; ots upgrade + ots verify.",
+   "destino": "forense/sellos/ (.ots junto al manifiesto delta); inventario de origen: forense/analisis/familias-2027/astra6-envipe/inventario-atestacion.json"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-ASTRA-CONTINUIDAD-C3-1-26bb-01",
+  "verdict": "HOJA-RECETA",
+  "rationale": "Sigue ABIERTA. El zip 545600ae… de Astra no está archivado en main: la nota de C3-1 dice que no llegó y hoy no hay ASTRA-TRANSFER-20260927 ni 00-TRANSFER-Y-PLAN en el árbol. Esta sesión tampoco lo recibió (2 .md, 0 zip). Solo mesa tiene el archivo y tiene que adjuntarlo. La ruta correcta es forense/encargos/fuentes/…",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-260928-GEN2-ASTRA-CONTINUIDAD-C3-1-26bb-01", "salida": "estado=ABIERTA · acto=GEN2-ASTRA-CONTINUIDAD-C3-1 · pr=1261 · razon=PARO-PREMISA — el zip (545600ae…) no llegó adjunto; solo el .md del encargo"},
+   {"tipo": "comando", "ref": "origin/main (12345 archivos)", "comando": "git ls-tree -r --name-only origin/main | rg -i 'ASTRA-TRANSFER|TRANSFER-Y-PLAN'; git ls-tree --name-only origin/main forense/encargos/fuentes/ | rg -i TRANSFER", "salida": "(primera: sin coincidencias) · forense/encargos/fuentes/TRANSFER-ASTRA-2026-09-23.md (transfer del 23/sep, otro objeto)"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C3-1/nota-principal-continuidad-c3-1.md:6", "comando": "git grep -n 545600ae origin/main -- forense/notas/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C3-1/", "salida": "El zip `545600ae…` **no llegó**: solo el .md del encargo (`ls` del directorio de uploads: 1 archivo; `git grep 545600ae origin/main`: 0). No se archivan los 8 miembros → NC `…-26bb-01`."},
+   {"tipo": "archivo", "ref": "forense/encargos/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C3-1.md:9", "comando": "git grep -n 545600ae origin/main -- forense/encargos/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C3-1.md", "salida": "(P0) **Archivar el transfer de Astra** verbatim en `forense/encargos/fuentes/ASTRA-TRANSFER-20260927/` (los 8 miembros del zip, `SHA256SUMS.txt` verificado, sidecar con el sha del zip `545600ae58fe4e54…`)"}
+  ],
+  "owner_detalle": "MESA-ACCION (ADJUNTAR-ZIP-TRANSFER-ASTRA-20260927)",
+  "hoja": {
+   "accion_clave": "ADJUNTAR-ZIP-TRANSFER-ASTRA-20260927",
+   "receta_un_minuto": "Adjuntar el zip del transfer de Astra del 27/sep (sha256 empieza 545600ae58fe4e54) a cualquier sesión de Claude con la instrucción: «extrae los 8 miembros y SHA256SUMS.txt en forense/encargos/fuentes/ASTRA-TRANSFER-20260927/, corre sha256sum -c SHA256SUMS.txt, deja un sidecar con el sha del zip y cierra NC-…-26bb-01 citando el commit».",
+   "destino": "forense/encargos/fuentes/ASTRA-TRANSFER-20260927/ (la ruta la fija el encargo C3-1:9; el directorio padre forense/encargos/fuentes/ existe)"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01",
+  "verdict": "HOJA-RECETA",
+  "rationale": "Sigue ABIERTA. Es exactamente el renglón R46 de decisiones-21: registros con identidad para EMOVI, WVS 7 EE.UU./Japón, WVS longitudinal, IFPS y MCPS. Está DIFERIDA-POR-MESA al 29/sep («Las R46, R47, R49 y R51 ponlas para mañana»). Las FP f2e5-12 y 43d6-01 siguen ABIERTA. Las seis filas de la cola siguen NO-ACCESIBLE. Se deduplica contra R46.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv", "comando": "python3 (csv.DictReader) fila renglon==R46", "salida": "R46 · ids_fundidos: FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-12 ; FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01 ; (sin FP) registros-con-identidad OBTENCION-EXTERNA-1 · tipo ACCION-CON-IDENTIDAD · estado DIFERIDA-POR-MESA plazo 2026-09-29 (ABIERTA) · recomendacion (1)"},
+   {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv", "comando": "python3 tools/consulta.py fp FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-12; python3 tools/consulta.py fp FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01", "salida": "f2e5-12 · estado=ABIERTA · [E1] 6 fuentes de microdato (EMOVI 2023/2011 de CEEY, WVS ola 7 EE.UU./Japón, WVS longitudinal 1981-2022, IFPS México 2020-2021, MCPS)… || 43d6-01 · estado=ABIERTA · Acceso con solicitud o términos para seis objetos…"},
+   {"tipo": "firma", "ref": "FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-01 (firmada_en)", "comando": "python3 tools/consulta.py fp FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-01", "salida": "estado=FIRMADA · firmada_en=28/sep/2026, verbatim, mesa (chat de dirección, maestra 54): «Las R46, R47, R49 y R51 ponlas para mañana, todo lo demás queda afirmado.»"},
+   {"tipo": "comando", "ref": "data/cola-adquisicion-v1_0.tsv (954 filas)", "comando": "python3 (csv.reader) filas con EMOVI|WVS-|IFPS|MCPS", "salida": "EMOVI_2011 NO-ACCESIBLE · EMOVI_2023 NO-ACCESIBLE · IFPS-MEXICO_2020-2021 NO-ACCESIBLE · MCPS_SIN-OLA NO-ACCESIBLE · WVS-EEUU-JAPON_7 NO-ACCESIBLE · WVS-LONGITUDINAL_1981-2022 NO-ACCESIBLE"}
+  ],
+  "owner_detalle": "MESA-ACCION (2026-09-29; R46 de decisiones-21)",
+  "hoja": {
+   "accion_clave": "R46-REGISTROS-CON-IDENTIDAD",
+   "receta_un_minuto": "Con la opción (1) recomendada de R46: en un navegador normal, registrarse con el correo institucional de mesa en https://ceey.org.mx/emovi/ (EMOVI 2011/2023; 2011 también en ICPSR 35333), https://www.worldvaluessurvey.org/WVSEVStrend.jsp (longitudinal) y https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp (ola 7 EE.UU./Japón); aceptar los términos académicos y descargar a Descargas MX. IFPS y MCPS esperan a que una afirmación los exija.",
+   "destino": "Descargas MX → registro por /adquiere a cargo del sucesor GEN2-OBTENCION-EXTERNA-2; URLs verificadas el 27/sep en forense/analisis/obtencion-externa-1/solicitudes/registros-con-identidad.md"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2-9d28-03",
+  "verdict": "ABSORBER",
+  "rationale": "Sigue ABIERTA. La continuidad C3-1 le da como sucesor «lectura primaria en un recibo con red»: es trabajo de sesión, no una acción con identidad, y no va a mesa. Esta NUBE no tiene egreso (curl 000 en 4 URL) y CAJA sí abrió fuentes externas. Las fuentes que piden cuenta (McKinsey Direct, GWI) se separan como receta.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2-9d28-03", "salida": "estado=ABIERTA · acto=GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2 · pr=PR-1179 · razon=NO-VERIFICABLE-AQUÍ: abstract o resumen no acredita magnitudes ausentes; retirada afirmativa"},
+   {"tipo": "archivo", "ref": "forense/analisis/reports-v2/continuidad-c3-1/hoja-para-mesa.md:65", "comando": "sed -n '65p' forense/analisis/reports-v2/continuidad-c3-1/hoja-para-mesa.md", "salida": "| `…-9d28-03` (cifras externas retiradas del v1) | ABIERTA | **SIGUE-ABIERTA**. Sucesor: lectura primaria en un recibo con red. |"},
+   {"tipo": "archivo", "ref": "forense/analisis/reports-v2/consumo-familia-2/consumo/lectura-y-cierre.md:11", "comando": "sed -n '11p' …/lectura-y-cierre.md", "salida": "El resumen público MK2025 acredita valor/descuento/e-commerce, no crecimiento de marca privada: esa atribución se retiró. Texto completo NO OBTENIDO POR ESTE AGENTE; acceso concreto pendiente vía McKinsey Direct, abrir reporte completo y cotejar método/campo antes de introducir una cuota."},
+   {"tipo": "comando", "ref": "sonda de egreso NUBE (esta sesión)", "comando": "curl -sL -o /dev/null -w '%{http_code} %{size_download}' <doi.org BH1995 | otexts.com/fpp3 | pewresearch.org | ceey.org.mx/emovi>", "salida": "000 0 (las cuatro)"}
+  ],
+  "lote": "OTRO:C3-RECIBO-CON-RED",
+  "entorno": "CAJA",
+  "hecho_comando": "python3 tools/consulta.py nc NC-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2-9d28-03 → estado=CERRADA con cerrado_por que cita forense/analisis/reports-v2/consumo-familia-2/lectura-primaria-con-red.tsv, donde cada cifra retirada lleva localizador/universo/periodo y dictamen ∈ {REPUESTA, RETIRO-CONFIRMADO, NO-OBTENIDO-N-INTENTOS} (0 vacíos por csv.DictReader)",
+  "owner_detalle": "DIRECCION-ENCARGO (OTRO:C3-RECIBO-CON-RED; carril C3, cadena Astra→ejecutor→recibo; junto con 8c5c-08 y el cotejo de duelo 26bb-03)",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C3-TRABAJO-MOVILIDAD-1-ed83-03",
+  "verdict": "HOJA-RECETA",
+  "rationale": "Sigue ABIERTA. Aclarar la cifra de pobreza del CEEY exige escribir al productor con identidad real; la continuidad C3-1 la deja SIGUE-ABIERTA. No es la misma acción que R46 (allí es un registro para microdato EMOVI), aunque el destinatario coincide y mesa puede hacer las dos juntas. No está entre las solicitudes (a)–(f).",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-260926-GEN2-ASTRA6-C3-TRABAJO-MOVILIDAD-1-ed83-03", "salida": "estado=ABIERTA · acto=GEN2-ASTRA6-C3-TRABAJO-MOVILIDAD-1 · pr=1181 · razon=NO-VERIFICABLE-AQUÍ · sucesor=MESA (2026-10-05) · HUMANO: Receta: escribir a CEEY [correo con identidad real] pidiendo tabla y denominador de la cifra de pobreza"},
+   {"tipo": "archivo", "ref": "forense/analisis/reports-v2/continuidad-c3-1/hoja-para-mesa.md:67", "comando": "sed -n '67p' forense/analisis/reports-v2/continuidad-c3-1/hoja-para-mesa.md", "salida": "| `…-ed83-03` (cifra CEEY con condicionamiento disputado) | ABIERTA | **SIGUE-ABIERTA**. Sucesor: aclaración primaria del CEEY. |"},
+   {"tipo": "archivo", "ref": "forense/analisis/obtencion-externa-1/solicitudes/00-LEEME.md", "comando": "git show origin/main:forense/analisis/obtencion-externa-1/solicitudes/00-LEEME.md (índice)", "salida": "(a) Banco de México · (b) IECM · (c) Segob · (d) Félix-Brasdefer · (e) Delaney/FIU · (f) Worldpanel · (g) INEGI LM · registros: LAPOP, WVS, EMOVI, Latinobarómetro — ninguna es un correo a CEEY sobre la cifra de pobreza"}
+  ],
+  "owner_detalle": "MESA-ACCION (CORREO-CEEY-CIFRA-POBREZA; hoja de recetas PENDIENTES-4)",
+  "hoja": {
+   "accion_clave": "CORREO-CEEY-CIFRA-POBREZA",
+   "receta_un_minuto": "Desde el correo institucional de mesa, escribir al CEEY (contacto en https://ceey.org.mx/) pidiendo el cuadro y el denominador exactos de la cifra de movilidad desde pobreza citada por el report de movilidad (ola EMOVI, condicionamiento origen→destino, universo). Archivar la respuesta tal cual y avisar para que un recibo decida el tratamiento editorial. Si R46 trae el microdato EMOVI, CAJA puede recalcularla y el correo sobra.",
+   "destino": "forense/analisis/reports-v2/trabajo-movilidad-1/ (respuesta archivada con sha); cierra NC-…-ed83-03"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0278",
+  "verdict": "HOJA-RECETA",
+  "rationale": "Sigue ABIERTA, pero es menor de lo que dice la fila: PENDIENTES-CAJA-1 (#1004) ya abrió Cawley-Talbot y FPP3 desde CAJA. Solo falta Benjamini-Hochberg 1995: el DOI redirige a academic.oup.com, que respondió 403 a la caja. Hace falta un navegador normal o acceso institucional. Ninguna conclusión del careo depende de esa cita.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-0278", "salida": "NC-0278 · estado=ABIERTA · acto=GEN2-CELDA-D-CAREO-1 · razon=NO-VERIFICABLE-AQUÍ -- entorno NUBE con egreso denegado por politica; A.6…"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-22-GEN2-PENDIENTES-CAJA-1-verificacion.tsv:16", "comando": "python3 (csv.reader) fila NC-0278", "salida": "2 de 3 abiertas: Cawley-Talbot 200 (sha256 db01ac8f…) y FPP3 §5.8 200 (sha256 dc2216dc…). Benjamini-Hochberg: doi redirige a academic.oup.com 403. NO OBTENIDO POR ESTE AGENTE EN 1 INTENTO | HUMANO"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-22-BANDEJA-TITULAR.md:76", "comando": "git grep -n -i benjamini origin/main -- forense/notas/2026-09-22-BANDEJA-TITULAR.md", "salida": "Qué hacer: con acceso institucional, abrir `https://doi.org/10.1111/j.2517-6161.1995.tb02031.x` y copiar la frase del resumen que distingue FDR de FWER. Cawley-Talbot y FPP3 ya se obtuvieron (#1004 §3.3)."}
+  ],
+  "owner_detalle": "MESA-ACCION (ABRIR-DOI-BENJAMINI-HOCHBERG-1995; hoja de recetas PENDIENTES-4)",
+  "hoja": {
+   "accion_clave": "ABRIR-DOI-BENJAMINI-HOCHBERG-1995",
+   "receta_un_minuto": "En un navegador normal (con acceso institucional si lo pide), abrir https://doi.org/10.1111/j.2517-6161.1995.tb02031.x (redirige a academic.oup.com, JRSS-B), copiar la frase del resumen que distingue FDR de FWER y pegarla con la URL final y la fecha. Las otras dos fuentes ya están abiertas (#1004).",
+   "destino": "forense/notas/2026-09-17-GEN2-CELDA-D-CAREO-1.md (§1.2 del careo, por adenda de un acto; no se edita la nota sellada), citado desde el cierre de NC-0278"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260926-GEN2-CIERRE-SEMANAL-1-dea2-04",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "Ya ocurrió: el CI de PR #1168, su sucesor declarado, terminó en success. En el run 36274452268, sobre el head final ca423ae8, los jobs suite (paso «modo línea base»; verify.yml:102 corre check.py --baseline) y check dieron success. La PR fusionó el 26/sep. La receta decía: «si success, cerrar citando el run_id».",
+  "cite": [
+   {"tipo": "comando", "ref": "GitHub API · PR #1168", "comando": "mcp github pull_request_read get #1168 (equiv. gh pr view 1168 --json state,mergedAt,headRefOid)", "salida": "\"state\":\"closed\",\"merged\":true,\"head\":{\"sha\":\"ca423ae8dd9b6158d3c227065fca396883e712d0\"},\"merged_at\":\"2026-09-26T22:29:57Z\""},
+   {"tipo": "comando", "ref": "GitHub Actions run 36274452268", "comando": "mcp github pull_request_read get_check_runs #1168 (equiv. gh api repos/Josanoforo/Modelado-Mexicano/commits/ca423ae8dd9b6158d3c227065fca396883e712d0/check-runs)", "salida": "total_count 7: check success · guardas-res success · preflight-calc success · suite success (21:53:23–22:00:01) · enrutamiento-pr success · guardias success · adicionales success; run 36274452268"},
+   {"tipo": "comando", "ref": "GitHub Actions job 108494357772 (suite)", "comando": "mcp github actions_list list_workflow_jobs 36274452268 (equiv. gh run view 36274452268 --json jobs)", "salida": "suite · head_sha ca423ae8… · paso 5 «Suite de verificación (modo línea base — verde = no empeoraste)» conclusion success · paso 6 «Transporte paralelo, compuerta y semántica del baseline (bloqueante)» success"},
+   {"tipo": "archivo", "ref": ".github/workflows/verify.yml:102", "comando": "rg -n 'check.py' .github/workflows/verify.yml", "salida": "102:          time python3 tests/check.py --baseline --parallel 2>&1 | tee \"$RUNNER_TEMP/suite.log\""}
+  ],
+  "cerrado_por_detalle": "producto: CI de PR #1168, run 36274452268 (head ca423ae8), jobs suite y check en success · comando: gh api repos/Josanoforo/Modelado-Mexicano/commits/ca423ae8dd9b6158d3c227065fca396883e712d0/check-runs",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-03",
+  "verdict": "HOJA-RECETA",
+  "rationale": "Sigue ABIERTA. Pew «Religion in Latin America» 2014 sigue sin estar en el corpus: 0 de 7198 ids del manifiesto (solo pew_gas_*), sin fila propia en la cola y en tabla-final como REGISTRO-REQUERIDO. Hace falta una cuenta gratuita, así que es un registro con identidad. No es parte de R46 (LAPOP/WVS/EMOVI/Latinobarómetro) ni de las solicitudes (a)–(f).",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-03", "salida": "estado=ABIERTA · pr=PR-1154 · razon=DIFERIDO-A:GEN2-ADQUISICION -- NO OBTENIDO en corpus (tabla-final-v1_0.tsv: REGISTRO-REQUERIDO); receta: pewresearch.org/religion/d…"},
+   {"tipo": "comando", "ref": "data/manifiesto.yaml (7198 ids)", "comando": "yq -r '.[] | select((.id // \"\") | test(\"(?i)pew|relig|latin\")) | .id' data/manifiesto.yaml | rg -i 'relig|latin|2014'", "salida": "18 ids con pew|relig|latin: pew_gas_* (2013–2025), latinobarometro2023/2024, encuesta_nacional_de_religion_secularizacion_y_laicidad(_2..4) — ninguno Pew Religion in Latin America 2014"},
+   {"tipo": "archivo", "ref": "forense/analisis/corpus-completo/tabla-final-v1_0.tsv:10", "comando": "git grep -n -i 'religion in latin america' origin/main -- forense/analisis/corpus-completo/tabla-final-v1_0.tsv", "salida": "EXTERNO PEW … Religion in Latin America 2014 (dataset de microdatos): NO OBTENIDO POR ESTE AGENTE EN 1 INTENTOS (barrera: REGISTRO-REQUERIDO ademas de bloqueo anti-bot)"},
+   {"tipo": "archivo", "ref": "forense/analisis/obtencion-externa-1/solicitudes/registros-con-identidad.md", "comando": "git show origin/main:…/registros-con-identidad.md", "salida": "fuentes listadas: LAPOP · WVS · EMOVI (CEEY) · Latinobarómetro — Pew no figura"}
+  ],
+  "owner_detalle": "MESA-ACCION (REGISTRO-PEW-RELIGION-LATAM-2014; hoja de recetas PENDIENTES-4)",
+  "hoja": {
+   "accion_clave": "REGISTRO-PEW-RELIGION-LATAM-2014",
+   "receta_un_minuto": "En un navegador normal, abrir https://www.pewresearch.org/religion/dataset/religion-in-latin-america/, crear la cuenta gratuita con el correo de mesa, aceptar los términos y descargar el dataset (SAV/CSV + cuestionario). Dejarlo en Descargas MX/UNIVERSO-2026-09/PEW/ y avisar.",
+   "destino": "Descargas MX/UNIVERSO-2026-09/PEW/ (convención de data/cache/universo-p1.tsv) → registro por /adquiere a cargo del sucesor GEN2-OBTENCION-EXTERNA-2 (su encargo: NO-ENCONTRADO en forense/encargos/ de origin/main); desbloquea RELIG-017/023"
+  },
+  "confianza": "alta"
+ }
+]

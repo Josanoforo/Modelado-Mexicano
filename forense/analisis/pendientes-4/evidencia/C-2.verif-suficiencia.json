@@ -1,0 +1,30 @@
+[
+  {
+    "id": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03",
+    "veredicto": "CONFIRMA",
+    "razon": "R32 nombra el recibo -3 «provisionar el broker» y firma opción A, rechazando B (pausar hasta broker). Lote 3 corrió con transcript auditado y gate acreditado. El broker como meta sigue rastreado en NC 0c1f-04 (ABIERTA, broker v3 SIN-ASIGNAR). Reserva: los residuales dicen «sujeto a auditoría».",
+    "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | csv renglon==R32; git show origin/main:forense/no-corrido.tsv | csv id~0c1f-04",
+    "salida": "R32 ids_fundidos='FP-…26a2-02 ; (sin FP) recibo -3 #1241 «provisionar el broker»' FIRMADA · 0c1f-04 ABIERTA sucesor antes: SIN-ASIGNAR (broker v3: provision-broker-v3.md)"
+  },
+  {
+    "id": "NC-260927-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-4b11-03",
+    "veredicto": "REFUTA",
+    "razon": "La duplicada 795b-09 cubre menos y otra cosa: el cruce tamaño×sector del pago informal en ENCRIGE. No cubre el est. 3 (horas y gasto por tamaño y corrupción), ni el microdato ENVE 2024 (RNM 1058). Los CALC sobre tabulados no confirman el dictamen A.4 en microdato. No hay otra fila abierta que los cubra.",
+    "comando": "git show origin/main:forense/no-corrido.tsv | csv ABIERTA con 'horas por tr'|'est. 3'|'rnm 1058'|'obtencion-externa-2'; git ls-tree origin/main forense/encargos | rg -c OBTENCION-EXTERNA-2",
+    "salida": "Solo 4b11-03 menciona est. 3/RNM 1058; 795b-09 = «pago informal… cruce tamaño × sector»; encargo OBTENCION-EXTERNA-2: 0 archivos"
+  },
+  {
+    "id": "NC-260927-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-4b11-04",
+    "veredicto": "CONFIRMA",
+    "razon": "La ADENDA-1 de FIRMAS-21 fija verbatim R01 (b), R02/R03 ABIERTA-COMO-VISTA, R04/R05/R06 RESERVADA. 08ee752a, ya en origin/main, las aplicó en manifiesto y corpus_loader, y el ADR 795b-01 las asienta. Precedente: la hermana 4b11-02 se cerró igual por decisiones-21.",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-TRAMITE-FIRMAS-21-ADENDA-1.md | sed -n 11p; git merge-base --is-ancestor 08ee752a origin/main",
+    "salida": "R01 (b) … R02 ABIERTA-COMO-VISTA … R04 RESERVADA … R06 RESERVADA · EN-MAIN"
+  },
+  {
+    "id": "NC-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-02",
+    "veredicto": "CONFIRMA",
+    "razon": "La fila esperaba la decisión de mesa sobre titular para ENAPROCE (letra I1). FP f2e5-29 (I1) está FIRMADA: (d), ENAPROCE NO-ACCESIBLE y sin titular. El texto verbatim resuelve la pregunta. La cola de adquisición ya lo marca NO-ACCESIBLE y la NC madre e7be-02 está CERRADA.",
+    "comando": "python3 tools/consulta.py fp FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-29; python3 tools/consulta.py nc NC-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-02",
+    "salida": "f2e5-29 estado=FIRMADA · «ENAPROCE queda NO-ACCESIBLE para R03» · e7be-02 estado=CERRADA"
+  }
+]

@@ -1,0 +1,954 @@
+[
+ {
+  "id": "NC-260928-GEN2-OBTENCION-PREVIA-1-8e6a-03",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "Los dominios que el proxy de nube rechazó (Zenodo, Dataverse, Banxico, gob.mx) ya los cubrió OBTENCION-EXTERNA-1 (#1259). Queda ECCO SFP/SABG: cola L946 con 13 intentos NO-OBTENIDO y en el manifiesto solo el PDF de la SE. Calendario INEGI y RNM/comunicados de D1 perdieron su gate por R09 (a) FIRMADA. OBTENCION-PREVIA-2 no está archivado.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/no-corrido.tsv` (1093 filas), id=NC-260928-GEN2-OBTENCION-PREVIA-1-8e6a-03",
+    "salida": "estado=ABIERTA; cerrado_por=; la fila vive en origin/main (solo llega por fusion)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/cola-adquisicion-v1_0.tsv L946",
+    "comando": "git show origin/main:data/cola-adquisicion-v1_0.tsv | sed -n 946p | cut -f1-4",
+    "salida": "ECCO_SFP_CLIMA_CULTURA_ORGANIZACIONAL\tNO-OBTENIDO-POR-ESTE-AGENTE(13)\tOBTENCION-EXTERNA-1\thttps://www.datos.gob.mx/"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/obtencion-externa-1/obtencion.tsv (fila SFP/SABG · ECCO)",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/analisis/obtencion-externa-1/obtencion.tsv` (179 filas), fuente contiene ECCO",
+    "salida": "estado=NO-OBTENIDO-POR-ESTE-AGENTE(13); id_manifiesto='-'; receta: «Navegador: https://www.gob.mx/buengobierno -> buscar «ECCO»...; si no hay base, pedirla por PNT a la Secretaria Anticorrupcion y Buen Gobierno»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml@origin/main",
+    "comando": "yq '[.[] | select((.id|test(\"ecco|clima_org|clima-org|cultura_org\";\"i\")) or ((.url_origen//\"\")|test(\"ecco|clima.?y.?cultura\";\"i\")))] | map(.id)' manifiesto (7198 entradas)",
+    "salida": "[\"r2_1_ecco_reporte_se_2023\"] (PDF del reporte de la SE 2023; no es la base SFP/SABG). Calendario INEGI: 0 ids con url app/calendario. Payloads D1 de programas: 8 ids obtencion_previa_1_d1_*"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/obtencion-externa-1/obtencion.tsv",
+    "comando": "conteo por estado de las filas cuya fuente/url contiene zenodo|dataverse|banxico",
+    "salida": "zenodo 2 OBTENIDO; dataverse 3 OBTENIDO + 1 YA-EN-CORPUS; banxico 6 OBTENIDO + 1 NO-OBTENIDO-POR-ESTE-AGENTE(2). PR #1259 fusionado: 643a8198 Merge pull request #1259 (acto/gen2-obtencion-externa-1)"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-10",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=...f2e5-10, campo firmada_en; decisiones-21.tsv renglon R09",
+    "salida": "FIRMADA 28/sep, opcion (a): «se levanta por escrito la reserva E.6 de CAAS 2015, ENG 2009 y MIGRACION 2002; ENCRIGE 2016 conserva la preservacion de F5 R08». Elimina el motivo de verificar RNM/comunicados/calendario de MIGRACION 2002 para D1."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c 'PREVIA-2'; git log origin/main --first-parent --oneline | grep '#1233'",
+    "salida": "PREVIA-2: 0 de 1221 archivos examinados. 77482086 Merge pull request #1233 (OBTENCION-PREVIA-1 fusionado; nota forense/notas/nota-2026-09-28-gen2-obtencion-previa-1.md existe)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv` (648 filas): lista completa de las ABIERTA leida (id + 150 car.) y regex de los objetos del lote (MOCIBA, ENOE 2026, ENGASTO, ENVIPE 2026/2027, ENIGH 2024, ENDUTIH 2025, ENCRIGE, FRONTERA, familias-2027, ECCO, OBTENCION-PREVIA, CACHE-PARQUET) sobre qué_se_firma|dónde|gatea|id",
+    "salida": "18 filas ABIERTA (ids listados); ninguna trata el objeto de esta fila ni abre la ola; las FIRMADA que si lo mencionan se citan aparte"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "",
+  "owner_detalle": "ADQUISICION (ECCO base SFP/SABG: cola L946 NO-OBTENIDO-POR-ESTE-AGENTE(13), receta navegador/PNT en obtencion.tsv; calendario INEGI y RNM/comunicados de D1 sin gate por R09 (a); sin sucesor OBTENCION-PREVIA-2)",
+  "hoja": null,
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-01",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "Sigue ABIERTA y sin abrir: 4 ids llevan RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS y ninguna corrida toca 2026T1. Hallazgo: 2026T2 ya está en el manifiesto (25/sep, reservada) y F-ASTRA-5-3 reserva solo el último publicado, mientras el mandato de U1 dice que la publicación posterior no levanta. Sin demanda ENOE 2026T1: se resuelve cuando aparezca.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/no-corrido.tsv` (1093 filas), id=NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-01",
+    "salida": "estado=ABIERTA; cerrado_por=pendiente; la fila vive en origin/main (solo llega por fusion)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml@origin/main",
+    "comando": "grep -c RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR manifiesto; yaml ids con esa etiqueta",
+    "salida": "4 lineas: enoe_2026_1t_csv, enoe_2026_1t_microdatos, endutih_2025_endutih2025_bd_dbf, cses5_modulo5_2016_2021_csv"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml@origin/main",
+    "comando": "yq '.[] | select(.id==\"cc1_inegi_enoe_2026t2__enoe_2026_trim2_csv\") | {id,estado_reserva,archivo}'",
+    "salida": "cc1_inegi_enoe_2026t2__enoe_2026_trim2_csv · estado_reserva RESERVADA-NO-ABIERTA-NO-INDEXAR-L · fecha 2026-09-25 · INEGI/ENOE/2026T2/enoe_2026_trim2_csv.zip (posterior al NC del 23/sep)"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260923-GEN2-TRAMITE-FIRMAS-12-9087-03",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=...9087-03",
+    "salida": "FIRMADA 23/sep: «ENOE: se reserva solo el ultimo trimestre publicado; los demas se abren.» ejecutada_en vacio. Tension con el mandato de U1."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/dominios/enoe/00-preparacion-y-reserva.md:26",
+    "comando": "git show origin/main:forense/analisis/dominios/enoe/00-preparacion-y-reserva.md | sed -n 22,26p",
+    "salida": "«La pagina oficial de ENOE lista 2026T2 como ultimo trimestre publicado al 23/sep/2026... La publicacion posterior no levanta la reserva de 2026T1.» (encargo ASTRA5-U1 l.13: «conserva sin abrir el ultimo disponible»)"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-01",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=...63db-01",
+    "salida": "FIRMADA 24/sep: «exposicion consumida para toda preparacion ciega sobre informalidad y las conductas de ese boletin; solo retrospectiva rotulada». No abre 2026T1."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/{corridas,resultados,decisiones}.tsv@origin/main",
+    "comando": "for f in corridas resultados decisiones; git show origin/main:data/corrida0/$f.tsv | grep -c -i -E 'enoe.{0,12}2026|2026T1|2026_1t'",
+    "salida": "corridas=0 resultados=0 decisiones=0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/dominios/cola-medicion-v1_0.tsv@origin/main",
+    "comando": "git show origin/main:.../cola-medicion-v1_0.tsv | grep -i enoe | cut -f1-3",
+    "salida": "3 de 54 lineas ENOE: TRABAJO 2025, FAMILIA_CUIDADOS 2014, JUVENTUD SIN-OLA-CASADA; ninguna pide 2026T1"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv` (648 filas): lista completa de las ABIERTA leida (id + 150 car.) y regex de los objetos del lote (MOCIBA, ENOE 2026, ENGASTO, ENVIPE 2026/2027, ENIGH 2024, ENDUTIH 2025, ENCRIGE, FRONTERA, familias-2027, ECCO, OBTENCION-PREVIA, CACHE-PARQUET) sobre qué_se_firma|dónde|gatea|id",
+    "salida": "18 filas ABIERTA (ids listados); ninguna trata el objeto de esta fila ni abre la ola; las FIRMADA que si lo mencionan se citan aparte"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "",
+  "owner_detalle": "APERTURA (ENOE 2026T1: sin FP que la abra y sin demanda; al aparecer demanda mesa resuelve 9087-03 vs mandato U1, pues 2026T2 ya esta en el manifiesto y la etiqueta ULTIMA-OLA-CORPUS quedo desfasada)",
+  "hoja": null,
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-01",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "MOCIBA 2019 es reserva confirmatoria del panel F5 v1_3, vigente: F6 quedó EN-ESPERA-PANEL (FP dfbe-01 FIRMADA), R01-MOCIBA CANDIDATO-NO-ELEGIBLE y la firma del piloto está PENDIENTE-DE-MESA. Cero CALC de 2019 en corridas, ninguna FP la abre, cola-medicion sin filas MOCIBA. APERTURA sigue siendo el dueño correcto.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/no-corrido.tsv` (1093 filas), id=NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-01",
+    "salida": "estado=ABIERTA; cerrado_por=; la fila vive en origin/main (solo llega por fusion)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml@origin/main",
+    "comando": "yaml.safe_load(git show origin/main:data/manifiesto.yaml) (7198 entradas); ids ^mociba_?\\d{4}; estado_reserva por año",
+    "salida": "50 ids: 2015:3 2016:3 2017:3 2019:3 2020:6 2021:7 2022:7 2023:6 2024:6 2025:6; estado_reserva=None en los 50 (la reserva no es etiqueta del manifiesto; ninguna ola posterior a 2025)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-duelo-v2/F5-panel-candidatos-v1_3.tsv (fila R01-CIV-MOCIBA-DENUNCIA)",
+    "comando": "csv.DictReader sobre `git show origin/main:...F5-panel-candidatos-v1_3.tsv` (27 filas), campos celdas_propuestas y reserva_como_se_preserva",
+    "salida": "celdas_propuestas: «...MOCIBA 2023 y 2024 YA son celdas del marco congelado piloto (TIC-10, TIC-11)... 2019/2020/2025 quedan como reserva confirmatoria»; reserva_como_se_preserva: «...2024/2025 no se abren ni en FD hasta la fase confirmatoria»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260922-GEN2-FP374-RESELLO-1-dfbe-01",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=FP-260922-GEN2-FP374-RESELLO-1-dfbe-01, campo qué_se_firma",
+    "salida": "estado=FIRMADA. Dictamen EN-ESPERA-PANEL: «el panel v1_3 hoy tiene 13 RETENIDA/2 realistas -> 0 elegibles (tarjetas.yaml:125,128: R01-MOCIBA CANDIDATO-NO-ELEGIBLE...)... F6 queda EN-ESPERA-PANEL, con su panel v1_3 y tarjetas.yaml vigentes»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml:10-14",
+    "comando": "git show origin/main:forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml | sed -n 10,14p",
+    "salida": "firma: estado: PENDIENTE-DE-MESA; alcance: «La firma posterior debe nombrar tarjetas, snapshot M, modelo/version, cliente, presupuesto y autorizacion de llamadas. Este archivo no la suple.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/{corridas,resultados}.tsv@origin/main",
+    "comando": "for f in corridas resultados; git show origin/main:data/corrida0/$f.tsv | grep -i mociba | grep -c -E '2019|202[0-5]'; git ls-tree --name-only origin/main data/corrida0/ | grep -i CALC.*MOCIBA",
+    "salida": "corridas=0 resultados=0; CALC-MOCIBA en el arbol: PISOS-2015-0001, PISOS-2016-0001, PISOS-2017-0001, SERIE-DICTAMEN-0001 (ninguno de 2019+)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/dominios/cola-medicion-v1_0.tsv@origin/main",
+    "comando": "git show origin/main:forense/analisis/dominios/cola-medicion-v1_0.tsv | grep -c -i mociba; wc -l",
+    "salida": "0 filas MOCIBA de 54 lineas examinadas (A.13): ninguna demanda de medicion pide olas MOCIBA 2019+"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+    "salida": "estado=FIRMADA: «Adoptar como piso descriptivo retrospectivo MOCIBA 2015-2017 el paquete de 279 celdas... sin abrir reservas ni comparar universos incompatibles». No abre 2019-2025."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv` (648 filas): lista completa de las ABIERTA leida (id + 150 car.) y regex de los objetos del lote (MOCIBA, ENOE 2026, ENGASTO, ENVIPE 2026/2027, ENIGH 2024, ENDUTIH 2025, ENCRIGE, FRONTERA, familias-2027, ECCO, OBTENCION-PREVIA, CACHE-PARQUET) sobre qué_se_firma|dónde|gatea|id",
+    "salida": "18 filas ABIERTA (ids listados); ninguna trata el objeto de esta fila ni abre la ola; las FIRMADA que si lo mencionan se citan aparte"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/L0/ (ADR raiz 1f30) + forense/encargos/ (2 archivos ASTRA5-U4-TECNOLOGIA-1)",
+    "comando": "git ls-tree -r --name-only origin/main canon/L0 | grep -c ASTRA5-U4-TECNOLOGIA-1f30; ... forense/encargos | grep -c -i ASTRA5-U4-TECNOLOGIA-1",
+    "salida": "1 ADR con raiz de acto y 2 archivos de encargo en origin/main: el acto ASTRA5-U4-TECNOLOGIA-1 (#1085) esta fusionado"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "",
+  "owner_detalle": "APERTURA (MOCIBA 2019, RESERVA-CONFIRMATORIA del panel F5 v1_3; F6 EN-ESPERA-PANEL; sin FP que la abra ni demanda de medicion)",
+  "hoja": null,
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "MOCIBA 2020 es reserva confirmatoria del panel F5 v1_3, vigente: F6 quedó EN-ESPERA-PANEL (FP dfbe-01 FIRMADA), R01-MOCIBA CANDIDATO-NO-ELEGIBLE y la firma del piloto está PENDIENTE-DE-MESA. Cero CALC de 2020, ninguna FP la abre, cola-medicion sin filas MOCIBA. APERTURA sigue siendo el dueño correcto.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/no-corrido.tsv` (1093 filas), id=NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+    "salida": "estado=ABIERTA; cerrado_por=; la fila vive en origin/main (solo llega por fusion)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml@origin/main",
+    "comando": "yaml.safe_load(git show origin/main:data/manifiesto.yaml) (7198 entradas); ids ^mociba_?\\d{4}; estado_reserva por año",
+    "salida": "50 ids: 2015:3 2016:3 2017:3 2019:3 2020:6 2021:7 2022:7 2023:6 2024:6 2025:6; estado_reserva=None en los 50 (la reserva no es etiqueta del manifiesto; ninguna ola posterior a 2025)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-duelo-v2/F5-panel-candidatos-v1_3.tsv (fila R01-CIV-MOCIBA-DENUNCIA)",
+    "comando": "csv.DictReader sobre `git show origin/main:...F5-panel-candidatos-v1_3.tsv` (27 filas), campos celdas_propuestas y reserva_como_se_preserva",
+    "salida": "celdas_propuestas: «...MOCIBA 2023 y 2024 YA son celdas del marco congelado piloto (TIC-10, TIC-11)... 2019/2020/2025 quedan como reserva confirmatoria»; reserva_como_se_preserva: «...2024/2025 no se abren ni en FD hasta la fase confirmatoria»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260922-GEN2-FP374-RESELLO-1-dfbe-01",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=FP-260922-GEN2-FP374-RESELLO-1-dfbe-01, campo qué_se_firma",
+    "salida": "estado=FIRMADA. Dictamen EN-ESPERA-PANEL: «el panel v1_3 hoy tiene 13 RETENIDA/2 realistas -> 0 elegibles (tarjetas.yaml:125,128: R01-MOCIBA CANDIDATO-NO-ELEGIBLE...)... F6 queda EN-ESPERA-PANEL, con su panel v1_3 y tarjetas.yaml vigentes»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml:10-14",
+    "comando": "git show origin/main:forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml | sed -n 10,14p",
+    "salida": "firma: estado: PENDIENTE-DE-MESA; alcance: «La firma posterior debe nombrar tarjetas, snapshot M, modelo/version, cliente, presupuesto y autorizacion de llamadas. Este archivo no la suple.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/{corridas,resultados}.tsv@origin/main",
+    "comando": "for f in corridas resultados; git show origin/main:data/corrida0/$f.tsv | grep -i mociba | grep -c -E '2019|202[0-5]'; git ls-tree --name-only origin/main data/corrida0/ | grep -i CALC.*MOCIBA",
+    "salida": "corridas=0 resultados=0; CALC-MOCIBA en el arbol: PISOS-2015-0001, PISOS-2016-0001, PISOS-2017-0001, SERIE-DICTAMEN-0001 (ninguno de 2019+)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/dominios/cola-medicion-v1_0.tsv@origin/main",
+    "comando": "git show origin/main:forense/analisis/dominios/cola-medicion-v1_0.tsv | grep -c -i mociba; wc -l",
+    "salida": "0 filas MOCIBA de 54 lineas examinadas (A.13): ninguna demanda de medicion pide olas MOCIBA 2019+"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+    "salida": "estado=FIRMADA: «Adoptar como piso descriptivo retrospectivo MOCIBA 2015-2017 el paquete de 279 celdas... sin abrir reservas ni comparar universos incompatibles». No abre 2019-2025."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv` (648 filas): lista completa de las ABIERTA leida (id + 150 car.) y regex de los objetos del lote (MOCIBA, ENOE 2026, ENGASTO, ENVIPE 2026/2027, ENIGH 2024, ENDUTIH 2025, ENCRIGE, FRONTERA, familias-2027, ECCO, OBTENCION-PREVIA, CACHE-PARQUET) sobre qué_se_firma|dónde|gatea|id",
+    "salida": "18 filas ABIERTA (ids listados); ninguna trata el objeto de esta fila ni abre la ola; las FIRMADA que si lo mencionan se citan aparte"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/L0/ (ADR raiz 1f30) + forense/encargos/ (2 archivos ASTRA5-U4-TECNOLOGIA-1)",
+    "comando": "git ls-tree -r --name-only origin/main canon/L0 | grep -c ASTRA5-U4-TECNOLOGIA-1f30; ... forense/encargos | grep -c -i ASTRA5-U4-TECNOLOGIA-1",
+    "salida": "1 ADR con raiz de acto y 2 archivos de encargo en origin/main: el acto ASTRA5-U4-TECNOLOGIA-1 (#1085) esta fusionado"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "",
+  "owner_detalle": "APERTURA (MOCIBA 2020, RESERVA-CONFIRMATORIA del panel F5 v1_3; F6 EN-ESPERA-PANEL; sin FP que la abra ni demanda de medicion)",
+  "hoja": null,
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-03",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "MOCIBA 2021: el flujo documental está acreditado pero el dictamen dice «Respuesta real: NO ABIERTA» y las tarjetas F6 siguen CANDIDATO-NO-ELEGIBLE con apertura_R_autorizada false; la firma del piloto está PENDIENTE-DE-MESA. Cero CALC de 2021 y ninguna FP abre la BD. APERTURA vigente.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/no-corrido.tsv` (1093 filas), id=NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-03",
+    "salida": "estado=ABIERTA; cerrado_por=; la fila vive en origin/main (solo llega por fusion)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml@origin/main",
+    "comando": "yaml.safe_load(git show origin/main:data/manifiesto.yaml) (7198 entradas); ids ^mociba_?\\d{4}; estado_reserva por año",
+    "salida": "50 ids: 2015:3 2016:3 2017:3 2019:3 2020:6 2021:7 2022:7 2023:6 2024:6 2025:6; estado_reserva=None en los 50 (la reserva no es etiqueta del manifiesto; ninguna ola posterior a 2025)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-duelo-v2/F5-panel-candidatos-v1_3.tsv (fila R01-CIV-MOCIBA-DENUNCIA)",
+    "comando": "csv.DictReader sobre `git show origin/main:...F5-panel-candidatos-v1_3.tsv` (27 filas), campos celdas_propuestas y reserva_como_se_preserva",
+    "salida": "celdas_propuestas: «...MOCIBA 2023 y 2024 YA son celdas del marco congelado piloto (TIC-10, TIC-11)... 2019/2020/2025 quedan como reserva confirmatoria»; reserva_como_se_preserva: «...2024/2025 no se abren ni en FD hasta la fase confirmatoria»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260922-GEN2-FP374-RESELLO-1-dfbe-01",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=FP-260922-GEN2-FP374-RESELLO-1-dfbe-01, campo qué_se_firma",
+    "salida": "estado=FIRMADA. Dictamen EN-ESPERA-PANEL: «el panel v1_3 hoy tiene 13 RETENIDA/2 realistas -> 0 elegibles (tarjetas.yaml:125,128: R01-MOCIBA CANDIDATO-NO-ELEGIBLE...)... F6 queda EN-ESPERA-PANEL, con su panel v1_3 y tarjetas.yaml vigentes»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml:10-14",
+    "comando": "git show origin/main:forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml | sed -n 10,14p",
+    "salida": "firma: estado: PENDIENTE-DE-MESA; alcance: «La firma posterior debe nombrar tarjetas, snapshot M, modelo/version, cliente, presupuesto y autorizacion de llamadas. Este archivo no la suple.»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/produccion/mociba-flujo-documental-1/dictamen.md:7-9,28-30",
+    "comando": "git show origin/main:forense/produccion/mociba-flujo-documental-1/dictamen.md | sed -n '7,9p;28,30p'",
+    "salida": "2021 y 2022: «Respuesta real: NO ABIERTA»; «Reserva: Conservada: solo cuestionario y FD; ninguna exposicion de resultado»; «Las tarjetas sucesoras mantienen CANDIDATO-NO-ELEGIBLE, firma pendiente, llamadas_autorizadas: false y apertura_R_autorizada: false»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/{corridas,resultados}.tsv@origin/main",
+    "comando": "for f in corridas resultados; git show origin/main:data/corrida0/$f.tsv | grep -i mociba | grep -c -E '2019|202[0-5]'; git ls-tree --name-only origin/main data/corrida0/ | grep -i CALC.*MOCIBA",
+    "salida": "corridas=0 resultados=0; CALC-MOCIBA en el arbol: PISOS-2015-0001, PISOS-2016-0001, PISOS-2017-0001, SERIE-DICTAMEN-0001 (ninguno de 2019+)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/dominios/cola-medicion-v1_0.tsv@origin/main",
+    "comando": "git show origin/main:forense/analisis/dominios/cola-medicion-v1_0.tsv | grep -c -i mociba; wc -l",
+    "salida": "0 filas MOCIBA de 54 lineas examinadas (A.13): ninguna demanda de medicion pide olas MOCIBA 2019+"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+    "salida": "estado=FIRMADA: «Adoptar como piso descriptivo retrospectivo MOCIBA 2015-2017 el paquete de 279 celdas... sin abrir reservas ni comparar universos incompatibles». No abre 2019-2025."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv` (648 filas): lista completa de las ABIERTA leida (id + 150 car.) y regex de los objetos del lote (MOCIBA, ENOE 2026, ENGASTO, ENVIPE 2026/2027, ENIGH 2024, ENDUTIH 2025, ENCRIGE, FRONTERA, familias-2027, ECCO, OBTENCION-PREVIA, CACHE-PARQUET) sobre qué_se_firma|dónde|gatea|id",
+    "salida": "18 filas ABIERTA (ids listados); ninguna trata el objeto de esta fila ni abre la ola; las FIRMADA que si lo mencionan se citan aparte"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/L0/ (ADR raiz 1f30) + forense/encargos/ (2 archivos ASTRA5-U4-TECNOLOGIA-1)",
+    "comando": "git ls-tree -r --name-only origin/main canon/L0 | grep -c ASTRA5-U4-TECNOLOGIA-1f30; ... forense/encargos | grep -c -i ASTRA5-U4-TECNOLOGIA-1",
+    "salida": "1 ADR con raiz de acto y 2 archivos de encargo en origin/main: el acto ASTRA5-U4-TECNOLOGIA-1 (#1085) esta fusionado"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "",
+  "owner_detalle": "APERTURA (MOCIBA 2021, RESERVA-PILOTO-P12; dictamen flujo documental: BD no abierta, apertura_R_autorizada false; firma del piloto F6 PENDIENTE-DE-MESA)",
+  "hoja": null,
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-04",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "MOCIBA 2022: el flujo documental está acreditado pero el dictamen dice «Respuesta real: NO ABIERTA» y las tarjetas F6 siguen CANDIDATO-NO-ELEGIBLE con apertura_R_autorizada false; la firma del piloto está PENDIENTE-DE-MESA. Cero CALC de 2022 y ninguna FP abre la BD. APERTURA vigente.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/no-corrido.tsv` (1093 filas), id=NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-04",
+    "salida": "estado=ABIERTA; cerrado_por=; la fila vive en origin/main (solo llega por fusion)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml@origin/main",
+    "comando": "yaml.safe_load(git show origin/main:data/manifiesto.yaml) (7198 entradas); ids ^mociba_?\\d{4}; estado_reserva por año",
+    "salida": "50 ids: 2015:3 2016:3 2017:3 2019:3 2020:6 2021:7 2022:7 2023:6 2024:6 2025:6; estado_reserva=None en los 50 (la reserva no es etiqueta del manifiesto; ninguna ola posterior a 2025)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-duelo-v2/F5-panel-candidatos-v1_3.tsv (fila R01-CIV-MOCIBA-DENUNCIA)",
+    "comando": "csv.DictReader sobre `git show origin/main:...F5-panel-candidatos-v1_3.tsv` (27 filas), campos celdas_propuestas y reserva_como_se_preserva",
+    "salida": "celdas_propuestas: «...MOCIBA 2023 y 2024 YA son celdas del marco congelado piloto (TIC-10, TIC-11)... 2019/2020/2025 quedan como reserva confirmatoria»; reserva_como_se_preserva: «...2024/2025 no se abren ni en FD hasta la fase confirmatoria»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260922-GEN2-FP374-RESELLO-1-dfbe-01",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=FP-260922-GEN2-FP374-RESELLO-1-dfbe-01, campo qué_se_firma",
+    "salida": "estado=FIRMADA. Dictamen EN-ESPERA-PANEL: «el panel v1_3 hoy tiene 13 RETENIDA/2 realistas -> 0 elegibles (tarjetas.yaml:125,128: R01-MOCIBA CANDIDATO-NO-ELEGIBLE...)... F6 queda EN-ESPERA-PANEL, con su panel v1_3 y tarjetas.yaml vigentes»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml:10-14",
+    "comando": "git show origin/main:forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml | sed -n 10,14p",
+    "salida": "firma: estado: PENDIENTE-DE-MESA; alcance: «La firma posterior debe nombrar tarjetas, snapshot M, modelo/version, cliente, presupuesto y autorizacion de llamadas. Este archivo no la suple.»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/produccion/mociba-flujo-documental-1/dictamen.md:7-9,28-30",
+    "comando": "git show origin/main:forense/produccion/mociba-flujo-documental-1/dictamen.md | sed -n '7,9p;28,30p'",
+    "salida": "2021 y 2022: «Respuesta real: NO ABIERTA»; «Reserva: Conservada: solo cuestionario y FD; ninguna exposicion de resultado»; «Las tarjetas sucesoras mantienen CANDIDATO-NO-ELEGIBLE, firma pendiente, llamadas_autorizadas: false y apertura_R_autorizada: false»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/{corridas,resultados}.tsv@origin/main",
+    "comando": "for f in corridas resultados; git show origin/main:data/corrida0/$f.tsv | grep -i mociba | grep -c -E '2019|202[0-5]'; git ls-tree --name-only origin/main data/corrida0/ | grep -i CALC.*MOCIBA",
+    "salida": "corridas=0 resultados=0; CALC-MOCIBA en el arbol: PISOS-2015-0001, PISOS-2016-0001, PISOS-2017-0001, SERIE-DICTAMEN-0001 (ninguno de 2019+)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/dominios/cola-medicion-v1_0.tsv@origin/main",
+    "comando": "git show origin/main:forense/analisis/dominios/cola-medicion-v1_0.tsv | grep -c -i mociba; wc -l",
+    "salida": "0 filas MOCIBA de 54 lineas examinadas (A.13): ninguna demanda de medicion pide olas MOCIBA 2019+"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+    "salida": "estado=FIRMADA: «Adoptar como piso descriptivo retrospectivo MOCIBA 2015-2017 el paquete de 279 celdas... sin abrir reservas ni comparar universos incompatibles». No abre 2019-2025."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv` (648 filas): lista completa de las ABIERTA leida (id + 150 car.) y regex de los objetos del lote (MOCIBA, ENOE 2026, ENGASTO, ENVIPE 2026/2027, ENIGH 2024, ENDUTIH 2025, ENCRIGE, FRONTERA, familias-2027, ECCO, OBTENCION-PREVIA, CACHE-PARQUET) sobre qué_se_firma|dónde|gatea|id",
+    "salida": "18 filas ABIERTA (ids listados); ninguna trata el objeto de esta fila ni abre la ola; las FIRMADA que si lo mencionan se citan aparte"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/L0/ (ADR raiz 1f30) + forense/encargos/ (2 archivos ASTRA5-U4-TECNOLOGIA-1)",
+    "comando": "git ls-tree -r --name-only origin/main canon/L0 | grep -c ASTRA5-U4-TECNOLOGIA-1f30; ... forense/encargos | grep -c -i ASTRA5-U4-TECNOLOGIA-1",
+    "salida": "1 ADR con raiz de acto y 2 archivos de encargo en origin/main: el acto ASTRA5-U4-TECNOLOGIA-1 (#1085) esta fusionado"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "",
+  "owner_detalle": "APERTURA (MOCIBA 2022, RESERVA-PILOTO-P12; dictamen flujo documental: BD no abierta, apertura_R_autorizada false; firma del piloto F6 PENDIENTE-DE-MESA)",
+  "hoja": null,
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-05",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "MOCIBA 2023 ya es la celda TIC-10 del marco congelado piloto (estado-programa v1_18:137); una nueva apertura exige acreditar permiso y delimitación frente a TIC-10 y no hay FP ni encargo que lo haga. Cero CALC de 2023 en corridas; el panel F6 sigue EN-ESPERA-PANEL. APERTURA vigente.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/no-corrido.tsv` (1093 filas), id=NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-05",
+    "salida": "estado=ABIERTA; cerrado_por=; la fila vive en origin/main (solo llega por fusion)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml@origin/main",
+    "comando": "yaml.safe_load(git show origin/main:data/manifiesto.yaml) (7198 entradas); ids ^mociba_?\\d{4}; estado_reserva por año",
+    "salida": "50 ids: 2015:3 2016:3 2017:3 2019:3 2020:6 2021:7 2022:7 2023:6 2024:6 2025:6; estado_reserva=None en los 50 (la reserva no es etiqueta del manifiesto; ninguna ola posterior a 2025)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-duelo-v2/F5-panel-candidatos-v1_3.tsv (fila R01-CIV-MOCIBA-DENUNCIA)",
+    "comando": "csv.DictReader sobre `git show origin/main:...F5-panel-candidatos-v1_3.tsv` (27 filas), campos celdas_propuestas y reserva_como_se_preserva",
+    "salida": "celdas_propuestas: «...MOCIBA 2023 y 2024 YA son celdas del marco congelado piloto (TIC-10, TIC-11)... 2019/2020/2025 quedan como reserva confirmatoria»; reserva_como_se_preserva: «...2024/2025 no se abren ni en FD hasta la fase confirmatoria»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260922-GEN2-FP374-RESELLO-1-dfbe-01",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=FP-260922-GEN2-FP374-RESELLO-1-dfbe-01, campo qué_se_firma",
+    "salida": "estado=FIRMADA. Dictamen EN-ESPERA-PANEL: «el panel v1_3 hoy tiene 13 RETENIDA/2 realistas -> 0 elegibles (tarjetas.yaml:125,128: R01-MOCIBA CANDIDATO-NO-ELEGIBLE...)... F6 queda EN-ESPERA-PANEL, con su panel v1_3 y tarjetas.yaml vigentes»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml:10-14",
+    "comando": "git show origin/main:forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml | sed -n 10,14p",
+    "salida": "firma: estado: PENDIENTE-DE-MESA; alcance: «La firma posterior debe nombrar tarjetas, snapshot M, modelo/version, cliente, presupuesto y autorizacion de llamadas. Este archivo no la suple.»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/estado-programa-v1_18.md:137",
+    "comando": "git show origin/main:canon/estado-programa-v1_18.md | grep -n -o 'TIC-10.\\{0,3\\} (MOCIBA 2023) y .\\{0,3\\}TIC-11.\\{0,3\\} (MOCIBA 2024) son celdas del marco congelado piloto'",
+    "salida": "137:TIC-10` (MOCIBA 2023) y `TIC-11` (MOCIBA 2024) son celdas del marco congelado piloto"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/{corridas,resultados}.tsv@origin/main",
+    "comando": "for f in corridas resultados; git show origin/main:data/corrida0/$f.tsv | grep -i mociba | grep -c -E '2019|202[0-5]'; git ls-tree --name-only origin/main data/corrida0/ | grep -i CALC.*MOCIBA",
+    "salida": "corridas=0 resultados=0; CALC-MOCIBA en el arbol: PISOS-2015-0001, PISOS-2016-0001, PISOS-2017-0001, SERIE-DICTAMEN-0001 (ninguno de 2019+)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/dominios/cola-medicion-v1_0.tsv@origin/main",
+    "comando": "git show origin/main:forense/analisis/dominios/cola-medicion-v1_0.tsv | grep -c -i mociba; wc -l",
+    "salida": "0 filas MOCIBA de 54 lineas examinadas (A.13): ninguna demanda de medicion pide olas MOCIBA 2019+"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+    "salida": "estado=FIRMADA: «Adoptar como piso descriptivo retrospectivo MOCIBA 2015-2017 el paquete de 279 celdas... sin abrir reservas ni comparar universos incompatibles». No abre 2019-2025."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv` (648 filas): lista completa de las ABIERTA leida (id + 150 car.) y regex de los objetos del lote (MOCIBA, ENOE 2026, ENGASTO, ENVIPE 2026/2027, ENIGH 2024, ENDUTIH 2025, ENCRIGE, FRONTERA, familias-2027, ECCO, OBTENCION-PREVIA, CACHE-PARQUET) sobre qué_se_firma|dónde|gatea|id",
+    "salida": "18 filas ABIERTA (ids listados); ninguna trata el objeto de esta fila ni abre la ola; las FIRMADA que si lo mencionan se citan aparte"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/L0/ (ADR raiz 1f30) + forense/encargos/ (2 archivos ASTRA5-U4-TECNOLOGIA-1)",
+    "comando": "git ls-tree -r --name-only origin/main canon/L0 | grep -c ASTRA5-U4-TECNOLOGIA-1f30; ... forense/encargos | grep -c -i ASTRA5-U4-TECNOLOGIA-1",
+    "salida": "1 ADR con raiz de acto y 2 archivos de encargo en origin/main: el acto ASTRA5-U4-TECNOLOGIA-1 (#1085) esta fusionado"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "",
+  "owner_detalle": "APERTURA (MOCIBA 2023, permiso y delimitacion frente a TIC-10 sin firma; F6 EN-ESPERA-PANEL; sin demanda de medicion)",
+  "hoja": null,
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-06",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "MOCIBA 2024 ya es la celda TIC-11 del marco congelado piloto (estado-programa v1_18:137) y F5 prohíbe abrir 2024/2025 incluso en FD antes de la fase confirmatoria, que sigue EN-ESPERA-PANEL. Ninguna FP la abre y no hay CALC de 2024. APERTURA vigente.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/no-corrido.tsv` (1093 filas), id=NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-06",
+    "salida": "estado=ABIERTA; cerrado_por=; la fila vive en origin/main (solo llega por fusion)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml@origin/main",
+    "comando": "yaml.safe_load(git show origin/main:data/manifiesto.yaml) (7198 entradas); ids ^mociba_?\\d{4}; estado_reserva por año",
+    "salida": "50 ids: 2015:3 2016:3 2017:3 2019:3 2020:6 2021:7 2022:7 2023:6 2024:6 2025:6; estado_reserva=None en los 50 (la reserva no es etiqueta del manifiesto; ninguna ola posterior a 2025)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-duelo-v2/F5-panel-candidatos-v1_3.tsv (fila R01-CIV-MOCIBA-DENUNCIA)",
+    "comando": "csv.DictReader sobre `git show origin/main:...F5-panel-candidatos-v1_3.tsv` (27 filas), campos celdas_propuestas y reserva_como_se_preserva",
+    "salida": "celdas_propuestas: «...MOCIBA 2023 y 2024 YA son celdas del marco congelado piloto (TIC-10, TIC-11)... 2019/2020/2025 quedan como reserva confirmatoria»; reserva_como_se_preserva: «...2024/2025 no se abren ni en FD hasta la fase confirmatoria»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260922-GEN2-FP374-RESELLO-1-dfbe-01",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=FP-260922-GEN2-FP374-RESELLO-1-dfbe-01, campo qué_se_firma",
+    "salida": "estado=FIRMADA. Dictamen EN-ESPERA-PANEL: «el panel v1_3 hoy tiene 13 RETENIDA/2 realistas -> 0 elegibles (tarjetas.yaml:125,128: R01-MOCIBA CANDIDATO-NO-ELEGIBLE...)... F6 queda EN-ESPERA-PANEL, con su panel v1_3 y tarjetas.yaml vigentes»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml:10-14",
+    "comando": "git show origin/main:forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml | sed -n 10,14p",
+    "salida": "firma: estado: PENDIENTE-DE-MESA; alcance: «La firma posterior debe nombrar tarjetas, snapshot M, modelo/version, cliente, presupuesto y autorizacion de llamadas. Este archivo no la suple.»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/estado-programa-v1_18.md:137",
+    "comando": "git show origin/main:canon/estado-programa-v1_18.md | grep -n -o 'TIC-10.\\{0,3\\} (MOCIBA 2023) y .\\{0,3\\}TIC-11.\\{0,3\\} (MOCIBA 2024) son celdas del marco congelado piloto'",
+    "salida": "137:TIC-10` (MOCIBA 2023) y `TIC-11` (MOCIBA 2024) son celdas del marco congelado piloto"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/{corridas,resultados}.tsv@origin/main",
+    "comando": "for f in corridas resultados; git show origin/main:data/corrida0/$f.tsv | grep -i mociba | grep -c -E '2019|202[0-5]'; git ls-tree --name-only origin/main data/corrida0/ | grep -i CALC.*MOCIBA",
+    "salida": "corridas=0 resultados=0; CALC-MOCIBA en el arbol: PISOS-2015-0001, PISOS-2016-0001, PISOS-2017-0001, SERIE-DICTAMEN-0001 (ninguno de 2019+)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/dominios/cola-medicion-v1_0.tsv@origin/main",
+    "comando": "git show origin/main:forense/analisis/dominios/cola-medicion-v1_0.tsv | grep -c -i mociba; wc -l",
+    "salida": "0 filas MOCIBA de 54 lineas examinadas (A.13): ninguna demanda de medicion pide olas MOCIBA 2019+"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+    "salida": "estado=FIRMADA: «Adoptar como piso descriptivo retrospectivo MOCIBA 2015-2017 el paquete de 279 celdas... sin abrir reservas ni comparar universos incompatibles». No abre 2019-2025."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv` (648 filas): lista completa de las ABIERTA leida (id + 150 car.) y regex de los objetos del lote (MOCIBA, ENOE 2026, ENGASTO, ENVIPE 2026/2027, ENIGH 2024, ENDUTIH 2025, ENCRIGE, FRONTERA, familias-2027, ECCO, OBTENCION-PREVIA, CACHE-PARQUET) sobre qué_se_firma|dónde|gatea|id",
+    "salida": "18 filas ABIERTA (ids listados); ninguna trata el objeto de esta fila ni abre la ola; las FIRMADA que si lo mencionan se citan aparte"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/L0/ (ADR raiz 1f30) + forense/encargos/ (2 archivos ASTRA5-U4-TECNOLOGIA-1)",
+    "comando": "git ls-tree -r --name-only origin/main canon/L0 | grep -c ASTRA5-U4-TECNOLOGIA-1f30; ... forense/encargos | grep -c -i ASTRA5-U4-TECNOLOGIA-1",
+    "salida": "1 ADR con raiz de acto y 2 archivos de encargo en origin/main: el acto ASTRA5-U4-TECNOLOGIA-1 (#1085) esta fusionado"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "",
+  "owner_detalle": "APERTURA (MOCIBA 2024, fase confirmatoria F5 en espera y delimitacion frente a TIC-11 sin firma; sin demanda de medicion)",
+  "hoja": null,
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-07",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "MOCIBA 2025 es la ola más reciente del manifiesto (ninguna posterior) y además reserva confirmatoria de F5 (no abrir FD ni BD). F6 sigue EN-ESPERA-PANEL, no hay CALC de 2025 ni FP que la abra ni demanda en cola-medicion. APERTURA vigente.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/no-corrido.tsv` (1093 filas), id=NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-07",
+    "salida": "estado=ABIERTA; cerrado_por=; la fila vive en origin/main (solo llega por fusion)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml@origin/main",
+    "comando": "yaml.safe_load(git show origin/main:data/manifiesto.yaml) (7198 entradas); ids ^mociba_?\\d{4}; estado_reserva por año",
+    "salida": "50 ids: 2015:3 2016:3 2017:3 2019:3 2020:6 2021:7 2022:7 2023:6 2024:6 2025:6; estado_reserva=None en los 50 (la reserva no es etiqueta del manifiesto; ninguna ola posterior a 2025)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-duelo-v2/F5-panel-candidatos-v1_3.tsv (fila R01-CIV-MOCIBA-DENUNCIA)",
+    "comando": "csv.DictReader sobre `git show origin/main:...F5-panel-candidatos-v1_3.tsv` (27 filas), campos celdas_propuestas y reserva_como_se_preserva",
+    "salida": "celdas_propuestas: «...MOCIBA 2023 y 2024 YA son celdas del marco congelado piloto (TIC-10, TIC-11)... 2019/2020/2025 quedan como reserva confirmatoria»; reserva_como_se_preserva: «...2024/2025 no se abren ni en FD hasta la fase confirmatoria»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260922-GEN2-FP374-RESELLO-1-dfbe-01",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=FP-260922-GEN2-FP374-RESELLO-1-dfbe-01, campo qué_se_firma",
+    "salida": "estado=FIRMADA. Dictamen EN-ESPERA-PANEL: «el panel v1_3 hoy tiene 13 RETENIDA/2 realistas -> 0 elegibles (tarjetas.yaml:125,128: R01-MOCIBA CANDIDATO-NO-ELEGIBLE...)... F6 queda EN-ESPERA-PANEL, con su panel v1_3 y tarjetas.yaml vigentes»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml:10-14",
+    "comando": "git show origin/main:forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml | sed -n 10,14p",
+    "salida": "firma: estado: PENDIENTE-DE-MESA; alcance: «La firma posterior debe nombrar tarjetas, snapshot M, modelo/version, cliente, presupuesto y autorizacion de llamadas. Este archivo no la suple.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/{corridas,resultados}.tsv@origin/main",
+    "comando": "for f in corridas resultados; git show origin/main:data/corrida0/$f.tsv | grep -i mociba | grep -c -E '2019|202[0-5]'; git ls-tree --name-only origin/main data/corrida0/ | grep -i CALC.*MOCIBA",
+    "salida": "corridas=0 resultados=0; CALC-MOCIBA en el arbol: PISOS-2015-0001, PISOS-2016-0001, PISOS-2017-0001, SERIE-DICTAMEN-0001 (ninguno de 2019+)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/dominios/cola-medicion-v1_0.tsv@origin/main",
+    "comando": "git show origin/main:forense/analisis/dominios/cola-medicion-v1_0.tsv | grep -c -i mociba; wc -l",
+    "salida": "0 filas MOCIBA de 54 lineas examinadas (A.13): ninguna demanda de medicion pide olas MOCIBA 2019+"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-02",
+    "salida": "estado=FIRMADA: «Adoptar como piso descriptivo retrospectivo MOCIBA 2015-2017 el paquete de 279 celdas... sin abrir reservas ni comparar universos incompatibles». No abre 2019-2025."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv` (648 filas): lista completa de las ABIERTA leida (id + 150 car.) y regex de los objetos del lote (MOCIBA, ENOE 2026, ENGASTO, ENVIPE 2026/2027, ENIGH 2024, ENDUTIH 2025, ENCRIGE, FRONTERA, familias-2027, ECCO, OBTENCION-PREVIA, CACHE-PARQUET) sobre qué_se_firma|dónde|gatea|id",
+    "salida": "18 filas ABIERTA (ids listados); ninguna trata el objeto de esta fila ni abre la ola; las FIRMADA que si lo mencionan se citan aparte"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/L0/ (ADR raiz 1f30) + forense/encargos/ (2 archivos ASTRA5-U4-TECNOLOGIA-1)",
+    "comando": "git ls-tree -r --name-only origin/main canon/L0 | grep -c ASTRA5-U4-TECNOLOGIA-1f30; ... forense/encargos | grep -c -i ASTRA5-U4-TECNOLOGIA-1",
+    "salida": "1 ADR con raiz de acto y 2 archivos de encargo en origin/main: el acto ASTRA5-U4-TECNOLOGIA-1 (#1085) esta fusionado"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "",
+  "owner_detalle": "APERTURA (MOCIBA 2025, ola mas reciente + RESERVA-CONFIRMATORIA F5; F6 EN-ESPERA-PANEL; sin FP que la abra ni demanda)",
+  "hoja": null,
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C2-ENVIPE-1-7045-03",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "La ola ENVIPE 2027 no existe en el manifiesto (0 menciones) y apertura-futura.md:11 declara cero aperturas y cero permisos. COMMIT-3-ENVIPE-2027 no tiene encargo archivado; la FP 7045-01 firmó la activación condicional «sin apertura actual». Espera la publicación 2027 y una autorización de mesa específica: APERTURA vigente.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/no-corrido.tsv` (1093 filas), id=NC-260926-GEN2-ASTRA6-C2-ENVIPE-1-7045-03",
+    "salida": "estado=ABIERTA; cerrado_por=n/a; la fila vive en origin/main (solo llega por fusion)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml@origin/main",
+    "comando": "grep -c -i 'envipe.\\{0,6\\}2027' manifiesto; yq '[.[]|select(.id|test(\"envipe.*2027|2027.*envipe\";\"i\"))]|length'",
+    "salida": "0 y 0 (7198 entradas); ids ENVIPE presentes: envipe_2025_*, envipe2025_*, envipe2026_csv, envipe2026_fd_pdf, envipe2026_cuest_*"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/familias-2027/astra6-envipe/apertura-futura.md:11",
+    "comando": "git show origin/main:forense/analisis/familias-2027/astra6-envipe/apertura-futura.md | sed -n 11p | cut -c1-260",
+    "salida": "Estado actual: ninguna apertura futura, ninguna evaluacion, ningun permiso heredado para ENVIPE 2026. Condiciones preparadas, adaptacion nominal futura y autorizacion pendientes"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260926-GEN2-ASTRA6-C2-ENVIPE-1-7045-01",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=...7045-01",
+    "salida": "FIRMADA 26/sep: «sí a la activación condicional conjunta de las dos familias ENVIPE 2027 con p0 fijo, banda y gates v1.3, cero retadores, sin apertura actual»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c -i 'ENVIPE-2027\\|COMMIT-3-ENVIPE'",
+    "salida": "0 de 1221 archivos examinados (COMMIT-3-ENVIPE-2027 no es acto archivado); acto ASTRA6-C2-ENVIPE-1 (#1170): 1 ADR con raiz 7045 y nota forense/notas/2026-09-26-ASTRA6-C2-ENVIPE-1-cierre.md en origin/main"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv` (648 filas): lista completa de las ABIERTA leida (id + 150 car.) y regex de los objetos del lote (MOCIBA, ENOE 2026, ENGASTO, ENVIPE 2026/2027, ENIGH 2024, ENDUTIH 2025, ENCRIGE, FRONTERA, familias-2027, ECCO, OBTENCION-PREVIA, CACHE-PARQUET) sobre qué_se_firma|dónde|gatea|id",
+    "salida": "18 filas ABIERTA (ids listados); ninguna trata el objeto de esta fila ni abre la ola; las FIRMADA que si lo mencionan se citan aparte"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "",
+  "owner_detalle": "APERTURA (ENVIPE 2027: la ola no esta en el manifiesto; COMMIT-3 exige autorizacion de mesa especifica de ola y acto; familias 2027 = frente prospectivo)",
+  "hoja": null,
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C2-FRONTERA-1-71cf-04",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "secuencia-y-calendario.md:10 (leído) exige permiso expreso de apertura para COMMIT3 y el paquete es PROPUESTO-POR-EJECUTOR. La FP 71cf-01 recibió los artefactos sin autorizar reservas y R12 dejó MOCIBA/ENSANUT fuera hasta oro comparable. Ninguna FP abre olas 2026/2027 de las familias: APERTURA vigente.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/no-corrido.tsv` (1093 filas), id=NC-260926-GEN2-ASTRA6-C2-FRONTERA-1-71cf-04",
+    "salida": "estado=ABIERTA; cerrado_por=; la fila vive en origin/main (solo llega por fusion)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/familias-2027-frontera-1/secuencia-y-calendario.md:10",
+    "comando": "git show origin/main:forense/analisis/familias-2027-frontera-1/secuencia-y-calendario.md | sed -n 10p | cut -c1-260",
+    "salida": "6. COMMIT3 exige permiso expreso de apertura, COMMIT1/2 validos, atestacion conforme al circuito, entrada con hash coincidente y comparabilidad satisfecha. Lo ejecuta unicamente el codigo autorizado y congelado."
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260926-GEN2-ASTRA6-C2-FRONTERA-1-71cf-01",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=...71cf-01",
+    "salida": "FIRMADA (RECIBO-ASTRA6-2 ADENDA-1, 27/sep; asentada por TRAMITE-FIRMAS-21-1): «recibir artefactos sin adoptar diagnosticos ni autorizar reservas»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-ASTRA-CONTINUIDAD-C2-1-ba6c-01",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main + decisiones-21.tsv renglon R12",
+    "salida": "FIRMADA 28/sep, opcion (a2)+(b1): MOCIBA y ENSANUT quedan fuera del tablero C2 hasta oro comparable; ENSU dic/2025 ABIERTA-COMO-VISTA, nunca R"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/familias-2027/astra6-envipe/apertura-futura.md:11",
+    "comando": "git show origin/main:forense/analisis/familias-2027/astra6-envipe/apertura-futura.md | sed -n 11p | cut -c1-180",
+    "salida": "Estado actual: ninguna apertura futura, ninguna evaluacion, ningun permiso heredado para ENVIPE 2026. (acto FRONTERA-1 #1195: 1 ADR raiz 71cf en origin/main)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv` (648 filas): lista completa de las ABIERTA leida (id + 150 car.) y regex de los objetos del lote (MOCIBA, ENOE 2026, ENGASTO, ENVIPE 2026/2027, ENIGH 2024, ENDUTIH 2025, ENCRIGE, FRONTERA, familias-2027, ECCO, OBTENCION-PREVIA, CACHE-PARQUET) sobre qué_se_firma|dónde|gatea|id",
+    "salida": "18 filas ABIERTA (ids listados); ninguna trata el objeto de esta fila ni abre la ola; las FIRMADA que si lo mencionan se citan aparte"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "",
+  "owner_detalle": "APERTURA (olas 2026/2027 de las familias: permiso expreso de apertura por familia, sin FP que lo otorgue; secuencia-y-calendario.md:10)",
+  "hoja": null,
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-02",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "ENGASTO 2013 es la ola más reciente del manifiesto (48 ids, ninguno posterior) y sigue reservada por régimen E.6, sin etiqueta. La FP 2d37-02 adoptó solo 2012 «sin extrapolación a olas posteriores» y el CALC mide 2012. GEN2-CONSUMO-Y-GASTO-PISOS-2 no está archivado ni hay FP que abra 2013. APERTURA vigente.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/no-corrido.tsv` (1093 filas), id=NC-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-02",
+    "salida": "estado=ABIERTA; cerrado_por=; la fila vive en origin/main (solo llega por fusion)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml@origin/main",
+    "comando": "yaml.safe_load(manifiesto): ids con 'engasto'; anios por url_origen; estado_reserva",
+    "salida": "48 ids (engasto_2012:25, engasto_2013:19, engasto2012_*:2, cc1_inegi:2); anios en url_origen: 2012:43, 2013:3, NA:2; ninguno 2014+; estado_reserva=None en todos (reserva por regimen, no por etiqueta)"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-02",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=...2d37-02",
+    "salida": "FIRMADA 26/sep: adopta ENGASTO 2012 (CALC-ENGASTO-CONSUMO-PISOS-0001) «CON-RESERVA-DE-ANCHO... una ola abierta (2013 RESERVADA)... sin extrapolacion a olas posteriores»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/decisiones.tsv@origin/main",
+    "comando": "git show origin/main:data/corrida0/decisiones.tsv | grep -i engasto | grep -c 2013; grep -ci engasto",
+    "salida": "engasto+2013: 0; filas engasto: 1 (CALC-ENGASTO-CONSUMO-PISOS-0001, «pisos por segmento ENGASTO 2012 desde microdato»)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c 'PISOS-2'; ... | grep 'CONSUMO-Y-GASTO'",
+    "salida": "PISOS-2: 0 de 1221 archivos examinados; solo existe 2026-09-25-GEN2-CONSUMO-Y-GASTO-PISOS-1.md (+ .cuerpo.sha256); acto #1155: 1 ADR raiz 2d37 y nota 2026-09-25-...-cierre.md en origin/main"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv` (648 filas): lista completa de las ABIERTA leida (id + 150 car.) y regex de los objetos del lote (MOCIBA, ENOE 2026, ENGASTO, ENVIPE 2026/2027, ENIGH 2024, ENDUTIH 2025, ENCRIGE, FRONTERA, familias-2027, ECCO, OBTENCION-PREVIA, CACHE-PARQUET) sobre qué_se_firma|dónde|gatea|id",
+    "salida": "18 filas ABIERTA (ids listados); ninguna trata el objeto de esta fila ni abre la ola; las FIRMADA que si lo mencionan se citan aparte"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "",
+  "owner_detalle": "APERTURA (ENGASTO 2013, ola mas reciente reservada por E.6; sin FP que la abra; GEN2-CONSUMO-Y-GASTO-PISOS-2 no archivado)",
+  "hoja": null,
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-CORPUS-CACHE-PARQUET-1-01aa-02",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "Tres de cuatro ids siguen reservados y fuera de caché: ENVIPE 2026 y ENIGH 2024 por régimen y ENDUTIH 2025 por R05 RESERVADA. Corrección al sucesor: ENCRIGE 2020 ya no espera apertura, R02 la firmó ABIERTA-COMO-VISTA; convertir un zip de 1.6 MB no justifica encargo. CACHE-PARQUET-2 no está archivado.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/no-corrido.tsv` (1093 filas), id=NC-260928-GEN2-CORPUS-CACHE-PARQUET-1-01aa-02",
+    "salida": "estado=ABIERTA; cerrado_por=NO-APLICA; la fila vive en origin/main (solo llega por fusion)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/cache/universo-p1.tsv y constancias.tsv@origin/main",
+    "comando": "for id in envipe2026_csv enigh2024_nc_csv conjunto_de_datos_encrige_2020_csv endutih_2025_endutih2025_bd_dbf: grep -c en constancias.tsv (1325 lineas) y universo-p1.tsv (281 lineas)",
+    "salida": "constancias=0 en los 4; universo-p1: los 4 NO-SE-CONVIERTE; RESERVADA (m: ENVIPE 2026), (m: ENIGH 2024), (h: ENDUTIH 2025), (h: ENCRIGE 2020)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-28-GEN2-TRAMITE-FIRMAS-21-ADENDA-1.md:11",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-TRAMITE-FIRMAS-21-ADENDA-1.md | sed -n 11p (extracto)",
+    "salida": "«R02 ENCRIGE 2020: ABIERTA-COMO-VISTA. R03 ENVE 2024: ABIERTA-COMO-VISTA. R04 CSES Modulo 5: RESERVADA. R05 ENDUTIH 2025: RESERVADA. R06 ENIF 2024 modulo 7: RESERVADA.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1.md:14",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1.md | sed -n 14p | cut -c1-300",
+    "salida": "«Mesa, 28/sep/2026... firmado...: R01 HOLDOUT (b) · R02 ENCRIGE 2020 y R03 ENVE 2024 ABIERTA-COMO-VISTA · R04 CSES M5, R05 ENDUTIH 2025, R06 ENIF...» (acto #1299 fusionado: 3baf7396)"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260921-GEN2-ENIGH2024-RESERVA-Y-DISENO-1-b7ae-01",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=...b7ae-01; decisiones.tsv clave reserva:envipe2026",
+    "salida": "FIRMADA 21/sep: «ENIGH 2024 queda RESERVADA... toda ola nueva de una encuesta con historia nace RESERVADA... la levanta solo el codigo congelado de una prueba pre-registrada, o mesa por escrito.» ENVIPE 2026: reserva:envipe2026 en decisiones.tsv (FP 8a1f-07 FIRMADA)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml@origin/main",
+    "comando": "yaml estado_reserva de los 4 ids",
+    "salida": "endutih_2025_endutih2025_bd_dbf: RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR; envipe2026_csv, enigh2024_nc_csv, conjunto_de_datos_encrige_2020_csv: sin campo (reserva por regimen o ABIERTA-COMO-VISTA firmada sin asentar en manifiesto)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c 'PARQUET-2'",
+    "salida": "0 de 1221 archivos examinados; solo existe GEN2-CORPUS-CACHE-PARQUET-1 (#1284, ba582aae Merge pull request #1284)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv` (648 filas): lista completa de las ABIERTA leida (id + 150 car.) y regex de los objetos del lote (MOCIBA, ENOE 2026, ENGASTO, ENVIPE 2026/2027, ENIGH 2024, ENDUTIH 2025, ENCRIGE, FRONTERA, familias-2027, ECCO, OBTENCION-PREVIA, CACHE-PARQUET) sobre qué_se_firma|dónde|gatea|id",
+    "salida": "18 filas ABIERTA (ids listados); ninguna trata el objeto de esta fila ni abre la ola; las FIRMADA que si lo mencionan se citan aparte"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "",
+  "owner_detalle": "APERTURA (envipe2026 y enigh2024: reservadas por regimen E.6; endutih2025: R05 RESERVADA; se convierten solo cuando su codigo congelado o mesa las abra. encrige2020 sale de APERTURA: R02 ABIERTA-COMO-VISTA firmada; su conversion no exige firma ni encargo propio)",
+  "hoja": null,
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-01",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "Persiste la reserva de la celda: decisiones.tsv dice «SIGUE RESERVADA», sin firma que la abra y sin encargo MARGINALES-3. Alcance reducido: el retador TENDENCIA-SERIE ya no se construirá porque la etapa de retadores está cerrada (estado-programa v1_18:867-869), así que el NC ya no pide adjudicar nada, solo custodiar la reserva.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/no-corrido.tsv` (1093 filas), id=NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-01",
+    "salida": "estado=ABIERTA; cerrado_por=; la fila vive en origin/main (solo llega por fusion)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/decisiones.tsv@origin/main (clave reserva:envipe2026-consumida-por-duelo-marginales-2)",
+    "comando": "git show origin/main:data/corrida0/decisiones.tsv | grep -c 'reserva:envipe2026-consumida-por-duelo-marginales-2'; extracto",
+    "salida": "1 fila: «QUEDO SIN ABRIR y SIGUE RESERVADA...: civico.denuncia.con_seguro nacional (piso 2025 citado, retador NO-CONSTRUIBLE por historia insuficiente)... con_seguro x sexo y x edad (NO-CONSTRUIBLE)...»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/resultados.tsv@origin/main",
+    "comando": "git show origin/main:data/corrida0/resultados.tsv | grep con_seguro | cut -f1",
+    "salida": "5 filas: RESULT-DUELO-MARGINALES-{ASEGURADO,NO-ASEGURADO}-PISO-P, RESULT-DUELO-MARGINALES-DEMAS-REGLAS-ENVIPE-SERIE-N, RESULT-ENVIPE-SEG-CON-P-{DENUNCIA,NO-DENUNCIA}: ningun total nacional 2024 de con_seguro sellado"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/estado-programa-v1_18.md:867-869",
+    "comando": "git show origin/main:canon/estado-programa-v1_18.md | sed -n 867,869p | cut -c1-330",
+    "salida": "### Cierre de la etapa de retadores · «Seis evaluaciones prospectivas... duelo ENIGH 2024, duelo ENVIPE 2026... Siete familias de retador (encogida, tendencia, C1/C7, suavizados, AP, C-ASTRA, θ sin emitir)»"
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:10",
+    "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | sed -n 10p",
+    "salida": "- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-b05c-01",
+    "comando": "csv sobre firmas-pendientes.tsv@origin/main, id=...b05c-01",
+    "salida": "FIRMADA 22/sep: COMMIT-3 «exclusivamente por CALC-DUELO-ENVIPE2026-MARGINALES-ADJUDICACION-0001... lo que no emita este CALC sigue RESERVADA.» No autoriza abrir con_seguro nacional."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c 'MARGINALES-3'",
+    "salida": "0 de 1221 archivos examinados; acto MARGINALES-2 (PR 1021): 1 ADR raiz 0f2c y nota 2026-09-23-GEN2-DUELO-ENVIPE2026-MARGINALES-2-cierre.md en origin/main"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/curacion-registro/celdas-d/",
+    "comando": "git grep -l -i con_seguro origin/main -- data/curacion-registro/celdas-d",
+    "salida": "0 archivos de 21 yaml: con_seguro nacional no es celda-D, celdas_validadas no depende de este NC"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv@origin/main",
+    "comando": "csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv` (648 filas): lista completa de las ABIERTA leida (id + 150 car.) y regex de los objetos del lote (MOCIBA, ENOE 2026, ENGASTO, ENVIPE 2026/2027, ENIGH 2024, ENDUTIH 2025, ENCRIGE, FRONTERA, familias-2027, ECCO, OBTENCION-PREVIA, CACHE-PARQUET) sobre qué_se_firma|dónde|gatea|id",
+    "salida": "18 filas ABIERTA (ids listados); ninguna trata el objeto de esta fila ni abre la ola; las FIRMADA que si lo mencionan se citan aparte"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "",
+  "owner_detalle": "APERTURA (ENVIPE 2026 · con_seguro nacional: sigue RESERVADA por reserva:envipe2026; el retador TENDENCIA-SERIE no se construira, etapa de retadores cerrada; MARGINALES-3 sin encargo archivado)",
+  "hoja": null,
+  "confianza": "media"
+ }
+]

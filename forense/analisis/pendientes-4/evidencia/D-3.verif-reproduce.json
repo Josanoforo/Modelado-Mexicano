@@ -1,0 +1,9 @@
+[
+  {
+    "id": "NC-0029",
+    "veredicto": "NO-REPRODUCE",
+    "razon": "Regla 6, NC-0018/19/146/152 CERRADAS y linea 31 reproducen. Pero el conteo 334 abiertas da 335 (ABIERTA exacto, incluye NC-0029; 334 sin ella). La firma ADENDA-1 solo existe en HEAD, no en origin/main. El sucesor de la fila pide descomponer residuales L/motor antes de cerrar.",
+    "comando": "python3 csv.DictReader sobre git show origin/main:forense/no-corrido.tsv; estado==ABIERTA; git ls-tree origin/main forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md",
+    "salida": "ABIERTA=335 (declarado 334); coinciden [NC-0029]; ls-tree origin/main de ADENDA-1: vacio (existe en HEAD f87b0ba8)"
+  }
+]

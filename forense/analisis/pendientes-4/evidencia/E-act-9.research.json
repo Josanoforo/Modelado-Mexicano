@@ -1,0 +1,239 @@
+[
+ {
+  "id": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-05",
+  "verdict": "ABSORBER",
+  "rationale": "Sigue igual en main: las tres tablas afirmación×dictamen de autoridad-civismo-comunalidad-1 tienen todavía tres encabezados distintos (dictamen / juicio_v2 / dictamen_v2). Ningún encargo archivado lo cubre: el único de corrección C3 es CORRECCION-1242-1, que trata otro objeto. La delegación del 28/sep manda agruparla en un encargo corto de corrección C3, documental y reversible.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/analisis/reports-v2/autoridad-civismo-comunalidad-1/{autoridad/afirmaciones.tsv,civismo/afirmaciones.tsv,comunalidad/tabla-afirmaciones.tsv}", "comando": "d=forense/analisis/reports-v2/autoridad-civismo-comunalidad-1; for f in autoridad/afirmaciones.tsv civismo/afirmaciones.tsv comunalidad/tabla-afirmaciones.tsv; do git show origin/main:$d/$f | head -1; done | sort -u | wc -l", "salida": "3  (autoridad: id|localizador_v1|afirmacion|dictamen|… · civismo: id_afirmacion|localizador_v1|afirmacion_original|juicio_v2|… · comunalidad: id|localizador_v1|afirmacion_v1|dictamen_v2|…)"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-3/pr-1240.md:22", "comando": "rg -n -i esquema forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-3/pr-1240.md", "salida": "22:| C3 · tabla afirmación×dictamen | E | 59 + 60 + 60 = 179 filas; tres esquemas de columna distintos (`dictamen` / `juicio_v2` / `dictamen_v2`) | PASA con reserva (esquema no uniforme) |"},
+   {"tipo": "comando", "ref": "forense/encargos (1217 archivos en origin/main)", "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -i 'C3-CORRECCION\\|PASADA-EDITORIAL\\|CORRECCION-C3'; git grep -l -e 8c5c-05 -e 8c5c-06 -e 8c5c-12 -e 8c5c-13 origin/main -- forense/encargos | wc -l", "salida": "forense/encargos/2026-09-27-ASTRA6-C3-CORRECCION-1242-1.md (+ .cuerpo.sha256; su §9 trata tiempo/juventud/reserva, otro objeto) · 0"},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv#NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-05", "comando": "csv.DictReader sobre decididas-por-delegacion.tsv, id = NC-…-8c5c-05", "salida": "opcion=DUEÑO-MESA · razon=Sin encargo de pasada editorial C3. Recomiendo agruparla con filas 54, 58 y 63 en un encargo corto de correccion C3; documental, reversible."}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:CORRECCION-C3",
+  "entorno": "NUBE",
+  "hecho_comando": "d=forense/analisis/reports-v2/autoridad-civismo-comunalidad-1; for f in autoridad/afirmaciones.tsv civismo/afirmaciones.tsv comunalidad/tabla-afirmaciones.tsv; do head -1 $d/$f; done | sort -u | wc -l   # → 1",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-06",
+  "verdict": "ABSORBER",
+  "rationale": "La mitad ya está hecha: el firewall genético entró al report v2 de Juventud con c6e273ea (GEN2-ASTRA-CONTINUIDAD-C3-1, ancestro de main). Falta la otra mitad: salud/afirmaciones.tsv sigue sin columna con el texto de la afirmación (52 filas). Va al mismo encargo corto de corrección C3, que solo tiene que cubrir el texto en salud.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/analisis/reports-v2/salud-juventud-tiempo-1/salud/afirmaciones.tsv", "comando": "git show origin/main:forense/analisis/reports-v2/salud-juventud-tiempo-1/salud/afirmaciones.tsv | head -1; … | wc -l", "salida": "id_afirmacion | clave_editorial | dictamen | razon | evidencia_o_localizador · 53 líneas (52 filas + encabezado)"},
+   {"tipo": "comando", "ref": "corpus/reports-v2/Psicología_de_la_Juventud_Mexicana_Contemporánea__….md", "comando": "git show \"origin/main:$f\" | grep -c 'Firewall genético (§3)'; git log origin/main -S'Firewall genético (§3)' --oneline -- \"$f\"", "salida": "1 · c6e273ea GEN2-ASTRA-CONTINUIDAD-C3-1: P1 recibos post-merge #1246/#1247/#1251; P2 bloque [v2.16]+firewall en 31 reports v2, INDICE regenerado por indice.py (31/31, recibo por fila); memoria operativa §1"},
+   {"tipo": "comando", "ref": "c6e273ea", "comando": "git merge-base --is-ancestor c6e273ea origin/main && echo ANCESTRO-DE-MAIN", "salida": "ANCESTRO-DE-MAIN"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-3/pr-1242.md:37", "comando": "rg -n -i 'afirmaciones|firewall' forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-3/pr-1242.md", "salida": "37:- DIFERIDO-A pasada editorial C3 · añadir texto de afirmación a salud/afirmaciones.tsv y firewall genético a Juventud · impacto: trazabilidad y §3 incompletos · sucesor: encargo corto de corrección C3."}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:CORRECCION-C3",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 -c \"import csv;r=list(csv.DictReader(open('forense/analisis/reports-v2/salud-juventud-tiempo-1/salud/afirmaciones.tsv'),delimiter='\\t'));print(len(r),sum(1 for x in r if (x.get('afirmacion') or '').strip()))\"   # → 52 52",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-12",
+  "verdict": "ABSORBER",
+  "rationale": "Sigue fallando: sha256sum -c da FAILED para 01-…RESIDUALES-1.md en la carpeta tanda4. El archivo está en main con el mismo sha (99ddf0ac…) en catalogo-1-entradas-residuales-lote2/archivo/, y NOTA-DE-ARCHIVO.md no cita esa ruta. La delegación dice copiar 01 o anotar la ruta. Es un commit documental: cabe en el lote de corrección del mismo recibo.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/encargos/fuentes/ASTRA6-tanda4-20260927/SHA256SUMS.txt", "comando": "cd forense/encargos/fuentes/ASTRA6-tanda4-20260927 && sha256sum -c SHA256SUMS.txt 2>&1 | head", "salida": "00-LEEME-LANZAMIENTO.md: OK · sha256sum: 01-ASTRA6-C1-ENTRADAS-LOTE2-RESIDUALES-1.md: No such file or directory · 01-ASTRA6-C1-ENTRADAS-LOTE2-RESIDUALES-1.md: FAILED open or read · 02…: OK · 03…: OK · 04…: OK · WARNING: 1 listed file could not be read"},
+   {"tipo": "comando", "ref": "forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/archivo/01-ASTRA6-C1-ENTRADAS-LOTE2-RESIDUALES-1.md", "comando": "git ls-tree -r --name-only origin/main | rg -i ENTRADAS-LOTE2-RESIDUALES | xargs sha256sum", "salida": "99ddf0acead18103af91bc388317543f90fe241c61cca898740a198429b8c77b  forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/archivo/01-ASTRA6-C1-ENTRADAS-LOTE2-RESIDUALES-1.md (mismo sha que la línea 01 de SHA256SUMS.txt)"},
+   {"tipo": "comando", "ref": "forense/encargos/fuentes/ASTRA6-tanda4-20260927/NOTA-DE-ARCHIVO.md", "comando": "git show origin/main:forense/encargos/fuentes/ASTRA6-tanda4-20260927/NOTA-DE-ARCHIVO.md | grep -c catalogo-1-entradas-residuales-lote2", "salida": "0 (la nota dice: «01-… figura en el manifiesto, pero no fue incluido en la solicitud y no se incorpora»)"}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:CORRECCION-C3",
+  "entorno": "NUBE",
+  "hecho_comando": "cd forense/encargos/fuentes/ASTRA6-tanda4-20260927 && sha256sum -c SHA256SUMS.txt 2>&1 | grep -c FAILED   # → 0 (o, si se opta por anotar: grep -c 'catalogo-1-entradas-residuales-lote2/archivo/01-ASTRA6' NOTA-DE-ARCHIVO.md ≥ 1)",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-13",
+  "verdict": "ABSORBER",
+  "rationale": "No se ha corrido en main. C2-1 reprodujo los 39 singleton solo desde el artefacto («no del diseño muestral», p2-enoe-v1_0.md) y dejó receta para caja. El payload enoe_2024_4t_microdatos está en el manifiesto. La delegación pide correr --oro + cmp en caja. ba6c-01 (15:09) es la misma deuda, abierta después que ésta (03:20): debería cerrarse como duplicada de ésta.",
+  "cite": [
+   {"tipo": "archivo", "ref": "forense/analisis/familias-2027/p2-enoe-v1_0.md", "comando": "git show origin/main:forense/analisis/familias-2027/p2-enoe-v1_0.md | sed -n 20,50p", "salida": "VEREDICTO: REPRODUCE … **Límite de procedencia (obligatorio).** Derivado del artefacto `forense/analisis/familias-2027-enoe-inferencia-1/diagnostico/enoe-auditoria.json`, no del diseño muestral; el diseño (microdato `ENOE_SDEMT424.csv`, id `enoe_2024_4t_microdatos`) no está en el corpus de esta sesión. … **Receta para CAJA (≈1 minuto, re-medición desde el diseño)**"},
+   {"tipo": "comando", "ref": "data/manifiesto.yaml", "comando": "python3 tools/consulta.py payload enoe_2024_4t_microdatos", "salida": "enoe_2024_4t_microdatos · archivo=enoe_microdatos_post2019/enoe_2024_trim4_csv.zip · sha256=817f28d20a43fa4fed08195e62df58bf320b31c323a3049fe09b5194a1677305 · tamano_bytes=43410469 · fecha_descarga=2026-08-24"},
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "git log origin/main -S<id> --format='%h %ad %s' --date=iso -- forense/no-corrido.tsv | tail -1  (para 8c5c-13 y ba6c-01)", "salida": "8c5c-13: 362456d2 2026-09-28 03:20:34 GEN2-RECIBO-ASTRA6-3 · … · ba6c-01: 47da4167 2026-09-28 15:09:47 GEN2-ASTRA-CONTINUIDAD-C2-1 · … (ba6c-01 ABIERTA: «Conteo de 39 estratos singleton reproducido desde diagnostico/enoe-auditoria.json (agregado), no desde el diseño muestral ENOE 2024T4»)"},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv#NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-13", "comando": "csv.DictReader sobre decididas-por-delegacion.tsv", "salida": "opcion=DUEÑO-MESA · razon=Propuesta: el auditor corre en esta caja el comando --oro + cmp del recibo y pega la salida cruda."}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:REPLAYS-CAJA",
+  "entorno": "CAJA",
+  "hecho_comando": "python3 tools/familias-2027/enoe_inferencia_1/enoe_diagnostico.py --oro data/raw/enoe_microdatos_post2019/enoe_2024_trim4_csv.zip --salida /tmp/r.json && cmp /tmp/r.json forense/analisis/familias-2027-enoe-inferencia-1/diagnostico/enoe-auditoria.json && echo IDENTICO   # salida cruda pegada en la nota; NC 8c5c-13 CERRADA con esa cita y ba6c-01 duplicada",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260926-GEN2-RECIBO-ASTRA6-N-996b-08",
+  "verdict": "ABSORBER",
+  "rationale": "El defecto sigue en origin/main: verify llama a _problemas_valor_largo(valores, None) en corrida0.py:3110, y con d=None todo valor REF: cae en VALOR-REF-FUERA-DE-TABLAS. TUBERIA-3 ya se fusionó (#1294) sin arreglarlo, y ningún encargo lo tiene (0 de 1217 archivos). El arreglo son pocas líneas más un test; ninguna cifra cambia.",
+  "cite": [
+   {"tipo": "comando", "ref": "tools/corrida0.py:3110", "comando": "git show origin/main:tools/corrida0.py | grep -n '_problemas_valor_largo(valores, None)'", "salida": "3110:            for w in _problemas_valor_largo(valores, None):"},
+   {"tipo": "archivo", "ref": "tools/corrida0.py:2432-2434", "comando": "git show origin/main:tools/corrida0.py | sed -n '2415,2440p'", "salida": "if (d is None or len(partes) < 5 or partes[:2] != [\"data\", \"corrida0\"] or partes[2] != d.name or partes[3] != \"tablas\"): problemas.append(f\"{rid}: VALOR-REF-FUERA-DE-TABLAS={rel!r} …"},
+   {"tipo": "comando", "ref": "forense/encargos", "comando": "git grep -c -e VALOR-REF-FUERA-DE-TABLAS -e 996b-08 origin/main -- forense/encargos | wc -l; git ls-tree -r --name-only origin/main forense/encargos | wc -l; git log origin/main --first-parent --oneline | grep -c '#1294'", "salida": "0 · 1217 · 1"},
+   {"tipo": "comando", "ref": "data/corrida0/CALC-*/resultados.json (390 dirs)", "comando": "rg -l '\"REF:data/corrida0/' data/corrida0/CALC-*/resultados.json | head", "salida": "…CALC-FAMILIA-2027-ENIF-ORO-0002 · CALC-ENCIG-AUX-FAMILIAS-2027-0001 · CALC-ALT-M22-ENVIPE2025-0001 · … (ENCIG y ENIF con valores REF: expuestos al WARN)"}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:tools/corrida0.py | grep -c '_problemas_valor_largo(valores, None)'   # → 0; y pytest -q tests/test_valor_por_referencia.py | tail -n 3 VERDE con un caso nuevo que ejerza la rama de verify con REF dentro de data/corrida0/<CALC>/tablas/ sin WARN",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-05",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "RES-0126 es la celda M DIN-M-01 del marco del duelo v2 (marco-M-sorteado-v1_3.tsv:8): un retador sobre una ola ya vista de ENNViH 2002. La regla 6 lo retira (v2_17:41; MEMORIA-OPERATIVA:10, etapa de retadores cerrada). El dictamen de demanda, fusionado por mesa en #1275, lo marca NO-RELEVAR-POR-REGLA-6 con sucesor NINGUNO (histórico). La firma «Ok con pendientes 4» autoriza este cierre.",
+  "cite": [
+   {"tipo": "comando", "ref": "data/corrida0/demanda-dictamen-v1_0.tsv:244", "comando": "git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv | rg -n RES-0126", "salida": "244:CORR-0048 RES-0126 NO-RELEVAR-POR-REGLA-6 forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:8 (DIN-M-01, ola ENNViH/MxFLS 2002 (ola 1)); retador M del duelo sobre ola vista; … (regla 6: sin retadores, pilotos ni duelos sobre olas vistas) NINGUNO (histórico)"},
+   {"tipo": "regla", "ref": "gobierno/PEGAR-EN-PROYECTO-v2_17.md:41", "comando": "git show origin/main:gobierno/PEGAR-EN-PROYECTO-v2_17.md | rg -n -i 'regla 6'", "salida": "41:- Regla 6: sin retadores, pilotos ni duelos sobre olas ya vistas. El frente prospectivo son las familias 2027. Un cruce visto sirve para describir, calibrar y evaluar en retrospectiva, rotulado así."},
+   {"tipo": "regla", "ref": "canon/MEMORIA-OPERATIVA.md:10", "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | rg -n 'Regla 6'", "salida": "10:- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."},
+   {"tipo": "commit", "ref": "48114c5d (PR #1275)", "comando": "git log origin/main --first-parent --oneline -n 3 -- data/corrida0/demanda-dictamen-v1_0.tsv", "salida": "48114c5d Merge pull request #1275 from Josanoforo/claude/new-session-vt6kqd"},
+   {"tipo": "comando", "ref": "forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:8", "comando": "git show origin/main:forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv | sed -n 8p", "salida": "DIN-M-01 | ENNViH/MxFLS | 2002 (ola 1) | NO ESTIMADO EN ESTE ACTO … | cr27 | … | binaria | PENDIENTE-D-D | … | dinero.ahorro.t…"}
+  ],
+  "cerrado_por_detalle": "diseño: regla 6 · gobierno/PEGAR-EN-PROYECTO-v2_17.md:41 + canon/MEMORIA-OPERATIVA.md:10 · data/corrida0/demanda-dictamen-v1_0.tsv:244 (RES-0126 NO-RELEVAR-POR-REGLA-6, sucesor NINGUNO (histórico)), PR #1275 (48114c5d)",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-09",
+  "verdict": "HOJA-DECISION",
+  "rationale": "La premisa de la delegación no se sostiene. Decía que tener CoDi en el corpus bastaba para un CALC de caja, pero tramite.yaml:254 declara que ninguna fuente distingue la obligatoriedad del canal; CoDi es un backtest (262) y el campo administrativo no sustituye la p ASIGNADO (266). El dictamen fusionado (#1275) da SIN-BASE-GEN2, y la B2 (FP c133-02, ABIERTA) decide justo esto. Va a mesa.",
+  "cite": [
+   {"tipo": "comando", "ref": "data/corrida0/demanda-dictamen-v1_0.tsv (RES-0017)", "comando": "csv.DictReader sobre git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv, resultado_id=RES-0017", "salida": "dictamen=SIN-BASE-GEN2 · cita=milpa/procedencia.yaml:858 gemelo en asignados_probabilidad (- regla: tramite.gobierno_digital.coercitivo) rotulo_relevo=ASIGNADO-CONSERVADO-H1 (FP e760-01, regla B1); sin conducta GEN2 de coercitivo (NC-260926-GEN2-RELEVO-CONSUMIDORES-3-72d9-02) · sucesor=GEN2-RELEVO-CONSUMIDORES-4"},
+   {"tipo": "archivo", "ref": "milpa/tramite.yaml:254,262,266", "comando": "git show origin/main:milpa/tramite.yaml | sed -n 248,270p", "salida": "254: # SIN DATO POR DEFECTO DE LA FUENTE -- EXISTE-NO-SATISFACE en ENCIG 2025 (…ADR-287): ninguna de 483 columnas de 2025 ni ~100 000 de cinco olas distingue obligatoriedad del canal · 255-256: rechaza_servicio p 0.91 / adopta p 0.09 clase ASIGNADO · 262: nota_validacion: \"Backtest: CoDi = 3.09M cuentas…\" · 266: NO sustituye la p de la regla (0.91/0.09 ASIGNADO)"},
+   {"tipo": "firma", "ref": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02", "comando": "csv.DictReader sobre git show origin/main:forense/firmas-pendientes.tsv (647 filas)", "salida": "estado=ABIERTA · [B2] M03 (gobierno digital coercitivo) dictaminado SIN-ESTIMANDO-RECONSTRUIBLE … recomendación (a) aceptarlo como HISTÓRICO-SIN-RELEVO. Texto: «Firmo B2 (a): …»"},
+   {"tipo": "archivo", "ref": "forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md §B2", "comando": "sed -n 49,59p …/hoja-para-mesa-demanda-dictamen-1.md", "salida": "M03 no se puede: su cálculo es «reproducir la proporción declarada de la regla», y esa proporción es un número asignado sin fuente (RES-0017/0018). Tampoco hay instrumento declarado ni un RESULT GEN2 de coercitivo en ninguna unidad … (b) Mesa fija un instrumento … y se encarga un CALC de caja descriptivo."},
+   {"tipo": "comando", "ref": "forense/encargos (1217 archivos)", "comando": "git ls-tree -r --name-only origin/main forense/encargos | rg -i 'RELEVO-CONSUMIDORES-4|RELEVO-MOTOR-34-2'", "salida": "(vacío) · NO-ENCONTRADO: ningún encargo RELEVO-CONSUMIDORES-4 ni RELEVO-MOTOR-34-2-CAJA archivado"}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "MESA-DECISION (hoja: B2 de forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md · FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02)",
+  "hoja": {
+   "situacion": "La regla tramite.gobierno_digital.coercitivo da 0.91 rechaza / 0.09 adopta como número ASIGNADO sin fuente (RES-0017/0018); ningún instrumento del corpus distingue un servicio digital obligatorio, así que no hay CALC de caja que lo mida hoy.",
+   "opciones": [
+    {"letra": "a", "texto": "RES-0017/0018 quedan HISTÓRICO-SIN-RELEVO con rótulo ASIGNADO-CONSERVADO, junto con M03 (B2 a).", "costo": "La regla sigue emitiendo un ASIGNADO rotulado; legacy_activas del motor conserva 2 lecturas. Cero caja."},
+    {"letra": "b", "texto": "Mesa fija un instrumento (p. ej., un proxy de ENCIG 2025 sobre trámite en línea) y se encarga un CALC de caja descriptivo que releve la proporción.", "costo": "Un acto de caja. El estimando cambia a un proxy (tramite.yaml:254 declara EXISTE-NO-SATISFACE en ENCIG 2025): riesgo de medir otra cosa."}
+   ],
+   "recomendacion": "a",
+   "porque": "Sin instrumento no hay qué medir. Es coherente con la B2 (a) recomendada y con la firma a157-01 («donde no coinciden, se conserva con rótulo»). Si aparece instrumento, entra como momento nuevo.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«Firmo B2 (a) con sus lecturas: M03 y las proporciones ASIGNADO RES-0017/0018 (tramite.gobierno_digital.coercitivo: rechaza_servicio 0.91 / adopta 0.09) quedan HISTÓRICO-SIN-RELEVO con rótulo ASIGNADO-CONSERVADO; si aparece instrumento que distinga obligatoriedad del canal, entran como momento nuevo con CALC de caja.»"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-10",
+  "verdict": "HOJA-DECISION",
+  "rationale": "Es el complemento de RES-0017 (adopta 0.09 ASIGNADO): misma causa y misma decisión. El dictamen fusionado (#1275) da SIN-BASE-GEN2 («complemento de RES-0017»). Ninguna fuente distingue la obligatoriedad del canal (tramite.yaml:254) y CoDi es solo un backtest. La premisa «falta solo el CALC de caja» se cae, y la B2 (FP c133-02) sigue ABIERTA.",
+  "cite": [
+   {"tipo": "comando", "ref": "data/corrida0/demanda-dictamen-v1_0.tsv (RES-0018)", "comando": "csv.DictReader sobre git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv, resultado_id=RES-0018", "salida": "dictamen=SIN-BASE-GEN2 · cita=milpa/procedencia.yaml:858 gemelo en asignados_probabilidad (- regla: tramite.gobierno_digital.coercitivo) rotulo_relevo=ASIGNADO-CONSERVADO-H1 (FP e760-01, regla B1); complemento de RES-0017 · sucesor=GEN2-RELEVO-CONSUMIDORES-4"},
+   {"tipo": "firma", "ref": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02", "comando": "csv.DictReader sobre forense/firmas-pendientes.tsv", "salida": "estado=ABIERTA · [B2] M03 (gobierno digital coercitivo) dictaminado SIN-ESTIMANDO-RECONSTRUIBLE … recomendación (a) aceptarlo como HISTÓRICO-SIN-RELEVO."},
+   {"tipo": "archivo", "ref": "milpa/tramite.yaml:254-256", "comando": "git show origin/main:milpa/tramite.yaml | sed -n 254,256p", "salida": "# SIN DATO POR DEFECTO DE LA FUENTE -- EXISTE-NO-SATISFACE en ENCIG 2025 … · - {conducta: rechaza_servicio, p: 0.91, clase: ASIGNADO} · - {conducta: adopta, p: 0.09, clase: ASIGNADO}"}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "MESA-DECISION (hoja: B2 de forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md · FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02)",
+  "hoja": {
+   "situacion": "Misma decisión que RES-0017: la proporción ASIGNADO de adopción de un servicio digital coercitivo (0.09) no tiene instrumento en el corpus para relevarse a GEN2.",
+   "opciones": [
+    {"letra": "a", "texto": "HISTÓRICO-SIN-RELEVO con rótulo ASIGNADO-CONSERVADO, junto con M03 y RES-0017 (B2 a).", "costo": "Una lectura legacy del motor queda rotulada. Cero caja."},
+    {"letra": "b", "texto": "Mesa fija un instrumento proxy y se encarga un CALC de caja descriptivo.", "costo": "Un acto de caja; el estimando cambia a un proxy."}
+   ],
+   "recomendacion": "a",
+   "porque": "Sin instrumento no hay qué medir. Es la misma decisión que la fila a157-09 y se firman juntas.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«Firmo B2 (a) con sus lecturas: M03 y las proporciones ASIGNADO RES-0017/0018 (tramite.gobierno_digital.coercitivo) quedan HISTÓRICO-SIN-RELEVO con rótulo ASIGNADO-CONSERVADO; si aparece instrumento, entran como momento nuevo con CALC de caja.»"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-15",
+  "verdict": "HOJA-DECISION",
+  "rationale": "No cabe encargo de caja sin firma. El relevo usa la ola 3 de ENNViH (2009), la más reciente del programa y por tanto reservada (MEMORIA-OPERATIVA:9); abrirla es irreversible (D-19). El dictamen fusionado (#1275) la pone en ESPERA-FIRMA-MESA, y la firma B1 (FP c133-01) sigue ABIERTA. GEN2-TRAMITE-FIRMAS-22 no aparece en forense/encargos (NO-ENCONTRADO, 1217 archivos).",
+  "cite": [
+   {"tipo": "comando", "ref": "data/corrida0/demanda-dictamen-v1_0.tsv (RES-0029)", "comando": "csv.DictReader sobre git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv, resultado_id=RES-0029", "salida": "dictamen=ESPERA-FIRMA-MESA · cita=milpa/tramite.yaml:664 MEDIDO sin corrida0_resultado_id; payload olas 2-3 de ENNViH (ennvih2_2005_hogar_dta, ennvih3_2009_hogar_dta, ennvih2_2005_ponderador_transversal: 3/3 en data/manifiesto.yaml, 7198 ids examinados); ola 3 (2009) es la más reciente del pro… · sucesor=GEN2-TRAMITE-FIRMAS-22 (B1)"},
+   {"tipo": "firma", "ref": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01", "comando": "csv.DictReader sobre git show origin/main:forense/firmas-pendientes.tsv (647 filas)", "salida": "estado=ABIERTA · [B1] dinero.ahorro.tiene_ahorros (RES-0029/0030): usa la ola 3 de ENNViH, hoy reservada; recomendación (a) HISTÓRICO-SIN-RELEVO como sus celdas (FP-339). Texto: «Firmo B1 (a): …»"},
+   {"tipo": "regla", "ref": "canon/MEMORIA-OPERATIVA.md:9", "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | grep -n 'Reservas:'", "salida": "9:- Reservas: ola más reciente de todo programa con historia; ENVIPE 2026; ENCO; ENIGH 2024 salvo seis columnas AMAI (C7). ENCIG 2025 y ENVIPE 2025: abiertas."},
+   {"tipo": "comando", "ref": "forense/encargos + forense/analisis/hoja-firmas-21/decisiones-21.tsv", "comando": "git ls-tree -r --name-only origin/main forense/encargos | rg -i 'TRAMITE-FIRMAS-2[12]'; rg -c -i 'c133|RES-0029|ennvih' forense/analisis/hoja-firmas-21/", "salida": "solo …TRAMITE-FIRMAS-21(.md, -1, -ADENDA-1); ninguna FIRMAS-22 · decisiones-21.tsv (87 líneas): 0 coincidencias"}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "MESA-DECISION (hoja: B1 de forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md · FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01)",
+  "hoja": {
+   "situacion": "dinero.ahorro.tiene_ahorros (RES-0029/0030) se midió en GEN1 con las olas 2 y 3 de ENNViH. Los payloads están en el corpus, pero la ola 3 (2009) está reservada; mesa ya dejó sin receta las celdas hermanas (FP-339).",
+   "opciones": [
+    {"letra": "a", "texto": "HISTÓRICO-SIN-RELEVO: sale del pendiente y se conserva como GEN1 rotulado.", "costo": "El motor conserva 2 lecturas GEN1 rotuladas. Cero caja; no gasta reserva."},
+    {"letra": "b", "texto": "Spec de caja solo con la ola 2 (2005).", "costo": "Un acto de caja; el estimando cambia (una ola en vez de dos) y así se declara."},
+    {"letra": "c", "texto": "Mesa abre la ola 3 de ENNViH para esta conducta.", "costo": "Irreversible: consume la reserva de la ola más reciente de ENNViH (D-19) por un número que ningún consumidor vivo usa como calibración."}
+   ],
+   "recomendacion": "a",
+   "porque": "Es coherente con FP-339 (celdas hermanas) y no gasta una reserva.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«Firmo B1 (a): `dinero.ahorro.tiene_ahorros` (RES-0029/0030) queda HISTÓRICO-SIN-RELEVO, igual que sus celdas por FP-339; la ola 3 de ENNViH sigue reservada.»"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-16",
+  "verdict": "HOJA-DECISION",
+  "rationale": "Es el complemento de RES-0029 (no_tiene_ahorros): misma bifurcación B1. El dictamen fusionado (#1275) la pone en ESPERA-FIRMA-MESA («misma bifurcación B1 de la hoja, ola 3 de ENNViH reservada»). La firma FP c133-01 sigue ABIERTA. Abrir la ola 3 es irreversible (D-19), así que no puede ser un encargo de caja por delegación.",
+  "cite": [
+   {"tipo": "comando", "ref": "data/corrida0/demanda-dictamen-v1_0.tsv (RES-0030)", "comando": "csv.DictReader sobre git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv, resultado_id=RES-0030", "salida": "dictamen=ESPERA-FIRMA-MESA · cita=complemento de RES-0029; misma bifurcación B1 de la hoja (ola 3 de ENNViH reservada) · sucesor=GEN2-TRAMITE-FIRMAS-22 (B1)"},
+   {"tipo": "firma", "ref": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01", "comando": "csv.DictReader sobre forense/firmas-pendientes.tsv", "salida": "estado=ABIERTA · [B1] dinero.ahorro.tiene_ahorros (RES-0029/0030) … recomendación (a) HISTÓRICO-SIN-RELEVO"}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "MESA-DECISION (hoja: B1 de forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md · FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01)",
+  "hoja": {
+   "situacion": "Complemento de RES-0029: la misma medición GEN1 con las olas 2-3 de ENNViH, donde la ola 3 está reservada.",
+   "opciones": [
+    {"letra": "a", "texto": "HISTÓRICO-SIN-RELEVO junto con RES-0029.", "costo": "Una lectura GEN1 rotulada; cero caja."},
+    {"letra": "b", "texto": "Spec de caja solo con la ola 2.", "costo": "Un acto de caja; cambia el estimando."},
+    {"letra": "c", "texto": "Mesa abre la ola 3 de ENNViH.", "costo": "Irreversible: consume la reserva (D-19)."}
+   ],
+   "recomendacion": "a",
+   "porque": "Se firma junto con RES-0029 bajo la misma B1; coherente con FP-339.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«Firmo B1 (a): `dinero.ahorro.tiene_ahorros` (RES-0029/0030) queda HISTÓRICO-SIN-RELEVO, igual que sus celdas por FP-339; la ola 3 de ENNViH sigue reservada.»"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-17",
+  "verdict": "CERRAR-DUPLICADA",
+  "rationale": "Es la misma deuda que NC-0253 (16/sep, anterior, ABIERTA en la hoja de irreversibles): relevar RES-0050/0051/0052 a GEN2 citando RESULT-L8CONV. GEN2-L8-LINAJE-HEREDADO-1 ya levantó el bloqueo técnico de linaje; lo que queda es la decisión de adopción (D-19). Las opciones de NC-0253 ((c) CALC nuevo sin el JSON GEN1) cubren las de esta fila.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv#NC-0253", "comando": "python3 tools/consulta.py nc NC-0253", "salida": "NC-0253 · estado=ABIERTA · acto=GEN2-PINS-REPRODUCE-1 · razon=DIFERIDO-A · USO-NO-APTO (linaje): … RESULT-L8CONV-A-P-MINIMO/MAXIMO/MEDIA. Su unico… · sucesor=MESA (2026-10-05) · hoja de irreversibles · antes: acto o decision de direccion sobre tools/corrida0.py::INSUMOS_LEGACY_ARCHIVO / FUENTES_NUEVAS_ACREDITADAS (o… (fecha 2026-09-16; que_no_se_corrio: Citar corrida0_resultado_id=RESULT-L8CONV-A-P-MINIMO/MAXIMO/MEDIA … para participa_p0_minimo/maximo/media)"},
+   {"tipo": "archivo", "ref": "forense/analisis/pendientes-3/hoja-mesa-pendientes-3.md:19", "comando": "sed -n 19p forense/analisis/pendientes-3/hoja-mesa-pendientes-3.md", "salida": "- **NC-0253** — El bloqueo tecnico de linaje ya se levanto (GEN2-L8-LINAJE-HEREDADO-1); queda solo la decision de consumo, que es adopcion (D-19). Opciones: (a) conservar los 3 RESULT-L8CONV como legado explicito con uso DESCRIPTIVO y citarlos en tramite.yaml (bin 1); (b) mantenerlos sin cita GEN2; (c) CALC nuevo que no dependa del JSON."},
+   {"tipo": "comando", "ref": "data/corrida0/demanda-dictamen-v1_0.tsv (RES-0050)", "comando": "csv.DictReader sobre git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv, resultado_id=RES-0050", "salida": "dictamen=RELEVAR-DESDE-RESULT · cita=data/corrida0/CALC-L8-CONVERSION-0001/resultados.json: RESULT-L8CONV-A-P-MINIMO (REPRODUCE-GEN1, delta 0.0; RESULT-L8CONV-A-ADOPCION=LISTADO-PARA-MESA-REPRODUCE); milpa/tramite.yaml:1412 · sucesor=mesa (adopción listada) → pin en usos por el canal"}
+  ],
+  "cerrado_por_detalle": "duplicada: NC-0253 (ABIERTA, 2026-09-16, MESA · hoja de irreversibles; misma deuda de relevo de RES-0050/0051/0052 vía RESULT-L8CONV)",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ }
+]

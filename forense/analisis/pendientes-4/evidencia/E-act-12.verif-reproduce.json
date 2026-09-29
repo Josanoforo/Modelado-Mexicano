@@ -1,0 +1,9 @@
+[
+ {
+  "id": "NC-260921-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1-7ef3-01",
+  "veredicto": "REFUTA",
+  "razon": "Las seis salidas reproducen en origin/main 7312797c, pero la cita de firma no es firma: la fila de delegación es opcion=DUEÑO-MESA, no CIERRA; arma_dictamen.py:182-183,213 la deja a mesa con encargo por escribir. CERRAR-FIRMA carece de firma verificable.",
+  "comando": "git show origin/main:forense/analisis/pendientes-3/decididas-por-delegacion.tsv | csv.DictReader id==...7ef3-01 ; git show origin/main:forense/analisis/pendientes-3/arma_dictamen.py | grep -n DUEÑO-MESA ; (más cmds 2-6 de cite, todos reproducen)",
+  "salida": "opcion DUEÑO-MESA (138 DUEÑO-MESA vs 30 CIERRA en el tsv); :213 dele.append([id, 'CIERRA' if acc=='CERRAR' else 'DUEÑO-MESA',...]); :182 'DUENO', MESA · encargo por escribir. informe:49 7/8,11/12 OK; P4 ic 7/8,11/12 OK; nota 24-30 OK; propios true:8 / 12x1 OK; Regla 6 OK."
+ }
+]

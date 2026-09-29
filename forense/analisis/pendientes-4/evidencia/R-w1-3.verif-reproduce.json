@@ -1,0 +1,23 @@
+[
+ {
+  "id": "NC-0170",
+  "veredicto": "CONFIRMA",
+  "razon": "Los 6 comandos de cite reproducen (censo 38-41/166-170, conteo 10, 1047 archivos y 0 merge-intermedio, 4 CONSUMIDO, NC-0227 CERRADA). Salvedad: la cita de delegación (ADENDA-1) solo existe en la rama, no en origin/main.",
+  "comando": "git show origin/main:forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md | rg -c '^\\| #[0-9]+ .*EXCEPCI.N-COLA/ADQ'; git ls-tree -r --name-only origin/main tools tests .github canon gobierno | wc -l",
+  "salida": "10 ; 1047 ; con merge-intermedio: 0 ; digesto: 0 ; NC-0227 estado=CERRADA pr=#795"
+ },
+ {
+  "id": "NC-0246",
+  "veredicto": "CONFIRMA",
+  "razon": "Los 7 comandos reproducen: P3_27_AG agrupación, tramite.yaml 1174/1189, sello CALC-ENADID-0001, F6 con 3 archivos y 0 coincidencias MOCIBA 2015-17, 4 sellos MOCIBA, Regla 6 en línea 10, enut2024/enfih2019 residual 0.",
+  "comando": "d=forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0; git grep -n -i -E 'mociba.{0,3}201[567]' origin/main -- $d | wc -l",
+  "salida": "3 archivos; celdas R01-MOCIBA-2021/2022, R09-ISSP-2017-SEX-1/2; coincidencias mociba 2015-17: 0; 4 sello.json MOCIBA; 68/70 residual 0"
+ },
+ {
+  "id": "NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-03",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproducen las 5 citas: 16 usos APTA-POR-LINAJE/NUEVO/GEN2, 16 decisiones 23/sep, derivado en memoria (246 s, sin cambiar git status) 16 coincidentes con el contrato, T35(g) leído. resultados.tsv publicado dice INDETERMINADO (aviso declarado).",
+  "comando": "python3 -c \"from tools import corrida0 as C; v=C._filas_registro(verifica=False); ...\" (cite 3) + DictReader sobre origin/main usos/decisiones/resultados.tsv",
+  "salida": "16 {('SI','APTA-POR-LINAJE','NUEVO','GEN2'):16}; 16 ['2026-09-23']; 16 {('NUEVO','APTA-POR-LINAJE','APTA-POR-LINAJE')}; resultados.tsv: {'INDETERMINADO': 16}"
+ }
+]

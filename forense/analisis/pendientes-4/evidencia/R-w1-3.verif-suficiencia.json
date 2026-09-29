@@ -1,0 +1,23 @@
+[
+ {
+  "id": "NC-0170",
+  "veredicto": "REFUTA",
+  "razon": "El cierre es una preferencia, no un retiro (E.1/regla 6/commit): la fila pedía firma de mesa entre dos opciones y se inventa una tercera. La delegación registrada decía DUEÑO-MESA, no cerrar. ADENDA-1 (a) no lista «decisión reversible» y no está en origin/main.",
+  "comando": "git cat-file -e origin/main:forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md; git show origin/main:forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md | sed -n '166,170p'",
+  "salida": "fatal: exists on disk, but not in origin/main. Censo: «decidir si [COLA]/[ADQ] se suman como cuarta categoría exenta ... o si mesa prefiere que cada uno lleve su propia línea de cierre»."
+ },
+ {
+  "id": "NC-0246",
+  "veredicto": "REFUTA",
+  "razon": "Cierra contra una firma de mesa verbatim reinterpretándola («lectura literal no se ejecuta»): premisa que toca qué se mide, exige PARO/reporte, no cierre. El panel F6 sigue EN-ESPERA (R01-MOCIBA CANDIDATO-NO-ELEGIBLE), no retirado; regla 6 no lo retira. CALC-ENADID-0001 no usa P3_27_AG.",
+  "comando": "git show origin/main:forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml | sed -n '125,128p'; git show origin/main:data/corrida0/CALC-ENADID-0001/spec.md | sed -n '13p'",
+  "salida": "enlace_M: estado: CANDIDATO-NO-ELEGIBLE. ENADID spec: «`P3_27_AG` es una agrupación derivada y no gobierna códigos»; firma pedía P3_27_AG -> CORR-0013."
+ },
+ {
+  "id": "NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-03",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproducido con lector CSV y con T35(g) en memoria: 16 filas marcador en usos.tsv APTA-POR-LINAJE/NUEVO y 16 origen=NUEVO en decisiones.tsv (23/sep); contrato compartido coincide, ninguna NO-APTA. T35 deriva en memoria, no de resultados.tsv (desfasado, declarado). Bloqueadores EN-CURSO ya fusionados.",
+  "comando": "DictReader sobre origin/main usos.tsv y decisiones.tsv; C._filas_registro(verifica=False) + C.aptitud_para_uso (247 s, git status 0 antes/después)",
+  "salida": "16 {('SI','APTA-POR-LINAJE','NUEVO','GEN2'):16}; 16 decisiones ['2026-09-23']; en memoria: 16 {('NUEVO','APTA-POR-LINAJE','APTA-POR-LINAJE')}"
+ }
+]

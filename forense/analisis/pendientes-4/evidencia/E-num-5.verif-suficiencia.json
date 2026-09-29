@@ -1,0 +1,16 @@
+[
+ {
+  "id": "NC-0426",
+  "veredicto": "CONFIRMA",
+  "razon": "Las 70 lecturas de marco-M tienen estado en tabla-consumidores-v1_1: 42 HISTORICO-SIN-RELEVO (H3 firmada), 27 RELEVADA-PREVIA, 1 NC (DIN-M-01:M, regla 6). Un quinto canal hoy contradiria H3. H3 no nombra la fila, pero cubre el objeto.",
+  "comando": "git show origin/main:forense/analisis/relevo-consumidores/tabla-consumidores-v1_1.tsv | csv.DictReader; Counter(estado) donde 'marco-M' en fila",
+  "salida": "70 filas marco-M: HISTÓRICO-SIN-RELEVO 42, RELEVADA-PREVIA 27, NC 1; grep id_celda en tools/relevo_usos.py = 0 (canal no existe)"
+ },
+ {
+  "id": "NC-0448",
+  "veredicto": "REFUTA",
+  "razon": "El árbitro ya tiene re-medición GEN2 (6 CALC-ARBITRO-MARGINALES-*); PENDIENTES-CAJA-1 dejó el residuo como adopción DE-MESA. La firma 3D dice «rec: a + b como demanda», no retiro. El dictamen de 18 RESULT (acto_legacy 'ola5') es otro objeto. E.1 no es retiro.",
+  "comando": "git ls-tree --name-only origin/main data/corrida0/ | grep CALC-ARBITRO-MARGINALES; sed -n 36p forense/notas/2026-09-22-GEN2-PENDIENTES-CAJA-1-verificacion.tsv",
+  "salida": "6 CALC-ARBITRO-MARGINALES (ENCIG2025, ENIF2024, ENVIPE2025, 2-ENCUCI2020/ENNVIH/LAPOP); fila NC-0448: '...que las 4 celdas de 3D lo consuman en vez del legacy es adopcion' DE-MESA"
+ }
+]

@@ -1,0 +1,44 @@
+[
+ {
+  "id": "NC-260921-GEN2-RELEVO-TANDA-4-dedd-01",
+  "veredicto": "CONFIRMA",
+  "razon": "Las 5 citas reproducen en origin/main 90345dff: CALC-L-DESDE-CAPTURAS-v1_0 SELLADA GEN2 cuenta_gen2=SI (1/357), ADR 1d7c-01, PR #973 merged 2026-09-22T00:07:26Z, gemela 7bf5-03 CERRADA por #973, encargo:10 «Nadie lo tomó». Nota: resultado_replay=NO-VERIFICADO en la vista.",
+  "comando": "python3 scratchpad/d1/q.py origin/main data/corrida0/corridas.tsv spec_id '^CALC-L-DESDE-CAPTURAS-v1_0$' corrida_id,estado,generacion,cuenta_gen2,n_resultados,resultado_replay ; pull_request_read get 973",
+  "salida": "corrida_id=CALC-L-DESDE-CAPTURAS-v1_0--ee2443e8dc40 | estado=SELLADA | generacion=GEN2 | cuenta_gen2=SI | n_resultados=6 | resultado_replay=NO-VERIFICADO; filas=357 coincidencias=1 · #973 merged:true merged_at 2026-09-22T00:07:26Z"
+ },
+ {
+  "id": "NC-260921-GEN2-TUBERIA-RES-LLAVE-1-5573-01",
+  "veredicto": "CONFIRMA",
+  "razon": "PR #949 (merged 2026-09-21T15:47:02Z) cuerpo «Lo que mesa confirmó» 1: 149→150 es la deriva ya declarada, no bloqueo; encargo:203 reproduce. Reservas: ADR-587 no menciona 149→150 ni 5573 (solo la deriva de 36 ids); consulta.py de -02 no imprime cerrado_por (sí DictReader); fila NC dice pr=971.",
+  "comando": "pull_request_read get 949 ; git show origin/main:forense/encargos/2026-09-21-GEN2-TUBERIA-RES-LLAVE-1.md | sed -n '203p' | rg -o 'mesa autoriz.{0,330}'",
+  "salida": "«El 149 → 150 de dependencias_numericas_legacy_activas es esa misma deriva ya declarada, ajena a este PR ... Queda registrada en NC-…-5573-01, no como bloqueo» merged:true · 203: «mesa autorizó explícitamente al ejecutor a fusionar este PR ... (NC-260921-GEN2-TUBERIA-RES-LLAVE-1-5573-01)»"
+ },
+ {
+  "id": "NC-260922-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1-ef6f-01",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproduce: -0001 SUPERADO→-0002 (cuenta SI), -0002 SELLADA cuenta_gen2=NO por decisiones.tsv; 92+92 RESULT en resultados.tsv; FIRMAS-7:11 F1 verbatim; fila decisiones.tsv fuente FIRMA DE MESA 22/sep. La proyección SI de la fila queda sustituida por firma.",
+  "comando": "python3 scratchpad/d1/q.py origin/main data/corrida0/corridas.tsv spec_id 'DIN-CREDITO-K2-BANCARIA-HISTORIA' corrida_id,estado,cuenta_gen2,motivo_cuenta_gen2 ; ... resultados.tsv ... | sort | uniq -c",
+  "salida": "-0001--78664b318a0c estado=SUPERADO→...-0002 cuenta_gen2=SI ; -0002--d72ddfaa7635 SELLADA cuenta_gen2=NO motivo=decision de mesa (decisiones.tsv): cuenta_gen2=NO · RÉPLICA de -0001 · 92 -0001, 92 -0002, coincidencias=184"
+ },
+ {
+  "id": "NC-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-01",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproduce: catálogo en origin/main 2/2 valor_gen2 (M04, M08) con 16 decimales, iguales a los RESULT; escribe_relevo_consumo.py:772 y :1176 escriben repr(valor); FP-365 EJECUTADA; nota de cierre línea 27 reserva literal.",
+  "comando": "git show origin/main:milpa/catalogo-momentos-v0_1.tsv | csv.DictReader (valor_gen2 no vacío) ; tools/consulta.py result RESULT-ENCIG-MOR-C-P-ADOPTA / RESULT-ENVIPE-SEG-CON-P-DENUNCIA ; git show origin/main:tools/escribe_relevo_consumo.py | sed -n '765,775p'",
+  "salida": "M04 0.6733930340661712 · M08 0.7909064453831163 (con valor_gen2: 2) · RESULT valor=0.6733930340661712 / 0.7909064453831163 · \"valor_gen2\": repr(valor) en 772 y 1176"
+ },
+ {
+  "id": "NC-260923-ASTRA5-U3-POLITICA-df0d-04",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproduce: los tres CALC activos (ENCUP-0003, INE-0001, LAPOP-0001) SELLADA, cuenta SI, REPRODUCE en corridas.tsv; 2+3+2=7 RESULT; git log -S los ubica en 1f4bf1cc (#1268); nota l.31 «sellada en disco, no registrada», lo que la fila difería.",
+  "comando": "python3 scratchpad/d1/q.py origin/main data/corrida0/corridas.tsv spec_id '^CALC-(ENCUP-PISOS-2012-0003|INE-PISOS-2024-0001|LAPOP-PISOS-2019-0001)$' corrida_id,estado,cuenta_gen2,resultado_replay,n_resultados ; git log origin/main --oneline -S <corrida_id> -- data/corrida0/corridas.tsv",
+  "salida": "ENCUP-0003--0a72e3d9b594 SELLADA SI REPRODUCE 2 ; INE-0001--5df43151a67b SELLADA SI REPRODUCE 3 ; LAPOP-0001--ccad1984f426 SELLADA SI REPRODUCE 2 ; coincidencias=3 · resultados coincidencias=7 · 1f4bf1cc [deriva] trozo 1 ... (#1268) x3"
+ },
+ {
+  "id": "NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-03",
+  "veredicto": "NO-REPRODUCE",
+  "razon": "Citas 1-3 reproducen (16/16 APTA-POR-LINAJE NUEVO; #1268; CALC-GOB-...-0002 SELLADA REPRODUCE). La cita 4 (rg -o ... | head -1) da solo el campo consumidor, no la cadena '-> ... DECISION-DE-MESA' declarada; ese texto está en camino_linaje (verificable por DictReader). Corregir la cita; el hecho se sostiene.",
+  "comando": "git show origin/main:data/corrida0/usos.tsv | rg -o 'marcador:[^\\t]*GOB[^\\t]*' | head -1",
+  "salida": "marcador:CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::18-29xHASTA-PRIMARIA   (declarada: '... -> RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-P -> CALC-GOB-DIGITAL-EXE-EMISIONES-0002/... -> DECISION-DE-MESA(decisiones.tsv): origen_numerico=NUEVO')"
+ }
+]

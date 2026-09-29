@@ -1,0 +1,61 @@
+[
+ {
+  "id": "NC-260928-GEN2-TUBERIA-Y-CURACION-1-247d-02",
+  "verdict": "ABSORBER",
+  "rationale": "No hecho: en origin/main test_01 sigue con assertEqual(len(directos),13) y falla 32!=13; test_01b falla 6!=3 (horizonte creció a 6 familias). Medido hoy: 13/32 directos pasan; 16 con validacion_independiente NO-HECHA, 2 con id distinto, 1 NO_COVERAGE. Única fila viva (NC-0400, NC-0446 y e270-03 cerradas como duplicadas). Delegación (a): fijar conteos y abrir NC de aptitud con dueño.",
+  "cite": [
+   {"tipo": "comando", "ref": "tests/test_consulta_gen2.py", "comando": "PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest tests.test_consulta_gen2.ConsultaGen2.test_01_cada_familia_directa_emite_su_valor_vigente tests.test_consulta_gen2.ConsultaGen2.test_01b_guardia_suficiencia_protege_horizonte_colapsado", "salida": "FF ... line 69 self.assertEqual(len(directos), 13) AssertionError: 32 != 13 ... line 95 self.assertEqual(len(identidades), 3) AssertionError: 6 != 3 ... Ran 2 tests in 224.918s FAILED (failures=2)"},
+   {"tipo": "comando", "ref": "tools/consulta_gen2.py", "comando": "python3 -B scratchpad/e12_aptitud.py (importa consultar/listar_consumidores; replica el filtro y la consulta de test_01, solo lectura)", "salida": "GEN2 38 directos 32 horizonte 6 | 16 (False, 'EMITE', 'APTA-POR-LINAJE', 'NO-HECHA') | 2 (False, 'EMITE', 'APTA-POR-LINAJE', 'PASA') | 1 (False, 'NO_COVERAGE', 'APTA-POR-LINAJE', 'NO-HECHA') | 13 (True, 'EMITE', 'APTA-POR-LINAJE', 'PASA')"},
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "csv.DictReader sobre git show origin/main:forense/no-corrido.tsv, filtro 'consulta_gen2|APTA-POR-LINAJE' (1092 filas examinadas)", "salida": "NC-0400 CERRADA (duplicada) | NC-0446 CERRADA (#1280, ver 247d-02) | NC-260923-GEN2-MOTOR-DEUDA-LOTE-1-e270-03 CERRADA (DUPLICADA de NC-260928-GEN2-TUBERIA-Y-CURACION-1-247d-02) | NC-260928-...-247d-02 ABIERTA"},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv", "comando": "csv.DictReader, id == NC-260928-GEN2-TUBERIA-Y-CURACION-1-247d-02", "salida": "opcion DUEÑO-MESA · razon: 20 de 32 consumidores GEN2 directos no alcanzan APTA-POR-LINAJE/PASA: hallazgo real, no cambio de cifra. Recomiendo (a) fijar el test al conteo real y declarar la deuda de aptitud como NC nueva con dueno, o (b) investigar antes; ningun acto lo cubre. Reversible."},
+   {"tipo": "comando", "ref": "forense/encargos/", "comando": "git grep -l -e test_consulta_gen2 -e APTA-POR-LINAJE origin/main -- forense/encargos (1217 archivos en el árbol)", "salida": "8 encargos, todos anteriores o el propio GEN2-TUBERIA-Y-CURACION-1 (2026-09-28); ninguno en cola/ ni posterior que lo tome"}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest tests.test_consulta_gen2.ConsultaGen2.test_01_cada_familia_directa_emite_su_valor_vigente tests.test_consulta_gen2.ConsultaGen2.test_01b_guardia_suficiencia_protege_horizonte_colapsado  → OK, y python3 tools/consulta.py nc <NC nueva de aptitud (validacion_independiente NO-HECHA en los directos)> → ABIERTA con dueño",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260921-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1-7ef3-01",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "La delegación del 28/sep recomienda cerrar SIN-OBJETO; lo verifico: pilotos 1 y 2 COINCIDE con C2 punto IDÉNTICO 8/8 y 12/12; la cobertura con IC sellado da lo mismo que con IC propio (7/8, 11/12); IC propio de C2 conservado en 8/8 y 12/12 celdas. El sucesor alterno (spec celda-D sobre olas vistas) está vedado por regla 6.",
+  "cite": [
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv", "comando": "csv.DictReader, id == NC-260921-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1-7ef3-01", "salida": "opcion DUEÑO-MESA · razon: Reversible: cerrar SIN-OBJETO (impacto declarado nulo sobre el veredicto; piloto 3 adjudicado 16/16; insumo resultados_propios.json conservado) o dejarlo para el sucesor de spec celda-D. Recomiendo cerrar. No verifique los 7/8 y 11/12."},
+   {"tipo": "archivo", "ref": "forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-v1_0/informe-pilotos.md:49", "comando": "git show origin/main:forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-v1_0/informe-pilotos.md | sed -n '49p'", "salida": "Los tres MAE coinciden con los sellados (…-G-MAE-C2 = 0.014668 / 1.568 pp; …-C2-MAE-PP = 3.411) a la sexta cifra. La cobertura sellada (IC95 de C2 sellado sobre R sellado) da lo mismo: 7/8, 11/12, 8/15."},
+   {"tipo": "comando", "ref": "forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-v1_0/comparacion-pilotos.json", "comando": "git show origin/main:…/comparacion-pilotos.json | jq -c '.P4'", "salida": "{\"piloto1\":{\"MAE_pp\":1.4667863476778786,…,\"ic_C2_cubre_R\":7,\"celdas_puntuadas\":8,…},\"piloto2\":{\"MAE_pp\":1.5680517417942745,…,\"ic_C2_cubre_R\":11,\"celdas_puntuadas\":12,…}"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-21-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1-cierre.md:28-29", "comando": "git show origin/main:forense/notas/2026-09-21-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1-cierre.md | sed -n '24,30p'", "salida": "| 1 · DIN · ENIF 2024 | 8 | 8/8 IDÉNTICO | 8/8 COINCIDE | 8/8 IDÉNTICO | 7/7 IDÉNTICO | exactos | COINCIDE | ; | 2 · TRA · ENVIPE 2025 | 12 | 12/12 | 12/12 | 12/12 | 8/8 | exactos | COINCIDE |"},
+   {"tipo": "comando", "ref": "forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-v1_0/resultados_propios.json", "comando": "git show origin/main:…/resultados_propios.json | jq -c '[.piloto1_DIN_ENIF2024.celdas[] | has(\"C2_ic95_marginales_propios\")] | group_by(.) | map({(.[0]|tostring): length})' ; ídem piloto2 contando claves ic95", "salida": "[{\"true\":8}] ; piloto2: [1,1,1,1,1,1,1,1,1,1,1,1]"},
+   {"tipo": "regla", "ref": "canon/MEMORIA-OPERATIVA.md:10", "comando": "git grep -n 'Regla 6' origin/main -- canon/MEMORIA-OPERATIVA.md", "salida": "canon/MEMORIA-OPERATIVA.md:10:- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."}
+  ],
+  "cerrado_por_detalle": "firma: delegación de mesa 28/sep, forense/analisis/pendientes-3/decididas-por-delegacion.tsv («cerrar SIN-OBJETO… Recomiendo cerrar») · verificado: informe-pilotos.md:49 cobertura sellada = propia (7/8, 11/12); nota de cierre :28-29 C2 punto IDÉNTICO; resultados_propios.json con IC de C2 en 8/8 y 12/12 celdas",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260921-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1-7ef3-03",
+  "verdict": "ABSORBER",
+  "rationale": "La delegación (a) pide una línea en forense/hallazgos.md que fije «marginales sobre el universo del cruce» como lectura de referencia, y luego cerrar. NO-ENCONTRADO en main: no hay línea en hallazgos.md ni spec v1_2. La lectura ya está en el contrato celda-D (yaml:75) y en F1-bis (decisiones.tsv:157). Basta una línea que los cite. El sucesor de spec (b) queda vedado por regla 6.",
+  "cite": [
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv", "comando": "csv.DictReader, id == NC-260921-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1-7ef3-03", "salida": "opcion DUEÑO-MESA · razon: La spec sellada no se edita (E.3). Reversible: (a) recomendada: linea en forense/hallazgos.md fijando 'marginales sobre el universo del cruce' como lectura de referencia y cerrar; (b) esperar un sucesor de spec del piloto 3 (no hay encargo). Efecto <= 0.19 pp, ningun veredicto."},
+   {"tipo": "comando", "ref": "forense/hallazgos.md, forense/prereg-caja/, canon/", "comando": "git grep -c -i -e 'marginales sobre el universo' -e '7ef3-03' origin/main -- forense/hallazgos.md forense/prereg-caja/ canon/ ; git ls-tree -r --name-only origin/main forense/hallazgos.md forense/prereg-caja canon | wc -l", "salida": "(sin coincidencias) ; 746 archivos examinados. 'universo del cruce' en hallazgos.md solo en :925 (borde de la banda 60-96 de P0, no la precisión de marginales)"},
+   {"tipo": "comando", "ref": "forense/prereg-caja/", "comando": "git ls-tree -r --name-only origin/main forense/prereg-caja | rg -i 'gobierno-digital|exe15'", "salida": "GOB-gobierno-digital-exe15-spec-v1_0.md, .sha256, GOB-gobierno-digital-exe15-spec-v1_1.md, .sha256 (sin v1_2 sucesora)"},
+   {"tipo": "archivo", "ref": "data/curacion-registro/celdas-d/GOB.gobierno_digital.encig2025.edad_x_escolaridad.yaml:75", "comando": "git grep -n -i 'universo del cruce' origin/main -- data/curacion-registro/celdas-d/GOB.gobierno_digital.encig2025.edad_x_escolaridad.yaml", "salida": ":75: - {id_candidato: C2, rol: PISO, fuentes: [ENCIG], edicion_periodo: \"2025 (marginales de UNA variable, recalculados sobre el universo del cruce)\", …"},
+   {"tipo": "archivo", "ref": "data/corrida0/decisiones.tsv:157", "comando": "git grep -n -i 'universo del cruce' origin/main -- data/corrida0/decisiones.tsv", "salida": "CALC-GOB-DIGITAL-EXE-EMISIONES-0001 F1-bis FIRMADA -- … quedan FUERA DEL UNIVERSO del cruce, contados y reportados; la coherencia se verifica contra los marginales RECALCULADOS sobre ese universo."},
+   {"tipo": "archivo", "ref": "forense/prereg-caja/GOB-gobierno-digital-exe15-spec-v1_0.md:73", "comando": "git grep -n -i 'mismo universo' origin/main -- forense/prereg-caja/GOB-gobierno-digital-exe15-spec-v1_0.md", "salida": ":73:sobre ese mismo universo**, no contra los sellados con otro denominador; un cruce es"}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "NUBE",
+  "hecho_comando": "git grep -n -e 'NC-260921-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1-7ef3-03' -e 'marginales sobre el universo del cruce' origin/main -- forense/hallazgos.md → ≥1 línea, y python3 tools/consulta.py nc NC-260921-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1-7ef3-03 → estado CERRADA",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ }
+]

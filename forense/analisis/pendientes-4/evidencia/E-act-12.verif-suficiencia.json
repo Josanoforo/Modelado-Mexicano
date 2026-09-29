@@ -1,0 +1,9 @@
+[
+ {
+  "id": "NC-260921-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1-7ef3-01",
+  "veredicto": "REFUTA",
+  "razon": "La delegación citada eligió opcion DUEÑO-MESA (encargo por escribir), no cierre: 'Recomiendo cerrar' es prosa, no firma. Y la evidencia es cobertura (7/8, 11/12), no la comparación del IC95 de C2 contra la tolerancia ±1.0 pp que la fila pedía para pilotos 1 y 2; producto distinto. Regla 6 no retira una validación ya hecha.",
+  "comando": "git show origin/main:forense/analisis/pendientes-3/decididas-por-delegacion.tsv | csv.DictReader id==…7ef3-01 ; git show origin/main:forense/analisis/pendientes-3/dictamen-pendientes-3.tsv | grep 7ef3-01 ; git show origin/main:…/informe-pilotos.md | grep -n toleran",
+  "salida": "opcion: DUEÑO-MESA · dictamen:348 DECIDIR-REVERSIBLE DUENO 'MESA (2026-10-05) · encargo por escribir' · informe:30 tolerancia IC |Δ|≤1.0 pp aplicada 36/36 solo piloto 3; :77 'El IC de C2 no se validó celda por celda contra tolerancia en los pilotos 1 y 2'"
+ }
+]

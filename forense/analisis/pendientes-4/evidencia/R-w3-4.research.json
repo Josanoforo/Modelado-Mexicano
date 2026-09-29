@@ -1,0 +1,70 @@
+[
+ {
+  "id": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "La objeción es en parte fundada. Los cuatro paquetes residuales sí corrieron (ADR 2385-01; auditoría CIEGA-POR-CONTEXTO-NUEVO), pero R32 autoriza la opción A solo «para el lote 3» y dice «El broker sigue como meta». El broker sigue sin provisionar y RECIBO-ASTRA6-4 no tiene encargo. Ninguna firma decide el broker: no es CERRAR-FIRMA. Dueño CAJA vigente.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R32",
+    "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | python3 -c \"import csv,sys,io;[print(r['estado'],'|',r['ids_fundidos'],'|',r['texto_de_firma']) for r in csv.DictReader(io.StringIO(sys.stdin.read()),delimiter='\\t') if r['renglon']=='R32']\"",
+    "salida": "FIRMADA · VIAJA-EN GEN2-C1-SUCESORES-Y-LOTE-3 (A.12) | FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-02 ; (sin FP) recibo -3 #1241 «provisionar el broker» | «Autorizo el reconstructor de opción A para el lote 3 de C1: ... El broker sigue como meta.»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-02",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | csv.DictReader; id=='FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-02' → estado, ejecutada_en",
+    "salida": "estado=FIRMADA · ejecutada_en=ADR-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-01 ... ; ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01; EJECUTA: GEN2-C1-SUCESORES-Y-LOTE-3 (gates CONTRATO-FIRMADO / CONTEXTO-NUEVO-ACREDITADO de los cuatro paquetes residuales)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/L0/ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01.md",
+    "comando": "git show origin/main:canon/L0/ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01.md | cut -c1-330",
+    "salida": "L0 · ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01. C1: ocho contratos sucesores firmados ... y las 312 residuales del lote 3 recalculadas a ciegas por cuatro sesiones `claude -p` aisladas. compare_v3 (1e-10): ENCODAT 130/130 ..."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/validacion-independiente/catalogo-1-lote3/AUDITORIA-TRANSCRIPTS-RESIDUALES.md",
+    "comando": "git show origin/main:forense/validacion-independiente/catalogo-1-lote3/AUDITORIA-TRANSCRIPTS-RESIDUALES.md | tail -n 1 | cut -c1-200",
+    "salida": "Ninguna sesión leyó microdato fuera de los campos autorizados (tokens de reactivo no autorizados: 0 en las cuatro). Rótulo: CIEGA-POR-CONTEXTO-NUEVO (no broker; el proceso `claude` tuvo red hacia l"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/validacion-independiente/catalogo-1-ejecutor-v3/provision-broker-v3.md:3",
+    "comando": "git show origin/main:forense/validacion-independiente/catalogo-1-ejecutor-v3/provision-broker-v3.md | sed -n 3p | cut -c1-330",
+    "salida": "**NO-VERIFICADO:** en esta caja `codex login status` informa una cuenta ChatGPT activa, pero no existe un servicio de broker conectado a esa cuenta con política verificable de contexto y herramientas. El cliente Unix de `session_request.py` y una prueba de transporte en memoria no acreditan sesión real."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos (A.4/A.13: universo 1223 archivos, término RECIBO-ASTRA6-4)",
+    "comando": "git ls-tree -r origin/main --name-only forense/encargos | grep -c RECIBO-ASTRA6-4",
+    "salida": "0  (NO-ENCONTRADO en 1223 archivos: el acto que el antiguo sucesor decía vigilar no tiene encargo)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "encargo EJECUTOR-AISLADO-3 archivado y CONSUMIDO; actos fusionados",
+    "comando": "git show origin/main:forense/encargos/2026-09-27-ASTRA6-C1-EJECUTOR-AISLADO-3.md | grep -n '^## CONSUMIDO'; git log origin/main --first-parent --oneline | grep -E '#1241|#1282|#1304|#1319'",
+    "salida": "180:## CONSUMIDO · 591e8436 Merge PR #1241 · 2597dfd1 Merge PR #1282 · 20ff4c05 Merge PR #1304 · bafb1c1b Merge PR #1319"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv filas con «broker»",
+    "comando": "git show origin/main:forense/no-corrido.tsv | csv.DictReader; filas con 'broker' en cualquier campo (1096 filas examinadas)",
+    "salida": "2 filas, ambas ABIERTA, mismo dueño CAJA (forense/encargos/2026-09-27-ASTRA6-C1-EJECUTOR-AISLADO-3.md): NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03 y NC-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-04"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/tablero-insumos-1/dictamen-p3-c1sucesores.tsv (#1319)",
+    "comando": "git show origin/main:forense/analisis/tablero-insumos-1/dictamen-p3-c1sucesores.tsv | csv.DictReader; id==8c5c-03 → dictamen, evidencia",
+    "salida": "SIGUE-ABIERTA · «26a2-02 FIRMADA: opción A «para el lote 3»; texto R32: «El broker sigue como meta»; 0c1f-04 ABIERTA con este dueño...; RECIBO-ASTRA6-4 sin encargo (0 archivos)»"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "CAJA",
+  "hecho_comando": "Hoy sigue abierta. Quedaría hecha cuando un acto de CAJA aporte el recibo real del broker (provision-broker-v3.md deja de decir NO-VERIFICADO) y `python3 tools/consulta.py nc NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03` muestre estado=CERRADA con su cerrado_por.",
+  "owner_detalle": "forense/encargos/2026-09-27-ASTRA6-C1-EJECUTOR-AISLADO-3.md (CONSUMIDO, #1241) · broker v3 sin provisionar, meta de R32 sin fecha · C1 real corrió por opción A solo para el lote 3 (#1282, #1304) con rótulo CIEGA-POR-CONTEXTO-NUEVO",
+  "confianza": "media",
+  "notas_para_dirección": "1) La fila del lote traía una foto vieja (dueño EN-CURSO C1-SUCESORES-Y-LOTE-3); origin/main ya dice CAJA desde #1319. 2) Los campos históricos «impacto: un C1 real no puede acreditar contexto nuevo» y «CONTEXTO-NUEVO-ACREDITADO=PENDIENTE» ya no se sostienen para el lote 3 (los cuatro paquetes residuales corrieron y se auditaron), pero el objeto de la fila, el broker, sigue sin provisionar; no se reescribe el campo, se declara aquí. 3) 8c5c-03, 0c1f-04, beee-08 y ee49-03 son la misma línea (aislamiento real por broker): si otro lote propone CERRAR-DUPLICADA entre ellas, que no se cierren todas. 4) Un C1 posterior al lote 3 (p. ej. C1-LOTE-4) necesita nueva firma de opción A o el broker: R32 dice «para el lote 3»."
+ }
+]

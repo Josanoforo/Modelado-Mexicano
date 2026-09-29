@@ -1,0 +1,37 @@
+[
+ {
+  "id": "NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-02",
+  "veredicto": "CONFIRMA",
+  "razon": "La pieza pedía un duelo prospectivo con_seguro×sexo; piso NO-CONSTRUIBLE (spec 18-26), sucesor MARGINALES-3 nunca archivado, sin firma pendiente ni familia 2027. Retiro por etapa de retadores cerrada (MEMORIA:10, informe v1.3), mismo criterio que PENDIENTES-3. Reserva ENVIPE 2026 intacta.",
+  "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c MARGINALES-3; git show origin/main:forense/prereg-caja/DUELO-ENVIPE2026-MARGINALES-spec-v1_0.md | sed -n '16,28p'",
+  "salida": "0 (1221 rutas); spec: con_seguro sin eje sexo/edad; NO-CONSTRUIBLE, el piso mismo no existe. familias-2027: 0 con_seguro en 140+50 archivos."
+ },
+ {
+  "id": "NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-03",
+  "veredicto": "CONFIRMA",
+  "razon": "Mismo caso en eje edad. Cero RESULT con_seguro×edad (solo texto de motivo en un CALC y ENDIREH ajena); ninguna familia 2027 lo pide; reserva intacta (decisiones.tsv:263). Retiro respaldado por etapa cerrada con precedente fusionado (19a3-04, 2518-03).",
+  "comando": "git grep -l -i -E 'DENUNCIA-(SEXO|EDAD)-' origin/main -- 'data/corrida0/CALC-*/resultados.json'",
+  "salida": "2 archivos: CALC-DUELO-ENVIPE2026-MARGINALES-EMISIONES-0001 (texto de motivo) y CALC-ENDIREH-SERIE-DICTAMEN-0001 (otra encuesta)."
+ },
+ {
+  "id": "NC-260921-GEN2-L-DESDE-CAPTURAS-1-1d7c-02",
+  "veredicto": "CONFIRMA",
+  "razon": "El consumo diferido dependía del acto sucesor DIN-LOTE-ENIF2024-A, que ya corrió y registró L como NO-EMITE por firma; el duelo ENVIPE registró NO-ENTRA. Ningún medidor importa agrega_l; RESULT-LDESC n_usos=0 es WARN que D-16 no adjudica. Sin producto pendiente.",
+  "comando": "git grep -l 'agrega_l' origin/main -- 'data/corrida0/CALC-*/medidor.py' | wc -l; git grep -n -E '^\\s*(from|import) .*agrega_l' origin/main -- '*.py'",
+  "salida": "0 medidores; solo tests/test_agrega_l_v1_0.py:21 y tools/calcula_l_desde_capturas.py:27 importan el agregador."
+ },
+ {
+  "id": "NC-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-04",
+  "veredicto": "REFUTA",
+  "razon": "La hoja de mesa distingue contexto nuevo (lo que cubre 8c5c-03) de red/separación (lo que pide esta fila). El texto y el criterio de cierre de 03 solo hablan de CONTEXTO-NUEVO-ACREDITADO; la duplicada apunta a una fila que cubre menos. Dejar abierta o ampliar 03/beee-08.",
+  "comando": "python3 tools/consulta.py nc NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03; git show origin/main:forense/analisis/astra-continuidad-c1/hoja-mesa-c1-v1_0.md | sed -n '18,24p'",
+  "salida": "03: 'Broker no provisionado; CONTEXTO-NUEVO-ACREDITADO=PENDIENTE'. Hoja: A protege contexto nuevo, no red ni FS; rótulos CONTEXTO-NUEVO vs SEPARACIÓN distintos."
+ },
+ {
+  "id": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-10",
+  "veredicto": "REFUTA",
+  "razon": "El circuito aislado real de C1 no corrió; #1241 lo sustituyó por otro runtime, probado solo en sintético, y 03 (contexto nuevo) no nombra la separación que esta fila pide. Sería SUSTITUIDO-POR, no duplicada, y la hoja aún cita 10 como abierta.",
+  "comando": "git show origin/main:forense/validacion-independiente/catalogo-1-ejecutor-v3/astra6-c1-ejecutor-v3-nota-cierre.md | sed -n '15p;21p' | cut -c1-200",
+  "salida": "EJECUTADO solo prueba sintética run_id=d78b...; 'NO-VERIFICADO: sesión remota nueva... No se atribuye esa propiedad al proceso aislado'."
+ }
+]

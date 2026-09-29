@@ -1,0 +1,433 @@
+[
+ {
+  "id": "NC-0218",
+  "verdict": "ABSORBER",
+  "rationale": "El sello de D-A existe (CALC-TRIADA-B-PISO-0001, SELLADA) pero ninguno de los 8 informes lo cita, y sus cifras no coinciden con la derivación propia de ANEXO v1_0 §A.3: el universo cambia (entra CIV-M-04, sale TRA-M-07) y MAE(L_SOLO) es 1.4806 contra 11.9400. Falta el re-sello A.10 que el propio informe prometió.",
+  "falta": "Sección o anexo de informe posterior a v1_5 que incorpore la tabla común sellada de CALC-TRIADA-B-PISO-0001 con procedencia por consulta.py, deje dicho que §A.3 de v1_0-ANEXO queda vencida en alcance (la declaración es humana, E.4) y que «ninguna cifra cambia» de la fila era falso para U_COMUN.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "canon/informe-programa-v1_0-ANEXO.md:191",
+    "comando": "git show origin/main:canon/informe-programa-v1_0-ANEXO.md | sed -n 191p",
+    "salida": "| **9 celdas comunes** (derivación de este informe) | **0.6750** (n=9) | 4.2232 (n=9) | 11.9400 (n=9) | 16.8715 (n=9) |   [columnas B, M, L_SOLO, L_CORPUS]"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/resultados.tsv#RESULT-TBP-UCOMUN-MAE-L_SOLO-PP",
+    "comando": "python3 tools/consulta.py result RESULT-TBP-UCOMUN-MAE-L_SOLO-PP",
+    "salida": "RESULT-TBP-UCOMUN-MAE-L_SOLO-PP · valor=1.4805972222222221 · unidad=MAE_pp de L_SOLO sobre U_COMUN (media simple de abs(err_pp)) · corrida_id=CALC-TRIADA-B-PISO-0001--f1cf4cc7bbc6 · sello=COINCIDE · estado=SELLADA · generacion=GEN2 · cuenta_gen2=SI"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-15-GEN2-F5-CIERRE-Y-PANEL-1-cierre.md:54",
+    "comando": "git show origin/main:forense/notas/2026-09-15-GEN2-F5-CIERRE-Y-PANEL-1-cierre.md | sed -n 54p",
+    "salida": "| **`MAE_pp` (n = 9)** | **0.884716** | 1.222815 | 1.480597 | 4.638093 | **7 / 9** |   [B, L_CORPUS, L_SOLO, M sobre U_COMUN sellada]"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/resultados.tsv#RESULT-TBP-CIV-M-04-EN-UCOMUN / TRA-M-07",
+    "comando": "python3 tools/consulta.py result RESULT-TBP-CIV-M-04-EN-UCOMUN ; python3 tools/consulta.py result RESULT-TBP-TRA-M-07-EN-UCOMUN",
+    "salida": "RESULT-TBP-CIV-M-04-EN-UCOMUN · valor=SI · ... · estado=SELLADA · cuenta_gen2=SI  |  RESULT-TBP-TRA-M-07-EN-UCOMUN · valor=NO · ... · estado=SELLADA   (ANEXO §A.3 excluye CIV-M-04 e incluye TRA-M-07, ANEXO l.163-164)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "canon/informe-programa-v1_*.md (8 archivos)",
+    "comando": "for f in $(git ls-tree --name-only origin/main canon/ | rg 'informe-programa-v1_'); do git show origin/main:$f | rg -c 'TRIADA-B-PISO|UCOMUN|U_COMUN|0\\.8847'; done",
+    "salida": "0 en los 8 archivos examinados (v1_0, v1_0-ANEXO, v1_1, v1_2, v1_3, v1_3-ANEXO, v1_4, v1_5); rg -c no imprime nada con 0 coincidencias"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/informe-programa-v1_0.md:274-278",
+    "comando": "git show origin/main:canon/informe-programa-v1_0.md | sed -n 274,278p",
+    "salida": "El **sello de D-A** (§D2: la comparación descriptiva de 9 celdas como corrida de registro) no existía al escribirse esto. El informe **no lo espera** (§D5) ... Cuando D-A selle, esta versión queda `VENCIDA EN ALCANCE` en esa tabla y se re-sella contra el universo nuevo — nunca editando ésta."
+   }
+  ],
+  "lote": "OTRO:INFORME-RESELLO-A3-TRIADA",
+  "entorno": "NUBE",
+  "hecho_comando": "f=$(rg -l 'CALC-TRIADA-B-PISO-0001' canon/informe-programa-v1_*.md | rg -v 'v1_0-ANEXO'); rg -c 'RESULT-TBP-UCOMUN-MAE-B-PP' $f && python3 tools/consulta.py result RESULT-TBP-UCOMUN-MAE-B-PP  (el archivo nuevo cita el id y su valor coincide con la consulta)",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0289",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "El defecto (contador sin transición de salida) ya no está en origin/main: corrida0.py:5538 resta los cierres por dictamen (_reduccion_por_dictamen, :1357), con prueba en tests/test_tuberia3.py:69. Con las vistas comprometidas da 158, no 211. El tablero publicado sigue en 211=211 hasta el primer [deriva]; eso lo lleva NC f18c-04, ABIERTA.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "tools/corrida0.py:5538",
+    "comando": "git show origin/main:tools/corrida0.py | rg -n '\"N_resultados_pendientes\"'",
+    "salida": "5538:        \"N_resultados_pendientes\": sum(1 for f in activos if f[\"estado\"] == \"PENDIENTE\") - _cerrados,"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/corrida0.py:1357-1371",
+    "comando": "git show origin/main:tools/corrida0.py | sed -n 1357,1371p",
+    "salida": "def _reduccion_por_dictamen(corridas_ids, pendientes): \"\"\"ACTO GEN2-TUBERIA-3 · P3. UNICA fuente de la reduccion de la demanda por dictamen ... la leen `demanda` y `status` ... Baja por dictamen citado, nunca por borrado.\"\"\" ... cerrados = sum(1 for par in pendientes if dic.get(par, \"\").startswith((\"YA-RELEVADO-GEN2\", \"NO-RELEVAR-\", \"SIN-ESTIMANDO-RECONSTRUIBLE\", \"DIFERIDO-A-FAMILIAS-2027\")))"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tests/test_tuberia3.py:69-89",
+    "comando": "git show origin/main:tests/test_tuberia3.py | sed -n 69,89p",
+    "salida": "def test_p3_status_lee_el_dictamen_y_legacy_no_se_mueve(): ... assert antes[\"N_resultados_pendientes\"] == 3 ... assert despues[\"N_resultados_pendientes\"] == antes[\"N_resultados_pendientes\"] - cerrados"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/resultados.tsv + demanda-dictamen-v1_0.tsv (origin/main)",
+    "comando": "python3 -c \"import csv,subprocess;csv.field_size_limit(10**9);v=lambda p:[l for l in subprocess.run(['git','show','origin/main:'+p],capture_output=True,text=True).stdout.split('\\n') if not l.startswith('#')];R=list(csv.DictReader(v('data/corrida0/resultados.tsv'),delimiter='\\t'));D={(d['corrida_id'],d['resultado_id']):d['dictamen'].split(' ')[0] for d in csv.DictReader(v('data/corrida0/demanda-dictamen-v1_0.tsv'),delimiter='\\t')};P=[(r['corrida_id'],r['resultado_id']) for r in R if r['origen']=='DEMANDA' and r['estado']=='PENDIENTE'];c=sum(D.get(p,'').startswith(('YA-RELEVADO-GEN2','NO-RELEVAR-','SIN-ESTIMANDO-RECONSTRUIBLE','DIFERIDO-A-FAMILIAS-2027')) for p in P);print('pendientes',len(P),'cerrados',c,'N',len(P)-c)\"",
+    "salida": "pendientes 211 cerrados 53 N 158   (activos DEMANDA = 211, todos PENDIENTE; 145 de los 211 pares sin fila de dictamen porque la demanda comprometida va atrasada respecto del dictamen de 341 filas)"
+   },
+   {
+    "tipo": "commit",
+    "ref": "origin/main",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1294'",
+    "salida": "9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu   (nota: forense/notas/nota-2026-09-28-gen2-tuberia-3-cierre.md; ADR canon/L0/ADR-260928-GEN2-TUBERIA-3-f18c-01.md)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/tablero/TABLERO-PROGRAMA.md + forense/no-corrido.tsv#NC-260928-GEN2-TUBERIA-3-f18c-04",
+    "comando": "git show origin/main:forense/tablero/TABLERO-PROGRAMA.md | rg -o 'activos `[0-9]+` · pendientes `[0-9]+`' ; csv.DictReader no-corrido.tsv id=…f18c-04 (estado, impacto)",
+    "salida": "activos `211` · pendientes `211`  |  f18c-04 ABIERTA: «los contadores publicados siguen en 67 / 158 hasta ese [deriva]; tras él, re-leer status contra corrida0 demanda en main (debe dar pendientes 63 en ambos)»; FP-260928-GEN2-TUBERIA-3-f18c-01 ABIERTA"
+   }
+  ],
+  "cerrado_por_detalle": "producto: tools/corrida0.py:5538 (N_resultados_pendientes − cierres por dictamen; _reduccion_por_dictamen :1357), GEN2-TUBERIA-3 #1294 (9d2550b9) · git show origin/main:tools/corrida0.py | rg -n '\"N_resultados_pendientes\"'; la publicación de la vista sigue en NC …f18c-04 (ABIERTA)",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0307",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "C3 es el retador L-solo sobre un cruce ENIF 2024 ya visto (8/8 celdas ADOPTADO-POR-FIRMA; pierde por punto, MAE 10.64 contra 1.47). La regla 6 y la etapa de retadores cerrada excluyen retadores nuevos; una regla «antes de mirar» ya es imposible (64 capturas leídas) y ninguna spec de familias 2027 usa un brazo L (0 de 14 archivos).",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "tools/extrae_l_v1_3.py:104-108",
+    "comando": "git show origin/main:tools/extrae_l_v1_3.py | sed -n 104,108p",
+    "salida": "EXCLUSIÓN POR INCERTIDUMBRE (un párrafo/ventana que las contenga no es un candidato de punto, es banda): \"rango subjetivo\", \"intervalo subjetivo\", \"rango de incertidumbre\", \"intervalo de incertidumbre\", \"banda de incertidumbre\", \"ic subjetivo\", \"ic95\", \"ic 95\", \"intervalo de confianza\", \"confianza del\", \"margen de error\"."
+   },
+   {
+    "tipo": "regla",
+    "ref": "gobierno/PEGAR-EN-PROYECTO-v2_17.md:41",
+    "comando": "git show origin/main:gobierno/PEGAR-EN-PROYECTO-v2_17.md | rg -n 'Regla 6'",
+    "salida": "41:- Regla 6: sin retadores, pilotos ni duelos sobre olas ya vistas. El frente prospectivo son las familias 2027. Un cruce visto sirve para describir, calibrar y evaluar en retrospectiva, rotulado así."
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:10",
+    "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | rg -n 'Etapa de retadores'",
+    "salida": "10:- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/marcador-segmento.tsv",
+    "comando": "csv.DictReader sobre git show origin/main:data/corrida0/marcador-segmento.tsv; tipo=CRUCE y 'ahorr' en celda_id; Counter((estado, prospectividad))",
+    "salida": "22 filas: ('RESERVADA','EMITIDA-SIN-R'): 9 · ('ADOPTADO-POR-FIRMA','PROSPECTIVA'): 8 · ('RESERVADA','SIN-EMISION'): 5"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/hallazgos.md:876",
+    "comando": "git show origin/main:forense/hallazgos.md | sed -n 876p | rg -o '`L-solo` pierde.{0,160}'",
+    "salida": "`L-solo` pierde contra los dos pisos en las ocho (`MAE` `C2` **1.4668 pp** < `C1` 2.6439 < `C3` **10.6394**; skill −3.024 y −6.254)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/CALC-FAMILIA-2027-*/spec.{md,yaml} (14 archivos)",
+    "comando": "for f in $(git ls-tree -r --name-only origin/main data/corrida0 | rg 'CALC-FAMILIA-2027-[^/]*/spec\\.(md|yaml)$'); do git show origin/main:$f | rg -c -i 'L_SOLO|LLM|modelo de lenguaje|candidato L|intervalo de L|elicit'; done",
+    "salida": "0 coincidencias en 14 archivos examinados (A.13): ninguna spec de las familias 2027 declara un brazo L ni una extracción de intervalo; la exclusión del intervalo la fija el extractor congelado (cita 1)"
+   }
+  ],
+  "cerrado_por_detalle": "regla 6: gobierno/PEGAR-EN-PROYECTO-v2_17.md:41 + canon/MEMORIA-OPERATIVA.md:10 · retador C3 (L-solo) sobre cruce ENIF 2024 ya visto (marcador: 8/8 ADOPTADO-POR-FIRMA; hallazgos.md:876); extractor congelado excluye el intervalo (tools/extrae_l_v1_3.py:104-108); 64 capturas ya leídas, no cabe pre-registro; 0 de 14 specs 2027 con brazo L",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0324",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "No se cierra: la regla 6 habla de olas vistas y el dictamen deja MOCIBA 2021 y 2022 NO ABIERTA. R36(a), FIRMADA-DELEGADA, dejó R01 en espera de enlace pre-R; el sucesor GEN2-MOCIBA-F6-ENLACE-PRE-R-1 no existe como encargo (4 archivos, ninguno en forense/encargos). La espera ya vive en NC f30-03/-04 (ABIERTA, APERTURA): el dueño correcto es APERTURA.",
+  "owner_detalle": "MOCIBA 2021 y 2022, R01-F6: en espera de enlace científico pre-R firmado, sin abrir R ni emitir M/L (letra 5, R36 (a); FP: FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01; misma espera que NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-03 y -04)",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv#R36",
+    "comando": "csv.DictReader decisiones-21.tsv, renglon==R36 (git show origin/main:…)",
+    "salida": "R36 · ids_fundidos=FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01#5 · objeto=NC-0324: enlace pre-R o encargo descriptivo · estado=FIRMADA-DELEGADA (GEN2-TRAMITE-FIRMAS-21: decidida por el trámite; nota §P3)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md:28",
+    "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md | sed -n 28p",
+    "salida": "| 5 | NC-0324 | (a) R01 en espera de enlace pre-R | sucesor GEN2-MOCIBA-F6-ENLACE-PRE-R-1 |   (las letras 2, 6, 10, 12, 14, 16, 17, 18 sí dicen CERRADA; la 5 no)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/main (git grep)",
+    "comando": "git grep -l 'MOCIBA-F6-ENLACE-PRE-R' origin/main ; git ls-tree -r --name-only origin/main forense/encargos | rg -c 'ENLACE-PRE-R'",
+    "salida": "4 archivos: pendientes-3/PENDIENTES-PROGRAMA-v4.md, pendientes-3/evidencia/prop-A2.tsv, forense/no-corrido.tsv, forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md · 0 archivos en forense/encargos (el sucesor no tiene encargo archivado)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/produccion/mociba-flujo-documental-1/dictamen.md:8,10,33",
+    "comando": "git show origin/main:forense/produccion/mociba-flujo-documental-1/dictamen.md | rg -n 'Respuesta real|Enlace predictivo|Recomendación a mesa'",
+    "salida": "8:| Respuesta real | **NO ABIERTA** | **NO ABIERTA** |  10:| Enlace predictivo de M | **NO ELEGIBLE** | **NO ELEGIBLE** |  33:Recomendación a mesa: conservar R01 en espera hasta que exista y se firme un enlace científico pre-R específico ..."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv#NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-03 y -04",
+    "comando": "csv.DictReader sobre git show origin/main:forense/no-corrido.tsv; ids …1f30-03 y …1f30-04 (estado, sucesor)",
+    "salida": "ABIERTA · «Microdato y RESULT de MOCIBA 2021 (2022)» · razón «RESERVA-PILOTO-P12: … sin autorizacion de apertura de BD o enlace predictivo» · sucesor «APERTURA (MOCIBA 2021, RESERVA-PILOTO-P12 de R01-F6, letra 5; FP: FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01)»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01 y FP-380",
+    "comando": "csv.DictReader sobre git show origin/main:forense/firmas-pendientes.tsv; ids 3fc6-01 y FP-380 (estado)",
+    "salida": "3fc6-01 FIRMADA (delegación de las 19 letras al trámite, 28/sep) · FP-380 FIRMADA (16/sep D3): «F6 pasa a 'espera acreditacion de R09 y adquisicion dirigida'»"
+   }
+  ],
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0352",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "El encargo verbatim está en main, fuera de forense/encargos: forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/ENCARGO-GEN2-ISSP2017-REDES-APOYO-COTIDIANO-CLI-1-2026-09-19.md, 7067 B, sha256 f2c0cd8f…6d26, y nombra el CALC en la línea 7. El mismo sha figura en el índice de mesa descargas_mx/03-ISSP-REDES-DE-APOYO.md. Se cita por ruta y sha.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/ENCARGO-GEN2-ISSP2017-REDES-APOYO-COTIDIANO-CLI-1-2026-09-19.md",
+    "comando": "F=forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/ENCARGO-GEN2-ISSP2017-REDES-APOYO-COTIDIANO-CLI-1-2026-09-19.md; git show origin/main:$F | sha256sum; git show origin/main:$F | wc -c; git show origin/main:$F | rg -c 'CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001'",
+    "salida": "f2c0cd8f9f09890826944e22800ff961310659afd46d42e16d751ca1696f6d26  - · 7067 · 1"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "ENCARGO-GEN2-ISSP2017-REDES-APOYO-COTIDIANO-CLI-1-2026-09-19.md:7",
+    "comando": "git show origin/main:$F | sed -n 7p | cut -c1-260",
+    "salida": "CAJA local, Josanoforo/Modelado-Mexicano. Rama `codex/gen2-issp2017-redes-apoyo-cotidiano-cli-1`; CALC propuesto `CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001`, comprobando unicidad y equivalentes por contenido antes de congelar. Worktree propio desde origin/main"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/corpus-integridad-1/indice-juego-2026-09-21.tsv:1317",
+    "comando": "git grep -n f2c0cd8f9f09890826944e22800ff961310659afd46d42e16d751ca1696f6d26 origin/main",
+    "salida": "SHA256SUMS-juego-2026-09-21:1316:f2c0cd8f…6d26  descargas_mx/03-ISSP-REDES-DE-APOYO.md · indice-juego-2026-09-21.tsv:1317:descargas_mx\\t03-ISSP-REDES-DE-APOYO.md\\t7067\\tf2c0cd8f…6d26 (+ prop-A5.tsv:58, que solo lo cita)"
+   },
+   {
+    "tipo": "commit",
+    "ref": "bf5fc5e7",
+    "comando": "git log origin/main --diff-filter=A --format='%h %ad %s' --date=short -- $F",
+    "salida": "bf5fc5e7 2026-09-27 Merge pull request #1196 from Josanoforo/codex/astra6-c3-dinero-tecnologia-conocimiento-1  (llegó a main con el CALC; el acto de la fila, #895, es del 19/sep y no podía citarlo)"
+   }
+  ],
+  "cerrado_por_detalle": "producto: forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/ENCARGO-GEN2-ISSP2017-REDES-APOYO-COTIDIANO-CLI-1-2026-09-19.md · sha256 f2c0cd8f9f09890826944e22800ff961310659afd46d42e16d751ca1696f6d26, 7067 B (= descargas_mx/03-ISSP-REDES-DE-APOYO.md en indice-juego-2026-09-21.tsv:1317) · línea 7 nombra el CALC",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0448",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "El árbitro (53 reglas del yaml) ya se re-midió bajo cadena GEN2: la mitad (b) de la firma 3D la ejecutó ARBITRO-MARGINALES-1 (13 reglas, 3 CALC) y -2 clasificó las 40 restantes (24 RE-MEDIDA). Seis CALC-ARBITRO-MARGINALES SELLADA/REPRODUCE. Seis de las siete reglas _ejes_ de las CALC 3D quedan cubiertas; la séptima (horizonte_corto ENIF 2024) sigue en NC-0413, ABIERTA.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-21-GEN2-ARBITRO-MARGINALES-1.md:9,13",
+    "comando": "git show origin/main:forense/encargos/2026-09-21-GEN2-ARBITRO-MARGINALES-1.md | sed -n '9p;13p' | cut -c1-240 ; git show origin/main:milpa/tramite-ola5-propuesta-v0.yaml | rg -c '^  - id: '",
+    "salida": "9: El «árbitro» —la realidad contra la que se califica todo pronóstico— vive hoy en `milpa/tramite-ola5-propuesta-v0.yaml`: 53 reglas medidas en GEN1. ... 13: ...«rec: a + b como demanda»... La mitad (b) —re-medir el árbitro en GEN2, como demanda— es la que este acto ejecuta.  ·  53"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/prereg-caja/ARBITRO-MARGINALES-2-clasificacion-v1_0.tsv",
+    "comando": "csv.DictReader sobre git show origin/main:<ruta>; Counter(destino)",
+    "salida": "41 líneas físicas, 40 filas: RE-MEDIDA 18 + 3 + 2 + 1 = 24 · FUERA-DE-ALCANCE 12 · SIN-PAYLOAD 3 · SUSTITUIDO-POR (GEN2-ENUT-PISOS-Y-SERIE-1, #976) 1"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv",
+    "comando": "csv.DictReader sobre git show origin/main:data/corrida0/corridas.tsv; 'ARBITRO-MARGINALES' in spec_id",
+    "salida": "CALC-ARBITRO-MARGINALES-2-ENCUCI2020-0001 SELLADA SI REPRODUCE 8 · -2-ENNVIH-0001 … 4 · -2-LAPOP-0001 … 5 · -ENCIG2025-0001 … 79 · -ENIF2024-0001 … 222 · -ENVIPE2025-0001 … 116 (todas SELLADA, cuenta_gen2=SI, REPRODUCE)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-caja/ARBITRO-MARGINALES-2-clasificacion-v1_0.tsv (familia.union.libre_ejes_eder2017; familia.cuidado.reparto_mujeres40_ejes_enut2024) + specs ARBITRO-MARGINALES-{ENCIG2025,ENVIPE2025}-spec-v1_0.md:33-34",
+    "comando": "csv.DictReader …; id_regla con 'ejes' · git show origin/main:forense/prereg-caja/ARBITRO-MARGINALES-ENVIPE2025-spec-v1_0.md | rg -n '_ejes_envipe2025'",
+    "salida": "EDER2017 | RE-MEDIDA | Ya GEN2: CALC-EDER-0003 reproduce las 4 celdas de cohorte · ENUT2024 | SUSTITUIDO-POR: GEN2-ENUT-PISOS-Y-SERIE-1 (#976) · ENVIPE spec l.33-34: evasion_norma_ejes_envipe2025 y denuncia.con_seguro_ejes_envipe2025 · ENCIG spec l.33: util_sin_coercion_ejes_encig2025 · ENIF: dos desenlaces (ahorra_solo_informal, informal_cualquiera), lectura mía = via_informal_ejes_enif2024"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/corrida0/CALC-C2-COMPUESTO-IC-ENIF2024-0001/spec.yaml:38-43",
+    "comando": "git show origin/main:data/corrida0/CALC-C2-COMPUESTO-IC-ENIF2024-0001/spec.yaml | sed -n 38,43p",
+    "salida": "- id: IN-ARBITRO-MARGINALES · origen: repo · ruta: milpa/tramite-ola5-propuesta-v0.yaml · sha256: 93dfa3f9…fbc8f · rol: marginales R sellados del arbitro con ic95 y n (regla dinero.ahorro.via_informal_ejes_enif2024)   [el insumo que la fila llama legacy; los siete `_ejes_` ids de RESERVADAS: yaml l.1415, 1600, 1672, 1993, 2041, 2089, 2159]"
+   },
+   {
+    "tipo": "commit",
+    "ref": "canon/L0/ADR-260921-GEN2-ARBITRO-MARGINALES-1-ed7d-01.md; ADR-260921-GEN2-ARBITRO-MARGINALES-2-8a5b-01.md",
+    "comando": "git ls-tree --name-only origin/main canon/L0/ | rg 'ARBITRO-MARGINALES'",
+    "salida": "canon/L0/ADR-260921-GEN2-ARBITRO-MARGINALES-1-ed7d-01.md · canon/L0/ADR-260921-GEN2-ARBITRO-MARGINALES-2-8a5b-01.md (ambos en origin/main)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv#NC-0413 · data/corrida0/marcador-segmento.tsv",
+    "comando": "csv.DictReader no-corrido.tsv id=NC-0413 (estado, que_no_se_corrio); marcador-segmento: celda_id que empieza por 'MARG::dinero.ahorro.horizonte_corto_ejes_enif2024'",
+    "salida": "NC-0413 ABIERTA · «dinero.ahorro.horizonte_corto_ejes_enif2024 declara `unidad = PERSONA` … mientras su universo dice «18+ elegidas»» · sucesor MESA · hoja de irreversibles · marcador: 2 celdas MARG::…horizonte_corto_ejes_enif2024 estado=NO-COMPARABLE (fuente tramite-ola5-propuesta-v0.yaml)"
+   }
+  ],
+  "cerrado_por_detalle": "producto: GEN2-ARBITRO-MARGINALES-1 (encargo :13, mitad (b) de 3D; 13 reglas, 3 CALC) y -2 (forense/prereg-caja/ARBITRO-MARGINALES-2-clasificacion-v1_0.tsv, 24 RE-MEDIDA) · 6 CALC-ARBITRO-MARGINALES-* SELLADA/REPRODUCE en data/corrida0/corridas.tsv · residuo: horizonte_corto ENIF 2024 en NC-0413 (ABIERTA) y 15 reglas fuera de alcance/sin payload con su razón en el TSV (ninguna es insumo de las 4 CALC 3D)",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-05",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "Los 14 ids de F6 (6 data_raw, 4 descargas_mx, 2 ENCO reservadas, 2 PDF MOCIBA) tienen sha verificado contra payload en salida cruda de CAJA: 10 en verifica-2026-09-21.txt, 4 en p3-verifica-{enco,mociba}.txt de PISOS-Y-ADENDAS-1 (#1277). Shas del manifiesto sin cambio 14/14. El FUERA_DE_PERIMETRO de la herramienta es código (NC fa42-03, ABIERTA), otro objeto.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/corpus-integridad-1/verifica-2026-09-21.txt",
+    "comando": "git show origin/main:forense/analisis/corpus-integridad-1/verifica-2026-09-21.txt | rg -F -e 'mociba_2021_mociba2021_fd [' -e 'enpol2016_fd_pdf [' -e 'za6980_q_mx [' -e 'enco_2026_agosto_dbf [' (10 ids)",
+    "salida": "10 de 10 COINCIDE -- sha256 y tamaño verificados contra data/manifiesto.yaml (data_raw ×6: mociba_2021/2022/2023_fd, mociba_2022_bd_csv, enpol2016_bd_csv_zip, enpol2016_fd_pdf; descargas_mx ×4: za6980_q_mx, conjunto_de_datos_encrige_2020_csv, c_enco_b_v4, enco_2026_agosto_dbf)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-28-GEN2-PISOS-Y-ADENDAS-1/p3-verifica-enco.txt",
+    "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-PISOS-Y-ADENDAS-1/p3-verifica-enco.txt | rg 'COINCIDE'",
+    "salida": "enco_2025_junio_dbf_reservado … COINCIDE sha256=fd283a1a…14c88 · enco_2026_junio_dbf_reservado … COINCIDE sha256=f1c10fb4…f5e0 · (+2 ENCO reservadas ajenas) · resumen: COINCIDE=4 · archivos_examinados=4 (raíz reservas-respondentes, caja, 28/sep)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-28-GEN2-PISOS-Y-ADENDAS-1/p3-verifica-mociba.txt",
+    "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-PISOS-Y-ADENDAS-1/p3-verifica-mociba.txt | rg 'COINCIDE'",
+    "salida": "mociba_2021_cuestionario_pdf [data_raw]: COINCIDE -- sha256 y tamaño (847961 bytes) · mociba_2022_cuestionario_pdf [data_raw]: COINCIDE -- sha256 y tamaño (1044877 bytes) · (control con el manifiesto anterior: AUSENTE 2/2)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml (por id)",
+    "comando": "yaml.load de git show bf5fc5e7:data/manifiesto.yaml y de origin/main:data/manifiesto.yaml; sha256 de los 14 ids",
+    "salida": "IGUAL 14 de 14 (7035 entradas en bf5fc5e7; 7198 en origin/main)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/notas/2026-09-22-GEN2-ADQ-F6-DIRIGIDA-1-nota.md:61 y :47",
+    "comando": "git show origin/main:forense/notas/2026-09-22-GEN2-ADQ-F6-DIRIGIDA-1-nota.md | sed -n '47p;61p' | cut -c1-300",
+    "salida": "47: Los 14 ids se comprobaron por comando al escribir el archivo, sin ningún ausente. · 61: A.1 en tres estados ... AUSENTE (data_raw) ×6 ... RAÍZ NO CONFIGURADA (descargas_mx) ×4 ... FUERA_DE_PERIMETRO (reserva_respondentes) ×2 ... 0 archivos examinados, de modo que no es un negativo (A.13)."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv#NC-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-03",
+    "comando": "csv.DictReader sobre git show origin/main:forense/no-corrido.tsv; id …fa42-03 (estado, que_no_se_corrio)",
+    "salida": "ABIERTA · «añadir reserva_respondentes a RAICES_ESCANEABLES (tests/manifiesto.py:358) y a raices.local.yaml» (cambio de código de la herramienta; la verificación por comando de los 4 enco_* ya está hecha)"
+   }
+  ],
+  "cerrado_por_detalle": "producto: 14/14 COINCIDE en salida cruda de caja · forense/analisis/corpus-integridad-1/verifica-2026-09-21.txt (10 ids) + forense/notas/2026-09-28-GEN2-PISOS-Y-ADENDAS-1/p3-verifica-enco.txt (2 ENCO reservadas) y p3-verifica-mociba.txt (2 PDF MOCIBA) · sha del manifiesto sin cambio 14/14; residuo de la herramienta en NC …fa42-03 (ABIERTA)",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "FP 3a1f-01 FIRMADA (R17, opción 2) recibe los tres reports y sus reglas como propuesta, sin adopción, condicionada a una pasada editorial C3; esa condición está en main (c6e273ea: firewall genético y [v2.16] en los tres). Recibo técnico en pr-1240.md; nueve reglas PROPUESTA (3+3+3). No hay revisión científica ni adopción, y la firma no las pide.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "FP-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01",
+    "comando": "csv.DictReader sobre git show origin/main:forense/firmas-pendientes.tsv; id (estado, firmada_en, ejecutada_en)",
+    "salida": "FIRMADA · «Las R46, R47, R49 y R51 ponlas para mañana, todo lo demás queda afirmado.» (28/sep, mesa) · ejecutada_en ADR-260928-GEN2-TRAMITE-FIRMAS-21-8560-01"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv#R17",
+    "comando": "csv.DictReader decisiones-21.tsv, renglon==R17 (estado, texto_de_firma)",
+    "salida": "FIRMADA (GEN2-TRAMITE-FIRMAS-21, ADENDA-1 28/sep) · «Recibo los tres reports v2 (autoridad, civismo, comunalidad) y sus reglas SI-ENTONCES como propuesta para revisión independiente, sin adopción en motor ni catálogo, condicionado a que una pasada editorial C3 añada firewall genético a Autoridad y México Rural y las preguntas [v2.16] del módulo de auditoría a los tres.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "corpus/reports-v2/ (3 reports; 32 archivos en el directorio)",
+    "comando": "git merge-base --is-ancestor c6e273ea origin/main && echo ANCESTRO; para cada report: git -c core.quotepath=false show origin/main:<ruta> | rg -n 'firewall gen|\\[v2\\.16\\]'",
+    "salida": "ANCESTRO · Autoridad: firewall genético l.105,113 y [v2.16] l.105 · México Rural: l.102,110 y l.102 · Psicología política y civismo: l.87,95 y l.87 (bloque «Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)»)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-3/pr-1240.md",
+    "comando": "git show origin/main:forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-3/pr-1240.md | sed -n 1,3p | cut -c1-260",
+    "salida": "Recibo POST-MERGE: el PR #1240 se fusionó en a8c3e341 ... Acto GEN2-RECIBO-ASTRA6-3 · carril C3 (reports v2) · NUBE, cero microdato ... (44 líneas; muestra random.seed(20260928) de 10 filas sobre 179)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/reports-v2/reglas-propuestas-v1_0.tsv",
+    "comando": "csv.DictReader sobre git show origin/main:<ruta>; filas con pr=='#1240'; Counter(report, estado)",
+    "salida": "107 filas en total, todas PROPUESTA · las de #1240: Autoridad 3 (RP-C3-047..049) · Psicología política 3 (050..052) · México rural 3 (053..055) = 9, estado PROPUESTA (corrige la cifra 7/3/3 de la primera pasada, que no reproducía)"
+   }
+  ],
+  "cerrado_por_detalle": "firma: FP-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01 FIRMADA (R17 opción (2), forense/analisis/hoja-firmas-21/decisiones-21.tsv); condición cumplida por c6e273ea (GEN2-ASTRA-CONTINUIDAD-C3-1): firewall genético y [v2.16] en los tres reports (rg -n) · recibo técnico forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-3/pr-1240.md · 9 reglas PROPUESTA",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260927-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-4b11-03",
+  "verdict": "HOJA-RECETA",
+  "rationale": "No es duplicada de 795b-09 (otro estimando). El microdato de ENCRIGE 2020 y ENVE 2024 no está en el corpus: los dos paquetes son tabulados (392 y 413 miembros) y el RNM solo ofrece Laboratorio de Microdatos, acción con identidad de mesa. Sin él, el dictamen A.4 solo está confirmado por DDI y por tabulados. Se deja la receta.",
+  "owner_detalle": "MESA · solicitud al Laboratorio de Microdatos INEGI (hoja de recetas): microdato ENCRIGE 2020 y, opcional, ENVE 2024; misma solicitud que NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-09",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-caja/ALT-R03-TABULADOS-spec-v1_0.md:12-16",
+    "comando": "git show origin/main:forense/prereg-caja/ALT-R03-TABULADOS-spec-v1_0.md | sed -n 12,16p",
+    "salida": "## Qué hay en el corpus: tabulados, no microdato · `conjunto_de_datos_encrige_2020_csv` y `conjunto_de_datos_enve_2024_csv` son los **tabulados** de datos abiertos (índice `0_indice_tablas_*.csv`, 392 y 413 miembros). El microdato de ENCRIGE es de Laboratorio ..."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/mapa-instrumentos-alternos/acceso-rnm.tsv (catálogo 691)",
+    "comando": "csv.DictReader sobre git show origin/main:<ruta>; catalogo_rnm==691",
+    "salida": "ENCRIGE 2020 · get_microdata · frase_de_acceso_verbatim='Data Access Not Available' · lectura: sin distribución de microdato en RNM → SOLICITUD a INEGI (Laboratorio de Microdatos) a confirmar"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/obtencion-externa-1/obtencion.tsv (ENVE 2024, RNM 1058)",
+    "comando": "csv.DictReader sobre git show origin/main:<ruta>; id_manifiesto==oe1_enve_2024_rnm_1058_catalogo_html (nota)",
+    "salida": "«Condición de acceso: Los microdatos de proyectos estadísticos en establecimientos no están abiertos al público en general ... el INEGI ofrece acceso indirecto ...» (sha256 dfd7ae8e…fc9a; corrige la lectura «vía abierta PROBABLE» de acceso-rnm.tsv l. 1058)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv (952 filas)",
+    "comando": "csv.DictReader (saltando '#'); fuente_canonica in {ENCRIGE, ENVE, ENVE_MICRODATO_COMPLETO_2012_2024}",
+    "salida": "ENCRIGE OBTENIDO (conjunto_de_datos_encrige_2020_csv; «Microdato (392 archivos…)» = el paquete de datos abiertos, ver spec:14-16) · ENVE OBTENIDO (conjunto_de_datos_enve_2024_csv, 413 archivos) · ENVE_MICRODATO_COMPLETO_2012_2024 NO-ACCESIBLE (OBTENCION-EXTERNA-1)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/mapa-instrumentos-alternos/propuesta-R03.md:34,37",
+    "comando": "git show origin/main:forense/analisis/mapa-instrumentos-alternos/propuesta-R03.md | sed -n '34p;37p' | cut -c1-260",
+    "salida": "(est. 3) horas por trámite y gasto de cumplimiento, por tamaño y por experiencia de corrupción. Esta es la única pieza que exige microdato. · **Qué falta:** est. 3 y cualquier cruce requieren el microdato ENCRIGE 2020, que implica SOLICITUD a INEGI."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv#NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-09; git log",
+    "comando": "csv.DictReader id …795b-09 (que_no_se_corrio); git log origin/main --first-parent --oneline | rg '#1299'",
+    "salida": "795b-09 ABIERTA: «el cruce tamaño × sector» del pago informal, DIFERIDO-A GEN2-OBTENCION-EXTERNA-2 · 3baf7396 Merge pull request #1299 from Josanoforo/acto/gen2-calc-alternos-lote-1 (fusionado: el «EN-CURSO» de la fila está caducado, A.17)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/obtencion-externa-1/solicitudes/g-inegi-lm-enaproce.md:22",
+    "comando": "git show origin/main:forense/analisis/obtencion-externa-1/solicitudes/g-inegi-lm-enaproce.md | sed -n 22p | cut -c1-300",
+    "salida": "La solicitud **opcional** de microdato ENCRIGE 2020 al Laboratorio (`TR_ENCRIGE2020`, `TR_ENCRIGE2020_TRAMITES`) que MAPA menciona es otra solicitud, de otro objeto; «la decide mesa aparte». No se redacta aquí."
+   }
+  ],
+  "hoja": {
+   "accion_clave": "SOLICITUD-LM-INEGI-ENCRIGE2020-MICRODATO",
+   "receta_un_minuto": "1) Mesa decide si el est. 3 de propuesta-R03.md (horas por trámite y gasto por tamaño y corrupción) y el cruce tamaño×sector de NC 795b-09 justifican el trámite; enviar o no es reversible y no bloquea nada. 2) Si sí: usar el formato del LM (id manifiesto inegi_laboratorio_microdatos_solicitud_uso, sha256 5a5d041d…15c19) con la estructura de forense/analisis/obtencion-previa-1/P4-I1-solicitud-LM.md, proyecto ENCRIGE 2020: tablas TR_ENCRIGE2020 y TR_ENCRIGE2020_TRAMITES; variables P9_2, P9_3_*, P8_714_H, P5_5, P5_7/P5_8, P1_4CAL, GRAN_SECTOR, FAC_EXP; procesamiento remoto. 3) Segunda línea opcional en la misma solicitud: ENVE 2024 (RNM 1058, acceso indirecto por LM o tabulado a la medida). 4) Mesa entrega el acuse por adenda (mismo patrón que GEN2-OBTENCION-EXTERNA-2).",
+   "destino": "Laboratorio de Microdatos del INEGI (formulario Solicitud_Uso, sección Microdatos del sitio del INEGI)"
+  },
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "confianza": "media"
+ }
+]

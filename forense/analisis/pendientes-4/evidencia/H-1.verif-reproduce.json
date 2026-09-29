@@ -1,0 +1,9 @@
+[
+  {
+    "id": "NC-260926-GEN2-CIERRE-SEMANAL-1-dea2-04",
+    "veredicto": "REFUTA",
+    "razon": "Las 4 citas reproducen (PR #1168 fusionado; run 36274452268 sobre ca423ae8 todo success; verify.yml:102). Pero la receta de la fila exige verify.yml sobre ea675d5cf (merge en main, CI del push): el run 36276468239 terminó cancelled; job check failure. Sustitución de commit no declarada; condición «si success» no se cumple.",
+    "comando": "gh run list --workflow verify.yml --commit ea675d5cf --json conclusion (equiv. mcp actions_list list_workflow_runs verify.yml branch=main event=push, filtro head_sha ea675d5cf; luego list_workflow_jobs 36276468239)",
+    "salida": "run 36276468239 push head_sha ea675d5cf2e5… (Merge pull request #1168) conclusion=cancelled; suite: paso 5 --baseline success, paso 6 cancelled, job cancelled; guardias cancelled; check failure. Run del PR 36274452268 (ca423ae8): 7/7 success (reproduce)."
+  }
+]

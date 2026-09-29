@@ -1,0 +1,464 @@
+[
+ {
+  "id": "NC-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01",
+  "verdict": "ABSORBER",
+  "rationale": "PISOS-DOMINIOS-Y-REGLAS-1 (#1302, fusionado) midió 3 de las 7 (RG-67c84a2224 MATIZA, RG-b91375cbd5 y RG-3920de961d CONFIRMA) y dictaminó RG-b723d6e18b NO-CONSTRUIBLE. Quedan RG-34a21bc6a2 (ENIF tanda) y RG-145b91d071 (CNDH autodefensas) sin tocar; RG-7c6dd83a03 quedó INCOMPARABLE y ya tiene NC 7cd0-06 hacia PISOS-DOMINIOS-Y-REGLAS-2.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "origin/main",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1294|#1299|#1302|#1304'",
+    "salida": "9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu\n42de7565 Merge pull request #1302 from Josanoforo/acto/gen2-pisos-dominios-y-reglas-1\n20ff4c05 Merge pull request #1304 ...\n3baf7396 Merge pull request #1299 ..."
+   },
+   {
+    "tipo": "comando",
+    "ref": "canon/reglas-contrastadas-v1_1.tsv",
+    "comando": "python3 (csv.DictReader sobre git show origin/main:canon/reglas-contrastadas-v1_1.tsv; filtro regla_id en las 7)",
+    "salida": "RG-34a21bc6a2 | SIN-CIFRA-GEN2 | Catálogo sin RESULT de tandas...\nRG-b91375cbd5 | CONFIRMA | CALC-PDR1-ENVIPE2025-0001\nRG-3920de961d | CONFIRMA | CALC-PDR1-ENUT2024-0001\nRG-7c6dd83a03 | SIN-CIFRA-GEN2 | PDR1 INCOMPARABLE\nRG-b723d6e18b | SIN-CIFRA-GEN2 | PDR1 NO-CONSTRUIBLE: Payload ... ausente\nRG-67c84a2224 | MATIZA | CALC-PDR1-ENCUCI2020-0002\nRG-145b91d071 | SIN-CIFRA-GEN2 | Sin RESULT de auto..."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/reglas-y-result-1/por-dominio/G1..G4",
+    "comando": "python3 (csv: dictamen SIN-CIFRA y sin NO-CONSTRUIBLE en detalle/instrumento; 4 archivos examinados)",
+    "salida": "RG-34a21bc6a2 ENIF (tanda) · RG-b91375cbd5 ENVIPE vecinos×estrato · RG-3920de961d LAPOP CP8×localidad · RG-7c6dd83a03 INE cómputos 2018/2024 · RG-b723d6e18b INE judicial 2025 · RG-145b91d071 CNDH autodefensas (+ RG-67c84a2224 ENCUCI) = las 7"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-06",
+    "comando": "python3 (csv sobre git show origin/main:forense/no-corrido.tsv, id=...7cd0-06)",
+    "salida": "pieza : P3 · RG-7c6dd83a03 | que_no_se_corrio : Dictamen de participación presidencial 2018/2024 | estado ABIERTA | sucesor : MESA (2026-10-05) · encargo por escribir: GEN2-PISOS-DOMINIOS-Y-REGLAS-2"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-28-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-cierre.md:4",
+    "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-cierre.md | sed -n '4p'",
+    "salida": "Contadores: `reglas_con_cifra` +4 (SIN-CIFRA-GEN2 145 → 141 en `canon/reglas-contrastadas-v1_1.tsv`)"
+   }
+  ],
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "CAJA",
+  "que_falta": "Dictamen (CALC sellado o NO-CONSTRUIBLE con universo) para RG-34a21bc6a2 (ENIF, tandas; ENIF 2024 reservada, olas previas) y RG-145b91d071 (registro CNDH de autodefensas × ENVIPE; manifiesto: 8 líneas con 'autodefensa'); RG-7c6dd83a03 va por NC 7cd0-06.",
+  "hecho_comando": "python3 -c \"import csv;R={r['regla_id']:r for r in csv.DictReader((l for l in open(sorted(__import__('glob').glob('canon/reglas-contrastadas-v1_*.tsv'))[-1]) if not l.startswith('#')),delimiter='\\t')};print([(i,R[i]['dictamen'],R[i]['detalle_dictamen'][:25]) for i in ('RG-34a21bc6a2','RG-145b91d071')])\"  # ninguna SIN-CIFRA-GEN2 sin 'NO-CONSTRUIBLE' en detalle",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0289",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "GEN2-TUBERIA-3 P3 (#1294, fusionado) redefinió el contador: status resta de N_resultados_pendientes los cierres por dictamen (_reduccion_por_dictamen, única fuente compartida con demanda). El síntoma pendientes=activos (211=211 en el tablero de main) pasa a 63 de 236 en la derivación del [deriva] #1309; lo visible solo espera ese merge.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "origin/main",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1294|#1299|#1302|#1304'",
+    "salida": "9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu\n42de7565 Merge pull request #1302 from Josanoforo/acto/gen2-pisos-dominios-y-reglas-1\n20ff4c05 Merge pull request #1304 ...\n3baf7396 Merge pull request #1299 ..."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/corrida0.py:5440-5450",
+    "comando": "git show origin/main:tools/corrida0.py | sed -n '5440,5450p'",
+    "salida": "# ACTO GEN2-TUBERIA-3 · P3: misma reduccion por dictamen que `demanda`.\n_no_req, _cerrados = _reduccion_por_dictamen(...)\n\"N_resultados_pendientes\": sum(1 for f in activos if f[\"estado\"] == \"PENDIENTE\") - _cerrados,"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/corrida0.py:1357-1368",
+    "comando": "git show origin/main:tools/corrida0.py | sed -n '1357,1368p'",
+    "salida": "def _reduccion_por_dictamen(...): \"\"\"ACTO GEN2-TUBERIA-3 · P3. UNICA fuente de la reduccion de la demanda por dictamen (DEMANDA-DICTAMEN-1): la leen `demanda` y `status` ... Baja por dictamen citado, nunca por borrado.\"\"\" ... cerrados = sum(... startswith((\"YA-RELEVADO-GEN2\", \"NO-RELEVAR-\", \"SIN-ESTIMANDO-RECONSTRUIBLE\", \"DIFERIDO-A-FAMILIAS-2027\")))"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/tablero/TABLERO-PROGRAMA.md (main vs #1309)",
+    "comando": "git diff origin/main...origin/derivados/auto-36495085433 -- forense/tablero/TABLERO-PROGRAMA.md | sed -n '32,36p' | rg -o '.{60}pendientes `[0-9]+`.{0,30}'",
+    "salida": "ridas `87` · resultados sellados `229292` / activos `211` · pendientes `211` · dependencias numéricas lega\neridas `0` · resultados sellados `237085` / activos `236` · pendientes `63` · dependencias numéricas lega"
+   }
+  ],
+  "cerrado_por_detalle": "producto: tools/corrida0.py:5450 (N_resultados_pendientes − cierres por dictamen; _reduccion_por_dictamen :1357), GEN2-TUBERIA-3 #1294 · git show origin/main:tools/corrida0.py | sed -n '5440,5450p'",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260922-GEN2-DIN-CREDITO-PISOS-1870-RUN-1-009f-02",
+  "verdict": "CANAL",
+  "rationale": "El mecanismo que faltaba existe en main: el job derivados registra sobre main por trozos y lote_desde_asientos.lote_pendiente recupera todo asiento sellado ausente de la vista (auditoría publicada-vs-asientos). Sigue el desfase: 113 CALC sellados sin fila hoy. Se cierra cuando el canal drene (#1309 lleva 40). El desfase de campos de filas ya publicadas va por 18fa-02.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "origin/main",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1294|#1299|#1302|#1304'",
+    "salida": "9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu\n42de7565 Merge pull request #1302 from Josanoforo/acto/gen2-pisos-dominios-y-reglas-1\n20ff4c05 Merge pull request #1304 ...\n3baf7396 Merge pull request #1299 ..."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/lote_desde_asientos.py:140-157",
+    "comando": "sed -n '140,157p' tools/lote_desde_asientos.py",
+    "salida": "def lote_pendiente(...): \"\"\"Asientos sellados todavía ausentes de la vista publicada. Recupera un push cuyo job de publicación falló ...\"\"\" publicadas = {fila[\"spec_id\"] ...corridas.tsv}; candidatos = ... if fila[\"calc_id\"] not in publicadas"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/lote_desde_asientos.py --incluir-pendientes",
+    "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes --csv | tr ',' '\\n' | rg -c '^CALC-'",
+    "salida": "113"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:475-478",
+    "comando": "git show origin/main:.github/workflows/verify.yml | sed -n '475,478p'",
+    "salida": "# P2: el lote se publica por TROZOS (`lote_desde_asientos.py --trozo`, `registro --pospone`): cada trozo es un commit `[deriva]` en la rama del PR; lo que no cupo sigue pendiente (ausente de corridas.tsv) y el run siguiente lo retoma. Ningún CALC se salta ni se excluye (E.7)."
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/derivados/auto-36495085433 (PR [deriva] #1309)",
+    "comando": "git merge-base --is-ancestor origin/derivados/auto-36495085433 origin/main || echo NO-FUSIONADA-EN-MAIN; git log -2 --format='%h %s' origin/derivados/auto-36495085433",
+    "salida": "NO-FUSIONADA-EN-MAIN\n0482c810 [deriva] trozo 2 tras 9d2550b92: 20 CALC, quedan 73\nde9c04c8 [deriva] trozo 1 tras 9d2550b92: 20 CALC, quedan 93"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-TUBERIA-3-f18c-01",
+    "comando": "python3 tools/consulta.py fp FP-260928-GEN2-TUBERIA-3-f18c-01",
+    "salida": "FP-260928-GEN2-TUBERIA-3-f18c-01 · estado=ABIERTA · creado=2026-09-28 · qué_se_firma=P4 · el [deriva] no se fusiona solo: (a) automerge-rutinas.yml gana schedule (cada 15 min) que fusiona PR derivados/auto-* ..."
+   }
+  ],
+  "owner_detalle": "job derivados (verify.yml:475-478, lote_desde_asientos --incluir-pendientes) · PR [deriva] #1309 y siguientes; 113 CALC pendientes hoy · fusión de mesa mientras FP-260928-GEN2-TUBERIA-3-f18c-01 siga ABIERTA",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes --csv | tr ',' '\\n' | grep -c '^CALC-'  # = 0",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260922-GEN2-TRAMITE-PENDIENTES-1-18fa-02",
+  "verdict": "ABSORBER",
+  "rationale": "No es canal: las 4 corridas ya están publicadas y _congelada congela byte a byte toda fila OFERTA fuera del lote; lote_pendiente solo toma spec_id ausentes. En #1309 siguen PENDIENTE-DE-MESA (0 filas OFERTA publicadas cambian cuenta_gen2). Hay 16 filas de la vista que discrepan de decisiones.tsv. Falta un arreglo de tubería que refresque filas publicadas.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "origin/main",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1294|#1299|#1302|#1304'",
+    "salida": "9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu\n42de7565 Merge pull request #1302 from Josanoforo/acto/gen2-pisos-dominios-y-reglas-1\n20ff4c05 Merge pull request #1304 ...\n3baf7396 Merge pull request #1299 ..."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv (origin/main)",
+    "comando": "python3 tools/consulta.py corrida CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002--18e3c08247d5",
+    "salida": "CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002--18e3c08247d5 · spec_id=... · estado=SELLADA · generacion=GEN2 · cuenta_gen2=PENDIENTE-DE-MESA · sello=COINCIDE · n_resultados=2 · resultado_replay=NO-VERIFICADO · contexto_replay=NO-VERIFICADO"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/corrida0/decisiones.tsv:246",
+    "comando": "git show origin/main:data/corrida0/decisiones.tsv | rg -n '^CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002'",
+    "salida": "246:CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002\tcuenta_gen2=SI · no adopta; microdato con cadena; el PENDIENTE era de\n402:CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002\tcuenta_gen2=SI · bajo firma M (24/sep/2026)..."
+   },
+   {
+    "tipo": "comando",
+    "ref": "corridas.tsv main vs #1309",
+    "comando": "python3 (csv) : filas OFERTA presentes en origin/main y en origin/derivados/auto-36495085433 con cuenta_gen2 distinto; y discordancias vista vs decisiones.tsv (cuenta_gen2=)",
+    "salida": "OFERTA publicadas con cuenta_gen2 cambiada en #1309: 0\nOFERTA en main: 270 OFERTA en #1309: 317\ndecisiones cuenta_gen2: 147 · vista discorda de decisiones.tsv: 16 (incluye EDER2017-0002, ENFIH2019-0001/0002, WBES2023-PRECISION-INTERACCIONES-0001)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/corrida0.py:5055-5064",
+    "comando": "git show origin/main:tools/corrida0.py | sed -n '5055,5064p'",
+    "salida": "def _congelada(fila: dict, lote: set) -> bool:\n    \"\"\"`_acota_vistas_al_lote` congela una fila publicada salvo que la autorice el lote o sea de origen DEMANDA...\"\"\"\n    return not (_en_lote(fila, lote) or fila.get(\"origen\") == \"DEMANDA\")"
+   }
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "que_falta": "Que el registro del canal refresque cuenta_gen2 (y replay) de filas OFERTA ya publicadas cuando decisiones.tsv o replay-evidencia.tsv cambian después de publicarlas (hoy 16 discrepan), con test sintético.",
+  "hecho_comando": "for c in CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002--18e3c08247d5 CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0001--f22dc8014aec CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002--cd853c64a584 CALC-WBES2023-PRECISION-INTERACCIONES-0001--7f2a0899f700; do python3 tools/consulta.py corrida $c; done | grep -c 'cuenta_gen2=SI'  # = 4",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-01",
+  "verdict": "CANAL",
+  "rationale": "GEN2-SALUD-Y-BIENESTAR-PISOS-1: los 3 CALC tienen sello.json y asiento REPRODUCE en replay-evidencia.tsv, pero ninguno está en corridas.tsv de origin/main. Están en el lote pendiente del canal (posiciones 46,47,48 de 113); #1309 lleva trozos 1-2 (40 CALC). Solo falta que el job derivados publique y mesa fusione el [deriva].",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "origin/main",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1294|#1299|#1302|#1304'",
+    "salida": "9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu\n42de7565 Merge pull request #1302 from Josanoforo/acto/gen2-pisos-dominios-y-reglas-1\n20ff4c05 Merge pull request #1304 ...\n3baf7396 Merge pull request #1299 ..."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv (origin/main)",
+    "comando": "for c in CALC-ENBIARE-PISOS-BIENESTAR-0001--a102ade378c8 CALC-ENCODAT-PISOS-SUSTANCIAS-0001--bad96530c179 CALC-ENSANUT-PISOS-SALUD-0001--0e75a28ea069; do python3 tools/consulta.py corrida $c; done",
+    "salida": "CALC-ENBIARE-PISOS-BIENESTAR-0001--a102ade378c8 -> NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357\nCALC-ENCODAT-PISOS-SUSTANCIAS-0001--bad96530c179 -> NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357\n(… 3 de 3 NO-ENCONTRADO)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/lote_desde_asientos.py --incluir-pendientes",
+    "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes --csv | tr ',' '\\n' > pend.txt; rg -nx <CALC> pend.txt; test -f data/corrida0/<CALC>/sello.json",
+    "salida": "113 CALC pendientes; CALC-ENBIARE-PISOS-BIENESTAR-0001 pos=46 sello, CALC-ENCODAT-PISOS-SUSTANCIAS-0001 pos=47 sello, CALC-ENSANUT-PISOS-SALUD-0001 pos=48 sello"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/derivados/auto-36495085433 (PR [deriva] #1309)",
+    "comando": "git merge-base --is-ancestor origin/derivados/auto-36495085433 origin/main || echo NO-FUSIONADA-EN-MAIN; git log -2 --format='%h %s' origin/derivados/auto-36495085433",
+    "salida": "NO-FUSIONADA-EN-MAIN\n0482c810 [deriva] trozo 2 tras 9d2550b92: 20 CALC, quedan 73\nde9c04c8 [deriva] trozo 1 tras 9d2550b92: 20 CALC, quedan 93"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:475-478",
+    "comando": "git show origin/main:.github/workflows/verify.yml | sed -n '475,478p'",
+    "salida": "# P2: el lote se publica por TROZOS (`lote_desde_asientos.py --trozo`, `registro --pospone`): cada trozo es un commit `[deriva]` en la rama del PR; lo que no cupo sigue pendiente (ausente de corridas.tsv) y el run siguiente lo retoma. Ningún CALC se salta ni se excluye (E.7)."
+   }
+  ],
+  "owner_detalle": "job derivados (verify.yml) · PR [deriva] #1309 y los siguientes trozos (lote pendiente posiciones 46,47,48/113) · fusión de mesa mientras FP-260928-GEN2-TUBERIA-3-f18c-01 siga ABIERTA",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "for c in CALC-ENBIARE-PISOS-BIENESTAR-0001--a102ade378c8 CALC-ENCODAT-PISOS-SUSTANCIAS-0001--bad96530c179 CALC-ENSANUT-PISOS-SALUD-0001--0e75a28ea069; do python3 tools/consulta.py corrida $c; done | grep -c 'estado=SELLADA'  # = 3",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01",
+  "verdict": "CANAL",
+  "rationale": "GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1: los 4 CALC tienen sello.json y asiento REPRODUCE en replay-evidencia.tsv, pero ninguno está en corridas.tsv de origin/main. Están en el lote pendiente del canal (posiciones 69,70,71,72 de 113); #1309 lleva trozos 1-2 (40 CALC). Solo falta que el job derivados publique y mesa fusione el [deriva].",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "origin/main",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1294|#1299|#1302|#1304'",
+    "salida": "9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu\n42de7565 Merge pull request #1302 from Josanoforo/acto/gen2-pisos-dominios-y-reglas-1\n20ff4c05 Merge pull request #1304 ...\n3baf7396 Merge pull request #1299 ..."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv (origin/main)",
+    "comando": "for c in CALC-WVS-PISOS-2018-0001--0d3b52bf2246 CALC-LATINOBAROMETRO-PISOS-2023-0001--21aa4be9c7e8 CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001--57e6cc714ee9 CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001--b1adf5756d72; do python3 tools/consulta.py corrida $c; done",
+    "salida": "CALC-WVS-PISOS-2018-0001--0d3b52bf2246 -> NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357\nCALC-LATINOBAROMETRO-PISOS-2023-0001--21aa4be9c7e8 -> NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357\n(… 4 de 4 NO-ENCONTRADO)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/lote_desde_asientos.py --incluir-pendientes",
+    "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes --csv | tr ',' '\\n' > pend.txt; rg -nx <CALC> pend.txt; test -f data/corrida0/<CALC>/sello.json",
+    "salida": "113 CALC pendientes; CALC-WVS-PISOS-2018-0001 pos=69 sello, CALC-LATINOBAROMETRO-PISOS-2023-0001 pos=70 sello, CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001 pos=71 sello, CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001 pos=72 sello"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/derivados/auto-36495085433 (PR [deriva] #1309)",
+    "comando": "git merge-base --is-ancestor origin/derivados/auto-36495085433 origin/main || echo NO-FUSIONADA-EN-MAIN; git log -2 --format='%h %s' origin/derivados/auto-36495085433",
+    "salida": "NO-FUSIONADA-EN-MAIN\n0482c810 [deriva] trozo 2 tras 9d2550b92: 20 CALC, quedan 73\nde9c04c8 [deriva] trozo 1 tras 9d2550b92: 20 CALC, quedan 93"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:475-478",
+    "comando": "git show origin/main:.github/workflows/verify.yml | sed -n '475,478p'",
+    "salida": "# P2: el lote se publica por TROZOS (`lote_desde_asientos.py --trozo`, `registro --pospone`): cada trozo es un commit `[deriva]` en la rama del PR; lo que no cupo sigue pendiente (ausente de corridas.tsv) y el run siguiente lo retoma. Ningún CALC se salta ni se excluye (E.7)."
+   }
+  ],
+  "owner_detalle": "job derivados (verify.yml) · PR [deriva] #1309 y los siguientes trozos (lote pendiente posiciones 69,70,71,72/113) · fusión de mesa mientras FP-260928-GEN2-TUBERIA-3-f18c-01 siga ABIERTA",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "for c in CALC-WVS-PISOS-2018-0001--0d3b52bf2246 CALC-LATINOBAROMETRO-PISOS-2023-0001--21aa4be9c7e8 CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001--57e6cc714ee9 CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001--b1adf5756d72; do python3 tools/consulta.py corrida $c; done | grep -c 'estado=SELLADA'  # = 4",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01",
+  "verdict": "CANAL",
+  "rationale": "GEN2-CONSUMO-Y-GASTO-PISOS-1: los 3 CALC tienen sello.json y asiento REPRODUCE en replay-evidencia.tsv, pero ninguno está en corridas.tsv de origin/main. Están en el lote pendiente del canal (posiciones 66,67,68 de 113); #1309 lleva trozos 1-2 (40 CALC). Solo falta que el job derivados publique y mesa fusione el [deriva].",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "origin/main",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1294|#1299|#1302|#1304'",
+    "salida": "9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu\n42de7565 Merge pull request #1302 from Josanoforo/acto/gen2-pisos-dominios-y-reglas-1\n20ff4c05 Merge pull request #1304 ...\n3baf7396 Merge pull request #1299 ..."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv (origin/main)",
+    "comando": "for c in CALC-ENGASTO-CONSUMO-PISOS-0001--5b2dc18cf03b CALC-ENIGH-CONSUMO-PISOS-0001--5b2dc18cf03b CALC-ENIGH-CONSUMO-PISOS-0002--ca79ba3cdcc5; do python3 tools/consulta.py corrida $c; done",
+    "salida": "CALC-ENGASTO-CONSUMO-PISOS-0001--5b2dc18cf03b -> NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357\nCALC-ENIGH-CONSUMO-PISOS-0001--5b2dc18cf03b -> NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357\n(… 3 de 3 NO-ENCONTRADO)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/lote_desde_asientos.py --incluir-pendientes",
+    "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes --csv | tr ',' '\\n' > pend.txt; rg -nx <CALC> pend.txt; test -f data/corrida0/<CALC>/sello.json",
+    "salida": "113 CALC pendientes; CALC-ENGASTO-CONSUMO-PISOS-0001 pos=66 sello, CALC-ENIGH-CONSUMO-PISOS-0001 pos=67 sello, CALC-ENIGH-CONSUMO-PISOS-0002 pos=68 sello"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/derivados/auto-36495085433 (PR [deriva] #1309)",
+    "comando": "git merge-base --is-ancestor origin/derivados/auto-36495085433 origin/main || echo NO-FUSIONADA-EN-MAIN; git log -2 --format='%h %s' origin/derivados/auto-36495085433",
+    "salida": "NO-FUSIONADA-EN-MAIN\n0482c810 [deriva] trozo 2 tras 9d2550b92: 20 CALC, quedan 73\nde9c04c8 [deriva] trozo 1 tras 9d2550b92: 20 CALC, quedan 93"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:475-478",
+    "comando": "git show origin/main:.github/workflows/verify.yml | sed -n '475,478p'",
+    "salida": "# P2: el lote se publica por TROZOS (`lote_desde_asientos.py --trozo`, `registro --pospone`): cada trozo es un commit `[deriva]` en la rama del PR; lo que no cupo sigue pendiente (ausente de corridas.tsv) y el run siguiente lo retoma. Ningún CALC se salta ni se excluye (E.7)."
+   }
+  ],
+  "owner_detalle": "job derivados (verify.yml) · PR [deriva] #1309 y los siguientes trozos (lote pendiente posiciones 66,67,68/113) · fusión de mesa mientras FP-260928-GEN2-TUBERIA-3-f18c-01 siga ABIERTA",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "for c in CALC-ENGASTO-CONSUMO-PISOS-0001--5b2dc18cf03b CALC-ENIGH-CONSUMO-PISOS-0001--5b2dc18cf03b CALC-ENIGH-CONSUMO-PISOS-0002--ca79ba3cdcc5; do python3 tools/consulta.py corrida $c; done | grep -c 'estado=SELLADA'  # = 3",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-01",
+  "verdict": "CANAL",
+  "rationale": "GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1: los 3 CALC tienen sello.json y asiento REPRODUCE en replay-evidencia.tsv, pero ninguno está en corridas.tsv de origin/main. Están en el lote pendiente del canal (posiciones 73,74,75 de 113); #1309 lleva trozos 1-2 (40 CALC). Solo falta que el job derivados publique y mesa fusione el [deriva].",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "origin/main",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1294|#1299|#1302|#1304'",
+    "salida": "9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu\n42de7565 Merge pull request #1302 from Josanoforo/acto/gen2-pisos-dominios-y-reglas-1\n20ff4c05 Merge pull request #1304 ...\n3baf7396 Merge pull request #1299 ..."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv (origin/main)",
+    "comando": "for c in CALC-ENASIC-CUIDADOS-VEJEZ-0001--fcb8ad24f180 CALC-PEW-MIGRACION-MEX-0001--95c3e5c4669a CALC-ENADID-FAMILIA-HOGARES-0001--bbee5d6a8612; do python3 tools/consulta.py corrida $c; done",
+    "salida": "CALC-ENASIC-CUIDADOS-VEJEZ-0001--fcb8ad24f180 -> NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357\nCALC-PEW-MIGRACION-MEX-0001--95c3e5c4669a -> NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357\n(… 3 de 3 NO-ENCONTRADO)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/lote_desde_asientos.py --incluir-pendientes",
+    "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes --csv | tr ',' '\\n' > pend.txt; rg -nx <CALC> pend.txt; test -f data/corrida0/<CALC>/sello.json",
+    "salida": "113 CALC pendientes; CALC-ENASIC-CUIDADOS-VEJEZ-0001 pos=73 sello, CALC-PEW-MIGRACION-MEX-0001 pos=74 sello, CALC-ENADID-FAMILIA-HOGARES-0001 pos=75 sello"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/derivados/auto-36495085433 (PR [deriva] #1309)",
+    "comando": "git merge-base --is-ancestor origin/derivados/auto-36495085433 origin/main || echo NO-FUSIONADA-EN-MAIN; git log -2 --format='%h %s' origin/derivados/auto-36495085433",
+    "salida": "NO-FUSIONADA-EN-MAIN\n0482c810 [deriva] trozo 2 tras 9d2550b92: 20 CALC, quedan 73\nde9c04c8 [deriva] trozo 1 tras 9d2550b92: 20 CALC, quedan 93"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:475-478",
+    "comando": "git show origin/main:.github/workflows/verify.yml | sed -n '475,478p'",
+    "salida": "# P2: el lote se publica por TROZOS (`lote_desde_asientos.py --trozo`, `registro --pospone`): cada trozo es un commit `[deriva]` en la rama del PR; lo que no cupo sigue pendiente (ausente de corridas.tsv) y el run siguiente lo retoma. Ningún CALC se salta ni se excluye (E.7)."
+   }
+  ],
+  "owner_detalle": "job derivados (verify.yml) · PR [deriva] #1309 y los siguientes trozos (lote pendiente posiciones 73,74,75/113) · fusión de mesa mientras FP-260928-GEN2-TUBERIA-3-f18c-01 siga ABIERTA",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "for c in CALC-ENASIC-CUIDADOS-VEJEZ-0001--fcb8ad24f180 CALC-PEW-MIGRACION-MEX-0001--95c3e5c4669a CALC-ENADID-FAMILIA-HOGARES-0001--bbee5d6a8612; do python3 tools/consulta.py corrida $c; done | grep -c 'estado=SELLADA'  # = 3",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260926-GEN2-COLA-COMPLETA-1-0d4a-01",
+  "verdict": "CANAL",
+  "rationale": "GEN2-COLA-COMPLETA-1: los 9 CALC tienen sello.json y asiento REPRODUCE en replay-evidencia.tsv, pero ninguno está en corridas.tsv de origin/main. Están en el lote pendiente del canal (posiciones 93,94,95,96,97,98,99,100,101 de 113); #1309 lleva trozos 1-2 (40 CALC). Solo falta que el job derivados publique y mesa fusione el [deriva].",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "origin/main",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1294|#1299|#1302|#1304'",
+    "salida": "9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu\n42de7565 Merge pull request #1302 from Josanoforo/acto/gen2-pisos-dominios-y-reglas-1\n20ff4c05 Merge pull request #1304 ...\n3baf7396 Merge pull request #1299 ..."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv (origin/main)",
+    "comando": "for c in CALC-ENDISEG-PISOS-2021-0001--27ad1be14d2c CALC-MMSI-PISOS-2016-0001--5d321b92a633 CALC-LATINOBAROMETRO-COLA-2023-0001--abe4f91e2cbf CALC-EIC-HOGARES-2015-0001--b57176a23d08 CALC-ENASEM-ESCOLARIDAD-2021-0001--42e81578bcab CALC-ENADID-COLA-2018-0001--c935e17f0040 CALC-PEW-RELIGION-2024-0001--3d3f559de918 CALC-ENVIPE-PERCEPCION-2024-0001--da8877189a88 CALC-ENOE-PARTICIPACION-2024T4-0001--a0524626aab9; do python3 tools/consulta.py corrida $c; done",
+    "salida": "CALC-ENDISEG-PISOS-2021-0001--27ad1be14d2c -> NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357\nCALC-MMSI-PISOS-2016-0001--5d321b92a633 -> NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357\n(… 9 de 9 NO-ENCONTRADO)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/lote_desde_asientos.py --incluir-pendientes",
+    "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes --csv | tr ',' '\\n' > pend.txt; rg -nx <CALC> pend.txt; test -f data/corrida0/<CALC>/sello.json",
+    "salida": "113 CALC pendientes; CALC-ENDISEG-PISOS-2021-0001 pos=93 sello, CALC-MMSI-PISOS-2016-0001 pos=94 sello, CALC-LATINOBAROMETRO-COLA-2023-0001 pos=95 sello, CALC-EIC-HOGARES-2015-0001 pos=96 sello, CALC-ENASEM-ESCOLARIDAD-2021-0001 pos=97 sello, CALC-ENADID-COLA-2018-0001 pos=98 sello, CALC-PEW-RELIGION-2024-0001 pos=99 sello, CALC-ENVIPE-PERCEPCION-20"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/derivados/auto-36495085433 (PR [deriva] #1309)",
+    "comando": "git merge-base --is-ancestor origin/derivados/auto-36495085433 origin/main || echo NO-FUSIONADA-EN-MAIN; git log -2 --format='%h %s' origin/derivados/auto-36495085433",
+    "salida": "NO-FUSIONADA-EN-MAIN\n0482c810 [deriva] trozo 2 tras 9d2550b92: 20 CALC, quedan 73\nde9c04c8 [deriva] trozo 1 tras 9d2550b92: 20 CALC, quedan 93"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:475-478",
+    "comando": "git show origin/main:.github/workflows/verify.yml | sed -n '475,478p'",
+    "salida": "# P2: el lote se publica por TROZOS (`lote_desde_asientos.py --trozo`, `registro --pospone`): cada trozo es un commit `[deriva]` en la rama del PR; lo que no cupo sigue pendiente (ausente de corridas.tsv) y el run siguiente lo retoma. Ningún CALC se salta ni se excluye (E.7)."
+   }
+  ],
+  "owner_detalle": "job derivados (verify.yml) · PR [deriva] #1309 y los siguientes trozos (lote pendiente posiciones 93,94,95,96,97,98,99,100,101/113) · fusión de mesa mientras FP-260928-GEN2-TUBERIA-3-f18c-01 siga ABIERTA",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "for c in CALC-ENDISEG-PISOS-2021-0001--27ad1be14d2c CALC-MMSI-PISOS-2016-0001--5d321b92a633 CALC-LATINOBAROMETRO-COLA-2023-0001--abe4f91e2cbf CALC-EIC-HOGARES-2015-0001--b57176a23d08 CALC-ENASEM-ESCOLARIDAD-2021-0001--42e81578bcab CALC-ENADID-COLA-2018-0001--c935e17f0040 CALC-PEW-RELIGION-2024-0001--3d3f559de918 CALC-ENVIPE-PERCEPCION-2024-0001--da8877189a88 CALC-ENOE-PARTICIPACION-2024T4-0001--a0524626aab9; do python3 tools/consulta.py corrida $c; done | grep -c 'estado=SELLADA'  # = 9",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260926-GEN2-COLA-LOTE-1-3a49-01",
+  "verdict": "CANAL",
+  "rationale": "GEN2-COLA-LOTE-1: los 4 CALC tienen sello.json y asiento REPRODUCE en replay-evidencia.tsv, pero ninguno está en corridas.tsv de origin/main. Están en el lote pendiente del canal (posiciones 77,78,79,80 de 113); #1309 lleva trozos 1-2 (40 CALC). Solo falta que el job derivados publique y mesa fusione el [deriva].",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "origin/main",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1294|#1299|#1302|#1304'",
+    "salida": "9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu\n42de7565 Merge pull request #1302 from Josanoforo/acto/gen2-pisos-dominios-y-reglas-1\n20ff4c05 Merge pull request #1304 ...\n3baf7396 Merge pull request #1299 ..."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv (origin/main)",
+    "comando": "for c in CALC-CCPV-FAM-PISOS-0001--b2fd5e477b81 CALC-EMAT-PAREJA-PISOS-0001--21dfec0b2409 CALC-ENPECYT-CONOC-PISOS-0001--3d31a11f9213 CALC-EDR-SUICIDIO-PISOS-0001--30fb560d4a77; do python3 tools/consulta.py corrida $c; done",
+    "salida": "CALC-CCPV-FAM-PISOS-0001--b2fd5e477b81 -> NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357\nCALC-EMAT-PAREJA-PISOS-0001--21dfec0b2409 -> NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357\n(… 4 de 4 NO-ENCONTRADO)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/lote_desde_asientos.py --incluir-pendientes",
+    "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes --csv | tr ',' '\\n' > pend.txt; rg -nx <CALC> pend.txt; test -f data/corrida0/<CALC>/sello.json",
+    "salida": "113 CALC pendientes; CALC-CCPV-FAM-PISOS-0001 pos=77 sello, CALC-EMAT-PAREJA-PISOS-0001 pos=78 sello, CALC-ENPECYT-CONOC-PISOS-0001 pos=79 sello, CALC-EDR-SUICIDIO-PISOS-0001 pos=80 sello"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/derivados/auto-36495085433 (PR [deriva] #1309)",
+    "comando": "git merge-base --is-ancestor origin/derivados/auto-36495085433 origin/main || echo NO-FUSIONADA-EN-MAIN; git log -2 --format='%h %s' origin/derivados/auto-36495085433",
+    "salida": "NO-FUSIONADA-EN-MAIN\n0482c810 [deriva] trozo 2 tras 9d2550b92: 20 CALC, quedan 73\nde9c04c8 [deriva] trozo 1 tras 9d2550b92: 20 CALC, quedan 93"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:475-478",
+    "comando": "git show origin/main:.github/workflows/verify.yml | sed -n '475,478p'",
+    "salida": "# P2: el lote se publica por TROZOS (`lote_desde_asientos.py --trozo`, `registro --pospone`): cada trozo es un commit `[deriva]` en la rama del PR; lo que no cupo sigue pendiente (ausente de corridas.tsv) y el run siguiente lo retoma. Ningún CALC se salta ni se excluye (E.7)."
+   }
+  ],
+  "owner_detalle": "job derivados (verify.yml) · PR [deriva] #1309 y los siguientes trozos (lote pendiente posiciones 77,78,79,80/113) · fusión de mesa mientras FP-260928-GEN2-TUBERIA-3-f18c-01 siga ABIERTA",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "for c in CALC-CCPV-FAM-PISOS-0001--b2fd5e477b81 CALC-EMAT-PAREJA-PISOS-0001--21dfec0b2409 CALC-ENPECYT-CONOC-PISOS-0001--3d31a11f9213 CALC-EDR-SUICIDIO-PISOS-0001--30fb560d4a77; do python3 tools/consulta.py corrida $c; done | grep -c 'estado=SELLADA'  # = 4",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260926-GEN2-DINERO-SERIES-CNBV-BANXICO-1-8dbe-05",
+  "verdict": "CANAL",
+  "rationale": "GEN2-DINERO-SERIES-CNBV-BANXICO-1: los 2 CALC tienen sello.json y asiento REPRODUCE en replay-evidencia.tsv, pero ninguno está en corridas.tsv de origin/main. Están en el lote pendiente del canal (posiciones 83,84 de 113); #1309 lleva trozos 1-2 (40 CALC). Solo falta que el job derivados publique y mesa fusione el [deriva]. El registro --escribe manual ya no hace falta: lo corre el job.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "origin/main",
+    "comando": "git log origin/main --first-parent --oneline | rg '#1294|#1299|#1302|#1304'",
+    "salida": "9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu\n42de7565 Merge pull request #1302 from Josanoforo/acto/gen2-pisos-dominios-y-reglas-1\n20ff4c05 Merge pull request #1304 ...\n3baf7396 Merge pull request #1299 ..."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv (origin/main)",
+    "comando": "for c in CALC-BANXICO-SERIES-IMOR-0001--3e37e487526d CALC-CNBV-SERIES-IMOR-R16-0001--ece5de7b72cf; do python3 tools/consulta.py corrida $c; done",
+    "salida": "CALC-BANXICO-SERIES-IMOR-0001--3e37e487526d -> NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357\nCALC-CNBV-SERIES-IMOR-R16-0001--ece5de7b72cf -> NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/lote_desde_asientos.py --incluir-pendientes",
+    "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes --csv | tr ',' '\\n' > pend.txt; rg -nx <CALC> pend.txt; test -f data/corrida0/<CALC>/sello.json",
+    "salida": "113 CALC pendientes; CALC-BANXICO-SERIES-IMOR-0001 pos=83 sello, CALC-CNBV-SERIES-IMOR-R16-0001 pos=84 sello"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/derivados/auto-36495085433 (PR [deriva] #1309)",
+    "comando": "git merge-base --is-ancestor origin/derivados/auto-36495085433 origin/main || echo NO-FUSIONADA-EN-MAIN; git log -2 --format='%h %s' origin/derivados/auto-36495085433",
+    "salida": "NO-FUSIONADA-EN-MAIN\n0482c810 [deriva] trozo 2 tras 9d2550b92: 20 CALC, quedan 73\nde9c04c8 [deriva] trozo 1 tras 9d2550b92: 20 CALC, quedan 93"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:475-478",
+    "comando": "git show origin/main:.github/workflows/verify.yml | sed -n '475,478p'",
+    "salida": "# P2: el lote se publica por TROZOS (`lote_desde_asientos.py --trozo`, `registro --pospone`): cada trozo es un commit `[deriva]` en la rama del PR; lo que no cupo sigue pendiente (ausente de corridas.tsv) y el run siguiente lo retoma. Ningún CALC se salta ni se excluye (E.7)."
+   }
+  ],
+  "owner_detalle": "job derivados (verify.yml) · PR [deriva] #1309 y los siguientes trozos (lote pendiente posiciones 83,84/113) · fusión de mesa mientras FP-260928-GEN2-TUBERIA-3-f18c-01 siga ABIERTA",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "for c in CALC-BANXICO-SERIES-IMOR-0001--3e37e487526d CALC-CNBV-SERIES-IMOR-R16-0001--ece5de7b72cf; do python3 tools/consulta.py corrida $c; done | grep -c 'estado=SELLADA'  # = 2",
+  "confianza": "alta"
+ }
+]

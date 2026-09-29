@@ -1,0 +1,9 @@
+[
+  {
+    "id": "NC-260922-GEN2-RELEVO-TANDA-7-9a4c-01",
+    "veredicto": "CONFIRMA",
+    "razon": "Las 18 lecturas (CIV-M-01/02/04/10/12/13, FAM-M-05/06/07 x {L-solo,L+corpus}) son subconjunto de las 28 celda_L de marco-M-sorteado-v1_3 que H3 (e760-03, FIRMADA 25/sep, posterior a F-L) declara HISTORICO-SIN-RELEVO; corrida0.py:350-383 las excluye por prefijo+tipo_uso. Pines ya no proceden; la delegacion no vio H3.",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv (DictReader id e760-03); git show origin/main:data/corrida0/usos.tsv (DictReader, consumidor marco-M-sorteado-v1_3, tipo_uso celda_L); git show origin/main:tools/corrida0.py | sed -n 350,383p; nota RELEVO-CONSUMIDORES-3 :47",
+    "salida": "e760-03 FIRMADA: «HISTORICO-SIN-RELEVO las 42 lecturas L/AGREGADO de marco-M-sorteado-v1_3 ... las saca del contador legacy»; usos: celda_L x2 en 14 celdas (incluye las 9 de la NC, p.ej. CIV-M-01:L:L-solo RES-0097); _es_historico_sin_relevo: PREFIJO_MARCO_H3 + celda_L; nota: marco 43->1, 42 (H3)"
+  }
+]

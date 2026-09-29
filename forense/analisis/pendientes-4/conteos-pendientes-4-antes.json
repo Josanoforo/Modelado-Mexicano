@@ -1,0 +1,42 @@
+{
+  "abiertas": 334,
+  "abiertas_con_frase_prohibida": 174,
+  "abiertas_por_dueno": {
+    "(sin token)": 2,
+    "ADQUISICION": 27,
+    "APERTURA": 18,
+    "CAJA": 6,
+    "EN-CURSO": 42,
+    "MESA": 239
+  },
+  "abiertas_por_razon": {
+    "DECISIÓN-DE-MESA-PENDIENTE": 37,
+    "DIFERIDO-A": 153,
+    "FUERA-DE-PERÍMETRO": 48,
+    "NO-VERIFICABLE-AQUÍ": 64,
+    "PARO-ENTORNO": 7,
+    "PARO-PREMISA": 22,
+    "PARO-PREMISA-PARCIALMENTE-RESUELTA": 1,
+    "SUSTITUIDO-POR": 2
+  },
+  "cerradas_por_este_acto": 0,
+  "cerradas_por_este_acto_por_tipo": {},
+  "clase_nc_por_clase": {
+    "EN-CURSO": 42,
+    "ESPERA-ACTO-NOMBRADO": 6,
+    "ESPERA-ADQUISICION": 27,
+    "ESPERA-APERTURA": 18,
+    "ESPERA-FIRMA": 1,
+    "ESPERA-MESA": 239,
+    "SIN-ASIGNAR": 1
+  },
+  "estado": {
+    "ABIERTA": 334,
+    "CERRADA": 745,
+    "CERRADA-DECLINADA": 1,
+    "CERRADA-DESISTIDA": 1,
+    "CERRADA-POR-DISEÑO": 6,
+    "NO-APLICA-MIENTRAS-ABIERTA": 5
+  },
+  "filas": 1092
+}

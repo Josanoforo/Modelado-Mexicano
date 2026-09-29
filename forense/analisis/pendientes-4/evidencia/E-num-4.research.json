@@ -1,0 +1,185 @@
+[
+ {
+  "id": "NC-0364",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "La lista P5 (154 slots en 71 corridas) como fuente de encargos de caja quedó sustituida por el dictamen por resultado de GEN2-DEMANDA-DICTAMEN-1 (2dce3f05, PR #1275), que ahora lee `corrida0 demanda`. Crucé por lector CSV: 154/154 slots y 71/71 corridas tienen fila dictaminada con sucesor propio. Se ejecuta la delegación del 28/sep (cerrar por diseño).",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/analisis/relevo-tanda-1/P5-demanda-agrupada.tsv x data/corrida0/demanda-dictamen-v1_0.tsv", "comando": "python3 (csv.DictReader sobre git show origin/main: de los dos TSV; cruce slot->resultado_id y corrida->fila CORRIDA)", "salida": "p5 rows 71 dict rows 341 · slots 154 · en dictamen: 154 faltan: 0 · corridas p5 71 con fila CORRIDA en dictamen 71 · NO-RELEVAR-POR-REGLA-6 43, YA-RELEVADO-GEN2 31, NO-RELEVAR-POR-FIRMA 18, SIN-BASE-GEN2 17, ESPERA-FIRMA-HOLDOUT 15, NO-RELEVAR-θ 10, NO-RELEVAR-GENERADOR 7, CELDA-D-ADJUDICADA 5, ESPERA-FIRMA-MESA 5, RELEVAR-DESDE-RESULT 2, SIN-ESTIMANDO-RECONSTRUIBLE 1"},
+   {"tipo": "comando", "ref": "sucesores de los 154 slots en el dictamen", "comando": "python3 (Counter de la columna sucesor para los 154 slots)", "salida": "55 NINGUNO (histórico) · 29 NINGUNO (relevado) · 17 GEN2-RELEVO-CONSUMIDORES-4 · 17 NINGUNO (retador de familias 2027 si se pre-registra) · 14 GEN2-TRAMITE-FIRMAS-21 (A2) · 6 NINGUNO · 5 RELEVO-CONSUMIDORES-4 (pin del champion) · 4 FIRMAS-21 (A1) · 2 canal [deriva] · 2 FIRMAS-22 (B1) · 2 RELEVO-CONSUMIDORES-4 (pin en usos) · 1 RELEVO-CONSUMIDORES-4 (NC 72d9-02)"},
+   {"tipo": "commit", "ref": "2dce3f05", "comando": "git merge-base --is-ancestor 2dce3f05 origin/main && echo ANCESTRO; git log origin/main --oneline -- data/corrida0/demanda-dictamen-v1_0.tsv", "salida": "ANCESTRO · 2dce3f05 GEN2-DEMANDA-DICTAMEN-1: dictamen por objeto de la demanda (236 RESULT, 105 corridas) + corrida0 demanda lee la vista"},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv:91", "comando": "git show origin/main:forense/analisis/pendientes-3/decididas-por-delegacion.tsv | rg -n '^NC-0364'", "salida": "NC-0364 DUEÑO-MESA Los 154 slots agrupados de relevo-tanda-1/P5 se sustituyeron por el dictamen por resultado (GEN2-DEMANDA-DICTAMEN-1 ...). Opcion recomendada: cerrar por diseno citando ese dictamen; no verifique que cada uno de los 154 slots este en el dictamen."}
+  ],
+  "cerrado_por_detalle": "diseño: P5-demanda-agrupada sustituida por data/corrida0/demanda-dictamen-v1_0.tsv (GEN2-DEMANDA-DICTAMEN-1, 2dce3f05, PR #1275) · 154/154 slots dictaminados con sucesor por fila",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0365",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "Mesa firmó FP a157-03 (24/sep, FIRMAS-16 B3): la partición sellada CORTES_C1 (RES-0165..0170) no es lectura numérica y `corte_pi` sale del contador; ejecutada en tools/corrida0.py:340 por RELEVO-CONSUMIDORES-2 y el dictamen marca los seis NO-RELEVAR-POR-FIRMA. Decide exactamente lo que la fila pedía (declarar CALC o retirar los cortes): no quedan slots de demanda que ofertar.",
+  "cite": [
+   {"tipo": "firma", "ref": "forense/firmas-pendientes.tsv:538 FP-260924-GEN2-RELEVO-MOTOR-34-1-a157-03", "comando": "git show origin/main:forense/firmas-pendientes.tsv | sed -n '538p'", "salida": "FP-260924-GEN2-RELEVO-MOTOR-34-1-a157-03 ... FIRMADA 24/sep/2026, verbatim, mesa («Firmo», hoja FIRMAS-16 ...): «SÍ: una partición sellada (`CORTES_C1`, RES-0165..0170) no es lectura numérica; `tipo_uso corte_pi` fuera del contador; ejecuta RELEVO-CONSUMIDORES-2.» ADR-260925-GEN2-TRAMITE-FIRMAS-16-a362-01"},
+   {"tipo": "archivo", "ref": "tools/corrida0.py:340", "comando": "git show origin/main:tools/corrida0.py | rg -n 'TIPOS_FUERA_DEL_CONTADOR'", "salida": "340:TIPOS_FUERA_DEL_CONTADOR = frozenset({\"corte_pi\"}) · 5399: fuera_por_firma = [u for u in usos_activos if u[\"tipo_uso\"] in TIPOS_FUERA_DEL_CONTADOR] · 5400: usos_activos = [... not in TIPOS_FUERA_DEL_CONTADOR]"},
+   {"tipo": "comando", "ref": "data/corrida0/demanda-dictamen-v1_0.tsv", "comando": "git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv | rg 'RES-016[5-9]|RES-0170'", "salida": "CORR-0079 RES-0165..RES-0170 (6 filas) NO-RELEVAR-POR-FIRMA forense/firmas-pendientes.tsv:538 (B3: corte_pi fuera del contador); tools/corrida0.py:340 NINGUNO"},
+   {"tipo": "comando", "ref": "forense/notas/2026-09-25-GEN2-RELEVO-CONSUMIDORES-2-nota.md", "comando": "git show origin/main:forense/notas/2026-09-25-GEN2-RELEVO-CONSUMIDORES-2-nota.md | rg -n 'corte_pi'", "salida": "129: vivo; B3 saca `corte_pi` del contador y lo deja visible en 130: `legacy_fuera_del_contador_por_firma__corte_pi`. 143: motor 25 → 13 (−6 B3, −2 B1, −4 B2)"}
+  ],
+  "cerrado_por_detalle": "firma: FP-260924-GEN2-RELEVO-MOTOR-34-1-a157-03 FIRMADA 24/sep (B3: CORTES_C1 RES-0165..0170 no es lectura numérica; corte_pi fuera del contador) · ejecutada en tools/corrida0.py:340 por GEN2-RELEVO-CONSUMIDORES-2 · dictamen NO-RELEVAR-POR-FIRMA 6/6",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0381",
+  "verdict": "ABSORBER",
+  "rationale": "Editar verify.yml está retirado por D-21 (test huérfano vía ci_guardias), pero la guardia sigue sin correr: el censo la marca NECESITA-DEPENDENCIA(numpy) y ejecuta-huerfanos salta todo NECESITA-DEPENDENCIA aunque guardias instale numpy. Además el test de sha fallaría: 2 insumos repo sellados discordantes con el árbol vivo (D-22(4)). Falta desacoplar ese aserto, re-censar y sacarlo del SKIP.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/analisis/ci-guardias/censo-tests.tsv:55", "comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | rg -n 'test_c2_ic_enif2024_guardia'", "salida": "55:tests/test_c2_ic_enif2024_guardia.py script NO numpy,pandas NO 0.0 NECESITA-DEPENDENCIA(numpy) ModuleNotFoundError: No module named 'numpy'"},
+   {"tipo": "archivo", "ref": "tools/ci_guardias.py:407-413 vs .github/workflows/verify.yml:449", "comando": "git show origin/main:tools/ci_guardias.py | sed -n '392,413p'; git show origin/main:.github/workflows/verify.yml | rg -n 'requirements.txt numpy'", "salida": "if f[\"veredicto\"].startswith(\"NECESITA-DEPENDENCIA\"): print(\"SKIP %s: dependencia-pendiente %s (FP de mesa, no decidida aqui)\") ... continue · 449: uv pip install ... -r requirements.txt numpy pytest pytest-xdist"},
+   {"tipo": "comando", "ref": "data/corrida0/CALC-C2-COMPUESTO-IC-ENIF2024-0001/spec.yaml (inputs origen repo)", "comando": "python3 (sha256 de cada input origen=repo vs árbol)", "salida": "10 inputs repo: 8 COINCIDE; IN-ARBITRO-MARGINALES milpa/tramite-ola5-propuesta-v0.yaml DISCORDANTE 93dfa3f9aab2 vs f19f2c51e775; IN-MODULO-GUARDADO tools/celda_d/marginales_reproduccion.py DISCORDANTE f27728cb7c24 vs 4df2c630179c"},
+   {"tipo": "regla", "ref": "gobierno/instrucciones-proyecto-v2_16.md:75 (D-21)", "comando": "grep -n 'ejecuta-huerfanos' gobierno/instrucciones-proyecto-v2_16.md", "salida": "75:D-21. ... su test nuevo entra a CI como huérfano (ci_guardias --ejecuta-huerfanos) sin editar verify.yml ni check.py"},
+   {"tipo": "comando", "ref": "forense/encargos (A.8)", "comando": "git grep -l 'test_c2_ic_enif2024_guardia' origin/main -- forense/encargos (1217 archivos)", "salida": "3: 2026-09-19-GEN2-C2-COMPUESTO-IC-ENIF2024-1.md (origen), 2026-09-20-gen2-ci-guardias-vivas-1.md, 2026-09-22-PENDIENTES-PROGRAMA.md · ningún encargo vivo lo toma"}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 tools/ci_guardias.py --ejecuta-huerfanos 2>&1 | rg 'test_c2_ic_enif2024_guardia' (sin SKIP, rc=0) y python3 tests/test_c2_ic_enif2024_guardia.py sale 0 con numpy instalado",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0385",
+  "verdict": "ABSORBER",
+  "rationale": "4/6 celdas ya tienen error de persistencia; las 2 de horizonte_corto×formalidad siguen vacías y NO-COMPARABLE por UNIDAD-DISCREPANTE (tabla PERSONA ELEGIDA 18+ vs marcador persona). Falta el R GEN2 de ENIF 2024 para esa regla (0 RESULT 'HORIZ' en CALC-ARBITRO-MARGINALES-ENIF2024-0001) en el universo del piso y el CALC de error sucesor. Pieza CAJA, como pide la delegación.",
+  "cite": [
+   {"tipo": "comando", "ref": "data/corrida0/marcador-segmento.tsv", "comando": "python3 (csv.DictReader sobre git show origin/main:data/corrida0/marcador-segmento.tsv; celdas con piso_fuente ENIF2021-FORMALIDAD)", "salida": "n 6 · via_informal x4: error_piso_pp -2.73/-3.59/4.12/2.40, EVALUADA · horizonte_corto_ejes_enif2024::formalidad sin/con seguridad social: error vacío, estado NO-COMPARABLE, piso_fuente ... · UNIDAD-DISCREPANTE:tabla=PERSONA ELEGIDA 18+/marcador=persona, R GEN1 0.330639/0.173418"},
+   {"tipo": "comando", "ref": "data/corrida0/CALC-ARBITRO-MARGINALES-ENIF2024-0001/resultados.json", "comando": "python3 (Counter de prefijos de las llaves de resultados)", "salida": "222 llaves · Counter({'D9': 104, 'INFORMAL': 104, 'G': 14}) · HORIZ: []"},
+   {"tipo": "firma", "ref": "FP-396", "comando": "python3 tools/consulta.py fp FP-396", "salida": "FP-396 · estado=FIRMADA · firmada_en=3D -- FIRMA DE MESA 21/sep/2026 §2 3D, cuenta_gen2=SI ... qué_se_firma=cuenta_gen2 DE CALC-PISOS-ENIF2021-FORMALIDAD-0001 (piso t-1 de formalidad, seis celdas ...)"},
+   {"tipo": "comando", "ref": "forense/encargos (A.8)", "comando": "git grep -c 'horizonte_corto\\|PERSISTENCIA-ERROR\\|NC-0385' origin/main -- forense/encargos/2026-09-28-GEN2-{CALC-ALTERNOS-LOTE-1,PISOS-DOMINIOS-Y-REGLAS-1,RELEVO-TRAMITE-CAJA-1}.md", "salida": "(sin salida: 0 coincidencias en los 3 lotes CAJA vivos)"}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "CAJA",
+  "hecho_comando": "python3 -c \"import csv;r=[x for x in csv.DictReader((l for l in open('data/corrida0/marcador-segmento.tsv') if not l.startswith('#')),delimiter='\\t') if 'horizonte_corto_ejes_enif2024::formalidad' in x['celda_id']];print(len(r),[x['estado'] for x in r],[x['error_piso_pp'] for x in r])\" → 2 filas EVALUADA con error_piso_pp no vacío (o NO-CONSTRUIBLE con cita)",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0392",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "Lo que la fila pedía ya está en main: milpa/tramite.yaml:640 lleva corrida0_resultado_id RESULT-ENVIPE-RES0028-Q-C2-U4 y corrida0_generacion GEN2, y usos.tsv muestra RES-0028 con origen NUEVO, APTA-POR-LINAJE, vía iii-DERIVADO-DE-GEN2 (relevo de GEN2-RELEVO-TANDA-4, adoptados +1). El dictamen lo marca YA-RELEVADO-GEN2. El grep previo ('RES0028' → 0) ya no se sostiene.",
+  "cite": [
+   {"tipo": "archivo", "ref": "milpa/tramite.yaml:640", "comando": "git show origin/main:milpa/tramite.yaml | sed -n '640p' | rg -o 'corrida0_[a-z_]+: [^,}]+'", "salida": "corrida0_resultado_id: RESULT-ENVIPE-RES0028-Q-C2-U4 · corrida0_generacion: GEN2"},
+   {"tipo": "comando", "ref": "data/corrida0/usos.tsv", "comando": "python3 (csv.DictReader sobre git show origin/main:data/corrida0/usos.tsv; resultado_id==RES-0028)", "salida": "consumidor milpa/tramite.yaml:civico.denuncia.miedo_desconfianza:denuncia_por_otra_razon · generacion_leida GEN2 · corrida0_resultado_id RESULT-ENVIPE-RES0028-Q-C2-U4 · uso_solicitado MEDICION-GEN2 · origen_numerico NUEVO · aptitud_uso APTA-POR-LINAJE · via_relevo iii-DERIVADO-DE-GEN2 · pin forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-4.md"},
+   {"tipo": "comando", "ref": "data/corrida0/demanda-dictamen-v1_0.tsv", "comando": "git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv | rg 'RES-0028\\b'", "salida": "CORR-0007 RES-0028 YA-RELEVADO-GEN2 data/corrida0/usos.tsv:RES-0028 generacion_leida=GEN2 corrida0_resultado_id=RESULT-ENVIPE-RES0028-Q-C2-U4 via=iii-DERIVADO-DE-GEN2 NINGUNO (relevado)"},
+   {"tipo": "archivo", "ref": "forense/notas/nota-2026-09-21-gen2-relevo-tanda-4-cierre.md:20,47", "comando": "git show origin/main:forense/notas/nota-2026-09-21-gen2-relevo-tanda-4-cierre.md | rg -n 'RES-0028'", "salida": "20:| N_resultados_gen2_adoptados_activos | 71 | 72 | +1 (RES-0028 ...) · 47: ... (RES-0028) | (iii) iii-DERIVADO-DE-GEN2 | RESULT-ENVIPE-RES0028-Q-C2-U4 (CALC-ENVIPE-RES0028-U4-DERIVADO-0001)"}
+  ],
+  "cerrado_por_detalle": "producto: milpa/tramite.yaml:640 (corrida0_resultado_id RESULT-ENVIPE-RES0028-Q-C2-U4, corrida0_generacion GEN2) + data/corrida0/usos.tsv RES-0028 origen_numerico=NUEVO aptitud=APTA-POR-LINAJE via=iii-DERIVADO-DE-GEN2 · GEN2-RELEVO-TANDA-4",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0395",
+  "verdict": "ABSORBER",
+  "rationale": "RES-0175 y RES-0198 siguen en usos.tsv como LEGACY-GEN1 y el dictamen las trata (CELDA-D-ADJUDICADA, ESPERA-FIRMA-HOLDOUT). Nadie probó por qué no aparecían antes de la adopción: si la vista omite consumidores de reglas no adoptadas, la deuda legacy se subcuenta. El sucesor alterno (TANDA-4) no lo trató: su nota no menciona RES-0198. Es trabajo de herramienta.",
+  "cite": [
+   {"tipo": "comando", "ref": "data/corrida0/usos.tsv", "comando": "python3 (csv.DictReader; resultado_id in RES-0175, RES-0198)", "salida": "RES-0175 celda_D TRA.evade_norma.envipe2025.escolaridad_x_dominio activo SI LEGACY-GEN1 origen INDETERMINADO · RES-0198 momento M23 activo SI LEGACY-GEN1 origen INDETERMINADO"},
+   {"tipo": "comando", "ref": "data/corrida0/demanda-dictamen-v1_0.tsv", "comando": "git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv | rg 'RES-0175|RES-0198'", "salida": "CORR-0100 RES-0175 CELDA-D-ADJUDICADA ... GEN2-RELEVO-CONSUMIDORES-4 (pin del champion) · CORR-0104 RES-0198 ESPERA-FIRMA-HOLDOUT ... FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-01 ABIERTA GEN2-TRAMITE-FIRMAS-21 (A1)"},
+   {"tipo": "comando", "ref": "forense/notas (A.13)", "comando": "git grep -l 'RES-0198' origin/main -- forense/notas", "salida": "forense/notas/2026-09-20-GEN2-RELEVO-TANDA-2-cierre.md · forense/notas/insumos-externos/codex-gen2-recibo-codex-3-2026-09-20/...patch (ninguna nota posterior; NO-ENCONTRADO en la nota de TANDA-4)"},
+   {"tipo": "archivo", "ref": "tools/corrida0.py:652,677,4464", "comando": "rg -n 'def _filas_registro|def _consumidores_celdas_d|def _consumidores_momentos' tools/corrida0.py", "salida": "652:def _consumidores_celdas_d(ambiguas) · 677:def _consumidores_momentos(ambiguas) · 4464:def _filas_registro(verifica: bool = False, verifica_ids: set | None = None)"}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "git grep -n 'RES-0175\\|RES-0198' origin/main -- forense/notas | rg -v 'TANDA-2|insumos-externos' ≥1 con dictamen DEFECTO-DE-VISTA o VISTA-CORRECTA por comando y, si defecto, test de regresión con fila CORRE-EN-CI en forense/analisis/ci-guardias/censo-tests.tsv",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0396",
+  "verdict": "ABSORBER",
+  "rationale": "El aserto que falla (tests/test_adq_descubrimiento.py:179-182) depende del estado vivo del libro: espera NC-0202 abierta y elegida, y NC-0202 está CERRADA desde el 28/sep (duplicada de NC-0156). El censo hoy lo marca NECESITA-DEPENDENCIA(jsonschema), aunque jsonschema ya está en requirements.txt. Falta desacoplar el test del estado vivo, re-censar y sacarlo del SKIP.",
+  "cite": [
+   {"tipo": "archivo", "ref": "tests/test_adq_descubrimiento.py:179-182", "comando": "sed -n '178,182p' tests/test_adq_descubrimiento.py", "salida": "elegidos = [x[\"id\"] for x in demanda[\"seleccion_siguiente\"][\"elegidos\"]] · afirma(elegidos == [\"DEM-AHORRO-STOCK-DURACION-01\", \"NC-0202\"] and ... == (abiertas - {\"NC-0202\"}), \"el mapa debe enrutar NC-0202 y la continuación anticipada independiente\")"},
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv NC-0202", "comando": "python3 tools/consulta.py nc NC-0202; csv.DictReader(forense/no-corrido.tsv) id==NC-0202", "salida": "NC-0202 · estado=CERRADA · acto=GEN2-SPECS-DEMANDA-2 · cerrado_por: GEN2-PENDIENTES-3 · CERRADA (duplicada: DUPLICADA [NC-0156]) · fecha_cierre 2026-09-28"},
+   {"tipo": "comando", "ref": "forense/analisis/ci-guardias/censo-tests.tsv:8", "comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | rg -n 'test_adq_descubrimiento'", "salida": "8:tests/test_adq_descubrimiento.py script NO adq_doctor,tsv_crudo NO 0.1 NECESITA-DEPENDENCIA(jsonschema) ModuleNotFoundError: No module named 'jsonschema'"},
+   {"tipo": "comando", "ref": "requirements.txt", "comando": "git show origin/main:requirements.txt | rg -n '^jsonschema'", "salida": "jsonschema (declarada por ACTO GEN2-E7 pieza D, FP-344)"},
+   {"tipo": "comando", "ref": "ejecución local", "comando": "python3 -c 'import jsonschema'", "salida": "ModuleNotFoundError: No module named 'jsonschema' (NO OBTENIDO POR ESTE AGENTE EN 1 INTENTO: el test no se pudo correr aquí)"}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 tests/test_adq_descubrimiento.py sale 0 (con jsonschema) y la fila de censo-tests.tsv para test_adq_descubrimiento.py dice CORRE-EN-CI",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0398",
+  "verdict": "ABSORBER",
+  "rationale": "Corrí el test: 5 FAIL. El derivador reparte A6/I1/C2/SIN6 contra A3/C5/I1/SIN6 sellado por ADR-89; filas 8, 9 y 12 salen RUTA-A donde v1.1 dice RUTA-C. La tabla que lee (milpa/procedencia.yaml:1223-1242, version_censo 1.0) marca esas filas RUTA-A. Falta reconciliar derivador y tabla con el sellado o llevar VENCIDO-EN-ALCANCE a mesa (E.4), regenerar v1_2 y sacarlo del SKIP.",
+  "cite": [
+   {"tipo": "comando", "ref": "tests/test_censo_derivado.py", "comando": "PYTHONDONTWRITEBYTECODE=1 timeout 60 python3 tests/test_censo_derivado.py 2>&1 | tail -12", "salida": "[FAIL] T-CENSO-01 · [FAIL] T-CENSO-02 · [ ok ] T-CENSO-03 v1.1 intacto · [FAIL] T-CENSO-04 · reparto del derivador {'RUTA-A': 6, 'RUTA-I': 1, 'RUTA-C': 2, 'SIN-RUTA': 6} != reparto sellado por ADR-89 {'RUTA-A': 3, 'RUTA-C': 5, 'RUTA-I': 1, 'SIN-RUTA': 6} · fila 8/9/12: derivador da RUTA-A, censo v1.1 sellado dice RUTA-C"},
+   {"tipo": "archivo", "ref": "forense/censo-estimabilidad-coeficientes-v1_1.md:87-88", "comando": "rg -n '^\\| (8|9|12) \\|' forense/censo-estimabilidad-coeficientes-v1_1.md", "salida": "87:| 8 | G4 | exposicion_violencia ... **RUTA-C** (con limitación estructural declarada) | MEDIA — sin cambio · 88:| 9 | G4 | confianza_institucional[justicia] ... **RUTA-C** (misma limitación estructural que fila 8)"},
+   {"tipo": "archivo", "ref": "milpa/procedencia.yaml:1224,1234-1235,1242", "comando": "git blame -L 1223,1245 origin/main -- milpa/procedencia.yaml", "salida": "1224: version_censo: \"1.0\" · 1234: {gen: G4, coef: exposicion_violencia, ruta: RUTA-A ...} · 1235: {gen: G4, coef: confianza_institucional, ruta: RUTA-A ...} · 1242: reparto: \"RUTA-A=5 · RUTA-I=1 · RUTA-C=0 · SIN-RUTA=9"},
+   {"tipo": "comando", "ref": "forense/analisis/ci-guardias/censo-tests.tsv:70", "comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | rg -n 'test_censo_derivado'", "salida": "70:tests/test_censo_derivado.py script NO (ninguna) NO 0.3 FALLA-DE-VERDAD · censo-estimabilidad-coeficientes-v1_2.md en disco no coincide con lo que el derivador produce ahora mismo"}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 tests/test_censo_derivado.py sale 0 y la fila de censo-tests.tsv para test_censo_derivado.py deja de ser FALLA-DE-VERDAD (o hay FP de mesa VENCIDO-EN-ALCANCE sobre ADR-89 citada en el test)",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0403",
+  "verdict": "ABSORBER",
+  "rationale": "El test sigue saltado como FALLA-DE-VERDAD (TIMEOUT>40s). Aquí en NUBE no terminó en 280 s sin salida (1 intento). resultados.tsv tiene hoy 66315 líneas y no 130 mil, así que la causa reportada (leer ese archivo) es dudosa. Falta perfilarlo, cachear o ajustar el tope del censo (ci_guardias.py:175, 40 s frente a 600 s en CI) y sacarlo del SKIP.",
+  "cite": [
+   {"tipo": "comando", "ref": "tests/test_relevo_encuci_f2.py", "comando": "time (PYTHONDONTWRITEBYTECODE=1 timeout 280 python3 tests/test_relevo_encuci_f2.py 2>&1 | tail -5)", "salida": "(sin salida) real 4m40.033s user 4m30.653s — NO OBTENIDO POR ESTE AGENTE EN 1 INTENTO (cortado por timeout 280 s)"},
+   {"tipo": "comando", "ref": "data/corrida0/resultados.tsv", "comando": "wc -l data/corrida0/resultados.tsv", "salida": "66315 data/corrida0/resultados.tsv (15611540 bytes)"},
+   {"tipo": "archivo", "ref": "tools/ci_guardias.py:175,253,420", "comando": "git show origin/main:tools/ci_guardias.py | rg -n 'timeout'", "salida": "175:def ejecuta(path, invocador, timeout=40): · 253: fila[\"detalle\"] = \"TIMEOUT>40s\" · 420: return t, ejecuta(t[1], t[2], timeout=600)"},
+   {"tipo": "comando", "ref": "forense/analisis/ci-guardias/censo-tests.tsv:239", "comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | rg -n 'test_relevo_encuci_f2'", "salida": "239:tests/test_relevo_encuci_f2.py script NO (ninguna) NO 40.1 FALLA-DE-VERDAD TIMEOUT>40s"}
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "timeout 600 python3 tests/test_relevo_encuci_f2.py sale 0 y la fila de censo-tests.tsv para test_relevo_encuci_f2.py deja de ser FALLA-DE-VERDAD (la corre ci_guardias --ejecuta-huerfanos)",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0412",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "La fila pedía que mesa vetara o ratificara la sustitución. La delegación del 28/sep decide lo reversible: «ratificar por el merge ya hecho … y cerrar; recomiendo ratificar». Por E.2, el merge de mesa ya es la adopción. La sustitución está en main (tests/test_c2_compuesto.py:414), cableada en check.py, y el test pasa 30/30. Un veto posterior revierte una sola función.",
+  "cite": [
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv:97", "comando": "git show origin/main:forense/analisis/pendientes-3/decididas-por-delegacion.tsv | rg -n '^NC-0412'", "salida": "97:NC-0412 DUEÑO-MESA Reversible: ratificar por el merge ya hecho (la prueba nueva es contra RESULT sellados, mas fuerte) y cerrar; o veto y revertir la sustitucion. Recomiendo ratificar. No hay firma FP; el merge de mesa es la adopcion (E.2)."},
+   {"tipo": "archivo", "ref": "tests/test_c2_compuesto.py:414", "comando": "git show origin/main:tests/test_c2_compuesto.py | rg -n 'def test_una_emitida'", "salida": "414:    def test_una_emitida_nunca_FABRICA_IC(self):"},
+   {"tipo": "comando", "ref": "tests/test_c2_compuesto.py", "comando": "PYTHONDONTWRITEBYTECODE=1 timeout 150 python3 tests/test_c2_compuesto.py 2>&1 | tail -4", "salida": "Ran 30 tests in 11.169s · OK"},
+   {"tipo": "regla", "ref": "gobierno/instrucciones-proyecto-v2_16.md:100 (E.2)", "comando": "grep -n 'la adopción es por merge de mesa' gobierno/instrucciones-proyecto-v2_16.md", "salida": "100:E.2 ... la adopción es por merge de mesa, y por bloque: el merge del PR que trae un bloque ES la adopción"},
+   {"tipo": "archivo", "ref": "tests/check.py:3251,7218", "comando": "git show origin/main:tests/check.py | rg -n 'test_c2_compuesto'", "salida": "3251: \"tests/test_c2_compuesto.py\", · 7218: ruta = os.path.join(ROOT, \"tests\", \"test_c2_compuesto.py\")"}
+  ],
+  "cerrado_por_detalle": "firma: delegación de mesa 28/sep (decididas-por-delegacion.tsv:97, NC-0412: «ratificar por el merge ya hecho … y cerrar») + E.2 (el merge de mesa es la adopción) · sustitución en main tests/test_c2_compuesto.py:414, 30/30 OK",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ }
+]

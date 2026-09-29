@@ -1,0 +1,144 @@
+[
+ {
+  "id": "NC-0037",
+  "verdict": "ABSORBER",
+  "rationale": "R45 (FIRMADA-DELEGADA en FIRMAS-21, letra 19) fijó como producto la sonda del ledger GEN2-DIN-TANDAS-LEDGER-SONDA-1. No hay encargo archivado con ese rótulo (NO-ENCONTRADO en 1217 rutas de forense/encargos). Falta: /sonda de ledgers mexicanos abiertos de tandas (grupos, turnos, pagos) con universo A.4. La vía comercial sigue diferida por D18. NC-0056/NC-0061 son convenios y correos (HUMANO), otra deuda.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/encargos", "comando": "git ls-tree -r --name-only origin/main forense/encargos | wc -l; git ls-tree -r --name-only origin/main forense/encargos | rg -i 'tandas|ledger'", "salida": "1217 | forense/encargos/2026-09-08-GEN2-UNIVERSO-C-TANDAS-Y-ENAFIN.md · forense/encargos/2026-09-10-GEN2-TANDAS-MEDICION-ACADEMICA.md · forense/encargos/cola/2026-09-12-GEN2-POST-726/35-GEN2-TANDAS-PANEL-ENTRADAS-Y-SALIDAS.md (ninguno es la sonda del ledger)"},
+   {"tipo": "comando", "ref": "GEN2-DIN-TANDAS-LEDGER-SONDA-1", "comando": "git grep -l -i 'TANDAS-LEDGER-SONDA\\|LEDGER-SONDA' origin/main -- forense canon tools", "salida": "origin/main:forense/analisis/pendientes-3/PENDIENTES-PROGRAMA-v4.md · origin/main:forense/analisis/pendientes-3/evidencia/prop-A2.tsv · origin/main:forense/no-corrido.tsv (solo citas; ningún encargo ni nota)"},
+   {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R45", "comando": "python3 csv.DictReader sobre decisiones-21.tsv, renglon R45", "salida": "R45 · FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01#19 · asignar dueño a 33 NC cuyo sucesor corrió sin producir lo pedido · estado FIRMADA-DELEGADA (GEN2-TRAMITE-FIRMAS-21: decidida por el trámite; nota §P3)"},
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-0037", "salida": "NC-0037 · estado=ABIERTA · acto=GEN2-TRAMITE-FIRMAS-1 · pr=#693 · razon=DECISIÓN-DE-MESA-PENDIENTE · MEDICION-ACADEMICA-Y-PANEL-REALIZADOS; LEDGER-NO-LOCALIZADO; VIA-COMERCIAL-DIFERIDA-POR-D18 · sucesor=MESA (2026-10-05) · encargo por escribir: R45 asi…"}
+  ],
+  "lote": "OTRO:SONDAS-FUENTE-MX",
+  "entorno": "NUBE",
+  "hecho_comando": "ls forense/notas | rg -c 'TANDAS-LEDGER-SONDA' (>=1, nota con tabla A.4 de candidatas y conteo de universo) && python3 tools/consulta.py nc NC-0037 | rg -o 'estado=CERRADA|sucesor=ADQUISICION'",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0048",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "Lo que falta es auditar hacia atrás si los 211 RESULT coinciden con GEN1: E.1 hace de GEN1 historia, no autoridad. El producto con forma pedida existe (27 pares en relevo-usos-delta.tsv) y el delta vivo se calcula por candidato antes de adoptar (relevo_candidatos_delta.py). Ejecuta la delegación del 28/sep y la autorización de PENDIENTES-4 §2 de cerrar por diseño lo GEN1.",
+  "cite": [
+   {"tipo": "regla", "ref": "gobierno/instrucciones-proyecto-v2_16.md:99", "comando": "grep -n '^E.1 ' gobierno/instrucciones-proyecto-v2_16.md", "salida": "99:E.1 GEN1 es historia, no autoridad: no se reescribe ni es fuente de GEN2. Toda cifra declara su generación o se asume GEN1. El agregador que gobierna es el que la spec sellada declara; un GEN1 que"},
+   {"tipo": "comando", "ref": "forense/relevo-usos/relevo-usos-delta.tsv", "comando": "wc -l forense/relevo-usos/relevo-usos-delta.tsv", "salida": "28 forense/relevo-usos/relevo-usos-delta.tsv"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-15-GEN2-RELEVO-USOS-1-cierre.md:289-296", "comando": "sed -n '287,296p' forense/notas/2026-09-15-GEN2-RELEVO-USOS-1-cierre.md", "salida": "Aporta 27 correspondencias declaradas por identidad con consumidor, uso, fuente legacy anterior a adopción, CALC+RESULT sellado y las ocho dimensiones — exactamente la forma que NC-0048 pide — y 24 deltas calculados. No la cierra porque son 27 de los 211 RESULT históricos"},
+   {"tipo": "archivo", "ref": "forense/encargos/2026-09-20-GEN2-RELEVO-TANDA-1.md:12", "comando": "sed -n 12p forense/encargos/2026-09-20-GEN2-RELEVO-TANDA-1.md", "salida": "P1 · Delta por script, antes de adoptar nada (E.1: la comparación contra GEN1 se calcula, no se mira). `tools/relevo_candidatos_delta.py` sobre los 12; llena `delta`, signo, grano, materialidad."},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv NC-0048", "comando": "csv.DictReader, id==NC-0048", "salida": "DUEÑO-MESA · ... Propuesta: mesa declara que el resto queda NO-COMPARABLE por E.1 (GEN1 es historia) y los 27 pares son el producto; alternativa: acto que extienda tools/relevo_usos.py con pin de RESULT. || PENDIENTES-4 §2: mesa autoriza cerrar por diseño lo que sea GEN1 o procedimiento retirado (E.1, regla 6)"},
+   {"tipo": "comando", "ref": "data/corrida0/resultados.tsv", "comando": "python3 csv.DictReader (sin comentarios) Counter(delta_legacy)", "salida": "66313 [('', 66253), ('NO-COMPARABLE', 60)]"}
+  ],
+  "cerrado_por_detalle": "diseño: E.1 (gobierno/instrucciones-proyecto-v2_16.md:99) · producto parcial: forense/relevo-usos/relevo-usos-delta.tsv (27 pares, wc -l = 28); el delta por candidato vive en tools/relevo_candidatos_delta.py · delegación 28/sep + autorización PENDIENTES-4 §2",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0055",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "B1 pedía pegar a mano el cuerpo v2.3, un adjunto con la señal previa a la firma. Ese procedimiento se retiró: el bloque vivo lo produce el canal (TABLERO-EN-CANAL-1: «el tablero deja de tener dos productores») y §2 ya dice «lectura al corte, fechada» (línea 96). Adjunto v2.3 NO-ENCONTRADO en 12345 rutas. Se ejecuta la opción (a) delegada.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/tablero/TABLERO-PROGRAMA.md:96", "comando": "git show origin/main:forense/tablero/TABLERO-PROGRAMA.md | grep -n 'lectura al corte'", "salida": "96:**Las cifras vivas son las del bloque derivado de arriba, que `--actualiza` refresca. Lo de abajo es la lectura al corte, fechada.**"},
+   {"tipo": "archivo", "ref": "canon/L0/ADR-260924-GEN2-TUBERIA-TABLERO-EN-CANAL-1-3726-01.md", "comando": "head -c 400 canon/L0/ADR-260924-GEN2-TUBERIA-TABLERO-EN-CANAL-1-3726-01.md", "salida": "**ADR-260924-GEN2-TUBERIA-TABLERO-EN-CANAL-1-3726-01** ... `ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1 · el tablero deja de tener dos productores`, 24/sep/2026, entorno NUBE"},
+   {"tipo": "comando", "ref": "forense/tablero/TABLERO-PROGRAMA.md", "comando": "git log origin/main --oneline -n 1 -- forense/tablero/TABLERO-PROGRAMA.md", "salida": "1f4bf1cc [deriva] trozo 1 tras 429ec004d: 20 CALC, quedan 101 (#1268)"},
+   {"tipo": "comando", "ref": "adjunto v2.3 del tablero", "comando": "git ls-tree -r --name-only origin/main | rg -c '.'; git ls-tree -r --name-only origin/main | rg -i 'tablero.*v2|v2_3.*tablero|tablero.*2_3'", "salida": "12345 | (sin coincidencias, rc=1)"},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv NC-0055", "comando": "csv.DictReader, id==NC-0055", "salida": "Opciones: (a) retirar B1 como SIN-OBJETO: el bloque vivo se deriva por el canal (TABLERO-EN-CANAL-1) y §2 se declara 'lectura al corte, fechada'; el adjunto v2.3 exige regenerarse del lado del tablero y nadie lo tiene; ... Recomiendo (a)"}
+  ],
+  "cerrado_por_detalle": "diseño: B1 retirado SIN-OBJETO — bloque vivo producido por el canal (canon/L0/ADR-260924-GEN2-TUBERIA-TABLERO-EN-CANAL-1-3726-01.md), §2 declarada «lectura al corte, fechada» (forense/tablero/TABLERO-PROGRAMA.md:96), adjunto v2.3 NO-ENCONTRADO en origin/main · delegación 28/sep opción (a)",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0136",
+  "verdict": "ABSORBER",
+  "rationale": "La delegación pide un acto CAJA ordenado por demanda. Re-verificado: REACTIVOS-RESIDUALES-2, CAJA-REACTIVOS-FD-1 y RESIDUAL-81-1 dejaron NC-0136 abierta y no hay encargo posterior. Falta acreditar el residual: primero las 2693 filas reclamadas por mapa-19, luego 10182; más 7620 del residual de los 81 y 8 CANDIDATA-FD-EXT. Bajar los FD de los 55 grupos es NC-0258 (ADQUISICION).",
+  "cite": [
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-15-GEN2-REACTIVOS-RESIDUALES-2-cierre.md:108-116", "comando": "sed -n '108,116p' forense/notas/2026-09-15-GEN2-REACTIVOS-RESIDUALES-2-cierre.md", "salida": "### 3.3 · El residual del lote (12 875 filas), ordenado por demanda ... reclamado hoy por el mapa-19 | 1 106 | 2 693 | 21% ... no bloquea nada hoy | 4 985 | 10 182 | 79% ... total | 6 091 | 12 875"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-16-GEN2-RESIDUAL-81-1-cierre.md:96", "comando": "sed -n 96p forense/notas/2026-09-16-GEN2-RESIDUAL-81-1-cierre.md", "salida": "no cerró `NC-0136` ni `NC-0235` (quedan los 55 grupos sin FD, los 8 `CANDIDATA-FD-EXT-POR-VERIFICAR` y las 7 620 filas del residual de hoy) · no abrió `F6` · no adquirió"},
+   {"tipo": "comando", "ref": "forense/encargos", "comando": "git ls-tree -r --name-only origin/main forense/encargos forense/notas | rg -i 'REACTIVOS|RESIDUAL'", "salida": "8 encargos (último 2026-09-16-GEN2-RESIDUAL-81-1.md) y 7 notas; ninguno posterior al 16/sep"},
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-0258", "salida": "NC-0258 · estado=ABIERTA · acto=GEN2-CAJA-REACTIVOS-FD-1 · razon=FUERA-DE-PERÍMETRO · sucesor=ADQUISICION (FD INEGI de ~40 grupos: enoe 2008-2019/2024/2026, encig 2015-2025, enigh 2012-2022, enaproce, encup2012, enestyc*, edr2024…"},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv NC-0136", "comando": "csv.DictReader, id==NC-0136", "salida": "DUEÑO-MESA · Propuesta: acto CAJA (corpus montado) ordenado por demanda: primero las 2693 filas de instrumentos reclamados hoy por mapa-19 (1153 sin llaves), luego el resto. Reversible (solo mide texto de reactivos, sin cifras)."}
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "sed -n 2p <sucesor de data/reactivos-contexto-residual-v1_1.tsv> | cut -c3- | jq .filas_sin_texto_residual  (< 12875 de v1_1, y 0 filas de instrumentos del mapa-19 sin motivo acreditado por csv.DictReader) && python3 tools/consulta.py nc NC-0136 | rg -o 'estado=CERRADA'",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0164",
+  "verdict": "ABSORBER",
+  "rationale": "La letra 1 de FIRMAS-21 (FP 3fc6-01 FIRMADA) eligió (b): buscar una fuente mexicana de BNPL, CAT y daño con /sonda, con sucesor GEN2-SONDA-DINERO-CREDITO-FUENTE-MX-1. Ese encargo no está archivado; solo lo citan libros y notas. Sin la sonda no es CERRAR-FIRMA, porque la firma exige un producto que falta. Los estimandos Banxico ya se firmaron el 15/sep.",
+  "cite": [
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md:24", "comando": "sed -n 24p forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md", "salida": "| 1 | NC-0164 | (b) buscar fuente MX (aceptar estimandos ya firmado 15/sep) | sucesor GEN2-SONDA-DINERO-CREDITO-FUENTE-MX-1 |"},
+   {"tipo": "comando", "ref": "GEN2-SONDA-DINERO-CREDITO-FUENTE-MX-1", "comando": "git grep -l 'SONDA-DINERO-CREDITO-FUENTE-MX' origin/main", "salida": "origin/main:forense/analisis/pendientes-3/PENDIENTES-PROGRAMA-v4.md · origin/main:forense/analisis/pendientes-3/evidencia/prop-A2.tsv · origin/main:forense/no-corrido.tsv · origin/main:forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md (ningún encargo)"},
+   {"tipo": "firma", "ref": "FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01", "comando": "python3 tools/consulta.py fp FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01", "salida": "estado=FIRMADA · creado=2026-09-28 · firmada_en=28/sep/2026 ... «Las R46, R47, R49 y R51 ponlas para mañana, todo lo demás queda afirmado.» · ejecutada_en=ADR-260928-GEN2-TRAMITE-FIRMAS-21-8560-01"},
+   {"tipo": "archivo", "ref": "forense/encargos/2026-09-12-GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO.md:77", "comando": "git grep -n 'NC-0164' origin/main -- forense/encargos/2026-09-12-GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO.md", "salida": "77:Actualiza sólo la relación Banxico de N34 con la medición efectivamente disponible; NC-0164 sigue abierta por producto/lender mexicano exacto, costo objetivo e iden…"}
+  ],
+  "lote": "OTRO:SONDAS-FUENTE-MX",
+  "entorno": "NUBE",
+  "hecho_comando": "ls forense/notas | rg -c 'SONDA-DINERO-CREDITO-FUENTE-MX' (>=1, nota con candidatas A.4 EXISTE-SATISFACE/NO-ENCONTRADO y conteo de universo) && python3 tools/consulta.py nc NC-0164 | rg -o 'estado=CERRADA|sucesor=ADQUISICION'",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0170",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "La primera mitad ya está hecha: seis retro-sellos con PR (#759, #795) y cuatro reasentados en NC-0227, que está CERRADA. Queda decidir si [COLA]/[ADQ] son cuarta categoría exenta. La delegación del 28/sep elige la opción reversible: dejarlas como EXCEPCIÓN EXPLÍCITA sin tocar canon. El censo ya las tiene así (EXCEPCIÓN-COLA/ADQ, 10 casos), así que no hay nada más que producir.",
+  "cite": [
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv NC-0170", "comando": "csv.DictReader, id==NC-0170", "salida": "Mitad 1 (retro-sello de los 8) ya ejecutada/reasentada (PR #759, #795, NC-0227 CERRADA). Falta solo la decision. Opcion propuesta: mantenerlas como EXCEPCION EXPLICITA en el digesto sin tocar canon (reversible); alternativa: sumarlas a la lista de exentas via ADR (toca canon)."},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md:33-41", "comando": "sed -n '33,41p' forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md", "salida": "`censo/*` y `claude/tramite-*` son exentos por nombre ... Dos categorías no nombradas por el encargo se separan para que mesa decida ... - **EXCEPCIÓN-COLA/ADQ**: PR cuyo título es `[COLA] ...` o `[ADQ] ...` — el mecanismo que entrega encargos ... 10 casos."},
+   {"tipo": "comando", "ref": "forense/encargos (4 retro-sellos)", "comando": "grep -n '## CONSUMIDO' forense/encargos/2026-09-14-GEN2-CONSUMIDO-RETRO-3.md forense/encargos/2026-09-11-GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA.md forense/encargos/2026-09-09-GEN2-R-COMPLETA-MARCO.md forense/encargos/2026-09-10-GEN2-PUBLICACION-POST693-Y-CIERRES.md", "salida": "...CONSUMIDO-RETRO-3.md:7:## CONSUMIDO · PR #759 | ...REACTIVOS-CON-TEXTO-Y-BUSQUEDA.md:76:## CONSUMIDO · PR #737 | ...R-COMPLETA-MARCO.md:53:## CONSUMIDO · PR #680 | ...PUBLICACION-POST693-Y-CIERRES.md:75:## CONSUMIDO (+ enmienda l.79 con PR #701)"},
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "python3 tools/consulta.py nc NC-0227", "salida": "NC-0227 · estado=CERRADA · acto=GEN2-MANTENIMIENTO-Y-ARCHIVO-2 · pr=#795 · razon=DECISION-DE-MESA-PENDIENTE ENMIENDA FECHADA 2026-09-19 (ACTO GEN2-RECIBO-CODEX-3): CIERRA."}
+  ],
+  "cerrado_por_detalle": "firma: delegación de mesa 28/sep (forense/analisis/pendientes-3/decididas-por-delegacion.tsv NC-0170): [COLA]/[ADQ] quedan como EXCEPCIÓN EXPLÍCITA sin tocar canon, ya asentada en forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md:37-41; mitad 1 por PR #759, PR #795 y NC-0227 CERRADA",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0210",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "0.668937 es una cifra GEN1 que sella la firma d1 de mesa (2/sep, MAESTRA35-N8), en una propuesta que el motor no carga (0 menciones en milpa/src). CALC-ENIF-0003 ya la rotula referencias_gen1 y la contrasta. Corregirla sería reescribir GEN1 (E.1) y un sello. Además, la enmienda que prop-A6 citó en la línea 2171 no aparece en origin/main.",
+  "cite": [
+   {"tipo": "comando", "ref": "milpa/tramite-ola5-propuesta-v0.yaml:2171", "comando": "git show origin/main:milpa/tramite-ola5-propuesta-v0.yaml | grep -n '0.668937'", "salida": "2171:        cobertura: 0.668937"},
+   {"tipo": "comando", "ref": "milpa/tramite-ola5-propuesta-v0.yaml:2159-2200", "comando": "git show origin/main:milpa/tramite-ola5-propuesta-v0.yaml | grep -n 'horizonte_corto_ejes_enif2024\\|MAESTRA35-L7 · pieza (d)\\|firma d1 (mesa, 2/sep/2026)'", "salida": "2159:  - id: dinero.ahorro.horizonte_corto_ejes_enif2024 | 2161:    acto: \"MAESTRA35-L7 · pieza (d)\" | 2200:    situacion: SELLADA # firma d1 (mesa, 2/sep/2026), ACTO MAESTRA35-N8, cargada a milpa/tramite.yaml"},
+   {"tipo": "comando", "ref": "milpa/src", "comando": "git grep -c 'tramite-ola5' origin/main -- milpa/src; echo rc=$?; git ls-tree -r --name-only origin/main milpa/src | wc -l", "salida": "rc=1 | 12 (0 coincidencias en 12 archivos: el motor no carga la propuesta)"},
+   {"tipo": "archivo", "ref": "data/corrida0/CALC-ENIF-0003/ejecucion.json:157-159", "comando": "sed -n '157,159p' data/corrida0/CALC-ENIF-0003/ejecucion.json", "salida": "\"referencias_gen1\": { \"cobertura_propuesta_6dec\": 0.668937, \"fuente\": \"data/l7-log-pieza-d.txt (commit 0ce351f, ACTO MAESTRA35-L7) y milpa/tramite-ola5-propuesta-v0.yaml:2169\","},
+   {"tipo": "regla", "ref": "gobierno/instrucciones-proyecto-v2_16.md:99", "comando": "grep -n '^E.1 ' gobierno/instrucciones-proyecto-v2_16.md", "salida": "99:E.1 GEN1 es historia, no autoridad: no se reescribe ni es fuente de GEN2. Toda cifra declara su generación o se asume GEN1."}
+  ],
+  "cerrado_por_detalle": "diseño: E.1 (gobierno/instrucciones-proyecto-v2_16.md:99) — cifra GEN1 sellada por firma d1 (milpa/tramite-ola5-propuesta-v0.yaml:2171, 2200), no cargada por el motor; CALC-ENIF-0003 la rotula referencias_gen1 (data/corrida0/CALC-ENIF-0003/ejecucion.json:157-158)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0212",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "La delegación del 28/sep elige la opción (a): el rótulo NO-DERIVABLE-DESDE-LA-SPEC queda como estado final documentado, y CALC-ENIF-0002 no se reescribe (E.3). Re-verificado: relevo-usos rotula RES-0065 YA-ADOPTADO con NO-DERIVABLE-DESDE-LA-SPEC, y la validación independiente del RESULT dice PASA con ENLACE dentro de su alcance (validaciones-independientes.tsv:28). Cerrar no adopta nada.",
+  "cite": [
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv NC-0212", "comando": "csv.DictReader, id==NC-0212", "salida": "CALC-ENIF-0002 esta sellado y no se reescribe (E.3). Opciones: (a) aceptar el rotulo NO-DERIVABLE-DESDE-LA-SPEC como estado final documentado y cerrar; (b) CALC sucesor con enlace declarado (sucesion.json). Recomiendo (a)"},
+   {"tipo": "comando", "ref": "data/corrida0/relevo-usos-v1_0.tsv RES-0065", "comando": "python3 csv.DictReader (sin comentarios) resultado_id==RES-0065", "salida": "consumidor=milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto · veredicto=YA-ADOPTADO · result_gen2_candidato=RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P · control_c0=NO-DERIVABLE-DESDE-LA-SPEC · razon=...adopcion no auditable desde la oferta"},
+   {"tipo": "comando", "ref": "data/corrida0/validaciones-independientes.tsv:28", "comando": "sed -n 28p data/corrida0/validaciones-independientes.tsv", "salida": "CALC-ENIF-0002\tRESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P\tPASA\tforense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PARAMETROS-ACTIVOS-v1_0/evidencia-parametros-activos.json\t2c9669f1…\tPUNTO;UNIVERSO;UNIDAD;CODIFICACION;PONDERADOR;TRANSFORMACION;ENLACE;INFERENCIA-NO-COMPROBADA"},
+   {"tipo": "comando", "ref": "data/corrida0/CALC-ENIF-0002/spec.yaml:13", "comando": "grep -n 'adopcion\\|demanda_que_releva\\|RES-0065' data/corrida0/CALC-ENIF-0002/spec.yaml", "salida": "13:  demanda_que_releva: \"MESA-10SEP:D04/D05; NC-0124 y NC-0128; celda de no trabajadores y adopcion A/A\" (no nombra RES-0065: el hueco sigue, documentado)"}
+  ],
+  "cerrado_por_detalle": "firma: delegación de mesa 28/sep (forense/analisis/pendientes-3/decididas-por-delegacion.tsv NC-0212, opción (a)) · estado final documentado: data/corrida0/relevo-usos-v1_0.tsv RES-0065 control_c0=NO-DERIVABLE-DESDE-LA-SPEC · validación independiente PASA con ENLACE (data/corrida0/validaciones-independientes.tsv:28)",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0246",
+  "verdict": "CERRAR-DUPLICADA",
+  "rationale": "La mitad ENADID ya se consumió: CALC-ENADID-0001, sellado, midió la celda sucesora con P3_27 (P3_27_AG es agrupación), y NC-0194 está CERRADA por producto. Para enut/enfih la firma no pide nada. Queda MOCIBA 2015-17 hacia la serie R01 del panel F6, que es la deuda de NC-0324 (ABIERTA): R01 espera su enlace pre-R; enlace_M CANDIDATO-NO-ELEGIBLE.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv NC-0324", "comando": "python3 tools/consulta.py nc NC-0324", "salida": "NC-0324 · estado=ABIERTA · acto=GEN2-RECIBO-CODEX-2 · pr=#840 · pieza=GEN2-MOCIBA-FLUJO-DOCUMENTAL-1 · sucesor=MESA (2026-10-05) · encargo por escribir: R36: falta el enlace científico pre-R · antes: GEN2-MOCIBA-F6-ENLACE-PRE-R-1 (letra 5: (a) R01 en espera hasta enlace pre-R firmado; FIRMAS-3:94 ya lo difirió a F6)"},
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv NC-0194", "comando": "python3 tools/consulta.py nc NC-0194", "salida": "NC-0194 · estado=CERRADA · acto=GEN2-SPECS-DEMANDA-1 · razon=FUERA-DE-PERÍMETRO | F-10 (mesa 15/sep/2026): familia.union.libre sucede a ENADID 2023 ... cerrado_por: GEN2-PENDIENTES-3 · CERRADA (producto: milpa/tramite.yaml:1078 ...)"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1-cierre.md:54-57", "comando": "sed -n '50,58p' forense/notas/2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1-cierre.md", "salida": "El FD identifica `P3_27` como el reactivo original: 1 unión libre, 2 separada de unión libre, ... 7 soltera. `P3_27_AG` está documentada aparte como agrupación; no gobierna esta operación."},
+   {"tipo": "comando", "ref": "data/corrida0/CALC-ENADID-0001", "comando": "git ls-tree --name-only origin/main data/corrida0/CALC-ENADID-0001/", "salida": "ejecucion.json · medidor.py · resultados.json · sello.json · sello.sha256 · spec.md · spec.yaml"},
+   {"tipo": "archivo", "ref": "forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml:127-128", "comando": "sed -n '123,128p' forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/tarjetas.yaml", "salida": "regla_consumidora: civico.denuncia.miedo_desconfianza ... enlace_M: estado: CANDIDATO-NO-ELEGIBLE"},
+   {"tipo": "firma", "ref": "FP-260922-GEN2-FP374-RESELLO-1-dfbe-01", "comando": "python3 tools/consulta.py fp FP-260922-GEN2-FP374-RESELLO-1-dfbe-01", "salida": "estado=FIRMADA · ... Dictamen: EN-ESPERA-PANEL ... tarjetas.yaml:125,128: R01-MOCIBA CANDIDATO-NO-ELEGIBLE"}
+  ],
+  "cerrado_por_detalle": "duplicada: NC-0324 (ABIERTA; R01-MOCIBA en espera de enlace pre-R, sucesor GEN2-MOCIBA-F6-ENLACE-PRE-R-1) lleva el remanente MOCIBA→panel F6; mitad ENADID consumida por CALC-ENADID-0001 (sellado; NC-0194 CERRADA por producto); enut2024/enfih2019 sin acción por la propia firma del 16/sep",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0251",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "La fila pedía completar el archivado con ## CONSUMIDO, o decidir que la nota de cierre basta. La delegación del 28/sep decide la opción (a): basta, se cierra SIN-OBJETO. Re-verificado en origin/main: la copia de cola trae ESTADO CONSUMIDO — PR #693 (l.1) y ## CONSUMIDO (l.103, ADR-461), y la nota de cierre del acto existe.",
+  "cite": [
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv NC-0251", "comando": "csv.DictReader, id==NC-0251", "salida": "Opcion (a), recomendada: la copia de cola ya lleva ## CONSUMIDO (linea 103) con PR #693 y ADR-461 y la nota de cierre existe: basta como registro, cerrar SIN-OBJETO. Opcion (b): crear el homonimo en forense/encargos/. Reversible."},
+   {"tipo": "comando", "ref": "forense/encargos/cola/2026-09-10-GEN2-POST-685/06-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md", "comando": "git show origin/main:\"$f\" | grep -n 'CONSUMIDO'; sed -n '103,106p'", "salida": "1:ESTADO: CONSUMIDO — PR #693; ... 103:## CONSUMIDO | PR: `#693`, rama `acto/gen2-adquisicion-dirigida`, contra `main`. Ejecutado: `ACTO GEN2-ADQUISICION-DIRIGIDA-Y-DIN` (`ADR-461`, renumerado al integrar"},
+   {"tipo": "comando", "ref": "forense/notas", "comando": "git ls-tree -r --name-only origin/main forense/notas forense/encargos | rg -i 'ADQUISICION-DIRIGIDA'", "salida": "forense/encargos/cola/2026-09-10-GEN2-POST-685/06-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md · forense/notas/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-Y-DIN-cierre.md (+3 notas de pieza)"}
+  ],
+  "cerrado_por_detalle": "firma: delegación de mesa 28/sep (forense/analisis/pendientes-3/decididas-por-delegacion.tsv NC-0251, opción (a) SIN-OBJETO) · registro: forense/encargos/cola/2026-09-10-GEN2-POST-685/06-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md:1,103 (CONSUMIDO · PR #693 · ADR-461) + forense/notas/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-Y-DIN-cierre.md",
+  "confianza": "alta"
+ }
+]
