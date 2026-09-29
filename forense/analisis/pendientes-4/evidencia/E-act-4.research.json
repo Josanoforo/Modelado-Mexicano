@@ -1,0 +1,207 @@
+[
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-07",
+  "verdict": "ABSORBER",
+  "rationale": "Producto ausente: ningún CALC sellado usa AP5_4_* (0 archivos con coincidencia en 2 582 de data/corrida0; control AP5_1_1 sí aparece en M19-ENCUCI). El mapa (fila 57) marca ENVIPE 2025 ABIERTA según MEMORIA §1; la restricción «solo lo que su árbitro abrió» venía del encargo LOTE-1. LOTE-2 debe declarar una compuerta explícita de apertura de AP5_4_*.",
+  "cite": [
+   {"tipo": "comando", "ref": "data/corrida0/", "comando": "git ls-tree -r --name-only origin/main data/corrida0/ | wc -l; git grep -c 'AP5_4' origin/main -- data/corrida0/ | wc -l; git grep -n 'AP5_1_1' origin/main -- data/corrida0/CALC-ALT-M19-ENCUCI2020-0001/spec.yaml", "salida": "2582\n0\norigin/main:data/corrida0/CALC-ALT-M19-ENCUCI2020-0001/spec.yaml:37:  variable: AP5_1_1"},
+   {"tipo": "archivo", "ref": "canon/mapa-instrumentos-alternos-v1_0.tsv:57", "comando": "git show origin/main:canon/mapa-instrumentos-alternos-v1_0.tsv | python3 csv (fila 57)", "salida": "57 ['M19', 'ENVIPE', '2025', 'AP5_4_*', 'EXISTE-SATISFACE-PARCIAL(eje de enforcement por entidad; ...)', 'ABIERTA (canon/MEMORIA-OPERATIVA.md §1: ENCIG 2025 y ENVIPE 2025 abiertas)', 'EN-CORPUS (microdato)', 'CALC-CAJA (confianza en autoridades por entidad como covariable de contexto)']"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md:72", "comando": "rg -n 'AP5_4' forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md", "salida": "72:- **ENVIPE 2025 «sólo lo que su árbitro abrió»:** se leyeron sólo columnas ya abiertas por CALC sellados de 2025: `TMOD_VIC` del árbitro y `CVE_ENT` de `TPER_VIC2` de REGION-2025. `AP5_4_*` no se abrió."},
+   {"tipo": "regla", "ref": "canon/MEMORIA-OPERATIVA.md:9", "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | grep -n 'ENVIPE 2025'", "salida": "9:- Reservas: ola más reciente de todo programa con historia; ENVIPE 2026; ENCO; ENIGH 2024 salvo seis columnas AMAI (C7). ENCIG 2025 y ENVIPE 2025: abiertas."},
+   {"tipo": "comando", "ref": "forense/encargos/", "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c 'CALC-ALTERNOS-LOTE-2'", "salida": "0 (de 1217 rutas)"}
+  ],
+  "lote": "CALC-ALTERNOS-LOTE-2",
+  "entorno": "CAJA",
+  "hecho_comando": "git ls-tree --name-only origin/main data/corrida0/ | grep -c 'CALC-ALT-M19-ENVIPE2025' (>=1) && git show origin/main:data/corrida0/CALC-ALT-M19-ENVIPE2025-0001/sello.json | jq -r .calc",
+  "owner_detalle": "",
+  "que_falta": "CALC-caja M19 con AP5_4_* de ENVIPE 2025 por entidad como covariable de enforcement (unir con ENCUCI por entidad), con compuerta de apertura que cite MEMORIA §1 y verifique que APERTURAS-PREREGISTRADAS-1 no la liste como reservada fuera del árbitro.",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-08",
+  "verdict": "ABSORBER",
+  "rationale": "p17/p18 salen vacías en el poselectoral nacional (NO-ESTIMABLE n=0, hallazgo sobre el archivo). Queda una vía concreta en el corpus: el payload cide_cses2015_nacional_preelectoral es byte-idéntico al poselectoral ESTATAL, según el manifiesto. LOTE-2 lo abre (y también CSES M4) para medir p17/p18 o dictaminar NO-CONSTRUIBLE con A.15. Es fila de CAJA.",
+  "cite": [
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md:53,69", "comando": "rg -n 'p17' forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md", "salida": "53: ... `p17`/`p18` quedan **NO-ESTIMABLE, n = 0**: las 1 200 fila...\n69:- **`p17`/`p18` vacíos en el poselectoral nacional** (A.15: la columna existe y está vacía). Es un hallazgo sobre el archivo, no un procedimiento a corregir."},
+   {"tipo": "comando", "ref": "data/manifiesto.yaml", "comando": "yq '.[] | select(.id==\"cide_cses2015_nacional_preelectoral\")' data/manifiesto.yaml", "salida": "url_origen_procedencia: \"CIDE (datos.cide.edu), Encuesta Preelectoral Nacional CSES 2015 ... NOTA: byte-idéntico a cide_cses2015_estatal_poselectoral (handle 10089/17404) -- error de etiquetado del propio repositorio CIDE\""},
+   {"tipo": "comando", "ref": "data/manifiesto.yaml", "comando": "yq -r '.[] | .id' data/manifiesto.yaml | rg -i 'cses|cide'", "salida": "cses5_modulo5_2016_2021_csv ... cide_cses2015_estatal_preelectoral cide_cses2015_nacional_poselectoral cide_cses2015_nacional_preelectoral cses2_module2_full cses3_module3_full cses4_module4_full (7198 ids examinados)"},
+   {"tipo": "comando", "ref": "forense/encargos/", "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c 'CALC-ALTERNOS-LOTE-2'", "salida": "0 (de 1217 rutas)"}
+  ],
+  "lote": "CALC-ALTERNOS-LOTE-2",
+  "entorno": "CAJA",
+  "hecho_comando": "rg -n 'p17|p18' forense/notas/*GEN2-CALC-ALTERNOS-LOTE-2*cierre.md (fila con n>0 y CALC sellado, o NO-CONSTRUIBLE con archivos/secciones recorridos)",
+  "owner_detalle": "",
+  "que_falta": "Buscar p17/p18 respondidas en el poselectoral estatal (bajo el id cide_cses2015_nacional_preelectoral) y en CSES M4; medir el peso percibido del voto por concurrencia o dictaminar NO-CONSTRUIBLE con A.15.",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-09",
+  "verdict": "HOJA-DECISION",
+  "rationale": "El cruce tamaño × sector exige el microdato TR_ENCRIGE2020 del Laboratorio de Microdatos de INEGI. La firma R10 (FIRMADA) dice verbatim que esa solicitud «es opcional y la decide mesa aparte». No es ninguna de las solicitudes (a)–(f) de R48; (g) era ENAPROCE y quedó archivada. Es una decisión de mesa, no un encargo de ejecutor.",
+  "cite": [
+   {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R10 (FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-29)", "comando": "python3 csv.DictReader decisiones-21.tsv renglon==R10 ; python3 tools/consulta.py fp FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-29", "salida": "texto_de_firma: «Firmo I1 (d): ENAPROCE queda NO-ACCESIBLE para R03; R03 se funde con R08 ... La solicitud de microdato ENCRIGE 2020 al Laboratorio es opcional y la decide mesa aparte.» · estado=FIRMADA"},
+   {"tipo": "archivo", "ref": "forense/analisis/obtencion-externa-1/solicitudes/g-inegi-lm-enaproce.md:22", "comando": "sed -n '1,23p' forense/analisis/obtencion-externa-1/solicitudes/g-inegi-lm-enaproce.md", "salida": "Estado: **ARCHIVADA-NO-NECESARIA** ... La solicitud **opcional** de microdato ENCRIGE 2020 al Laboratorio (`TR_ENCRIGE2020`, `TR_ENCRIGE2020_TRAMITES`) que MAPA menciona es otra solicitud, de otro objeto; «la decide mesa aparte» (texto de MAPA). No se redacta aquí."},
+   {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R48", "comando": "python3 csv.DictReader decisiones-21.tsv renglon==R48", "salida": "objeto: paquete de seis solicitudes PREPARADAS, NO ENVIADAS (Banxico, IECM, Segob, Félix-Brasdefer, Delaney/FIU, Worldpanel) — ninguna es LM/ENCRIGE"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md:67", "comando": "rg -n 'ENCRIGE 2020 / ENVE 2024 no son microdato' forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md", "salida": "67:- **ENCRIGE 2020 / ENVE 2024 no son microdato.** `conjunto_de_datos_*_csv` son tabulados de datos abiertos, y el microdato ENCRIGE es de Laboratorio. R03 se extrae de tabulados con el régimen de #826: sin IC y sin cruce tamaño × sector."}
+  ],
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "MESA-DECISION (hoja de decisiones PENDIENTES-4: R03-LM · microdato ENCRIGE 2020 en Laboratorio INEGI)",
+  "hoja": {
+   "accion_clave": "INEGI-LM-ENCRIGE2020 (TR_ENCRIGE2020 + TR_ENCRIGE2020_TRAMITES; no duplica R46–R49 ni (a)–(f); (g) ENAPROCE archivada)",
+   "situacion": "R03 (pago informal en trámites por empresa) hoy se publica por tamaño y por sector por separado, desde tabulados. El cruce tamaño × sector solo existe en el microdato ENCRIGE 2020 del Laboratorio de Microdatos de INEGI, y R10 dejó esa solicitud a mesa.",
+   "opciones": [
+    {"letra": "a", "texto": "Solicitar al Laboratorio de Microdatos de INEGI (procesamiento remoto) el TR_ENCRIGE2020 y el TR_ENCRIGE2020_TRAMITES, con un titular de mesa.", "costo": "Trámite con identidad y semanas de espera. La salida queda sujeta a confidencialidad y el acceso es a tabla procesada, no a microdato en el corpus."},
+    {"letra": "b", "texto": "No solicitar. El cruce tamaño × sector de R03 queda NO-ACCESIBLE-SIN-LABORATORIO, la NC se cierra con esta firma y se reabre solo si una regla o afirmación adoptada lo exige.", "costo": "R03 se queda sin el cruce; hoy sale por tamaño y por sector por separado, rotulada."},
+    {"letra": "c", "texto": "Diferir sin fecha: la NC sigue abierta hasta que la demanda (corrida0 demanda) la pida.", "costo": "Una fila abierta más sin dueño ejecutable."}
+   ],
+   "recomendacion": "b",
+   "porque": "El mapa y R10 ya descartaron el trámite de identidad con el Laboratorio para ENAPROCE, porque era un costo alto para un dato marginal. R03 ya tiene fuente descriptiva sellada (CALC-ALT-R03-ENCRIGE2020-0001 y CALC-ALT-R03-ENVE2024-0001). Los encargos salen de la demanda (§1), y (b) deja la puerta abierta sin cargar el libro.",
+   "plazo": "Sin urgencia; próximo corte de mesa (2026-10-05).",
+   "texto_firma": "«Firmo R03-LM ___ (a: se solicita al Laboratorio de Microdatos de INEGI el TR_ENCRIGE2020/TR_ENCRIGE2020_TRAMITES con titular ___ · b: no se solicita; el cruce tamaño × sector de R03 queda NO-ACCESIBLE-SIN-LABORATORIO, NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-09 se cierra con esta firma y se reabre solo si una regla o afirmación adoptada lo exige · c: se difiere sin fecha).»"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260925-GEN2-CATALOGO-V1-1-1-afe1-02",
+  "verdict": "ABSORBER",
+  "rationale": "El cruce ya existe en main: redictamina_v1_1.py cruzó cada afirmación MEDIBLE-CON-ADQUISICIÓN contra tabla-final-v1_0.tsv, y el mapa v1_1 trae estado_corpus_v1_1 (44 programa y ola en corpus, 52 ola no casada). El catálogo v1.3 lee ese mapa pero su tabla de cobertura sigue contando esas afirmaciones como «con adquisición». Falta exponer la distinción en el catálogo.",
+  "cite": [
+   {"tipo": "archivo", "ref": "forense/analisis/dominios/redictamina_v1_1.py:4-6", "comando": "sed -n '1,8p' forense/analisis/dominios/redictamina_v1_1.py", "salida": "Derivador del mapa de dominios v1.1 (ACTO GEN2-MAPA-DOMINIOS-V1-1-1). ... re-dictamina cada afirmación MEDIBLE-CON-ADQUISICIÓN contra el corpus de CORPUS-COMPLETO-1 (`forense/analisis/corpus-completo/tabla-final-v1_0.tsv`)."},
+   {"tipo": "comando", "ref": "canon/mapa-dominios-v1_1.tsv", "comando": "python3 csv.DictReader: Counter(estado_corpus_v1_1[:50]) where dictamen startswith MEDIBLE-CON-ADQ", "salida": "1396 filas; MEDIBLE-CON-ADQUISICIÓN 717: INSTRUMENTO-SIN-EQUIVALENCIA 611 · PROGRAMA-EN-CORPUS-OLA-NO-CASADA 52 · PROGRAMA-Y-OLA-EN-CORPUS (texto NO-VERIFICADO-AQUÍ) 44 · PROGRAMA-NO-OBTENIDO 10"},
+   {"tipo": "comando", "ref": "forense/analisis/catalogo/genera_catalogo_v1_3.py:758", "comando": "git grep -n 'mapa-dominios-v1_' origin/main -- 'forense/analisis/catalogo/*.py'", "salida": "genera_catalogo_v1_3.py:758:    mapa = lee(ROOT / \"canon/mapa-dominios-v1_1.tsv\")"},
+   {"tipo": "archivo", "ref": "canon/catalogo-del-mexicano-v1_3.md:145,158", "comando": "sed -n '140,160p' canon/catalogo-del-mexicano-v1_3.md", "salida": "- `MEDIBLE-CON-ADQUISICIÓN` — solo medible si se adquiere el instrumento. ... | report | dominio | estado | ... | afirmaciones (en corpus / con adquisición / no medibles) | (sin columna de 'ya en corpus')"},
+   {"tipo": "comando", "ref": "forense/encargos/", "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c 'CATALOGO-V1-2'", "salida": "0 (de 1217 rutas)"}
+  ],
+  "lote": "OTRO:PRODUCTO-CANON-NUBE",
+  "entorno": "NUBE",
+  "hecho_comando": "rg -c 'PROGRAMA-Y-OLA-EN-CORPUS|ya en corpus' canon/catalogo-del-mexicano-v1_<N>.md (>=1), con su total igual al conteo csv.DictReader de estado_corpus PROGRAMA-*-EN-CORPUS del mapa vigente",
+  "owner_detalle": "",
+  "que_falta": "Que la tabla de cobertura del catálogo (sucesor de v1.4, que CIERRE-Y-PRODUCTO-3 escribe en vuelo) separe las afirmaciones MEDIBLE-CON-ADQUISICIÓN ya en corpus, leyendo estado_corpus del mapa vigente (v1.2 lo re-deriva MAPA-DOMINIOS-Y-LICENCIAS-1, en vuelo). Si dirección acepta la columna del mapa como producto, la fila puede pasar a CERRAR-PRODUCTO.",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260926-GEN2-CIERRE-SEMANAL-1-dea2-03",
+  "verdict": "ABSORBER",
+  "rationale": "La columna de oferta de CNBV no existe: ningún CALC usa BDIF (0 de 390 spec.yaml). DINERO-SERIES dio «0 pisos» porque el host estaba denegado en NUBE, pero los 12 payloads BDIF de acceso están en el corpus. Aplica la delegación: acto CAJA que derive la oferta junto a los pisos de crédito y ahorro, sin abrir ENIF 2024 m7.",
+  "cite": [
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-26-GEN2-DINERO-SERIES-CNBV-BANXICO-1-nota.md:119-124", "comando": "sed -n '119,127p' forense/notas/2026-09-26-GEN2-DINERO-SERIES-CNBV-BANXICO-1-nota.md", "salida": "## 5 · P4 · columna de oferta\n**0 pisos** ganan columna. Las series de oferta (BDIF de CNBV: sucursales, corresponsales y puntos de acceso por municipio o por 10 mil adultos) están en un host denegado, y en el repo no hay constancia de oferta ... NC-03 a caja."},
+   {"tipo": "comando", "ref": "data/manifiesto.yaml", "comando": "yq -r '.[] | select(.id | test(\"^adq15_bdif\")) | .id + \" | \" + .archivo' data/manifiesto.yaml", "salida": "12 ids, p.ej. adq15_bdif_52sep2022_bd_acceso_mun | ADQ15_CNBV_BDIF_inclusion_financiera/52Sep2022_BD_Acceso_Mun.csv ; adq15_bdif_52sep2022_bd_acceso_edo ; adq15_bdif_datos_abiertos_dgasf_jun23_jun24"},
+   {"tipo": "comando", "ref": "data/corrida0/", "comando": "git ls-tree --name-only origin/main data/corrida0/ | grep -ciE 'BDIF|ACCESO|OFERTA-CNBV|SUCURSAL|CORRESPONSAL'; git grep -l -i bdif origin/main -- 'data/corrida0/*/spec.yaml' | wc -l", "salida": "0\n0 (390 spec.yaml examinados; solo existen CALC-DIN-OFERTA-EXCLUSION-ENIF{2012,2015,2018,2021,2024}-0001, oferta por demanda ENIF)"},
+   {"tipo": "comando", "ref": "data/cola-adquisicion-v1_0.tsv", "comando": "python3 csv (sin '#') fuente_canonica==BDIF", "salida": "BDIF · OBTENIDO · ids_manifiesto: adq15_cnbv_bdif_inclusion_financiera (12 payloads) · ADQUIRIDA 2026-08-18 via datosabiertos.cnbv.gob.mx"},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv (dea2-03)", "comando": "python3 csv.DictReader decididas-por-delegacion.tsv id==NC-...dea2-03", "salida": "DUEÑO-MESA · Propuesta: acto CAJA pequeño que la derive junto a los pisos de credito/ahorro, sin abrir la seccion de credito reservada de ENIF 2024."}
+  ],
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "CAJA",
+  "hecho_comando": "git ls-tree --name-only origin/main data/corrida0/ | grep -ciE 'BDIF|OFERTA-CNBV' (>=1 con sello.json) y la columna oferta_exclusion del catálogo vigente no vacía en los pisos de crédito/ahorro (csv.DictReader)",
+  "owner_detalle": "",
+  "que_falta": "CALC de oferta (sucursales, corresponsales y puntos de acceso por 10 mil adultos, por entidad o municipio) desde los payloads BDIF del corpus, puesto junto a cada piso de crédito y ahorro.",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260927-GEN2-CIERRE-SEMANAL-2-facd-02",
+  "verdict": "ABSORBER",
+  "rationale": "Bloqueador re-verificado: status veta por RESULT (corrida0.py:5434-5436). La firma beee-02 (FIRMADA) dice «el sucesor es un CALC nuevo», y ese sucesor de 2011 no existe (R25 lo confirma). La NC 2385-02 (ABIERTA, 28/sep) pide el mismo CALC. Esta fila es anterior y añade status y la celda #2039, así que se co-absorbe con 2385-02.",
+  "cite": [
+   {"tipo": "archivo", "ref": "tools/corrida0.py:5434-5436", "comando": "sed -n '5430,5437p' tools/corrida0.py", "salida": "ids_vetados = {objeto for objeto, decision in _lee_decisiones().items()\n               if decision.startswith(\"adopcion=VETADA-POR-DECISION\")}\nids_vetados &= ids_sellados_gen2"},
+   {"tipo": "firma", "ref": "forense/firmas-pendientes.tsv FP-260927-GEN2-RECIBO-ASTRA6-1-beee-02", "comando": "rg -n 'beee-02' forense/firmas-pendientes.tsv | cut -c1-600", "salida": "PROPONER-SUSPENDER 7 (RESULT-ENDIREH2011-MOD-TABLA#1656–#1661, #2039) y ACOTAR 689 ...; el sello no se toca, el sucesor es un CALC nuevo ... FIRMADA · «Firmo Beee, las dos»"},
+   {"tipo": "archivo", "ref": "forense/validacion-independiente/catalogo-1-sucesores/R25-retiro-temporal-denominador-99.md:26", "comando": "git show origin/main:forense/validacion-independiente/catalogo-1-sucesores/R25-retiro-temporal-denominador-99.md | sed -n '22,30p'", "salida": "Ejecución de sucesores nuevos (`sucesor2011`, `sucesor2021`...): autorizada sin adopción automática. Ninguno existe hoy como CALC ni como spec en `prereg-caja/` ... Este acto no escribe ni corre los sucesores 2011/2021 ... Quedan como NC con sucesor."},
+   {"tipo": "comando", "ref": "data/corrida0/", "comando": "git ls-tree --name-only origin/main data/corrida0/ | rg -i 'ENDIREH' | rg 2011", "salida": "data/corrida0/CALC-ENDIREH-PISOS-2011-MODULOS-0001 (21 CALC ENDIREH examinados; ninguno sucesor 2011)"},
+   {"tipo": "comando", "ref": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-02", "comando": "python3 tools/consulta.py nc NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-02", "salida": "estado=ABIERTA · acto=GEN2-C1-SUCESORES-Y-LOTE-3 · pr=1304 · razon=FUERA-DE-PERÍMETRO: son CALC nuevos de ENDIREH 2011/2021 ... acto dueño GEN2-C1-SUCESORES-2011-2021-1"}
+  ],
+  "lote": "OTRO:C1-SUCESORES-2011-2021",
+  "entorno": "CAJA",
+  "hecho_comando": "git ls-tree --name-only origin/main data/corrida0/ | grep -ciE 'ENDIREH.*2011.*SUC|SUCESOR2011' (>=1 con sello.json) y la suspensión de las 7 celdas (#1656–#1661, #2039) contada en status/vista, derivada por comando",
+  "owner_detalle": "",
+  "que_falta": "Escribir y correr el CALC sucesor de instituciones 2011 con denominador institucional y elegibilidad 99 (contrato R25), y dejar visibles en status las 7 celdas suspendidas, incluida #2039, sin vetar el RESULT entero. Lote compartido con NC-…-2385-02.",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260927-GEN2-CIERRE-SEMANAL-2-facd-03",
+  "verdict": "ABSORBER",
+  "rationale": "Producto ausente en main: donde-cambio v1.0 tiene 0 menciones de ENSU y su tabla-dictamen 0 filas ENSU, mientras CALC-ENSU-SERIE-0001 trae 201 series con DICTAMEN. No hay encargo DONDE-CAMBIO-EL-MEXICANO-2. CIERRE-Y-PRODUCTO-3 (en vuelo, lectura de rama tipo 3) tiene donde-cambio v1.1 en su perímetro pero no nombra ENSU. Aplica la delegación: integrarlo en el próximo corte.",
+  "cite": [
+   {"tipo": "comando", "ref": "canon/donde-cambio-el-mexicano-v1_0.md", "comando": "git show origin/main:canon/donde-cambio-el-mexicano-v1_0.md | grep -ci 'ensu'", "salida": "0"},
+   {"tipo": "comando", "ref": "forense/analisis/donde-cambio/tabla-dictamen-v1_0.tsv", "comando": "git show origin/main:forense/analisis/donde-cambio/tabla-dictamen-v1_0.tsv | grep -cw 'ENSU'", "salida": "0 (las 612 coincidencias de grep -ci 'ensu' son 'conmensurable')"},
+   {"tipo": "comando", "ref": "data/corrida0/CALC-ENSU-SERIE-0001/resultados.json", "comando": "git show origin/main:data/corrida0/CALC-ENSU-SERIE-0001/resultados.json | jq -r '.resultados | keys[]' | rg -c '^RESULT-ENSU-DICTAMEN-.*-DICTAMEN$'", "salida": "201"},
+   {"tipo": "comando", "ref": "forense/encargos/", "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c 'DONDE-CAMBIO-EL-MEXICANO-2'", "salida": "0 (de 1217 rutas)"},
+   {"tipo": "archivo", "ref": "origin/claude/new-session-8tmg5a:forense/encargos/2026-09-28-GEN2-CIERRE-Y-PRODUCTO-3.md:40 (tipo 3, rama sin fusionar)", "comando": "git show origin/claude/new-session-8tmg5a:forense/encargos/2026-09-28-GEN2-CIERRE-Y-PRODUCTO-3.md | rg -n -i 'ENSU|donde-cambio'", "salida": "11:(P3) ... «Dónde cambió el mexicano» v1.1 ... 40:Propio: `canon/{..., donde-cambio-el-mexicano-v1_1.md, ...}` (sin mención de ENSU)"}
+  ],
+  "lote": "OTRO:PRODUCTO-CANON-NUBE",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:canon/donde-cambio-el-mexicano-v1_<N>.md | grep -cw ENSU (>=1) y la tabla-dictamen v1_<N> con 201 filas instrumento==ENSU (csv.DictReader)",
+  "owner_detalle": "",
+  "que_falta": "Integrar los 201 dictámenes de ENSU-SERIE en la tabla y el texto de «Dónde cambió el mexicano», en la versión siguiente a la v1.1 que CIERRE-Y-PRODUCTO-3 escribe. Si esa v1.1 ya los incluye al fusionar, la fila se cierra por producto.",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260924-GEN2-CLASE-AMAI-1-e773-03",
+  "verdict": "ABSORBER",
+  "rationale": "Ninguno de los tres CALC-AMAI-NSE-ENDUTIH menciona empleo (0/0/0), aunque empleo15.py existe y hay pisos EMPLEO-15MAS 2023–2025. CLASE-AMAI-2 no lo cubrió. Aplica la delegación: acto CAJA con el piso por NSE de actividad_empleo que importe empleo15.py, para 2023 y 2024. La parte 2025 espera apertura porque R05 dejó ENDUTIH 2025 RESERVADA.",
+  "cite": [
+   {"tipo": "comando", "ref": "data/corrida0/CALC-AMAI-NSE-ENDUTIH-*/spec.yaml", "comando": "for c in $(git ls-tree --name-only origin/main data/corrida0/ | rg -i 'AMAI-NSE-ENDUTIH'); do echo \"$c $(git show origin/main:$c/spec.yaml | grep -ci empleo)\"; done", "salida": "CALC-AMAI-NSE-ENDUTIH-2023-0001 0\nCALC-AMAI-NSE-ENDUTIH-2024-0001 0\nCALC-AMAI-NSE-ENDUTIH-2025-0001 0"},
+   {"tipo": "comando", "ref": "tools/dominios/endutih/empleo15.py", "comando": "git ls-tree --name-only origin/main tools/dominios/endutih/; git ls-tree --name-only origin/main data/corrida0/ | rg 'EMPLEO-15MAS'", "salida": "tools/dominios/endutih/empleo15.py · pisos.py ; CALC-ENDUTIH-EMPLEO-15MAS-2023-0001 · -2024-0001 · -2025-0001"},
+   {"tipo": "comando", "ref": "tools/dominios/amai/ forense/analisis/clase-amai/", "comando": "git grep -l -i 'empleo15\\|actividad_empleo' origin/main -- tools/dominios/amai forense/analisis/clase-amai", "salida": "(sin salida: 0 archivos)"},
+   {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R05", "comando": "python3 csv.DictReader decisiones-21.tsv renglon==R05", "salida": "objeto: estado de reserva de la ola ENDUTIH 2025 · estado: FIRMADA · recomendacion: RESERVADA"},
+   {"tipo": "comando", "ref": "forense/encargos/", "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c 'CLASE-AMAI-3'", "salida": "0 (de 1217 rutas; solo CLASE-AMAI-1 y -2 archivados)"}
+  ],
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "CAJA",
+  "hecho_comando": "git ls-tree --name-only origin/main data/corrida0/ | grep -cE 'CALC-AMAI-NSE-ENDUTIH-(2023|2024).*EMPLEO' (=2 con sello.json) y grep -c empleo15 en su spec.yaml >=1",
+  "owner_detalle": "",
+  "que_falta": "Piso por NSE (AMAI) de actividad_empleo en ENDUTIH 2023 y 2024 con la medida adoptada de empleo15.py; 2025 queda ESPERA-APERTURA (R05).",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260926-GEN2-COLA-COMPLETA-1-0d4a-03",
+  "verdict": "ABSORBER",
+  "rationale": "Siguen 89 DIFERIDO en adjudicacion-v1_0.tsv (de 147). En el mapa v1_1, 82 siguen MEDIBLE-CON-ADQUISICIÓN. No hay encargo de cola v1.2. Por programa: CNBV 10, BANXICO 9, CCPV 8, CONEVAL 8, ENSANUT 8. Los 16 SUSTITUIDO-POR COLA-LOTE-1 son exactamente las 16 afirmaciones de 3a49-02: va al mismo lote, sin doble conteo. Aplica la división que propuso la delegación.",
+  "cite": [
+   {"tipo": "comando", "ref": "tools/dominios/cola-completa/adjudicacion-v1_0.tsv", "comando": "python3 csv.DictReader (sin '#'): Counter(estado); Counter(programa_id) de DIFERIDO", "salida": "147 filas: DIFERIDO 89, MEDIDO 35, NO-CONSTRUIBLE 23 · CNBV 10, BANXICO 9, CCPV 8, CONEVAL 8, ENSANUT 8, LATINOBAROMETRO 7, EMAT 5, EDR 4 ... · razones: SUSTITUIDO-POR:GEN2-COLA-LOTE-1 16, host CNBV/Banxico denegado 15"},
+   {"tipo": "comando", "ref": "canon/mapa-dominios-v1_1.tsv", "comando": "python3: dictamen en mapa v1_1 de los 89 ids DIFERIDO", "salida": "MEDIBLE-CON-ADQUISICIÓN 82, MEDIBLE-EN-CORPUS 6, NO-CONSTRUIBLE-EN-CORPUS 1"},
+   {"tipo": "comando", "ref": "tools/dominios/cola-completa/adjudicacion-v1_0.tsv", "comando": "python3: ids DIFERIDO con razon SUSTITUIDO", "salida": "CONOC-004/005/025, FAM-005/023/025, JUV-011, PAREJA-001/002/012/021/030, SALMEN-015/016, VEJEZ-005/006 (16 = las de NC-260926-GEN2-COLA-LOTE-1-3a49-02)"},
+   {"tipo": "comando", "ref": "forense/encargos/", "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -ciE 'COLA-V1-2|COLA-COMPLETA-2|COLA-LOTE-2'", "salida": "0 (de 1217 rutas)"}
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "python3 csv.DictReader sobre la adjudicación sucesora (v1_1): filas estado==DIFERIDO sin razón A.14 terminal = 0, y cada una de las 89 con MEDIDO/NO-CONSTRUIBLE/ADQUISICION citado",
+  "owner_detalle": "",
+  "que_falta": "Verificar texto o dictaminar las 89 diferidas: (i) CNBV/Banxico con dato ya OBTENIDO, en CAJA; (ii) las 16 de COLA-LOTE-1, junto con 3a49-02; (iii) el resto, con fila en la cola de adquisición.",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260926-GEN2-COLA-LOTE-1-3a49-02",
+  "verdict": "ABSORBER",
+  "rationale": "Sigue sin hacerse: verificaciones-texto-v1_1.tsv (27 filas) tiene 0 de las 16 afirmaciones. En 14 inventarios de reactivos no hay EMAT, ENPECYT ni MC2010; solo edr2024. Los payloads EMAT (8) y ENPECYT (14) están en el manifiesto. Aplica la delegación: extraer el inventario de los descriptores del corpus y asentar las 15 verificaciones. Mismo lote que 0d4a-03.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/analisis/dominios/verificaciones-texto-v1_1.tsv", "comando": "python3 csv.DictReader (sin '#'): filas con id_afirmacion en los 16 ids", "salida": "verif filas 27 · hits 0 []"},
+   {"tipo": "comando", "ref": "data/inventario-reactivos-*.tsv (14 archivos)", "comando": "python3 csv: regex (emat|enpecyt|edr\\d*|mc2010|muestra censal) sobre payload_id/instrumento de 14 inventarios", "salida": "inventario-reactivos-v1_0/1/2.tsv 178246 filas {'edr2024': 101}; los otros 11 (contexto, descargas-mx, ext, fd-recuperado, fd, ensu, cola-completa) {} — 0 EMAT, 0 ENPECYT, 0 MC2010"},
+   {"tipo": "comando", "ref": "data/manifiesto.yaml", "comando": "yq -r '.[] | .id' data/manifiesto.yaml | grep -ciE 'emat'; ... | grep -ciE 'enpecyt'", "salida": "8\n14 (p.ej. emat2022_bd_dbf_zip, emat2010_2014_bd_dbf_zip; edr2015_2019_bd_dbf_zip, edr2022_bd_dbf_zip)"},
+   {"tipo": "comando", "ref": "forense/encargos/", "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c 'COLA-LOTE-2'", "salida": "0 (de 1217 rutas)"}
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "python3 csv.DictReader verificaciones-texto-v1_<N>.tsv: las 15 ids (PAREJA-001/002/012/021/030, FAM-023/025, JUV-011, SALMEN-015/016, VEJEZ-005/006, CONOC-004/005/025) presentes = 15, y redictamina --verifica sin errores",
+  "owner_detalle": "",
+  "que_falta": "Inventario de reactivos para EMAT 2010-2023, EDR 2015-2023, MC2010 (.do) y ENPECYT 2011-2015 desde los descriptores y cuestionarios del corpus, más las 15 filas de verificación de texto y la re-derivación del mapa.",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260926-GEN2-COLA-LOTE-1-3a49-06",
+  "verdict": "ABSORBER",
+  "rationale": "El censo sigue marcando test_cola_lote_1_pisos.py como NECESITA-DEPENDENCIA(pytest), y ci_guardias.py:409 salta todo NECESITA-DEPENDENCIA sin comprobar si la dependencia está instalada. Pero requirements.txt ya trae numpy/pandas/pytest, verify.yml:449 los instala y FP-398 está FIRMADA. Hay que re-censar o reclasificar dentro de la herramienta: es tubería y no pide corpus.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/analisis/ci-guardias/censo-tests.tsv", "comando": "python3 csv.DictReader: fila archivo==tests/test_cola_lote_1_pisos.py; Counter(veredicto)", "salida": "{'archivo': 'tests/test_cola_lote_1_pisos.py', 'invocador': 'pytest', 'cableado_hoy': 'NO', 'dependencias_faltantes': 'numpy,pandas,pytest', 'necesita_corpus_por_codigo': 'NO', 'veredicto': 'NECESITA-DEPENDENCIA(pytest)'} · 284 filas: NECESITA-DEPENDENCIA numpy 64, pytest 30, pandas 9"},
+   {"tipo": "archivo", "ref": "tools/ci_guardias.py:407-412", "comando": "sed -n '395,412p' tools/ci_guardias.py", "salida": "if f[\"veredicto\"].startswith(\"NECESITA-DEPENDENCIA\"):\n    print(\"SKIP %s: dependencia-pendiente %s (FP de mesa, no decidida aqui)\" ...)\n    saltados += 1\n    continue"},
+   {"tipo": "archivo", "ref": "requirements.txt:29-32; .github/workflows/verify.yml:449", "comando": "grep -n '^numpy\\|^pandas\\|^pytest' requirements.txt; grep -n pytest .github/workflows/verify.yml", "salida": "29:numpy 30:pandas 32:pytest ; 449: python3 -m uv pip install ... -r requirements.txt numpy pytest pytest-xdist ; 452: run: python3 tools/ci_guardias.py --ejecuta-huerfanos"},
+   {"tipo": "firma", "ref": "FP-398", "comando": "python3 tools/consulta.py fp FP-398", "salida": "FP-398 · estado=FIRMADA · firmada_en=4.4 opcion (a) -- FIRMA DE MESA 21/sep/2026 §2 4.4 «librerias en CI — a»"}
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 tools/ci_guardias.py --ejecuta-huerfanos 2>&1 | grep -c 'SKIP tests/test_cola_lote_1_pisos.py' (=0 en el job guardias) y su veredicto en censo-tests.tsv == CORRE-EN-CI",
+  "owner_detalle": "",
+  "que_falta": "Re-censar con --censo --con-ejecucion en un entorno con los requirements (o que --ejecuta-huerfanos reclasifique NECESITA-DEPENDENCIA con modulo_instalado), para que test_cola_lote_1_pisos.py y los demás de dependencia ya instalada corran en CI.",
+  "confianza": "alta"
+ }
+]

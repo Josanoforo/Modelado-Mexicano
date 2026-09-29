@@ -1,0 +1,18 @@
+[
+ {"id": "NC-0273", "veredicto": "CONFIRMA",
+  "razon": "El producto que la fila pedía (que test_c no dé FAIL en falso en clon shallow) está en main por otro acto (MOTOR-DEUDA-LOTE-1 P2): con SHA iguales salta. Ambos archivos entraron en e860e77, así que en shallow o completo los SHA coinciden y nunca falla. Mecanismo distinto, defecto eliminado.",
+  "comando": "git rev-parse --is-shallow-repository; git show origin/main:tests/test_motor_holdout.py | sed -n 108,131p; PYTHONDONTWRITEBYTECODE=1 python3 tests/test_motor_holdout.py | tail -n 3",
+  "salida": "true | if sha_catalogo == sha_motor: saltar('NO-PROCEDE-HISTÓRICO ... (e860e77 ...)') | test_c_roles_sellados_antes_que_todo_resultado: skip -- NO-PROCEDE-HISTÓRICO ... T-MOTOR-HOLDOUT: 5 prueba(s) ok, 1 saltada(s)"},
+ {"id": "NC-0287", "veredicto": "REFUTA",
+  "razon": "El «producto» citado es el recibo del MISMO acto que abrió la fila, ya existente cuando se dejó abierta; RECIBO-CODEX-3 dictó que cerrarla exige juicio de mesa. El residuo persiste (6/6 sin NO-CORRIDO/CONSUMIDO) y la fila además es la única portadora de lo que #828/#829 dejaron a mesa (rutas propuestas sin decidir).",
+  "comando": "git show origin/main:forense/notas/2026-09-16-GEN2-TRAMITE-4.md | sed -n 50,51p; git grep -c -i sin-candidato-rutas origin/main -- forense/firmas-pendientes.tsv forense/no-corrido.tsv forense/analisis/hoja-firmas-21/decisiones-21.tsv",
+  "salida": "#828 ... Rutas propuestas que esperan decisión de mesa; sin fila propia porque el acto no abrió ninguna (NC-0287). | #829 ... Íd. NC-0287 | grep -c: 0 coincidencias en los tres tablero/deuda"},
+ {"id": "NC-0294", "veredicto": "CONFIRMA",
+  "razon": "El objeto es la indexación de Theta.desde(), capa θ que la adenda firmada nombra como retirada. valor() lanza para toda entrada (la perdida también lanzaría: ThetaNoDisponible); único consumidor es matriz.g, no camino de emisión. La RCT Compartamos se consume por CALC-BANXICO-PRODUCTO-DANO-0001, no por θ.",
+  "comando": "git show origin/main:milpa/src/theta.py | sed -n 13,17p; git grep -n -E 'Theta\\b|theta\\.' origin/main -- '*.py' | grep -v tests/; git grep -l baja_friccion_usura origin/main | grep CALC-BANXICO",
+  "salida": "13:ESTADO VIGENTE ...: valor() lanza para las 43 entradas, y por eso matriz.g no es camino de emisión vigente | consumidor no-test: milpa/src/matriz.py:193 theta.valor | data/corrida0/CALC-BANXICO-PRODUCTO-DANO-0001/spec.yaml"},
+ {"id": "NC-0296", "veredicto": "CONFIRMA",
+  "razon": "Objeto GEN1 (RES-0072 LEGACY-GEN1 en procedencia.yaml sellado). Réplica de corrida0.py:414-417: con la llave correcta G3_horizonte_temporal la fuente sostenedora no trae ACTO ni fecha dd/mmm/aaaa, así que acto_m/fecha_m siguen NO-DECLARADO; el arreglo no cambia salida alguna.",
+  "comando": "python3 (yaml+RE_ACTO/RE_FECHA de corrida0.py:197-198) sobre git show origin/main:milpa/procedencia.yaml; git grep -n RES-0072 origin/main -- forense/analisis/astra4-relevo/inventario-operativo.tsv",
+  "salida": "G3 horizonte_temporal | clave= md | in= False | acto= [] [] ; medidos[G3_horizonte_temporal].fuente='ENNViH/MxFLS ... forense/notas/2026-08-05-corrida-idg3.md §4' -> [] [] ; 35:RES-0072 ... LEGACY-GEN1 0.0876"}
+]

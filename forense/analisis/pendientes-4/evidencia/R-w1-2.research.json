@@ -1,0 +1,676 @@
+[
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-02",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "R08 (b), FIRMADA el 28/sep, deja M14 «con su vía documentada en el mapa, sin fecha»; mesa confirmó «Obedecer R08 (b)» (ADENDA-1) y LOTE-1 lo cuenta «Sin fecha por firma». La vía está en el mapa (filas 36-38); HOLDOUT intacto; 0 CALC-ALT de M14. Se reabre si una spec o familia 2027 pide M14.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv (renglon R08)",
+    "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['renglon'],r['estado'][:22],'|',r['texto_de_firma'][-215:]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['renglon']=='R08']\"",
+    "salida": "R08 FIRMADA · VIAJA-EN GEN | o denuncia por miedo por entidad) y M19 (ENCUCI 2020, tras reconciliar conf.06). Cada spec declara que consume el HOLDOUT de su momento. M12, M14, M15, M16 y M17 quedan con su vía documentada en el mapa, sin fecha.»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-02 (forense/firmas-pendientes.tsv)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id'][-8:],r['estado'],'|',r['ejecutada_en'][-150:]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-02']\"",
+    "salida": "-f2e5-02 FIRMADA | ES2015-0001, CALC-ALT-M19-ENCUCI2020-0001, CALC-ALT-M19-WVS2018-REPRO-0001, CALC-ALT-M22-ENVIPE2025-0001; M12/M14–M17 sin CALC (ADENDA-1 de este acto)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md:11,14",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md | sed -n '11p;14p' | cut -c1-330",
+    "salida": "**«Obedecer R08 (b) (Recommended)»**\nLas once filas `CALC-CAJA` del mapa para M12 (5), M14 (3), M15 (1), M16 (1) y M17 (1) no se calculan ni se abre su dato; su HOLDOUT no se gasta. Van a `## NO-CORRIDO / RESERVAS` con `DECISIÓN-DE-MESA-PENDIENTE`. La fila de CSES Módulo 5 (M13) es `DIFERIDO-A` apertura (R04 RESERVADA)."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md:17",
+    "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md | sed -n '17p'",
+    "salida": "| **Sin fecha por firma R08 (b) + ADENDA-1** | 24, 25, 26, 28, 29 (M12) · 36, 37, 38 (M14) · 42 (M15) · 44 (M16) · 48 (M17) | 11 |"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/mapa-instrumentos-alternos-v1_0.tsv (M14, filas 36-38)",
+    "comando": "git show origin/main:canon/mapa-instrumentos-alternos-v1_0.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);rd=csv.reader(sys.stdin,delimiter='\\t');h=next(rd);I=h.index('incognita');P=h.index('propuesta');O=h.index('ola');N=h.index('instrumento')\nfor r in rd:\n    if r[I]=='M14' and (r[N].startswith('ENIGH')): print('l.%d'%rd.line_num,r[I],r[N][:12],r[O],'|',r[P][:62])\"",
+    "salida": "l.36 M14 ENIGH (nueva 2018 | CALC-CAJA (discontinuidad de recepción en 65/68 años; primera \nl.37 M14 ENIGH (nueva 2020 | CALC-CAJA (discontinuidad de recepción en 65/68 años; primera \nl.38 M14 ENIGH (nueva 2022 | CALC-CAJA (discontinuidad de recepción en 65/68 años; primera"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0 (origin/main)",
+    "comando": "echo \"CALC-ALT en data/corrida0: $(git ls-tree --name-only origin/main data/corrida0/ | grep -c 'CALC-ALT-') · de M12/M14-M17: $(git ls-tree --name-only origin/main data/corrida0/ | grep -c 'CALC-ALT-M1[24567]')\"",
+    "salida": "CALC-ALT en data/corrida0: 9 · de M12/M14-M17: 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "milpa/catalogo-momentos-v0_1.tsv (M14)",
+    "comando": "git show origin/main:milpa/catalogo-momentos-v0_1.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id_momento'],r['rol_calibracion'],'valor_gen2=%r'%r['valor_gen2'],r['holdout_decision'][:34]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id_momento']=='M14']\"",
+    "salida": "M14 HOLDOUT valor_gen2='' GASTABLE-COMO-PISO (firma R01 (b),"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv (NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-10)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id'][-8:],r['estado'],'|',r['que_no_se_corrio'][:70],'|',r['sucesor'][:58]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-10']\"",
+    "salida": "-e760-10 ABIERTA | relevar 14 lecturas legacy de catalogo_de_momentos (RES-0184, RES-0185 | EN-CURSO (GEN2-CALC-ALTERNOS-LOTE-1 · rama acto/gen2-calc-"
+   }
+  ],
+  "cerrado_por_detalle": "firma: FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-02 (R08 (b), FIRMADA 28/sep) · ADENDA-1 de CALC-ALTERNOS-LOTE-1 «Obedecer R08 (b)» · vía documentada en canon/mapa-instrumentos-alternos-v1_0.tsv (filas 36-38)",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "decision_declarada": {
+   "opcion": "a",
+   "razon": "Mantener «sin fecha» es lo que R08 (b) ya firmó y mesa confirmó en la ADENDA-1 de LOTE-1; es reversible (la NC se reabre si una spec o una familia 2027 pide M14) y conserva el HOLDOUT, mientras que gastarlo (opción b) es irreversible (E.6). La vía queda documentada en canon/mapa-instrumentos-alternos-v1_0.tsv, que es lo que la firma exige."
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-03",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "R08 (b), FIRMADA, deja M15 sin fecha con su vía en el mapa (fila 42); mesa confirmó «Obedecer R08 (b)» y LOTE-1 lo cuenta «Sin fecha por firma». HOLDOUT intacto; 0 CALC-ALT de M15. Nota: CALC-ENCUCI-0001 ya selló AP7_3_5 por DOMINIO × agravio (una spec futura lo cita, E.5, no lo re-mide). Se reabre si una spec pide M15.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv (renglon R08)",
+    "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['renglon'],r['estado'][:22],'|',r['texto_de_firma'][-215:]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['renglon']=='R08']\"",
+    "salida": "R08 FIRMADA · VIAJA-EN GEN | o denuncia por miedo por entidad) y M19 (ENCUCI 2020, tras reconciliar conf.06). Cada spec declara que consume el HOLDOUT de su momento. M12, M14, M15, M16 y M17 quedan con su vía documentada en el mapa, sin fecha.»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-02 (forense/firmas-pendientes.tsv)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id'][-8:],r['estado'],'|',r['ejecutada_en'][-150:]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-02']\"",
+    "salida": "-f2e5-02 FIRMADA | ES2015-0001, CALC-ALT-M19-ENCUCI2020-0001, CALC-ALT-M19-WVS2018-REPRO-0001, CALC-ALT-M22-ENVIPE2025-0001; M12/M14–M17 sin CALC (ADENDA-1 de este acto)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md:11,14",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md | sed -n '11p;14p' | cut -c1-330",
+    "salida": "**«Obedecer R08 (b) (Recommended)»**\nLas once filas `CALC-CAJA` del mapa para M12 (5), M14 (3), M15 (1), M16 (1) y M17 (1) no se calculan ni se abre su dato; su HOLDOUT no se gasta. Van a `## NO-CORRIDO / RESERVAS` con `DECISIÓN-DE-MESA-PENDIENTE`. La fila de CSES Módulo 5 (M13) es `DIFERIDO-A` apertura (R04 RESERVADA)."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md:17",
+    "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md | sed -n '17p'",
+    "salida": "| **Sin fecha por firma R08 (b) + ADENDA-1** | 24, 25, 26, 28, 29 (M12) · 36, 37, 38 (M14) · 42 (M15) · 44 (M16) · 48 (M17) | 11 |"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/mapa-instrumentos-alternos-v1_0.tsv (M15, fila 42)",
+    "comando": "git show origin/main:canon/mapa-instrumentos-alternos-v1_0.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);rd=csv.reader(sys.stdin,delimiter='\\t');h=next(rd);I=h.index('incognita');P=h.index('propuesta');O=h.index('ola');N=h.index('instrumento')\nfor r in rd:\n    if r[I]=='M15' and (r[N]=='ENCUCI'): print('l.%d'%rd.line_num,r[I],r[N][:12],r[O],'|',r[P][:62])\"",
+    "salida": "l.42 M15 ENCUCI 2020 | CALC-CAJA (protesta por DOMINIO, rotulado persona, no caso)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0 (origin/main)",
+    "comando": "echo \"CALC-ALT en data/corrida0: $(git ls-tree --name-only origin/main data/corrida0/ | grep -c 'CALC-ALT-') · de M12/M14-M17: $(git ls-tree --name-only origin/main data/corrida0/ | grep -c 'CALC-ALT-M1[24567]')\"",
+    "salida": "CALC-ALT en data/corrida0: 9 · de M12/M14-M17: 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "milpa/catalogo-momentos-v0_1.tsv (M15)",
+    "comando": "git show origin/main:milpa/catalogo-momentos-v0_1.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id_momento'],r['rol_calibracion'],'valor_gen2=%r'%r['valor_gen2'],r['holdout_decision'][:34]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id_momento']=='M15']\"",
+    "salida": "M15 HOLDOUT valor_gen2='' GASTABLE-COMO-PISO (firma R01 (b),"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/corrida0/CALC-ENCUCI-0001/spec.md:32-35",
+    "comando": "git show origin/main:data/corrida0/CALC-ENCUCI-0001/spec.md | sed -n '32,35p' | cut -c1-200",
+    "salida": "- **Familia B — protesta.** Proporción ponderada de personas de 15+ que\n  declaran haber **participado en una protesta alguna vez en su vida**\n  (`AP7_3_5`), en cada celda del eje **entorno (`DOMINIO`) × agravio\n  (`AP4_3_2`)**."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/CALC-ENCUCI-0001/resultados.json (familia B, protesta)",
+    "comando": "echo \"RESULT en resultados.json: $(git show origin/main:data/corrida0/CALC-ENCUCI-0001/resultados.json | jq -r '.resultados|keys|length') · de la familia B: $(git show origin/main:data/corrida0/CALC-ENCUCI-0001/resultados.json | jq -r '.resultados|keys[]' | grep -c 'RESULT-ENCUCI-B-') · sello.json: $(git ls-tree --name-only origin/main data/corrida0/CALC-ENCUCI-0001/ | grep -c sello.json)\"",
+    "salida": "RESULT en resultados.json: 119 · de la familia B: 58 · sello.json: 1"
+   }
+  ],
+  "cerrado_por_detalle": "firma: FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-02 (R08 (b), FIRMADA 28/sep) · ADENDA-1 de CALC-ALTERNOS-LOTE-1 «Obedecer R08 (b)» · vía documentada en canon/mapa-instrumentos-alternos-v1_0.tsv (fila 42)",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "decision_declarada": {
+   "opcion": "a",
+   "razon": "Mantener «sin fecha» es lo que R08 (b) ya firmó y mesa confirmó en la ADENDA-1 de LOTE-1; es reversible (la NC se reabre si una spec o una familia 2027 pide M15) y conserva el HOLDOUT, mientras que gastarlo (opción b) es irreversible (E.6). La vía queda documentada en canon/mapa-instrumentos-alternos-v1_0.tsv, que es lo que la firma exige."
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-04",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "R08 (b), FIRMADA, deja M16 sin fecha con su vía en el mapa (fila 44); mesa confirmó «Obedecer R08 (b)». HOLDOUT intacto; 0 CALC-ALT de M16. AP4_11_05 y AP4_11_09 no aparecen en ninguna spec ni CALC (0 de 3116 archivos); AP4_11_06 ya es insumo declarado de CALC-PDR1-ENVIPE2025-0001. Se reabre si una spec pide M16.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv (renglon R08)",
+    "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['renglon'],r['estado'][:22],'|',r['texto_de_firma'][-215:]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['renglon']=='R08']\"",
+    "salida": "R08 FIRMADA · VIAJA-EN GEN | o denuncia por miedo por entidad) y M19 (ENCUCI 2020, tras reconciliar conf.06). Cada spec declara que consume el HOLDOUT de su momento. M12, M14, M15, M16 y M17 quedan con su vía documentada en el mapa, sin fecha.»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-02 (forense/firmas-pendientes.tsv)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id'][-8:],r['estado'],'|',r['ejecutada_en'][-150:]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-02']\"",
+    "salida": "-f2e5-02 FIRMADA | ES2015-0001, CALC-ALT-M19-ENCUCI2020-0001, CALC-ALT-M19-WVS2018-REPRO-0001, CALC-ALT-M22-ENVIPE2025-0001; M12/M14–M17 sin CALC (ADENDA-1 de este acto)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md:11,14",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md | sed -n '11p;14p' | cut -c1-330",
+    "salida": "**«Obedecer R08 (b) (Recommended)»**\nLas once filas `CALC-CAJA` del mapa para M12 (5), M14 (3), M15 (1), M16 (1) y M17 (1) no se calculan ni se abre su dato; su HOLDOUT no se gasta. Van a `## NO-CORRIDO / RESERVAS` con `DECISIÓN-DE-MESA-PENDIENTE`. La fila de CSES Módulo 5 (M13) es `DIFERIDO-A` apertura (R04 RESERVADA)."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md:17",
+    "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md | sed -n '17p'",
+    "salida": "| **Sin fecha por firma R08 (b) + ADENDA-1** | 24, 25, 26, 28, 29 (M12) · 36, 37, 38 (M14) · 42 (M15) · 44 (M16) · 48 (M17) | 11 |"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/mapa-instrumentos-alternos-v1_0.tsv (M16, fila 44)",
+    "comando": "git show origin/main:canon/mapa-instrumentos-alternos-v1_0.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);rd=csv.reader(sys.stdin,delimiter='\\t');h=next(rd);I=h.index('incognita');P=h.index('propuesta');O=h.index('ola');N=h.index('instrumento')\nfor r in rd:\n    if r[I]=='M16' and (r[N]=='ENVIPE' and r[O]=='2025'): print('l.%d'%rd.line_num,r[I],r[N][:12],r[O],'|',r[P][:62])\"",
+    "salida": "l.44 M16 ENVIPE 2025 | CALC-CAJA (acciones conjuntas y armas por tamaño de localidad)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0 (origin/main)",
+    "comando": "echo \"CALC-ALT en data/corrida0: $(git ls-tree --name-only origin/main data/corrida0/ | grep -c 'CALC-ALT-') · de M12/M14-M17: $(git ls-tree --name-only origin/main data/corrida0/ | grep -c 'CALC-ALT-M1[24567]')\"",
+    "salida": "CALC-ALT en data/corrida0: 9 · de M12/M14-M17: 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "milpa/catalogo-momentos-v0_1.tsv (M16)",
+    "comando": "git show origin/main:milpa/catalogo-momentos-v0_1.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id_momento'],r['rol_calibracion'],'valor_gen2=%r'%r['valor_gen2'],r['holdout_decision'][:34]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id_momento']=='M16']\"",
+    "salida": "M16 HOLDOUT valor_gen2='' GASTABLE-COMO-PISO (firma R01 (b),"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0 + forense/prereg-caja (origin/main): AP4_11_05 / AP4_11_09",
+    "comando": "echo \"archivos examinados: $(git ls-tree -r --name-only origin/main data/corrida0 forense/prereg-caja | wc -l) · con AP4_11_05 o AP4_11_09: $(git grep -l -w -e AP4_11_05 -e AP4_11_09 origin/main -- data/corrida0 forense/prereg-caja | wc -l)\"",
+    "salida": "archivos examinados: 3116 · con AP4_11_05 o AP4_11_09: 0"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/corrida0/CALC-PDR1-ENVIPE2025-0001/spec.yaml:44-46",
+    "comando": "git show origin/main:data/corrida0/CALC-PDR1-ENVIPE2025-0001/spec.yaml | sed -n '44,46p' | cut -c1-170",
+    "salida": "- archivo: conjunto_de_datos_tper_vic1_envipe2025.csv\n  variable: AP4_11_06\n  rol: '4.11 para protegerse de la delincuencia el hogar realizó acciones conjuntas con vecinos 1/2/9 (cuest. p.5, FD p.26)'"
+   }
+  ],
+  "cerrado_por_detalle": "firma: FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-02 (R08 (b), FIRMADA 28/sep) · ADENDA-1 de CALC-ALTERNOS-LOTE-1 «Obedecer R08 (b)» · vía documentada en canon/mapa-instrumentos-alternos-v1_0.tsv (fila 44)",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "decision_declarada": {
+   "opcion": "a",
+   "razon": "Mantener «sin fecha» es lo que R08 (b) ya firmó y mesa confirmó en la ADENDA-1 de LOTE-1; es reversible (la NC se reabre si una spec o una familia 2027 pide M16) y conserva el HOLDOUT, mientras que gastarlo (opción b) es irreversible (E.6). La vía queda documentada en canon/mapa-instrumentos-alternos-v1_0.tsv, que es lo que la firma exige."
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-05",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "R08 (b), FIRMADA, deja M17 sin fecha con su vía en el mapa (fila 48); mesa confirmó «Obedecer R08 (b)» y LOTE-1 lo cuenta «Sin fecha por firma». HOLDOUT intacto; 0 CALC-ALT de M17. Las 14 lecturas legacy RES-0184–0197 siguen visibles en e760-10 (ABIERTA). Se reabre si una spec o familia 2027 pide M17.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv (renglon R08)",
+    "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['renglon'],r['estado'][:22],'|',r['texto_de_firma'][-215:]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['renglon']=='R08']\"",
+    "salida": "R08 FIRMADA · VIAJA-EN GEN | o denuncia por miedo por entidad) y M19 (ENCUCI 2020, tras reconciliar conf.06). Cada spec declara que consume el HOLDOUT de su momento. M12, M14, M15, M16 y M17 quedan con su vía documentada en el mapa, sin fecha.»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-02 (forense/firmas-pendientes.tsv)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id'][-8:],r['estado'],'|',r['ejecutada_en'][-150:]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-02']\"",
+    "salida": "-f2e5-02 FIRMADA | ES2015-0001, CALC-ALT-M19-ENCUCI2020-0001, CALC-ALT-M19-WVS2018-REPRO-0001, CALC-ALT-M22-ENVIPE2025-0001; M12/M14–M17 sin CALC (ADENDA-1 de este acto)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md:11,14",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md | sed -n '11p;14p' | cut -c1-330",
+    "salida": "**«Obedecer R08 (b) (Recommended)»**\nLas once filas `CALC-CAJA` del mapa para M12 (5), M14 (3), M15 (1), M16 (1) y M17 (1) no se calculan ni se abre su dato; su HOLDOUT no se gasta. Van a `## NO-CORRIDO / RESERVAS` con `DECISIÓN-DE-MESA-PENDIENTE`. La fila de CSES Módulo 5 (M13) es `DIFERIDO-A` apertura (R04 RESERVADA)."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md:17",
+    "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md | sed -n '17p'",
+    "salida": "| **Sin fecha por firma R08 (b) + ADENDA-1** | 24, 25, 26, 28, 29 (M12) · 36, 37, 38 (M14) · 42 (M15) · 44 (M16) · 48 (M17) | 11 |"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/mapa-instrumentos-alternos-v1_0.tsv (M17, fila 48)",
+    "comando": "git show origin/main:canon/mapa-instrumentos-alternos-v1_0.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);rd=csv.reader(sys.stdin,delimiter='\\t');h=next(rd);I=h.index('incognita');P=h.index('propuesta');O=h.index('ola');N=h.index('instrumento')\nfor r in rd:\n    if r[I]=='M17' and (r[N]=='ENCUCI'): print('l.%d'%rd.line_num,r[I],r[N][:12],r[O],'|',r[P][:62])\"",
+    "salida": "l.48 M17 ENCUCI 2020 | CALC-CAJA (participación vecinal por DOMINIO, descriptivo; no"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0 (origin/main)",
+    "comando": "echo \"CALC-ALT en data/corrida0: $(git ls-tree --name-only origin/main data/corrida0/ | grep -c 'CALC-ALT-') · de M12/M14-M17: $(git ls-tree --name-only origin/main data/corrida0/ | grep -c 'CALC-ALT-M1[24567]')\"",
+    "salida": "CALC-ALT en data/corrida0: 9 · de M12/M14-M17: 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "milpa/catalogo-momentos-v0_1.tsv (M17)",
+    "comando": "git show origin/main:milpa/catalogo-momentos-v0_1.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id_momento'],r['rol_calibracion'],'valor_gen2=%r'%r['valor_gen2'],r['holdout_decision'][:34]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id_momento']=='M17']\"",
+    "salida": "M17 HOLDOUT valor_gen2='' GASTABLE-COMO-PISO (firma R01 (b),"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv (NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-10)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id'][-8:],r['estado'],'|',r['que_no_se_corrio'][:70],'|',r['sucesor'][:58]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-10']\"",
+    "salida": "-e760-10 ABIERTA | relevar 14 lecturas legacy de catalogo_de_momentos (RES-0184, RES-0185 | EN-CURSO (GEN2-CALC-ALTERNOS-LOTE-1 · rama acto/gen2-calc-"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0 + forense/prereg-caja (origin/main): AP6_2_12",
+    "comando": "echo \"archivos examinados: $(git ls-tree -r --name-only origin/main data/corrida0 forense/prereg-caja | wc -l) · con AP6_2_12: $(git grep -l -w AP6_2_12 origin/main -- data/corrida0 forense/prereg-caja | wc -l)\"",
+    "salida": "archivos examinados: 3116 · con AP6_2_12: 0"
+   }
+  ],
+  "cerrado_por_detalle": "firma: FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-02 (R08 (b), FIRMADA 28/sep) · ADENDA-1 de CALC-ALTERNOS-LOTE-1 «Obedecer R08 (b)» · vía documentada en canon/mapa-instrumentos-alternos-v1_0.tsv (fila 48)",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "decision_declarada": {
+   "opcion": "a",
+   "razon": "Mantener «sin fecha» es lo que R08 (b) ya firmó y mesa confirmó en la ADENDA-1 de LOTE-1; es reversible (la NC se reabre si una spec o una familia 2027 pide M17) y conserva el HOLDOUT, mientras que gastarlo (opción b) es irreversible (E.6). La vía queda documentada en canon/mapa-instrumentos-alternos-v1_0.tsv, que es lo que la firma exige."
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-09",
+  "verdict": "HOJA-DECISION",
+  "rationale": "R10, FIRMADA, funde R03 con R08 sobre tabulados y deja la solicitud del microdato ENCRIGE 2020 al Laboratorio como «opcional» que «decide mesa aparte»: ningún ejecutor la decide ni la tramita (exige titular). Solo ese microdato daría el cruce tamaño × sector; no hay solicitud redactada (0 de 12406 archivos) ni FP abierta.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv (renglon R10) · FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-29",
+    "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['renglon'],r['estado'][:18],'|',r['texto_de_firma'][-190:]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['renglon']=='R10']\"",
+    "salida": "R10 FIRMADA · VIAJA-EN | INTA-NO-TRANSFERENCIA sobre ENCRIGE 2020 (ENVE 2024 y WBES 2023 de apoyo), según propuesta-R03.md. La solicitud de microdato ENCRIGE 2020 al Laboratorio es opcional y la decide mesa aparte.»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/obtencion-externa-1/solicitudes/g-inegi-lm-enaproce.md:22",
+    "comando": "git show origin/main:forense/analisis/obtencion-externa-1/solicitudes/g-inegi-lm-enaproce.md | sed -n '22p' | cut -c1-330",
+    "salida": "- La solicitud **opcional** de microdato ENCRIGE 2020 al Laboratorio (`TR_ENCRIGE2020`, `TR_ENCRIGE2020_TRAMITES`) que MAPA menciona es otra solicitud, de otro objeto; «la decide mesa aparte» (texto de MAPA). No se redacta aquí."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-caja/ALT-R03-TABULADOS-spec-v1_0.md:15-21",
+    "comando": "git show origin/main:forense/prereg-caja/ALT-R03-TABULADOS-spec-v1_0.md | sed -n '15,21p' | cut -c1-120",
+    "salida": "los **tabulados** de datos abiertos (índice `0_indice_tablas_*.csv`, 392 y\n413 miembros). El microdato de ENCRIGE es de Laboratorio (mapa: SOLICITUD\n`TR_ENCRIGE2020`), no está en el corpus. Por eso este CALC extrae de\ntabulados, con el mismo régimen que `CALC-ENCRIGE-CORRUPCION-DESCRIPTIVA-0001`\n(#826): estimaciones expandidas oficiales, sin EE/CV/n publicados, sin IC.\nEl cruce **tamaño × sector**"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/mapa-instrumentos-alternos/propuesta-R03.md:34,37",
+    "comando": "git show origin/main:forense/analisis/mapa-instrumentos-alternos/propuesta-R03.md | sed -n '34p;37p' | cut -c1-250",
+    "salida": "- (est. 3) horas por trámite y gasto de cumplimiento, por tamaño y por experiencia de corrupción. Esta es la única pieza que exige microdato.\n- **Qué falta:** est. 3 y cualquier cruce requieren el microdato ENCRIGE 2020, que implica SOLICITUD a INEGI. El segundo instrumento, ENVE 2024, requiere antes el dictamen de reserva de la ola y luego OBTENER vía RNM 1058."
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-01 (alcance: panel F6, no R03)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['estado'],'|',r['firmada_en'][:230]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-01']\"",
+    "salida": "FIRMADA | «Opción (a): R02-WBES y R08-ENCRIGE quedan fuera del panel F6 por unidad (establecimiento no es panel de M); R08 además no es público en microdato. Ninguna de las dos se adquiere.» -- ACTO GEN2-TRAMITE-FIRMAS-8, forense/encargos/2"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv (FP abiertas que cubran la solicitud)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys,re;csv.field_size_limit(10**9);rows=list(csv.DictReader(sys.stdin,delimiter='\\t'));p=re.compile(r'TR_ENCRIGE|ENCRIGE.{0,80}Laboratorio|Laboratorio.{0,80}ENCRIGE');h=[(r['id'][-8:],r['estado']) for r in rows if p.search(' '.join(r.values()))];print('FP examinadas',len(rows),'ABIERTA',sum(r['estado'].startswith('ABIERTA') for r in rows),'coinciden',h)\"",
+    "salida": "FP examinadas 648 ABIERTA 18 coinciden [('-e7be-01', 'FIRMADA')]"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/main: archivos que nombran TR_ENCRIGE2020",
+    "comando": "echo \"archivos examinados: $(git ls-tree -r --name-only origin/main | wc -l) · con TR_ENCRIGE2020: $(git grep -l TR_ENCRIGE2020 origin/main | sed 's#origin/main:##' | tr '\\n' ' ')\"",
+    "salida": "archivos examinados: 12406 · con TR_ENCRIGE2020: canon/mapa-instrumentos-alternos-v1_0.tsv forense/analisis/mapa-instrumentos-alternos/arma_mapa.py forense/analisis/obtencion-externa-1/solicitudes/g-inegi-lm-enaproce.md forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1.md forense/no-corrido.tsv forense/prereg-caja/ALT-R03-TABULADOS-spec-v1_0.md"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml (ids encrige) y data/corrida0 (CALC-ALT-R03)",
+    "comando": "echo \"manifiesto: $(git show origin/main:data/manifiesto.yaml | grep -o -E '^- id: [a-z0-9_]*encrige[a-z0-9_]*' | sort -u | wc -l) ids encrige (ninguno TR_ENCRIGE*) · CALC: $(git ls-tree --name-only origin/main data/corrida0/ | grep 'CALC-ALT-R03' | tr '\\n' ' ')\"",
+    "salida": "manifiesto: 7 ids encrige (ninguno TR_ENCRIGE*) · CALC: data/corrida0/CALC-ALT-R03-ENCRIGE2020-0001 data/corrida0/CALC-ALT-R03-ENVE2024-0001"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "MESA-DECISION (hoja de decisiones PENDIENTES-4: R03-LM · solicitud opcional del microdato ENCRIGE 2020 al Laboratorio de Microdatos de INEGI, reservada a mesa por R10)",
+  "hoja": {
+   "accion_clave": "INEGI-LM-ENCRIGE2020 (TR_ENCRIGE2020 + TR_ENCRIGE2020_TRAMITES; distinta de R46–R49, de las solicitudes (a)–(f) y de (g) ENAPROCE, archivada)",
+   "situacion": "R03 (pago informal en trámites por empresa) sale hoy por tamaño y por sector, por separado, desde los tabulados de ENCRIGE 2020 (CALC-ALT-R03-ENCRIGE2020-0001). El cruce tamaño × sector y las horas por trámite (est. 3) solo existirían en el microdato ENCRIGE 2020, que INEGI entrega por Laboratorio. R10 (FIRMADA) dejó esa solicitud como opcional y de mesa aparte; exige titular, así que ningún ejecutor la firma ni la tramita. No hay solicitud redactada (g-inegi-lm-enaproce.md:22).",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Solicitar al Laboratorio de Microdatos de INEGI (procesamiento remoto) el TR_ENCRIGE2020 y el TR_ENCRIGE2020_TRAMITES, con un titular de mesa. Un acto sucesor redacta la solicitud sobre el formato registrado (id inegi_laboratorio_microdatos_solicitud_uso) y registra el acuse.",
+     "costo": "Trámite con identidad y semanas de espera. La salida queda sujeta a confidencialidad y el acceso es a tabla procesada, no a microdato en el corpus (según FP e7be-01). Nadie ha redactado esta solicitud."
+    },
+    {
+     "letra": "b",
+     "texto": "No solicitar. El cruce tamaño × sector y el est. 3 de R03 quedan NO-ACCESIBLE-SIN-LABORATORIO; la NC se cierra con esta firma y se reabre solo si una regla o afirmación adoptada lo exige.",
+     "costo": "R03 se queda sin el cruce y sin las horas por trámite; hoy sale por tamaño y por sector por separado, rotulada."
+    },
+    {
+     "letra": "c",
+     "texto": "Diferir sin fecha: la NC sigue abierta hasta que la demanda (corrida0 demanda) la pida.",
+     "costo": "Una fila abierta más sin dueño ejecutable."
+    }
+   ],
+   "recomendacion": "b",
+   "porque": "R10 ya descartó el trámite de identidad con el Laboratorio para ENAPROCE por ser costo alto para un dato marginal; R03 ya tiene fuente descriptiva sellada (CALC-ALT-R03-ENCRIGE2020-0001 y -ENVE2024-0001); los encargos salen de la demanda (§1). La opción (b) deja la puerta abierta sin cargar el libro y se deshace con una firma posterior.",
+   "plazo": "Sin urgencia; próximo corte de mesa (2026-10-05).",
+   "texto_firma": "«Firmo R03-LM ___ (a: se solicita al Laboratorio de Microdatos de INEGI el TR_ENCRIGE2020/TR_ENCRIGE2020_TRAMITES con titular ___ · b: no se solicita; el cruce tamaño × sector y el est. 3 de R03 quedan NO-ACCESIBLE-SIN-LABORATORIO y NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-09 se cierra con esta firma, reabrible solo si una regla o afirmación adoptada lo exige · c: se difiere sin fecha).»"
+  },
+  "decision_clave": "INEGI-LM-ENCRIGE2020-SOLICITUD",
+  "fp_existente": "",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-DEMANDA-DICTAMEN-1-c133-04",
+  "verdict": "ABSORBER",
+  "rationale": "A1/A2 ya están FIRMADAS y ejecutadas (f2e5-01/-02), pero la vista del dictamen aún las cita ABIERTAS en 18 de los 63 pendientes (literal en construye_dictamen.py:48-49). Falta regenerarla con el estado real, junto con c133-02. B1/B2 siguen en sus FP ABIERTAS (c133-01/-02) y no se anticipan; los pins van por e760-06 y RELEVO-CONSUMIDORES-4.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv (f2e5-01/-02 y c133-01/-02)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);ids=('FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01','FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02','FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-01','FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-02')\n[print(r['id'][-8:],r['estado'],'|',r['qué_se_firma'][:52]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id'] in ids]\"",
+    "salida": "-f2e5-01 FIRMADA | [A1] Dos lecturas del catálogo de momentos (M05 = ev\n-f2e5-02 FIRMADA | [A2] Catorce lecturas del catálogo (los momentos 09 \n-c133-01 ABIERTA | [B1] dinero.ahorro.tiene_ahorros (RES-0029/0030): us\n-c133-02 ABIERTA | [B2] M03 (gobierno digital coercitivo) dictaminado S"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/demanda-dictamen-v1_0.tsv (63 pendientes)",
+    "comando": "git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);import collections\nrows=list(csv.DictReader((l for l in sys.stdin if not l.startswith('#')),delimiter='\\t'))\npend=('SIN-BASE-GEN2','CELDA-D-ADJUDICADA','CELDA-D-SIN-CHAMPION','ESPERA-FIRMA-HOLDOUT','ESPERA-FIRMA-MESA','RELEVAR-DESDE-RESULT')\nc=collections.Counter(r['dictamen'] for r in rows if r['dictamen'] in pend)\nprint(len(rows),'filas;',sum(c.values()),'pendientes',dict(c))\"",
+    "salida": "341 filas; 63 pendientes {'SIN-BASE-GEN2': 17, 'ESPERA-FIRMA-MESA': 5, 'RELEVAR-DESDE-RESULT': 5, 'CELDA-D-ADJUDICADA': 17, 'CELDA-D-SIN-CHAMPION': 4, 'ESPERA-FIRMA-HOLDOUT': 15}"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/demanda-dictamen-v1_0.tsv (filas que citan A1/A2 ABIERTA)",
+    "comando": "git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);import re,collections\nrows=list(csv.DictReader((l for l in sys.stdin if not l.startswith('#')),delimiter='\\t'))\nh=[r for r in rows if re.search(r'f2e5-0[12] ABIERTA',r['cita'])]\nprint('filas con f2e5-01/02 ABIERTA en cita:',len(h),dict(collections.Counter(r['dictamen'] for r in h)))\"",
+    "salida": "filas con f2e5-01/02 ABIERTA en cita: 18 {'ESPERA-FIRMA-MESA': 3, 'ESPERA-FIRMA-HOLDOUT': 15}"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/demanda-dictamen-1/construye_dictamen.py:48-49",
+    "comando": "git show origin/main:forense/analisis/demanda-dictamen-1/construye_dictamen.py | sed -n '48,49p' | cut -c1-200",
+    "salida": "A1 = (\"forense/analisis/mapa-instrumentos-alternos/hoja-para-mesa-mapa-instrumentos-alternos.md letra A1; \"\n      \"FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-01 ABIERTA\")"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv (c133-02 y e760-06)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);ids=('NC-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02','NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-06')\n[print(r['id'][-8:],r['estado'],'|',r['sucesor'][:95]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id'] in ids]\"",
+    "salida": "-e760-06 ABIERTA | MESA (2026-10-05) · hoja de irreversibles · antes: GEN2-RELEVO-CONSUMIDORES-4 (SIN-ASIGNAR: 0 e\n-c133-02 ABIERTA | MESA (2026-10-05) · encargo por escribir (decidida por delegación: decididas-por-delegacion.tsv"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-01 (ejecutada_en)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['estado'],'|',r['ejecutada_en'][:230]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-01']\"",
+    "salida": "FIRMADA | ADR-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-01; GEN2-CALC-ALTERNOS-LOTE-1: CALC-ALT-M05-LAPOP2021-0001, CALC-ALT-M05-LAPOP2019-0001, CALC-ALT-M23-ENSAFI2023-0001"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 -c \"import csv,re;rows=list(csv.DictReader((l for l in open('data/corrida0/demanda-dictamen-v1_0.tsv',encoding='utf-8') if not l.startswith('#')),delimiter='\\t'));print(sum(1 for r in rows if re.search(r'f2e5-0[12] ABIERTA',r['cita'])))\"  →  0 (hoy: 18)",
+  "owner_detalle": "",
+  "decision_declarada": {
+   "opcion": "A1/A2 se ejecutan sobre la vista; B1/B2 no se anticipan",
+   "razon": "A1/A2 están FIRMADAS y ejecutadas: solo falta reflejarlo en la vista (derivada, reversible, sin dato). B1/B2 tienen FP propia ABIERTA con texto listo (c133-01/-02) y E.2 da precedencia a la fila de mesa: viajan como NO-LANZADO (firma c133-01/-02) hasta que se firmen. Los pins de champion son adopción (D-19) y siguen en e760-06/RELEVO-CONSUMIDORES-4."
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-01",
+  "verdict": "HOJA-DECISION",
+  "rationale": "HUM-006 pide Latinobarómetro 2024, RESERVADA (E.6) y ya abierta por defecto en #1292 (sin fusionar): solo cabe RETROSPECTIVA. Levantarla es decisión de mesa (D-19); 0 de 18 FP ABIERTAS la cubren. AUTOR-026 no la necesita: usa 2023 (LIBRE, CALC-LATINOBAROMETRO-PISOS-2023-0001, 1794 RESULT) y se absorbe en PISOS-DOMINIOS-Y-REGLAS-2.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/pisos-dominios-1/tabla-apertura-v1_0.tsv (HUM-006, AUTOR-026)",
+    "comando": "git show origin/main:forense/analisis/pisos-dominios-1/tabla-apertura-v1_0.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id'][-7:],'|',r['instrumento_ola'][:30],'| reserva:',r['reserva'][:62],'| decision:',r['decision'][:50]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id'] in ('ASTRA5-U0-HUM-006','ASTRA5-U0-AUTOR-026')]\"",
+    "salida": "TOR-026 | latinobarometro2023 | reserva: LIBRE | decision: DIFERIDO: su B-bis se congeló en la pieza retirada\nHUM-006 | Latinobarómetro 2024, entrevis | reserva: E.6: RESERVADA en COLA-/CONFIANZA-LATINOBAROMETRO-PISOS-spec-v | decision: DIFERIDO-A apertura: ola reservada E.6; PISOS-DOMI"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-caja/COLA-LATINOBAROMETRO-PISOS-spec-v1_0.md:19",
+    "comando": "git show origin/main:forense/prereg-caja/COLA-LATINOBAROMETRO-PISOS-spec-v1_0.md | sed -n '19p' | cut -c1-200",
+    "salida": "`latinobarometro2024_bd_stata` (2024) — **RESERVADA (E.6)**: el medidor no la nombra como input ni la abre;"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-28-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-cierre.md:22",
+    "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-cierre.md | sed -n '22p' | cut -c1-420",
+    "salida": "- **Reserva E.6 rota (PARO a, D-19), por categoría:** `corpus_loader.motivo_reserva` no codifica «ola más reciente de un programa con historia nace RESERVADA» (MEMORIA-OPERATIVA §1) y la primera versión de la tabla de apertura se apoyó sólo en él. Dos piezas abrieron olas declaradas RESERVADAS en specs previas: Latinobarómetro 2024 (sellado y PR #1292, **cerrado sin fusionar**) y Censo 2020 ITER ("
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/main first-parent (PR #1292)",
+    "comando": "git log origin/main --first-parent --oneline | grep -c '#1292'",
+    "salida": "0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv (FP ABIERTAS que levanten reservas)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys,re;csv.field_size_limit(10**9);rows=list(csv.DictReader(sys.stdin,delimiter='\\t'));p=re.compile(r'Latinobar[oó]metro 2024|latinobarometro2024|EDER ?2025|EDER2025|Censo 2020|CPV ?2020|cpv2020|ITER 2020|7cd0|PISOS-DOMINIOS-Y-REGLAS-[12]',re.I);h=[r['id'] for r in rows if r['estado'].startswith('ABIERTA') and p.search(' '.join(r.values()))];print('FP examinadas',len(rows),'ABIERTA',sum(r['estado'].startswith('ABIERTA') for r in rows),'ABIERTA con patron',len(h),h)\"",
+    "salida": "FP examinadas 648 ABIERTA 18 ABIERTA con patron 0 []"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/CALC-LATINOBAROMETRO-PISOS-2023-0001",
+    "comando": "p=data/corrida0/CALC-LATINOBAROMETRO-PISOS-2023-0001; echo \"RESULT: $(git show origin/main:$p/resultados.json | jq -r '.resultados|keys|length') · $(git show origin/main:$p/spec.yaml | sed -n '51p' | tr -s ' ') · menciones latinobarometro2024 en spec.yaml: $(git show origin/main:$p/spec.yaml | grep -c latinobarometro2024)\"",
+    "salida": "RESULT: 1794 ·  variable: P13STGBS_A · menciones latinobarometro2024 en spec.yaml: 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/medicion-carriles-2/tabla-apertura-mc2-v1_0.tsv (POL-030, TIME-030)",
+    "comando": "git show origin/main:forense/analisis/medicion-carriles-2/tabla-apertura-mc2-v1_0.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id'][-7:],'|',r['instrumento_texto'][:44],'|',r['decision_mc2'][:40]) for r in csv.DictReader((l for l in sys.stdin if not l.startswith('#')),delimiter='\\t') if r['id'] in ('ASTRA5-U0-POL-030','ASTRA5-U0-TIME-030')]\"",
+    "salida": "POL-030 | Latinobarometro 2024 (latinobarometro2024_bd | CON-JUICIO-C3:CONFIRMA (sin RESULT propi\nIME-030 | latinobarometro2024 / 2024 | PENDIENTE-SIN-TOKEN"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml (ids latinobarometro)",
+    "comando": "git show origin/main:data/manifiesto.yaml | grep -o -E '^- id: latinobarometro[a-z0-9_]*' | sort -u | tr '\\n' ' '",
+    "salida": "- id: latinobarometro2023_bd_stata_zip - id: latinobarometro2024_bd_stata - id: latinobarometro2024_cuestionario_esp - id: latinobarometro2024_fichas_tecnicas"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "MESA-DECISION (hoja de decisiones PENDIENTES-4: LB2024 · levantar la reserva E.6 solo para HUM-006; AUTOR-026 sigue por PISOS-DOMINIOS-Y-REGLAS-2)",
+  "hoja": {
+   "situacion": "HUM-006 (satisfacción con la democracia, Latinobarómetro 2024 P12STGBS.A) exige la ola 2024, RESERVADA por E.6 (COLA-/CONFIANZA-LATINOBAROMETRO-PISOS-spec) y ya abierta por defecto en #1292, cerrado sin fusionar (mesa eligió retirar y seguir). El cruce está visto: solo puede medirse RETROSPECTIVA. AUTOR-026 no depende de esto: usa la ola 2023, LIBRE y ya sellada.",
+   "opciones": [
+    {
+     "letra": "A",
+     "texto": "Mesa levanta por escrito la reserva E.6 de Latinobarómetro 2024 solo para HUM-006 (columna P12STGBS.A de México, con guardia de una sola variable congelada en COMMIT-1). GEN2-PISOS-DOMINIOS-Y-REGLAS-2 (CAJA) lo mide rotulado RETROSPECTIVA.",
+     "costo": "Un acto CAJA. La ola ya se derivó en #1292 antes de cualquier emisión nueva, así que no puede dar marca PROSPECTIVA y no se pierde valor prospectivo adicional en esa columna. Las demás columnas siguen RESERVADAS; POL-030 y TIME-030 (que también citan la ola 2024 en tabla-apertura-mc2) no quedan cubiertas por esta firma."
+    },
+    {
+     "letra": "B",
+     "texto": "Mantener la reserva. HUM-006 espera a una ola posterior del Latinobarómetro, con emisión sellada antes de abrirla.",
+     "costo": "HUMOR sin estimador de forma indefinida: el manifiesto solo trae las olas 2023 y 2024 (4 ids latinobarometro*)."
+    },
+    {
+     "letra": "C",
+     "texto": "Declarar consumida la ola 2024 para este cruce (E.6) y dejar HUM-006 SIN-CIFRA, sin medir.",
+     "costo": "Ningún acto, pero HUMOR queda sin estimador y la afirmación sin dictamen."
+    }
+   ],
+   "recomendacion": "A. AUTOR-026 se absorbe en GEN2-PISOS-DOMINIOS-Y-REGLAS-2 citando CALC-LATINOBAROMETRO-PISOS-2023-0001 (E.5), sea cual sea la opción.",
+   "porque": "E.6 permite usar un cruce visto para describir y evaluar en retrospectiva, siempre que se rotule así; el valor prospectivo de esa columna se perdió con el defecto y la guardia de una variable deja reservado el resto de la ola.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«PISOS-DOMINIOS-Y-REGLAS-1 7cd0-01 (Latinobarómetro 2024, HUM-006): opción (__). Si (A): levanto por escrito la reserva E.6 de Latinobarómetro 2024 solo para la columna P12STGBS.A de México, rotulada RETROSPECTIVA, con guardia de una sola variable congelada en el COMMIT-1 de GEN2-PISOS-DOMINIOS-Y-REGLAS-2; el resto de la ola sigue RESERVADO. Si (B): se mantiene la reserva. Si (C): la ola 2024 se declara consumida para este cruce y HUM-006 queda SIN-CIFRA.»"
+  },
+  "decision_clave": "LATINOBAROMETRO2024-LEVANTAR-RESERVA-E6",
+  "fp_existente": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-02",
+  "verdict": "HOJA-DECISION",
+  "rationale": "Cinco afirmaciones piden el ITER del Censo 2020, RESERVADO (COLA-EIC-HOGARES:108); mesa firmó el 26/sep con esa reserva vigente («sin extrapolar a 2020», FP 3a49-01). Abrirlo, total o por columnas, es D-19; 0 FP ABIERTAS lo cubren. Ningún CPV2020ITER en origin/main (0 de 3116 archivos): -0001 y -0002 hay que re-congelarlos.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-caja/COLA-EIC-HOGARES-spec-v1_0.md:108",
+    "comando": "git show origin/main:forense/prereg-caja/COLA-EIC-HOGARES-spec-v1_0.md | sed -n '107,108p' | cut -c1-200",
+    "salida": "primarios de INEGI en México (Encuesta Intercensal 2015, censo de muestra). **Temporalidad:** RETROSPECTIVO\n(2015); ninguna cifra PROSPECTIVA; el Censo 2020 queda RESERVADO y fuera de este CALC, así que no hay lectura"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/pisos-dominios-1/tabla-apertura-v1_0.tsv (payload cpv2020_iter_nal_csv)",
+    "comando": "git show origin/main:forense/analisis/pisos-dominios-1/tabla-apertura-v1_0.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);rs=[r for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['payload_id']=='cpv2020_iter_nal_csv']\nprint(len(rs),'filas cpv2020_iter_nal_csv:',[r['id'][-8:] for r in rs]);print(rs[0]['reserva'][:75])\"",
+    "salida": "5 filas cpv2020_iter_nal_csv: ['UTOR-021', 'TIME-027', 'URAL-026', 'URAL-027', '-FAM-037']\nE.6: Censo 2020 RESERVADO en COLA-EIC-HOGARES-spec-v1_0.md:108"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260926-GEN2-COLA-LOTE-1-3a49-01 (FIRMADA 26/sep)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['estado'],'|',r['qué_se_firma'][208:330],'|',r['firmada_en'][-118:]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260926-GEN2-COLA-LOTE-1-3a49-01']\"",
+    "salida": "FIRMADA | fy aislado REPRODUCE/IDENTICO), IC de diseno por bootstrap de UPM, una ola abierta (muestra censal 2010; 2020 RESERVADA y  |  §2): «**A2** `COLA-LOTE-1-3a49-01` CCPV 2010 → **CON-RESERVA-DE-ANCHO**, descripción de 2010, sin extrapolar a 2020.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0 + forense/prereg-caja (origin/main): CPV2020ITER",
+    "comando": "echo \"archivos examinados: $(git ls-tree -r --name-only origin/main data/corrida0 forense/prereg-caja | wc -l) · con CPV2020ITER en la ruta: $(git ls-tree -r --name-only origin/main data/corrida0 forense/prereg-caja | grep -c CPV2020ITER)\"",
+    "salida": "archivos examinados: 3116 · con CPV2020ITER en la ruta: 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv (NC-260926-GEN2-COLA-LOTE-1-3a49-04, cerrado_por)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['estado'],'|',r['cerrado_por'][:260]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='NC-260926-GEN2-COLA-LOTE-1-3a49-04']\"",
+    "salida": "CERRADA | GEN2-TRAMITE-FIRMAS-20 (ADR-260927-GEN2-TRAMITE-FIRMAS-20-96f9-01): FP 3a49-01..04 FIRMADA (A2-A5) con la reserva vigente: CCPV 2020, EMAT/EDR 2024 y ENPECYT 2017 siguen RESERVADAS"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-28-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-cierre.md:22-23",
+    "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-cierre.md | sed -n '23p' | cut -c1-400",
+    "salida": "- **Ejecuciones descartadas por el conducto** (§6 Commits; procedimiento y semilla intactos): `CALC-PDR1-ENCUCI2020-0001` (VALOR-LARGO > 1024 bytes; sucesor `-0002` sellado) y `CALC-PDR1-CPV2020ITER-0001` (idem; sucesor `-0002` congelado, sin correr por la reserva)."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv (FP ABIERTAS que levanten reservas)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys,re;csv.field_size_limit(10**9);rows=list(csv.DictReader(sys.stdin,delimiter='\\t'));p=re.compile(r'Latinobar[oó]metro 2024|latinobarometro2024|EDER ?2025|EDER2025|Censo 2020|CPV ?2020|cpv2020|ITER 2020|7cd0|PISOS-DOMINIOS-Y-REGLAS-[12]',re.I);h=[r['id'] for r in rows if r['estado'].startswith('ABIERTA') and p.search(' '.join(r.values()))];print('FP examinadas',len(rows),'ABIERTA',sum(r['estado'].startswith('ABIERTA') for r in rows),'ABIERTA con patron',len(h),h)\"",
+    "salida": "FP examinadas 648 ABIERTA 18 ABIERTA con patron 0 []"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "MESA-DECISION (hoja de decisiones PENDIENTES-4: CPV2020-ITER · apertura escrita, total o por columnas, del Censo 2020 ITER)",
+  "hoja": {
+   "situacion": "Cinco afirmaciones (TIME-027, RURAL-026/027, FAM-037, AUTOR-021) necesitan el ITER del Censo 2020 (payload cpv2020_iter_nal_csv). Está RESERVADO para proteger la lectura de hogares 2015→2020 (COLA-EIC-HOGARES:108) y mesa firmó el 26/sep con esa reserva vigente (FP 3a49-01). La corrida -0001 leyó el payload y el conducto la rechazó sin escribir valores; los artefactos -0001/-0002 no están en origin/main.",
+   "opciones": [
+    {
+     "letra": "A",
+     "texto": "Levantar por escrito la reserva completa del Censo 2020 ITER, volver a congelar el CALC y correrlo.",
+     "costo": "Un acto CAJA de dos commits. El Censo 2020 deja de servir como ola de contraste de la serie EIC-hogares."
+    },
+    {
+     "letra": "B",
+     "texto": "Levantar solo las columnas ITER de las cinco afirmaciones (religión, indigeneidad, lengua, edad) con guardia de columnas en el medidor y prueba por mutación. Las columnas de hogar y jefatura siguen RESERVADAS y se declara lo que se aparta.",
+     "costo": "Un acto CAJA de dos commits, más la prueba por mutación de la guardia de columnas."
+    },
+    {
+     "letra": "C",
+     "texto": "Mantener la reserva.",
+     "costo": "JUVENTUD sin estimador y RURAL_INDIGENA sin dictamen: la huella indígena difusa queda sin mapear."
+    }
+   ],
+   "recomendacion": "B",
+   "porque": "La reserva protege la tendencia de hogares 2015→2020 (spec:108). Religión, indigeneidad, lengua y edad no son ese estimando, y E.6 pide declarar lo que se aparta sin abrir; la guardia de columnas conserva el contraste de hogares.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«PISOS-DOMINIOS-Y-REGLAS-1 7cd0-02 (Censo 2020 ITER): opción (__). Si (B): levanto por escrito la reserva E.6 del Censo 2020 ITER solo para las columnas de TIME-027, RURAL-026, RURAL-027, FAM-037 y AUTOR-021, con guardia de columnas congelada en COMMIT-1; las de hogar y jefatura siguen RESERVADAS para COLA-EIC-HOGARES. Si (A): se levanta la reserva completa. Si (C): se mantiene.»"
+  },
+  "decision_clave": "CPV2020-ITER-LEVANTAR-RESERVA-E6",
+  "fp_existente": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-03",
+  "verdict": "HOJA-DECISION",
+  "rationale": "JUV-001/002 piden EDER 2025, RESERVADA sin apertura escrita (D-19). Corrige la primera pasada: ambos cruces ya se vieron en un extracto web del comunicado y mesa los declaró consumidos, solo RETROSPECTIVA (FP b544-02, FIRMADA). No cabe marca PROSPECTIVA para ellos. 0 FP ABIERTAS cubren la apertura.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/pisos-dominios-1/tabla-apertura-v1_0.tsv (JUV-001, JUV-002)",
+    "comando": "git show origin/main:forense/analisis/pisos-dominios-1/tabla-apertura-v1_0.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id'][-7:],'|',r['payload_id'],'| reserva:',r['reserva'][:75]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id'] in ('ASTRA5-U0-JUV-001','ASTRA5-U0-JUV-002')]\"",
+    "salida": "JUV-001 | eder2025_bd_csv_zip | reserva: E.6: ola más reciente de EDER (historia 2011/2017), sin apertura escrita\nJUV-002 | eder2025_bd_csv_zip | reserva: E.6: ola más reciente de EDER (historia 2011/2017), sin apertura escrita"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/familias-2027/p3-frontera-cierre-v1_0.md:42-43",
+    "comando": "git show origin/main:forense/analisis/familias-2027/p3-frontera-cierre-v1_0.md | sed -n '42,43p' | cut -c1-230",
+    "salida": "| EDER 2025 × salida del hogar antes de 18 por cohorte | reports-v2/salud-juventud-tiempo-1/juventud/revision-material.md:24; juventud/tabla.tsv:2 (JUV-001) | extracto web de comunicado |\n| EDER 2025 × primera unión antes de adultez por cohorte | revision-material.md:24; tabla.tsv:3 (JUV-002) | idem |"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/reports-v2/salud-juventud-tiempo-1/juventud/revision-material.md:24",
+    "comando": "git show origin/main:forense/analisis/reports-v2/salud-juventud-tiempo-1/juventud/revision-material.md | sed -n '24p' | cut -c1-390",
+    "salida": "**Instrumentos y módulos:** EDER 2025, transiciones de salida del hogar y primera unión; ENADID 2023, fecundidad adolescente y tasa global. Ambos se relacionan con las afirmaciones originales `ASTRA5-U0-JUV-001/002` y `-004/005`. **Superficie consultada:** una consulta de búsqueda web a páginas públicas de INEGI devolvió extractos automáticos del comunicado/presentación EDER y de"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260927-ASTRA6-C3-SALUD-JUVENTUD-TIEMPO-1-b544-02 (FIRMADA 28/sep, R11 opción 2)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['estado'],'|',r['firmada_en'][r['firmada_en'].index('lo visto'):][:330]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260927-ASTRA6-C3-SALUD-JUVENTUD-TIEMPO-1-b544-02']\"",
+    "salida": "FIRMADA | lo visto queda excluido del producto, se declara consumido para esos cruces (E.6), enumerados uno por uno, y solo sirve en retrospectiva, rotulado así; no se autoriza ninguna lectura retroactiva ni futura de esas olas fuera del código congelado de una prueba pre-registrada.» → opción (2)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/corrida0/CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0001/spec.yaml:17",
+    "comando": "git show origin/main:data/corrida0/CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0001/spec.yaml | sed -n '17p' | cut -c1-200",
+    "salida": "estimando: \"Perfiles de primera unión y diferencia mujer-hombre de p(libre), cruda y con estandarización descriptiva de cohorte común. No causal.\""
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0 (origin/main): CALC de EDER",
+    "comando": "echo \"dirs examinados: $(git ls-tree --name-only origin/main data/corrida0/ | wc -l) · EDER2025: $(git ls-tree --name-only origin/main data/corrida0/ | grep -c -i 'EDER2025\\|EDER-2025') · CALC-EDER*: $(git ls-tree --name-only origin/main data/corrida0/ | grep -i 'CALC-EDER' | sed 's#data/corrida0/##' | tr '\\n' ' ')\"",
+    "salida": "dirs examinados: 422 · EDER2025: 0 · CALC-EDER*: CALC-EDER-0001 CALC-EDER-0002 CALC-EDER-0003 CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0001 CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv (FP ABIERTAS que levanten reservas)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys,re;csv.field_size_limit(10**9);rows=list(csv.DictReader(sys.stdin,delimiter='\\t'));p=re.compile(r'Latinobar[oó]metro 2024|latinobarometro2024|EDER ?2025|EDER2025|Censo 2020|CPV ?2020|cpv2020|ITER 2020|7cd0|PISOS-DOMINIOS-Y-REGLAS-[12]',re.I);h=[r['id'] for r in rows if r['estado'].startswith('ABIERTA') and p.search(' '.join(r.values()))];print('FP examinadas',len(rows),'ABIERTA',sum(r['estado'].startswith('ABIERTA') for r in rows),'ABIERTA con patron',len(h),h)\"",
+    "salida": "FP examinadas 648 ABIERTA 18 ABIERTA con patron 0 []"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-28-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-cierre.md:22",
+    "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-cierre.md | sed -n '22p' | cut -c300-560",
+    "salida": "ADAS en specs previas: Latinobarómetro 2024 (sellado y PR #1292, **cerrado sin fusionar**) y Censo 2020 ITER (la corrida `-0001` leyó el payload; el conducto la rechazó sin escribir ni imprimir valores). Mesa decidió seguir con la opción 1 (retirar y conti"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "MESA-DECISION (hoja de decisiones PENDIENTES-4: EDER2025 · apertura escrita de EDER 2025 solo para JUV-001/002, RETROSPECTIVA)",
+  "hoja": {
+   "situacion": "JUV-001 y JUV-002 (salida del hogar y primera unión por cohorte, EDER 2025) necesitan una ola RESERVADA por E.6, sin apertura escrita y que no se abrió. Pero ambos cruces ya se vieron: un extracto web del comunicado EDER los expuso (revision-material.md:24) y mesa firmó el 28/sep (FP b544-02, R11 opción 2) que lo visto se declara consumido y solo sirve en retrospectiva. Una marca PROSPECTIVA ya no es posible para estos dos cruces.",
+   "opciones": [
+    {
+     "letra": "A",
+     "texto": "Mesa levanta por escrito la reserva E.6 de EDER 2025 solo para JUV-001/002 (columnas edad_dejar, edo_civil1 y cohorte, con guardia de columnas congelada en COMMIT-1 y prueba por mutación). GEN2-PISOS-DOMINIOS-Y-REGLAS-2 (CAJA) los mide como pisos RETROSPECTIVA.",
+     "costo": "Un acto CAJA de dos commits más la prueba de la guardia. El resto de EDER 2025 sigue reservado para una prueba pre-registrada; estos dos cruces ya no pueden servir como prueba prospectiva."
+    },
+    {
+     "letra": "B",
+     "texto": "Como A, pero antes de abrir se sella, como emisión punto-fijo con IC, el piso por cohorte de EDER 2017 (misma forma que las familias 2027) y la ola la abre el código congelado de esa prueba.",
+     "costo": "Un commit de spec más (NUBE) y un acto CAJA de tres commits. No cambia el rótulo de JUV-001/002 (siguen RETROSPECTIVA por b544-02); solo deja lista la ola para otros cruces. Ya existen CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0001/-0002, pero su estimando declarado es el perfil de primera unión (p(libre)), no la edad de salida del hogar."
+    },
+    {
+     "letra": "C",
+     "texto": "Mantener la reserva sin medir.",
+     "costo": "JUVENTUD sin estimador."
+    }
+   ],
+   "recomendacion": "A",
+   "porque": "Los dos cruces están consumidos por b544-02, así que protegerlos ya no compra una comparación prospectiva; la guardia de columnas deja reservado el resto de la ola. B suma un commit sin cambiar el rótulo de estos dos cruces.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«PISOS-DOMINIOS-Y-REGLAS-1 7cd0-03 (EDER 2025, JUV-001/002): opción (__). Si (A): levanto por escrito la reserva E.6 de EDER 2025 solo para las columnas de JUV-001 y JUV-002, con guardia de columnas congelada en COMMIT-1 de GEN2-PISOS-DOMINIOS-Y-REGLAS-2; se rotulan RETROSPECTIVA (cruces consumidos por FP b544-02) y el resto de la ola sigue RESERVADO. Si (B): la reserva la levanta solo el código congelado de esa spec, después de sellar como emisión con IC el piso por cohorte de EDER 2017. Si (C): se mantiene la reserva.»"
+  },
+  "decision_clave": "EDER2025-LEVANTAR-RESERVA-E6",
+  "fp_existente": "",
+  "confianza": "media"
+ }
+]

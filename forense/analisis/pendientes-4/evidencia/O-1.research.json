@@ -1,0 +1,545 @@
+[
+ {
+  "id": "NC-260928-GEN2-TUBERIA-3-f18c-01",
+  "verdict": "HOJA-DECISION",
+  "rationale": "La FP-260928-GEN2-TUBERIA-3-f18c-01 sigue ABIERTA y el defecto persiste: ningún [deriva] entró a main después de #1268. #1303, #1305, #1306, #1308 y #1309 se cerraron sin fusionar al ser reemplazados, y #1315 está abierto (blocked). La firma 1269-01 ya pone el [deriva] dentro del auto-merge. Falta que mesa elija el mecanismo y autorice fusionar sin revisión.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv:647",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 (csv.DictReader, id ~ TUBERIA-3-f18c)",
+    "salida": "L647: id=FP-260928-GEN2-TUBERIA-3-f18c-01 | estado=ABIERTA | gatea=NC-260928-GEN2-TUBERIA-3-f18c-01 (abierta) y -04 | qué_se_firma=P4 · el [deriva] no se fusiona solo: (a) automerge-rutinas.yml gana schedule (cada 15 min) que fusiona PR derivados/auto-* con su último SHA verde… [recomendada; NO implementada: el clasificador de permisos negó «Merge Without Review»]; (b)…; (c) auto-merge nativo…"
+   },
+   {
+    "tipo": "comando",
+    "ref": "GitHub Josanoforo/Modelado-Mexicano PR",
+    "comando": "mcp github list_pull_requests state=all sort=created desc perPage=15 (fields number,title,state,merged_at,closed_at)",
+    "salida": "#1315 [deriva] tras 4a0d94aa state=open · #1309 [deriva] tras 9d2550b9 closed 2026-09-29T00:03:18Z sin merged_at · #1308 closed 23:02:49Z sin merged_at · #1306 closed 22:29:54Z sin merged_at · #1305 closed 22:07:10Z sin merged_at · #1303 closed 21:17:55Z sin merged_at (los PR de acto #1314/#1311/#1307/#1304/#1302 sí traen merged_at)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/main",
+    "comando": "git log origin/main --first-parent --oneline | rg -n -F '[deriva]'",
+    "salida": "21:1f4bf1cc [deriva] trozo 1 tras 429ec004d: 20 CALC, quedan 101 (#1268)   (el merge de #1294 TUBERIA-3 está en la línea 3: ningún [deriva] posterior)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "PR #1315",
+    "comando": "mcp github pull_request_read get pullNumber=1315",
+    "salida": "state=open, mergeable_state=blocked, head=derivados/auto-36500584875 (9d980ba4), base=main 90345dff, user=github-actions[bot], created_at 2026-09-29T00:03:15Z"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv:470 FP-260923-GEN2-TUBERIA-RUTINAS-AUTOMERGE-2-1269-01",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 (csv.DictReader, id ~ RUTINAS-AUTOMERGE-2-1269-01)",
+    "salida": "estado=FIRMADA · «Se activa Require merge queue con el alcance de R(a); el auto-merge cubre [deriva], claude/encola-* y acto/gen2-tramite-*; nada que selle corridas se fusiona sin mesa.»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/nota-2026-09-28-gen2-tuberia-3-cierre.md:27-28",
+    "comando": "git show origin/main:forense/notas/nota-2026-09-28-gen2-tuberia-3-cierre.md | sed -n '27,28p'",
+    "salida": "automerge-rutinas.yml corre por workflow_run; consulta por rama: 0 runs de auto-merge tras dos verificaciones exitosas… Causa probable: los eventos creados con GITHUB_TOKEN no encadenan workflow_run. … el clasificador de permisos de la sesión negó la acción («Merge Without Review»)."
+   }
+  ],
+  "owner_detalle": "MESA-DECISION: hoja de cierre de GEN2-PENDIENTES-4 (ancla D<n> que asigne el ensamblador) sobre FP-260928-GEN2-TUBERIA-3-f18c-01",
+  "hoja": {
+   "situacion": "Desde #1268 ningún [deriva] llega a main: cada push abre uno nuevo y cierra el anterior sin fusionar (5 cerrados el 28-29/sep); la vista y los contadores publicados quedan atrasados.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "automerge-rutinas.yml gana un schedule (cada 15 min) que fusiona solo PR derivados/auto-* con suite verde en su último SHA y el derivador terminado.",
+     "costo": "Un acto de tubería (~30 líneas de workflow + test huérfano) y minutos de Actions por el schedule. La sesión necesita permiso explícito para fusionar sin revisión, que el clasificador negó el 28/sep."
+    },
+    {
+     "letra": "b",
+     "texto": "El job derivados espera su último dispatch y fusiona al terminar.",
+     "costo": "Ocupa el runner durante toda la verificación por trozos y choca con el tope de 30 min del job (nota TUBERIA-3 §P4)."
+    },
+    {
+     "letra": "c",
+     "texto": "Auto-merge nativo: mesa activa «Allow auto-merge» y el check requerido en main; el job pide auto-merge al abrir el PR.",
+     "costo": "Un minuto de mesa en Settings (acción con identidad) más 1-2 líneas en el job. No se ha probado que el check de un dispatch con GITHUB_TOKEN satisfaga el requerido."
+    },
+    {
+     "letra": "d",
+     "texto": "Statu quo: mesa fusiona cada [deriva] a mano.",
+     "costo": "La vista sigue atrasada. Además un [deriva] vive ~30-60 min antes de que lo reemplace el siguiente push, así que mesa tendría que fusionarlo dentro de esa ventana."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "La firma 1269-01 ya decidió el alcance (el [deriva] entra al auto-merge); lo único que falta es el mecanismo. (a) no depende de que GitHub encadene eventos de GITHUB_TOKEN, que es la causa probable de los 0 runs, ni de cambiar Settings. Su riesgo queda acotado a derivados/auto-* con suite verde. Es además la opción que recomendó el acto que midió el defecto.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«FP-260928-GEN2-TUBERIA-3-f18c-01: opción (a). Un acto de tubería añade a automerge-rutinas.yml un schedule que fusiona solo PR derivados/auto-* con la suite verde en su último SHA y el derivador terminado; dentro del alcance de FP-260923-GEN2-TUBERIA-RUTINAS-AUTOMERGE-2-1269-01, esa fusión no requiere revisión humana. La NC f18c-01 se cierra con el run_id de un [deriva] fusionado en menos de una hora.»"
+  },
+  "confianza": "alta",
+  "cerrado_por_detalle": null,
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null
+ },
+ {
+  "id": "NC-260928-GEN2-TUBERIA-3-f18c-04",
+  "verdict": "CANAL",
+  "rationale": "El canal ya corrió con TUBERIA-3: la rama derivados/auto-36495085433 lleva los trozos 1-2 «tras 9d2550b92» y publica demanda-corridas.tsv y demanda-resultados.tsv. Pero su PR (#1309) se cerró sin fusionar y #1315 sigue abierto. Falta que un [deriva] entre a main y releer status contra demanda. Depende de f18c-01. No hay evidencia aquí de que el derivador local de caja haya corrido.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "origin/derivados/auto-36495085433",
+    "comando": "git log origin/derivados/auto-36495085433 --format='%h %ad %s' -n 3; git merge-base --is-ancestor 9d2550b9 origin/derivados/auto-36495085433 && echo ancestro",
+    "salida": "0482c810 2026-09-28 23:10:05 +0000 [deriva] trozo 2 tras 9d2550b92: 20 CALC, quedan 73 · de9c04c8 2026-09-28 23:02:41 +0000 [deriva] trozo 1 tras 9d2550b92: 20 CALC, quedan 93 · 9d2550b9 Merge pull request #1294 … · TUBERIA-3 merge es ancestro del deriva"
+   },
+   {
+    "tipo": "comando",
+    "ref": "diff del [deriva] contra main",
+    "comando": "git diff --stat origin/main...origin/derivados/auto-36495085433 | rg -i 'demanda|corridas.tsv'",
+    "salida": "data/corrida0/corridas.tsv | 239 +- · data/corrida0/demanda-corridas.tsv | 160 +- · data/corrida0/demanda-resultados.tsv | 327 +-"
+   },
+   {
+    "tipo": "comando",
+    "ref": "PR #1309 / #1315",
+    "comando": "mcp github list_pull_requests head=Josanoforo:derivados/auto-36495085433 state=all; pull_request_read get 1315",
+    "salida": "#1309 state=closed closed_at=2026-09-29T00:03:18Z merged=false (sin merged_at) · #1315 state=open mergeable_state=blocked head=derivados/auto-36500584875"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/main",
+    "comando": "git log origin/main --first-parent --oneline | rg -n -F '[deriva]'",
+    "salida": "21:1f4bf1cc [deriva] trozo 1 tras 429ec004d: 20 CALC, quedan 101 (#1268)  (único; anterior al merge de #1294)"
+   }
+  ],
+  "owner_detalle": "derivados/auto-36500584875",
+  "hecho_comando": "git log origin/main --first-parent --format='%h %s' | rg -m1 -F '[deriva]' → commit X con git merge-base --is-ancestor 9d2550b9 X; después python3 tools/corrida0.py demanda y python3 tools/corrida0.py status dan el mismo 'pendientes' (vistas data/corrida0/demanda-corridas.tsv y demanda-resultados.tsv en main)",
+  "confianza": "alta",
+  "cerrado_por_detalle": null,
+  "lote": null,
+  "entorno": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-03",
+  "verdict": "ABSORBER",
+  "rationale": "No hay deflactor: 0 de 7 198 ids del manifiesto y 0 de 952 filas de cola mencionan INPC. /adquiere solo camina filas de cola (A.16). Hay una página DOF con la serie hasta 2018, sin hash en el manifiesto (EXISTE-NO-SATISFACE). Faltan la fila de cola y la serie INPC oficial; después, CALC ENOE.",
+  "que_falta": "Fila de cola y payload hash-fijado del INPC oficial (INEGI) que cubra las olas ENOE de U1; después, CALC nuevo de ingreso real y cuidados por COE P2G2 por era.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "git show origin/main:data/manifiesto.yaml > m.yaml; yq -r '.[].id' m.yaml > ids.txt (7198 ids); rg -ic 'inpc|deflact' ids.txt; yq usado_para|nota ~ (?i)INPC|deflact|precios al consumidor",
+    "salida": "0 ids (de 7198) · 0 entradas por usado_para/nota"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv",
+    "comando": "git show origin/main:data/cola-adquisicion-v1_0.tsv | tail -n +2 | python3 (csv.DictReader, 952 filas) todas las columnas ~ INPC|deflact",
+    "salida": "# coincidencias=0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/notas/insumos-externos/llave2-decreto-scratchpad-2026-09-20/scratchpad/dof-inpc-serie-historica.html",
+    "comando": "git ls-tree -r --name-only origin/main | rg -i 'inpc|deflact|conapo|proyecciones' (12375 archivos); texto del HTML sin etiquetas",
+    "salida": "1 archivo: …/dof-inpc-serie-historica.html · «DOF: 21/09/2018 SERIE histórica del índice nacional de precios al consumidor con base en la segunda quincena de julio de 2018=100» (EXISTE-NO-SATISFACE: termina en 2018, sin sha en manifiesto)"
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md §1",
+    "comando": "rg -n 'ENOE: NO-LANZAR' canon/MEMORIA-OPERATIVA.md",
+    "salida": "C1 sin reconstructor; ENOE: NO-LANZAR-TODAVÍA (REPORTADO…) — el CALC posterior hereda esa cautela; la adquisición no."
+   }
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "yq -r '.[].id' data/manifiesto.yaml | rg -c -i inpc ≥ 1 y python3 tools/consulta.py payload <ese id> con sha COINCIDE en caja; fila INPC en data/cola-adquisicion-v1_0.tsv (lector CSV) con estado OBTENIDO",
+  "confianza": "media",
+  "cerrado_por_detalle": null,
+  "owner_detalle": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-260923-ASTRA5-U2-ENDIREH-6a2c-01",
+  "verdict": "HOJA-RECETA",
+  "rationale": "El dictamen (LEÍDO) confirma que los cinco CSV de 2003 traen FAC_PER, pero no UPM ni estrato por LLAVE. Mesa ratificó esa dependencia (FP 6a2c-05 FIRMADA). Solo INEGI puede entregar la llave o los pesos replicados: es una solicitud con identidad, no una descarga. No hay fila de cola ni solicitud en obtencion-externa-1 (9 archivos), ni en R46–R49.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/dominios/genero/endireh-2003-dictamen-documental.md:27",
+    "comando": "git grep -n -i -E 'endireh.?2003' origin/main -- forense/analisis forense/notas | rg -i 'upm|estrato|llave|replic'",
+    "salida": "…:27:Se verificaron los encabezados de los cinco CSV del ZIP del manifiesto endireh_2003_bd_endireh_2003_csv… nacionalm2 contiene los actos de pareja y FAC_PER, pero ninguno de los cinco enca[bezados trae UPM/estrato] · endireh-fp-nc.md:20: habilitaría spec y tabla 2003: «Un archivo oficial que entregue UPM y estrato por LLAVE, o pesos replicados…»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv:511 FP-260923-ASTRA5-U2-ENDIREH-6a2c-05",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 (csv.DictReader, id ~ 6a2c)",
+    "salida": "estado=FIRMADA · ratificación del dictamen ENDIREH 2003 (la octava de T) · qué_se_firma=¿Ratifica mesa el dictamen ENDIREH 2003 de dependencia de llave UPM/estrato antes de una tabla con IC?"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/obtencion-externa-1/solicitudes/ + forense/analisis/astra-theta/solicitud-adquisicion.tsv + decisiones-21.tsv",
+    "comando": "git grep -il -E 'endireh|encup|conapo|inpc|intercensal|redeco|enigh' origin/main -- forense/analisis/obtencion-externa-1/solicitudes/ forense/analisis/astra-theta/solicitud-adquisicion.tsv; decisiones-21 R46–R49 por lector CSV",
+    "salida": "0 archivos (9 solicitudes a–g + registros-con-identidad + 00-LEEME examinados); R46–R49: EMOVI/WVS/IFPS/MCPS/LAPOP, respaldo, seis solicitudes a–f, publicación — ninguna ENDIREH"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml id endireh2003_diseno_muestral_pdf",
+    "comando": "yq '.[] | select(.id==\"endireh2003_diseno_muestral_pdf\")' m.yaml",
+    "salida": "formato: PDF, ENDIREH 2003 diseño muestral, 14 páginas · nota: Define mujeres de 15 años y más con pareja residente… (documenta el diseño, no la asignación por registro: EXISTE-NO-SATISFACE)"
+   }
+  ],
+  "owner_detalle": "2026-10-05",
+  "hoja": {
+   "accion_clave": "SOLICITUD-INEGI-ENDIREH2003-LLAVE-UPM-ESTRATO",
+   "receta_un_minuto": "Por el canal oficial de Atención a Usuarios de INEGI (inegi.org.mx → Contacto), pedir para ENDIREH 2003 la asignación LLAVE→UPM y estrato de diseño, o pesos replicados, y la documentación del factor actualizado. Citar que el ZIP público solo trae FAC_PER y enlazar forense/analisis/dominios/genero/endireh-2003-dictamen-documental.md. Guardar el acuse.",
+   "destino": "El acuse lo registra GEN2-OBTENCION-EXTERNA-2 (FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-01). El archivo que entregue INEGI va a Descargas MX y se registra en data/manifiesto.yaml desde caja. Con él se abre un CALC nuevo de ENDIREH 2003."
+  },
+  "confianza": "alta",
+  "cerrado_por_detalle": null,
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null
+ },
+ {
+  "id": "NC-260923-ASTRA5-U3-POLITICA-COMPLETAR-d459-01",
+  "verdict": "HOJA-RECETA",
+  "rationale": "Sigue sin documento: el manifiesto trae 6 ids ENCUP (la base 2012 y cinco cuestionarios) y ninguno es metodológico. La fila ENCUP de la cola está en OBTENIDO y el selector no la camina. fomentocivico.segob.gob.mx falló por TLS desde la caja, y el control positivo falló igual. Queda la receta de navegador que el dictamen ya escribió: una acción humana.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/dominios/politica/encup-diseno-dictamen-v1_0.md:54-60",
+    "comando": "git show origin/main:forense/analisis/dominios/politica/encup-diseno-dictamen-v1_0.md | sed -n '54,60p'",
+    "salida": "fomentocivico.segob.gob.mx: curl falla con TLS connect error … unexpected eof, y falla igual con el control positivo… Resultado: NO-ACCESIBLE desde esta caja el 23/sep/2026. NO OBTENIDO POR ESTE AGENTE EN 3 INTENTOS. Receta manual de un minuto: abrir https://fomentocivico.segob.gob.mx/es/FomentoCivico/ENCUP en un navegador y buscar «metodología 2012» o «nota técnica»."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "git show origin/main:data/manifiesto.yaml > m.yaml; yq -r '.[].id' m.yaml > ids.txt (7198 ids); rg -i encup ids.txt",
+    "salida": "6 ids: encup_2012_base_datos_xlsx encup_2001_cuestionario_pdf encup_2003_cuestionario_pdf encup_2005_cuestionario_pdf encup_2008_cuestionario_pdf encup_2012_cuestionario_pdf"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv:53 (ENCUP)",
+    "comando": "python3 scratchpad/o1/sel.py (importa tools/adq_doctor.py::selecciona_filas con stub de jsonschema, corte 2026-09-29, maximo=1000; adq_doctor.py --selecciona falló: ModuleNotFoundError jsonschema, 1 intento)",
+    "salida": "filas 952 elegidos 0 excluidos 952 · excluidos ENCUP [ OBTENIDO ] OBTENIDO: A.8 ya resuelto, un objeto completo conserva OBTENIDO"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv:489 FP-260923-ASTRA5-U3-POLITICA-df0d-02",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 (csv.DictReader, id ~ df0d-02)",
+    "salida": "estado=FIRMADA · «ENCUP: descriptivo válido en su escala; inferencia poblacional espera peso/estrato/UPM verificados por texto del FD.»"
+   }
+  ],
+  "owner_detalle": "2026-10-05",
+  "hoja": {
+   "accion_clave": "NAVEGADOR-ENCUP2012-METODOLOGIA-SEGOB",
+   "receta_un_minuto": "Abrir https://fomentocivico.segob.gob.mx/es/FomentoCivico/ENCUP en un navegador y buscar «metodología 2012» o «nota técnica» (encup-diseno-dictamen-v1_0.md:58-60). Si aparece, bajar el PDF a Descargas MX. Si no aparece, anotar NO-ENCONTRADO con la fecha y los términos usados.",
+   "destino": "Descargas MX; el PDF se registra en data/manifiesto.yaml (convención R46: lo registra GEN2-OBTENCION-EXTERNA-2). Con él se reabre la inferencia ENCUP que FP df0d-02 deja en espera."
+  },
+  "confianza": "media",
+  "cerrado_por_detalle": null,
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C2-ENVIPE-1-7045-02",
+  "verdict": "ABSORBER",
+  "rationale": "La activación sigue CONDICIONAL (FP 7045-01 FIRMADA). No hay fila en la cola (0 de 952) ni id en el manifiesto: los 30 ids «calendario» son electorales. Sin fila, /adquiere nunca lo reintenta (A.16). Falta una fila PENDIENTE del calendario INEGI 2027 que el cron intente hasta que se publique. No se verificó por red si ya salió.",
+  "que_falta": "Fila PENDIENTE en la cola para el calendario oficial de difusión INEGI 2027, que fecha ENVIPE 2027; al publicarse, se registra como constancia (URL+sha).",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv:559 FP-260926-GEN2-ASTRA6-C2-ENVIPE-1-7045-01",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 (csv.DictReader, id ~ 7045)",
+    "salida": "estado=FIRMADA · «B3 C2-ENVIPE-1-7045-01 → sí a la activación condicional conjunta de las dos familias ENVIPE 2027 con p0 fijo, banda y gates v1.3, cero retadores, sin apertura actual…»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv",
+    "comando": "git show origin/main:data/cola-adquisicion-v1_0.tsv | tail -n +2 | python3 (csv.DictReader, 952 filas) todas las columnas ~ calendario.*(difusi|INEGI)|ENVIPE.?2027",
+    "salida": "# coincidencias=0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "git show origin/main:data/manifiesto.yaml > m.yaml; yq -r '.[].id' m.yaml > ids.txt (7198 ids); rg -i calendario ids.txt | rg -v -i '^ine_|^iec|pel' | wc -l",
+    "salida": "30 ids con 'calendario'; no-electorales=0 (ningún calendario de difusión INEGI)"
+   }
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 -c (csv.DictReader sobre data/cola-adquisicion-v1_0.tsv saltando la línea de comentario) → 1 fila cuyo fuente_canonica contiene CALENDARIO y 2027, con estado PENDIENTE, NO-OBTENIDO-POR-ESTE-AGENTE(N) u OBTENIDO",
+  "confianza": "media",
+  "cerrado_por_detalle": null,
+  "owner_detalle": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-260921-GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1-dd08-02",
+  "verdict": "ABSORBER",
+  "rationale": "Los tres documentos (889463924487/500/524) no están: 0 en 7 198 ids; el 889463924845 sí. La fila ENIGH_2024 está en OBTENIDO y el selector la excluye, así que ADQUISICION no los caminará (A.16). Falta registrarlos con URL y sha. Son documentos del instrumento: bajar y hashear no abre la ola reservada. Impacto declarado nulo: prioridad baja.",
+  "que_falta": "Registrar en data/manifiesto.yaml (URL+sha, licencia) los tres PDF metodológicos de ENIGH 2024 del RNM 1116 citados en la nota de cierre de GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "git show origin/main:data/manifiesto.yaml > m.yaml; yq -r '.[].id' m.yaml > ids.txt (7198 ids); rg -c '889463924(487|500|524)' ids.txt; rg '889463924845' ids.txt",
+    "salida": "0 · cc1_inegi_enigh_2024__889463924845"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv:572 (ENIGH_2024)",
+    "comando": "python3 scratchpad/o1/sel.py (importa tools/adq_doctor.py::selecciona_filas con stub de jsonschema, corte 2026-09-29, maximo=1000; adq_doctor.py --selecciona falló: ModuleNotFoundError jsonschema, 1 intento)",
+    "salida": "excluidos ENIGH_2024 [ OBTENIDO ] OBTENIDO: A.8 ya resuelto, un objeto completo conserva OBTENIDO"
+   }
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "yq -r '.[].id' data/manifiesto.yaml | rg -c '889463924(487|500|524)' → 3 (payload traído por id a caja con sha COINCIDE)",
+  "confianza": "media",
+  "cerrado_por_detalle": null,
+  "owner_detalle": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-02",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "Las tres siguen sin payload: el manifiesto no tiene ids de MMP 2024, ENEM ni EQD. Sus filas de cola existen y se pueden caminar. El selector las excluye solo por reintento a 5 días (< 7) del 24/sep: vuelven a ser elegibles el 1/oct, con su receta. MMP 2024 deriva de ENIGH 2024 reservada: entra con reserva.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv:198/180/194",
+    "comando": "python3 scratchpad/o1/sel.py (importa tools/adq_doctor.py::selecciona_filas con stub de jsonschema, corte 2026-09-29, maximo=1000; adq_doctor.py --selecciona falló: ModuleNotFoundError jsonschema, 1 intento)",
+    "salida": "excluidos ENEM_2024 [ NO-OBTENIDO-POR-ESTE-AGENTE(4 intentos) ] reintento demasiado pronto: intento efectivo 2026-09-24, 5 días < 7 · EQD-PANEL_2018 [(3 intentos)] idem · INEGI-MMP_2024 [(4 intentos)] idem"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "git show origin/main:data/manifiesto.yaml > m.yaml; yq -r '.[].id' m.yaml > ids.txt (7198 ids); rg -ic 'mmp.?2024|pobreza.?2024|pobreza_multi' ids.txt; rg -ic enem ids.txt; rg -ic eqd ids.txt",
+    "salida": "0 · 0 · 0"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/cola-adquisicion-v1_0.tsv:198 (nota INEGI-MMP_2024)",
+    "comando": "git show origin/main:data/cola-adquisicion-v1_0.tsv | tail -n +2 | python3 (csv.DictReader, 952 filas) fuente_canonica=INEGI-MMP_2024, columna nota",
+    "salida": "…el insumo ENIGH 2024 NC ya está en corpus (enigh2024_nc_csv, RESERVADA por decisiones.tsv:192)… Rutas agotadas: (i) página renderizada… (ii) API archivoscompaginacion responde 204…"
+   }
+  ],
+  "owner_detalle": "INEGI-MMP_2024, ENEM_2024 y EQD-PANEL_2018: filas NO-OBTENIDO-POR-ESTE-AGENTE en data/cola-adquisicion-v1_0.tsv:198/180/194, elegibles de nuevo desde 2026-10-01",
+  "confianza": "alta",
+  "cerrado_por_detalle": null,
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-03",
+  "verdict": "HOJA-RECETA",
+  "rationale": "La fila CONDUSEF-REDECO_SERIE está en OBTENIDO-PARCIAL (dos cortes CKAN) y el selector la excluye: «el residual necesita cobertura y sucesor explícitos». Además repodatos.atdt.gob.mx bloquea por IP desde la caja a Linux, Windows y Chrome, así que ningún agente llega. El siguiente paso es humano, desde otra red.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv:164",
+    "comando": "python3 scratchpad/o1/sel.py (importa tools/adq_doctor.py::selecciona_filas con stub de jsonschema, corte 2026-09-29, maximo=1000; adq_doctor.py --selecciona falló: ModuleNotFoundError jsonschema, 1 intento)",
+    "salida": "excluidos CONDUSEF-REDECO_SERIE [ OBTENIDO-PARCIAL ] OBTENIDO-PARCIAL: el residual necesita cobertura y sucesor explícitos; no se activa en bloque"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1-nota.md:62,121",
+    "comando": "git show origin/main:forense/notas/2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1-nota.md | rg -n -i 'repodatos'",
+    "salida": "62: …repodatos.atdt.gob.mx niega por IP (Akamai) a Linux, a Windows y a Chrome… · 121: | REDECO histórico | cortes anteriores a 30/09/2025: repodatos.atdt.gob.mx sólo responde desde otra red (bloqueo por IP) |"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "git show origin/main:data/manifiesto.yaml > m.yaml; yq -r '.[].id' m.yaml > ids.txt (7198 ids); rg -i redeco ids.txt",
+    "salida": "redeco_datosabiertos1ertrim_2026 condusef_redeco_2026t1_datastore_csv condusef_redeco_2025_09_30_datastore_csv (url del primero: https://www.datos.gob.mx/dataset/registro_despachos_cobranza_contratados_entidades_financieras)"
+   }
+  ],
+  "owner_detalle": "2026-10-05",
+  "hoja": {
+   "accion_clave": "RED-EXTERNA-REDECO-CORTES-PREVIOS-2025",
+   "receta_un_minuto": "Desde una red doméstica (no la caja), abrir https://www.datos.gob.mx/dataset/registro_despachos_cobranza_contratados_entidades_financieras y los recursos que apunten a repodatos.atdt.gob.mx. Bajar a Descargas MX todo corte REDECO anterior a 30/09/2025. Si solo existen los dos cortes ya obtenidos, anotarlo con la fecha.",
+   "destino": "Descargas MX; se registra en data/manifiesto.yaml desde caja y se abre la fila residual REDECO (cortes < 30/09/2025) en la cola con esa evidencia."
+  },
+  "confianza": "media",
+  "cerrado_por_detalle": null,
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null
+ },
+ {
+  "id": "NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-06",
+  "verdict": "ABSORBER",
+  "rationale": "Siguen 16 constancias NO-ENCONTRADO de 78: 13 DOCUMENTO y 3 TABULADO; una tiene URL y ninguna sha. Por diseño las constancias no entran a la cola (nota U5:28), así que /adquiere nunca las camina, y ADQUISICION-2 no tiene encargo. Falta un barrido documental con red (/sonda) que registre URL y sha, o que deje cada negativo con su universo A.4.",
+  "que_falta": "Barrido documental con red (/sonda) sobre las 16 constancias NO-ENCONTRADO de forense/analisis/dominios/constancias-v1_0.tsv: registrar URL+sha o reclasificar con universo A.4.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/dominios/constancias-v1_0.tsv",
+    "comando": "git show origin/main:forense/analisis/dominios/constancias-v1_0.tsv | python3 (csv.DictReader; Counter estado; NO-ENCONTRADO por clase, url, sha)",
+    "salida": "filas 78 · EXISTE-SATISFACE 40, EXISTE-NO-SATISFACE 21, NO-ENCONTRADO 16, NO-ACCESIBLE 1 · NO-ENCONTRADO: DOCUMENTO 13, TABULADO 3; con url 1, con sha 0"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1-nota.md:28",
+    "comando": "git show origin/main:forense/notas/2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1-nota.md | sed -n '28p'",
+    "salida": "Los 78 DOCUMENTO/TABULADO no entran a la cola; van a forense/analisis/dominios/constancias-v1_0.tsv."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos/ | rg -i 'ADQUISICION-2' (1219 archivos)",
+    "salida": "0 coincidencias"
+   }
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 -c (csv.DictReader sobre forense/analisis/dominios/constancias-v1_0.tsv) → filas con estado NO-ENCONTRADO sin universo declarado = 0 (hoy 16, 0 con sha)",
+  "confianza": "media",
+  "cerrado_por_detalle": null,
+  "owner_detalle": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-0258",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "El hueco sigue: 55 de 81 grupos están en REQUIERE-FD-EN-CORPUS (lector CSV sobre reactivos-ciegos-81). El dueño sigue activo: la investigación ADQ de caja lleva su propio estado (NC-0258.json, evidencia_existente, cursor ENAPROCE 2015→2018) y dejó commits [ADQ] el 27/sep. Su próxima revisión (27/sep) lleva dos días vencida, pero eso no cambia el dueño.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "data/curacion-registro/investigacion-estado/NC-0258.json",
+    "comando": "git show origin/main:data/curacion-registro/investigacion-estado/NC-0258.json | head -c 1500",
+    "salida": "\"cursor_continuacion\": \"Cablear los tres cuestionarios ENAPROCE 2015 ya manifestados a la tabla de fuentes del extractor sin re-descarga; después buscar el descriptor ENAPROCE 2018.\", \"estado\": \"evidencia_existente\", \"proxima_revision\": \"2026-09-27\", \"ultima_exploracion\": \"2026-09-26\""
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/reactivos-ciegos-81-v1_0.tsv",
+    "comando": "git show origin/main:data/reactivos-ciegos-81-v1_0.tsv | python3 (quita '#', csv.DictReader, Counter ruta_recuperacion)",
+    "salida": "filas 81 · [('REQUIERE-FD-EN-CORPUS', 55), ('CABLEAR-CAPA-FD-YA-EN-REPO', 18), ('CANDIDATA-FD-EXT-POR-VERIFICAR', 8)]"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/main",
+    "comando": "git log origin/main --format='%h %ad %s' --date=short | rg -i '\\[ADQ\\]|adq:' | head -n 3",
+    "salida": "af4b5995 2026-09-27 adq: restaura identidad/temporalidad… · 30e6b986 2026-09-27 [ADQ] 2026-09-27 · f2df16bb 2026-09-27 [ADQ] 2026-09-27 investigación GEN2-38"
+   }
+  ],
+  "owner_detalle": "investigación ADQ GEN2-38 en caja: data/curacion-registro/investigacion-estado/NC-0258.json (evidencia_existente; 55 grupos REQUIERE-FD-EN-CORPUS; próxima revisión 2026-09-27 vencida)",
+  "confianza": "alta",
+  "cerrado_por_detalle": null,
+  "lote": null,
+  "entorno": null,
+  "hecho_comando": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-260926-GEN2-COLA-COMPLETA-1-0d4a-02",
+  "verdict": "ABSORBER",
+  "rationale": "El payload eic2015_nacional_csv solo trae ENT=15, Estado de México (hallazgos.md:1097), y mesa vetó ese CALC (FP 0d4a-01). La fila INTERCENSAL_2015 sigue en OBTENIDO por un error de alcance, y el selector la excluye: nadie va a bajar los 31 archivos por entidad. Falta corregir la fila (residual) y adquirir en caja. Después, CALC-EIC-HOGARES-2015-0002, que es un piso, no un retador.",
+  "que_falta": "Pasar INTERCENSAL_2015 a OBTENIDO-PARCIAL con fila residual de los 31 archivos por entidad, bajarlos en caja y registrarlos; luego CALC-EIC-HOGARES-2015-0002.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/hallazgos.md:1097",
+    "comando": "git show origin/main:forense/hallazgos.md | sed -n '1097p'",
+    "salida": "26/sep/2026 · GEN2-COLA-COMPLETA-1 · El payload eic2015_nacional_csv (manifiesto: «Encuesta Intercensal 2015, muestra nacional»…) no es nacional: sus 480 680 viviendas de TR_VIVIENDA15.CSV son todas ENT=15 (Estado de México)…"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv:564 FP-260926-GEN2-COLA-COMPLETA-1-0d4a-01",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 (csv.DictReader, id ~ 0d4a)",
+    "salida": "estado=FIRMADA · «A6 … VETAR Intercensal 2015 (payload solo Estado de México). verify 9/9 REPRODUCE/IDENTICO.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv:123",
+    "comando": "python3 scratchpad/o1/sel.py (importa tools/adq_doctor.py::selecciona_filas con stub de jsonschema, corte 2026-09-29, maximo=1000; adq_doctor.py --selecciona falló: ModuleNotFoundError jsonschema, 1 intento)",
+    "salida": "excluidos INTERCENSAL_2015 [ OBTENIDO ] OBTENIDO: A.8 ya resuelto, un objeto completo conserva OBTENIDO"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "git show origin/main:data/manifiesto.yaml > m.yaml; yq -r '.[].id' m.yaml > ids.txt (7198 ids); rg -i 'eic2015|intercensal' ids.txt",
+    "salida": "eic2015_fd eic2015_nacional_csv (2 ids)"
+   }
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "yq -r '.[].id' data/manifiesto.yaml | rg -c -i eic2015 = 2 + 31 (uno por entidad distinta de 15, sha COINCIDE en caja) y la fila INTERCENSAL_2015 de data/cola-adquisicion-v1_0.tsv deja de decir OBTENIDO sin residual",
+  "confianza": "alta",
+  "cerrado_por_detalle": null,
+  "owner_detalle": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-260926-GEN2-COLA-LOTE-1-3a49-03",
+  "verdict": "ABSORBER",
+  "rationale": "El corpus no tiene población por edad y sexo: los 21 ids con «conapo» son bases ENOE/MTI reponderadas (hasta 2014) y ninguna fila de cola pide proyecciones CONAPO. Mesa adoptó EMAT «sin tasas (sin población en corpus)», condición que la adquisición levanta. Para EDR firmó «nunca tasas por habitante»: solo nupcialidad, salvo firma nueva.",
+  "que_falta": "Proyecciones CONAPO de población por edad y sexo que cubran 2010-2023, hash-fijadas en el manifiesto con fila de cola; luego CALC de tasas de nupcialidad que importe los conteos EMAT por RESULT id.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "git show origin/main:data/manifiesto.yaml > m.yaml; yq -r '.[].id' m.yaml > ids.txt (7198 ids); rg -i 'conapo|proyecc|pob_?mit|poblacion_edad' ids.txt",
+    "salida": "21 ids: enoe_fd_c_bas_amp_conapo_pdf, cc1_inegi_enoe_2005..2014__enoe20xx_conapo2010/2005_14ymas_dbf, cc1_inegi_enoe_2005__recons_var_conapo2010, cc1_inegi_mti_2007/2009/2011__mti20xx_bases_conapo_dbf (ninguna tabla de proyecciones por edad y sexo)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv",
+    "comando": "git show origin/main:data/cola-adquisicion-v1_0.tsv | tail -n +2 | python3 (csv.DictReader, 952 filas) todas las columnas ~ CONAPO|proyecci",
+    "salida": "13 coincidencias: ENOE_2007..ENOE_2014 y MTI_2007/2009/2011 (por sus ids de bases conapo); ninguna fila de proyecciones CONAPO"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv:561-562 FP-260926-GEN2-COLA-LOTE-1-3a49-02/-03",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 (csv.DictReader, id ~ COLA-LOTE-1-3a49)",
+    "salida": "3a49-02 FIRMADA: «A3 3a49-02 EMAT 2010–2023 → CON-RESERVA-DE-ANCHO: matrimonio civil inscrito por año de registro (unión libre fuera); sin tasas (sin población en corpus)…» · 3a49-03 FIRMADA: «A4 3a49-03 EDR 2015–2023 (suicidio registrado) → CON-RESERVA-DE-ANCHO: conteos y composición, nunca tasas por habitante…»"
+   }
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "yq -r '.[] | select((.usado_para|tostring|test(\"(?i)conapo\")) and (.usado_para|tostring|test(\"(?i)proyecc\"))) | .id' data/manifiesto.yaml | wc -l ≥ 1 con payload COINCIDE en caja y fila de cola CONAPO en OBTENIDO",
+  "confianza": "media",
+  "cerrado_por_detalle": null,
+  "owner_detalle": null,
+  "hoja": null
+ },
+ {
+  "id": "NC-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-05",
+  "verdict": "ABSORBER",
+  "rationale": "Siguen sin estar los tabulados publicados de ENIGH 2016–2022. Entre los 333 ids ENIGH del manifiesto solo hay microdato, descriptores, la nota técnica 2022 y el reporte 2024 (reservado), y no hay fila de cola. Los pisos están adoptados CON-RESERVA-DE-ANCHO (FP 2d37-01), pero el control externo sigue pendiente y GEN2-CONSUMO-Y-GASTO-PISOS-2 no está archivado. Falta registrar y bajar los tabulados.",
+  "que_falta": "Tabulados/resultados publicados por INEGI de ENIGH 2016, 2018, 2020 y 2022, con fila de cola y hash en el manifiesto; después, el contraste externo de la spec §5 de CONSUMO-Y-GASTO-PISOS.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "git show origin/main:data/manifiesto.yaml > m.yaml; yq -r '.[].id' m.yaml > ids.txt (7198 ids); rg -ic enigh ids.txt; rg -i enigh ids.txt | rg -iv '_ns_|_nc_|_est_|ncv_|concen|describe|variable|cuest|fd_|diseno|descripcion' | head",
+    "salida": "333 ids ENIGH · no-microdato/no-descriptor: enigh2022_nota_tecnica_pdf enigh2024_entrevistador_pdf enigh2024_reporte_resultados_pdf + dbf 1984-2004 · rg -i tabulad ids.txt → 3 (icpsr35024…, endireh2006_tabulados…): ninguno ENIGH"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv",
+    "comando": "git show origin/main:data/cola-adquisicion-v1_0.tsv | tail -n +2 | python3 (csv.DictReader, 952 filas) todas las columnas ~ tabulad",
+    "salida": "14 coincidencias (ENCRIGE, ENNVIH, ENCIG, ENVIPE_2026, INEGI-MMP_2024, CAAS, ENVE…): ninguna de tabulados ENIGH 2016-2022"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv:542 FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 (csv.DictReader, id ~ 2d37)",
+    "salida": "estado=FIRMADA · «Se adopta ENIGH 2016-2022 (CALC-ENIGH-CONSUMO-PISOS-0002) CON-RESERVA-DE-ANCHO…; ejecuta GEN2-CATALOGO-V1-2-1.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos/ | rg -i 'CONSUMO-Y-GASTO-PISOS-2' (1219 archivos)",
+    "salida": "0 coincidencias"
+   }
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "yq -r '.[].id' data/manifiesto.yaml | rg -i 'enigh20(16|18|20|22)' | rg -c -i 'tabul|result' ≥ 4 (una por ola) y fila de cola en OBTENIDO",
+  "confianza": "media",
+  "cerrado_por_detalle": null,
+  "owner_detalle": null,
+  "hoja": null
+ }
+]

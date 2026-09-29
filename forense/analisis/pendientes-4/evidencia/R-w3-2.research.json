@@ -1,0 +1,682 @@
+[
+ {
+  "id": "NC-260921-GEN2-TUBERIA-SIDECAR-CUERPO-1-3d08-01",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "Decido (c), reversible: el insumo externo se conserva tal cual (encargo P-h y firma D-a4: ningún sidecar viejo se reescribe). El verificador lo declara testigo (FAIL: 0) y el SHA256SUMS del paquete verifica 6/6. Si alguien borra esa declaración, el paso bloqueante de CI vuelve a fallar en voz alta. No queda nada que re-sellar.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/notas/insumos-externos/pisos-enif2021-0002-rama-codex/",
+    "comando": "cd forense/notas/insumos-externos/pisos-enif2021-0002-rama-codex && sha256sum -c pisos-enif2021-0002-codex-2026-09-20-SHA256SUMS.txt; echo rc=$?",
+    "salida": "pisos-enif2021-0002-codex-2026-09-20-ejecucion.json: OK · pisos-enif2021-0002-codex-2026-09-20-medidor.py: OK · pisos-enif2021-0002-codex-2026-09-20-resultados.json: OK · pisos-enif2021-0002-codex-2026-09-20-sello.json: OK · pisos-enif2021-0002-codex-2026-09-20-sello.sha256: OK · pisos-enif2021-0002-codex-2026-09-20-spec.yaml: OK · rc=0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/verifica_sidecars.py",
+    "comando": "python3 tools/verifica_sidecars.py | rg -n 'pisos-enif2021-0002|FAIL:' | cut -c1-230",
+    "salida": "809:  [viejo ] TESTIGO   forense/notas/insumos-externos/pisos-enif2021-0002-rama-codex/pisos-enif2021-0002-codex-2026-09-20-sello.sha256 · 810:             objetivo citado 'sello.json' no está junto al sidecar ni en la raíz || HUÉRFANO DECLARADO -- el sidecar cita `sello.json` a secas; el archivo que está junto a él se llama `pisos-enif2021-0002-codex-2026-09-20 · 814:  FAIL: 0 — VERDE"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md:22,72",
+    "comando": "git show origin/main:forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md | sed -n '22p;72p' | cut -c1-300",
+    "salida": "D-a4 — «Verificador para `forense/encargos/` y `forense/notas/`, cableado en CI. No se extiende a los 261. Entiende en LECTURA los tres formatos de sidecar que ya existen, para no dar falsas alarmas. NO reescribe ni normaliza ningún sidecar viejo. Los sidecars nuevos nacen en un solo formato.» · P-h · Huérfano dentro del universo. El sello del insumo codex en `forense/notas/insumos-externos/pisos…"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/verifica_sidecars.py:7-9,75-80",
+    "comando": "git show origin/main:tools/verifica_sidecars.py | sed -n '7,9p;75,80p'",
+    "salida": "QUÉ ES Y QUÉ NO ES. Un verificador de SÓLO LECTURA sobre dos · directorios nombrados. **Nunca escribe, nunca reescribe, nunca · \"forense/notas/insumos-externos/pisos-enif2021-0002-rama-codex/\" · \"pisos-enif2021-0002-codex-2026-09-20-sello.sha256\": ( · \"HUÉRFANO DECLARADO -- el sidecar cita `sello.json` a secas; el archivo \" · \"que está junto a él se llama \" · \"`pisos-enif2021-0002-codex-2026-09-2…"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:170-171",
+    "comando": "git show origin/main:.github/workflows/verify.yml | sed -n '170,171p'",
+    "salida": "python3 tests/test_verifica_sidecars.py · python3 tools/verifica_sidecars.py"
+   }
+  ],
+  "cerrado_por_detalle": "diseño: insumo externo recibido tal cual no se reescribe (encargo SIDECAR-CUERPO-1 P-h :72 y firma D-a4 :22) · testigo declarado en tools/verifica_sidecars.py:75-80 con CI bloqueante verify.yml:170-171 · sha256sum -c del SHA256SUMS 6/6 OK · decisión (c) por delegación PENDIENTES-4",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 tools/consulta.py nc NC-260921-GEN2-TUBERIA-SIDECAR-CUERPO-1-3d08-01 → estado=CERRADA con cerrado_por que cite verifica_sidecars.py:75-80; python3 tools/verifica_sidecars.py | tail -n 1 → FAIL: 0",
+  "owner_detalle": "",
+  "decision_declarada": {
+   "opcion": "c",
+   "razon": "Aceptar la cita rota como hallazgo permanente es reversible (no edita ni re-sella nada; reabrir es una línea) y es lo que ya ordenó el encargo de origen (P-h: «No se toca») y la firma D-a4. Las opciones (a) re-envío por el remitente (acción con identidad) y (b) sidecar hermano añaden aparato sin lector que lo necesite: el SHA256SUMS ya nombra bien el archivo y verifica 6/6 (§1, regla de señal)."
+  },
+  "confianza": "media",
+  "nota_categoria": "CERRAR-DISENO se usa en el sentido de diseño declarado del aparato (testigo declarado, no reescritura de insumo externo); no cae en la lista estricta GEN1/retirado/inexistente. Si el verificador la exige, la alternativa es MANTENER-DUENO con la firma (c) lista; el defecto no tiene lector que lo sufra."
+ },
+ {
+  "id": "NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-06",
+  "verdict": "HOJA-DECISION",
+  "rationale": "Premisa corregida por comando: RES-0171/0175 sí tienen champion C2 con punto GEN2, pero su CALC ingiere 3 CALC padres y la guarda 4.1 lo rechaza por las vías (i) y (iii); solo mesa cambia esa guarda. RES-0172/0173/0174 son baseline GEN1 sin CALC. Misma decisión que e760-07: criterio de relevo para champions compuestos.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "tools/pines_mesa.py:366-430,485-503 (guarda 4.1, vías (i) y (iii))",
+    "comando": "python3 -c \"import sys,yaml,subprocess;sys.path.insert(0,'tools');import pines_mesa as pm;L=lambda c:yaml.safe_load(subprocess.run(['git','show','origin/main:data/corrida0/'+c+'/spec.yaml'],capture_output=True,text=True).stdout);[print(a,'|',pm._valida_derivado('L',c,L(c),{},{})[0],'| ingiere_otra_corrida',bool(pm._ingiere(L(c))),'| padres',len(pm._calcs_ingeridos(L(c))[0]),'| no-CALC',len(pm._calcs_ingeridos(L(c))[1])) for a,c in [('GOB-EMISIONES-0002','CALC-GOB-DIGITAL-EXE-EMISIONES-0002'),('DIN-ARBITRO-0002','CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0002'),('TRA-ARBITRO-0002','CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002')]]\"",
+    "salida": "GOB-EMISIONES-0002 | RECHAZADO-DERIVADO-INGIERE-AJENO | ingiere_otra_corrida True | padres 4 | no-CALC 1 · DIN-ARBITRO-0002 | RECHAZADO-DERIVADO-INGIERE-AJENO | ingiere_otra_corrida True | padres 3 | no-CALC 3 · TRA-ARBITRO-0002 | RECHAZADO-DERIVADO-INGIERE-AJENO | ingiere_otra_corrida True | padres 3 | no-CALC 4"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/curacion-registro/celdas-d/TRA.evade_norma.envipe2025.escolaridad_x_dominio.yaml:107 (idéntico en DIN.ahorro_solo_informal…yaml:147)",
+    "comando": "git show origin/main:data/curacion-registro/celdas-d/TRA.evade_norma.envipe2025.escolaridad_x_dominio.yaml | sed -n '107p' | cut -c1-260",
+    "salida": "champion_actual: C2  # Enmienda 2026-09-19: piso por firma de mesa 17/sep; veredicto intacto. Desde 24/sep/2026 el punto es el de CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002 (piso NUEVO por id; GEN2-PISOS-GEN2-2)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv (canal)",
+    "comando": "python3 -c \"import subprocess as s;g=lambda *a:s.run(['git',*a],capture_output=True,text=True).stdout;d=[l.split('/')[-1] for l in g('ls-tree','--name-only','origin/main','data/corrida0/').split() if '/CALC-' in l];t=g('show','origin/main:data/corrida0/corridas.tsv');f=[l for l in t.splitlines() if l and not l.startswith('#')][1:];sin=[c for c in d if c not in t];print('dirs CALC-*',len(d),'| filas corridas.tsv',len(f),'| dirs sin fila',len(sin),'|',[c for c in sin if 'ARBITRO-CRUCE-0002' in c])\"",
+    "salida": "dirs CALC-* 394 | filas corridas.tsv 357 | dirs sin fila 122 | ['CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0002', 'CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002']"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/curacion-registro/celdas-d/G5.*.yaml (champion_actual BASELINE.*)",
+    "comando": "for f in G5.familismo_obligacion.actitud:70 G5.obligacion_medida.conducta:112 G5.radio_confianza.encuci_vs_enbiare:139; do git show origin/main:data/curacion-registro/celdas-d/${f%%:*}.yaml | sed -n \"${f##*:}p\" | cut -c1-60; done",
+    "salida": "champion_actual: \"BASELINE.ENASIC\"  # mismo criterio que G · champion_actual: \"BASELINE.ENASIC\"  # único candidato con · champion_actual: \"BASELINE.ENCUCI\"  # explícito, sin camb"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/CALC-*/spec.yaml (búsqueda de un CALC GEN2 del baseline)",
+    "comando": "for k in P7_12_7 AP5_1_1; do echo \"== $k\"; git grep -l -F \"$k\" origin/main -- 'data/corrida0/CALC-*/spec.yaml' | sed 's#^origin/main:##'; done; echo \"spec.yaml examinados: $(git ls-tree -r --name-only origin/main data/corrida0 | rg -c '/spec\\.yaml$')\"",
+    "salida": "== P7_12_7 · data/corrida0/CALC-ENDIREH-PISOS-2006-MODULOS-0001/spec.yaml · data/corrida0/CALC-ENDIREH-PISOS-2006-MODULOS-0002/spec.yaml · == AP5_1_1 · data/corrida0/CALC-ALT-M19-ENCUCI2020-0001/spec.yaml · spec.yaml examinados: 394"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tests/test_pines_mesa.py:391-406 (test_result_triada_m_real_se_rechaza)",
+    "comando": "git show origin/main:tests/test_pines_mesa.py | sed -n '393,399p' | cut -c1-200",
+    "salida": "def test_result_triada_m_real_se_rechaza(): · \"\"\"El caso testigo del encargo, contra el arbol real y no un doble. · `CALC-TRIADA-0001` esta SELLADA, cuenta_gen2 = SI y REPRODUCE: las tres · condiciones de (a). Si alguien afloja (d), este pin pasa y catorce"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/ (A.17)",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | rg 'CONSUMIDORES-4|FIRMAS-22|ADOPCION-REGLAS-BLOQUE|RETIRO-NC-POR-REGLA-6'; echo \"rc=$? (1 = sin coincidencias)\"; git ls-tree -r --name-only origin/main forense/encargos | wc -l",
+    "salida": "rc=1 (1 = sin coincidencias) · 1223"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys,re;csv.field_size_limit(10**9);r=list(csv.DictReader(sys.stdin,delimiter='\\t'));a=[x for x in r if x['estado'].startswith(('ABIERTA','PENDIENTE'))];print('filas',len(r),'| ABIERTA/PENDIENTE',len(a),'| sobre vía (i)/ingestión/pin de champion:',[x['id'] for x in a if re.search(r'v[ií]a \\(i\\)|INGERIDO|pin del champion|champion compuesto',' '.join(x.values()),re.I)])\"",
+    "salida": "filas 649 | ABIERTA/PENDIENTE 20 | sobre vía (i)/ingestión/pin de champion: []"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 tools/consulta.py nc NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-06 → CERRADA citando la FP que asiente la opción firmada; csv.DictReader de la última tabla-consumidores: RES-0171..0175 con estado distinto de NC",
+  "owner_detalle": "MESA-DECISION (hoja PENDIENTES-4: criterio de relevo para champions compuestos; misma hoja que e760-07 / letra 13)",
+  "decision_clave": "GUARDA-4.1-RELEVO-CHAMPION-COMPUESTO-INGIERE-RESULT",
+  "fp_existente": "",
+  "hoja": {
+   "situacion": "Cinco lecturas antiguas de celdas-D siguen sin relevo. Dos (RES-0171 ahorro informal ENIF 2024, RES-0175 evasión de norma ENVIPE 2025) ya tienen champion C2 con punto GEN2 sellado, pero ese CALC se arma con resultados de otros tres CALC y la regla 4.1 no deja pinar eso (comprobado por comando, no supuesto). Las otras tres (G5, RES-0172/0173/0174) son baseline GEN1 sin CALC GEN2.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Firmar un criterio nuevo para champions compuestos: se puede pinar cuando TODO lo ingerido son RESULT de CALC sellados que cuentan, con replay afirmativo y sin GEN1 (varios padres y crudo declarado). Alcance: RES-0171, RES-0175 y RES-0211 (e760-07).",
+     "costo": "Cambia el contrato de relevo para todos los consumidores (E.2/E.3, regla 4.1): reescribir _valida_derivado y la guarda (d) con tests y un acto NUBE, y esperar a que el [deriva] registre los CALC ARBITRO-CRUCE-0002. Baja 3 lecturas; las 3 G5 siguen aparte."
+    },
+    {
+     "letra": "b",
+     "texto": "Mantener la guarda 4.1 como está. Las 5 quedan legacy con rótulo; el punto GEN2 vigente de RES-0171/0175 sigue citado en el yaml de su celda; las 3 G5 quedan en GEN1 hasta que un consumidor vivo pida su medición GEN2 (CALC nuevo de CAJA, RETROSPECTIVA). La NC se cierra como aceptada.",
+     "costo": "El contador celdas_D no baja por estas 5 lecturas (queda visible, no se maquilla). Si un consumidor lo pide después, se reabre."
+    },
+    {
+     "letra": "c",
+     "texto": "Declarar las 5 HISTÓRICO-SIN-RELEVO, como mesa hizo con las 42 lecturas del duelo (FP e760-03).",
+     "costo": "El contador baja por declaración y no por medición; se renuncia al relevo de tres champions vivos y de tres baselines que aún alimentan celdas LISTO."
+    }
+   ],
+   "recomendacion": "b",
+   "porque": "Los números vigentes de RES-0171/0175 ya son GEN2 y visibles en su celda; el pin solo quita 3 lecturas legacy del contador. Aflojar 4.1 (fijada por test) para eso abre la puerta a cadenas de varios padres que la firma 7bf5-02 cerró a propósito. Para las 3 G5 no hay CALC ni consumidor que lo pida; medirlas sin demanda sería trabajo sin lector (§1). La hoja 21 ya recomendaba mantener el rechazo hasta ver el caso concreto: este es el caso.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«e760-06 y e760-07: opción (__). Con (b): la guarda 4.1 no se toca; RES-0171, RES-0172, RES-0173, RES-0174, RES-0175 y RES-0211 quedan legacy con rótulo; las NC e760-06 y e760-07 se cierran como aceptadas; si un consumidor vivo pide un número GEN2 de los tres baselines G5, entra como CALC nuevo de CAJA.»"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-07",
+  "verdict": "HOJA-DECISION",
+  "rationale": "La opción (b) de la hoja no es viable: EJECUTADO, CALC-GOB-DIGITAL-EXE-EMISIONES-0002 ingiere microdato y 3 CALC ajenos y _valida_derivado da RECHAZADO-DERIVADO-INGIERE-AJENO. Queda firmar un criterio nuevo (irreversible: contrato de relevo) o mantener el rechazo. GEN2-TRAMITE-FIRMAS-22 no está archivado y no hay FP abierta.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "tools/pines_mesa.py:366-430,485-503 (guarda 4.1, vías (i) y (iii))",
+    "comando": "python3 -c \"import sys,yaml,subprocess;sys.path.insert(0,'tools');import pines_mesa as pm;L=lambda c:yaml.safe_load(subprocess.run(['git','show','origin/main:data/corrida0/'+c+'/spec.yaml'],capture_output=True,text=True).stdout);[print(a,'|',pm._valida_derivado('L',c,L(c),{},{})[0],'| ingiere_otra_corrida',bool(pm._ingiere(L(c))),'| padres',len(pm._calcs_ingeridos(L(c))[0]),'| no-CALC',len(pm._calcs_ingeridos(L(c))[1])) for a,c in [('GOB-EMISIONES-0002','CALC-GOB-DIGITAL-EXE-EMISIONES-0002'),('DIN-ARBITRO-0002','CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0002'),('TRA-ARBITRO-0002','CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002')]]\"",
+    "salida": "GOB-EMISIONES-0002 | RECHAZADO-DERIVADO-INGIERE-AJENO | ingiere_otra_corrida True | padres 4 | no-CALC 1 · DIN-ARBITRO-0002 | RECHAZADO-DERIVADO-INGIERE-AJENO | ingiere_otra_corrida True | padres 3 | no-CALC 3 · TRA-ARBITRO-0002 | RECHAZADO-DERIVADO-INGIERE-AJENO | ingiere_otra_corrida True | padres 3 | no-CALC 4"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/curacion-registro/celdas-d/GOB.gobierno_digital.encig2025.edad_x_escolaridad.yaml:86-87",
+    "comando": "git show origin/main:data/curacion-registro/celdas-d/GOB.gobierno_digital.encig2025.edad_x_escolaridad.yaml | sed -n '86,87p' | cut -c1-330",
+    "salida": "champion_actual: C2   # FIRMA DE MESA F3 (21/sep/2026, cuaderno §2.2, forense/encargos/CUADERNO-DE-MESA-2026-09-21.md, #963): adopta el piso C2 no vencido por A-bis 6 (piso no vencido, falsador debil); asentado por ACTO GEN2-TRAMITE-FIRMAS-5, veredicto y fecha_adjudicacion no se tocan · adjudicacion_por_celda:   # contrato v0.6; 16 segmentos, punto e IC95 del candidato adoptado (C2), RESULT sella…"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-25-GEN2-RELEVO-CONSUMIDORES-2-nota.md:58-61",
+    "comando": "git show origin/main:forense/notas/2026-09-25-GEN2-RELEVO-CONSUMIDORES-2-nota.md | sed -n '58,61p' | cut -c1-260",
+    "salida": "- **Pin de celda-D GOB, probado y retirado**: la guarda lo rechaza con · `RECHAZADO-RESULT-INGERIDO` (`CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001` ingiere · `CALC-ENCIG2021-CRUCES-HISTORICOS-0003/resultados.json`). No se forzó; no queda fila nueva en · `pines-de-mesa.tsv`."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv (R42)",
+    "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | python3 -c \"import csv,sys;[print(r['renglon'],'|',r['estado'][:50],'|',r['opciones'][:110],'|',r['recomendacion'][:150]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['renglon']=='R42']\"",
+    "salida": "R42 | FIRMADA-DELEGADA (GEN2-TRAMITE-FIRMAS-21: decidida | (a) decidir hoy con el sí/no de la pregunta, y que la ejecute el acto dueño de la ruta || (b) mandarla a un ac | PROPUESTO-POR-EJECUTOR: (b) salvo para las letras 17 y 18 (forma, cerrables con cita): el acto de origen dejó pregunta, no opciones, y firmar sin opci"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tests/test_pines_mesa.py:391-406 (test_result_triada_m_real_se_rechaza)",
+    "comando": "git show origin/main:tests/test_pines_mesa.py | sed -n '393,399p' | cut -c1-200",
+    "salida": "def test_result_triada_m_real_se_rechaza(): · \"\"\"El caso testigo del encargo, contra el arbol real y no un doble. · `CALC-TRIADA-0001` esta SELLADA, cuenta_gen2 = SI y REPRODUCE: las tres · condiciones de (a). Si alguien afloja (d), este pin pasa y catorce"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/ (A.17)",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | rg 'CONSUMIDORES-4|FIRMAS-22|ADOPCION-REGLAS-BLOQUE|RETIRO-NC-POR-REGLA-6'; echo \"rc=$? (1 = sin coincidencias)\"; git ls-tree -r --name-only origin/main forense/encargos | wc -l",
+    "salida": "rc=1 (1 = sin coincidencias) · 1223"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys,re;csv.field_size_limit(10**9);r=list(csv.DictReader(sys.stdin,delimiter='\\t'));a=[x for x in r if x['estado'].startswith(('ABIERTA','PENDIENTE'))];print('filas',len(r),'| ABIERTA/PENDIENTE',len(a),'| sobre vía (i)/ingestión/pin de champion:',[x['id'] for x in a if re.search(r'v[ií]a \\(i\\)|INGERIDO|pin del champion|champion compuesto',' '.join(x.values()),re.I)])\"",
+    "salida": "filas 649 | ABIERTA/PENDIENTE 20 | sobre vía (i)/ingestión/pin de champion: []"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 tools/consulta.py nc NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-07 → CERRADA con cita a la firma de la vía (i)/criterio de ingestión; o csv.DictReader de tabla-consumidores: RES-0211 con estado distinto de NC",
+  "owner_detalle": "MESA-DECISION (hoja PENDIENTES-4 = letra 13 de hoja-cierre-irreversible-21; mismo renglón que e760-06; no hay FP abierta: abrir una, A.12)",
+  "decision_clave": "GUARDA-4.1-RELEVO-CHAMPION-COMPUESTO-INGIERE-RESULT",
+  "fp_existente": "",
+  "hoja": {
+   "situacion": "RES-0211 (gobierno digital, ENCIG 2025) tiene champion C2 firmado por mesa, pero sus números salen de un CALC que junta microdato y resultados de tres CALC más. La regla 4.1 rechaza el pin por la vía (i) y por la clase (iii): se comprobó por comando, así que la opción «relevar por iii» que traía la hoja 21 no existe hoy.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Firmar un criterio nuevo que admita champions compuestos (todo lo ingerido son RESULT de CALC sellados que cuentan, con replay afirmativo, sin GEN1; con crudo declarado).",
+     "costo": "Cambia el contrato de relevo para todos los consumidores (E.2/E.3, 4.1); reescribir la guarda con test; un acto NUBE posterior. Alcanza también a RES-0171 y RES-0175 (e760-06)."
+    },
+    {
+     "letra": "b",
+     "texto": "Mantener la guarda tal cual: RES-0211 sigue legacy con rótulo y su punto GEN2 vigente sigue citado en el yaml de la celda; la NC se cierra como aceptada.",
+     "costo": "El contador celdas_D no baja por esta lectura; se reabre si un consumidor pide el pin."
+    },
+    {
+     "letra": "c",
+     "texto": "Declarar RES-0211 HISTÓRICO-SIN-RELEVO.",
+     "costo": "Baja el contador por declaración, no por medición, y renuncia al relevo de un champion vivo."
+    }
+   ],
+   "recomendacion": "b",
+   "porque": "La hoja 21 recomendaba mantener el rechazo hasta que el acto sucesor trajera el caso concreto; el caso llegó y confirma que hace falta cambiar el contrato, no aplicar una vía existente. El número ya es GEN2 y está visible en la celda; el pin solo quitaría una lectura legacy del contador, y la guarda 4.1 está fijada por test.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«Vía (i) de E.3 · letra 13 (e760-07) y e760-06: opción (__). Con (b): la guarda 4.1 no se toca; RES-0211 y las lecturas de e760-06 quedan legacy con rótulo; las NC e760-06 y e760-07 se cierran como aceptadas.»"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260926-GEN2-RELEVO-CONSUMIDORES-3-72d9-02",
+  "verdict": "HOJA-DECISION",
+  "rationale": "Sigue sin RESULT GEN2 de coercitivo, así que acotar M03 sería PARO. La FP c133-02 (ABIERTA) ya pide a mesa aceptar HISTÓRICO-SIN-RELEVO y eso exceptúa la regla firmada H2 (PARCIAL → acotar). Solo mesa exceptúa una regla firmada. Misma decisión: no se abre renglón nuevo.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv#FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['estado'][:30],'|',r['qué_se_firma'][:300],'|',r['firmada_en'][:60]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02']\"",
+    "salida": "ABIERTA | [B2] M03 (gobierno digital coercitivo) dictaminado SIN-ESTIMANDO-RECONSTRUIBLE contra la regla del encargo (AJUSTE sin RESULT → DECIDIBLE); recomendación (a) aceptarlo como HISTÓRICO-SIN-RELEVO. Texto: «Firmo B2 (a): …» |"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md:49-59",
+    "comando": "git show origin/main:forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md | sed -n '51p;59p' | cut -c1-330",
+    "salida": "**Qué pasa.** El encargo pedía que los momentos AJUSTE sin RESULT quedaran como DECIDIBLE para caja. M03 no se puede: su cálculo es «reproducir la proporción declarada de la regla», y esa proporción es un número asignado sin fuente (RES-0017/0018). Tampoco hay instrumento declarado ni un RESULT GEN2 de coercitivo en ning · **Texto de firma listo:** «Firmo B2 (a): M03 queda HISTÓRICO-SIN-RELEVO po…"
+   },
+   {
+    "tipo": "comando",
+    "ref": "milpa/catalogo-momentos-v0_1.tsv (M03)",
+    "comando": "git show origin/main:milpa/catalogo-momentos-v0_1.tsv | python3 -c \"import csv,sys;r=list(csv.reader(sys.stdin,delimiter='\\t'));h=r[0];[print({k:v[:70] for k,v in zip(h,x) if k in ('id_momento','objeto_modelo','rol_calibracion','instrumentos_candidatos','computo_pretendido','estatus_disponibilidad','valor_gen2')}) for x in r[1:] if x[0]=='M03']\"",
+    "salida": "{'id_momento': 'M03', 'objeto_modelo': 'tramite.gobierno_digital.coercitivo', 'rol_calibracion': 'AJUSTE', 'instrumentos_candidatos': 'POR DECLARAR', 'computo_pretendido': 'reproducir la proporción declarada de la regla', 'estatus_disponibilidad': 'NO-VERIFICADO', 'valor_gen2': ''}"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/encargos/2026-09-25-GEN2-TRAMITE-FIRMAS-18.md:14 (H2 = FP e760-02 FIRMADA)",
+    "comando": "git show origin/main:forense/encargos/2026-09-25-GEN2-TRAMITE-FIRMAS-18.md | sed -n '14p' | cut -c1-260",
+    "salida": "- **H2** «Para M01–M07 y M23 rige la regla de M08: acotar a la unidad medida donde el cotejo sea PARCIAL; HISTÓRICO-SIN-RELEVO donde sea NO-EQUIVALENTE; ejecuta RELEVO-CONSUMIDORES-3.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/demanda-dictamen-v1_0.tsv",
+    "comando": "git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv | python3 -c \"import csv,sys,io;csv.field_size_limit(10**9);t=[l for l in sys.stdin.read().splitlines() if not l.startswith('#')];r=list(csv.DictReader(io.StringIO(chr(10).join(t)),delimiter='\\t'));[print(x['resultado_id'],x['dictamen'],'|',x['cita'][:210]) for x in r if x['dictamen']=='SIN-ESTIMANDO-RECONSTRUIBLE']\"",
+    "salida": "RES-0178 SIN-ESTIMANDO-RECONSTRUIBLE | milpa/catalogo-momentos-v0_1.tsv:4 (M03, rol=AJUSTE) computo_pretendido=«reproducir la proporción declarada de la regla» e instrumentos_candidatos=POR DECLARAR; la proporción de la regla es ASIGNADO sin fuente"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/ (A.17)",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | rg 'CONSUMIDORES-4|FIRMAS-22|ADOPCION-REGLAS-BLOQUE|RETIRO-NC-POR-REGLA-6'; echo \"rc=$? (1 = sin coincidencias)\"; git ls-tree -r --name-only origin/main forense/encargos | wc -l",
+    "salida": "rc=1 (1 = sin coincidencias) · 1223"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "csv.DictReader de forense/firmas-pendientes.tsv: FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02 con estado FIRMADA y NC 72d9-02 CERRADA citándola",
+  "owner_detalle": "MESA-DECISION (FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02, hoja-para-mesa-demanda-dictamen-1.md §B2)",
+  "decision_clave": "M03-COERCITIVO-HISTORICO-SIN-RELEVO",
+  "fp_existente": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02",
+  "hoja": {
+   "situacion": "El momento M03 (gobierno digital coercitivo) debería acotarse a lo medido según la regla firmada H2, pero no hay ninguna medición GEN2 de coercitivo ni instrumento declarado, y la cifra antigua es un número asignado sin fuente. Mesa ya tiene esta pregunta abierta en la FP c133-02.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Aceptar M03 como HISTÓRICO-SIN-RELEVO (SIN-ESTIMANDO-RECONSTRUIBLE); si aparece instrumento, entra como momento nuevo.",
+     "costo": "Cero trabajo; M03 sale del contador legacy por declaración. Es una excepción a H2 (PARCIAL → acotar), por eso lo firma mesa."
+    },
+    {
+     "letra": "b",
+     "texto": "Mesa fija un instrumento (p. ej. ENCIG 2025, trámite en línea obligatorio) y se encarga un CALC de caja descriptivo; luego se acota.",
+     "costo": "Un acto de CAJA con spec nueva sobre una ola vista: solo descriptivo y rotulado RETROSPECTIVA (regla 6)."
+    },
+    {
+     "letra": "c",
+     "texto": "Retirar M03 del catálogo de momentos.",
+     "costo": "Borra un objeto del catálogo (irreversible) y pierde la trazabilidad del momento."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "Sin instrumento una corrida de caja no tiene qué medir; el valor GEN1 es asignado (RES-0017/0018) y E.1 impide usarlo como fuente de GEN2. Es la misma decisión de la FP c133-02: una sola firma cierra las dos filas.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«Firmo B2 (a): M03 queda HISTÓRICO-SIN-RELEVO por SIN-ESTIMANDO-RECONSTRUIBLE; si aparece instrumento, entra como momento nuevo.»"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-01",
+  "verdict": "HOJA-DECISION",
+  "rationale": "La decisión ya vive en la FP 2385-01 (ABIERTA), que solo nombra las 404 del lote 3. Las 1 873 llaves son del lote 1 y caen en 9 RESULT ya NO-PASA (solo 2 todo SOSTENER). Un margen en SE sería post hoc sobre Δ ya vistos; falta decidir si se les extiende el asiento por punto.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv#FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['estado'][:30],'|',r['qué_se_firma'][:380],'|',r['firmada_en'][:20]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01']\"",
+    "salida": "ABIERTA | Margen de equivalencia y control simultáneo para IC reimplementados de C1 (R23: «se fijarán por mesa antes del siguiente conjunto sin revelar»). Opciones: (a) margen en unidades de SE sellado por extremo (p. ej. |Δ| ≤ 0.5 SE) con Bonferroni por paquete; (b) sin margen: los IC de C1 quedan diagnósticos para siempre y el asiento se hace por punto (alcance INFERENCIA-NO-COMPROBADA |"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv#FP-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-01 (R23)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['estado'][:30],'|',r['qué_se_firma'][:200],'|',r['firmada_en'][:100]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-01']\"",
+    "salida": "FIRMADA | PROPUESTO-POR-EJECUTOR: Aprobar protocolo inferencial propuesto antes de un nuevo intento; no recertifica IC históricos | 28/sep/2026, verbatim, mesa (chat de dirección, maestra 54): «Las R46, R47, R49 y R51 ponlas para ma"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/validacion-independiente/catalogo-1-sucesores/R23-protocolo-inferencial-diagnostico.md:7,21",
+    "comando": "git show origin/main:forense/validacion-independiente/catalogo-1-sucesores/R23-protocolo-inferencial-diagnostico.md | sed -n '7p;21p' | cut -c1-420",
+    "salida": "`forense/encargos/2026-09-28-GEN2-TRAMITE-FIRMAS-21-ADENDA-1.md`, R23 **(2)** («el protocolo como contrato DIAGNÓSTICO»): «Apruebo el protocolo como contrato DIAGNÓSTICO de reproducción de IC para intentos futuros; no es estimador de IC adoptable ni recertifica IC históricos. El margen de equivalencia y el control simultáneo se fijarán por mesa antes del siguiente conjunto sin revelar.» · 3. **Si…"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/…--tabla-result-estado-efecto.tsv",
+    "comando": "git show origin/main:forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/2026-09-27-gen2-recibo-astra6-1--tabla-result-estado-efecto.tsv | python3 -c \"import csv,sys,collections;csv.field_size_limit(10**9);r=list(csv.DictReader(sys.stdin,delimiter='\\t'));b=collections.defaultdict(collections.Counter);[b[x['result_id']].update([x['recomendacion']]) for x in r];s=[x for x in r if x['recomendacion']=='SOSTENER'];print('llaves',len(r),'| SOSTENER',len(s),'| con IC discrepante',len([x for x in s if x['estado_comparador']=='DISCREPA' and x['componente']=='IC']),'| RESULT',len(b),'| RESULT solo-SOSTENER',[(k.replace('RESULT-ENDIREH',''),v['SOSTENER']) for k,v in b.items() if set(v)=={'SOSTENER'}])\"",
+    "salida": "llaves 3371 | SOSTENER 1876 | con IC discrepante 1873 | RESULT 9 | RESULT solo-SOSTENER [('2021-DEC-TABLA', 138), ('2021-FAM-TABLA', 50)]"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/validaciones-independientes.tsv",
+    "comando": "git show origin/main:data/corrida0/validaciones-independientes.tsv | python3 -c \"import csv,sys,io;csv.field_size_limit(10**9);t=[l for l in sys.stdin.read().splitlines() if not l.startswith('#')];r=list(csv.DictReader(io.StringIO(chr(10).join(t)),delimiter='\\t'));ids=['RESULT-ENDIREH2011-MOD-TABLA']+['RESULT-ENDIREH2021-%s-TABLA'%k for k in ('AYU','COM','DEC','DIS','ESC','FAM','LAB','NF-BC')];print('filas examinadas',len(r),'| RESULT del lote 1 con fila',len([x for x in r if x['resultado_id'] in ids]),'| estados',sorted(set(x['validacion_independiente'] for x in r if x['resultado_id'] in ids)))\"",
+    "salida": "filas examinadas 748 | RESULT del lote 1 con fila 9 | estados ['NO-PASA']"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C1-1-cierre.md:12-13",
+    "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C1-1-cierre.md | sed -n '12p;13p' | cut -c1-300",
+    "salida": "1. **«1 873 DISCREPA-dentro-de-tolerancia» es falso bajo la regla.** [EJECUTADO] En las 1 873 SOSTENER/DISCREPA, |Δpunto| ≤ 1e-10 en las 1 873, pero |ΔIC| ≤ 1e-10 en **0** (Δ típico 2e-4 sobre IC con semilla; `artefacto = TOLERANCIA-DE-REPLAY-SOBRE-IC-ALEATORIO`). La tolerancia citada es l · 2. **El esquema de la vista no admite dos validaciones por `(spec, RESULT)`.** [LEÍDO `tools/corrida0.py` …"
+   },
+   {
+    "tipo": "regla",
+    "ref": "gobierno/instrucciones-proyecto-v2_16.md:42",
+    "comando": "git show origin/main:gobierno/instrucciones-proyecto-v2_16.md | sed -n '42p' | rg -o 'La regla y el umbral se fijan antes de abrir el dato[^.]*\\.'",
+    "salida": "La regla y el umbral se fijan antes de abrir el dato y no se ajustan con la simulación de potencia ni con el resultado."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3.md:57-59 y ramas",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3.md | sed -n '57,59p'; git branch -r | rg -c SUCESORES; echo \"rama remota: rc=$? (1 = ninguna)\"",
+    "salida": "## CONSUMIDO · PR #1304 (rama `acto/GEN2-C1-SUCESORES-Y-LOTE-3`), 28/sep/2026. ADR `ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01`. · rama remota: rc=1 (1 = ninguna)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv (26a2-01 hoy; hermana 2385-04)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id'],r['estado'],'|',r['razon'][:40],'|',r['sucesor'][:40],'|',r['cerrado_por'][:230]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id'] in ('NC-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-01', 'NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-04')]\"",
+    "salida": "NC-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-01 ABIERTA | PARO-PREMISA: «DISCREPA-dentro-de-tolera | MESA (2026-10-05) · firma FP-260928-GEN2 | · NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-04 ABIERTA | DECISIÓN-DE-MESA-PENDIENTE: R23 sin marg | MESA (2026-10-05) · encargo por escribir |"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "csv.DictReader de forense/firmas-pendientes.tsv: FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 con estado distinto de ABIERTA, y NC 26a2-01 CERRADA citándola",
+  "owner_detalle": "MESA · firma FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 (ABIERTA) con el alcance declarado sobre las 1 873 del lote 1; plazo 2026-10-05",
+  "decision_clave": "MARGEN-EQUIVALENCIA-IC-C1",
+  "fp_existente": "FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01",
+  "hoja": {
+   "situacion": "Las 1 873 llaves SOSTENER del lote 1 de C1 (RECIBO-ASTRA6-1, no del lote 2) coinciden en el punto (|Δ| ≤ 1e-10) y no en el IC (Δ típico 2e-4, bootstrap con otra semilla). R23 (FIRMADA) hace diagnóstico al IC reimplementado y no recertifica IC históricos, así que ninguna es PASA. Están repartidas en 9 RESULT que ya tienen fila NO-PASA en la vista, y solo 2 de esos RESULT (DEC 138 y FAM 50) tienen todas sus llaves SOSTENER: el contador no se mueve por 1 873, se mueve por filas RESULT.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Dejarlas sin PASA. La FP 2385-01 se firma solo para conjuntos sin revelar (con su margen o sin él) y no se extiende nada a las 1 873.",
+     "costo": "Ninguno: el contador queda como está (215) y la NC se cierra como aceptada; si mesa quiere extenderlo después, se reabre."
+    },
+    {
+     "letra": "b",
+     "texto": "Firmar la opción (b) de la FP (IC diagnósticos para siempre; asiento por punto con alcance INFERENCIA-NO-COMPROBADA) y extenderla expresamente a las 1 873.",
+     "costo": "Cambia el criterio de PASA (punto e IC) para C1; exige un acto que reemplace las filas NO-PASA de DEC y FAM (la vista no admite dos validaciones por (spec, RESULT)) y rotule el alcance; el contador sube en a lo sumo 2 filas, no en 1 873; toda frase de producto debe repetir el alcance."
+    },
+    {
+     "letra": "c",
+     "texto": "Margen en unidades de SE (opción (a) de la FP) aplicado también a las 1 873.",
+     "costo": "Fijaría el umbral con los Δ ya a la vista: incumple v2.16 §4 (la regla y el umbral se fijan antes de abrir el dato). Mismo efecto máximo (2 filas)."
+    },
+    {
+     "letra": "d",
+     "texto": "Exigir igualdad de marco y totales por UPM y relanzar los paquetes (opción (c) de la FP).",
+     "costo": "Contrato nuevo y relanzamiento; la más cara; el efecto sobre el contador sigue acotado por las mismas 9 filas."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "R23 ya firmó que el IC reimplementado no adjudica y que no recertifica históricos; extender un criterio a llaves ya reveladas para mover a lo sumo 2 filas RESULT no compensa el cambio de criterio. La decisión sobre conjuntos sin revelar (lote 3 y lote 4) sigue en la FP 2385-01 sin cambios.",
+   "plazo": "2026-10-05 (la fecha MESA que ya llevan las NC hermanas 2385-0x)",
+   "texto_firma": "«Sobre NC-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-01 y FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01: opción (__). Con (a): las 1 873 llaves SOSTENER del lote 1 quedan sin PASA por R23, sin extenderles margen ni asiento por punto; la NC 26a2-01 se cierra; el margen o el asiento por punto de la FP 2385-01 valen solo para conjuntos sin revelar.»"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-03",
+  "verdict": "HOJA-DECISION",
+  "rationale": "Nadie ha decidido el criterio de CONFIRMA y el usuario reservó la decisión hasta tener el insumo; la respuesta a ese prompt no está en main (solo el propio prompt contiene esos términos). Define qué se adopta en bloque: es de mesa. La FP a3cc-01 (ABIERTA) ya lleva estas opciones.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv#FP-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['estado'][:30],'|',r['qué_se_firma'][:260],'|',r['firmada_en'][:20]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01']\"",
+    "salida": "ABIERTA | Bloque candidato de adopción de reglas SI-ENTONCES (adoptar el bloque · adoptar por dominio · esperar cruces) |"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/reglas-y-result-1/bloque-candidato-adopcion-1.md:18-24,46-50",
+    "comando": "git show origin/main:forense/analisis/reglas-y-result-1/bloque-candidato-adopcion-1.md | sed -n '18p;24p;46,48p' | cut -c1-300",
+    "salida": "## 2 · El bloque — **CONDICIONAL a la decisión pendiente sobre el criterio de CONFIRMA** · **Decisión pendiente (DECISIÓN-DE-MESA-PENDIENTE):** si CONFIRMA cubre la conducta descriptiva (bloque = 1 regla) o exige la regla completa (pasa a MATIZA; bloque = 0). El usuario pidió antes insumo para investigar buenas prácticas; ver §5. · 1. **Adoptar la regla de alimentos como conducta descriptiva** — …"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/reglas-y-result-1/prompt-criterio-confirma.md:3,14",
+    "comando": "git show origin/main:forense/analisis/reglas-y-result-1/prompt-criterio-confirma.md | sed -n '3p;14p'",
+    "salida": "Pégalo tal cual en una sesión con búsqueda web: · Decisión que resuelve: si CONFIRMA cubre solo la conducta descriptiva (bloque = 1 regla) o exige la regla completa (bloque = 0)."
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/main (búsqueda de la respuesta al prompt)",
+    "comando": "git grep -l -E 'CONFIRMA-SI|supported-descriptive' origin/main | sed 's#^origin/main:##'; echo \"archivos examinados: $(git ls-tree -r --name-only origin/main | wc -l)\"",
+    "salida": "forense/analisis/reglas-y-result-1/prompt-criterio-confirma.md · archivos examinados: 12418"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/ (A.17)",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | rg 'CONSUMIDORES-4|FIRMAS-22|ADOPCION-REGLAS-BLOQUE|RETIRO-NC-POR-REGLA-6'; echo \"rc=$? (1 = sin coincidencias)\"; git ls-tree -r --name-only origin/main forense/encargos | wc -l",
+    "salida": "rc=1 (1 = sin coincidencias) · 1223"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv (hermanas a3cc)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id'][-7:],r['estado'],'|',r['que_no_se_corrio'][:90]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id'].startswith('NC-260928-GEN2-REGLAS-Y-RESULT-1')]\"",
+    "salida": "a3cc-01 CERRADA | 7 reglas SIN-CIFRA-GEN2 con instrumento identificado (ENIF tanda, ENVIPE vecinos×estrato, · a3cc-02 CERRADA | 6 reglas condicionales solo con marginal; el cruce no está en catálogo · a3cc-03 ABIERTA | Si CONFIRMA cubre la conducta descriptiva (SI) o exige la regla completa con ENTONCES pres"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "csv.DictReader de forense/firmas-pendientes.tsv: FP-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01 con estado distinto de ABIERTA, y NC a3cc-03 CERRADA citando la firma del criterio",
+  "owner_detalle": "MESA-DECISION (FP a3cc-01 ya cubre la decisión: sus opciones 1 y 3 SON el criterio de CONFIRMA; gatea GEN2-ADOPCION-REGLAS-BLOQUE-1)",
+  "decision_clave": "CRITERIO-CONFIRMA-SI-VS-REGLA-COMPLETA",
+  "fp_existente": "FP-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01",
+  "hoja": {
+   "situacion": "Una regla SI-ENTONCES ¿«se confirma» cuando solo su parte descriptiva (el SI) está medida, o solo cuando también lo está la recomendación (el ENTONCES)? De eso depende que el primer bloque de adopción tenga 1 regla (alimentos ENIGH 2022: decil 1 = 0.511 [0.483, 0.539] frente a 0.283 [0.260, 0.308] del decil 10; hogar; RETROSPECTIVA) o 0. El usuario pidió antes el insumo del prompt de búsqueda; no hay respuesta en main.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "CONFIRMA cubre la conducta descriptiva (SI): el bloque 1 adopta la regla de alimentos como conducta descriptiva.",
+     "costo": "Se adopta (por merge) una regla cuyo ENTONCES prescriptivo nadie ha medido y cuyo PORQUE no está identificado; riesgo de convertir una asociación en recomendación (v2.16 §4)."
+    },
+    {
+     "letra": "b",
+     "texto": "CONFIRMA exige la regla completa; la regla pasa a MATIZA y el bloque 1 queda en 0.",
+     "costo": "Cero adopciones por ahora; el bloque espera cruces medidos en caja."
+    },
+    {
+     "letra": "c",
+     "texto": "Vocabulario partido: CONFIRMA-SI (descriptiva: se registra, no se adopta) frente a CONFIRMA (regla completa: se adopta). El bloque 1 queda en 0 y la regla de alimentos queda rotulada CONFIRMA-SI.",
+     "costo": "Una palabra más en el vocabulario cerrado del dictamen y su test; ninguna adopción."
+    },
+    {
+     "letra": "d",
+     "texto": "Esperar el insumo antes de firmar. Receta de un minuto: pegar forense/analisis/reglas-y-result-1/prompt-criterio-confirma.md en una sesión con búsqueda web y devolver la tabla.",
+     "costo": "Retrasa la FP a3cc-01 sin plazo mientras nadie corra el prompt; la receta la ejecuta una persona (o una sesión con búsqueda web que mesa designe)."
+    }
+   ],
+   "recomendacion": "c (y d solo si mesa quiere el insumo antes de firmar)",
+   "porque": "Conserva lo medido (el SI, con IC disjuntos) sin adoptar una recomendación no medida, y es el tipo de vocabulario cerrado que v2.16 §5 prefiere. No exige esperar la búsqueda: el prompt pregunta justo por una distinción como «supported-descriptive» y (c) es reversible en una línea si el insumo dice otra cosa.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«Criterio de CONFIRMA (a3cc-03): opción (__). Con (c): CONFIRMA exige la regla completa; un SI descriptivo sostenido por RESULT se rotula CONFIRMA-SI y no se adopta; el bloque candidato 1 queda en 0 reglas.» Con (d): «Espero el insumo de prompt-criterio-confirma.md antes de firmar a3cc-01 y a3cc-03.»"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-TUBERIA-Y-CURACION-1-247d-01",
+  "verdict": "HOJA-DECISION",
+  "rationale": "resultados.tsv pesa 15 611 540 B en origin/main y verify.yml:712 falla a 50 MB: la premisa de G1-B (GH001 a más de 100 MB) cayó. Pero G1-B es una firma FIRMADA (f2e5-23) y retirarla es irreversible: solo mesa. No existe FP abierta sobre esto; el archivo ya cumple la firma anterior de 50 MB.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/resultados.tsv",
+    "comando": "git cat-file -s origin/main:data/corrida0/resultados.tsv",
+    "salida": "15611540"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:697,712-713",
+    "comando": "git show origin/main:.github/workflows/verify.yml | sed -n '697p;712,713p' | cut -c1-230",
+    "salida": "# borrar). Falla a 50 MB (firma de mesa, encargo -2 §2: \"ningún · if [ \"$BYTES\" -gt $((50 * 1024 * 1024)) ]; then · echo \"GUARDA-TAMANO: $f es ${MB} MB, sobre el límite de 50 MB de la firma de mesa (GEN2-TUBERIA-VISTA-NORMALIZADA-2 §2 + COMMIT-B de -3).\" >&2"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/encargos/2026-09-24-GEN2-TUBERIA-VISTA-NORMALIZADA-2.md:15",
+    "comando": "git show origin/main:forense/encargos/2026-09-24-GEN2-TUBERIA-VISTA-NORMALIZADA-2.md | sed -n '15p' | cut -c1-420",
+    "salida": "«Las vistas derivadas se normalizan: los campos constantes por corrida viven una vez por corrida; `camino_linaje` sale de `resultados.tsv` por deduplicación o cálculo bajo demanda según su cardinalidad medida; la guarda de CI falla a 100 MB y avisa a 50 hasta que `camino_linaje` salga, y desde entonces falla a 50; ningún archivo derivado vuelve a superar 50 MB; sin Git LFS y sin sacar la vista de…"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv#FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-23",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['estado'][:30],'|',r['qué_se_firma'][:200],'|',r['firmada_en'][:260]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-23']\"",
+    "salida": "FIRMADA | [G1] El canal de publicación automática ([deriva]) lleva desde el 23/sep sin poder empujar resultados.tsv a main: GitHub rechaza el push (GH001) porque el archivo re-derivado supera 100 MB (medido en  | GEN2-TUBERIA-Y-CURACION-1 §2, 28/sep/2026 -- firma de mesa verbatim \"firmado\" sobre la hoja v2 de dirección (INTERPRETACIÓN-DECLARADA en 2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1-ADENDA-1…"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/nota-2026-09-28-gen2-tuberia-y-curacion-1.md:22-27",
+    "comando": "git show origin/main:forense/notas/nota-2026-09-28-gen2-tuberia-y-curacion-1.md | sed -n '22,27p' | cut -c1-330",
+    "salida": "## P1 (G1-B) · NO-CORRIDO: la premisa de 100 MB ya no aplica · [EJECUTADO] `git cat-file -s` sobre `data/corrida0/resultados.tsv`: **89 951 772 B** (89.95 MB, coincide con la hoja) en `429ec004` (commit justo antes del último `[deriva]`), pero **15 611 540 B** (15.6 MB) en `1f4bf1cc` (HEAD al abrir). El propio `.github/workflows/verify.yml` (líneas ~644-667, `ACTO GEN2-TUBERIA-VISTA-NORMA · La fi…"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys,re;csv.field_size_limit(10**9);r=list(csv.DictReader(sys.stdin,delimiter='\\t'));a=[x for x in r if x['estado'].startswith(('ABIERTA','PENDIENTE'))];print('filas',len(r),'| ABIERTA/PENDIENTE',len(a),'| sobre G1/GH001/partición:',[x['id'] for x in a if re.search(r'GH001|particion|partir resultados|G1-B',' '.join(x.values()),re.I)])\"",
+    "salida": "filas 649 | ABIERTA/PENDIENTE 20 | sobre G1/GH001/partición: []"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 tools/consulta.py nc NC-260928-GEN2-TUBERIA-Y-CURACION-1-247d-01 → CERRADA con cita a la firma; csv.DictReader de firmas-pendientes.tsv: f2e5-23 con nota de la decisión",
+  "owner_detalle": "MESA-DECISION (hoja PENDIENTES-4, renglón G1-B; FP a enmendar: FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-23; relacionada NC-260924-GEN2-CONTADORES-CONSUMO-2-749c-03)",
+  "decision_clave": "G1-B-PARTIR-RESULTADOS-SIN-OBJETO",
+  "fp_existente": "",
+  "hoja": {
+   "situacion": "Mesa firmó (G1, opción B) partir resultados.tsv porque pasaba de 100 MB y GitHub lo rechazaba. Otro acto ya lo dejó en 15.6 MB y la CI falla a 50 MB, tal como mesa había firmado el 24/sep. La partición ya no hace falta, pero la firma sigue vigente y sin ejecutar.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Retirar G1-B como SIN-OBJETO, citando el tamaño de hoy y la guarda de 50 MB; si la guarda salta, se re-litiga.",
+     "costo": "Cero trabajo; si el archivo crece, la CI falla en voz alta a 50 MB y obliga a decidir entonces."
+    },
+    {
+     "letra": "b",
+     "texto": "Mantener G1-B como plan de contingencia sin ejecutar, con un aviso temprano (por ejemplo a 40 MB) en el lote de tubería.",
+     "costo": "Un test o guarda pequeño (acto NUBE de tubería) que duplica la alarma de 50 MB; la partición no se construye mientras no haga falta."
+    },
+    {
+     "letra": "c",
+     "texto": "Ejecutar la partición de todos modos.",
+     "costo": "Migrar a todos los lectores (consulta.py, vistas, tableros) sin beneficio actual; el acto NUBE más caro."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "El riesgo que motivó la firma (GH001 a más de 100 MB) ya lo resolvió otro mecanismo medido, y la guarda de 50 MB es la alarma. Construir la partición ahora sería trabajo sin demanda (§1).",
+   "plazo": "2026-10-05",
+   "texto_firma": "«G1 (247d-01): opción (__). Con (a): G1-B queda SIN-OBJETO porque resultados.tsv pesa 15.6 MB con guarda de 50 MB en verify.yml; si la guarda salta, se re-litiga.»"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0026",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "Mantengo CERRAR-DISENO con cita nueva: la envoltura modularía por ola la M de emite_celda, camino de emisión del duelo v2. Mesa firmó HISTÓRICO-SIN-RELEVO sobre ese marco (e760-03) y la regla 6 lo dejó sin camino de emisión. Su único consumidor previsto, C0-D, lo sustituyó MARCADOR-REDISENO-1. Las funciones puras y el CALC ola-v2 no se tocan.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv#FP-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-03",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['estado'][:30],'|',r['qué_se_firma'][:230],'|',r['firmada_en'][:330]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-03']\"",
+    "salida": "FIRMADA | Cuarenta y dos lecturas del marco del duelo (28 emisiones L selladas de contendiente + 14 AGREGADO del marcador) que no son medición relevable: son predicciones y agregados históricos del duelo. Recomendación (PROPUESTO-POR-EJECUT | 25/sep/2026, verbatim, mesa en chat («firmo» sobre H3 de la hoja FIRMAS-17), viaja en forense/encargos/2026-09-25-GEN2-TRAMITE-FIRMAS-18.md §2: «Mesa declar…"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-28-GEN2-DEMANDA-DICTAMEN-1.md:1",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-DEMANDA-DICTAMEN-1.md | sed -n '1p' | cut -c1-330",
+    "salida": "# ENCARGO · ACTO GEN2-DEMANDA-DICTAMEN-1 · La demanda pide 105 corridas y 236 RESULT, pero 61 corridas no se pueden decidir (35 sin payload declarado, 4 sin spec, 25 sin instrumento, 22 sin candidato) y 70 de los 236 son celdas del duelo v2 que la regla 6 dejó sin camino de emisión; 33 son θ y asignados de procedencia.yaml,"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/demanda-dictamen-v1_0.tsv (NO-RELEVAR-POR-REGLA-6)",
+    "comando": "git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv | python3 -c \"import csv,sys,io;csv.field_size_limit(10**9);t=[l for l in sys.stdin.read().splitlines() if not l.startswith('#')];r=list(csv.DictReader(io.StringIO(chr(10).join(t)),delimiter='\\t'));a=[x for x in r if x['dictamen']=='NO-RELEVAR-POR-REGLA-6'];print(len(a),'filas NO-RELEVAR-POR-REGLA-6 |',a[0]['resultado_id'],a[0]['cita'][:200])\"",
+    "salida": "43 filas NO-RELEVAR-POR-REGLA-6 | RES-0097 forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:2 (CIV-M-01, ola ENVIPE 2012); gobierno/PEGAR-EN-PROYECTO-v2_17.md:63 + canon/MEMORIA-OPERATIVA.md:10 (regla 6: sin retadores, pilotos ni duelos sobre"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/emite_m.py:1-4 y emite_celda:612-687",
+    "comando": "git show origin/main:tools/emite_m.py | sed -n '1,4p'; git show origin/main:tools/emite_m.py | awk 'NR>=612&&NR<=687' | grep -c -E 'ola_previa_estricta|origen_de_entrada_serie'; true",
+    "salida": "#!/usr/bin/env python3 · \"\"\"Emisor M por celda del sorteado -- ACTO MAESTRA33-E6 · EMISOR-M-1. · Camina `forense/prereg-duelo-v2/marco-M-sorteado-v1_1.tsv` (columna · 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "llamadores de las dos funciones puras",
+    "comando": "git grep -l -E 'ola_previa_estricta|origen_de_entrada_serie' origin/main -- '*.py' | sed 's#^origin/main:##'",
+    "salida": "data/corrida0/CALC-M-marco-M-sorteado-v1_3-ola-v2/medidor.py · tests/test_corredores_gen2.py · tools/emite_m.py"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/gobernanza-v1_15.md:1445 (ADR-520)",
+    "comando": "git show origin/main:canon/gobernanza-v1_15.md | sed -n '1445p' | rg -o 'NC-0026. ya no es código muerto.{0,330}'",
+    "salida": "NC-0026` ya no es código muerto** — `CALC-M-marco-M-sorteado-v1_3-ola-v2` importa y corre las dos funciones puras, sellado, declarando `tools/emite_m.py` como input con `sha256`, sin tocar `emite_celda` ni pisar ninguna `corridas-M/*.json`, que es la salida que la fila daba por imposible; lo que sigue abierto es que la `M` del **camino de emisión vigente** no"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md:6",
+    "comando": "git show origin/main:forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md | sed -n '6p' | rg -o '\\(1\\) el marcador se deriva[^(]*|\\(5\\) NC-0024[^(]*'",
+    "salida": "(1) el marcador se deriva sobre el catálogo y las celdas-D, nunca sobre el emisor; el emisor aparece como diagnóstico. · (5) NC-0024/0076/0239/0300 cierran por superación con este diseño como cita."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv (NC-0024 y NC-0026)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id'],r['estado'],'|',r['razon'][:80],'|',r['sucesor'][:80],'|',r['cerrado_por'][:90]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id'] in ('NC-0024', 'NC-0026')]\"",
+    "salida": "NC-0024 CERRADA | DIFERIDO-A:C0-D -- el encargo lo declara explicitamente («no corre el marcador p | ACTO C0-D, despues de C0-C || ENMIENDA FECHADA 15/sep/2026 (ACTO GEN2-MARCADOR-C | GEN2-MARCADOR-REDISENO-1 · NC-0026 ABIERTA | DIFERIDO-A:C0-D -- cablearlas a emite_celda cambiaria la M que el emisor produce | MESA (2026-10-05) · cierre por diseño propuesto; la firma de MARCADOR-REDISENO-1 |"
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:10",
+    "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | sed -n '10p'",
+    "salida": "- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:173,182 (emite_m sigue vivo: su test es bloqueante)",
+    "comando": "git show origin/main:.github/workflows/verify.yml | sed -n '173p;182p'",
+    "salida": "- name: emite_m — resolver de ola_calibracion por conducta (bloqueante) · run: python3 tests/test_emite_m_calibracion.py"
+   }
+  ],
+  "cerrado_por_detalle": "diseño: regla 6 (canon/MEMORIA-OPERATIVA.md:10; duelo v2 sin camino de emisión, DEMANDA-DICTAMEN-1.md:1) + firma H3 e760-03 FIRMADA (marco-M-sorteado-v1_3 HISTÓRICO-SIN-RELEVO) + firma (1) de MARCADOR-REDISENO-1 (:6, marcador nunca sobre el emisor; hermana NC-0024 CERRADA por la misma razón C0-D) · emite_celda 612-687 con 0 referencias; funciones :178/:215 y CALC ola-v2 intactos",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 tools/consulta.py nc NC-0026 → estado=CERRADA con cerrado_por que cite regla 6, e760-03 y MARCADOR-REDISENO-1",
+  "owner_detalle": "",
+  "confianza": "media",
+  "respuesta_a_objecion": "La objeción decía que firma (5) omite NC-0026 y que cablear no es retador ni procedimiento retirado. Respuesta nueva: (i) NC-0026 no depende de (5): su objeto es la M del camino de emisión del duelo v2, cuyo marco mesa declaró histórico (e760-03, FIRMADA) y que la regla 6 dejó sin camino de emisión (encargo DEMANDA-DICTAMEN-1:1, 43 filas NO-RELEVAR-POR-REGLA-6); (ii) su sucesor nombrado, C0-D, ya no existe como consumidor: la firma (1) prohíbe derivar el marcador del emisor y su hermana NC-0024 (misma razón DIFERIDO-A:C0-D) se cerró por superación; (iii) el cierre no retira nada que mida o adopte: emite_m (con su test bloqueante, verify.yml:173-182), las dos funciones puras y el CALC ola-v2 siguen en pie; solo se descarta la envoltura que nunca se escribió."
+ },
+ {
+  "id": "NC-0029",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "Mantengo CERRAR-DISENO con la descomposición que pedía el sucesor: R (NC-0018), L (F5-COMPLETA #687; NC-0019/0146/0152) y motor (E04, ADR-458) están resueltos; el ensamble E es inejecutable por firma FP-165 y regla 6; las adopciones viven en filas propias con dueño (0111, 0153, 0392). Conteo corregido con SHA: 324 ABIERTA (323 sin ella) en bafb1c1b.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv (conteo, origin/main bafb1c1b)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);r=list(csv.DictReader(sys.stdin,delimiter='\\t'));a=[x for x in r if x['estado']=='ABIERTA'];print('filas examinadas',len(r),'| ABIERTA exacto',len(a),'| sin NC-0029',len([x for x in a if x['id']!='NC-0029']))\"",
+    "salida": "filas examinadas 1096 | ABIERTA exacto 324 | sin NC-0029 323"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv (NC-0018, 0019, 0146, 0152)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id'],r['estado'],'|',r['cerrado_por'][:70]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id'] in ('NC-0018','NC-0019','NC-0146','NC-0152')]\"",
+    "salida": "NC-0018 CERRADA | ACTO MESA-CONCILIACION-E01: 14/14 CALC-R vigentes verificados; cierra · NC-0019 CERRADA | ACTO MESA-CONCILIACION-E01: obligacion historica satisfecha por corred · NC-0146 CERRADA | GEN2-F5-COMPLETA / CALC-TRIADA-0002 · NC-0152 CERRADA | FIRMA DE MESA 15/sep/2026 D5, verbatim: \"NC-0152 CERRADA citando #764\""
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/familias-2027/astra6-cierre-material-1/astra6-gate-main.txt:643 (texto histórico del sucesor de NC-0029, enmienda 16/sep)",
+    "comando": "git show origin/main:forense/analisis/familias-2027/astra6-cierre-material-1/astra6-gate-main.txt | sed -n '643p' | cut -c1-390",
+    "salida": "NC-0029 ABIERTA desde 2026-09-08 (18 día(s)) -- sucesor E03 para L y E04 para motor/adopciones; descomponer cada residual antes de cerrar || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. E03 (cobertura vía ENCARGO GEN2-F5-COMPLETA) y E04 (cobertura vía ENCARGO GEN2-MOTOR-USOS-Y-COMPLEMENT"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-10-GEN2-F5-COMPLETA.md:10; …-MOTOR-USOS-Y-COMPLEMENTOS.md:4,93; canon/gobernanza-v1_15.md:9281 (ADR-458)",
+    "comando": "git show origin/main:forense/encargos/2026-09-10-GEN2-F5-COMPLETA.md | sed -n '10p' | cut -c1-90; git show origin/main:forense/encargos/2026-09-10-GEN2-MOTOR-USOS-Y-COMPLEMENTOS.md | sed -n '4p;93p'; git show origin/main:canon/gobernanza-v1_15.md | sed -n '9281p' | rg -o 'ADR-458 · `ACTO GEN2-MOTOR-USOS-Y-COMPLEMENTOS'; git ls-tree --name-only origin/main data/corrida0/CALC-TRIADA-0002/ | wc -l",
+    "salida": "**Estado:** CONSUMIDO en PR #687. Las 224/224 posiciones terminaron `OK`, · Estado: CONSUMIDO · ## CONSUMIDO · ADR-458 · `ACTO GEN2-MOTOR-USOS-Y-COMPLEMENTOS · 7"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv (NC-0085, 0107, 0111, 0153, 0392)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['id'],r['estado'],'|',r['sucesor'][:75],'|',r['cerrado_por'][:60]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id'] in ('NC-0085','NC-0107','NC-0111','NC-0153','NC-0392')]\"",
+    "salida": "NC-0085 CERRADA | forense/notas/2026-09-15-GEN2-E11-RES0028-PARTICION-cierre.md: ficha suceso | GEN2-PENDIENTES-3 · CERRADA (duplicada: NC-0392 [ABIERTA]) · NC-0107 CERRADA | E04: mantener tasas discrepantes sin adopcion y formular regla prospectiva  | GEN2-PENDIENTES-3 · CERRADA (firma: data/corrida0/decisiones · NC-0111 ABIERTA | ADQUISICION (ENCIG tasa nacional pago informal por canal, SOLICIT…"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv#FP-165",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**9);[print(r['estado'][:30],'|',r['qué_se_firma'][:40],'|',r['firmada_en'][:470]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-165']\"",
+    "salida": "FIRMADA | Mesa sella el insumo de la variante L+co | 2026-08-26, FIRMA DE MESA definitiva, en sesion, verbatim: \"FIRMO: el programa no hara mas llamadas API; L+corpus NO se ejecutara. Abre la fila sucesora y cierrala FIRMADA en el mismo acto con esta decision -- los tres caminos documentados, elegido: no-ejecucion. Consecuencia declarada: el corredor E (ADR-141) queda inejecutable tal como esta s…"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv (barrido de residuales L/motor)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys,re;csv.field_size_limit(10**9);r=[x for x in csv.DictReader(sys.stdin,delimiter='\\t') if x['estado']=='ABIERTA'];p=re.compile(r'corredor|corridas-L|LLM|retador|ensamble|motor|R/L|duelo|θ|theta|matriz\\.g',re.I);h=[x['id'] for x in r if p.search(' '.join([x['que_no_se_corrio'],x['impacto'],x['sucesor'],x['pieza'],x['razon']]))];print('ABIERTA examinadas',len(r),'| coinciden',len(h),'|',[i for i in h if i in ('NC-0029','NC-0311','NC-0161','NC-0162')],'y',len([i for i in h if 'RELEVO-MOTOR-34-1' in i]),'de RELEVO-MOTOR-34-1')\"",
+    "salida": "ABIERTA examinadas 324 | coinciden 27 | ['NC-0029', 'NC-0311'] y 7 de RELEVO-MOTOR-34-1"
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:10; forense/encargos/2026-09-24-GEN2-PISOS-GEN2-2.md:14",
+    "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | sed -n '10p' | cut -c1-190; git show origin/main:forense/encargos/2026-09-24-GEN2-PISOS-GEN2-2.md | sed -n '14p' | cut -c1-190",
+    "salida": "- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027. · - **E.1** («un GEN1 que agregó de otro modo se re-mide desde el insumo crudo»), **17/sep** (piso no vencido = estimador adjudicado), **regla 6** (sin retadores nuevos: mismos contendiente"
+   }
+  ],
+  "cerrado_por_detalle": "diseño: regla 6 (canon/MEMORIA-OPERATIVA.md:10; nuevos corredores R/L y ensamble E son retadores del duelo) + firma FP-165 FIRMADA (corredor E inejecutable) · residuales descompuestos: R NC-0018 CERRADA, L F5-COMPLETA #687 + NC-0019/0146/0152 CERRADAS, motor E04 #689 (ADR-458), adopciones NC-0085→NC-0392, NC-0107, NC-0111, NC-0153 con fila y dueño propios · 324 ABIERTA (323 sin NC-0029) en origin/main bafb1c1b",
+  "lote": "",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 tools/consulta.py nc NC-0029 → estado=CERRADA con cerrado_por que cite regla 6, FP-165 y la descomposición",
+  "owner_detalle": "",
+  "confianza": "media",
+  "respuesta_a_objecion": "(1) Conteo: en 25b5e7f0 eran 335 ABIERTA (334 sin NC-0029); en origin/main bafb1c1b son 324 (323 sin ella) tras #1319; el barrido amplio (retador|motor|duelo|θ…) da 27 coincidencias y ninguna es un residual que este paraguas sea el único en llevar. (2) La autorización ADENDA-1 existía solo en HEAD (f87b0ba8), por eso el cierre no descansa en ella: descansa en regla 6 (citada como vigente en los encargos de main), FP-165 FIRMADA y el estado de las filas hijas, todo reproducible con origin/main. (3) El sucesor pedía descomponer residuales L/motor: L y motor tienen actos CONSUMIDOS y filas CERRADAS (E03 #687, E04 #689/ADR-458); los residuos de adopción tienen filas y dueño propios."
+ }
+]

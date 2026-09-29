@@ -1,0 +1,23 @@
+[
+ {
+  "id": "NC-260926-GEN2-TUBERIA-CABLEADO-SESIONES-1-0038-03",
+  "veredicto": "CONFIRMA",
+  "razon": "Re-ejecutado: API de Actions da los mismos started/completed del paso «Guardias huérfanas» en los 3 runs (5m12s → 3m23s/3m11s); PR #1165 merge 8c416336, base 2b97d517, head e080cebd; nota de cierre líneas 29 y 34 en origin/main 7312797c idénticas. Tiempos de runner citables con run_id.",
+  "comando": "for run in 36264691703 36264914155 36265254589; do curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/actions/runs/$run/jobs | python3 -c '...guardias/Guardias huérfanas...'; done; curl .../pulls/1165; git show origin/main:forense/notas/2026-09-26-GEN2-TUBERIA-CABLEADO-SESIONES-1-cierre.md | rg -n",
+  "salida": "36264691703 2b97d517 19:03:31Z 19:08:43Z | 36264914155 e080cebd 19:07:35Z 19:10:58Z | 36265254589 8c416336 19:13:41Z 19:16:52Z | PR1165 merge 8c4163365c23 2026-09-26T19:12:43Z base 2b97d5173150 head e080cebd6dbe | 29: antes 9 min 38 s ... 34: ver NC (-03)"
+ },
+ {
+  "id": "NC-260927-GEN2-TUBERIA-CI-TIEMPO-2-a387-02",
+  "veredicto": "CONFIRMA",
+  "razon": "Re-ejecutado: run 36495085433 es push a main (verify.yml), head 9d2550b9, success, 22:54:24Z→23:10:14Z (15m50s); check success 23:02:06Z (7m42s desde inicio). git merge-base confirma 414fcf7d (#1198) ancestro de 9d2550b9. Satisface «check VERDE < 25 min, citado».",
+  "comando": "curl -sS .../actions/runs/36495085433 ; curl -sS .../actions/runs/36495085433/jobs ; git show -s 414fcf7d 9d2550b9 ; git merge-base --is-ancestor 414fcf7d 9d2550b9",
+  "salida": "event push, main, 9d2550b920782e6a, success, run_started 22:54:24Z, updated 23:10:14Z, path verify.yml | suite success 23:02:01Z, derivados success 23:10:13Z, check success 23:02:06Z | 414fcf7d Merge #1198 | 9d2550b9 Merge #1294 | ANCESTRO"
+ },
+ {
+  "id": "NC-260921-GEN2-TUBERIA-SIDECAR-CUERPO-1-3d08-02",
+  "veredicto": "CONFIRMA",
+  "razon": "Re-ejecutado: línea 30 verbatim; SELLO_COINCIDE con mismo sha256; nota cuenta 2; ningún *ADENDA* de PILOTO-3-P0/LIMPIEZA-RAMAS-LOCALES-3 (forense 8173 archivos hoy vs 8164, main se movió). Reserva: la fila ya citaba esa firma al abrirse y dice «sólo se cierra si mesa aporta el texto».",
+  "comando": "git show origin/main:forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md | sed -n 30p; python3 tools/sella_sha256.py --verifica --cuerpo <encargo>; rg -c hashes <nota>; git ls-tree -r origin/main --name-only -- forense | rg -i ADENDA | rg -i 'PILOTO-3-P0|LIMPIEZA-RAMAS-LOCALES-3'",
+  "salida": "Semillas sin ejecutar — «... (2) Las adendas sin rastro del 19 al 21/sep: no se archivan retroactivamente … Pero lista en tu nota ...» | SELLO_COINCIDE sha256=b0f861aa...6894 candidato=prefijo-antes-de-linea-88 | 2 | 8173 | (vacío)"
+ }
+]

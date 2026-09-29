@@ -1,0 +1,16 @@
+[
+  {
+    "id": "NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-05",
+    "veredicto": "CONFIRMA",
+    "razon": "Las 5 citas reproducen contra origin/main 90345dff: dictamen:244 RES-0126 NO-RELEVAR-POR-REGLA-6 sucesor NINGUNO (histórico); regla 6 en v2_17:41 y MEMORIA:10; 48114c5d #1275; marco v1_3:8 DIN-M-01 ENNViH 2002. Nota: la celda cita del dictamen apunta a v2_17:63 (línea vieja), la elipsis de la salida la oculta.",
+    "comando": "git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv | rg -n RES-0126 ; git show origin/main:gobierno/PEGAR-EN-PROYECTO-v2_17.md | rg -n -i 'regla 6' ; git show origin/main:canon/MEMORIA-OPERATIVA.md | rg -n 'Regla 6' ; git log origin/main --first-parent --oneline -n 3 -- data/corrida0/demanda-dictamen-v1_0.tsv ; git show origin/main:forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv | sed -n 8p",
+    "salida": "244:CORR-0048 RES-0126 NO-RELEVAR-POR-REGLA-6 forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:8 (DIN-M-01, ...) ... gobierno/PEGAR-EN-PROYECTO-v2_17.md:63 + canon/MEMORIA-OPERATIVA.md:10 ... NINGUNO (histórico) | 41:- Regla 6: sin retadores... | 10:- Etapa de retadores: cerrada... | 48114c5d Merge pull request #1275 | DIN-M-01 ENNViH/MxFLS 2002 (ola 1)"
+  },
+  {
+    "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-17",
+    "veredicto": "CONFIRMA",
+    "razon": "Reproduce: NC-0253 ABIERTA 2026-09-16 con la misma deuda (citar RESULT-L8CONV para RES-0050/51/52); hoja:19 idéntica en árbol y origin/main; dictamen RES-0050 RELEVAR-DESDE-RESULT. Salvedad: DictReader directo no da filas (dos líneas '#' de cabecera); saltándolas sí reproduce.",
+    "comando": "python3 tools/consulta.py nc NC-0253 ; git show origin/main:forense/analisis/pendientes-3/hoja-mesa-pendientes-3.md | sed -n 19p ; csv.DictReader (saltando líneas '#') sobre git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv, resultado_id=RES-0050",
+    "salida": "NC-0253 · estado=ABIERTA · acto=GEN2-PINS-REPRODUCE-1 · razon=DIFERIDO-A · USO-NO-APTO (linaje)... · sucesor=MESA (2026-10-05) · hoja de irreversibles | - **NC-0253** — El bloqueo tecnico de linaje ya se levanto... (c) CALC nuevo que no dependa del JSON | RES-0050 RELEVAR-DESDE-RESULT ... RESULT-L8CONV-A-P-MINIMO (REPRODUCE-GEN1, delta 0.0...)"
+  }
+]

@@ -1,0 +1,9 @@
+[
+ {
+  "id": "NC-260928-GEN2-ASTRA-CONTINUIDAD-C2-1-ba6c-01",
+  "veredicto": "CONFIRMA",
+  "razon": "8c5c-13 sigue ABIERTA en origin/main y cubre igual o mas: el recibo manda enoe_diagnostico.py --oro y cmp byte a byte contra enoe-auditoria.json (singleton_union=39), mismo insumo, mismo entorno caja, mismo sucesor. Impacto 'singleton/UPM' cubre el conteo.",
+  "comando": "git show origin/main:forense/analisis/familias-2027-enoe-inferencia-1/enoe-recibo-para-claude.md | sed -n '12,13p'; python3 tools/consulta.py nc NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-13",
+  "salida": "enoe_diagnostico.py --oro data/raw/enoe_microdatos_post2019/enoe_2024_trim4_csv.zip ...; cmp replay vs enoe-auditoria.json | 8c5c-13 estado=ABIERTA"
+ }
+]

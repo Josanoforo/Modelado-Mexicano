@@ -1,0 +1,147 @@
+[
+ {
+  "id": "NC-0303",
+  "verdict": "ABSORBER",
+  "rationale": "Los tres sitios siguen desalineados en origin/main: pi.py:64 cita `FP-53` para migración; corrida0.py:645 fija acto_legacy 'ACTO LANE-A-E0-E5 C1' para todo eje (y :642 'PENDIENTE·FP-53'); rutas_sin_candidato.py:198 dice 'cuatro cortes'. Ningún encargo de forense/encargos (1217 archivos) los pone en perímetro. La delegación pide un acto con esos tres archivos. Solo prosa/atribución; corte_pi ya está fuera del contador (B3).",
+  "cite": [
+   {"tipo": "comando", "ref": "milpa/src/pi.py", "comando": "git show origin/main:milpa/src/pi.py | grep -n 'FP-53'", "salida": "64:            f\"cortes PENDIENTE: {cortes.pendientes}. `FP-53` tiene abierta esa \""},
+   {"tipo": "comando", "ref": "tools/rutas_sin_candidato.py", "comando": "git show origin/main:tools/rutas_sin_candidato.py | grep -n 'cuatro cortes'", "salida": "198:            \"CORTES_C1 declara cuatro cortes y deja edad/migración pendientes; no hay RESULT GEN2 por corte\","},
+   {"tipo": "comando", "ref": "tools/corrida0.py", "comando": "git show origin/main:tools/corrida0.py | sed -n 618,650p", "salida": "621: `celdas.CORTES_C1` es el dato: cuatro ejes con corte sellado bajo M2 y dos ... 642: clase_legacy=\"SELLADO·M2\" if sellado else \"PENDIENTE·FP-53\", 643: acto_legacy=\"ACTO LANE-A-E0-E5 C1\","},
+   {"tipo": "comando", "ref": "forense/encargos", "comando": "git ls-tree -r --name-only origin/main forense/encargos | wc -l; git grep -l -F rutas_sin_candidato origin/main -- forense/encargos", "salida": "1217 archivos; coincidencias: 2026-09-16-GEN2-CORTE-EDAD-1.md (origen de la NC), 2026-09-16-GEN2-SIN-CANDIDATO-RUTAS-1.md, 2026-09-22-PENDIENTES-PROGRAMA.md, DISENO-RES-CORR-llave-logica-v1_1.md — ninguno posterior al 17/sep con los tres archivos en perímetro"},
+   {"tipo": "firma", "ref": "FP-260924-GEN2-RELEVO-MOTOR-34-1-a157-03", "comando": "git show origin/main:forense/firmas-pendientes.tsv | sed -n 538p", "salida": "FIRMADA 24/sep: «una partición sellada (`CORTES_C1`, RES-0165..0170) no es lectura numérica; `tipo_uso corte_pi` fuera del contador» — por eso el defecto es de prosa/atribución, sin cifra"}
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "grep -c 'FP-53. tiene abierta' milpa/src/pi.py; grep -c 'cuatro cortes' tools/rutas_sin_candidato.py; grep -c 'PENDIENTE·FP-53' tools/corrida0.py → 0 0 0, y grep -c 'GEN2-CORTE-EDAD-1' tools/corrida0.py ≥ 1",
+  "owner_detalle": "DIRECCION-ENCARGO (TUBERIA-TESTS-LOTE)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0307",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "C3 (L) es retador y el cruce ENIF 2024 del piloto ya se vio: R derivada en COMMIT-3, 8/8 celdas ADOPTADO-POR-FIRMA. La regla 6 (v2_17:41) retira retadores sobre olas vistas, y una regla fijada «antes de mirar las capturas» ya no es posible: las 64 se leyeron. C3 pierde por punto (MAE 10.64 contra 1.47), así que la banda no cambia la adjudicación.",
+  "cite": [
+   {"tipo": "regla", "ref": "gobierno/PEGAR-EN-PROYECTO-v2_17.md:41", "comando": "git show origin/main:gobierno/PEGAR-EN-PROYECTO-v2_17.md | grep -n 'olas ya vistas'", "salida": "41:- Regla 6: sin retadores, pilotos ni duelos sobre olas ya vistas. El frente prospectivo son las familias 2027. Un cruce visto sirve para describir, calibrar y evaluar en retrospectiva, rotulado así."},
+   {"tipo": "regla", "ref": "canon/MEMORIA-OPERATIVA.md:10", "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | grep -n -i 'regla 6'", "salida": "10:- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."},
+   {"tipo": "comando", "ref": "data/corrida0/marcador-segmento.tsv", "comando": "csv.DictReader sobre git show origin/main:data/corrida0/marcador-segmento.tsv; filas tipo=CRUCE con 'ahorr' en celda_id → Counter(estado, prospectividad)", "salida": "22 Counter({('RESERVADA','EMITIDA-SIN-R'): 9, ('ADOPTADO-POR-FIRMA','PROSPECTIVA'): 8, ('RESERVADA','SIN-EMISION'): 5})"},
+   {"tipo": "archivo", "ref": "forense/hallazgos.md:876", "comando": "git show origin/main:forense/hallazgos.md | sed -n 876p", "salida": "`L-solo` pierde contra los dos pisos en las ocho (`MAE` `C2` 1.4668 pp < `C1` 2.6439 < `C3` 10.6394; skill −3.024 y −6.254)"},
+   {"tipo": "comando", "ref": "tools/extrae_l_v1_3.py", "comando": "git show origin/main:tools/extrae_l_v1_3.py | grep -n -i intervalo | head -3", "salida": "105:candidato de punto, es banda): \"rango subjetivo\", \"intervalo subjetivo\", 106:\"rango de incertidumbre\", \"intervalo de incertidumbre\" — el extractor excluye el intervalo; ninguno lo extrae"}
+  ],
+  "cerrado_por_detalle": "regla 6: gobierno/PEGAR-EN-PROYECTO-v2_17.md:41 + canon/MEMORIA-OPERATIVA.md:10 · retador C3 sobre cruce ENIF 2024 ya visto (marcador-segmento: 8/8 ADOPTADO-POR-FIRMA); capturas ya leídas, no cabe pre-registro",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0311",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "L+corpus es otra dieta del retador C3 sobre el mismo cruce ENIF 2024 ya visto. La regla 6 (v2_17:41; MEMORIA:10) la retira, y la letra 19 de FIRMAS-21 ya le asignó un sucesor de retiro por esa regla. FP-379 ENMIENDA fijó el perímetro de aquel acto, que ya la ejecutó. L-solo perdió 8/8. La ADENDA-1:9 autoriza cerrar por diseño lo que la regla 6 retiró.",
+  "cite": [
+   {"tipo": "regla", "ref": "gobierno/PEGAR-EN-PROYECTO-v2_17.md:41", "comando": "git show origin/main:gobierno/PEGAR-EN-PROYECTO-v2_17.md | grep -n 'olas ya vistas'", "salida": "41:- Regla 6: sin retadores, pilotos ni duelos sobre olas ya vistas. El frente prospectivo son las familias 2027."},
+   {"tipo": "firma", "ref": "FP-379", "comando": "python3 tools/consulta.py fp FP-379", "salida": "FP-379 · estado=FIRMADA · creado=2026-09-17 · ... ENMIENDA del mismo dia ... · ejecutada_en=ACTO GEN2-CELDA-D-PILOTO-1 (ADR-538)"},
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv#NC-0311", "comando": "python3 tools/consulta.py nc NC-0311 (campo sucesor)", "salida": "sucesor=MESA (2026-10-05) · encargo por escribir (...) · antes: GEN2-RETIRO-NC-POR-REGLA-6-1 (letra 19: etapa de retadores cerrada)"},
+   {"tipo": "archivo", "ref": "forense/hallazgos.md:876", "comando": "git show origin/main:forense/hallazgos.md | sed -n 876p", "salida": "Veredicto SIN-CANDIDATO-SUPERIOR: 8/8 celdas PUNTUADA, 0 INDECIDIBLE, y L-solo pierde contra los dos pisos en las ocho"},
+   {"tipo": "firma", "ref": "forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md:9", "comando": "sed -n 9p forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md", "salida": "(a) el acto cierra por diseño, con cita, toda NC cuyo objeto sea GEN1 (E.1), un procedimiento retirado por regla 6 (duelo v2 sin camino de emisión, θ, motor legacy)..."}
+  ],
+  "cerrado_por_detalle": "regla 6: gobierno/PEGAR-EN-PROYECTO-v2_17.md:41 + canon/MEMORIA-OPERATIVA.md:10 · dieta L+corpus del retador C3 sobre ENIF 2024 ya vista; FIRMAS-21 letra 19 le asignó retiro por regla 6",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0313",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "El CALC de emisiones está sellado (E.3: no se reescribe; reejecutar es CALC nuevo), y un CALC nuevo del piloto sería un retador sobre una ola ya vista (regla 6). El estado ya está declarado: replay-evidencia.tsv:91 asienta NO-REPRODUCE con alcance «NC-0313: discrepancia G-R-EXISTE-AL-CERRAR», y hallazgos.md:880 da la causa. La v2.16 §4 ya fija que el orden sale de los sellos o del diff. Es la opción (a) de la delegación.",
+  "cite": [
+   {"tipo": "regla", "ref": "gobierno/instrucciones-proyecto-v2_16.md:101", "comando": "git show origin/main:gobierno/instrucciones-proyecto-v2_16.md | grep -n '^E.3 '", "salida": "101:E.3 Una corrida sellada es evidencia histórica: no se reescribe (run se niega; no existe --force); reejecutar es un CALC nuevo."},
+   {"tipo": "archivo", "ref": "forense/replay-evidencia.tsv:91", "comando": "git show origin/main:forense/replay-evidencia.tsv | grep -n 'CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001--' (DictReader)", "salida": "91: resultado_replay=NO-REPRODUCE · contexto_replay=IDENTICO · procedencia=VERIFY-AISLADO · GEN2-REPLAY-Y-PISOS-CLI-1 · alcance=NC-0313: discrepancia G-R-EXISTE-AL-CERRAR; C2 puntos/IC sin cambio"},
+   {"tipo": "archivo", "ref": "forense/hallazgos.md:880", "comando": "git show origin/main:forense/hallazgos.md | sed -n 880p | grep -o '.\\{80\\}NC-0313.\\{60\\}'", "salida": "13/14 REPRODUCE limpio, 1 `NO-REPRODUCE` con causa ya acreditada por `NC-0313` (snapshot del árbol al sello)."},
+   {"tipo": "regla", "ref": "gobierno/instrucciones-proyecto-v2_16.md:44", "comando": "git show origin/main:gobierno/instrucciones-proyecto-v2_16.md | grep -n 'el orden sale de los sellos'", "salida": "44:Todo marcador rotula PROSPECTIVA (emisión sellada antes de que exista la R contra la que se compara; el orden sale de los sellos o del diff) o RETROSPECTIVA"},
+   {"tipo": "regla", "ref": "gobierno/PEGAR-EN-PROYECTO-v2_17.md:41", "comando": "grep -n 'olas ya vistas' gobierno/PEGAR-EN-PROYECTO-v2_17.md", "salida": "41:- Regla 6: sin retadores, pilotos ni duelos sobre olas ya vistas."}
+  ],
+  "cerrado_por_detalle": "E.3 (instrucciones v2_16:101: CALC sellado no se reescribe) + regla 6 (v2_17:41) · estado declarado en forense/replay-evidencia.tsv:91 y forense/hallazgos.md:880; lección vigente en v2_16:44",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0324",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "El objeto es el enlace pre-R de M para la familia F6 del duelo v2 (MOCIBA), que el dictamen declara NO ELEGIBLE en las dos olas; L y R no están autorizados. Es un duelo v2 sin camino de emisión: la v2_17:40 (θ/matriz no emiten) y la regla 6 lo retiran, y la ADENDA-1:9 autoriza ese cierre. Es compatible con R36(a) FIRMADA-DELEGADA: R01 sigue sin abrirse y no se emite M/L.",
+  "cite": [
+   {"tipo": "archivo", "ref": "forense/produccion/mociba-flujo-documental-1/dictamen.md:10-11", "comando": "git show origin/main:forense/produccion/mociba-flujo-documental-1/dictamen.md | sed -n 10,11p", "salida": "| Enlace predictivo de M | **NO ELEGIBLE** | **NO ELEGIBLE** | / | L y R | No autorizados; cero llamadas y cero estimaciones |"},
+   {"tipo": "archivo", "ref": "forense/encargos/2026-09-16-GEN2-MOCIBA-FLUJO-DOCUMENTAL-1.md:27", "comando": "git show origin/main:forense/encargos/2026-09-16-GEN2-MOCIBA-FLUJO-DOCUMENTAL-1.md | sed -n 27p", "salida": "- `forense/prereg-duelo-v2/F6-factibilidad-preparacion-v1_0/spec.md` y `tarjetas.yaml`, sólo lectura."},
+   {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv#R36", "comando": "csv.DictReader decisiones-21.tsv renglon==R36; grep '| 5 | NC-0324' forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md", "salida": "R36 estado=FIRMADA-DELEGADA (GEN2-TRAMITE-FIRMAS-21: decidida por el trámite; nota §P3) · nota:28 | 5 | NC-0324 | (a) R01 en espera de enlace pre-R | sucesor GEN2-MOCIBA-F6-ENLACE-PRE-R-1 |"},
+   {"tipo": "regla", "ref": "gobierno/PEGAR-EN-PROYECTO-v2_17.md:40-41", "comando": "git show origin/main:gobierno/PEGAR-EN-PROYECTO-v2_17.md | grep -n -E 'camino de emisión|olas ya vistas'", "salida": "40: ... θ y matriz.g son generador de retadores, no camino de emisión. ... 41:- Regla 6: sin retadores, pilotos ni duelos sobre olas ya vistas. El frente prospectivo son las familias 2027."},
+   {"tipo": "firma", "ref": "forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md:9", "comando": "sed -n 9p forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md", "salida": "(a) el acto cierra por diseño, con cita, toda NC cuyo objeto sea ... un procedimiento retirado por regla 6 (duelo v2 sin camino de emisión, θ, motor legacy)"}
+  ],
+  "cerrado_por_detalle": "duelo v2 F6 sin camino de emisión: dictamen.md:10 (M NO ELEGIBLE 2021/2022) + gobierno/PEGAR-EN-PROYECTO-v2_17.md:40-41 + ADENDA-1:9; R01 queda sin abrir, como fija R36(a)",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0332",
+  "verdict": "ABSORBER",
+  "rationale": "numpy ya está en requirements.txt:29, pero el test sigue sin correr en CI: verify.yml lo cita 0 veces, el censo lo marca NECESITA-DEPENDENCIA(numpy) y ci_guardias.py:407-411 salta todo NECESITA-DEPENDENCIA aunque la dependencia esté instalada, contra lo que dice su docstring (:22-25). Falta re-derivar el censo o cablear un paso explícito. La delegación lo da por reversible y sin encargo archivado.",
+  "cite": [
+   {"tipo": "comando", "ref": "requirements.txt", "comando": "git show origin/main:requirements.txt | grep -n -i numpy", "salida": "28:# numpy y pyreadstat al cargar el modulo.\n29:numpy"},
+   {"tipo": "comando", "ref": ".github/workflows/verify.yml", "comando": "git show origin/main:.github/workflows/verify.yml | grep -c test_marginales_una_variable", "salida": "0"},
+   {"tipo": "comando", "ref": "forense/analisis/ci-guardias/censo-tests.tsv", "comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | grep marginales_una_variable", "salida": "tests/test_marginales_una_variable.py\tscript\tNO\tnumpy\tNO\t0.1\tNECESITA-DEPENDENCIA(numpy)\tModuleNotFoundError: No module named 'numpy'"},
+   {"tipo": "comando", "ref": "tools/ci_guardias.py:407-411", "comando": "git show origin/main:tools/ci_guardias.py | sed -n 407,410p", "salida": "if f[\"veredicto\"].startswith(\"NECESITA-DEPENDENCIA\"): print(\"SKIP %s: dependencia-pendiente %s (FP de mesa, no decidida aqui)\" ..."}
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "grep -P '^tests/test_marginales_una_variable.py\\t' forense/analisis/ci-guardias/censo-tests.tsv | cut -f7 → no empieza por NECESITA-DEPENDENCIA (o grep -c test_marginales_una_variable .github/workflows/verify.yml ≥ 1), y el log del job guardias no trae 'SKIP tests/test_marginales_una_variable.py'",
+  "owner_detalle": "DIRECCION-ENCARGO (TUBERIA-TESTS-LOTE)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0338",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "Lo pedido está vacío por construcción. CALC-TRIADA-B-PISO-0001 solo trae celdas del marco-M de F5 (nacionales) y 0 RESULT por eje (encargo MARCADOR-REDISENO-1:12; jq: 0 claves con 'eje'), y el marcador da NO-APLICA de piso a sus 97 filas NACIONAL. TRIADA-B es una triada del duelo v2 (regla 6). Se ejecuta la opción (b) que recomendó la delegación.",
+  "cite": [
+   {"tipo": "archivo", "ref": "forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md:12", "comando": "git show origin/main:forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md | sed -n 12p", "salida": "... Pisos por eje sellados: `CALC-TRIADA-B-PISO-0001` (9 celdas nacionales de F5), 0 por eje."},
+   {"tipo": "comando", "ref": "data/corrida0/CALC-TRIADA-B-PISO-0001/resultados.json", "comando": "jq -r '.resultados|keys[]' | grep -- '-EN-UCOMUN$'; ... | grep -c -i eje", "salida": "RESULT-TBP-CIV-M-01/02/04/10/12/13, DIN-M-01, FAM-M-01/05/06/07, TRA-M-02/03/07 -EN-UCOMUN (celdas marco-M); claves con 'eje': 0"},
+   {"tipo": "comando", "ref": "data/corrida0/marcador-segmento.tsv", "comando": "csv.DictReader (sin líneas #): Counter(piso_tipo) de filas tipo=NACIONAL; filas con CIV/TBP/TRIADA", "salida": "nacional rows 97 Counter({'NO-APLICA': 97}); CIV/TBP/TRIADA 0; SIN-PISO 35 (ENIF 2024 cruce 14, ENUT 11, EDER 4, ENVIPE 5, ENUT cruce 1: ninguna de F5)"},
+   {"tipo": "regla", "ref": "gobierno/PEGAR-EN-PROYECTO-v2_17.md:41", "comando": "grep -n 'olas ya vistas' gobierno/PEGAR-EN-PROYECTO-v2_17.md", "salida": "41:- Regla 6: sin retadores, pilotos ni duelos sobre olas ya vistas."},
+   {"tipo": "archivo", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv:89", "comando": "grep -n NC-0338 forense/analisis/pendientes-3/decididas-por-delegacion.tsv", "salida": "Reversible: (a) lector que una RESULT-TBP-* ... a celdas nacionales, o (b) declarar SIN-PISO permanente (las 9 son nacionales, el marcador es por eje). Recomiendo (b) salvo que mesa quiera el piso nacional."}
+  ],
+  "cerrado_por_detalle": "objeto vacío: CALC-TRIADA-B-PISO-0001 con 0 RESULT por eje (encargo MARCADOR-REDISENO-1:12) y filas NACIONAL del marcador con piso NO-APLICA 97/97; triada del duelo v2 retirada por regla 6 (v2_17:41); opción (b) de la delegación",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0339",
+  "verdict": "ABSORBER",
+  "rationale": "GEN2-MARCADOR-REDISENO-1 sigue sin ADR ni fragmento L0 (0 de 194 archivos en canon/L0) ni fila propia en registro-rotulos (0); su nota de cierre sí existe. RECIBO-CODEX-3 se quedó con ADR-545. Falta re-acuñar el ADR con raíz de acto (D-24) y el L0. Los tres contadores de estado-programa quedan retirados por D-16 (v2_16:70). La delegación propone un acto de trámite pequeño.",
+  "cite": [
+   {"tipo": "comando", "ref": "canon/L0/", "comando": "git ls-tree --name-only origin/main canon/L0/ | wc -l; ... | grep -c MARCADOR-REDISENO", "salida": "194 / 0"},
+   {"tipo": "comando", "ref": "canon/registro-rotulos.tsv", "comando": "git show origin/main:canon/registro-rotulos.tsv | awk -F'\\t' '$2==\"GEN2-MARCADOR-REDISENO-1\"' | wc -l", "salida": "0"},
+   {"tipo": "archivo", "ref": "canon/gobernanza-v1_15.md:937", "comando": "git grep -n 'MARCADOR-REDISENO-1' origin/main -- canon/gobernanza-v1_15.md", "salida": "937: **ADR-545 · `ACTO GEN2-RECIBO-CODEX-3 ...` (ADR-545 es de RECIBO-CODEX-3); 1206 y 9499 solo lo citan como sucesor/antecedente"},
+   {"tipo": "comando", "ref": "forense/notas/2026-09-19-GEN2-MARCADOR-REDISENO-1-cierre.md", "comando": "git ls-tree --name-only origin/main forense/notas/ | grep -i MARCADOR-REDISENO", "salida": "forense/notas/2026-09-19-GEN2-MARCADOR-REDISENO-1-cierre.md"},
+   {"tipo": "regla", "ref": "gobierno/instrucciones-proyecto-v2_16.md:70,78", "comando": "grep -n -E '^D-16|^D-24' gobierno/instrucciones-proyecto-v2_16.md", "salida": "70:D-16. ... ninguna cabecera aserta totales de WARN ni de ADR: los conteos se derivan por comando. 78:D-24. Ids con raíz de acto ... un id numérico acuñado antes del cierre que choque se re-acuña con raíz"}
+  ],
+  "lote": "OTRO:TRAMITE-CASCADAS-HUERFANAS",
+  "entorno": "NUBE",
+  "hecho_comando": "ls canon/L0 | grep -c 'GEN2-MARCADOR-REDISENO-1' ≥ 1 y awk -F'\\t' '$2==\"GEN2-MARCADOR-REDISENO-1\"' canon/registro-rotulos.tsv | wc -l ≥ 1",
+  "owner_detalle": "DIRECCION-ENCARGO (OTRO:TRAMITE-CASCADAS-HUERFANAS)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0352",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "El encargo verbatim está en main, pero fuera de forense/encargos, que es donde miró la búsqueda original. El archivo ENCARGO-GEN2-ISSP2017-REDES-APOYO-COTIDIANO-CLI-1-2026-09-19.md nombra el CALC y tiene sha256 f2c0cd8f…6d26 (7067 bytes). Ese sha es idéntico al de descargas_mx/03-ISSP-REDES-DE-APOYO.md, censado el 21/sep por corpus-integridad-1: una copia independiente de mesa. Se cita por ruta y sha.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/ENCARGO-GEN2-ISSP2017-REDES-APOYO-COTIDIANO-CLI-1-2026-09-19.md", "comando": "git show origin/main:<ruta> | sha256sum; ... | wc -c; ... | grep -c 'CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001'", "salida": "f2c0cd8f9f09890826944e22800ff961310659afd46d42e16d751ca1696f6d26  - · 7067 · 1"},
+   {"tipo": "comando", "ref": "forense/analisis/corpus-integridad-1/indice-juego-2026-09-21.tsv:1317", "comando": "git grep -n f2c0cd8f9f09890826944e22800ff961310659afd46d42e16d751ca1696f6d26 origin/main", "salida": "indice-juego-2026-09-21.tsv:1317:descargas_mx\t03-ISSP-REDES-DE-APOYO.md\t7067\tf2c0cd8f9f09890826944e22800ff961310659afd46d42e16d751ca1696f6d26 (también SHA256SUMS-juego-2026-09-21:1316)"},
+   {"tipo": "archivo", "ref": "ENCARGO-GEN2-ISSP2017-REDES-APOYO-COTIDIANO-CLI-1-2026-09-19.md:5", "comando": "git show origin/main:<ruta> | sed -n 5p", "salida": "CAJA local, Josanoforo/Modelado-Mexicano. Rama `codex/gen2-issp2017-redes-apoyo-cotidiano-cli-1`; CALC propuesto `CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001`, comprobando unicidad..."}
+  ],
+  "cerrado_por_detalle": "producto: forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/ENCARGO-GEN2-ISSP2017-REDES-APOYO-COTIDIANO-CLI-1-2026-09-19.md · sha256 f2c0cd8f9f09890826944e22800ff961310659afd46d42e16d751ca1696f6d26 (= descargas_mx/03-ISSP-REDES-DE-APOYO.md en indice-juego-2026-09-21.tsv:1317)",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0360",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "La fila medía las NC ABIERTA sin token A.14 (hallazgos.md:928: 87 de 108 abiertas). Hoy, en el libro de origin/main (1092 filas), SIN-TOKEN da 90 y ninguna de esas filas está ABIERTA: 84 CERRADA, 5 NO-APLICA-MIENTRAS-ABIERTA, 1 CERRADA-POR-DISEÑO. Las 78 filas de razones-normalizadas.tsv llevan token. El falsador da 25.3 %, bajo el umbral de 33.3 %.",
+  "cite": [
+   {"tipo": "comando", "ref": "tools/nc_por_razon.py", "comando": "git show origin/main:forense/no-corrido.tsv > $S/nc-main.tsv; python3 tools/nc_por_razon.py --tsv $S/nc-main.tsv", "salida": "filas examinadas=1092 ... SIN-TOKEN 90 8.2% ... (*) suma del falsador 276 25.3% umbral de revision: < 33.3%"},
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv (origin/main)", "comando": "csv.DictReader + nc_por_razon.clasifica: filas SIN-TOKEN por estado", "salida": "SIN-TOKEN 90 Counter({'CERRADA': 84, 'NO-APLICA-MIENTRAS-ABIERTA': 5, 'CERRADA-POR-DISEÑO': 1}); abiertas sin token: 0"},
+   {"tipo": "comando", "ref": "forense/analisis/pendientes-2/razones-normalizadas.tsv", "comando": "csv.DictReader: ids de la tabla cuya razon en el libro de origin/main clasifica con token", "salida": "normalizadas en tabla: 78 hoy con token en libro: 78"},
+   {"tipo": "archivo", "ref": "forense/hallazgos.md:928", "comando": "git show origin/main:forense/hallazgos.md | sed -n 928p", "salida": "PARA-v2.15 — la mayoría de las NC abiertas no citan un token de A.14 al empezar su `razon`. forense/no-corrido.tsv, filas estado = ABIERTA (108): ... clasifica 21/108"}
+  ],
+  "cerrado_por_detalle": "producto: forense/analisis/pendientes-2/razones-normalizadas.tsv (78/78 aplicadas) · python3 tools/nc_por_razon.py → SIN-TOKEN 90/1092, 0 ABIERTA; falsador 25.3% < 33.3%",
+  "confianza": "alta"
+ }
+]

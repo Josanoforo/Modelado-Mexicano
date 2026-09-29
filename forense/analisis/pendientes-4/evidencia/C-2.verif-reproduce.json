@@ -1,0 +1,30 @@
+[
+  {
+    "id": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03",
+    "veredicto": "REFUTA",
+    "razon": "Firma R32 y FP 26a2-02 reproducen (opción A). Pero la cita 3 es la tabla previa 'SÍ, sujeto a auditoría', no acreditación. El ADR 0c1f-01 dice las 312 residuales NO-LANZADO; solo ENDIREH se acreditó. Afirmación de los cuatro paquetes contradicha; broker sigue sin provisionar.",
+    "comando": "git show origin/main:canon/L0/ADR-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-01.md | fold -w 250 | sed -n 1,4p",
+    "salida": "Lote 3 de C1: reconstructor opción A ... recalcula las 92 llaves ENDIREH 2016 ... Las 312 residuales (ENBIARE/ENCODAT/ENCUCI/ENIGH, no ENDIREH) NO-LANZADO por gate de acceso. Asiento NO-PASA"
+  },
+  {
+    "id": "NC-260927-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-4b11-03",
+    "veredicto": "REFUTA",
+    "razon": "No es duplicada de 795b-09: ésta es el cruce pago informal tamaño×sector; el est.3 de propuesta-R03 es horas por trámite y gasto por tamaño y corrupción. La cita de cola-adquisicion muestra ENCRIGE y ENVE 2024 OBTENIDO, no NO-ACCESIBLE. Dictamen A.4 en microdato sigue sin confirmar.",
+    "comando": "git show origin/main:forense/analisis/mapa-instrumentos-alternos/propuesta-R03.md | rg -n 'est. 3' ; python3 csv.DictReader sobre cola-adquisicion (952 filas), fuente_canonica in (ENCRIGE, ENVE)",
+    "salida": "34: (est. 3) horas por trámite y gasto de cumplimiento, por tamaño y por experiencia de corrupción · 795b-09: pago informal ... tamaño × sector · cola: ENCRIGE OBTENIDO 'Microdato (392 archivos)'; ENVE OBTENIDO 'Microdato (413 archivos)'"
+  },
+  {
+    "id": "NC-260927-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-4b11-04",
+    "veredicto": "CONFIRMA",
+    "razon": "Reproducen R01-R06 FIRMADA, 08ee752a en main con el diff declarado, corpus_loader 224-228, ADENDA-1 en main y columna holdout_decision GASTABLE-COMO-PISO en M09-M23 (15/15). La decisión pendiente ya está firmada y aplicada.",
+    "comando": "git merge-base --is-ancestor 08ee752a origin/main && echo EN-MAIN; git show 08ee752a --stat; csv.DictReader decisiones-21.tsv renglon R01..R06",
+    "salida": "EN-MAIN · manifiesto.yaml 2 ++ · catalogo-momentos 48 · corpus_loader.py 10 · R01..R06 estado=FIRMADA · VIAJA-EN GEN2-CALC-ALTERNOS-LOTE-1 (A.12)"
+  },
+  {
+    "id": "NC-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-02",
+    "veredicto": "CONFIRMA",
+    "razon": "Reproducen FP f2e5-29 FIRMADA con ejecutada_en ADR 795b-01 y R10 (d): ENAPROCE NO-ACCESIBLE, sin titular. Los dos sello.json CALC-ALT-R03 están en origin/main. La decisión de mesa que esperaba la fila ya se tomó y se ejecutó.",
+    "comando": "python3 tools/consulta.py fp FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-29; git ls-tree -r --name-only origin/main data/corrida0/ | rg 'CALC-ALT-R03.*/sello.json'",
+    "salida": "estado=FIRMADA · ejecutada_en=ADR-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-01 ... · R10: «Firmo I1 (d): ENAPROCE queda NO-ACCESIBLE para R03...» · 2 sello.json"
+  }
+]

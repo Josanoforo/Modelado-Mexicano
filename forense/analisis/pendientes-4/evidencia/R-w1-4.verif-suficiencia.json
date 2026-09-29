@@ -1,0 +1,9 @@
+[
+ {
+  "id": "NC-260926-GEN2-CIERRE-SEMANAL-1-dea2-04",
+  "veredicto": "CONFIRMA",
+  "razon": "Push run 36276468239 (ea675d5cf) cancelled, declarado; pero su paso 5 (check.py --baseline) fue success y el run PR 36274452268 probó el mismo árbol 88a6ac12 (base acf62514c anterior al run) con suite pasos 5-6 success. La fila nombra «CI del PR» como antecesor. Cierra lo pedido.",
+  "comando": "curl -s api.github.com/repos/Josanoforo/Modelado-Mexicano/actions/runs/36276468239/jobs | jq (suite pasos) ; commits/{ea675d5cf,ca423ae8d} .commit.tree.sha",
+  "salida": "push run cancelled; suite paso5 success, paso6 cancelled; PR run 36274452268 success pasos 1-7; ambos tree 88a6ac12; acf62514c 21:29 < PR run 21:53"
+ }
+]

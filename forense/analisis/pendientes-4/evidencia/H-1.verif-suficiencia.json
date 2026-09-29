@@ -1,0 +1,9 @@
+[
+  {
+    "id": "NC-260926-GEN2-CIERRE-SEMANAL-1-dea2-04",
+    "veredicto": "REFUTA",
+    "razon": "La receta pide verify.yml sobre ea675d5cf (merge de #1168 a main). Ese run push 36276468239 terminó cancelled (suite cancelled, check failure). El cierre sustituye el run pull_request sobre ca423ae8 sin declararlo. Árbol idéntico (88a6ac12), pero la condición «si success» de la receta no se cumple y el cierre omite esa divergencia.",
+    "comando": "curl -sS 'https://api.github.com/repos/Josanoforo/Modelado-Mexicano/actions/runs?head_sha=ea675d5cf2e5b66fc3861b2aba15f07c6fa63a9b' | jq '.workflow_runs[]|[.id,.path,.event,.conclusion]'; curl .../actions/runs/36276468239/jobs; curl .../commits/{ea675d5cf,ca423ae8} | jq .commit.tree.sha",
+    "salida": "36276468239 verify.yml push cancelled; jobs: suite cancelled (22:30-22:40), guardias cancelled, check failure; run 36274452268 pull_request head ca423ae8 success; tree ea675d5cf = tree ca423ae8 = 88a6ac12170a11fd248ccb1756ce3acf0337bb9c"
+  }
+]

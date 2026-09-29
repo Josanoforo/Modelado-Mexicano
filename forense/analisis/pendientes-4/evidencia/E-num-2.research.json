@@ -1,0 +1,368 @@
+[
+ {
+  "id": "NC-0260",
+  "verdict": "ABSORBER",
+  "rationale": "Sin hacer: tools/censa_reactivos_ciegos.py no lee el crosswalk residual (0 menciones) y el censo no marca motivo (0 EJE-TRANSPUESTO). Las 2368 se re-derivan por comando (2172+150+46). Delegación 28/sep: re-derivar marcando, sin borrar; reversible. Es un derivado NUBE, sin microdato.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "tools/censa_reactivos_ciegos.py",
+    "comando": "git show origin/main:tools/censa_reactivos_ciegos.py | grep -c 'crosswalk'; git show origin/main:data/reactivos-ciegos-81-v1_0.tsv | grep -c 'EJE-TRANSPUESTO'",
+    "salida": "0\n0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/crosswalk-tablas-fd-residual-v1_0.tsv",
+    "comando": "git show origin/main:data/crosswalk-tablas-fd-residual-v1_0.tsv | python3 (csv.DictReader, suma filas_ciegas por motivo; 96 filas examinadas)",
+    "salida": "{'MIEMBRO-ES-EL-PROPIO-FD': 150, 'EJE-TRANSPUESTO': 2172, 'NO-ES-TABLA-DE-DATOS': 46, 'IDENTIDAD-INSUFICIENTE': 190} 2368"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/reactivos-ciegos-81-v1_0.tsv",
+    "comando": "git log origin/main --oneline -n 8 -- data/reactivos-ciegos-81-v1_0.tsv tools/censa_reactivos_ciegos.py",
+    "salida": "bf5fc5e7 Merge pull request #1196 ... (borde de injerto del clon shallow; cabecera del TSV: 'ACTO GEN2-REACTIVOS-RESIDUALES-2 (15/sep/2026, NUBE, sin corpus)')"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv:NC-0260",
+    "comando": "csv.DictReader sobre decididas-por-delegacion.tsv, id=NC-0260",
+    "salida": "DUEÑO-MESA · (a) recomendada: re-derivar data/reactivos-ciegos-81-v1_0.tsv leyendo el crosswalk, marcando (no borrando) las 2368 con motivo; (b) mesa decide que el denominador no se recorta."
+   }
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:tools/censa_reactivos_ciegos.py | grep -c 'crosswalk-tablas-fd-residual' (>=1) y, por csv.DictReader, la suma de la columna de filas irrecuperables-por-construcción de data/reactivos-ciegos-81-v1_0.tsv == 2368 (derivada del crosswalk, no tecleada)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0272",
+  "verdict": "ABSORBER",
+  "rationale": "Sin hacer: ADR-MOTOR-2-esqueleto:35 sigue diciendo «[FIRMA M1 — VACÍA]» y ninguno de los dos archivos trae ENMIENDA ni ADR-531 (0 y 0). La delegación del 28/sep manda aplicar la enmienda fechada de ADR-531, con el texto original intacto, en un acto que tenga ambos en perímetro. Cambia lo que lee un lector, así que no la cierro como motor legacy.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/ADR-MOTOR-2-esqueleto-2026-08-14.md:35",
+    "comando": "git show origin/main:forense/ADR-MOTOR-2-esqueleto-2026-08-14.md | sed -n 35p",
+    "salida": "**Firma de mesa (M1):** `[FIRMA M1 — VACÍA]`"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/CASCADA-M1-2026-08-14.md; forense/ADR-MOTOR-2-esqueleto-2026-08-14.md",
+    "comando": "for f in forense/CASCADA-M1-2026-08-14.md forense/ADR-MOTOR-2-esqueleto-2026-08-14.md; do git show origin/main:$f | grep -c -i 'ENMIENDA\\|ADR-531'; done",
+    "salida": "0\n0"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "canon/gobernanza-v1_15.md:2370,3018",
+    "comando": "git grep -n 'ENMIENDA FECHADA.*531' origin/main -- canon",
+    "salida": "canon/gobernanza-v1_15.md:2370:**ENMIENDA FECHADA a `ADR-68` (16/sep/2026, `ACTO GEN2-M1-ALCANCE-1` / `ADR-531` ... ; :3018 ENMIENDA FECHADA a `ADR-91` — ESTAMPA DE ALCANCE SOBRE M1 (modelo de la enmienda a replicar)"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv:NC-0272",
+    "comando": "csv.DictReader, id=NC-0272",
+    "salida": "DUEÑO-MESA · Reversible (la enmienda fechada deja el texto original intacto): aplicar la misma enmienda de ADR-531 a los dos archivos en un acto que los tenga en perimetro. Sin urgencia: no gatea nada."
+   }
+  ],
+  "lote": "OTRO:TRAMITE-TRAZABILIDAD",
+  "entorno": "NUBE",
+  "hecho_comando": "for f in forense/CASCADA-M1-2026-08-14.md forense/ADR-MOTOR-2-esqueleto-2026-08-14.md; do git show origin/main:$f | grep -c 'ENMIENDA FECHADA.*ADR-531'; done (>=1 cada uno) y git diff <base>..origin/main -- esos dos archivos sin líneas borradas (solo '+')",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0273",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "La rama que daba el FAIL en falso ya no existe. MOTOR-DEUDA-LOTE-1 P2 sustituyó la aserción por saltar() cuando los SHA coinciden (test_motor_holdout.py:117-127; nota :26). Lo ejecuté en este clon shallow (498 commits, bf5fc5e7 en .git/shallow): los dos git log dan el mismo SHA y test_c sale en skip, no en FAIL. NC-0310, del mismo test, ya está CERRADA-POR-DISEÑO.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "tests/test_motor_holdout.py",
+    "comando": "git rev-parse --is-shallow-repository; PYTHONDONTWRITEBYTECODE=1 python3 tests/test_motor_holdout.py | tail -n 3",
+    "salida": "true\n  test_c_roles_sellados_antes_que_todo_resultado: skip -- NO-PROCEDE-HISTÓRICO: catálogo y motor entraron en el mismo commit (e860e77, ...) -- NC-260921-MOTOR-THETA-CONGELADA-1-e8fa-02\nT-MOTOR-HOLDOUT: 5 prueba(s) ok, 1 saltada(s)"
+   },
+   {
+    "tipo": "comando",
+    "ref": ".git/shallow",
+    "comando": "git log --format=%H --diff-filter=A -- milpa/catalogo-momentos-v0_1.tsv | tail -1; ídem milpa/src/motor.py; grep -c bf5fc5e7 .git/shallow",
+    "salida": "bf5fc5e7b80be00fa9a9e29f7aa166cf6fe93a2a\nbf5fc5e7b80be00fa9a9e29f7aa166cf6fe93a2a\n1"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-23-GEN2-MOTOR-DEUDA-LOTE-1-cierre.md:26",
+    "comando": "git show origin/main:forense/notas/2026-09-23-GEN2-MOTOR-DEUDA-LOTE-1-cierre.md | grep -n 'NO-PROCEDE-HIST'",
+    "salida": "26:Mismo commit → dictamen `NO-PROCEDE-HISTÓRICO`. `tests/test_motor_holdout.py` editado (única edición de código de este acto): la aserción de `test_c_roles_sellados_antes_que_todo_resultado` se sustituyó por `saltar(...)` con la razón citada."
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-0310",
+    "comando": "python3 tools/consulta.py nc NC-0310",
+    "salida": "NC-0310 · estado=CERRADA-POR-DISEÑO · ... cerrado_por: por diseño: tests/test_motor_holdout.py · python3 tests/test_motor_holdout.py | tail -3 · GEN2-TRAMITE-PENDIENTES-2 2026-09-28"
+   }
+  ],
+  "cerrado_por_detalle": "por diseño: tests/test_motor_holdout.py:117-127 (la aserción con SHA iguales se sustituyó por saltar NO-PROCEDE-HISTÓRICO, GEN2-MOTOR-DEUDA-LOTE-1 P2) · PYTHONDONTWRITEBYTECODE=1 python3 tests/test_motor_holdout.py | tail -3 en clon shallow → skip, no FAIL",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0285",
+  "verdict": "ABSORBER",
+  "rationale": "La mitad (1) está hecha: corridas.tsv tiene CALC-ENCIG2023-AGREGADO-CONDICIONAL-0001--b347743353b2 SELLADA, con replay REPRODUCE. La mitad (2) no: 0 de las 1217 rutas de forense/encargos/ contienen AGREGADO-CONDICIONAL, y el verbatim sigue solo en forense/analisis/. La delegación del 28/sep manda una copia byte a byte con sidecar sha256, en un acto de trámite y sin mover el original.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | wc -l; git ls-tree -r --name-only origin/main forense/encargos | grep -c -i 'AGREGADO-CONDICIONAL'",
+    "salida": "1217\n0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv",
+    "comando": "python3 tools/consulta.py corrida CALC-ENCIG2023-AGREGADO-CONDICIONAL-0001--b347743353b2",
+    "salida": "CALC-ENCIG2023-AGREGADO-CONDICIONAL-0001--b347743353b2 · spec_id=CALC-ENCIG2023-AGREGADO-CONDICIONAL-0001 · estado=SELLADA · generacion=GEN2 · cuenta_gen2=PENDIENTE-DE-CASCADA-DIFERIDA · sello=COINCIDE · n_resultados=65 · resultado_replay=REPR…"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/encig2023-agregado-condicional-1/00-encargo-verbatim.md",
+    "comando": "git show origin/main:forense/analisis/encig2023-agregado-condicional-1/00-encargo-verbatim.md | wc -l; ... | grep -c CONSUMIDO",
+    "salida": "56\n0"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv:NC-0285",
+    "comando": "csv.DictReader, id=NC-0285",
+    "salida": "DUEÑO-MESA · Propuesta: copia byte a byte a forense/encargos/2026-09-1x-GEN2-ENCIG2023-AGREGADO-CONDICIONAL-1.md con sidecar sha256 en un acto de tramite (no mover el original)."
+   }
+  ],
+  "lote": "OTRO:TRAMITE-TRAZABILIDAD",
+  "entorno": "NUBE",
+  "hecho_comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c 'ENCIG2023-AGREGADO-CONDICIONAL' (>=1) y sha256sum de esa copia == sha256sum de forense/analisis/encig2023-agregado-condicional-1/00-encargo-verbatim.md (original intacto)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0287",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "El propio sucesor declara que el recibo en lote de TRAMITE-4 sustituye a esta tanda y difiere las siguientes al «siguiente recibo de tanda». Los dos están en main (nota TRAMITE-4 §3.1-3.2; RECIBO-CODEX-3..6; RECIBO-ASTRA6-N con ADR). La delegación dice cerrar, reversible. Residuo: los 6 encargos siguen con 0 NO-CORRIDO y 0 CONSUMIDO.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-16-GEN2-TRAMITE-4.md:40-57",
+    "comando": "git show origin/main:forense/notas/2026-09-16-GEN2-TRAMITE-4.md | sed -n '40,57p'",
+    "salida": "## 3 · P1 · El recibo del carril Codex / ### 3.1 · Una línea por PR / | `#824` ... | `#831` ... / ### 3.2 · Por qué el lote abrió cero filas: no escriben `## NO-CORRIDO`"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/ (recibos de tanda)",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -i 'RECIBO-CODEX\\|RECIBO-ASTRA6'",
+    "salida": "2026-09-16-GEN2-TRAMITE-4-RECIBO-CODEX-Y-CUATRO-FIRMAS.md, 2026-09-17-GEN2-RECIBO-CODEX-2-..., 2026-09-19-GEN2-RECIBO-CODEX-3.md, -4.md, -5.md, 2026-09-20-GEN2-RECIBO-CODEX-6.md, 2026-09-26-GEN2-RECIBO-ASTRA6-1.md, 2026-09-26-GEN2-RECIBO-ASTRA6-N.md (+ canon/L0/ADR-260926-GEN2-RECIBO-ASTRA6-N-996b-01.md)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "6 encargos del carril (#824-#830)",
+    "comando": "for f in DIGESTO-CORRECTIVO-1 F6-FACTIBILIDAD-PREPARACION-1 ENCRIGE-DESCRIPTIVA-1 SIN-CANDIDATO-RUTAS-1 RELEVO-CANDIDATOS-DELTA-1 ENVIPE-RES0028-DERIVADO-U4-1: grep -c '^## NO-CORRIDO' y '^## CONSUMIDO' en origin/main",
+    "salida": "6/6 archivos: NOCORR=0 CONS=0 (residuo; se reabre si mesa exige retrofit)"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv:NC-0287",
+    "comando": "csv.DictReader, id=NC-0287",
+    "salida": "DUEÑO-MESA · Recomendacion: cerrar; es forma de archivo (retrofit A.14 sobre 6 encargos ya fusionados) y el carril ya paso a recibo por tanda (RECIBO-CODEX-3..6 ...). Reversible: se reabre si mesa exige retrofit."
+   }
+  ],
+  "cerrado_por_detalle": "producto: forense/notas/2026-09-16-GEN2-TRAMITE-4.md §3.1-3.2 (recibo en lote, sustituto que declara el propio sucesor) + recibos de tanda forense/encargos/2026-09-19..20-GEN2-RECIBO-CODEX-3..6 y canon/L0/ADR-260926-GEN2-RECIBO-ASTRA6-N-996b-01.md · git ls-tree -r --name-only origin/main forense/encargos | grep -c 'RECIBO-CODEX'",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0292",
+  "verdict": "ABSORBER",
+  "rationale": "Sin hacer: digesto_tramite.py:2129-2130 arma H-REF con HEAD y el hash del árbol de trabajo aunque sucio sea True (:2108). El PARO P1.6 (:2838) solo cubre el modo archivo, no --stdout. Ninguno de los 5 tests de digesto menciona sucio. La delegación pide el hash del TSV en el commit, o ninguna marca si está sucio, con test.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "tools/digesto_tramite.py:2108,2129-2130",
+    "comando": "git show origin/main:tools/digesto_tramite.py | sed -n '2108p;2129,2130p'",
+    "salida": "    sucio = _git_arbol_sucio(raiz, _NC_RUTA_REL)\n    marca_ref = (f\"<!-- H-REF sha_arbol={sha_arbol_actual or '0' * 40} \"\n                f\"nc_sha256={nc_sha256_actual} -->\")"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/digesto_tramite.py:2834-2843",
+    "comando": "git show origin/main:tools/digesto_tramite.py | sed -n '2834,2843p'",
+    "salida": "# P1.6: en modo publicación (escribe archivo), un `no-corrido.tsv` con cambios locales ... if not a.stdout and _git_arbol_sucio(raiz, _NC_RUTA_REL): print(\"PARO ... usa `--stdout` para una vista previa\") return 2"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tests/test_digesto_*.py",
+    "comando": "for f in $(git ls-tree -r --name-only origin/main tests | grep -i digesto); do git show origin/main:$f | grep -c -i sucio; done",
+    "salida": "5 archivos examinados: 0 0 0 0 0"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv:NC-0292",
+    "comando": "csv.DictReader, id=NC-0292",
+    "salida": "DUEÑO-MESA · Reversible: que marca_ref declare el hash del TSV EN el commit (git show HEAD:...) o no se escriba con sucio=True, con test."
+   }
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "PYTHONDONTWRITEBYTECODE=1 python3 tests/test_digesto_nc.py | tail -n 3 (todo ok) y git show origin/main:tests/test_digesto_nc.py | grep -c -i 'sucio' (>=1: caso TSV sucio sin marca H-REF autocontradictoria)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0294",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "El objeto es la indexación de Theta.desde(), en la capa θ, que no es camino de emisión (v2_16:39). valor() lanza siempre (theta.py:13-14; lo ejecuté). La etapa de retadores está cerrada (MEMORIA:10), DEMANDA-DICTAMEN-1:11 dicta NO-RELEVAR-θ y la adenda autoriza cerrar θ por diseño. La colisión 44→43 persiste, pero fuera de los tests nadie la consume.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "milpa/src/theta.py",
+    "comando": "PYTHONDONTWRITEBYTECODE=1 python3 -c \"...P.cargar();print(len(p.consumibles()),len(T.Theta.desde(p).entradas)); t.valor(primera)\"",
+    "salida": "44 43\nvalor lanza: `salud` está registrada como MEDIDO·PARCIAL pero no hay distribución cargable: `matriz.g` no es camino de emisión vigent"
+   },
+   {
+    "tipo": "regla",
+    "ref": "milpa/src/theta.py:13-14",
+    "comando": "git show origin/main:milpa/src/theta.py | grep -n 'ESTADO VIGENTE\\|no es camino de emisión vigente'",
+    "salida": "13:ESTADO VIGENTE (ACTO MOTOR-THETA-CONGELADA-1, 21/sep/2026): `valor()` lanza\n14:para las 43 entradas, y por eso `matriz.g` no es camino de emisión vigente."
+   },
+   {
+    "tipo": "regla",
+    "ref": "gobierno/instrucciones-proyecto-v2_16.md:39; canon/MEMORIA-OPERATIVA.md:10",
+    "comando": "git show origin/main:gobierno/instrucciones-proyecto-v2_16.md | sed -n 39p; git show origin/main:canon/MEMORIA-OPERATIVA.md | grep -n 'Etapa de retadores'",
+    "salida": "... La capa θ y matriz.g son generador de retadores, no camino de emisión ...\n10:- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas."
+   },
+   {
+    "tipo": "comando",
+    "ref": "consumidores de theta",
+    "comando": "git grep -n -E 'from milpa.src import .*theta|theta\\.Theta|Theta\\.desde|milpa\\.src\\.theta' origin/main -- '*.py'",
+    "salida": "tests/test_theta_esquema_e1.py:27,41,77; tools/corrida0.py:577 (solo comentario). Ningún consumidor de emisión."
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md:9 (HEAD, archivo del 0-bis)",
+    "comando": "git show HEAD:forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md | sed -n 9p",
+    "salida": "«Ok» firma ...: (a) el acto cierra por diseño, con cita, toda NC cuyo objeto sea GEN1 (E.1), un procedimiento retirado por regla 6 (duelo v2 sin camino de emisión, θ, motor legacy)..."
+   }
+  ],
+  "cerrado_por_detalle": "por diseño: milpa/src/theta.py:13-14 (valor() lanza; matriz.g no es camino de emisión) + gobierno/instrucciones-proyecto-v2_16.md:39 + canon/MEMORIA-OPERATIVA.md:10 + forense/encargos/2026-09-28-GEN2-DEMANDA-DICTAMEN-1.md:11 (NO-RELEVAR-θ) · python3 -c 'Theta.desde(P.cargar())' → 44 43, valor lanza",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0296",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "El objeto es la fuente: de un coeficiente GEN1 sellado de matriz.g (RES-0072 LEGACY-GEN1, inventario-operativo:35; procedencia.yaml es GEN1 intocado, gobernanza:1196). Lo ejecuté: aun resolviéndola bien (G3_horizonte_temporal existe en medidos), acto y fecha quedan NO-DECLARADO, y demanda-resultados ya dice NO-DECLARADO. El arreglo no cambia nada: se anota y no se instrumenta (v2_16:16).",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "tools/corrida0.py:415 sobre milpa/procedencia.yaml",
+    "comando": "python3 (yaml) replica str(fuente).split('.',1)[-1].split(',')[0] para los 7 coeficientes_generador_sellados",
+    "salida": "5 G3 horizonte_temporal | clave= md | en_medidos= False | fuente= forense/notas/2026-08-24-cal-g3-puntual-cierre.md, FP-127, firma b1 (los otros 6 resuelven True)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "milpa/procedencia.yaml:coeficientes_generador_medidos.G3_horizonte_temporal",
+    "comando": "python3: RE_ACTO/RE_FECHA de corrida0.py:197-198 sobre la fuente de medidos['G3_horizonte_temporal']",
+    "salida": "acto_m= NO-DECLARADO fecha_m= NO-DECLARADO"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/demanda-resultados.tsv",
+    "comando": "csv.DictReader, consumidor contiene G3.horizonte_temporal (211 filas examinadas)",
+    "salida": "RES-0072 generador_sellados:G3.horizonte_temporal acto= NO-DECLARADO-EN-EL-REGISTRO fecha= NO-DECLARADO-EN-EL-R"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/astra4-relevo/inventario-operativo.tsv:35",
+    "comando": "git grep -n 'RES-0072' origin/main -- forense/analisis/astra4-relevo/inventario-operativo.tsv",
+    "salida": "35:RES-0072\tmilpa/procedencia.yaml:coeficientes_generador_sellados:G3.horizonte_temporal\tcoeficiente_ejecutable\tLEGACY-GEN1\t0.0876 ..."
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/gobernanza-v1_15.md:1196; gobierno/instrucciones-proyecto-v2_16.md:16,39,99",
+    "comando": "git show origin/main:canon/gobernanza-v1_15.md | sed -n 1196p; git show origin/main:gobierno/instrucciones-proyecto-v2_16.md | sed -n 16p",
+    "salida": "(la capa, GEN1 sellado `procedencia.yaml` intocado) ... | Si no le habría costado nada a un lector, se anota y no se instrumenta."
+   }
+  ],
+  "cerrado_por_detalle": "por diseño: objeto GEN1 (milpa/procedencia.yaml coeficientes_generador_sellados[5] = RES-0072 LEGACY-GEN1, forense/analisis/astra4-relevo/inventario-operativo.tsv:35; gobernanza-v1_15.md:1196) · réplica de corrida0.py:415 → con la llave correcta acto_m=fecha_m=NO-DECLARADO, salida idéntica",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0298",
+  "verdict": "ABSORBER",
+  "rationale": "Sin hacer: corrida0.py:297 sigue leyendo la escala por regla. Con lector CSV, demanda-resultados.tsv tiene 11 conducta_p_medido con NO-DECLARADO-EN-EL-REGISTRO (las mismas RES-0003…0026). TUBERIA-3, ya consumido, no la toca (0 menciones de escala). NC-0276 se cerró como duplicada de esta. Delegación: leer salida.escala con respaldo a la regla. Lo que escribe en milpa/ lo fusiona mesa.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "tools/corrida0.py:297-298",
+    "comando": "git show origin/main:tools/corrida0.py | sed -n '297,298p'",
+    "salida": "        escala = crudo.get(\"escala\") or (\n            \"p (proporcion ponderada)\" if crudo.get(\"ic95\") else NO_DECLARADO)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/demanda-resultados.tsv",
+    "comando": "csv.DictReader (211 filas examinadas), tipo=conducta_p_medido, escala_legacy startswith NO-DECLARADO",
+    "salida": "11 ['RES-0003','RES-0004','RES-0005','RES-0009','RES-0011','RES-0013','RES-0015','RES-0021','RES-0022','RES-0025','RES-0026']"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/2026-09-28-GEN2-TUBERIA-3.md",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-TUBERIA-3.md | grep -c -i escala; ... | grep -c '^## CONSUMIDO'",
+    "salida": "0\n1"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-0276",
+    "comando": "python3 tools/consulta.py nc NC-0276",
+    "salida": "NC-0276 · estado=CERRADA · ... · sucesor=NC-0298 (ABIERTA); cerrado_por: GEN2-PENDIENTES-3 · CERRADA (duplicada: NC-0298 [ABIERTA]) 2026-09-28"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv:NC-0298",
+    "comando": "csv.DictReader, id=NC-0298",
+    "salida": "DUEÑO-MESA · Reversible: que _consumidores_conductas lea salida.escala con respaldo a la de regla (sin cambiar reglas que ya la declaran). Bloquea NC-0276."
+   }
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "tras publicar el canal: csv.DictReader sobre data/corrida0/demanda-resultados.tsv → filas tipo=conducta_p_medido con escala_legacy NO-DECLARADO-EN-EL-REGISTRO == 0, y un test que ejercita una regla con escalas distintas por salida pasa (pytest -q … | tail -n 5)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0299",
+  "verdict": "ABSORBER",
+  "rationale": "Sin hacer: tramite.yaml trae 11 origen: por rango de línea. Lo ejecuté: el árbitro:1347 no es util_sin_coercion_ejes_encig2025 (vive en :1600), y :107 no es ADR-236. La delegación dice que sí, a id estable y sin mover la numeración (44 specs citan líneas). Solo se tocan citas, no valores (E.1); lo de milpa/ lo fusiona mesa (MEMORIA:7).",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "milpa/tramite.yaml",
+    "comando": "git show origin/main:milpa/tramite.yaml | grep -c 'origen: \"milpa/tramite-ola5-propuesta-v0.yaml:[0-9]'; ... | wc -l",
+    "salida": "11\n1745"
+   },
+   {
+    "tipo": "comando",
+    "ref": "milpa/tramite-ola5-propuesta-v0.yaml",
+    "comando": "git show origin/main:milpa/tramite-ola5-propuesta-v0.yaml | grep -n 'util_sin_coercion_ejes_encig2025\\|evasion_norma_ejes_envipe2025'",
+    "salida": "1600:  - id: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025\n1672:  - id: tramite.evasion_norma_ejes_envipe2025 (citadas en tramite.yaml:444 como 1347-1418 y :544 como 1419-1509)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/CALC-*/spec.yaml",
+    "comando": "git grep -l 'milpa/tramite.yaml' origin/main -- 'data/corrida0/CALC-*/spec.yaml' | wc -l",
+    "salida": "44"
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:7,18",
+    "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | grep -n 'escribe en milpa/\\|único que escribe milpa'",
+    "salida": "7: ... Todo lo que sella corridas o escribe en milpa/ lo fusiona mesa. | 18: ... tools/escribe_relevo_consumo.py (único que escribe milpa/)."
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv:NC-0299",
+    "comando": "csv.DictReader, id=NC-0299",
+    "salida": "DUEÑO-MESA · Reversible (git): corregir las citas a id estable SIN cambiar el numero de lineas del archivo (44 specs selladas citan lineas de tramite.yaml). Recomiendo si; verificar con wc -l identico antes/despues."
+   }
+  ],
+  "lote": "OTRO:TRAMITE-TRAZABILIDAD",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:milpa/tramite.yaml | grep -c 'origen: \"milpa/tramite-ola5-propuesta-v0.yaml:[0-9]' == 0 (o constancia fuera de milpa/ con 11/11 citas resueltas a un '- id:' existente del árbitro) y wc -l de milpa/tramite.yaml igual en <commit>^ y <commit>",
+  "confianza": "media"
+ }
+]

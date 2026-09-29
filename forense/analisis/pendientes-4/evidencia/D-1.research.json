@@ -1,0 +1,187 @@
+[
+  {
+    "id": "NC-260921-GEN2-RELEVO-TANDA-4-dedd-01",
+    "verdict": "CERRAR-PRODUCTO",
+    "rationale": "La fila pedía un CALC propio que midiera L desde las 224 capturas con el agregador declarado. CALC-L-DESDE-CAPTURAS-v1_0 (PR #973, fusionado) mide eso y está SELLADA GEN2 en corridas.tsv de origin/main. La NC gemela de TANDA-3 (7bf5-03) ya se cerró citando #973. Los pines de L van por otra vía (FP RELEVO-TANDA-5 f54e-01 y NC TANDA-7-9a4c-01).",
+    "cite": [
+      {"tipo": "comando", "ref": "data/corrida0/corridas.tsv", "comando": "python3 scratchpad/d1/q.py origin/main data/corrida0/corridas.tsv spec_id '^CALC-L-DESDE-CAPTURAS-v1_0$' corrida_id,estado,generacion,cuenta_gen2,n_resultados,resultado_replay", "salida": "corrida_id=CALC-L-DESDE-CAPTURAS-v1_0--ee2443e8dc40 | estado=SELLADA | generacion=GEN2 | cuenta_gen2=SI | n_resultados=6 | resultado_replay=NO-VERIFICADO ... [origin/main:data/corrida0/corridas.tsv] filas=357 coincidencias=1"},
+      {"tipo": "archivo", "ref": "canon/L0/ADR-260921-GEN2-L-DESDE-CAPTURAS-1-1d7c-01.md", "comando": "fold -w 400 canon/L0/ADR-260921-GEN2-L-DESDE-CAPTURAS-1-1d7c-01.md | head", "salida": "Sella `CALC-L-DESDE-CAPTURAS-v1_0`: L por celda×variante (28 slots, 14 celdas × 2 brazos) desde las 224 capturas de `corridas-L-completa-v1_0/` ... con mediana, dispersión MAD e IC bootstrap por slot ... `verify REPRODUCE`/`IDENTICO` ... sin pinear nada. `cuenta_gen2 = SI`."},
+      {"tipo": "commit", "ref": "PR #973", "comando": "mcp github pull_request_read get 973", "salida": "\"title\":\"GEN2-L-DESDE-CAPTURAS-1 · Las cifras del LLM en el duelo se miden desde sus capturas selladas\" ... \"merged\":true ... \"merged_at\":\"2026-09-22T00:07:26Z\""},
+      {"tipo": "archivo", "ref": "forense/no-corrido.tsv (NC-260921-GEN2-RELEVO-TANDA-3-7bf5-03)", "comando": "csv.DictReader sobre forense/no-corrido.tsv, fila id=NC-260921-GEN2-RELEVO-TANDA-3-7bf5-03, campo cerrado_por", "salida": "CERRADA por GEN2-RELEVO-TANDA-5 (22/sep/2026): PR #973 (GEN2-L-DESDE-CAPTURAS-1) fusionado a main ... CALC-L-DESDE-CAPTURAS-v1_0 mide desde las 224 capturas selladas con la mediana que F5-completa-spec-v1_0.md declara vigente (§4), sin ingerir de CALC-TRIADA-0001"},
+      {"tipo": "archivo", "ref": "forense/encargos/2026-09-21-GEN2-L-DESDE-CAPTURAS-1.md:9", "comando": "sed -n '8,16p' forense/encargos/2026-09-21-GEN2-L-DESDE-CAPTURAS-1.md", "salida": "Mesa firmó: gobierna la mediana declarada, GEN1 es historia, y el relevo de L exige un CALC propio que mida desde las capturas. Nadie lo tomó."}
+    ],
+    "cerrado_por_detalle": "producto: data/corrida0/CALC-L-DESDE-CAPTURAS-v1_0 (PR #973, ADR-260921-GEN2-L-DESDE-CAPTURAS-1-1d7c-01) · corridas.tsv spec_id=CALC-L-DESDE-CAPTURAS-v1_0 → SELLADA GEN2 cuenta_gen2=SI; misma deuda que NC-260921-GEN2-RELEVO-TANDA-3-7bf5-03, CERRADA por #973",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260921-GEN2-TUBERIA-RES-LLAVE-1-5573-01",
+    "verdict": "CERRAR-FIRMA",
+    "rationale": "La fila dejaba a mesa decidir, al fusionar, si el salto 149→150 se declaraba como deriva de un derivado viejo o pedía acto aparte. Mesa confirmó el 21/sep que es la deriva ya declarada y ajena al PR, no bloqueo, y autorizó fusionar #949 (fusionado). ADR-587 lo declara. La gemela -02 cerró por firma F9. No hay acto aparte pendiente.",
+    "cite": [
+      {"tipo": "firma", "ref": "PR #949 (cuerpo, «Lo que mesa confirmó (21/sep/2026)»)", "comando": "mcp github pull_request_read get 949", "salida": "1. El `149 → 150` de `dependencias_numericas_legacy_activas` es **esa misma deriva ya declarada**, ajena a este PR: `origin/main` sin ningún cambio mío, re-derivado, da 150. Queda registrada en `NC-…-5573-01`, **no como bloqueo**. ... NC-…-5573-01. **Resuelta por mesa.** ... \"merged\":true, \"merged_at\":\"2026-09-21T15:47:02Z\""},
+      {"tipo": "archivo", "ref": "forense/encargos/2026-09-21-GEN2-TUBERIA-RES-LLAVE-1.md:203", "comando": "git show origin/main:forense/encargos/2026-09-21-GEN2-TUBERIA-RES-LLAVE-1.md | sed -n '203p' | rg -o 'mesa autoriz.{0,330}'", "salida": "mesa autorizó explícitamente al ejecutor a fusionar este PR**, tras confirmar las dos lecturas medidas como decisión registrada y no como bloqueo: el `149 → 150` de `dependencias_numericas_legacy_activas` es la deriva en vivo ya declarada y ajena a este PR (`NC-260921-GEN2-TUBERIA-RES-LLAVE-1-5573-01`)"},
+      {"tipo": "archivo", "ref": "canon/L0/HISTORICO.md (ADR-587)", "comando": "git show origin/main:canon/L0/HISTORICO.md | rg -o 'HALLAZGO: la deriva estaba ocurriendo EN VIVO en main.{0,200}' | head -1", "salida": "HALLAZGO: la deriva estaba ocurriendo EN VIVO en main -- un slot celda-D nuevo sin re-derivar habria corrido 36 ids en el proximo `demanda`; con el registro, 0 se mueven. NC-0213 CERRADA como DERIVA, no error de autor"},
+      {"tipo": "comando", "ref": "forense/no-corrido.tsv (NC-260921-GEN2-TUBERIA-RES-LLAVE-1-5573-02)", "comando": "python3 tools/consulta.py nc NC-260921-GEN2-TUBERIA-RES-LLAVE-1-5573-02", "salida": "NC-260921-GEN2-TUBERIA-RES-LLAVE-1-5573-02 · estado=CERRADA · acto=GEN2-TUBERIA-RES-LLAVE-1 · pr=971 · razon=DECISIÓN-DE-MESA-PENDIENTE (cerrado_por: FIRMA DE MESA F9, cuaderno de mesa 21/sep/2026 §5.3)"},
+      {"tipo": "comando", "ref": "data/corrida0/registro-res.tsv", "comando": "git show origin/main:data/corrida0/registro-res.tsv | head -2", "salida": "# REGISTRO DE NUMEROS RES · SOLO-AÑADIR · el estado de una llave es su ULTIMA fila\n# Firma de mesa 21/sep/2026 (D-r1 A): `RES` es un ALIAS ESTABLE de la llave logica."}
+    ],
+    "cerrado_por_detalle": "firma: mesa 21/sep/2026 — «el 149→150 es la deriva en vivo ya declarada y ajena a este PR, no bloqueo» (PR #949 cuerpo «Lo que mesa confirmó»; encargo 2026-09-21-GEN2-TUBERIA-RES-LLAVE-1.md:203); declarado en ADR-587; #949 fusionado 2026-09-21T15:47:02Z",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260922-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1-ef6f-01",
+    "verdict": "CERRAR-PRODUCTO",
+    "rationale": "Lo pedido fue publicar -0002 (92 RESULT) y pasar -0001 a SUPERADO; ambas cosas están en las vistas de origin/main. La proyección cuenta_gen2=SI quedó sustituida por la firma F1 de mesa (22/sep, TRAMITE-FIRMAS-7): -0002 es réplica y lleva cuenta_gen2=NO en decisiones.tsv. Mesa ya confirmó el NO; no hace falta otra firma.",
+    "cite": [
+      {"tipo": "comando", "ref": "data/corrida0/corridas.tsv", "comando": "python3 scratchpad/d1/q.py origin/main data/corrida0/corridas.tsv spec_id 'DIN-CREDITO-K2-BANCARIA-HISTORIA' corrida_id,estado,cuenta_gen2,motivo_cuenta_gen2", "salida": "CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0001--78664b318a0c | estado=SUPERADO→CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0002 | cuenta_gen2=SI ; CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0002--d72ddfaa7635 | estado=SELLADA | cuenta_gen2=NO | motivo=decision de mesa (`decisiones.tsv`): cuenta_gen2=NO · RÉPLICA de -0001"},
+      {"tipo": "comando", "ref": "data/corrida0/resultados.tsv", "comando": "python3 scratchpad/d1/q.py origin/main data/corrida0/resultados.tsv corrida_id 'CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-000[12]' corrida_id | sort | uniq -c", "salida": "92 corrida_id=CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0001--78664b318a0c\n92 corrida_id=CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0002--d72ddfaa7635\n[origin/main:data/corrida0/resultados.tsv] filas=66313 coincidencias=184"},
+      {"tipo": "firma", "ref": "forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-7.md:11", "comando": "rg -n 'K2-BANCARIA-HISTORIA-0002' forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-7.md", "salida": "11:- **F1 · K2 réplica:** «`CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0002` es RÉPLICA de la `-0001` (`repite_de`; 68/68 RESULT idénticos, delta 0): evidencia de replay, no medición nueva. `cuenta_gen2 = NO` para la `-0002`; la `-0001` es la que cuenta; su asiento cita la réplica.»"},
+      {"tipo": "archivo", "ref": "data/corrida0/decisiones.tsv (objeto=CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0002)", "comando": "csv.DictReader sobre data/corrida0/decisiones.tsv filtrando 'K2-BANCARIA-HISTORIA'", "salida": "decision : cuenta_gen2=NO · RÉPLICA de -0001 ... | fuente : FIRMA DE MESA 22/sep/2026, verbatim F1 §2 de forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-7.md (A.3); ACTO GEN2-TRAMITE-FIRMAS-7 | fecha : 2026-09-22"}
+    ],
+    "cerrado_por_detalle": "producto: data/corrida0/corridas.tsv + resultados.tsv (origin/main) · -0001 SUPERADO→-0002, -0002 SELLADA con 92 RESULT; cuenta_gen2=NO por firma F1 de mesa 22/sep (TRAMITE-FIRMAS-7.md:11, decisiones.tsv)",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-01",
+    "verdict": "CERRAR-PRODUCTO",
+    "rationale": "El diferido era que el escritor del catálogo escribiera valor_gen2 a precisión completa; la vara de adopción quedó fuera por diseño (FP-365, EJECUTADA). El escritor único la escribe con repr(valor) (escribe_relevo_consumo.py:772,1176). Las 2 filas escritas (M04, M08) llevan 16 decimales, idénticas al RESULT. La cita a B4/FIRMAS-16 trata de otra cosa (esquema de procedencia).",
+    "cite": [
+      {"tipo": "comando", "ref": "milpa/catalogo-momentos-v0_1.tsv", "comando": "csv.DictReader sobre milpa/catalogo-momentos-v0_1.tsv; filas con valor_gen2 y número de decimales", "salida": "M04 valor_gen2= 0.6733930340661712 decimales= 16 res= RESULT-ENCIG-MOR-C-P-ADOPTA\nM08 valor_gen2= 0.7909064453831163 decimales= 16 res= RESULT-ENVIPE-SEG-CON-P-DENUNCIA\ncon valor_gen2: 2"},
+      {"tipo": "comando", "ref": "data/corrida0/resultados.tsv", "comando": "python3 tools/consulta.py result RESULT-ENCIG-MOR-C-P-ADOPTA ; python3 tools/consulta.py result RESULT-ENVIPE-SEG-CON-P-DENUNCIA", "salida": "RESULT-ENCIG-MOR-C-P-ADOPTA · valor=0.6733930340661712 ... corrida_id=CALC-ENCIG-0001--c3ae00e62e59\nRESULT-ENVIPE-SEG-CON-P-DENUNCIA · valor=0.7909064453831163 ... corrida_id=CALC-ENVIPE-DENUNCIA-SEGURO-0001--dc25f3d63acf"},
+      {"tipo": "archivo", "ref": "tools/escribe_relevo_consumo.py:772", "comando": "sed -n '765,775p' tools/escribe_relevo_consumo.py", "salida": "nuevo_c = transform_catalogo_v4(nuevo_c, momento, {\n            \"valor_gen2\": repr(valor), \"corrida0_resultado_id\": result,\n            \"corrida0_generacion\": \"GEN2\", \"calc_gen2\": CALC_SEGURO,"},
+      {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv (FP-365)", "comando": "csv.DictReader sobre forense/firmas-pendientes.tsv, fila FP-365, campo estado", "salida": "FP-365 | EJECUTADA (ACTO GEN2-PRIMERA-SILLA (8/sep/2026) P1): tolerancia_adopcion separada de tolerancia.abs. La adopcion compara contra el RESULT redondeado al grano del consumidor"},
+      {"tipo": "archivo", "ref": "forense/notas/2026-09-24-GEN2-CATALOGO-CONTRATO-Y-TEST-1-cierre.md (P2, Reserva)", "comando": "cut -c1-500 forense/notas/2026-09-24-GEN2-CATALOGO-CONTRATO-Y-TEST-1-cierre.md", "salida": "**Reserva (no bloquea):** la vara de adopción usa el grano del literal materializado (`_tol_adopcion_de`); un `valor_gen2` escrito con 2 decimales (`0.79`) pasaría contra `0.7909…`. El escritor (ADOPCION-4) debe escribir el valor a precisión completa; queda en NC para ese acto."}
+    ],
+    "cerrado_por_detalle": "producto: tools/escribe_relevo_consumo.py:772,1176 escribe valor_gen2=repr(valor); milpa/catalogo-momentos-v0_1.tsv 2/2 valor_gen2 con 16 decimales, iguales al RESULT · vara de adopción por diseño en FP-365 (EJECUTADA)",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-02",
+    "verdict": "ABSORBER",
+    "rationale": "Los seis 2011 (#1919, #1993, #2039, #2067, #2082, #606) tienen hoy un trato provisional por beee-02 (5 ACOTADA, 1 SUSPENDIDA); el universo quedó adjudicado en documentos (FP-39de-01 FIRMADA). El dictamen definitivo exige el CALC sucesor ENDIREH 2011 con CP4_1 y columnas de denuncia. No hay spec en prereg-caja. Va al mismo encargo que la NC 2385-02.",
+    "cite": [
+      {"tipo": "comando", "ref": "forense/validacion-independiente/catalogo-1-incertidumbre-spec/p2/dictamenes.tsv", "comando": "csv.DictReader; Counter de 'condicion' sobre dictamenes.tsv (11 filas)", "salida": "condicion [('sesion01: universo CP4_1', 5), ('sin dependencia material de sesion01 identificada', 5), ('sesion01: columnas y elegibilidad denuncia externa', 1)] — llaves condicionadas: #1919 #1993 #2039 #2067 #2082 (CP4_1) y #606 (denuncia)"},
+      {"tipo": "comando", "ref": "canon/catalogo-del-mexicano-v1_3.tsv", "comando": "csv.DictReader; filas llave=RESULT-ENDIREH2011-MOD-TABLA#{1919,1993,2039,2067,2082,606}", "salida": "#1919/#1993/#2067/#2082/#606 estado_adopcion=ADOPTADO validacion_ciega=ACOTADA:PUBLICABILIDAD-FRAGIL-AL-RNG; #2039 estado_adopcion=SUSPENDIDA-POR-FIRMA sucesor=CALC sucesor por llave: <CALC-ENDIREH-PISOS-2011-MODULOS-sucesor> (caja; spec nueva con el denominad…"},
+      {"tipo": "comando", "ref": "forense/no-corrido.tsv (NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-02)", "comando": "csv.DictReader sobre forense/no-corrido.tsv, fila id=NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-02", "salida": "estado : ABIERTA | que_no_se_corrio : escribir y correr los sucesores 2011/2021 (denominador institucional, elegibilidad 99) | sucesor : MESA (2026-10-05) · encargo por escribir: GEN2-C1-SUCESORES-2011-2021-1"},
+      {"tipo": "comando", "ref": "forense/prereg-caja + data/corrida0", "comando": "git ls-tree -r --name-only origin/main forense/prereg-caja | rg -ci 'endireh.*2011' ; git ls-tree -r --name-only origin/main data/corrida0 | rg -o 'CALC-ENDIREH-PISOS-2011-MODULOS-[0-9]+' | sort -u", "salida": "endireh2011_specs_prereg= (0 de 506 archivos de prereg-caja) ; CALC-ENDIREH-PISOS-2011-MODULOS-0001 (único; ningún sucesor)"},
+      {"tipo": "firma", "ref": "FP-260926-ASTRA6-C1-ADJUDICACION-PUNTOS-1-39de-01", "comando": "python3 tools/consulta.py fp FP-260926-ASTRA6-C1-ADJUDICACION-PUNTOS-1-39de-01", "salida": "estado=FIRMADA · ejecutada_en=ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 ... · qué_se_firma=PROPUESTO-POR-EJECUTOR: retiro temporal de identidades con defecto documental; denominador institucional; elegibilidad nacional99; ejecución de sucesores nuevo…"},
+      {"tipo": "archivo", "ref": "forense/validacion-independiente/catalogo-1-adjudicacion-puntos/p4/ (edad-permisos-2011.patch, denuncia-enlace-2011.patch, spec-sucesor-2011.patch)", "comando": "ls forense/validacion-independiente/catalogo-1-adjudicacion-puntos/p4/", "salida": "comprobacion-patches.json comprobacion-patches.py denuncia-enlace-2011.patch edad-permisos-2011.patch edad-permisos-2021.patch especificacion-sucesores.md externos-reciente-2011.patch institucion-afectadas-alternativa.patch spec-sucesor-2011.patch spec-sucesor-2021.patch"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "OTRO:C1-SUCESORES-2011-2021",
+    "entorno": "CAJA",
+    "hecho_comando": "test -f data/corrida0/CALC-ENDIREH-PISOS-2011-MODULOS-0002/sello.json && rg -c 'RESULT-ENDIREH2011-MOD-TABLA#(1919|1993|2039|2067|2082|606)\\b' forense/validacion-independiente/catalogo-1-sucesores/dictamen-seis2011.tsv  # → 6, cada una con dictamen de vocabulario cerrado contra CV .30/ancho .20",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2-9d28-02",
+    "verdict": "ABSORBER",
+    "rationale": "#1179 cita 32 RESULT de 3 CALC (ENIGH-CONSUMO-PISOS-0002 ×23, ENADID-FAMILIA-HOGARES-0001 ×8, ENASIC-CUIDADOS-VEJEZ-0001 ×1), adoptados en el catálogo v1.2 y con 0 filas en el libro ciego. El lote 2 de C1 los dejó NUEVO-FUERA-CORTE y VALIDACION-Y-2027-1 solo toma llaves que no estaban en v1.2. Nadie los cubre: hace falta una validación ciega C1 en caja.",
+    "cite": [
+      {"tipo": "comando", "ref": "forense/analisis/reports-v2/consumo-familia-2/verificacion/resultado.json", "comando": "jq -r '.. | strings' …/verificacion/resultado.json | rg -o 'RESULT-[A-Za-z0-9_#.-]+' | sort -u | wc -l ; jq -c .alcance", "salida": "32 ; \"Trazabilidad y regresiones materiales; no certificación independiente ni recálculo C1.\""},
+      {"tipo": "comando", "ref": "canon/catalogo-del-mexicano-v1_3.tsv + v1_2 + data/corrida0/validaciones-independientes.tsv", "comando": "csv.DictReader: estado_adopcion/calc de las 32 llaves en v1.3 y v1.2; coincidencias en el libro ciego", "salida": "v1.3: ADOPTADO-CON-RESERVA-DE-ANCHO 24, ADOPTADO 8; calc: ENIGH-CONSUMO-PISOS-0002 23, ENADID-FAMILIA-HOGARES-0001 8, ENASIC-CUIDADOS-VEJEZ-0001 1 · v1_2 32 · libro filas 748, coincidencias exactas 0, por familia 0"},
+      {"tipo": "archivo", "ref": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p4/delta-catalogo.tsv", "comando": "rg 'ENIGH-CONSUMO-PISOS|ENADID-FAMILIA|ENASIC-CUIDADOS' …/p4/delta-catalogo.tsv", "salida": "NUEVO-FUERA-CORTE\tCALC-ENADID-FAMILIA-HOGARES-0001\t579\nNUEVO-FUERA-CORTE\tCALC-ENASIC-CUIDADOS-VEJEZ-0001\t98\nNUEVO-FUERA-CORTE\tCALC-ENIGH-CONSUMO-PISOS-0002\t4140"},
+      {"tipo": "comando", "ref": "origin/acto/GEN2-VALIDACION-Y-2027-1:forense/notas/2026-09-28-GEN2-VALIDACION-Y-2027-1-cierre.md:8", "comando": "git show origin/acto/GEN2-VALIDACION-Y-2027-1:forense/notas/2026-09-28-GEN2-VALIDACION-Y-2027-1-cierre.md | rg -n 'Universo'", "salida": "8:- **Universo (EJECUTADO).** RESULT del catálogo v1.3 cuya llave no está en v1.2: **20 518 en 14 CALC**, con 0 filas en `validaciones-independientes.tsv` por `resultado_id`. (gates-v1_3.tsv: 14 paquetes; ninguno ENIGH-CONSUMO/ENADID-FAMILIA/ENASIC)"},
+      {"tipo": "archivo", "ref": "forense/analisis/reports-v2/consumo-familia-2/reservas.md:6", "comando": "rg -n 'Validación numérica' forense/analisis/reports-v2/consumo-familia-2/reservas.md", "salida": "6:| Validación numérica independiente de RESULT | DIFERIDO-A:ASTRA6-C1; se cotejan registro y hash, sin recálculo de microdato | La coincidencia de trazabilidad no valida por sí sola el estimando | ASTRA6-C1 |"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "OTRO:C1-HUECO-V1_2-FUERA-CORTE",
+    "entorno": "CAJA",
+    "hecho_comando": "python3 -c \"import csv,json,re;S=set(re.findall(r'RESULT-[A-Za-z0-9_#-]+',open('forense/analisis/reports-v2/consumo-familia-2/verificacion/resultado.json').read()));V={r['resultado_id'] for r in csv.DictReader((l for l in open('data/corrida0/validaciones-independientes.tsv') if l[0]!='#'),delimiter='\\t')};print(len(S),len(S-V))\"  # → 32 0",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260923-ASTRA5-U3-POLITICA-COMPLETAR-d459-04",
+    "verdict": "CANAL",
+    "rationale": "Los seis CALC activos de COMPLETAR (LAPOP-PISOS 2004-0002, 2006-0001, 2019-0002, 2021-0001 y 2023-0001, e INE-PISOS-SICEE-0002) tienen asiento de replay; 0 de 6 están en corridas.tsv de origin/main y 6 de 6 viajan en el PR [deriva] #1309 (abierto, bloqueado, trozos 1-2). Se cierra cuando #1309 fusione.",
+    "cite": [
+      {"tipo": "comando", "ref": "data/corrida0/corridas.tsv (origin/main vs origin/derivados/auto-36495085433)", "comando": "python3 scratchpad/d1/q.py <ref> data/corrida0/corridas.tsv spec_id 'LAPOP-PISOS|INE-PISOS-SICEE' corrida_id,spec_id,estado", "salida": "origin/main: solo CALC-LAPOP-PISOS-2004-0001 SPEC-FIJADA, CALC-LAPOP-PISOS-2019-0001 SELLADA, CALC-INE-PISOS-SICEE-0001 SPEC-FIJADA (0 de los 6). derivados/auto-36495085433: CALC-LAPOP-PISOS-2004-0002--36254e39b03e, -2006-0001--2276a2be78b5, -2019-0002--6b507dcd9caf, -2021-0001--43b81c062518, -2023-0001--9ce97ca6630c, CALC-INE-PISOS-SICEE-0002--bc36fea21651, todos SELLADA cuenta_gen2=SI"},
+      {"tipo": "comando", "ref": "tools/lote_desde_asientos.py", "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes | rg -n 'LAPOP-PISOS|INE-PISOS-SICEE'", "salida": "34:CALC-LAPOP-PISOS-2004-0002\n35:CALC-LAPOP-PISOS-2006-0001\n36:CALC-LAPOP-PISOS-2019-0002\n37:CALC-LAPOP-PISOS-2021-0001\n38:CALC-LAPOP-PISOS-2023-0001\n39:CALC-INE-PISOS-SICEE-0002 (stderr: asientos nuevos examinados: 113 · lote: 113 · descartados: 0)"},
+      {"tipo": "commit", "ref": "PR #1309", "comando": "mcp github pull_request_read get 1309 ; git log origin/derivados/auto-36495085433 --oneline -n 2", "salida": "\"state\":\"open\",\"merged\":false,\"mergeable_state\":\"blocked\",head 0482c810 ; 0482c810 [deriva] trozo 2 tras 9d2550b92: 20 CALC, quedan 73 ; de9c04c8 [deriva] trozo 1 tras 9d2550b92: 20 CALC, quedan 93"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "python3 scratchpad/d1/q.py origin/main data/corrida0/corridas.tsv spec_id '^CALC-(LAPOP-PISOS-(2004-0002|2006-0001|2019-0002|2021-0001|2023-0001)|INE-PISOS-SICEE-0002)$' corrida_id,estado  # → coincidencias=6, todas SELLADA",
+    "owner_detalle": "CANAL (PR #1309 · rama derivados/auto-36495085433; vistas corridas.tsv/resultados.tsv; los 6 CALC ya van en sus trozos 1-2)",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260923-ASTRA5-U3-POLITICA-df0d-04",
+    "verdict": "CERRAR-PRODUCTO",
+    "rationale": "Los tres CALC activos de U3-POLITICA (INE-PISOS-2024-0001, ENCUP-PISOS-2012-0003 y LAPOP-PISOS-2019-0001, según su nota) ya están publicados en origin/main: SELLADA, replay REPRODUCE, 7 RESULT en resultados.tsv. Los publicó el [deriva] #1268 (1f4bf1cc). La evidencia de PENDIENTES-3 (prop-A7) nombraba otros CALC.",
+    "cite": [
+      {"tipo": "archivo", "ref": "forense/notas/2026-09-23-ASTRA5-U3-POLITICA-cierre.md:14-20,41-42", "comando": "sed -n '12,45p' forense/notas/2026-09-23-ASTRA5-U3-POLITICA-cierre.md", "salida": "EJECUTADO: `CALC-INE-PISOS-2024-0001` ..., `CALC-ENCUP-PISOS-2012-0002` (primer resultado ... conservado intacto en forense/historico/...tar ...), sucesor `0003` ... y `CALC-LAPOP-PISOS-2019-0001` ... Estado de los tres activos: **sellada en disco, no registrada** hasta el canal de `main`."},
+      {"tipo": "comando", "ref": "data/corrida0/corridas.tsv", "comando": "python3 scratchpad/d1/q.py origin/main data/corrida0/corridas.tsv spec_id '^CALC-(ENCUP-PISOS-2012-0003|INE-PISOS-2024-0001|LAPOP-PISOS-2019-0001)$' corrida_id,estado,cuenta_gen2,resultado_replay,n_resultados", "salida": "CALC-ENCUP-PISOS-2012-0003--0a72e3d9b594 SELLADA SI REPRODUCE 2 ; CALC-INE-PISOS-2024-0001--5df43151a67b SELLADA SI REPRODUCE 3 ; CALC-LAPOP-PISOS-2019-0001--ccad1984f426 SELLADA SI REPRODUCE 2"},
+      {"tipo": "comando", "ref": "data/corrida0/resultados.tsv", "comando": "python3 scratchpad/d1/q.py origin/main data/corrida0/resultados.tsv corrida_id '^CALC-(ENCUP-PISOS-2012-0003|INE-PISOS-2024-0001|LAPOP-PISOS-2019-0001)--' corrida_id | sort | uniq -c", "salida": "2 corrida_id=CALC-ENCUP-PISOS-2012-0003--0a72e3d9b594\n3 corrida_id=CALC-INE-PISOS-2024-0001--5df43151a67b\n2 corrida_id=CALC-LAPOP-PISOS-2019-0001--ccad1984f426 (coincidencias=7)"},
+      {"tipo": "commit", "ref": "1f4bf1cc (#1268)", "comando": "git log origin/main --oneline -S 'CALC-ENCUP-PISOS-2012-0003--0a72e3d9b594' -- data/corrida0/corridas.tsv", "salida": "1f4bf1cc [deriva] trozo 1 tras 429ec004d: 20 CALC, quedan 101 (#1268) (lo mismo para INE-PISOS-2024-0001 y LAPOP-PISOS-2019-0001)"}
+    ],
+    "cerrado_por_detalle": "producto: data/corrida0/corridas.tsv + resultados.tsv (origin/main, [deriva] #1268 1f4bf1cc) · 3/3 CALC activos SELLADA REPRODUCE con 7 RESULT",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260923-GEN2-CONTADORES-CONSUMO-2-749c-01",
+    "verdict": "CANAL",
+    "rationale": "El origen_numerico ya está acreditado en decisiones.tsv (16 HEREDADO de -0001 por firma S; 16 NUEVO de -0002). El marcador publica las 16 celdas con -0002 (ADOPTADO-POR-FIRMA). Falta solo el canal: -0002 (replay REPRODUCE asentado) no está en corridas.tsv, es el 41.º de 113 pendientes, #1309 cubre 1-40, y usos.tsv no tiene esas 16 filas.",
+    "cite": [
+      {"tipo": "comando", "ref": "data/corrida0/decisiones.tsv", "comando": "csv.DictReader; Counter de filas con 'ENCIG-DUELO-2025-ADJUDICACION'", "salida": "16 ('origen:CALC-ENCIG-DUELO-2025-ADJUDICACION-0001:RESULT-ENCIG-DUELO-2025', 'origen_numerico=HEREDADO · Firma S de mesa (FIRMAS-15 + ADEN', '2026-09-24')\n16 ('origen:CALC-ENCIG-DUELO-2025-ADJUDICACION-0002:…', 'origen_numerico=NUEVO · Cadena verificada leyendo la spec y ', '2026-09-24')"},
+      {"tipo": "comando", "ref": "data/corrida0/marcador-segmento.tsv + usos.tsv", "comando": "marcador: filtro regla_o_eje_origen encig2025.(edad_x_sexo|escolaridad_x_sexo); usos: python3 scratchpad/d1/usos.py <ref> 'edad_x_sexo|escolaridad_x_sexo'", "salida": "marcador origin/main: 16 filas instrumento=CALC-ENCIG-DUELO-2025-ADJUDICACION-0002 estado=ADOPTADO-POR-FIRMA · usos [origin/main] filas=242 coincidencias=0 · usos [derivados/auto-36495085433] 3 filas RES-0214/0216/0217 NO-EVALUADA (no son del consumidor marcador)"},
+      {"tipo": "comando", "ref": "tools/lote_desde_asientos.py + forense/replay-evidencia.tsv:295", "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes | rg -n ADJUDICACION ; sed -n 295p forense/replay-evidencia.tsv | cut -c1-200", "salida": "41:CALC-ENCIG-DUELO-2025-ADJUDICACION-0002 (lote: 113) ; CALC-ENCIG-DUELO-2025-ADJUDICACION-0002\tCALC-ENCIG-DUELO-2025-ADJUDICACION-0002--e28f8accd675\tREPRODUCE\tIDENTICO\tcorrida0 verify en proceso aislado"},
+      {"tipo": "comando", "ref": "PR #1309", "comando": "git diff origin/main...origin/derivados/auto-36495085433 -- data/corrida0/ | rg -c 'ENCIG-DUELO-2025-ADJUDICACION-0002'", "salida": "(vacío: 0 coincidencias; #1309 lleva trozos 1-2 = 40 CALC, 'quedan 73')"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "python3 scratchpad/d1/q.py origin/main data/corrida0/corridas.tsv spec_id '^CALC-ENCIG-DUELO-2025-ADJUDICACION-0002$' estado && python3 scratchpad/d1/usos.py origin/main 'marcador:CRUCE::GOB\\.gobierno_digital\\.encig2025\\.(edad_x_sexo|escolaridad_x_sexo)::'  # → SELLADA y 16 filas APTA*",
+    "owner_detalle": "CANAL (drenaje [deriva] tras #1309: CALC-ENCIG-DUELO-2025-ADJUDICACION-0002 es el 41.º de 113 del lote pendiente y entra en el trozo 3; vistas corridas.tsv/resultados.tsv/usos.tsv)",
+    "hoja": {},
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-03",
+    "verdict": "CERRAR-PRODUCTO",
+    "rationale": "La fila pedía registrar aptitud_uso y origen_numerico de las 16 filas CRUCE::GOB…edad_x_escolaridad del consumidor marcador. En usos.tsv de origin/main las 16 están APTA-POR-LINAJE, con origen NUEVO acreditado por decisiones.tsv sobre CALC-GOB-DIGITAL-EXE-EMISIONES-0002 (SELLADA, REPRODUCE); lo publicó #1268. La evidencia de PENDIENTES-3 había mirado el grupo equivocado (edad_x_sexo).",
+    "cite": [
+      {"tipo": "comando", "ref": "data/corrida0/usos.tsv", "comando": "python3 scratchpad/d1/usos.py origin/main 'marcador:CRUCE::GOB\\.gobierno_digital\\.encig2025\\.edad_x_escolaridad::'", "salida": "[origin/main] filas=242 coincidencias=16\n[(('APTA-POR-LINAJE','NUEVO','SI','RESULT-GOB-EXE15-2025-18'),4), (…-30,4), (…-45,4), (…-60,4)]"},
+      {"tipo": "commit", "ref": "1f4bf1cc (#1268)", "comando": "git log origin/main --oneline -S 'marcador:CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::18-29xSUPERIOR' -- data/corrida0/usos.tsv", "salida": "1f4bf1cc [deriva] trozo 1 tras 429ec004d: 20 CALC, quedan 101 (#1268)"},
+      {"tipo": "comando", "ref": "data/corrida0/corridas.tsv", "comando": "python3 scratchpad/d1/q.py origin/main data/corrida0/corridas.tsv spec_id '^CALC-GOB-DIGITAL-EXE-EMISIONES-0002$' corrida_id,estado,cuenta_gen2,resultado_replay", "salida": "corrida_id=CALC-GOB-DIGITAL-EXE-EMISIONES-0002--bfc2e4b840e3 | estado=SELLADA | cuenta_gen2=SI | resultado_replay=REPRODUCE"},
+      {"tipo": "archivo", "ref": "data/corrida0/usos.tsv (camino_linaje)", "comando": "git show origin/main:data/corrida0/usos.tsv | rg -o 'marcador:[^\\t]*GOB[^\\t]*' | head -1", "salida": "marcador:CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::18-29xHASTA-PRIMARIA -> RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-P -> CALC-GOB-DIGITAL-EXE-EMISIONES-0002/… -> DECISION-DE-MESA(decisiones.tsv): origen_numerico=NUEVO · Cadena verificada leyendo la spec"}
+    ],
+    "cerrado_por_detalle": "producto: data/corrida0/usos.tsv (origin/main, [deriva] #1268 1f4bf1cc) · 16/16 marcador:CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad APTA-POR-LINAJE, origen_numerico=NUEVO (decisiones.tsv)",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  }
+]

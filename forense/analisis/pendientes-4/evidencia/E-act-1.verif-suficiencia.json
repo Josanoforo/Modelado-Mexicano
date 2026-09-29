@@ -1,0 +1,30 @@
+[
+ {
+  "id": "NC-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01",
+  "veredicto": "CONFIRMA",
+  "razon": "Recibo tecnico existe (pr-1240.md), FP 3a1f-01 FIRMADA (R17 opcion 2), condicion editorial cumplida: c6e273ea ancestro de origin/main y los 3 reports traen firewall genetico y [v2.16]. Mismo patron que 9df0-01/92f8-01 cerradas. Defecto: el conteo 7/3/3 de reglas no reproduce (real 3/3/3 en #1240); corregir la cita.",
+  "comando": "git show origin/main:<3 reports> | rg -c -i 'firewall gen'; reglas-propuestas por report/estado",
+  "salida": "firewall 2/report, [v2.16] 1/report, l.105/102/87; ancestro OK; reglas #1240: Autoridad 3, Psicologia politica 3, Mexico rural 3, todas PROPUESTA"
+ },
+ {
+  "id": "NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-2-e0db-05",
+  "veredicto": "CONFIRMA",
+  "razon": "Mismo objeto: las 6 celdas-D RES-0171..0175 y RES-0211 estan en e760-06 (5) y e760-07 (1), ambas ABIERTA, owner MESA, mismo bucket celdas_D. Precedente 72d9-04 cerrada como duplicada por las mismas seis. La duplicada cubre lo mismo y no menos.",
+  "comando": "csv sobre no-corrido.tsv (e760-06/07, 72d9-04) y tabla-consumidores-v1_0.tsv bucket celdas_D",
+  "salida": "e760-06 ABIERTA RES-0171..0175; e760-07 ABIERTA RES-0211; 72d9-04 CERRADA duplicada; tabla: celdas_D RES-0171/0175/0211 LEGACY-GEN1 NC"
+ },
+ {
+  "id": "NC-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-04",
+  "veredicto": "CONFIRMA",
+  "razon": "sin-licencia-base.tsv (598) contiene 554 con licencia vacia, cero dominios INEGI y las 4 ZA6980 (www.gesis.org); 1997-01 ABIERTA con sucesor CORPUS-LICENCIAS-2, R50 (a) firmada. Superconjunto del mismo objeto. Reserva: la receta GESIS especifica no viaja en 1997-01.",
+  "comando": "csv sobre git show origin/main:forense/analisis/corpus-licencias-1/sin-licencia-base.tsv; fila 1997-01 en no-corrido.tsv",
+  "salida": "598 filas; licencia_actual vacia=554; gesis=9; za6980 x4 vacias; inegi=0; 1997-01 ABIERTA"
+ },
+ {
+  "id": "NC-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-05",
+  "veredicto": "REFUTA",
+  "razon": "Pedia sha de los 14 ids F6 contra payload. El producto da COINCIDE solo a 10; 2 ENCO reservadas quedan FUERA_DE_PERIMETRO (sin verificar, residuo en fa42-03 ABIERTA) y mociba_2022_cuestionario_pdf, id de F6 R01, sale AUSENTE y la propuesta lo omite. Cierre parcial, no exacto.",
+  "comando": "git show origin/main:forense/analisis/corpus-integridad-1/verifica-2026-09-21.txt | rg -F 'mociba_2022_cuestionario_pdf [' -e 'enco_2025_junio_dbf_reservado ['",
+  "salida": "mociba_2022_cuestionario_pdf [data_raw]: AUSENTE; enco_2025/2026_junio_dbf_reservado [reserva_respondentes]: FUERA_DE_PERIMETRO"
+ }
+]

@@ -1,0 +1,30 @@
+[
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-02",
+  "veredicto": "CONFIRMA",
+  "razon": "Los 8 comandos de cite se re-corrieron contra origin/main (25b5e7f0) y reproducen la salida declarada (R08 FIRMADA, FP f2e5-02, ADENDA-1, nota l.17, fila del mapa, 0 CALC-ALT de M14, HOLDOUT). Nota fuera de lente: sucesor de la NC cita mesa 2026-10-05.",
+  "comando": "python3 subprocess bash -c <cite.comando> por cada cite; comparación normalizando espacios",
+  "salida": "8/8 cites reproducen; returncode 0 en todos"
+ },
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-03",
+  "veredicto": "CONFIRMA",
+  "razon": "Los 9 comandos de cite se re-corrieron contra origin/main (25b5e7f0) y reproducen la salida declarada (R08 FIRMADA, FP f2e5-02, ADENDA-1, nota l.17, fila del mapa, 0 CALC-ALT de M15, HOLDOUT). Nota fuera de lente: sucesor de la NC cita mesa 2026-10-05.",
+  "comando": "python3 subprocess bash -c <cite.comando> por cada cite; comparación normalizando espacios",
+  "salida": "9/9 cites reproducen; returncode 0 en todos"
+ },
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-04",
+  "veredicto": "CONFIRMA",
+  "razon": "Los 9 comandos de cite se re-corrieron contra origin/main (25b5e7f0) y reproducen la salida declarada (R08 FIRMADA, FP f2e5-02, ADENDA-1, nota l.17, fila del mapa, 0 CALC-ALT de M16, HOLDOUT). Nota fuera de lente: sucesor de la NC cita mesa 2026-10-05.",
+  "comando": "python3 subprocess bash -c <cite.comando> por cada cite; comparación normalizando espacios",
+  "salida": "9/9 cites reproducen; returncode 0 en todos"
+ },
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-05",
+  "veredicto": "CONFIRMA",
+  "razon": "Los 9 comandos de cite se re-corrieron contra origin/main (25b5e7f0) y reproducen la salida declarada (R08 FIRMADA, FP f2e5-02, ADENDA-1, nota l.17, fila del mapa, 0 CALC-ALT de M17, HOLDOUT). Nota fuera de lente: sucesor de la NC cita mesa 2026-10-05.",
+  "comando": "python3 subprocess bash -c <cite.comando> por cada cite; comparación normalizando espacios",
+  "salida": "9/9 cites reproducen; returncode 0 en todos"
+ }
+]

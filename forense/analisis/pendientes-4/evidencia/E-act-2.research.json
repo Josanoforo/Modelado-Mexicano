@@ -1,0 +1,390 @@
+[
+ {
+  "id": "NC-260921-GEN2-ARBITRO-MARGINALES-1-ed7d-03",
+  "verdict": "ABSORBER",
+  "rationale": "La delegación esperaba el n ampliado por MARGINALES-2, y no llegó: ese acto (CONSUMIDO #989) solo reprodujo marginales de ENCUCI, ENNViH y LAPOP, y su nota tiene 0 menciones de cobertura o persistencia. La lectura de programa depende de olas nuevas. Falta pre-registrar la regla agregada, por instrumento, en los expedientes de apertura.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/notas/2026-09-21-GEN2-ARBITRO-MARGINALES-2-cierre.md",
+    "comando": "git show origin/main:forense/notas/2026-09-21-GEN2-ARBITRO-MARGINALES-2-cierre.md | grep -c -i -E 'cobertura|persisten'",
+    "salida": "0"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-21-GEN2-ARBITRO-MARGINALES-2-cierre.md:95-97",
+    "comando": "git show origin/main:forense/notas/2026-09-21-GEN2-ARBITRO-MARGINALES-2-cierre.md | grep -n CALC-ARBITRO-MARGINALES-2",
+    "salida": "95:| ENCUCI2020 (2 reglas) | CALC-ARBITRO-MARGINALES-2-ENCUCI2020-0001 ... REPRODUCE exacto · 96:| ENNViH ... NO-REPRODUCE · 97:| LAPOP ... REPRODUCE exacto (reproducción de marginales GEN1, una ola; ninguna persistencia)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-21-GEN2-ARBITRO-MARGINALES-1-cierre.md:98-100",
+    "comando": "git show origin/main:forense/notas/2026-09-21-GEN2-ARBITRO-MARGINALES-1-cierre.md | sed -n '98,100p'",
+    "salida": "Lectura B-bis (spec §3): ENVIPE — persistencia corroborada como piso a un año (cobertura 0.53, IC que incluye 0.5; no incluye 0.95). ENIF — piso débil a tres años (cobertura 0.19, IC excluye 0.5)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/prereg-aperturas/",
+    "comando": "git ls-tree -r --name-only origin/main forense/prereg-aperturas | wc -l",
+    "salida": "0 (APERTURAS-PREREGISTRADAS-1 en vuelo, rama sin fusionar: tipo 3, no se cita como producto)"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:APERTURAS-PREREGISTRADAS-2",
+  "entorno": "NUBE",
+  "hecho_comando": "rg -l 'ed7d-03' forense/prereg-aperturas/ | wc -l  # ≥1: la regla agregada de cobertura de persistencia a t-1 (Wilson, por instrumento, conglomerado por ola, sin promediar unidades) está declarada antes del dato en los expedientes ENVIPE/ENIF/ENCIG",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-ASTRA-CONTINUIDAD-C2-1-ba6c-01",
+  "verdict": "CERRAR-DUPLICADA",
+  "rationale": "Es la misma deuda que NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-13, que sigue ABIERTA y nació antes: correr en CAJA enoe_diagnostico.py --oro sobre enoe_2024_4t_microdatos (sha 817f28d2…). Ese mismo comando recalcula singleton_union desde el diseño. La receta está en p2-enoe-v1_0.md §1, y 8c5c-13 ya va al lote de replays de caja.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-13",
+    "comando": "python3 tools/consulta.py nc NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-13",
+    "salida": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-13 · estado=ABIERTA · acto=GEN2-RECIBO-ASTRA6-3 · pr=1222 · razon=NO-VERIFICABLE-AQUÍ — nube sin data/raw · que_no_se_corrio: Replay enoe_diagnostico.py --oro + cmp no corrido"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/familias-2027/p2-enoe-v1_0.md:30-37",
+    "comando": "git show origin/main:forense/analisis/familias-2027/p2-enoe-v1_0.md | sed -n '30,37p'",
+    "salida": "Receta para CAJA (≈1 minuto, re-medición desde el diseño): python3 tools/familias-2027/enoe_inferencia_1/enoe_diagnostico.py --oro data/raw/enoe_microdatos_post2019/enoe_2024_trim4_csv.zip --salida /tmp/enoe-auditoria-recalc.json … jq '.singleton_union, …'"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "git show origin/main:data/manifiesto.yaml | yq '.[] | select(.id==\"enoe_2024_4t_microdatos\") | .sha256'",
+    "salida": "817f28d20a43… (sin campo de reserva; ENOE 2025T4 también está en el manifiesto, así que 2024T4 no es la ola más reciente)"
+   }
+  ],
+  "cerrado_por_detalle": "duplicada: NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-13 (ABIERTA; el mismo replay enoe_diagnostico.py --oro sobre enoe_2024_4t_microdatos recalcula los 39 singleton desde el diseño)",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-ASTRA-CONTINUIDAD-C3-1-26bb-03",
+  "verdict": "ABSORBER",
+  "rationale": "La firma R19 (FIRMADA) recibe las 107 reglas como inventario y no normaliza columnas. En main las columnas siguen desplazadas: tier_declarado no trae vocabulario de tier en al menos 69 de 107 filas (heurística) y hay drivers cortados en «[». No existe v1_1. Falta una v1_1 normalizada, con v1_0 intacta. La delegación prefiere la corrección C3 corta, en NUBE.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/reports-v2/reglas-propuestas-v1_0.tsv",
+    "comando": "git show origin/main:forense/analisis/reports-v2/reglas-propuestas-v1_0.tsv | python3 -c 'csv.DictReader … tier_declarado sin fuerte|media|hipótesis|narrativa|débil'",
+    "salida": "filas 107 tier_declarado_sin_vocab_tier 69; driver_con_corchete_abierto 4; ej. RP-C3-001: segmento='Fuerte descriptiva / mecanismo no identificado', driver='cambia el estimando [CONF-C42', tier_declarado='Un enlace validado que haga intercambiables niveles…'"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv#R19",
+    "comando": "csv.DictReader sobre decisiones-21.tsv, renglon R19",
+    "salida": "FIRMADA (GEN2-TRAMITE-FIRMAS-21, ADENDA-1 28/sep) · «Recibo reglas-propuestas-v1_0.tsv (107 reglas C3) como inventario de propuestas. Ninguna se adopta. …» (no normaliza columnas)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/main (12375 archivos)",
+    "comando": "git ls-tree -r --name-only origin/main | rg -c 'reglas-propuestas-v1_[1-9]'",
+    "salida": "(sin salida: 0 coincidencias en 12375 rutas)"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:CORRECCION-C3",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 -c \"import csv,re;rd=list(csv.DictReader(open('forense/analisis/reports-v2/reglas-propuestas-v1_1.tsv'),delimiter='\\t'));print(len(rd),sum(r['driver'].count('[')!=r['driver'].count(']') for r in rd),sum(not re.search(r'fuerte|media|hip[oó]tesis|narrativa',r['tier_declarado'],re.I) for r in rd))\"  # → 107 0 0",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260923-GEN2-ASTRA-ENVIPE-ADJUDICACION-1-970c-01",
+  "verdict": "ABSORBER",
+  "rationale": "No lo cierro por diseño: C-ASTRA no es un retador nuevo. Mesa firmó 05da-01 (FIRMADA): «todo se utiliza», adjudicar las cuatro emisiones C-ASTRA contra la R del piloto 4. La regla 6 veda retadores nuevos, no contendientes sellados (ENCIG-PISOS-GEN2-1:14). Falta un acto en CAJA que materialice las réplicas de R con el procedimiento congelado.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "FP-260923-GEN2-TRAMITE-FIRMAS-11-05da-01",
+    "comando": "python3 tools/consulta.py fp FP-260923-GEN2-TRAMITE-FIRMAS-11-05da-01",
+    "salida": "estado=FIRMADA · firmada_en=23/sep/2026, verbatim, mesa: «Integrar los dos, nada es fuera de plazo, todo se utiliza.» · ejecutada_en=… las cuatro emisiones prospectivas ENVIPE de Astra (#1031) se adjudican contra la R del piloto 4 -- ejecución … a GEN2-ASTRA-ENVIPE-ADJUDICACION-1"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/curacion-registro/celdas-d/TRA.evade_norma.envipe2025.edad_x_sexo.yaml:9",
+    "comando": "git show origin/main:data/curacion-registro/celdas-d/TRA.evade_norma.envipe2025.edad_x_sexo.yaml | grep -n -i astra",
+    "salida": "9: universo_candidatos: 'Cuatro candidatos primarios preemitidos: C1, C2, C7, C-ENCOGIDA. C-ASTRA NO-ENTRA: #1031 no estaba en main antes de COMMIT-2; la comparación secundaria no se ejecuta.' · 91: relacion_complemento: Ninguna; C-ASTRA excluido por plazo, sin adjudicación."
+   },
+   {
+    "tipo": "regla",
+    "ref": "forense/encargos/2026-09-24-GEN2-ENCIG-PISOS-GEN2-1.md:14",
+    "comando": "git show origin/main:forense/encargos/2026-09-24-GEN2-ENCIG-PISOS-GEN2-1.md | sed -n 14p",
+    "salida": "Vigentes que se citan: … E.6 (cruce visto sirve para evaluar en retrospectiva, rotulado); regla 6 (sin retadores nuevos: los contendientes son los del -0001, ninguno más)."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-23-GEN2-ASTRA-ENVIPE-ADJUDICACION-1-cierre.md:3-12",
+    "comando": "git show origin/main:forense/notas/2026-09-23-GEN2-ASTRA-ENVIPE-ADJUDICACION-1-cierre.md | sed -n '3,12p'",
+    "salida": "Veredicto: PARO-ENTORNO, no adaptación. … propaga la incertidumbre de ΔMAE con réplicas bootstrap de R sobre el microdato ENVIPE 2025 (tools/celda_d/marginales_reproduccion.py::replicas_compartidas …)"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:REPLAYS-CAJA",
+  "entorno": "CAJA",
+  "hecho_comando": "git ls-tree --name-only origin/main data/corrida0/ | grep -ciE 'ASTRA-ENVIPE.*ADJUDIC'  # ≥1 CALC con sello.json: ΔMAE de C-ASTRA vs C2 con IC por réplica de R (procedimiento del piloto 4, sin parámetro nuevo), rótulo PROSPECTIVA/RETROSPECTIVA derivado de los sellos",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-04",
+  "verdict": "ABSORBER",
+  "rationale": "Ninguno de los payloads U5 está catalogado. De 783 ids del manifiesto con marca U5-ADQUISICION, 0 aparecen en los 14 inventarios data/inventario-*.tsv. busca_reactivos.py sigue leyendo inventario-reactivos-v1_2 e inventario-fd-v1_1. Falta un acto de catalogación versionado (v1_3, con COMMIT-1/2) de los FD, catálogos y cuestionarios de olas no reservadas, y cablearlo al buscador. Va en CAJA porque es corpus montado.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/inventario-*.tsv (14 archivos)",
+    "comando": "yq -r '.[] | select((.|tostring)|test(\"U5-ADQUISICION\")) | .id' data/manifiesto.yaml > u5_ids; csv.DictReader por payload_id sobre los 14 inventarios",
+    "salida": "archivos_examinados 14 ids_U5 783 ids_U5_catalogados 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/busca_reactivos.py:85,125-126",
+    "comando": "git show origin/main:tools/busca_reactivos.py | grep -n -E 'inventario-reactivos-v1_|inventario-fd'",
+    "salida": "85:    \"v1_2\": REPO_ROOT / \"data\" / \"inventario-reactivos-v1_2.tsv\", · 125:    \"fd\": REPO_ROOT / \"data\" / \"inventario-fd-v1_1.tsv\", · 126:    \"fd_ext\": … inventario-fd-ext-v1_0.tsv"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1-nota.md:106",
+    "comando": "git show origin/main:forense/notas/2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1-nota.md | sed -n 106p",
+    "salida": "Catalogación: «Solo documentación (Recomendado)». No se ejecutó. El catálogo vigente (data/inventario-reactivos-v1_2.tsv, inventario-fd-v1_1/-ext) es un producto versionado por acto con COMMIT-1/2. Ni ENSANUT 2024 … tiene filas."
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "yq -r '.[] | select((.|tostring)|test(\"U5-ADQUISICION\")) | .id' data/manifiesto.yaml | sort > /tmp/u5 && grep -v '^#' data/inventario-reactivos-v1_3.tsv | cut -f1 | sort -u | comm -12 - /tmp/u5 | wc -l  # >0 (hoy 0) && grep -c 'inventario-reactivos-v1_3' tools/busca_reactivos.py  # ≥1",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-05",
+  "verdict": "ABSORBER",
+  "rationale": "La existencia medida desde caja está en hoja-adquisicion-derivada-v1_0.tsv: 130 filas DESDE-CAJA (14 NO-ACCESIBLE, 41 NO-ENCONTRADO, 14 EXISTE-NO-SATISFACE). El mapa v1_1 tiene 0. El mapa alimenta catálogo, informe y carriles, así que ejecuto la opción (a) de la delegación: una versión nueva del mapa, después de la v1_2 en vuelo, que no cita bitácoras.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/dominios/hoja-adquisicion-derivada-v1_0.tsv",
+    "comando": "git show origin/main:forense/analisis/dominios/hoja-adquisicion-derivada-v1_0.tsv | python3 -c 'Counter(existencia_documento DESDE-CAJA)'",
+    "salida": "filas 1396 · {'EXISTE-SATISFACE-DESDE-CAJA': 61, 'NO-ENCONTRADO-DESDE-CAJA': 41, 'NO-ACCESIBLE-DESDE-CAJA': 14, 'EXISTE-NO-SATISFACE-DESDE-CAJA': 14}"
+   },
+   {
+    "tipo": "comando",
+    "ref": "canon/mapa-dominios-v1_1.tsv",
+    "comando": "git show origin/main:canon/mapa-dominios-v1_1.tsv | python3 -c 'filas con DESDE-CAJA'",
+    "salida": "mapa_v1_1 filas 1396 · 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "consumidores del mapa",
+    "comando": "git grep -n 'mapa-dominios-v1_1' origin/main -- tools/ forense/analisis/*.py",
+    "salida": "genera_catalogo_v1_3.py:758 · informe-v1_4/cifra.py:35,37 · informe-v1_5/cifra_v1_5.py:28 · medicion-carriles-2/tabla_apertura_mc2.py:51"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/claude/new-session-zbz0cm (en vuelo, tipo 3)",
+    "comando": "git show origin/claude/new-session-zbz0cm:forense/encargos/2026-09-28-GEN2-MAPA-DOMINIOS-Y-LICENCIAS-1.md | grep -c -i -E 'bitacora|bitácora|U5|existencia'",
+    "salida": "(sin coincidencias: 0)"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:MAPA-DOMINIOS-V1-3",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 -c \"import csv;rd=list(csv.DictReader(open('canon/mapa-dominios-v1_3.tsv'),delimiter='\\t'));print(len(rd),sum('DESDE-CAJA' in ' '.join(r.values()) for r in rd))\"  # → 1396 130 (v1_1 y v1_2 intactas)",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-01",
+  "verdict": "ABSORBER",
+  "rationale": "No es CERRAR-FIRMA. R20 (fb50-01 FIRMADA) recibe los contratos sin adoptarlos y manda firmarlos «por identidad, opción y hash en un trámite posterior», y ese trámite falta. El índice tiene 28 contratos sin hash ni opción. En 648 filas FP no hay ninguna por contrato P1. Falta armar esa hoja de firma en NUBE; firmar es de mesa.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv#FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-01",
+    "comando": "csv.DictReader sobre git show origin/main:forense/firmas-pendientes.tsv",
+    "salida": "estado=FIRMADA · R20 opción (2): «Recibo los contratos sucesores propuestos en impedimentos-lote2-hoja-decisiones.md (manifiesto 3d508f7e…1c50) sin adoptarlos. Cada contrato se firmará por identidad, opción y hash en un trámite posterior; …»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/validacion-independiente/catalogo-1-impedimentos-lote2/p1/impedimentos-lote2-p1-contratos-indice.json",
+    "comando": "jq 'length' …contratos-indice.json; jq -c '.[0]|keys' …",
+    "salida": "28 · [\"contrato\",\"estimadores\",\"identidad\"] (sin hash ni opción por identidad)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv (648 filas)",
+    "comando": "csv.DictReader: filas ≠ fb50-01 con 'impedimentos-lote2-p1' o 'enoe-pisos-0003' o 'contratos-indice'",
+    "salida": "0 filas (solo coincidencias con 'R20' en FP ajenas: FP-190, FP-201, 958c-02, 822a-01, b544-02)"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:TRAMITE-CONTRATOS-C1",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 -c \"import csv;print(sum(1 for r in csv.DictReader(open('forense/firmas-pendientes.tsv'),delimiter='\\t') if 'impedimentos-lote2-p1' in r['dónde'] and r['id']!='FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-01'))\"  # → 28 (una FP por identidad del índice, con opción y sha256 del contrato)",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-03",
+  "verdict": "ABSORBER",
+  "rationale": "R14 (fb50-03 FIRMADA) autoriza solo la etapa 1: inventario de miembros de los ZIP (nombre, CRC, tamaño), con custodio distinto del analista. No se ha ejecutado: los contratos stage1 siguen approved=false, sin custodio ni clave. El lote 4 en vuelo no la cubre. Falta correrla en CAJA, con compuerta de receta: custodio y pin de clave.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv#FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-03",
+    "comando": "csv.DictReader sobre git show origin/main:forense/firmas-pendientes.tsv",
+    "salida": "estado=FIRMADA · R14 opción etapa 1: «Autorizo únicamente la etapa 1 (inventario de miembros —nombre, CRC, tamaño— de los ZIP, A.7), con custodio distinto del analista. La etapa 2 requiere una FP por fuente …; ENUT conserva FP-bda6-02 …»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/validacion-independiente/catalogo-1-impedimentos-lote2/p3/impedimentos-lote2-p3-enif2024-sin-credito-stage1.json",
+    "comando": "jq -c '.' …stage1.json | cut -c1-700",
+    "salida": "{\"schema\":\"custodia-proyeccion-v1\",\"approved\":false,\"status\":\"PROPUESTO-POR-EJECUTOR\",…,\"custodian_uid\":null,\"analyst_uid\":null,\"signer\":\"mesa humana: clave a aprovisionar fuera del contrato\",\"signer_key_sha256\":null,…,\"operation\":\"inventory-only\"…"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/main (12375 rutas)",
+    "comando": "git ls-tree -r --name-only origin/main | rg -i 'custod|miembros|etapa-?1|inventario-zip'",
+    "salida": "solo p1/impedimentos-lote2-p1-r-miembros-verificados.json y catalogo-1-reempaqueta-ventana/…/revision-miembros.json; ningún recibo de inventario etapa 1"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/acto/GEN2-VALIDACION-Y-2027-1 (en vuelo, tipo 3)",
+    "comando": "git show …:forense/validacion-independiente/validacion-continua-1/hoja-mesa.md | grep -c -i -E 'etapa|custod|fb50|R14'",
+    "salida": "0 (su lote 4 ENIF/ENUT/ENSANUT queda NO-LANZADO (gate ACCESO), sin etapa 1)"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:C1-LOTE-4",
+  "entorno": "CAJA",
+  "hecho_comando": "ls forense/validacion-independiente/c1-lote4/etapa1/*-inventario-recibo.json | wc -l  # = nº de fuentes stage1 autorizadas (recibo con hash del ZIP y miembros nombre/CRC/tamaño, custodian_uid≠analyst_uid, sin z.read), y 0 contratos stage2 approved=true",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-ASTRA6-C2-EJECUCION-1-e897-04",
+  "verdict": "ABSORBER",
+  "rationale": "Sigue igual en main. El censo clasifica test_din_oferta_enif2024.py como NECESITA-DEPENDENCIA(numpy), ci_guardias.py:407-413 salta todo ese veredicto, y hay 113 filas así en el censo, aunque verify.yml:449 ya instala numpy. Falta regenerar el censo en un entorno con las dependencias y verificar que la fila pasa a ejecutable. Pertenece al lote de tubería.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/ci-guardias/censo-tests.tsv",
+    "comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | grep -F test_din_oferta_enif2024; … | grep -c NECESITA-DEPENDENCIA",
+    "salida": "tests/test_din_oferta_enif2024.py\tpytest\tNO\t(ninguna)\tNO\t0.9\tNECESITA-DEPENDENCIA(numpy)\tE   ModuleNotFoundError: No module named 'numpy' (clasificación copiada de test_astra6_encig.py; en CAJA exit 0 sin corpus) · 113"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/ci_guardias.py:407-413",
+    "comando": "git show origin/main:tools/ci_guardias.py | sed -n '400,416p'",
+    "salida": "if f[\"veredicto\"].startswith(\"NECESITA-DEPENDENCIA\"): print(\"SKIP %s: dependencia-pendiente %s (FP de mesa, no decidida aqui)\" …) saltados += 1; continue"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:449",
+    "comando": "git show origin/main:.github/workflows/verify.yml | grep -n 'pip install.*numpy'",
+    "salida": "449: python3 -m uv pip install --python \"$RUNNER_TEMP/venv/bin/python\" -r requirements.txt numpy pytest pytest-xdist"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | grep -F tests/test_din_oferta_enif2024.py | grep -c NECESITA-DEPENDENCIA  # → 0 (y el test aparece ejecutado, no SKIP, en el log de ci_guardias --ejecuta-huerfanos)",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260923-GEN2-AUDITORIA-POST-HOC-ASTRA-1-39d2-03",
+  "verdict": "ABSORBER",
+  "rationale": "Ejecuto la opción (a) de la delegación: un encargo NUBE con red que corrobore contra fuentes públicas las cifras AMAI, ENDIREH, ENDUTIH y del eje regional aún vigentes en canon. No encontré ese producto: no hay encargo CORROBORACION-1 y la «corroboración externa» del deck es de método. Debe excluir olas reservadas (E.6). Dirección puede recortarlo por §1.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/ (1219 archivos en origin/main)",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos/ | rg -i corrobor",
+    "salida": "forense/encargos/2026-09-04-MAESTRA38-V1-CORROBORA-Y-RECONCILIA.md (homónimo previo, otro acto); 0 con AUDITORIA-POST-HOC-ASTRA-CORROBORACION"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "docs/deck/03-corroboracion-externa.md",
+    "comando": "git show origin/main:docs/deck/03-corroboracion-externa.md | sed -n '9,11p'",
+    "salida": "Corea, Korea Media Panel Survey … Tres países, seis baterías … Ninguno de los dos estudios usa un instrumento mexicano … es corroboración del método … no evidencia sobre México."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-23-GEN2-AUDITORIA-POST-HOC-ASTRA-1-auditoria.md:70",
+    "comando": "git show origin/main:forense/notas/2026-09-23-GEN2-AUDITORIA-POST-HOC-ASTRA-1-auditoria.md | sed -n 70p",
+    "salida": "NO se hizo …: la tabla de cobertura de 31 dominios … y el anexo de corroboración externa (verificación contra fuentes fuera del repo de las cifras citada…"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv#NC-260923-GEN2-AUDITORIA-POST-HOC-ASTRA-1-39d2-03",
+    "comando": "csv.DictReader sobre decididas-por-delegacion.tsv",
+    "salida": "opcion=DUEÑO-MESA · … Opciones: (a) mesa autoriza redactar el encargo (NUBE con red, solo lectura de publicos); (b) cerrar por diseno … Propongo (a) acotado a las cifras aun vigentes en canon."
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:CORROBORACION-EXTERNA-1",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 -c \"import csv;rd=list(csv.DictReader(open('forense/analisis/corroboracion-externa-astra/corroboracion-v1_0.tsv'),delimiter='\\t'));print(len(rd),sum(r['veredicto'] in ('EXISTE-SATISFACE','EXISTE-NO-SATISFACE','NO-ENCONTRADO','NO-ACCESIBLE') and bool(r['url_fuente']) and bool(r['sha256_fuente']) for r in rd))\"  # dos números iguales, >0; 0 filas de ola reservada",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01",
+  "verdict": "ABSORBER",
+  "rationale": "R28 (FP 26a2-04 FIRMADA, opción 1) manda re-comparar a ciegas. Las 4 llaves RESULT-ENCIG-MOR-* de CALC-ENCIG-0001 (ENCIG 2025, abierta) siguen NO-CIEGA-PENDIENTE, «SIN-PAQUETE-EN-LOTE-3 (ENCIG sin acceso C1 firmado)». GEN2-ASTRA6-C1-LOTE-4 no tiene encargo (0 de 1219), y el lote 4 en vuelo solo lleva ENIF, ENUT y ENSANUT. Falta el paquete ENCIG en CAJA, con la compuerta ACCESO (firma nueva).",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/validacion-independiente/catalogo-1-sucesores/r28-130-no-ciegas.tsv",
+    "comando": "git show origin/main:…/r28-130-no-ciegas.tsv | csv.DictReader, instrumento=='ENCIG'",
+    "salida": "4 filas: RESULT-ENCIG-MOR-A-P-SOL1, -B-P-DIG-SD, -B-P-PRE-SD, -C-P-ADOPTA · calc CALC-ENCIG-0001 · rotulo NO-CIEGA-PENDIENTE · asiento_vigente PASA · recomparacion 'SIN-PAQUETE-EN-LOTE-3 (ENCIG sin acceso C1 firmado)'"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-04",
+    "comando": "csv.DictReader sobre forense/firmas-pendientes.tsv",
+    "salida": "estado=FIRMADA · renglón R28 opción (1) · ejecutada_en=… ENCIG 4: PASA de otra validación intacto, re-comparación a C1-LOTE-4 (NC 2385-01)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/ (1219 archivos)",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos/ | rg -i 'LOTE-4'",
+    "salida": "(sin coincidencias: 0)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/acto/GEN2-VALIDACION-Y-2027-1 (en vuelo, tipo 3)",
+    "comando": "git show …:forense/validacion-independiente/validacion-continua-1/lote4-gates.tsv | cut -f1",
+    "salida": "paquete · c1-lote4-enif-2024 · c1-lote4-enut-2024 · c1-lote4-ensanut-2024 (sin ENCIG)"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:C1-LOTE-4",
+  "entorno": "CAJA",
+  "hecho_comando": "python3 -c \"import csv;L={'RESULT-ENCIG-MOR-A-P-SOL1','RESULT-ENCIG-MOR-B-P-DIG-SD','RESULT-ENCIG-MOR-B-P-PRE-SD','RESULT-ENCIG-MOR-C-P-ADOPTA'};print(sum(1 for r in csv.DictReader((l for l in open('data/corrida0/validaciones-independientes.tsv') if not l.startswith('#')),delimiter='\\t') if r['resultado_id'] in L and 'lote4' in r['validacion_ref'].lower()))\"  # → 4 (hoy 0)",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ }
+]

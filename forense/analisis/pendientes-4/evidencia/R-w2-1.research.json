@@ -1,0 +1,247 @@
+[
+ {
+  "id": "NC-0056",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "Bifurcación reversible, decidida (a): cerrar. FP-286 (EJECUTADA, D17/D18 del 10/sep) difiere lo comercial de tandas y resuelve ENAFIN por tabulado; su cartera dice ENAFIN-Lab «no tramitarlo sin un nuevo consumidor exacto» y Findex-microdato «no se persigue sin demanda nueva». Cola de medición: 0 menciones. Tanda+ sigue en NC-0061.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "FP-286 (forense/firmas-pendientes.tsv)",
+    "comando": "python3 inline: csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv`, id=FP-286",
+    "salida": "estado=EJECUTADA -- 28/28 clasificadas y reconciliadas; ENAFIN satisface N19 con tabulados publicos; ruta academica de tandas ejecutada; comerciales diferidas por D18; no se rea[bre la lista historica] | firmada_en=D17/D18, MESA-CONCILIACION-E01, 10/sep/2026 | gatea=...la via comercial de tandas queda diferida por D18"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-cartera.md:24-25,52-54",
+    "comando": "git show origin/main:forense/notas/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-cartera.md | sed -n '25p;52,54p'",
+    "salida": "Global Findex 2025 ... EXISTE-NO-SATISFACE ... el microdato con cuenta no se persigue sin demanda nueva | `FP-286/FP-343` ya no tienen una pregunta de clasificación: ENAFIN está resuelta para N19 y las dos tandas comerciales quedaron diferidas por D18. Sus residuales sustantivos sobreviven en `NC-0151` (accesos) y `NC-0037`"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-cartera.md:24",
+    "comando": "git show origin/main:forense/notas/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-cartera.md | rg -n -o 'no tramitarlo sin un nuevo consumidor exacto'",
+    "salida": "24:no tramitarlo sin un nuevo consumidor exacto (fila ENAFIN: el microdato individual requiere Laboratorio de Microdatos INEGI, pero no bloquea N19)"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/encargos/2026-09-10-MESA-CONCILIACION-E01.md:73-74",
+    "comando": "git show origin/main:forense/encargos/2026-09-10-MESA-CONCILIACION-E01.md | sed -n '73,74p'",
+    "salida": "| D17 | FP-314 y accesos | avanzar obtención, reutilizando solicitudes y verificando identidades | ENCARGO-E09 | / | D18 | FP-286/343 y tandas | diferir inversión comercial; habilitar búsqueda académica dirigida | ENCARGO-E09 |"
+   },
+   {
+    "tipo": "comando",
+    "ref": "portadores vivos (A.17)",
+    "comando": "python3 inline: csv.DictReader sobre `git show origin/main:forense/no-corrido.tsv`, ids NC-0061, NC-0037, NC-0151, NC-0056",
+    "salida": "NC-0061 ABIERTA (correos OECD y tandas: «el envio fisico de los dos correos ya redactados») · NC-0037 ABIERTA (ledger de tandas) · NC-0151 ABIERTA (ICPSR/OECD/ENJUVE) · NC-0056 ABIERTA"
+   },
+   {
+    "tipo": "comando",
+    "ref": "demanda viva (A.13)",
+    "comando": "git show origin/main:forense/analisis/dominios/cola-medicion-v1_0.tsv | wc -l ; ... | rg -c -i 'findex|tanda|enafin'",
+    "salida": "54 líneas examinadas (1 archivo); coincidencias=0"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/cola-adquisicion-v1_0.tsv fila ENSAFI_TANDAS_REPUTACION_INCUMPLIMIENTO",
+    "comando": "csv.DictReader (saltando la línea de comentario) sobre `git show origin/main:data/cola-adquisicion-v1_0.tsv`, fuente_canonica=ENSAFI_TANDAS_REPUTACION_INCUMPLIMIENTO",
+    "salida": "via: busqueda academica dirigida ya agotada; via comercial diferida por D18 | autoridad: D18; no autoriza convenio, compra ni contacto automatico | siguiente_accion: reabrir solo ante candidato concreto nuevo o respuesta humana de TandaMas"
+   }
+  ],
+  "cerrado_por_detalle": "firma: FP-286 (EJECUTADA; D17/D18, MESA-CONCILIACION-E01.md:73-74) + forense/notas/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-cartera.md:24-25,52-54 · se reabre solo con consumidor exacto nuevo; correo a Tanda+ en NC-0061, ledger de tandas en NC-0037, accesos personales en NC-0151",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "decision_declarada": {
+   "opcion": "a",
+   "razon": "Cerrar NC-0056 es reversible (se reabre con un consumidor exacto nuevo) y no toca sello, firma, reserva ni criterio de adopción, así que decide el ejecutor (ADENDA-1). Las tres piezas ya están decididas: (1) convenio Tanda+/tanda.mx = vía comercial, diferida por D18 y su ejecución FP-286; el envío exploratorio sin costo sigue vivo en NC-0061 (ABIERTA, decisión de mesa propia), así que nada se pierde; (2) ENAFIN-empresa en Laboratorio INEGI: la cartera de E09 (ejecución de D17/D18) dice no tramitarlo sin nuevo consumidor exacto, y N19 ya se satisface con el tabulado por 11 dominios; (3) Findex-individual: no lo nombra el texto de FP-286 (nació el 8/sep, fuera de las 28 filas); lo cubre la misma cartera («no se persigue sin demanda nueva») y esta decisión declarada, porque el archivo público ya descarta el reactivo y ninguna cola de medición lo pide. Los encargos salen de la demanda (§1). Limitación declarada: el clon es superficial (508 commits), no se re-leyó la historia previa al 26/sep."
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0287",
+  "verdict": "ABSORBER",
+  "rationale": "Falta algo real: los seis encargos siguen con 0 `## NO-CORRIDO` y 0 `## CONSUMIDO` (F6 aún dice «en ejecución»). Añadir ambas secciones al pie, con lo que dejó cada PR (#824-#830), como CONSUMIDO-RETRO-3 (#759). Lo de #829 (FP-392) y #828-P01 (FP a157-01) ya está cubierto; #828-P02 (ENNViH) no.",
+  "que_falta": "Añadir al pie de los seis encargos del 16/sep (DIGESTO-CORRECTIVO-1, F6-FACTIBILIDAD-PREPARACION-1, ENCRIGE-DESCRIPTIVA-1, SIN-CANDIDATO-RUTAS-1, RELEVO-CANDIDATOS-DELTA-1, ENVIPE-RES0028-DERIVADO-U4-1) `## NO-CORRIDO / RESERVAS` (filas que ya asignó el recibo TRAMITE-4 §3.1: NC-0283/0284/0286 CERRADAS, FP-392, FP a157-01; para #828-P02 nombrar NC-0156, NC a157-15/16 y FP c133-01 como portadores) y `## CONSUMIDO · PR #N` (#824, #825, #826, #828, #829, #830), sin editar nada por encima y corrigiendo el «en ejecución» de F6; NC-0287 pasa a sucesor = ese encargo.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "seis encargos del 16/sep",
+    "comando": "python3 -c inline: para cada f de los seis, `git show origin/main:forense/encargos/2026-09-16-GEN2-<f>.md` y len(re.findall(r'^## NO-CORRIDO|^## CONSUMIDO', t, re.M)) por separado (6 archivos examinados)",
+    "salida": "DIGESTO-CORRECTIVO-1 0 0 · F6-FACTIBILIDAD-PREPARACION-1 0 0 · ENCRIGE-DESCRIPTIVA-1 0 0 · SIN-CANDIDATO-RUTAS-1 0 0 · RELEVO-CANDIDATOS-DELTA-1 0 0 · ENVIPE-RES0028-DERIVADO-U4-1 0 0 (ninguno tiene sidecar .cuerpo.sha256)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-16-GEN2-F6-FACTIBILIDAD-PREPARACION-1.md:142-145",
+    "comando": "git show origin/main:forense/encargos/2026-09-16-GEN2-F6-FACTIBILIDAD-PREPARACION-1.md | sed -n '142,145p'",
+    "salida": "## Procedencia y consumo (fuera del texto verbatim) ... Estado: en ejecución en la rama `acto/gen2-f6-factibilidad-preparacion-1`. (stale: #825 fusionó; FP-380 lo cita)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-16-GEN2-TRAMITE-4.md:50-51,55",
+    "comando": "git show origin/main:forense/notas/2026-09-16-GEN2-TRAMITE-4.md | rg -n '^\\| `#828`|^\\| `#829`|^### 3\\.2'",
+    "salida": "#828 ... Rutas propuestas que esperan decisión de mesa; sin fila propia porque el acto no abrió ninguna (`NC-0287`). | #829 ... Cero adopciones ... Íd. `NC-0287`. | ### 3.2 · Por qué el lote abrió cero filas: no escriben `## NO-CORRIDO`"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-19-GEN2-RECIBO-CODEX-3.md:38 y 2026-09-17-GEN2-RECIBO-CODEX-2-FP-383-Y-TRES-CIERRES.md:38",
+    "comando": "git show origin/main:<cada archivo> | sed -n '38p'",
+    "salida": "RECIBO-CODEX-3: «DECISIÓN-DE-MESA-PENDIENTE: cerrarla exige juzgar si el patrón de recibo por tanda ya cumplió lo que la fila pedía ... `NC-0287` sigue `ABIERTA`». RECIBO-CODEX-2: «este acto mide que el patrón se repitió (7 de 12) y no la resuelve»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-392 (forense/firmas-pendientes.tsv)",
+    "comando": "python3 inline: csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv`, id=FP-392",
+    "salida": "estado=FIRMADA | ejecutada_en=ACTO GEN2-RELEVO-TANDA-2 (ADR-561): los ONCE escritos en milpa/tramite.yaml como corrida0_resultado_id ... (RES-0028 por FP-391, FIRMADA). Cubre las 12 decisiones propuestas por #829 (decisiones-propuestas.md)"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260924-GEN2-RELEVO-MOTOR-34-1-a157-01 y NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-12",
+    "comando": "python3 inline: csv.DictReader sobre firmas-pendientes.tsv y no-corrido.tsv de origin/main",
+    "salida": "FP a157-01 FIRMADA («SÍ ... los ocho ASIGNADO se retiran; donde no coinciden, se conserva con rótulo», incluye RES-0001/0002/0007/0008 = P01 ENCIG de #828) · NC e760-12 CERRADA (delegación 28/sep)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "portadores de #828-P02 (A.17)",
+    "comando": "python3 inline sobre no-corrido.tsv y firmas-pendientes.tsv de origin/main; git show origin/main:forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/03-ENNVIH-DIN-S6.md | rg -c 'RES-0029|RES-0030|tiene_ahorros|horizonte'",
+    "salida": "NC-0156 ABIERTA (solicitud ENNViH: cuatro estimandos = DIN-M-01 + S6, sin RES-0029/0030: 0 coincidencias en 100 líneas) · NC a157-15 y a157-16 ABIERTAS · FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01 ABIERTA (RES-0029/0030). El paquete P02 de #828 no está asentado en ninguna."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-14-GEN2-CONSUMIDO-RETRO-3.md (precedente, PR #759)",
+    "comando": "git show origin/main:forense/encargos/2026-09-14-GEN2-CONSUMIDO-RETRO-3.md | sed -n '1,5p'",
+    "salida": "ENCARGO · ACTO GEN2-CONSUMIDO-RETRO-3 · TRÁMITE MICRO · NUBE, Sonnet ... tres ediciones A.14 sobre forense/encargos/: añade ## NO-CORRIDO / RESERVAS ... + ## CONSUMIDO · PR #731 ... (mesa 14/sep: «Revisa primero que se ejecutaron completos y luego dame el micro acto»)"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 -c \"import subprocess,re;fs='DIGESTO-CORRECTIVO-1 F6-FACTIBILIDAD-PREPARACION-1 ENCRIGE-DESCRIPTIVA-1 SIN-CANDIDATO-RUTAS-1 RELEVO-CANDIDATOS-DELTA-1 ENVIPE-RES0028-DERIVADO-U4-1'.split();[print(f,len(re.findall(r'^## NO-CORRIDO',t,re.M)),len(re.findall(r'^## CONSUMIDO',t,re.M))) for f in fs for t in [subprocess.run(['git','show','origin/main:forense/encargos/2026-09-16-GEN2-%s.md'%f],capture_output=True,text=True).stdout]]\" -> seis líneas `<f> 1 1` (hoy: seis `0 0`)",
+  "owner_detalle": "DIRECCION-ENCARGO (TUBERIA-TESTS-LOTE, pieza de retro-sello A.14 al estilo CONSUMIDO-RETRO-3)",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260921-GEN2-TUBERIA-SIDECAR-CUERPO-1-3d08-02",
+  "verdict": "HOJA-DECISION",
+  "rationale": "No cierra por firma: «Semillas sin ejecutar» prohíbe archivar retroactivamente, pero la fila declara que solo cierra si mesa aporta el texto, y levantar esa prohibición es D-19. Solo mesa puede retirar la condición o aportar el texto. Hoja de tres opciones; recomendación (a): mantener la firma, con el hueco ya escrito en la nota §3.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md:30",
+    "comando": "git show origin/main:forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md | sed -n '30p'",
+    "salida": "Semillas sin ejecutar — «(1) … (2) Las adendas sin rastro del 19 al 21/sep: no se archivan retroactivamente … Pero lista en tu nota las que SÍ puedas nombrar por los mensajes de commit … para que quede escrito qué actos corrieron bajo un texto que el repo no guarda.»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md:96-98 (## NO-CORRIDO de la propia fila)",
+    "comando": "git show origin/main:forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md | sed -n '96,98p'",
+    "salida": "La tabla SÍ se entregó (nota de cierre, §3); lo que no se corrió es la recuperación del TEXTO de dos de esas adendas ... Sólo mesa tiene el texto ... hacia atrás sólo se cierra si mesa aporta el texto."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-21-sello-de-cuerpo-y-adendas-sin-rastro.md:26,52-66",
+    "comando": "git show origin/main:forense/notas/2026-09-21-sello-de-cuerpo-y-adendas-sin-rastro.md | rg -n 'Nada se archiva retroactivamente|La diferencia se declara|^\\| `P-g`'",
+    "salida": "26:| P-g | La tabla de §3 de esta nota. | 52:Nada se archiva retroactivamente (firma «Semillas sin ejecutar»). Esta tabla existe para que quede escrito el hueco | 65:La diferencia se declara, no se estima. Mesa reportó unas seis adendas; el repo nombra cuatro actos"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/nota-2026-09-20-gen2-celda-d-piloto-3-p0-paro.md:223-240",
+    "comando": "git show origin/main:forense/notas/nota-2026-09-20-gen2-celda-d-piloto-3-p0-paro.md | sed -n '223,236p'",
+    "salida": "# ENMIENDA POR ADENDA DE MESA · 20/sep/2026: «Mesa lanzó una adenda ... reordena una compuerta: `P0` deja de gatear el `COMMIT-1` y pasa a gatear el `COMMIT-2`» (paráfrasis del ejecutor, tipo 3; no es el texto de mesa)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "universo A.13 del texto verbatim",
+    "comando": "git ls-tree -r --name-only origin/main forense canon gobierno | wc -l ; git grep -l -i 'Adenda de mesa punto 4' origin/main -- forense canon gobierno | wc -l",
+    "salida": "8434 archivos examinados; 8 con la frase, todos punteros (dictamen/evidencia/hoja de pendientes-3, censo-raiz x2, encargo, no-corrido.tsv, nota §3), ninguno con el texto de la adenda: NO-ENCONTRADO"
+   },
+   {
+    "tipo": "comando",
+    "ref": "commits de las adendas (A.5)",
+    "comando": "git cat-file -t 4d4131df ; git cat-file -t 352c7aed ; git cat-file -t 2802e63b ; git cat-file -t adbdb3c0 ; git rev-parse --is-shallow-repository",
+    "salida": "fatal: Not a valid object name (los cuatro) ; true. NO OBTENIDO POR ESTE AGENTE EN 1 INTENTO: el clon es superficial (508 commits); receta de un minuto para caja: git fetch --unshallow && git show 4d4131df 352c7aed 2802e63b adbdb3c0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "FP abiertas (A.17)",
+    "comando": "python3 inline: csv.DictReader sobre `git show origin/main:forense/firmas-pendientes.tsv`, estado que empieza con ABIERTA y texto con 'adenda'",
+    "salida": "18 FP ABIERTA examinadas de 648; 0 cubren las adendas sin rastro del 19 al 21/sep"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "MESA-DECISION (hoja: mantener o levantar «no se archivan retroactivamente» para las adendas sin rastro del 19 al 21/sep)",
+  "hoja": {
+   "situacion": "La firma del 21/sep ordena no archivar retroactivamente las adendas sin rastro, pero NC-…-3d08-02 declara que solo se cierra si mesa aporta el texto de dos (GEN2-CELDA-D-PILOTO-3-P0: 4d4131df, 352c7aed; GEN2-LIMPIEZA-RAMAS-LOCALES-3: 2802e63b, adbdb3c0).",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Mantener la firma: el texto no se archiva. El hueco queda escrito en forense/notas/2026-09-21-sello-de-cuerpo-y-adendas-sin-rastro.md §3 (ya en main) y NC-…-3d08-02 se cierra por esta decisión de mesa.",
+     "costo": "Una auditoría futura de PILOTO-3-P0 lee la paráfrasis del ejecutor (nota del paro, ENMIENDA §E.1-E.2) y no el texto literal de mesa; nada de lo que el repo ya tenía se pierde."
+    },
+    {
+     "letra": "b",
+     "texto": "Levantar la prohibición solo para las dos adendas de PILOTO-3-P0: mesa pega el texto literal; un trámite lo archiva como forense/encargos/<encargo>-ADENDA-N.md con su .cuerpo.sha256, sellada al recibirse (A.3). LIMPIEZA-RAMAS-LOCALES-3 se cierra como en (a).",
+     "costo": "Mesa recupera dos textos de su chat del 20/sep y un trámite los archiva; retira parcialmente una firma (D-19). Es la única de las cuatro que gobernó una compuerta de medición (P0 gatea COMMIT-2)."
+    },
+    {
+     "letra": "c",
+     "texto": "Levantarla para las cuatro adendas: mesa pega los cuatro textos y un trámite los archiva.",
+     "costo": "El mayor esfuerzo de mesa; dos de las cuatro son de mantenimiento de ramas (sin efecto sobre ninguna cifra)."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "Mesa firmó «no se archivan retroactivamente» con el hueco a la vista. La sustancia de la adenda de PILOTO-3-P0 (reorden P0 -> COMMIT-2 y el procedimiento 3a-3b, reproducible por comando) ya está en la nota del paro; recuperar el texto no cambia ninguna medición ni decisión (§1, D-14).",
+   "plazo": "2026-10-05",
+   "texto_firma": "«NC-260921-GEN2-TUBERIA-SIDECAR-CUERPO-1-3d08-02: opción (a). Se mantiene «no se archivan retroactivamente»; el hueco queda escrito en forense/notas/2026-09-21-sello-de-cuerpo-y-adendas-sin-rastro.md §3; se cierra la fila.»"
+  },
+  "decision_clave": "ADENDAS-SIN-RASTRO-19-21SEP-ARCHIVO-RETROACTIVO",
+  "fp_existente": "",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260927-GEN2-TUBERIA-CI-TIEMPO-2-a387-02",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "La objeción se sostiene: el run pedido es el del push de #1198 (414fcf7d), no el de #1294. Run 36297122285: check success, 5 min 59 s desde el inicio del run (< 25). El run global salió failure por el job derivados, que no está en needs de check (verify.yml:1017); eso es de NC a387-01, no de esta fila.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "run 36297122285 (push a main, merge de #1198)",
+    "comando": "curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/actions/runs/36297122285 | python3 -c \"import json,sys;d=json.load(sys.stdin);print({k:d[k] for k in ['event','head_branch','head_sha','conclusion','run_started_at']})\"",
+    "salida": "{'event': 'push', 'head_branch': 'main', 'head_sha': '414fcf7d8b0e2f4c92632c290011ed1b25cdf9d4', 'conclusion': 'failure', 'run_started_at': '2026-09-27T05:24:42Z'}"
+   },
+   {
+    "tipo": "comando",
+    "ref": "run 36297122285 jobs",
+    "comando": "curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/actions/runs/36297122285/jobs | python3 -c \"import json,sys;d=json.load(sys.stdin);J={j['name']:j for j in d['jobs']};print([(n,J[n]['conclusion'],J[n]['completed_at']) for n in ('check','suite','derivados')])\"",
+    "salida": "[('check', 'success', '2026-09-27T05:30:41Z'), ('suite', 'success', '2026-09-27T05:30:36Z'), ('derivados', 'failure', '2026-09-27T05:44:15Z')]  -> check terminó 5m59s después de run_started_at 05:24:42Z"
+   },
+   {
+    "tipo": "commit",
+    "ref": "414fcf7d",
+    "comando": "git show -s --format='%h %ci %s' 414fcf7d ; git merge-base --is-ancestor 414fcf7d origin/main && echo ANCESTRO ; git diff --stat 414fcf7d^1 414fcf7d -- .github/workflows/verify.yml forense/encargos/2026-09-26-GEN2-TUBERIA-CI-TIEMPO-2.md | tail -3",
+    "salida": "414fcf7d 2026-09-26 23:24:39 -0600 Merge pull request #1198 from Josanoforo/claude/new-session-9r01b0 | ANCESTRO | verify.yml 288 +++--- ; 2026-09-26-GEN2-TUBERIA-CI-TIEMPO-2.md 52 + (2 files changed, 265 insertions(+), 75 deletions(-))"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:1008,1017",
+    "comando": "git show origin/main:.github/workflows/verify.yml | sed -n '1008p;1017p'",
+    "salida": "  check: |     needs: [suite, adicionales, guardias, preflight-calc, guardas-res, enrutamiento-pr]   (derivados, job aparte en l.483, fuera de needs)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/hallazgos.md:1101",
+    "comando": "git show origin/main:forense/hallazgos.md | sed -n '1101p' | cut -c1-330",
+    "salida": "- 27/sep/2026 · GEN2-TUBERIA-CI-TIEMPO-2 · El primer run del job `derivados` (36297122285) publicó el trozo 1 (#1206) y murió en el trozo 2: `tablero_programa.py` hace `git fetch` de todas las ramas ..., main avanzó durante el job (#1200) y el guardián HEAD == origin/main se negó."
+   }
+  ],
+  "cerrado_por_detalle": "producto: run 36297122285 (push a main, merge #1198 = 414fcf7d): check success, 5m59s desde run_started_at (< 25 min); run global failure por el job derivados, fuera de needs de check (verify.yml:1017), asunto de NC …-a387-01 · curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/actions/runs/36297122285/jobs",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "confianza": "alta"
+ }
+]

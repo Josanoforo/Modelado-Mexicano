@@ -1,0 +1,16 @@
+[
+  {
+    "id": "NC-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-05",
+    "veredicto": "CONFIRMA",
+    "razon": "RES-0126 es la celda M DIN-M-01 del duelo v2, un retador sobre la ola ENNViH 2002, que ya se vio. El dictamen fusionado en #1275 le pone NO-RELEVAR-POR-REGLA-6 y sucesor NINGUNO. La ADENDA-1 autoriza de forma explícita cerrar «duelo v2 sin camino de emisión» por regla 6 (v2_17:41). Nota: el dictamen cita v2_17:63, pero la regla está en :41.",
+    "comando": "git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv | rg -n RES-0126; git show origin/main:gobierno/PEGAR-EN-PROYECTO-v2_17.md | rg -n -i 'regla 6'; rg -n 'regla 6' ADENDA-1.md",
+    "salida": "244:CORR-0048 RES-0126 NO-RELEVAR-POR-REGLA-6 marco-M-sorteado-v1_3.tsv:8 (DIN-M-01, ola ENNViH/MxFLS 2002 (ola 1)); retador M del duelo sobre ola vista ... NINGUNO (histórico) | 41:- Regla 6: sin retadores, pilotos ni duelos sobre olas ya vistas | ADENDA:9 retirado por regla 6 (duelo v2 sin camino de emisión...)"
+  },
+  {
+    "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-17",
+    "veredicto": "REFUTA",
+    "razon": "No es duplicada. NC-0253 pide citar RESULT-L8CONV en tramite.yaml y puede cerrarse con la opción (a) o (b): legado DESCRIPTIVO que «no promete bajar legacy_activas». La a157-17 afirma que esa cita NO releva por 4.1 y pide volver a medir desde los cómputos crudos (CAJA). Además, las gemelas -18 y -19 no se cierran igual.",
+    "comando": "csv.DictReader sobre git show origin/main:forense/no-corrido.tsv (NC-0253, a157-17/18/19); git show origin/main:forense/analisis/pendientes-3/hoja-mesa-pendientes-3.md | sed -n 19p",
+    "salida": "NC-0253 que_no_se_corrio: Citar RESULT-L8CONV-A-P-MINIMO/MAXIMO/MEDIA en milpa/tramite.yaml | a157-17: relevar RES-0050 a GEN2; CALC-L8 ingiere JSON GEN1: por 4.1 no releva; re-medir desde cómputos crudos | hoja:19 (a) legado DESCRIPTIVO... No prometer que baja dependencias_numericas_legacy_activas"
+  }
+]

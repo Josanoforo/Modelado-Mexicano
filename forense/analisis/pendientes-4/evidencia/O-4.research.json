@@ -1,0 +1,648 @@
+[
+ {
+  "id": "NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-02",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "La pieza pedía adjudicar con duelo prospectivo con_seguro×sexo en ENVIPE 2026: procedimiento de la etapa de retadores, cerrada (el duelo ENVIPE 2026 es una de las seis evaluaciones). Piso y retador siguen NO-CONSTRUIBLES, ningún consumidor usa el eje sexo y la reserva ENVIPE 2026 no se abre ni se toca.",
+  "cite": [
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:10",
+    "comando": "git grep -n \"Etapa de retadores: cerrada\" origin/main -- canon/MEMORIA-OPERATIVA.md",
+    "salida": "origin/main:canon/MEMORIA-OPERATIVA.md:10:- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/estado-programa-v1_18.md:869",
+    "comando": "git grep -n \"duelo ENVIPE 2026, piloto 4\" origin/main -- canon/estado-programa-v1_18.md",
+    "salida": "Nota de cierre de dirección: \"Se cierra la etapa de retadores... Seis evaluaciones prospectivas en cinco dominios: lote ENIF 2024, piloto 3 ENCIG, duelo ENIGH 2024, duelo ENVIPE 2026, piloto 4 ENVIPE 2025, cierre ENCIG 2025.\""
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-caja/DUELO-ENVIPE2026-MARGINALES-spec-v1_0.md:18-26",
+    "comando": "git show origin/main:forense/prereg-caja/DUELO-ENVIPE2026-MARGINALES-spec-v1_0.md | sed -n '18,26p'",
+    "salida": "`civico.denuncia.con_seguro` no tiene eje sexo ni eje edad en ningún archivo del repo ... ninguna llave `DENUNCIA-SEXO-*` ni `DENUNCIA-EDAD-*` ... `con_seguro × sexo` y `× edad`: NO-CONSTRUIBLE [el piso mismo falta, no sólo el retador]."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/demanda-resultados.tsv (211 filas)",
+    "comando": "csv.DictReader sobre git show origin/main:data/corrida0/demanda-resultados.tsv, filtro 'con_seguro' o ('sexo' y 'denuncia')",
+    "salida": "4 filas: RES-0039 (0.7909), RES-0040 (0.2091), RES-0094 ([0.78,0.22]), RES-0183 (momento M08); todas nacional/no_denuncia; 0 con eje sexo o edad."
+   },
+   {
+    "tipo": "comando",
+    "ref": "encargo sucesor DIFERIDO-A:GEN2-DUELO-ENVIPE2026-MARGINALES-3",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c MARGINALES-3",
+    "salida": "0 (1221 rutas de forense/encargos examinadas; el sucesor nunca se archivó)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/corrida0/decisiones.tsv:263",
+    "comando": "python3 (csv.DictReader) sobre git show origin/main:data/corrida0/decisiones.tsv, fila objeto=reserva:envipe2026-consumida-por-duelo-marginales-2",
+    "salida": "QUEDÓ SIN ABRIR y SIGUE RESERVADA en los términos de reserva:envipe2026: ... con_seguro × sexo y × edad (NO-CONSTRUIBLE: ningún RESULT sellado con esos ejes existe en el árbol), toda otra tabla del zip ... Esta fila no adopta nada."
+   }
+  ],
+  "cerrado_por_detalle": "diseño: etapa de retadores cerrada · canon/MEMORIA-OPERATIVA.md:10 y canon/estado-programa-v1_18.md:869; la reserva ENVIPE 2026 sigue firmada (decisiones.tsv:181 y :263) y esta fila no la abre",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-03",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "Igual que -02 en el eje edad: la adjudicación prospectiva con_seguro×edad era una pieza de duelo, procedimiento de la etapa de retadores ya cerrada. No hay RESULT sellado con eje edad para con_seguro (piso NO-CONSTRUIBLE) ni consumidor que lo pida; la reserva ENVIPE 2026 sigue intacta.",
+  "cite": [
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:10",
+    "comando": "git grep -n \"Etapa de retadores: cerrada\" origin/main -- canon/MEMORIA-OPERATIVA.md",
+    "salida": "origin/main:canon/MEMORIA-OPERATIVA.md:10:- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/estado-programa-v1_18.md:869",
+    "comando": "git grep -n \"duelo ENVIPE 2026, piloto 4\" origin/main -- canon/estado-programa-v1_18.md",
+    "salida": "Nota de cierre de dirección: \"Se cierra la etapa de retadores... Seis evaluaciones prospectivas en cinco dominios: lote ENIF 2024, piloto 3 ENCIG, duelo ENIGH 2024, duelo ENVIPE 2026, piloto 4 ENVIPE 2025, cierre ENCIG 2025.\""
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/prereg-caja/DUELO-ENVIPE2026-MARGINALES-spec-v1_0.md:18-26",
+    "comando": "git show origin/main:forense/prereg-caja/DUELO-ENVIPE2026-MARGINALES-spec-v1_0.md | sed -n '18,26p'",
+    "salida": "`civico.denuncia.con_seguro` no tiene eje sexo ni eje edad en ningún archivo del repo ... ninguna llave `DENUNCIA-SEXO-*` ni `DENUNCIA-EDAD-*` ... `con_seguro × sexo` y `× edad`: NO-CONSTRUIBLE [el piso mismo falta, no sólo el retador]."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/CALC-*/resultados.json (370 archivos)",
+    "comando": "git grep -l -i -E 'DENUNCIA-(SEXO|EDAD)-' origin/main -- 'data/corrida0/CALC-*/resultados.json'",
+    "salida": "2 archivos: CALC-DUELO-ENVIPE2026-MARGINALES-EMISIONES-0001 (solo el texto RESULT-...-EDAD-MOTIVO «ningún RESULT DENUNCIA-EDAD-* sellado») y CALC-ENDIREH-SERIE-DICTAMEN-0001 (otra encuesta, serie_id ENDIREH-COMUNITARIA-...-EDAD-15-29). 0 RESULT con_seguro×edad."
+   },
+   {
+    "tipo": "comando",
+    "ref": "familias 2027 (frente prospectivo)",
+    "comando": "git grep -l -i con_seguro origin/main -- forense/analisis/familias-2027 'forense/prereg-caja/FAMILIA-2027-*'",
+    "salida": "0 coincidencias en 190 archivos examinados: con_seguro no está en ninguna familia 2027."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/corrida0/decisiones.tsv:263",
+    "comando": "python3 (csv.DictReader) sobre git show origin/main:data/corrida0/decisiones.tsv, fila objeto=reserva:envipe2026-consumida-por-duelo-marginales-2",
+    "salida": "QUEDÓ SIN ABRIR y SIGUE RESERVADA en los términos de reserva:envipe2026: ... con_seguro × sexo y × edad (NO-CONSTRUIBLE: ningún RESULT sellado con esos ejes existe en el árbol), toda otra tabla del zip ... Esta fila no adopta nada."
+   }
+  ],
+  "cerrado_por_detalle": "diseño: etapa de retadores cerrada · canon/MEMORIA-OPERATIVA.md:10 y canon/estado-programa-v1_18.md:869; con_seguro no está en las familias 2027; reserva ENVIPE 2026 intacta (decisiones.tsv:263)",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-07",
+  "verdict": "HOJA-DECISION",
+  "rationale": "La 'firma pendiente' de APERTURA es NO-ENCONTRADA: ninguna FP abierta, fila de decisiones ni marca de manifiesto reserva ENADID 2023 (conductas no derivadas) ni Pew GAS Spring 2025; la reserva es solo la declaración de un acto, y PISOS-2 nunca se archivó. Abrir o reservar es irreversible (D-19): decide mesa.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/decisiones.tsv (5749 filas)",
+    "comando": "csv.DictReader sobre git show origin/main:data/corrida0/decisiones.tsv; objeto que empieza por 'reserva' y contiene enadid o pew",
+    "salida": "8 filas reserva:* (envipe2026, enif2024-credito, enigh2024 x3, regla general, consumida-por-duelo x2); 0 nombran enadid o pew."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml (7198 entradas)",
+    "comando": "yq '[.[] | select(.estado_reserva != null) | select(.id | test(\"enadid|pew\"))] | length' ; yq '[.[] | select(.id | test(\"^enadid2023\"))] | length' ; yq '[.[] | select(.id==\"pew_gas_spring2025\")] | length'",
+    "salida": "0 · 5 · 1 → enadid2023_* (5 ids) y pew_gas_spring2025 están en el corpus sin estado_reserva."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-25-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-cierre.md:173-175",
+    "comando": "git show origin/main:forense/notas/2026-09-25-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-cierre.md | sed -n '173,175p'",
+    "salida": "«E.6 sobre ENADID: la ola más reciente (2023) ya tenía aperturas parciales por CALC sellados; se reservó lo no derivado (todas las conductas de esta lista) y se citó lo derivado. Cláusula 2 de autonomía.»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/corrida0/decisiones.tsv:142 y :174 · :193",
+    "comando": "csv.DictReader sobre decisiones.tsv (filas CALC-ENADID-0001, CALC-ENADID2023-UNION-SEXO-EDAD-0004, reserva:ola-nueva-de-encuesta-con-historia)",
+    "salida": "142/174: cuenta_gen2=SI (ENADID 2023 ya abierta por CALC sellados). 193: la regla general «NO es retroactiva sobre olas ya abiertas: no reclasifica nada del corpus vigente»."
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:9",
+    "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | sed -n '9p'",
+    "salida": "- Reservas: ola más reciente de todo programa con historia; ENVIPE 2026; ENCO; ENIGH 2024 salvo seis columnas AMAI (C7). ENCIG 2025 y ENVIPE 2025: abiertas. (régimen de dirección; sin fila de mesa ni marca de manifiesto para ENADID/Pew)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/firmas-pendientes.tsv (647 filas)",
+    "comando": "csv.DictReader; estado ABIERTA/PENDIENTE y texto con ENADID 2023|Pew GAS|ENVIPE 2026|ENIF 2027|reserva",
+    "salida": "17 ABIERTA; 3 coinciden por 'reserva' (FP-283, c133-01 ENNViH, fa42-02); 0 sobre apertura de ENADID 2023 o Pew GAS Spring 2025."
+   },
+   {
+    "tipo": "comando",
+    "ref": "encargo sucesor GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2",
+    "comando": "git ls-tree -r --name-only origin/main | grep -c 'FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2'",
+    "salida": "0 (12406 rutas examinadas; sucesor NO-ENCONTRADO)"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-01..03",
+    "comando": "python3 tools/consulta.py fp FP-260925-...-2a0e-01 (y -02, -03)",
+    "salida": "estado=FIRMADA 26/sep/2026 (los pisos ENADID/ENASIC/Pew ya están adoptados; lo pendiente es solo su validación contra las olas reservadas)."
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "MESA-DECISION (reserva de ENADID 2023 no derivada y Pew GAS Spring 2025: sin firma ni marca de manifiesto; PISOS-2 no archivado)",
+  "hoja": {
+   "situacion": "ENADID 2023 (11 conductas de hogar/persona sin derivar) y Pew GAS Spring 2025 (6 de migración) figuran 'reservadas por diseño' solo en la nota de PISOS-1: ni una firma ni el manifiesto las reservan, aunque MEMORIA las cubre.",
+   "opciones": [
+    {
+     "letra": "A",
+     "texto": "Reservarlas por escrito (fila reserva:* en decisiones.tsv + estado_reserva en el manifiesto, en los términos de reserva:envipe2026); la NC sigue en APERTURA hasta un encargo con spec congelada que las consuma.",
+     "costo": "Una firma y una marca; no se mide nada hoy y los 17 pisos adoptados siguen sin validación prospectiva hasta ese encargo."
+    },
+    {
+     "letra": "B",
+     "texto": "Declararlas abiertas (retirar la reserva de diseño de PISOS-1) y validar ya los 17 pisos contra ENADID 2023 y Pew 2025.",
+     "costo": "Consume el holdout de forma irreversible (D-19), fuera del frente prospectivo de las familias 2027; exige antes un encargo CAJA con spec congelada."
+    },
+    {
+     "letra": "C",
+     "texto": "Cerrar la fila sin marcar nada.",
+     "costo": "Cero trámite, pero las dos olas quedan reservadas solo de palabra: una sesión de caja puede abrirlas sin violar ninguna firma."
+    }
+   ],
+   "recomendacion": "A",
+   "porque": "Es reversible y barato, escribe la reserva donde hoy no está y no consume el holdout hasta que exista una spec congelada; B es irreversible y C deja la decisión tácita.",
+   "plazo": "Antes del próximo encargo de CAJA que toque enadid2023_* o pew_gas_spring2025; no bloquea nada hoy.",
+   "texto_firma": "Firmo A: ENADID 2023 (las conductas de GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1 no derivadas) y Pew GAS Spring 2025 quedan RESERVADAS por escrito, en los términos de reserva:envipe2026: bajar y hashear está permitido; abrirlas, derivar de ellas o leer sus tabulados, no, fuera del código congelado de una prueba pre-registrada o de mesa por escrito. El acto que ejecute esta firma escribe estado_reserva en el manifiesto."
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260921-GEN2-L-DESDE-CAPTURAS-1-1d7c-02",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "El consumo pendiente era la fila L (LLM) en el lote ENIF 2024 y los duelos. Mesa la registró NO-EMITE en el lote y NO-ENTRA en el duelo ENVIPE; ningún medidor importa el agregador y la etapa de retadores está cerrada. Los RESULT-LDESC siguen sellados con n_usos=0; el WARN no adjudica (D-16).",
+  "cite": [
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:10",
+    "comando": "git grep -n \"Etapa de retadores: cerrada\" origin/main -- canon/MEMORIA-OPERATIVA.md",
+    "salida": "origin/main:canon/MEMORIA-OPERATIVA.md:10:- Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/estado-programa-v1_18.md:869",
+    "comando": "git grep -n \"duelo ENVIPE 2026, piloto 4\" origin/main -- canon/estado-programa-v1_18.md",
+    "salida": "Nota de cierre de dirección: \"Se cierra la etapa de retadores... Seis evaluaciones prospectivas en cinco dominios: lote ENIF 2024, piloto 3 ENCIG, duelo ENIGH 2024, duelo ENVIPE 2026, piloto 4 ENVIPE 2025, cierre ENCIG 2025.\""
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-21-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-cierre.md:47-52",
+    "comando": "git show origin/main:forense/notas/2026-09-21-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-cierre.md | sed -n '47,52p'",
+    "salida": "«Fila L (LLM, §2 del encargo): ... la firma de mesa de este encargo la registra como NO-EMITE — nadie corrió el mecanismo (no una derrota): L1/L2 no se corrieron por presupuesto, y la pregunta sigue abierta en la fila L del duelo ENVIPE 2026...»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-22-GEN2-DUELO-ENVIPE2026-EJECUCION-1-cierre.md:124",
+    "comando": "git show origin/main:forense/notas/2026-09-22-GEN2-DUELO-ENVIPE2026-EJECUCION-1-cierre.md | sed -n '124p'",
+    "salida": "- La fila `L` (LLM) no entra: firma §2 «Fila L: NO-ENTRA (spec §5)»."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/CALC-*/medidor.py (371 medidores)",
+    "comando": "git grep -l 'agrega_l' origin/main -- 'data/corrida0/CALC-*/medidor.py' | wc -l ; git grep -n -E '^\\s*(from|import) .*agrega_l' origin/main -- '*.py'",
+    "salida": "0 medidores. Solo importan el agregador tests/test_agrega_l_v1_0.py:21 y tools/calcula_l_desde_capturas.py:27 (productor de CALC-L-DESDE-CAPTURAS)."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/notas/2026-09-22-GEN2-ENIGH2024-DUELO-COMMIT-2-3-cierre.md + forense/prereg-caja/DUELO-PROSPECTIVO-ENIGH2024-spec-v1_0.md + DUELO-ENVIPE2026-MARGINALES-spec-v1_0.md",
+    "comando": "git show origin/main:<ruta> | rg -n -i 'fila L|LLM'",
+    "salida": "0 coincidencias en 3 archivos: ni el duelo ENIGH ni el de marginales incluyen fila L."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/resultados.tsv (66313 filas)",
+    "comando": "csv.DictReader sobre git show origin/main:data/corrida0/resultados.tsv, resultado_id ^RESULT-LDESC",
+    "salida": "6 filas (DIFERENCIAS-VS-GEN1-JSON, N-POSICIONES, N-SLOTS, N-SLOTS-CON-MEDIANA, N-SLOTS-SIN-MEDIANA, TABLA-JSON): SELLADA, cuenta_gen2=SI, n_usos=0."
+   }
+  ],
+  "cerrado_por_detalle": "diseño: fila L sin camino de emisión (NO-EMITE lote ENIF 2024, NO-ENTRA duelo ENVIPE 2026) y etapa de retadores cerrada · canon/MEMORIA-OPERATIVA.md:10; los RESULT-LDESC quedan sellados y sin consumidor",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260926-GEN2-RECIBO-ASTRA6-N-996b-04",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "Los cuatro defectos siguen en main (3 .pyc en el inventario, cierre.py:135 tecleado, auditoría sin lector v2). Mesa aprobó el 28/sep la envoltura sucesora 'para integración antes del COMMIT-3 ENIF' (f2e5-06/-14 FIRMADAS), pero se integra en ese acto, que exige una ola ENIF 2027 que no está en el manifiesto ni en el calendario 2027.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/familias-2027/astra6-enif/inventario-sellos.json",
+    "comando": "git show origin/main:forense/analisis/familias-2027/astra6-enif/inventario-sellos.json | grep -c '\\.pyc' ; git ls-tree -r --name-only origin/main | grep -c -E '__pycache__|\\.pyc$'",
+    "salida": "3 (líneas 17, 57, 97: medidor.cpython-314.pyc) · 0 pyc versionados en origin/main"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/familias-2027/enif/cierre.py --verifica",
+    "comando": "PYTHONDONTWRITEBYTECODE=1 python3 -B tools/familias-2027/enif/cierre.py --verifica | tail -n 8 ; git status --short",
+    "salida": "FAIL: no reproduce: CALC-FAMILIA-2027-ENIF-ORO-0002 (nube sin microdato) · FAIL: inventario discordante: ...ENIF-ORO-0002/__pycache__/medidor.cpython-314.pyc (y 2 más) · CIERRE: INCOMPLETO · git status limpio antes y después."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/familias-2027/enif/cierre.py:135 · tools/familias-2027/enif/auditoria.py (32 líneas)",
+    "comando": "git show origin/main:tools/familias-2027/enif/cierre.py | grep -n 'CIERRE: ' ; git show origin/main:tools/familias-2027/enif/auditoria.py | rg -c -i 'pathlib|read_text|open\\('",
+    "salida": "135: print(\"CIERRE: \" + (\"VERDE; 2 familias, 1 ola futura, 0 R futura; atestación externa pendiente\" ...)) · auditoria.py: 0 coincidencias de pathlib/read_text/open"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-06 y -14",
+    "comando": "python3 tools/consulta.py fp FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-06 (y -14)",
+    "salida": "estado=FIRMADA 28/sep/2026 «B4 las tres · E3 1 · E4 1»; ejecutada_en=ADR-260928-GEN2-ASTRA6-C2-EJECUCION-1-e897-01."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/familias-2027/astra6-enif/enmienda-firmas-c2-v1_0.md:12 y §2",
+    "comando": "git show origin/main:forense/analisis/familias-2027/astra6-enif/enmienda-firmas-c2-v1_0.md | sed -n '12p;20,27p'",
+    "salida": "«Apruebo la envoltura de rutas exactas ... para integración antes del COMMIT-3 ENIF; no autoriza apertura de ola» · §2: «El conducto de apertura de ENIF 2027 (COMMIT-3, acto propio, cuando exista ola autorizada) ejecuta el lector futuro sólo dentro de auditoria_sucesora.py»."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml (7198 entradas) + forense/encargos (1221 rutas)",
+    "comando": "yq '[.[] | select(.id | test(\"enif_?2027\"))] | length' ; git ls-tree -r --name-only origin/main forense/encargos | grep -c -i -E 'ENIF-?2027|COMMIT-3.*ENIF'",
+    "salida": "0 · 0: ola ENIF 2027 ausente del corpus y sin encargo COMMIT-3 archivado."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/familias-2027/astra6-enif/calendario.md:9",
+    "comando": "git show origin/main:forense/analisis/familias-2027/astra6-enif/calendario.md | sed -n '9p'",
+    "salida": "Calendario 2027 | PDF INEGI, primer semestre | Disponible; sin entrada ENIF ni fecha de publicación del instrumento. (familias ENIF: estado CONDICIONAL)"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "ENIF 2027, COMMIT-3 · envoltura sucesora ya aprobada (FP f2e5-06/-14 FIRMADAS 28/sep; enmienda-firmas-c2-v1_0.md §2), pendiente de integrar; faltan DATO-2027-AUSENTE y ACCESO-AUTORIZADO",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C2-CIERRE-MATERIAL-1-ad01-04",
+  "verdict": "ABSORBER",
+  "rationale": "El dueño CAJA cita RECIBO-ASTRA6-N.md, que está CONSUMIDO (PR #1178) y es de entorno NUBE; la plantilla viva es v2-1. #1182 (codex/*, fusionado el 27/sep) sigue sin nota pr-1182.md y el dictamen C2 de 28/sep la dejó SIGUE-ABIERTA. Falta producir ese recibo (R(a)).",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "201bcfe4971ab786d54a4715228b0f7ca8ed4889",
+    "comando": "mcp__github__pull_request_read get Josanoforo/Modelado-Mexicano #1182",
+    "salida": "merged=true; merged_at=2026-09-27T02:11:32Z; head.ref=codex/astra6-c2-cierre-material-1"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/notas/**/pr-N.md (origin/main)",
+    "comando": "for n in 1180 1179 1181 1182; do git ls-tree -r --name-only origin/main forense/notas | grep -c \"pr-$n\\.md$\"; done",
+    "salida": "pr-1180.md: 1 (control positivo) · pr-1179.md: 0 · pr-1181.md: 0 · pr-1182.md: 0"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/familias-2027/dictamen-nc-c2-v1_0.tsv:14",
+    "comando": "git grep -n 'ad01-04' origin/main -- forense canon",
+    "salida": "NC-...-ad01-04 · ABIERTA · SIGUE-ABIERTA · «NO-ENCONTRADO recibo de #1182: git grep '1182' en forense/notas y forense/analisis/recibo* de origin/main (e584ee5f) sin recibo» · «recibo post-merge de #1182 (GEN2-RECIBO-ASTRA6-N siguiente)»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-26-GEN2-RECIBO-ASTRA6-N.md:70",
+    "comando": "git show origin/main:forense/encargos/2026-09-26-GEN2-RECIBO-ASTRA6-N.md | grep -n '^## CONSUMIDO' ; tail -n 2",
+    "salida": "70:## CONSUMIDO / «Ejecutado en PR #1178 (ACTO GEN2-RECIBO-ASTRA6-N, ADR-260926-GEN2-RECIBO-ASTRA6-N-996b-01) como lote D-11 de cuatro instancias: N=3 #1170 · N=4 #1172 · N=5 #1173 · N=6 #1174.» ENTORNO: NUBE (línea 3)."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-28-GEN2-RECIBO-ASTRA6-N-v2-1.md",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-RECIBO-ASTRA6-N-v2-1.md | grep -c '^## CONSUMIDO' ; sed -n '10p' (sucesores)",
+    "salida": "0 secciones CONSUMIDO (plantilla viva). Línea 3: ENTORNO: NUBE. §10: «No fusiona, no adopta, no corrige a Astra. Sucesor: el siguiente N.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/ (9 archivos RECIBO-ASTRA6*/AISLADO-3)",
+    "comando": "for f in <RECIBO-ASTRA6*.md + ASTRA6-C1-EJECUTOR-AISLADO-3.md + fuentes/ASTRA6-tanda5/01-*.md>; do git show origin/main:$f | grep -c -E \"1179|1181|1182\"; done",
+    "salida": "9 archivos examinados; 0 coincidencias en cada uno: ningún encargo de recibo archivado nombra #1179, #1181 ni #1182."
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:7",
+    "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | sed -n '7p'",
+    "salida": "...Todo lo que sella corridas o escribe en milpa/ lo fusiona mesa. Ramas codex/*: recibo de Claude obligatorio (R(a))."
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:RECIBO-ASTRA6-POSTMERGE",
+  "entorno": "NUBE",
+  "hecho_comando": "git ls-tree -r --name-only origin/main forense/notas | grep -c 'pr-1182\\.md$'  # hoy 0; debe dar 1 (control: pr-1180.md da 1)",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta",
+  "falta": "una nota pr-1182.md de recibo post-merge sobre #1182 (C2 cierre material) con la plantilla RECIBO-ASTRA6-N-v2-1, sin fusionar ni adoptar; el replay de oros queda NO-VERIFICABLE-AQUÍ para CAJA."
+ },
+ {
+  "id": "NC-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-04",
+  "verdict": "CERRAR-DUPLICADA",
+  "rationale": "El aislamiento por construcción solo lo da el broker v3, no provisionado: es la misma deuda que NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03 (ABIERTA). Mesa firmó la opción A para el lote 3 (26a2-02) con rótulo CIEGA-POR-CONTEXTO-NUEVO. El encargo AISLADO-3 citado como dueño está CONSUMIDO (PR #1241).",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03",
+    "comando": "python3 tools/consulta.py nc NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03 ; csv.DictReader sobre forense/no-corrido.tsv",
+    "salida": "estado=ABIERTA · pieza=P2 · broker · que_no_se_corrio=«Broker de proveedor no provisionado; CONTEXTO-NUEVO-ACREDITADO=PENDIENTE» · razon=DIFERIDO-A:acto de provisión del broker v3 · impacto=un C1 real no puede acreditar contexto nuevo"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/validacion-independiente/catalogo-1-ejecutor-v3/provision-broker-v3.md",
+    "comando": "git show origin/main:forense/validacion-independiente/catalogo-1-ejecutor-v3/provision-broker-v3.md | sed -n '1,5p'",
+    "salida": "«NO-VERIFICADO: ... [sin] servicio de broker conectado a esa cuenta ...» «Operación faltante: provisionar un servicio en un socket Unix propiedad del orquestador ... para crear una conversación nueva sin historial ni memoria»."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-27-ASTRA6-C1-EJECUTOR-AISLADO-3.md:174-182",
+    "comando": "git show origin/main:forense/encargos/2026-09-27-ASTRA6-C1-EJECUTOR-AISLADO-3.md | grep -n '^## NO-CORRIDO\\|^## CONSUMIDO'",
+    "salida": "174:## NO-CORRIDO / RESERVAS («Sesión nueva de proveedor y C1 real: [sin] broker de proveedor acreditado en esta caja ... Provisionar broker») · 180:## CONSUMIDO («Producto técnico y prueba sintética ejecutados en rama codex/astra6-c1-ejecutor-v3-1 ... PR #1241»)."
+   },
+   {
+    "tipo": "commit",
+    "ref": "PR #1241",
+    "comando": "mcp__github__pull_request_read get Josanoforo/Modelado-Mexicano #1241",
+    "salida": "merged=true; merged_at=2026-09-28T03:22:22Z; head.ref=codex/astra6-c1-ejecutor-v3-1"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-02",
+    "comando": "python3 tools/consulta.py fp FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-02",
+    "salida": "estado=FIRMADA · 28/sep/2026 · «Firmo A verbatim» sobre «Autorizo el reconstructor de opción A para el lote 3 de C1: una sesión nueva de Claude Code, sin historial, con solo el prompt, el paquete y la lista cerrada de herramientas; transcript archivado y auditado» · ejecutada_en=ADR-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-01."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/astra-continuidad-c1/hoja-mesa-c1-v1_0.md §a",
+    "comando": "git show origin/main:forense/analisis/astra-continuidad-c1/hoja-mesa-c1-v1_0.md | sed -n '14,28p'",
+    "salida": "Opción A «Qué no protege: Red y sistema de archivos ... La ceguera es por disciplina auditada, no por aislamiento». «B sigue como meta para cuando el broker exista; A no la sustituye.» Rótulo propio CIEGA-POR-CONTEXTO-NUEVO."
+   }
+  ],
+  "cerrado_por_detalle": "duplicada de NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03 (ABIERTA: broker v3 no provisionado); el rótulo CIEGA-POR-CONTEXTO-NUEVO del lote 3 ya declara la reserva (FP 26a2-02 FIRMADA)",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2-9d28-01",
+  "verdict": "ABSORBER",
+  "rationale": "Mismo caso que ad01-04 para #1179 (codex/*, fusionado el 27/sep): sin nota pr-1179.md y el dueño CAJA cita una plantilla CONSUMIDA. La suposición de que RECIBO-ASTRA6-1 lo satisfizo se refuta: esa carpeta cubre #1184/#1185/#1189 (C1) y no nombra #1179. Falta el recibo.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "PR #1179",
+    "comando": "mcp__github__pull_request_read get Josanoforo/Modelado-Mexicano #1179",
+    "salida": "merged=true; merged_at=2026-09-27T01:59:50Z; head.ref=codex/astra6-c3-consumo-familia-2"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/notas/**/pr-N.md (origin/main)",
+    "comando": "for n in 1180 1179 1181 1182; do git ls-tree -r --name-only origin/main forense/notas | grep -c \"pr-$n\\.md$\"; done",
+    "salida": "pr-1180.md: 1 (control positivo) · pr-1179.md: 0 · pr-1181.md: 0 · pr-1182.md: 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/ (4 archivos)",
+    "comando": "for f in <4 archivos>; do git show origin/main:$f | grep -c -i -E 'consumo-familia|#1179|PR-1179|pull/1179'; done",
+    "salida": "0, 0, 1, 0: el único acierto es la fila de tabla 'RESULT-ENDIREH2011-MOD-TABLA#1179' (índice de fila, no el PR). nota-recibo.md línea 1: recibo post-merge de #1184, #1185 y #1189."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/reports-v2/continuidad-c3-1/hoja-para-mesa.md:63",
+    "comando": "git show origin/main:forense/analisis/reports-v2/continuidad-c3-1/hoja-para-mesa.md | sed -n '63p'",
+    "salida": "9d28-01 · ABIERTA · SIGUE-ABIERTA. «RECIBO-ASTRA6-1 probablemente satisfizo el objeto (supuesto, no verificado aquí)» — refutado arriba."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-26-GEN2-RECIBO-ASTRA6-N.md:70",
+    "comando": "git show origin/main:forense/encargos/2026-09-26-GEN2-RECIBO-ASTRA6-N.md | grep -n '^## CONSUMIDO' ; tail -n 2",
+    "salida": "70:## CONSUMIDO / «Ejecutado en PR #1178 (ACTO GEN2-RECIBO-ASTRA6-N, ADR-260926-GEN2-RECIBO-ASTRA6-N-996b-01) como lote D-11 de cuatro instancias: N=3 #1170 · N=4 #1172 · N=5 #1173 · N=6 #1174.» ENTORNO: NUBE (línea 3)."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-28-GEN2-RECIBO-ASTRA6-N-v2-1.md",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-RECIBO-ASTRA6-N-v2-1.md | grep -c '^## CONSUMIDO' ; sed -n '10p' (sucesores)",
+    "salida": "0 secciones CONSUMIDO (plantilla viva). Línea 3: ENTORNO: NUBE. §10: «No fusiona, no adopta, no corrige a Astra. Sucesor: el siguiente N.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/ (9 archivos RECIBO-ASTRA6*/AISLADO-3)",
+    "comando": "for f in <RECIBO-ASTRA6*.md + ASTRA6-C1-EJECUTOR-AISLADO-3.md + fuentes/ASTRA6-tanda5/01-*.md>; do git show origin/main:$f | grep -c -E \"1179|1181|1182\"; done",
+    "salida": "9 archivos examinados; 0 coincidencias en cada uno: ningún encargo de recibo archivado nombra #1179, #1181 ni #1182."
+   },
+   {
+    "tipo": "comando",
+    "ref": "plantilla GEN2-RECIBO-ASTRA-PRODUCTO-N (citada por el NC)",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | grep -c 'RECIBO-ASTRA-PRODUCTO-N'",
+    "salida": "0 (1221 rutas examinadas): el sucesor que nombra el NC no está archivado."
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:7",
+    "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | sed -n '7p'",
+    "salida": "...Todo lo que sella corridas o escribe en milpa/ lo fusiona mesa. Ramas codex/*: recibo de Claude obligatorio (R(a))."
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:RECIBO-ASTRA6-POSTMERGE",
+  "entorno": "NUBE",
+  "hecho_comando": "git ls-tree -r --name-only origin/main forense/notas | grep -c 'pr-1179\\.md$'  # hoy 0; debe dar 1 (control: pr-1180.md da 1)",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta",
+  "falta": "una nota pr-1179.md de recibo post-merge sobre #1179 (C3 consumo-familia-2: dictámenes corregidos y fuentes primarias) con la plantilla RECIBO-ASTRA6-N-v2-1."
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C3-TRABAJO-MOVILIDAD-1-ed83-01",
+  "verdict": "ABSORBER",
+  "rationale": "Mismo caso para #1181 (codex/*, fusionado el 27/sep): no hay pr-1181.md, la hoja C3 de 28/sep lo dejó SIGUE-ABIERTA y el dueño cita una plantilla CONSUMIDA. La parte técnica es un recibo con v2-1 (NUBE); la revisión humana de tesis centrales sigue siendo de mesa y no la cierra el ejecutor.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "PR #1181",
+    "comando": "mcp__github__pull_request_read get Josanoforo/Modelado-Mexicano #1181",
+    "salida": "merged=true; merged_at=2026-09-27T02:29:33Z; head.ref=codex/astra6-c3-trabajo-movilidad-1"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/notas/**/pr-N.md (origin/main)",
+    "comando": "for n in 1180 1179 1181 1182; do git ls-tree -r --name-only origin/main forense/notas | grep -c \"pr-$n\\.md$\"; done",
+    "salida": "pr-1180.md: 1 (control positivo) · pr-1179.md: 0 · pr-1181.md: 0 · pr-1182.md: 0"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/reports-v2/continuidad-c3-1/hoja-para-mesa.md:66",
+    "comando": "git show origin/main:forense/analisis/reports-v2/continuidad-c3-1/hoja-para-mesa.md | sed -n '66p'",
+    "salida": "ed83-01 (revisión humana y recibo) · ABIERTA · SIGUE-ABIERTA. Sucesor: un recibo de producto por circuito de mesa."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/reports-v2/continuidad-c3-1/hoja-para-mesa.md:66-68",
+    "comando": "git show origin/main:forense/analisis/reports-v2/continuidad-c3-1/hoja-para-mesa.md | sed -n '66,68p'",
+    "salida": "66 ed83-01 (revisión humana y recibo) · SIGUE-ABIERTA · 67 ed83-03 (cifra CEEY) · SIGUE-ABIERTA · 68 ed83-02 · CERRADA «Ya cerrada por FIRMAS-20». Solo ed83-01 espera el recibo."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-26-GEN2-RECIBO-ASTRA6-N.md:70",
+    "comando": "git show origin/main:forense/encargos/2026-09-26-GEN2-RECIBO-ASTRA6-N.md | grep -n '^## CONSUMIDO' ; tail -n 2",
+    "salida": "70:## CONSUMIDO / «Ejecutado en PR #1178 (ACTO GEN2-RECIBO-ASTRA6-N, ADR-260926-GEN2-RECIBO-ASTRA6-N-996b-01) como lote D-11 de cuatro instancias: N=3 #1170 · N=4 #1172 · N=5 #1173 · N=6 #1174.» ENTORNO: NUBE (línea 3)."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-28-GEN2-RECIBO-ASTRA6-N-v2-1.md",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-RECIBO-ASTRA6-N-v2-1.md | grep -c '^## CONSUMIDO' ; sed -n '10p' (sucesores)",
+    "salida": "0 secciones CONSUMIDO (plantilla viva). Línea 3: ENTORNO: NUBE. §10: «No fusiona, no adopta, no corrige a Astra. Sucesor: el siguiente N.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/ (9 archivos RECIBO-ASTRA6*/AISLADO-3)",
+    "comando": "for f in <RECIBO-ASTRA6*.md + ASTRA6-C1-EJECUTOR-AISLADO-3.md + fuentes/ASTRA6-tanda5/01-*.md>; do git show origin/main:$f | grep -c -E \"1179|1181|1182\"; done",
+    "salida": "9 archivos examinados; 0 coincidencias en cada uno: ningún encargo de recibo archivado nombra #1179, #1181 ni #1182."
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:7",
+    "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | sed -n '7p'",
+    "salida": "...Todo lo que sella corridas o escribe en milpa/ lo fusiona mesa. Ramas codex/*: recibo de Claude obligatorio (R(a))."
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:RECIBO-ASTRA6-POSTMERGE",
+  "entorno": "NUBE",
+  "hecho_comando": "git ls-tree -r --name-only origin/main forense/notas | grep -c 'pr-1181\\.md$'  # hoy 0; debe dar 1 (control: pr-1180.md da 1)",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta",
+  "falta": "una nota pr-1181.md de recibo post-merge sobre #1181 (C3 trabajo-movilidad: los dos juicios MATIZA, la cláusula causal y el tratamiento de exposición) con la plantilla RECIBO-ASTRA6-N-v2-1; la revisión humana queda para mesa."
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-1-beee-08",
+  "verdict": "HOJA-RECETA",
+  "rationale": "AISLADO-3 (CONSUMIDO; su perímetro excluye intentos anteriores) no cubre estas reservas del lote 1. (i) sin --unshare-net es la deuda del broker (8c5c-03). En (ii) /raw hay hashes archivados que casan con el manifiesto en 6 de 9 paquetes; ayuda, decisiones y laboral no. (iii) el SHA del launcher de comunitaria no está en el repo. Falta pedirlo a Astra.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/nota-recibo.md (Reservas de §1)",
+    "comando": "git show origin/main:forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/nota-recibo.md | sed -n '19,34p'",
+    "salida": "«Reservas (no degradan el rótulo, se declaran): (i) lanza.sh no usa --unshare-net ... (ii) El contenido de /raw que materializó el orquestador no se archivó ... NO-VERIFICABLE-AQUÍ. (iii) Comunitaria corrió con la versión anterior del launcher ... su SHA no se registró»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-27-ASTRA6-C1-EJECUTOR-AISLADO-3.md:174-182",
+    "comando": "git show origin/main:forense/encargos/2026-09-27-ASTRA6-C1-EJECUTOR-AISLADO-3.md | grep -n '^## NO-CORRIDO\\|^## CONSUMIDO'",
+    "salida": "174:## NO-CORRIDO / RESERVAS («Sesión nueva de proveedor y C1 real: [sin] broker de proveedor acreditado en esta caja ... Provisionar broker») · 180:## CONSUMIDO («Producto técnico y prueba sintética ejecutados en rama codex/astra6-c1-ejecutor-v3-1 ... PR #1241»)."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-27-ASTRA6-C1-EJECUTOR-AISLADO-3.md §9",
+    "comando": "git show origin/main:forense/encargos/2026-09-27-ASTRA6-C1-EJECUTOR-AISLADO-3.md | rg -n 'Perímetro|No editar' -A1",
+    "salida": "«tools/validacion/astra6_ejecutor_v3/ y forense/validacion-independiente/catalogo-1-ejecutor-v3/ ... No editar aislamiento_v2/, entradas residuales v2, intentos anteriores, resultados, sellos»: el lote 1 queda fuera de su perímetro."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/validaciones-independientes.tsv (748 filas)",
+    "comando": "csv.DictReader sobre git show origin/main:data/corrida0/validaciones-independientes.tsv; alcance_validacion contiene CIEGA-POR-SEPARACI",
+    "salida": "9 filas con C1-LOTE1-CIEGA-POR-SEPARACION: el rótulo con sus reservas está asentado en la vista."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/lanzamientos/ y tools/validacion/astra6_lote1/lanza.sh",
+    "comando": "git ls-tree -r --name-only origin/main <lote1>/lanzamientos | grep -c 'lanzamiento\\.json$' ; ... | grep -c comunitaria ; git show origin/main:tools/validacion/astra6_lote1/lanza.sh | sha256sum | cut -c1-16",
+    "salida": "8 archivos de lanzamiento, 0 de comunitaria (9 paquetes) · lanza.sh = a766b2b4d4b6d08e (= launcher_sha256 de la nota). NO-ENCONTRADO en 126 archivos de texto de la carpeta: log del materializador y sha del launcher de comunitaria intento 2."
+   },
+   {
+    "tipo": "comando",
+    "ref": "…/catalogo-1-ejecucion-lote1/reconstrucciones/<paquete>/ (116 archivos, 9 paquetes)",
+    "comando": "python3: por paquete, cuántos ids de data/manifiesto.yaml (7198) tienen su sha256 literal en los archivos de texto archivados de ese paquete (heurística: no prueba qué se montó)",
+    "salida": "ayuda 0 · decisiones 0 · laboral 0 · comunitaria 7 · discriminacion 7 · escolar 7 · familiar 7 · nofisica-bc 7 · 2011 5. En comunitaria, --SHA256SUMS lista 7 raw/* y los 7 casan con el manifiesto (7/7)."
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03",
+    "comando": "python3 tools/consulta.py nc NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03 ; csv.DictReader sobre forense/no-corrido.tsv",
+    "salida": "estado=ABIERTA · pieza=P2 · broker · que_no_se_corrio=«Broker de proveedor no provisionado; CONTEXTO-NUEVO-ACREDITADO=PENDIENTE» · razon=DIFERIDO-A:acto de provisión del broker v3 · impacto=un C1 real no puede acreditar contexto nuevo"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "MESA-ACCION (pedir a Astra el log del materializador y el sha del launcher del lote 1; la reserva (i) sigue en 8c5c-03)",
+  "hoja": {
+   "accion_clave": "ASTRA-EVIDENCIA-LOTE1-RAW-Y-LAUNCHER",
+   "receta_un_minuto": "Escribir a Astra por su canal habitual: «Del lote 1 de C1 necesito (1) el log del materializador y un `ls -lR /raw` con sha256 por archivo de los lanzamientos ayuda, decisiones y laboral (los tres sin hashes de /raw en el repo), y (2) el SHA-256 del lanza.sh con que corrió el intento 2 de comunitaria. Pégalo tal cual, sin resumir.» Guardar la respuesta sin editar.",
+   "destino": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/ (adenda con sha256, entrega por encargo CAJA/tramite); mientras no llegue, el rótulo CIEGA-POR-SEPARACIÓN del lote 1 conserva sus reservas declaradas."
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-10",
+  "verdict": "CERRAR-DUPLICADA",
+  "rationale": "El circuito v2 con bubblewrap no corre en la caja (NETLINK_ROUTE); #1241 lo sustituyó por un runtime propio en namespace, probado en sintético según su nota (REPORTADO, no re-ejecutado aquí). Lo que sigue pendiente es la sesión nueva con broker: NC-...-8c5c-03 (ABIERTA). El lote 3 corrió con opción A firmada.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/validacion-independiente/catalogo-1-ejecutor-v3/astra6-c1-ejecutor-v3-nota-cierre.md:15,21",
+    "comando": "git show origin/main:forense/validacion-independiente/catalogo-1-ejecutor-v3/astra6-c1-ejecutor-v3-nota-cierre.md | sed -n '15p;21p'",
+    "salida": "15: «EJECUTADO: unshare de usuario, montaje, red y PID con raíz de ejecución copiada a tmpfs de solo lectura ... mount --bind /usr fue denegado en esta caja; el backend adoptado copia un inventario explícito». 21: «NO-VERIFICADO: sesión remota nueva con proveedor ... falta provisionar un broker»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/validacion/astra6_ejecutor_v3/",
+    "comando": "git ls-tree -r --name-only origin/main tools/validacion/astra6_ejecutor_v3",
+    "salida": "8 archivos: compare_v3.py, contract.py, runtime.py, session_request.py y 4 test_*.py (EXISTE; no se ejecutaron aquí)."
+   },
+   {
+    "tipo": "commit",
+    "ref": "PR #1241",
+    "comando": "mcp__github__pull_request_read get Josanoforo/Modelado-Mexicano #1241",
+    "salida": "merged=true; merged_at=2026-09-28T03:22:22Z; head.ref=codex/astra6-c1-ejecutor-v3-1"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03",
+    "comando": "python3 tools/consulta.py nc NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03 ; csv.DictReader sobre forense/no-corrido.tsv",
+    "salida": "estado=ABIERTA · pieza=P2 · broker · que_no_se_corrio=«Broker de proveedor no provisionado; CONTEXTO-NUEVO-ACREDITADO=PENDIENTE» · razon=DIFERIDO-A:acto de provisión del broker v3 · impacto=un C1 real no puede acreditar contexto nuevo"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-02",
+    "comando": "python3 tools/consulta.py fp FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-02",
+    "salida": "estado=FIRMADA · 28/sep/2026 · «Firmo A verbatim» sobre «Autorizo el reconstructor de opción A para el lote 3 de C1: una sesión nueva de Claude Code, sin historial, con solo el prompt, el paquete y la lista cerrada de herramientas; transcript archivado y auditado» · ejecutada_en=ADR-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-01."
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-10",
+    "comando": "python3 tools/consulta.py nc NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-10",
+    "salida": "estado=ABIERTA · pr=1221 · PARO-ENTORNO (nube sin bubblewrap; caja falla por NETLINK_ROUTE) · sucesor: CAJA (AISLADO-3) · antes: entorno con namespaces (el entorno con namespaces es justo lo que #1241 entregó)"
+   }
+  ],
+  "cerrado_por_detalle": "duplicada de NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03 (ABIERTA: broker v3 / sesión nueva); el entorno con namespaces lo entregó #1241",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ }
+]

@@ -1,0 +1,30 @@
+[
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-02",
+  "veredicto": "REFUTA",
+  "razon": "R08 (b) y ADENDA-1 llaman a esto DECISIÓN-DE-MESA-PENDIENTE: aplazamiento sin fecha, no retiro. Mapa sigue con CALC-CAJA/PEDIDO-ENCARGO para M14; HOLDOUT vigente. 'Mantener sin fecha y cerrar' es opción del investigador, no firma de mesa. La propia cita dice 'se reabre si…'.",
+  "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md | sed -n '14p'; git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys,re;csv.field_size_limit(10**9);print(sum(1 for r in csv.DictReader(sys.stdin,delimiter='\\t') if re.search(r'M1[4567]',' '.join(r.values()))))\"",
+  "salida": "ADENDA:14 'Van a NO-CORRIDO con DECISIÓN-DE-MESA-PENDIENTE; no se calculan ni se abre su dato'. Única firma que menciona M14–M17 es R08/f2e5-02 (aplaza sin fecha); ninguna retira."
+ },
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-03",
+  "veredicto": "REFUTA",
+  "razon": "R08 (b) y ADENDA-1 dejan M15 como DECISIÓN-DE-MESA-PENDIENTE (aplazado, no retirado); el mapa fila 42 sigue PEDIDO-ENCARGO y el HOLDOUT vigente. Ninguna firma posterior lo retira. La opción 'cerrar con esta firma' la propone el investigador, no mesa. Se reabre 'si una spec pide'.",
+  "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md | sed -n '14p'; git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys,re;csv.field_size_limit(10**9);print(sum(1 for r in csv.DictReader(sys.stdin,delimiter='\\t') if re.search(r'M1[4567]',' '.join(r.values()))))\"",
+  "salida": "ADENDA:14 'Van a NO-CORRIDO con DECISIÓN-DE-MESA-PENDIENTE; no se calculan ni se abre su dato'. Única firma que menciona M14–M17 es R08/f2e5-02 (aplaza sin fecha); ninguna retira."
+ },
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-04",
+  "veredicto": "REFUTA",
+  "razon": "R08 (b) y ADENDA-1 dejan M16 pendiente de mesa (aplazado, no retirado); mapa fila 44 sigue PEDIDO-ENCARGO, ENVIPE 2025 ABIERTA y HOLDOUT vigente. Ninguna firma posterior lo retira; cerrar es opción del investigador. Cierre condicional ('se reabre si…') no es cierre.",
+  "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md | sed -n '14p'; git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys,re;csv.field_size_limit(10**9);print(sum(1 for r in csv.DictReader(sys.stdin,delimiter='\\t') if re.search(r'M1[4567]',' '.join(r.values()))))\"",
+  "salida": "ADENDA:14 'Van a NO-CORRIDO con DECISIÓN-DE-MESA-PENDIENTE; no se calculan ni se abre su dato'. Única firma que menciona M14–M17 es R08/f2e5-02 (aplaza sin fecha); ninguna retira."
+ },
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-05",
+  "veredicto": "REFUTA",
+  "razon": "R08 (b) y ADENDA-1 dejan M17 pendiente de mesa (aplazado, no retirado); mapa fila 48 sigue PEDIDO-ENCARGO y HOLDOUT vigente. Ninguna firma posterior lo retira. Cerrar por 'sin fecha' es preferencia del investigador, no retiro por E.1/regla 6/commit.",
+  "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md | sed -n '14p'; git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys,re;csv.field_size_limit(10**9);print(sum(1 for r in csv.DictReader(sys.stdin,delimiter='\\t') if re.search(r'M1[4567]',' '.join(r.values()))))\"",
+  "salida": "ADENDA:14 'Van a NO-CORRIDO con DECISIÓN-DE-MESA-PENDIENTE; no se calculan ni se abre su dato'. Única firma que menciona M14–M17 es R08/f2e5-02 (aplaza sin fecha); ninguna retira."
+ }
+]

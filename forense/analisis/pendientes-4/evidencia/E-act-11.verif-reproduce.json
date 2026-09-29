@@ -1,0 +1,16 @@
+[
+  {
+    "id": "NC-260928-GEN2-TRAMITE-FIRMAS-21-8560-01",
+    "veredicto": "CONFIRMA",
+    "razon": "Las cuatro citas se reproducen sobre origin/main 90345dff. 7813-03 está ABIERTA y su sucesor pide mover los payloads fuera de reserva_respondentes, que es lo mismo que 8560-01. R09 está FIRMADA. El manifiesto tiene 15/15 con estado_reserva. SUCESORES-Y-LOTE-3 da 0/0 coincidencias. La cita de R09 es pseudocomando, pero la corrí literal.",
+    "comando": "git show origin/main:forense/no-corrido.tsv | csv.DictReader id endswith 7813-03 ; git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | csv renglon==R09 ; git show origin/main:data/manifiesto.yaml | split '\\n- id: ' regex cc1_inegi_(caas_2015|eng_2009|migracion_2002) ; git show origin/main:<encargo|nota LOTE-3> | grep -c 'R09\\|CAAS\\|reserva_respondentes\\|caas_2015'",
+    "salida": "7813-03 ABIERTA · sucesor: MESA (2026-10-05) · encargo por escribir: R09 (a): falta mover payloads fuera de reserva_respondentes | R09 estado: FIRMADA (GEN2-TRAMITE-FIRMAS-21, ADENDA-1 28/sep) | bloques 15 con_estado_reserva 15 (raiz: reserva_respondentes) | encargo: 0 · nota: 0"
+  },
+  {
+    "id": "NC-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-02",
+    "veredicto": "CONFIRMA",
+    "razon": "El comando se reproduce idéntico: NC-0085 y 9641-03 están CERRADA por GEN2-PENDIENTES-3, y ef6f-01 sigue ABIERTA con sucesor «mesa confirma NO y se cierra por firma». vencidas-dictamen.tsv muestra RETENIDA justo en esas tres filas. La deuda restante vive en ef6f-01.",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys; [print(r['id'],'|',r['estado'],'|',r['cerrado_por'][:90]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id'] in ('NC-0085','NC-0392') or r['id'].endswith(('ef6f-01','9641-03'))]\"",
+    "salida": "NC-0085 | CERRADA | GEN2-PENDIENTES-3 · CERRADA (duplicada: NC-0392 [ABIERTA]) / NC-0392 | ABIERTA / ef6f-01 | ABIERTA / 9641-03 | CERRADA | GEN2-PENDIENTES-3 · CERRADA (producto: ...FIRMAS-8-ADENDA-1) ; RETENIDA en vencidas-dictamen.tsv: NC-0085, ef6f-01, 9641-03"
+  }
+]

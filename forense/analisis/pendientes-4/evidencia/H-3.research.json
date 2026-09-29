@@ -1,0 +1,169 @@
+[
+  {
+    "id": "NC-260926-GEN2-PRODUCTO-CONSULTA-1-dcde-01",
+    "verdict": "HOJA-RECETA",
+    "rationale": "No hecho: FP-4296-01 sigue ABIERTA, R49 DIFERIDA-POR-MESA al 29/sep, la API de GitHub da has_pages=false, sin workflow pages-build-deployment (2 de 2 workflows) y sin releases. Es el segundo paso de la misma acción física que 9556-05 (activar Pages): comparte accion_clave R49-PAGES. Desde esta NUBE github.io da 403 (proxy), así que solo mesa o un navegador lo prueban.",
+    "cite": [
+      {"tipo": "firma", "ref": "FP-260923-GEN2-FRONT-1-4296-01", "comando": "python3 tools/consulta.py fp FP-260923-GEN2-FRONT-1-4296-01", "salida": "FP-260923-GEN2-FRONT-1-4296-01 · estado=ABIERTA · creado=2026-09-23 · qué_se_firma=Activar GitHub Pages desde main/docs y decidir DOI Zenodo cuando el frente sea fusionado"},
+      {"tipo": "archivo", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv (R49)", "comando": "python3 csv.DictReader sobre decisiones-21.tsv, renglon==R49 -> estado", "salida": "R49 · ids_fundidos: FP-260923-GEN2-FRONT-1-4296-01 ; FP-260926-GEN2-FRONT-3-PORTADA-1-8914-03 · estado: DIFERIDA-POR-MESA plazo 2026-09-29 (ABIERTA)"},
+      {"tipo": "comando", "ref": "API GitHub repos/Josanoforo/Modelado-Mexicano", "comando": "mcp github search_repositories repo:Josanoforo/Modelado-Mexicano (minimal_output=false); actions_list list_workflows; list_releases", "salida": "\"homepage\":\"\" ... \"has_pages\":false · workflows total_count=2 (Auto-merge de rutinas; Verificación del corpus), sin pages-build-deployment · releases: []"},
+      {"tipo": "comando", "ref": "https://josanoforo.github.io/Modelado-Mexicano/", "comando": "curl -sS -o /dev/null -w '%{http_code}' https://josanoforo.github.io/Modelado-Mexicano/consultar", "salida": "curl: (56) CONNECT tunnel failed, response 403 · 000 (NO OBTENIDO POR ESTE AGENTE EN 1 INTENTO: proxy de la NUBE)"}
+    ],
+    "owner_detalle": "MESA · HUMANO · R49 (hoja de recetas; segundo paso de R49-PAGES)",
+    "hoja": {
+      "accion_clave": "R49-PAGES",
+      "receta_un_minuto": "Después de activar Pages (receta R49-PAGES: Settings > Pages > Deploy from branch: main, /docs), esperar a que termine el build 'pages build and deployment' en Actions. Abrir https://josanoforo.github.io/Modelado-Mexicano/consultar.html en un navegador normal, hacer una consulta y confirmar que responde sin el aviso de file://. Pegar URL, fecha y «carga/no carga» en la hoja.",
+      "destino": "https://josanoforo.github.io/Modelado-Mexicano/consultar.html (fuente docs/consultar.md; baseurl /Modelado-Mexicano en docs/_config.yml:3)"
+    },
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-08",
+    "verdict": "ABSORBER",
+    "rationale": "No hecho y no requiere identidad: faltan las fuentes externas de 10 filas muestreadas (Smith 2017, Madlock 2012, INEGI cuéntame…). C3-1 la dejó SIGUE-ABIERTA con sucesor «recibo con red». La NUBE no tiene red (github.io, doi.org e inegi.org.mx dan 000/403 aquí), así que el recibo va a CAJA. Si una fuente está tras un muro de pago, esa fila pasa a receta de mesa.",
+    "cite": [
+      {"tipo": "archivo", "ref": "forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-3/pr-1243.md:22", "comando": "sed -n '22p' forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-3/pr-1243.md", "salida": "| C3-6 | Muestra 10 al azar (random.seed(20260928), sample sobre las 148 filas en orden de tablas) | CUMPLE (forma) / NO-VERIFICABLE-AQUÍ (fuente) | E: SANC-V1-X01, INTER-037, HUM-009, INTER-020 (ROMPE, fuente INEGI cuéntame), HUM-025, EMOC-031, EMOC-007, INTER-016 (Madlock N=168), EMOC-002 (Smith 2017 Tabla 3), SANC-013."},
+      {"tipo": "archivo", "ref": "forense/analisis/reports-v2/continuidad-c3-1/hoja-para-mesa.md:60", "comando": "rg -n '8c5c-08' forense/analisis/reports-v2/continuidad-c3-1/hoja-para-mesa.md", "salida": "60:| `…-8c5c-08` (citas de la muestra de #1243 sin abrir) | ABIERTA | **SIGUE-ABIERTA**. Sucesor: un recibo con red sobre esas 10 filas. |"},
+      {"tipo": "comando", "ref": "red de esta NUBE", "comando": "curl -sS -o /dev/null -w '%{http_code}' https://doi.org/ ; ... https://www.inegi.org.mx/", "salida": "000 / 000 (NO OBTENIDO POR ESTE AGENTE EN 1 INTENTO cada uno)"}
+    ],
+    "lote": "OTRO:RECIBO-CON-RED-C3",
+    "entorno": "CAJA",
+    "hecho_comando": "python3 -c \"import csv;r=list(csv.DictReader(open('forense/analisis/reports-v2/recibo-con-red-1/muestra-8c5c-08.tsv'),delimiter='\\t'));print(len(r),sum(1 for x in r if x['localizador'].strip()))\"  -> 10 10",
+    "owner_detalle": "encargo PROPUESTO OTRO:RECIBO-CON-RED-C3 (CAJA; puede sumar …-9d28-03, que pide «lectura primaria en un recibo con red»)",
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260926-GEN2-RECIBO-ASTRA6-N-996b-03",
+    "verdict": "HOJA-RECETA",
+    "rationale": "Ninguna de las dos mitades está hecha. Hay 0 archivos .ots entre los 12375 de origin/main. inventario-sellos.json de ENCIG no incluye el hash nuevo de cierre.py ni enmienda-verificacion.json. El único manifiesto (2026-09-23) tiene 0 filas de familias-2027. El .ots es acción de mesa (ADENDA-1: «.ots» no es pieza), la misma que fde0-01/fde0-02 (SELLO-EXTERNO-2). La mitad CAJA previa (verificar e inventariar) se absorbe.",
+    "cite": [
+      {"tipo": "comando", "ref": "origin/main", "comando": "git ls-tree -r --name-only origin/main | wc -l; git ls-tree -r --name-only origin/main | grep -c '\\.ots$'", "salida": "12375\n0"},
+      {"tipo": "archivo", "ref": "forense/analisis/familias-2027/astra6-encig/inventario-sellos.json", "comando": "jq -c '{estado,atestacion_externa_verificada,dependencia}' …/inventario-sellos.json; rg -c '3f1989c2596cd93|enmienda-verificacion' …/inventario-sellos.json", "salida": "{\"estado\":\"SELLADO-INTERNAMENTE\",\"atestacion_externa_verificada\":0,\"dependencia\":\"Mesa: integrar estos hashes y commits en siguiente manifiesto de sellos y obtener/verificar comprobante OTS; este PR no edita forense/sellos ni acredita envío.\"} · rg: sin coincidencias (0)"},
+      {"tipo": "comando", "ref": "forense/sellos/manifiesto-sellos-2026-09-23.tsv", "comando": "rg -c 'familias-2027|ENCIG-AUX-FAMILIAS|FAMILIA-2027-ENCIG' forense/sellos/manifiesto-sellos-2026-09-23.tsv; ls forense/sellos", "salida": "(sin coincidencias: 0 de 344 líneas) · manifiesto-sellos-2026-09-23.tsv (único archivo)"},
+      {"tipo": "firma", "ref": "FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-02", "comando": "python3 tools/consulta.py fp FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-02", "salida": "estado=FIRMADA · ejecutada_en=ADR-260927-GEN2-TRAMITE-FIRMAS-20-96f9-01; EJECUTA: SELLO-EXTERNO-2 · qué_se_firma=PROPUESTO-POR-EJECUTOR: integrar hashes COMMIT1/2 ENCIG al siguiente manifiesto del circuito existente, enviar a OTS y verificar comprobante."}
+    ],
+    "lote": "RELEVO-TRAMITE-CAJA-2",
+    "entorno": "CAJA",
+    "hecho_comando": "rg -c 'enmienda-verificacion|3f1989c2596cd93' forense/analisis/familias-2027/astra6-encig/inventario-sellos.json (>=1) && git ls-tree -r --name-only origin/main | grep -c 'forense/sellos/.*\\.ots$' (>=1)",
+    "owner_detalle": "MESA · HUMANO (.ots = OTS-SELLO-EXTERNO-2) tras la mitad CAJA (cierre.py --verifica, inventario y manifiesto) absorbida en RELEVO-TRAMITE-CAJA-2",
+    "hoja": {
+      "accion_clave": "OTS-SELLO-EXTERNO-2",
+      "receta_un_minuto": "Antes (sesión CAJA, lote RELEVO-TRAMITE-CAJA-2): `python3 tools/familias-2027/encig/cierre.py --verifica` sobre el commit de merge, añadir el hash de cierre.py/evaluar.py/enmienda-verificacion.json al inventario y escribir el manifiesto nuevo con `python3 tools/sello_externo.py manifiesto --escribe`. Luego mesa, en su máquina: `pip install opentimestamps-client`, `ots stamp forense/sellos/manifiesto-sellos-<fecha>.tsv`, sube el .ots junto al manifiesto y, horas después, confirma con `ots upgrade` y `ots verify` (docs/sello-externo.md:24-37).",
+      "destino": "forense/sellos/manifiesto-sellos-<fecha>.tsv.ots (receta en docs/sello-externo.md; generador tools/sello_externo.py)"
+    },
+    "confianza": "media"
+  },
+  {
+    "id": "NC-0353",
+    "verdict": "CERRAR-PRODUCTO",
+    "rationale": "Hecho. El texto verbatim del encargo que gobierna CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001 está en origin/main. Su sha256 coincide con hash_encargo_sha256, congelado en spec.yaml:69 del CALC. La búsqueda de NC-0353 miró solo forense/encargos/**, pero el archivo vive en forense/analisis/. Pedirle el texto a Astra ya sobra. Copiarlo a forense/encargos/ es opcional y de forma.",
+    "cite": [
+      {"tipo": "comando", "ref": "forense/analisis/encuci2020-exposicion-respuesta-cli-1/ENCARGO.md", "comando": "git show origin/main:forense/analisis/encuci2020-exposicion-respuesta-cli-1/ENCARGO.md | sha256sum", "salida": "fc28eee37de78d200f4da84b101ff9085505ee4bf9a2a5cdc273814de20470ca  -"},
+      {"tipo": "archivo", "ref": "data/corrida0/CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001/spec.yaml:69", "comando": "git show origin/main:data/corrida0/CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001/spec.yaml | grep -n hash_encargo_sha256", "salida": "69:  hash_encargo_sha256: fc28eee37de78d200f4da84b101ff9085505ee4bf9a2a5cdc273814de20470ca"},
+      {"tipo": "comando", "ref": "ENCARGO.md:1,7", "comando": "git show origin/main:forense/analisis/encuci2020-exposicion-respuesta-cli-1/ENCARGO.md | grep -n -m2 'CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001\\|^# '", "salida": "1:# GEN2-ENCUCI2020-EXPOSICION-Y-RESPUESTA-CLI-1\n7:CAJA local, Josanoforo/Modelado-Mexicano; rama `codex/gen2-encuci2020-exposicion-respuesta-cli-1`; CALC propuesto `CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001`."},
+      {"tipo": "comando", "ref": "universo de la búsqueda", "comando": "git ls-tree -r --name-only origin/main | rg '\\.(md|txt)$' | xargs sha256sum | rg fc28eee37de78d20", "salida": "3868 archivos .md/.txt examinados · 1 coincidencia: fc28eee3…  forense/analisis/encuci2020-exposicion-respuesta-cli-1/ENCARGO.md"}
+    ],
+    "cerrado_por_detalle": "producto: forense/analisis/encuci2020-exposicion-respuesta-cli-1/ENCARGO.md · git show origin/main:<ruta> | sha256sum = fc28eee3… = hash_encargo_sha256 (data/corrida0/CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001/spec.yaml:69)",
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-0156",
+    "verdict": "HOJA-RECETA",
+    "rationale": "No enviado: el expediente dice «LISTO-PARA-TITULAR; NO ENVIADO» y REGISTRO-RECEPCION no tiene fecha_presentacion. FP-372 (firmada 15/sep) no cierra esta NC: su propio texto dice que la vía oficial «sigue viva» y la solicitud «SIN ENVIAR». Hace falta la identidad real del titular. NC-0202 ya se cerró como duplicada de esta. No se cruza con R46–R48 ni con las solicitudes (a)–(f).",
+    "cite": [
+      {"tipo": "archivo", "ref": "forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/REGISTRO-RECEPCION.tsv", "comando": "python3 csv.DictReader REGISTRO-RECEPCION.tsv, expediente==ENNVIH-DIN-S6", "salida": "{'expediente': 'ENNVIH-DIN-S6', 'estado': 'LISTO-PARA-TITULAR', 'fecha_presentacion': '', 'canal': 'support@ennvih-mxfls.org', 'acuse_no_personal': '', 'fecha_respuesta': ''}"},
+      {"tipo": "archivo", "ref": "forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/03-ENNVIH-DIN-S6.md:3", "comando": "rg -n 'Estado:' …/03-ENNVIH-DIN-S6.md", "salida": "3:Estado: **BORRADOR FINAL; LISTO-PARA-TITULAR; NO ENVIADO**."},
+      {"tipo": "firma", "ref": "FP-372", "comando": "python3 csv.DictReader forense/firmas-pendientes.tsv id==FP-372 -> firmada_en", "salida": "FIRMA DE MESA, 15 de septiembre de 2026 … Alcance: la firma decide el ESTATUS INFERENCIAL y nada mas -- … no cierra NC-0156 (via oficial de pesos replicados o servicio de varianza, que sigue viva y cuya solicitud conjunta sigue SIN ENVIAR)."}
+    ],
+    "owner_detalle": "MESA · HUMANO (bandeja del titular, entrada 1 / H1 de forense/notas/2026-09-22-BANDEJA-TITULAR.md)",
+    "hoja": {
+      "accion_clave": "CORREO-ENNVIH-DIN-S6",
+      "receta_un_minuto": "Enviar desde tu cuenta, a support@ennvih-mxfls.org (o por el formulario de contacto MxFLS/ENNViH), el texto de 03-ENNVIH-DIN-S6.md: solicitud combinada DIN+S6 de pesos replicados con contrato completo o de un servicio oficial de varianza para los cuatro estimandos. Completar solo datos personales verdaderos. Luego anotar fecha_presentacion y acuse en la fila ENNVIH-DIN-S6 de REGISTRO-RECEPCION.tsv.",
+      "destino": "support@ennvih-mxfls.org · texto: forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/03-ENNVIH-DIN-S6.md · acuse: …/REGISTRO-RECEPCION.tsv"
+    },
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-0061",
+    "verdict": "HOJA-RECETA",
+    "rationale": "Ninguno de los dos correos se envió: OECD-TRUST-PUM sigue LISTO-PARA-TITULAR sin fecha. El correo a la OCDE es la misma acción física que NC-0151 y que la entrada 3 de la bandeja, y comparte accion_clave. Para tandas se recomienda decidirlo por delegación (reversible): no enviar y dejarlo diferido por D18, que dice «ahorita no invertiremos». Hecho eso, esta NC cerraría como DUPLICADA de NC-0151, igual que NC-0090.",
+    "cite": [
+      {"tipo": "archivo", "ref": "forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/REGISTRO-RECEPCION.tsv", "comando": "python3 csv.DictReader REGISTRO-RECEPCION.tsv, expediente==OECD-TRUST-PUM", "salida": "{'expediente': 'OECD-TRUST-PUM', 'estado': 'LISTO-PARA-TITULAR', 'fecha_presentacion': '', 'canal': 'govtrustinfo@oecd.org', 'acuse_no_personal': '', 'fecha_respuesta': ''}"},
+      {"tipo": "regla", "ref": "forense/encargos/2026-09-10-MESA-CONCILIACION-E01.md:44-45,74", "comando": "sed -n '44,45p;74p' forense/encargos/2026-09-10-MESA-CONCILIACION-E01.md", "salida": "> decisión y asignación correcta. D18- ahorita no invertiremos, lo dejamos en\n> B, pero desbloquemos el encargo para búsqueda académica dirigida. …\n| D18 | FP-286/343 y tandas | diferir inversión comercial; habilitar búsqueda académica dirigida | ENCARGO-E09 |"},
+      {"tipo": "comando", "ref": "data/curacion-registro/cola-adquisicion-registro.tsv", "comando": "csv.DictReader; fuente_canonica in (REGISTRO_OPERATIVO_DE_TANDAS_DIGITALES, REGISTRO_DE_TANDAS_Y_REPUTACION): estado, 'diferida por D18' in nota", "salida": "REGISTRO_DE_TANDAS_Y_REPUTACION OBTENIDO-PARCIAL | diferida: True\nREGISTRO_OPERATIVO_DE_TANDAS_DIGITALES SOLICITUD-PREPARADA | diferida: False (…DECISION-DE-MESA-PENDIENTE el envio fisico (NC-0061).)"},
+      {"tipo": "comando", "ref": "NC-0151 / NC-0090", "comando": "python3 tools/consulta.py nc NC-0151; python3 tools/consulta.py nc NC-0090", "salida": "NC-0151 · estado=ABIERTA · … Receta de un minuto por destino … · NC-0090 · estado=CERRADA · cerrado_por: GEN2-PENDIENTES-3 · CERRADA (duplicada: NC-0151)"}
+    ],
+    "owner_detalle": "MESA · HUMANO (bandeja del titular, entradas 3 y 5; tandas: decisión reversible por delegación, D18)",
+    "hoja": {
+      "accion_clave": "CORREO-OECD-TRUST-PUM",
+      "receta_un_minuto": "(a) OCDE: desde tu cuenta, escribir a govtrustinfo@oecd.org adjuntando 02-OECD-TRUST-PUM.md y 02-OECD-TRUST-PUM-TECHNICAL-DRAFT.docx; es el mismo envío que NC-0151. Completar solo datos verdaderos y anotar fecha y acuse en la fila OECD-TRUST-PUM de REGISTRO-RECEPCION.tsv. (b) Tandas (equipo@tandamas.mx): no enviar; asentar «vía comercial diferida por D18» en la fila REGISTRO_OPERATIVO_DE_TANDAS_DIGITALES del registro de la cola.",
+      "destino": "govtrustinfo@oecd.org · adjuntos en forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/02-OECD-TRUST-PUM{.md,-TECHNICAL-DRAFT.docx} · acuse en …/REGISTRO-RECEPCION.tsv"
+    },
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260923-GEN2-TRAMITE-FIRMAS-14-9556-05",
+    "verdict": "HOJA-RECETA",
+    "rationale": "No hecho. La decisión está firmada (12-9087-07: «DOI en Zenodo (release v2026.09); GitHub Pages desde main/docs»), pero falta ejecutarla: FP-4296-01 ABIERTA, la API da has_pages=false y releases=[]. Hacerlo en Settings de GitHub y en Zenodo requiere la identidad de mesa. R49 la difirió al 29/sep. Comparte accion_clave R49-PAGES con dcde-01.",
+    "cite": [
+      {"tipo": "firma", "ref": "FP-260923-GEN2-TRAMITE-FIRMAS-12-9087-07", "comando": "python3 tools/consulta.py fp FP-260923-GEN2-TRAMITE-FIRMAS-12-9087-07", "salida": "estado=FIRMADA · creado=2026-09-23 · qué_se_firma=F-FRONT-3 -- «DOI en Zenodo (release v2026.09); GitHub Pages desde main/docs; dominio propio después; mesa firma post y cartas.»"},
+      {"tipo": "firma", "ref": "FP-260923-GEN2-FRONT-1-4296-01", "comando": "python3 tools/consulta.py fp FP-260923-GEN2-FRONT-1-4296-01", "salida": "FP-260923-GEN2-FRONT-1-4296-01 · estado=ABIERTA · creado=2026-09-23"},
+      {"tipo": "comando", "ref": "API GitHub Josanoforo/Modelado-Mexicano", "comando": "mcp github search_repositories repo:Josanoforo/Modelado-Mexicano; list_releases", "salida": "\"has_pages\":false, \"homepage\":\"\" · releases: []"},
+      {"tipo": "archivo", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv (R49)", "comando": "csv.DictReader renglon==R49 -> estado, opciones", "salida": "DIFERIDA-POR-MESA plazo 2026-09-29 (ABIERTA) · (a) mesa las hace este fin de semana || (b) diferir hasta que el catálogo tenga una regla adoptada || (c) Pages y metadatos ahora; DOI después"}
+    ],
+    "owner_detalle": "MESA · HUMANO · R49 (hoja de recetas)",
+    "hoja": {
+      "accion_clave": "R49-PAGES",
+      "receta_un_minuto": "En github.com/Josanoforo/Modelado-Mexicano ir a Settings > Pages > Build and deployment > Source: Deploy from a branch > main, /docs > Save. Esperar el build y abrir https://josanoforo.github.io/Modelado-Mexicano/. DOI, después (R49 opción c): Releases > Draft new release con tag v2026.09 y conectar el repo en zenodo.org > GitHub. Anotar URL, fecha y DOI en la hoja.",
+      "destino": "GitHub Settings > Pages (repo Josanoforo/Modelado-Mexicano, carpeta docs/ con docs/_config.yml); zenodo.org > GitHub"
+    },
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260927-GEN2-TRAMITE-FIRMAS-20-96f9-02",
+    "verdict": "HOJA-RECETA",
+    "rationale": "No hecho: FP-8914-03 sigue ABIERTA. La API muestra homepage vacío y una descripción distinta de la que propone la receta de FRONT-3 §P3. La vista previa social no se puede leer por API. Editar los metadatos del repo requiere la identidad de mesa. Está en R49, diferida al 29/sep. Es otra acción física que Pages (Settings > General y About), así que lleva su propia accion_clave.",
+    "cite": [
+      {"tipo": "firma", "ref": "FP-260926-GEN2-FRONT-3-PORTADA-1-8914-03", "comando": "python3 tools/consulta.py fp FP-260926-GEN2-FRONT-3-PORTADA-1-8914-03", "salida": "estado=ABIERTA · creado=2026-09-26 · qué_se_firma=Aplicar metadatos del repo (descripción, topics, homepage) y subir docs/assets/social-preview.png como vista previa social; receta de un minuto en la nota §P3"},
+      {"tipo": "comando", "ref": "API GitHub Josanoforo/Modelado-Mexicano", "comando": "mcp github search_repositories repo:Josanoforo/Modelado-Mexicano (minimal_output=false)", "salida": "\"description\":\"Corpus de evidencia, modelo de decisión segmentado y aparato de falsación sobre conducta y estructura social en México. Síntesis de literatura, sin revisión por pares. Lee AVISO-DE-ALCANCE.md antes de citar.\",\"homepage\":\"\" … \"has_pages\":false"},
+      {"tipo": "archivo", "ref": "forense/notas/2026-09-26-GEN2-FRONT-3-PORTADA-1-cierre.md:11", "comando": "sed -n '11p' forense/notas/2026-09-26-GEN2-FRONT-3-PORTADA-1-cierre.md", "salida": "Receta de un minuto para mesa (FP …-8914-03): Settings → General → Social preview → subir docs/assets/social-preview.png; About: Description = «Benchmark auditable del comportamiento del mexicano…», Website = https://josanoforo.github.io/Modelado-Mexicano/, Topics = mexico inegi benchmark survey-data reproducible-research behavioral-science spanish."}
+    ],
+    "owner_detalle": "MESA · HUMANO · R49 (hoja de recetas)",
+    "hoja": {
+      "accion_clave": "R49-METADATOS-REPO",
+      "receta_un_minuto": "En la portada del repo, abrir el engrane de About. Description: la de docs/_config.yml:2. Website: https://josanoforo.github.io/Modelado-Mexicano/ (solo después de R49-PAGES). Topics: mexico inegi benchmark survey-data reproducible-research behavioral-science spanish. Luego Settings > General > Social preview > Edit > subir docs/assets/social-preview.png.",
+      "destino": "GitHub repo About + Settings > General > Social preview · archivo docs/assets/social-preview.png · texto en docs/_config.yml:2 y forense/notas/2026-09-26-GEN2-FRONT-3-PORTADA-1-cierre.md:11"
+    },
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01",
+    "verdict": "HOJA-RECETA",
+    "rationale": "No hecho: FP-3e59-01 sigue ABIERTA, R51 está DIFERIDA-POR-MESA al 29/sep y CLAUDE.md en origin/main sigue apuntando a v2_16. El pegado en el proyecto de Claude solo lo puede hacer mesa. El commit 2 del sello A.9 depende de la fecha de ese pegado. El texto de firma ya está en R51.",
+    "cite": [
+      {"tipo": "firma", "ref": "FP-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01", "comando": "python3 tools/consulta.py fp FP-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01", "salida": "estado=ABIERTA · creado=2026-09-28 · qué_se_firma=Pegar instrucciones v2.17 en el proyecto de Claude (bloque de gobierno/PEGAR-EN-PROYECTO-v2_17.md) y PLANTILLA-ENCARGO-v2_2 en el conocimiento; contestar «pega…"},
+      {"tipo": "archivo", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv (R51)", "comando": "csv.DictReader renglon==R51 -> estado, texto_de_firma", "salida": "DIFERIDA-POR-MESA plazo 2026-09-29 (ABIERTA) · «pegado ____ (fecha): instrucciones v2.17 y PLANTILLA-ENCARGO v2.2 en el proyecto de Claude.»"},
+      {"tipo": "comando", "ref": "CLAUDE.md", "comando": "git show origin/main:CLAUDE.md | rg -n 'instrucciones-proyecto'", "salida": "5:Instrucciones vigentes del proyecto: @gobierno/instrucciones-proyecto-v2_16.md"}
+    ],
+    "owner_detalle": "MESA · HUMANO · R51 (hoja de recetas; sucesor GEN2-TRAMITE-INSTRUCCIONES-V217-2 al recibir la fecha)",
+    "hoja": {
+      "accion_clave": "R51-PEGADO-V217",
+      "receta_un_minuto": "En el proyecto de Claude, sustituir el bloque de instrucciones por el contenido de gobierno/PEGAR-EN-PROYECTO-v2_17.md y subir PLANTILLA-ENCARGO v2.2 al conocimiento. Después contestar en chat: «pegado <fecha>: instrucciones v2.17 y PLANTILLA-ENCARGO v2.2 en el proyecto de Claude.» Con esa línea corre GEN2-TRAMITE-INSTRUCCIONES-V217-2 (commit 2 de A.9).",
+      "destino": "Proyecto de Claude (instrucciones + conocimiento) · fuente gobierno/PEGAR-EN-PROYECTO-v2_17.md (+ .sha256)"
+    },
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-04",
+    "verdict": "CERRAR-PRODUCTO",
+    "rationale": "Hecho: corrí la receta de la propia fila por la API de GitHub. El push a main del merge de TRAMITE-NC-DECISIONES-1 (1c7b840a, PR #1213) disparó el run 36303400958. Su job «check» terminó en success y el job «suite» corrió `python3 tests/check.py --baseline --parallel` con success. Eso es el criterio 4 de Hecho, que la fila declaraba juzgado por el CI.",
+    "cite": [
+      {"tipo": "commit", "ref": "1c7b840a", "comando": "for c in $(git rev-list origin/main --first-parent); do git merge-base --is-ancestor e21f9afa $c && last=$c || break; done; git log -1 --format='%h %ad %s' $last", "salida": "1c7b840a 2026-09-27 01:32:08 -0600 Merge pull request #1213 from Josanoforo/claude/new-session-8zcdo3"},
+      {"tipo": "comando", "ref": "Actions run 36303400958", "comando": "gh run list --workflow verify.yml --branch main (equiv. MCP actions_list list_workflow_runs verify.yml branch=main event=push)", "salida": "{\"id\":36303400958,\"run_number\":3977,\"event\":\"push\",\"status\":\"completed\",\"conclusion\":\"success\",\"head_sha\":\"1c7b840a285df4508fad36ca71f1edd672426a4a\",\"head_commit\":{\"message\":\"Merge pull request #1213 … GEN2-TRAMITE-NC-DECISIONES-1: dictamen de 91 NC…\"}}"},
+      {"tipo": "comando", "ref": "jobs del run 36303400958", "comando": "gh api repos/Josanoforo/Modelado-Mexicano/actions/runs/36303400958/jobs (equiv. MCP list_workflow_jobs)", "salida": "name=suite conclusion=success · step 'Suite de verificación (modo línea base — verde = no empeoraste)' conclusion=success 07:32:34→07:37:19 · name=check conclusion=success · step 'Todos los grupos requeridos terminaron correctamente' success"},
+      {"tipo": "archivo", "ref": ".github/workflows/verify.yml:92-93 @1c7b840a", "comando": "git show 1c7b840a:.github/workflows/verify.yml | rg -n 'check.py --baseline'", "salida": "92:      - name: Suite de verificación (modo línea base — verde = no empeoraste)\n93:        run: time python3 tests/check.py --baseline --parallel"}
+    ],
+    "cerrado_por_detalle": "producto: CI verify.yml run 36303400958 sobre 1c7b840a (merge PR #1213), jobs suite y check = success · gh api repos/Josanoforo/Modelado-Mexicano/actions/runs/36303400958/jobs",
+    "confianza": "alta"
+  }
+]

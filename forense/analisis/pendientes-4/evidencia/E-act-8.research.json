@@ -1,0 +1,160 @@
+[
+ {
+  "id": "NC-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-04",
+  "verdict": "ABSORBER",
+  "rationale": "Revisado por objeto: TIME-001 (MATIZA, CALC-MC2-ENIF2024-0001) y SALMEN-032 (MATIZA, CALC-MC2-ENSANUT2024-0001) ya están dictaminadas por las hijas de MEDICION-CARRILES-2 (#1311, #1314). Faltan RURAL-041 (ENASEM2024/ENASIC2022), TRAB-022 (ENOE: NO-LANZAR-TODAVÍA) y AUTOR-004 (WVS: revalidar el permiso). MEDICION-CARRILES-2 sigue en vuelo, sin nota de cierre: hay que deduplicar contra ella antes de lanzar.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/analisis/medicion-carriles-2/ENIF2024-dictamenes.tsv", "comando": "git show origin/main:forense/analisis/medicion-carriles-2/ENIF2024-dictamenes.tsv | python3 (csv.DictReader, filtro TIME-001)", "salida": "filas 18 · TIME-001 | ASTRA5-U0-TIME-001 | afirmacion | TIEMPO | MATIZA | RESULT-MC2-ENIF2024-METAS-SIEMPRE-NAC-P | CALC-MC2-ENIF2024-0001 | 0.432512 | 0.419325 | 0.445006"},
+   {"tipo": "comando", "ref": "forense/analisis/medicion-carriles-2/ENSANUT2024-dictamenes.tsv", "comando": "git show origin/main:forense/analisis/medicion-carriles-2/ENSANUT2024-dictamenes.tsv | python3 (csv.DictReader, filtro SALMEN-032)", "salida": "filas 5 · SALMEN-032 | ASTRA5-U0-SALMEN-032 | afirmacion | RURAL_INDIGENA | MATIZA | RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-DIF-RURAL-NORURAL-P | CALC-MC2-ENSANUT2024-0001 | -0.039212 | -0.259533 | 0.133646"},
+   {"tipo": "comando", "ref": "canon/mapa-dominios-v1_1.tsv", "comando": "git show origin/main:canon/mapa-dominios-v1_1.tsv | python3 (csv.DictReader; ids RURAL-041, TRAB-022, AUTOR-004)", "salida": "filas 1396 · AUTOR-004: WVS ola 7 México 2018 · MEDIBLE-EN-CORPUS · reserva: revalidar permiso de apertura antes de CAJA · RURAL-041: ENASEM 2024; ENASIC 2022 · MEDIBLE-EN-CORPUS · 0 de 326 corridas · TRAB-022: ENOE EDA 15-24 · MEDIBLE-EN-CORPUS · ninguna corrida con enoe_2024_3t_csv"},
+   {"tipo": "comando", "ref": "universo A.13", "comando": "for t in TIME-001 RURAL-041 SALMEN-032 TRAB-022 AUTOR-004; do git grep -l -F $t origin/main -- forense canon data/corrida0 milpa | wc -l; done", "salida": "TIME-001 archivos=27 · RURAL-041 archivos=14 · SALMEN-032 archivos=20 · TRAB-022 archivos=18 · AUTOR-004 archivos=20 (árbol: 12375 archivos). Solo TIME-001 y SALMEN-032 aparecen en medicion-carriles-2/*-dictamenes.tsv"},
+   {"tipo": "comando", "ref": "forense/encargos/2026-09-28-GEN2-MEDICION-CARRILES-2.md", "comando": "git ls-tree -r --name-only origin/main forense/notas | rg -i CARRILES; git show origin/main:forense/encargos/2026-09-28-GEN2-MEDICION-CARRILES-2.md | sed -n 9p", "salida": "solo forense/notas/2026-09-28-GEN2-TABLERO-CARRILES-1-cierre.md (sin nota de cierre de MEDICION-CARRILES-2) · P1: afirmaciones MEDIBLE-EN-CORPUS sin RESULT (del mapa, 235 en total)"}
+  ],
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "CAJA",
+  "hecho_comando": "for t in RURAL-041 TRAB-022 AUTOR-004; do git grep -h \"ASTRA5-U0-$t\" origin/main -- 'forense/analisis/**/*dictamenes*.tsv' | cut -f4; done  # un dictamen por id (CONFIRMA|MATIZA|ROMPE|NO-CONSTRUIBLE) con CALC sellado",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-05",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "El sustituto que pide la fila ya está sellado en main: CALC-PDR1-ENCUCI2020-0002 tiene spec, medidor, ejecucion.json, resultados.json (573 claves) y sello.json. Su COMMIT-2 (6162c89d) es ancestro de origin/main, y la nota de cierre lo registra como «sucesor -0002 sellado». Su fila en corridas.tsv llega por el canal (#1309): ya está en la rama derivados, aún no en main.",
+  "cite": [
+   {"tipo": "comando", "ref": "data/corrida0/CALC-PDR1-ENCUCI2020-0002/", "comando": "git ls-tree -r --name-only origin/main data/corrida0/CALC-PDR1-ENCUCI2020-0002", "salida": "ejecucion.json medidor.py resultados.json sello.json sello.sha256 spec.yaml"},
+   {"tipo": "comando", "ref": "data/corrida0/CALC-PDR1-ENCUCI2020-0002/resultados.json", "comando": "git show origin/main:data/corrida0/CALC-PDR1-ENCUCI2020-0002/resultados.json | jq -c '.spec_id, (.resultados|length)'", "salida": "\"CALC-PDR1-ENCUCI2020-0002\" 573"},
+   {"tipo": "commit", "ref": "6162c89d", "comando": "git log origin/main --oneline -n 3 -- data/corrida0/CALC-PDR1-ENCUCI2020-0002/sello.json; git merge-base --is-ancestor 6162c89d origin/main && echo ANCESTRO-DE-MAIN", "salida": "6162c89d COMMIT-2 PDR1-ENCUCI2020: resultados sellados · ANCESTRO-DE-MAIN"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-28-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-cierre.md:23", "comando": "rg -n 0001 forense/notas/2026-09-28-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-cierre.md", "salida": "23:- **Ejecuciones descartadas por el conducto** (§6 Commits; procedimiento y semilla intactos): `CALC-PDR1-ENCUCI2020-0001` (VALOR-LARGO > 1024 bytes; sucesor `-0002` sellado)"},
+   {"tipo": "comando", "ref": "data/corrida0/corridas.tsv", "comando": "git show <ref>:data/corrida0/corridas.tsv | python3 (csv.DictReader, filtro PDR1-ENCUCI2020) para ref en origin/main y origin/derivados/auto-36495085433", "salida": "origin/main filas 358: sin ENCUCI2020 · origin/derivados/auto-36495085433 filas 423: CALC-PDR1-ENCUCI2020-0001, CALC-PDR1-ENCUCI2020-0002--d0e6eceeb8a9"}
+  ],
+  "cerrado_por_detalle": "producto: data/corrida0/CALC-PDR1-ENCUCI2020-0002/sello.json (COMMIT-2 6162c89d) · git ls-tree -r --name-only origin/main data/corrida0/CALC-PDR1-ENCUCI2020-0002",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-06",
+  "verdict": "ABSORBER",
+  "rationale": "Sigue abierta: reglas-contrastadas-v1_2 marca RG-7c6dd83a03 como SIN-CIFRA-GEN2 (PDR1 INCOMPARABLE: la banda se fijó después de ver 2018=0.6342 y 2024=0.6105). Como 2018/2024 ya se vieron, B-bis (l.49, «antes de ver el dato») solo admite una spec sellada ahora contra un dato aún no visto (la próxima presidencial), rotulada PROSPECTIVA. Es trabajo documental: NUBE.",
+  "cite": [
+   {"tipo": "comando", "ref": "canon/reglas-contrastadas-v1_2.tsv", "comando": "git show origin/main:canon/reglas-contrastadas-v1_2.tsv | python3 (csv.DictReader, regla_id RG-7c6dd83a03)", "salida": "dictamen = SIN-CIFRA-GEN2 · detalle = PDR1 INCOMPARABLE: Sin B-bis pre-registrado: la banda se fijó tras ver el dato ... Puntos citados E.5: 2018 0.6342, 2024 0.6105 (CALC-INE-PISOS-SICEE-0002). Enlace que falta: spec congelada antes del dato. · temporalidad = RETROSPECTIVA"},
+   {"tipo": "comando", "ref": "forense/analisis/pisos-dominios-1/INE-dictamenes.tsv", "comando": "git show origin/main:forense/analisis/pisos-dominios-1/INE-dictamenes.tsv | python3 (csv.DictReader, id RG-7c6dd83a03)", "salida": "dictamen = INCOMPARABLE · calc = CALC-INE-PISOS-SICEE-0002 · punto = 2018=0.634...; 2024=0.610... · unidad = votos totales / lista nominal, nacional, cargo PRE"},
+   {"tipo": "regla", "ref": "gobierno/instrucciones-proyecto-v2_16.md:49", "comando": "git show origin/main:gobierno/instrucciones-proyecto-v2_16.md | grep -n 'antes de ver el dato'", "salida": "49:Pre-registro de falsación (B-bis). Toda escala declara qué pasa si el falsador NO refuta (corroborada / acotada / falsador débil), antes de ver el dato."},
+   {"tipo": "comando", "ref": "universo A.13", "comando": "git grep -l -F RG-7c6dd83a03 origin/main | wc -l", "salida": "12 archivos; ninguno en forense/prereg-caja/ (sin spec pre-registrada de la regla)"}
+  ],
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "NUBE",
+  "hecho_comando": "git grep -l RG-7c6dd83a03 origin/main -- forense/prereg-caja | wc -l  # >=1: spec B-bis con sidecar sha, rotulada PROSPECTIVA, citada desde la fila de canon/reglas-contrastadas",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260924-GEN2-PISOS-GEN2-2-2518-04",
+  "verdict": "ABSORBER",
+  "rationale": "Delegación del 28/sep: regenerar el censo en un entorno con las dependencias (acto de tubería en CAJA). Verifiqué que sigue pendiente: en main, censo-tests.tsv marca tests/test_pisos_gen2_2.py como NECESITA-DEPENDENCIA(numpy), igual que 113 de sus 286 filas, y ci_guardias.py:407-413 salta esos casos aunque verify.yml:449 ya instala numpy, pytest y pytest-xdist. En esta NUBE falta numpy.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/analisis/ci-guardias/censo-tests.tsv", "comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | python3 (csv.DictReader; fila test_pisos_gen2_2; conteo NECESITA-DEPENDENCIA)", "salida": "filas 286 · {'archivo': 'tests/test_pisos_gen2_2.py', 'invocador': 'pytest', 'cableado_hoy': 'NO', 'dependencias_faltantes': 'numpy', 'veredicto': 'NECESITA-DEPENDENCIA(numpy)'} · NECESITA-DEPENDENCIA por columna {'veredicto': 113}"},
+   {"tipo": "archivo", "ref": "tools/ci_guardias.py:407-413", "comando": "git show origin/main:tools/ci_guardias.py | sed -n '407,413p'", "salida": "if f[\"veredicto\"].startswith(\"NECESITA-DEPENDENCIA\"): print(\"SKIP %s: dependencia-pendiente %s (FP de mesa, no decidida aqui)\" ...) saltados += 1; continue"},
+   {"tipo": "archivo", "ref": ".github/workflows/verify.yml:449", "comando": "git show origin/main:.github/workflows/verify.yml | rg -n 'numpy pytest'", "salida": "449: python3 -m uv pip install --python \"$RUNNER_TEMP/venv/bin/python\" -r requirements.txt numpy pytest pytest-xdist"},
+   {"tipo": "firma", "ref": "FP-398", "comando": "python3 tools/consulta.py fp FP-398", "salida": "FP-398 · estado=FIRMADA · creado=2026-09-20 · firmada_en=4.4 opcion (a) -- FIRMA DE MESA 21/sep/2026 §2 4.4 «librerias en CI — a»"},
+   {"tipo": "comando", "ref": "entorno NUBE", "comando": "python3 -c 'import numpy, pytest'", "salida": "ModuleNotFoundError: No module named 'numpy'"}
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | rg -F tests/test_pisos_gen2_2.py | rg -c NECESITA-DEPENDENCIA  # 0, y el log de ci_guardias --ejecuta-huerfanos muestra el test ejecutado",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-03",
+  "verdict": "ABSORBER",
+  "rationale": "La delegación del 28/sep propone la opción (a): un acto de tubería que añada reserva_respondentes a RAICES_ESCANEABLES y a raices.local.yaml (hashear no es abrir, E.6). Sigue pendiente: tests/manifiesto.py:358 contiene {RAIZ_INTEGRADA, \"descargas_mx\"}. FP-…fa42-02, que hace la misma pregunta, sigue ABIERTA: el acto la asienta citando la delegación. raices.local.yaml vive en cada caja, así que va a CAJA.",
+  "cite": [
+   {"tipo": "archivo", "ref": "tests/manifiesto.py:358", "comando": "git show origin/main:tests/manifiesto.py | rg -n 'RAICES_ESCANEABLES|reserva_respondentes' | head", "salida": "249:RAIZ_RESERVA = \"reserva_respondentes\" · 358:RAICES_ESCANEABLES = frozenset({RAIZ_INTEGRADA, \"descargas_mx\"})"},
+   {"tipo": "firma", "ref": "FP-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-02", "comando": "python3 tools/consulta.py fp FP-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-02", "salida": "estado=ABIERTA · creado=2026-09-28 · qué_se_firma=[P3 · F3 3(a) literal] ¿Se añade reserva_respondentes a RAICES_ESCANEABLES (tests/manifiesto.py:358) y a raices.local.yaml de cada caja...?"},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv", "comando": "python3 (csv.DictReader, id NC-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-03)", "salida": "opcion: DUEÑO-MESA · Propuesta: (a) si, acto de tuberia que anade reserva_respondentes a RAICES_ESCANEABLES y a raices.local.yaml. Razon: cambio de codigo revertible ... no abre dato (solo hashea)."}
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "git show origin/main:tests/manifiesto.py | rg -n '^RAICES_ESCANEABLES = .*(RAIZ_RESERVA|reserva_respondentes)'  # y en caja: python3 tests/manifiesto.py --verifica | rg enco_ | rg -c FUERA_DE_PERIMETRO -> 0",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-1-beee-04",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "La delegación de mesa del 28/sep (decididas-por-delegacion.tsv) acepta como causa el diagnóstico NO CIEGO de ASTRA6-C1-ADJUDICACION-PUNTOS-1 (CAUSA-DIAGNOSTICADA-NO-CIEGA) y deja el contrafactual como opción futura. El producto existe: informe-p2 (cotejo-final2011 683/683) y el resumen p2 (cobertura_leida 685, siete grupos). Los sucesores correctivos siguen en NC-…2385-02 (ABIERTA).",
+  "cite": [
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv", "comando": "python3 (csv.DictReader, id NC-260927-GEN2-RECIBO-ASTRA6-1-beee-04)", "salida": "opcion: DUEÑO-MESA · razon: GEN2-CONTRAFACTUAL-ENDIREH2011-1 no tiene encargo. ASTRA6-C1-ADJUDICACION-PUNTOS-1 ... dio diagnostico NO CIEGO (cotejo-final2011 683/683). Recomiendo aceptar ese diagnostico como causa CAUSA-DIAGNOSTICADA-NO-CIEGA y dejar el contrafactual como opcion futura; reversible."},
+   {"tipo": "archivo", "ref": "forense/validacion-independiente/catalogo-1-adjudicacion-puntos/p2/informe-p2.md", "comando": "git show origin/main:forense/validacion-independiente/catalogo-1-adjudicacion-puntos/p2/informe-p2.md | tail -1", "salida": "EJECUTADO: cotejo-final2011.tsv reproduce683/683 puntos/n originales y683/683 puntos del primer independiente, con cero residual a tolerancia1e-10. Doce identidades tienen interacción edad×regla no nula."},
+   {"tipo": "comando", "ref": "forense/validacion-independiente/catalogo-1-adjudicacion-puntos/p2/c1-puntos-p2-resumen.json", "comando": "git show origin/main:.../p2/c1-puntos-p2-resumen.json | jq -c '.cobertura_leida, .grupos'", "salida": "685 · ambitos_externos 535 · edad_60+ filtros 36 · pareja_reciente 62 · instituciones 6 · permisos 34 · denuncia_externa 10 · edad_60+ EDAD 98/99 FD 2021: 2"},
+   {"tipo": "firma", "ref": "FP-260926-ASTRA6-C1-ADJUDICACION-PUNTOS-1-39de-01", "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 (csv.DictReader, id 39de-01)", "salida": "estado = FIRMADA · ejecutada_en = ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01; ... retiro temporal = 0 llaves (las 685 ya con trato beee-02: r25-cobertura-beee02.tsv); denominador institucional y elegibilidad 99 como contrato de los sucesores 2011/2021 (ejecución: NC 2385-02)"},
+   {"tipo": "comando", "ref": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-02", "comando": "git show origin/main:forense/no-corrido.tsv | python3 (csv.DictReader, id 2385-02)", "salida": "ABIERTA | escribir y correr los sucesores 2011/2021 (denominador institucional, elegibilidad 99) | MESA (2026-10-05) · encargo por escribir: GEN2-C1-SUCESORES-2011-2021-1"}
+  ],
+  "cerrado_por_detalle": "firma: delegación de mesa 28/sep, forense/analisis/pendientes-3/decididas-por-delegacion.tsv (causa CAUSA-DIAGNOSTICADA-NO-CIEGA; contrafactual opcional) · producto: forense/validacion-independiente/catalogo-1-adjudicacion-puntos/p2/informe-p2.md · lo correctivo en NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-02",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-2-627e-05",
+  "verdict": "ABSORBER",
+  "rationale": "Delegación del 28/sep: asentar la cascada en un trámite de archivo (ADR + NC + sidecar), documental y reversible. Sigue pendiente: ninguno de los 196 archivos de canon/L0 cita ADJUDICACION-PUNTOS, ninguna de las 1092 NC trae ese acto, y 01-…ADJUDICACION-PUNTOS-1.md en fuentes/ no tiene .cuerpo.sha256. El prefijo de la FP 39de-01 no se toca: D-24 (l.78) prohíbe renumerar.",
+  "cite": [
+   {"tipo": "comando", "ref": "canon/L0", "comando": "git ls-tree -r --name-only origin/main canon/L0 | wc -l; git grep -l ADJUDICACION-PUNTOS origin/main -- canon/L0 | wc -l", "salida": "196 · 0"},
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv", "comando": "git show origin/main:forense/no-corrido.tsv | python3 (csv.DictReader; acto == ASTRA6-C1-ADJUDICACION-PUNTOS-1)", "salida": "filas 1092 · acto==ASTRA6-C1-ADJUDICACION-PUNTOS-1: 0"},
+   {"tipo": "comando", "ref": "forense/encargos/fuentes/ASTRA6-tanda3-20260926/", "comando": "git cat-file -e origin/main:forense/encargos/fuentes/ASTRA6-tanda3-20260926/01-2026-09-26-ASTRA6-C1-ADJUDICACION-PUNTOS-1.md.cuerpo.sha256", "salida": "fatal: path '...01-2026-09-26-ASTRA6-C1-ADJUDICACION-PUNTOS-1.md.cuerpo.sha256' does not exist in 'origin/main' (rc=128); SHA256SUMS.txt de la tanda sí lo lista (1 línea)"},
+   {"tipo": "regla", "ref": "gobierno/instrucciones-proyecto-v2_16.md:78", "comando": "git show origin/main:gobierno/instrucciones-proyecto-v2_16.md | grep -n 'no se renumeran nunca'", "salida": "78:D-24. Ids con raíz de acto: ADR, NC y FP se acuñan <PREFIJO>-<AAMMDD>-<RÓTULO>-<hhhh>-<NN> (hhhh = 4 hex del commit de 0-bis) y no se renumeran nunca"},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv", "comando": "python3 (csv.DictReader, id 627e-05)", "salida": "RECIBO-ASTRA6-3 ya corrio (encargo archivado, 27/sep) y no absorbio la cascada D-21 ... Recomiendo asentarla en un tramite de archivo (ADR + NC + sidecar del encargo); todo reversible y documental."}
+  ],
+  "lote": "OTRO:TRAMITE-CASCADA-ASTRA6",
+  "entorno": "NUBE",
+  "hecho_comando": "git grep -l ADJUDICACION-PUNTOS origin/main -- canon/L0 | wc -l  # >=1, y git cat-file -e origin/main:forense/encargos/fuentes/ASTRA6-tanda3-20260926/01-2026-09-26-ASTRA6-C1-ADJUDICACION-PUNTOS-1.md.cuerpo.sha256",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-2-627e-11",
+  "verdict": "ABSORBER",
+  "rationale": "La delegación del 28/sep da dos opciones reversibles: (a) llenar la evidencia con una fuente primaria o (b) pasar la fila a SIN-CIFRA. Ningún acto en vuelo la cubre. En main sigue igual: REL-V186 (ASTRA5-U0-RELIG-024) tiene dictamen MATIZA y evidencia vacía en religion-afirmaciones.tsv (159 filas). Se agrupa con la corrección C3 (627e-13, -15 y -17; 8c5c-05 y -06).",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/analisis/reports-v2/social-1/religion-afirmaciones.tsv", "comando": "git show origin/main:forense/analisis/reports-v2/social-1/religion-afirmaciones.tsv | python3 (csv.DictReader, id REL-V186)", "salida": "filas 159 · id='REL-V186' mapa_id='ASTRA5-U0-RELIG-024' dictamen='MATIZA' razon_sin_cifra='' evidencia='' estado_adopcion='GEN1 histórico; nueva síntesis PROPUESTA-POR-EJECUTOR'"},
+   {"tipo": "comando", "ref": "forense/encargos/", "comando": "git ls-tree -r --name-only origin/main forense/encargos | rg -i 'C3|CORRECC'", "salida": "1219 archivos examinados; solo 2026-09-27-ASTRA6-C3-CORRECCION-1242-1.md (salud-juventud-tiempo, CONSUMIDO) y 2026-09-28-GEN2-ASTRA-CONTINUIDAD-C3-1.md (CONSUMIDO #1261): ninguno toca REL-V186"}
+  ],
+  "lote": "OTRO:CORRECCION-C3-REPORTS-V2",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:forense/analisis/reports-v2/social-1/religion-afirmaciones.tsv | python3 -c \"import csv,sys;r=[x for x in csv.DictReader(sys.stdin,delimiter='\\t') if x['id']=='REL-V186'][0];print(bool(r['evidencia']) or (r['dictamen']=='SIN-CIFRA' and bool(r['razon_sin_cifra'])))\"  # True",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-2-627e-13",
+  "verdict": "ABSORBER",
+  "rationale": "La delegación del 28/sep pide un único encargo corto de corrección C3. Sigue pendiente: el report de guiones de género (corpus/reports-v2, l.30) dice «Frecuencia provisional: CALC-ENDISEG-PISOS-2021-0001». Además genero/verifica.py --check falla hoy (AssertionError: cambió estado ENDISEG), porque FP-…0d4a-01 está FIRMADA y el código espera ABIERTA.",
+  "cite": [
+   {"tipo": "comando", "ref": "corpus/reports-v2 (32 archivos)", "comando": "git grep -n -i provisional origin/main -- corpus/reports-v2 | rg -i ENDISEG", "salida": "Reconfiguración_de_los_Guiones_de_Género_en_México...md:30:**Frecuencia provisional:** CALC-ENDISEG-PISOS-2021-0001, persona seleccionada de 15+ con"},
+   {"tipo": "comando", "ref": "forense/analisis/reports-v2/genero-violencia-salud-1/genero/verifica.py:29", "comando": "python3 forense/analisis/reports-v2/genero-violencia-salud-1/genero/verifica.py --check --self-test 2>&1 | tail -3  (modo --check: no escribe; árbol idéntico a origin/main en esas rutas)", "salida": "assert signatures[ep]['estado']=='ABIERTA','cambió estado ENDISEG: revisar rótulo provisional' AssertionError: cambió estado ENDISEG: revisar rótulo provisional"},
+   {"tipo": "firma", "ref": "FP-260926-GEN2-COLA-COMPLETA-1-0d4a-01", "comando": "python3 tools/consulta.py fp FP-260926-GEN2-COLA-COMPLETA-1-0d4a-01", "salida": "estado=FIRMADA · creado=2026-09-26 · firmada_en=26/sep/2026, verbatim, mesa («firmado» ...)"}
+  ],
+  "lote": "OTRO:CORRECCION-C3-REPORTS-V2",
+  "entorno": "NUBE",
+  "hecho_comando": "git grep -n 'Frecuencia provisional' origin/main -- corpus/reports-v2 | rg -c ENDISEG  # 0, y python3 forense/analisis/reports-v2/genero-violencia-salud-1/verifica_lote.py --check imprime VERDE",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-2-627e-15",
+  "verdict": "ABSORBER",
+  "rationale": "La delegación del 28/sep da dos salidas reversibles: sustituir la evidencia circular por una fuente primaria o degradar la fila a SIN-CIFRA. En main sigue igual: hay 98 apariciones de LECTURA-V1-CANON en 2 de los 49 archivos del lote dinero-tecnología-conocimiento, y FIN-022-C1 (ROMPE) sigue sin fuente en dinero/afirmaciones.tsv:24. Se agrupa en la corrección C3.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/", "comando": "git ls-tree -r --name-only origin/main <dir> | wc -l; git grep -c LECTURA-V1-CANON origin/main -- <dir> | awk -F: '{s+=$NF} END{print s, NR}'", "salida": "archivos: 49 · apariciones LECTURA-V1-CANON: 98 en 2 archivos"},
+   {"tipo": "comando", "ref": "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/dinero/afirmaciones.tsv:24", "comando": "git grep -n FIN-022-C1 origin/main -- forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1", "salida": "dinero/afirmaciones.tsv:24:ASTRA5-U0-FIN-022-C1\t\tL19\tLos sobreprecios pagados por segmentos populares demuestran valoración de conveniencia, acceso y confianza.\tROMPE\tROMPE exclusivamente la inferencia sobreprecio→valoración identificada..."}
+  ],
+  "lote": "OTRO:CORRECCION-C3-REPORTS-V2",
+  "entorno": "NUBE",
+  "hecho_comando": "git grep -c LECTURA-V1-CANON origin/main -- forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1  # sin filas MATIZA/ROMPE cuya evidencia sea LECTURA-V1-CANON, y FIN-022-C1 con fuente o en SIN-CIFRA con razón",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-2-627e-17",
+  "verdict": "ABSORBER",
+  "rationale": "La delegación del 28/sep da dos opciones reversibles: (a) llenar la evidencia o (b) pasar la fila a SIN-CIFRA con causa. En main sigue igual: V-016-05 (ASTRA5-U0-VEJEZ-016) tiene dictamen MATIZA y evidencia vacía en cuidado-migracion-pareja-1/vejez/tabla-afirmaciones.tsv (129 filas). Se agrupa en la corrección C3.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/analisis/reports-v2/cuidado-migracion-pareja-1/vejez/tabla-afirmaciones.tsv", "comando": "git show origin/main:<ruta> | python3 (csv.DictReader, id V-016-05)", "salida": "filas 129 · id='V-016-05' mapa_id='ASTRA5-U0-VEJEZ-016' localizador='L22' dictamen='MATIZA' razon_sin_cifra='' evidencia='' revision_manual='True'"},
+   {"tipo": "firma", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv", "comando": "python3 (csv.DictReader, id 627e-17)", "salida": "opcion: DUEÑO-MESA · Opciones: (a) llenar evidencia; (b) pasar a SIN-CIFRA con causa. Reversible."}
+  ],
+  "lote": "OTRO:CORRECCION-C3-REPORTS-V2",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:forense/analisis/reports-v2/cuidado-migracion-pareja-1/vejez/tabla-afirmaciones.tsv | python3 -c \"import csv,sys;r=[x for x in csv.DictReader(sys.stdin,delimiter='\\t') if x['id']=='V-016-05'][0];print(bool(r['evidencia']) or (r['dictamen']=='SIN-CIFRA' and bool(r['razon_sin_cifra'])))\"  # True",
+  "confianza": "alta"
+ }
+]

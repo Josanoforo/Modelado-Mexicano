@@ -1,0 +1,23 @@
+[
+ {
+  "id": "NC-260921-GEN2-TUBERIA-SIDECAR-CUERPO-1-3d08-01",
+  "veredicto": "CONFIRMA",
+  "razon": "Los cinco comandos reproducen: sha256sum -c da 6/6 OK rc=0; verifica_sidecars marca TESTIGO huérfano declarado y FAIL: 0 VERDE; encargo :22/:72 y verifica_sidecars.py:75-80 y verify.yml:170-171 coinciden con la salida declarada.",
+  "comando": "cd forense/notas/insumos-externos/pisos-enif2021-0002-rama-codex && sha256sum -c *SHA256SUMS.txt; python3 tools/verifica_sidecars.py | rg 'FAIL:'",
+  "salida": "6 archivos: OK · rc=0 · [viejo] TESTIGO ... HUÉRFANO DECLARADO · FAIL: 0 — VERDE"
+ },
+ {
+  "id": "NC-0026",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproducen las diez citas: e760-03 FIRMADA, 43 filas NO-RELEVAR-POR-REGLA-6, emite_celda 612-687 con 0 referencias, tres archivos llaman las funciones puras, ADR-520, firma (1) de MARCADOR-REDISENO-1, NC-0024 CERRADA, regla 6 y verify.yml:173,182. Fila sigue ABIERTA (cierre pendiente).",
+  "comando": "git grep -l -E 'ola_previa_estricta|origen_de_entrada_serie' origin/main -- '*.py'; demanda-dictamen filtrado por lector CSV",
+  "salida": "3 archivos (medidor ola-v2, test_corredores_gen2, emite_m.py) · 43 filas NO-RELEVAR-POR-REGLA-6 · grep -c=0"
+ },
+ {
+  "id": "NC-0029",
+  "veredicto": "NO-REPRODUCE",
+  "razon": "El conteo declarado (324 ABIERTA, 323 sin ella; 1096 filas) no reproduce con el comando tal cual sobre origin/main actual b9b49f36: da 1097/325/324, y el barrido da 325 examinadas. Solo reproduce anclado a bafb1c1b. Las demás citas sí reproducen.",
+  "comando": "git show origin/main:forense/no-corrido.tsv | python3 (csv, estado=='ABIERTA')",
+  "salida": "origin/main: filas 1097 | ABIERTA 325 | sin NC-0029 324; en bafb1c1b: 1096/324/323"
+ }
+]

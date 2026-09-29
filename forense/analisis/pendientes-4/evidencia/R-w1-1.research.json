@@ -1,0 +1,777 @@
+[
+ {
+  "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-09",
+  "verdict": "HOJA-DECISION",
+  "rationale": "Cae la premisa «solo falta el CALC de caja»: tramite.yaml:254 declara que ninguna fuente distingue la obligatoriedad del canal, así que un CALC mediría otro estimando. Declarado reversible: no se redacta RELEVO-MOTOR-34-2-CAJA. Lo que queda (HISTÓRICO-SIN-RELEVO o fijar instrumento) ya ocupa la ranura ABIERTA c133-02 y solo mesa la firma.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'],'|',r['estado'][:40],'|',r['qué_se_firma'][:230]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02']\"",
+    "salida": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02 | ABIERTA | [B2] M03 (gobierno digital coercitivo) dictaminado SIN-ESTIMANDO-RECONSTRUIBLE contra la regla del encargo (AJUSTE sin RESULT → DECIDIBLE); recomendación (a) aceptarlo como HISTÓRICO-SIN-RELEVO. Texto: «Firmo B2 (a): …»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/demanda-dictamen-v1_0.tsv (RES-0017)",
+    "comando": "git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);L=[l for l in sys.stdin if not l.startswith('#')];[print(r['resultado_id'],r['dictamen'],'sucesor='+r['sucesor'],'|',r['cita'][:230]) for r in csv.DictReader(L,delimiter='\\t') if r['resultado_id']=='RES-0017']\"",
+    "salida": "RES-0017 SIN-BASE-GEN2 sucesor=GEN2-RELEVO-CONSUMIDORES-4 | milpa/procedencia.yaml:858 gemelo en asignados_probabilidad (- regla: tramite.gobierno_digital.coercitivo) rotulo_relevo=ASIGNADO-CONSERVADO-H1 (FP e760-01, regla B1); sin conducta GEN2 de coercitivo (NC-260926-GEN2-RELEVO-CONSUMI"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "milpa/tramite.yaml:254-256,262,266",
+    "comando": "git show origin/main:milpa/tramite.yaml | sed -n '254,256p;262p;266p' | cut -c1-150",
+    "salida": "# SIN DATO POR DEFECTO DE LA FUENTE -- EXISTE-NO-SATISFACE en ENCIG 2025 (ACTO MAESTRA34-L5 P0/P2, ADR-287): ninguna de 483 columnas de 2025 ni · - {conducta: rechaza_servicio, p: 0.91, clase: ASIGNADO} · - {conducta: adopta, p: 0.09, clase: ASIGNADO} · nota_validacion: \"Backtest: CoDi = 3.09M cuentas con >=1 transacción en 6 años.\" · # medicion). NO sustituye la p de la regla (0.91/0.09 ASIGNADO…"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-273 (D10, mesa 3/sep/2026)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'],'|',r['estado'][:24],'…',r['estado'][r['estado'].find('Conservar'):][:130]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-273']\"",
+    "salida": "FP-273 | FIRMADA (D10, mesa 3/sep … Conservar p ASIGNADO 0.91/0.09, tier MEDIA, campo_administrativo visible con rotulo COBERTURA-CREDENCIAL x COTA-SUPERIOR. FP-273 -"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-01",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'][-8:],'|',r['estado'][:10],'|',r['firmada_en'][r['firmada_en'].find('«Mesa declara'):][:260]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-01']\"",
+    "salida": "-e760-01 | FIRMADA | «Mesa declara HISTÓRICO-SIN-RELEVO las 8 entradas asignados_coeficiente de milpa/procedencia.yaml; las 12 asignados_probabilidad siguen la regla de FIRMAS-16 B1/B2; ejecuta RELEVO-CONSUMIDORES-3.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260926-GEN2-RELEVO-CONSUMIDORES-3-72d9-02 (misma decisión, M03)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'][-30:],'|',r['estado'],'|',r['sucesor'][:90]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='NC-260926-GEN2-RELEVO-CONSUMIDORES-3-72d9-02']\"",
+    "salida": "-RELEVO-CONSUMIDORES-3-72d9-02 | ABIERTA | MESA (2026-10-05) · hoja de irreversibles · antes: GEN2-RELEVO-CONSUMIDORES-4"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos (universo)",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | wc -l; git ls-tree -r --name-only origin/main forense/encargos | grep -c -i 'RELEVO-MOTOR-34-2\\|RELEVO-CONSUMIDORES-4'",
+    "salida": "1221 · 0"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "decision_declarada": {
+   "opcion": "No redactar GEN2-RELEVO-MOTOR-34-2-CAJA para RES-0017/0018",
+   "razon": "Reversible y sin sello: la delegación del 28/sep lo dio por «sin dato faltante», pero tramite.yaml:254 (EXISTE-NO-SATISFACE en ENCIG 2025) y el dictamen SIN-BASE-GEN2 muestran que el CALC no tiene instrumento; un encargo de caja cambiaría el estimando. Se reabre si aparece instrumento."
+  },
+  "decision_clave": "COERCITIVO-ASIGNADO-HISTORICO-SIN-RELEVO",
+  "fp_existente": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02",
+  "owner_detalle": "MESA-DECISION (hoja: B2 de forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md · FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02)",
+  "hoja": {
+   "situacion": "RES-0017 (tramite.gobierno_digital.coercitivo, rechaza_servicio p 0.91, clase ASIGNADO) no tiene medición GEN2 ni instrumento que distinga un servicio digital obligatorio (tramite.yaml:254). Mesa ya firmó conservar la p ASIGNADO 0.91/0.09 (FP-273, D10 del 3/sep); el dictamen #1275 lo deja SIN-BASE-GEN2 y la ranura B2 (c133-02) sigue ABIERTA.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "RES-0017/0018 quedan HISTÓRICO-SIN-RELEVO con rótulo ASIGNADO-CONSERVADO, junto con M03 (B2 a), conforme a FP-273.",
+     "costo": "La regla sigue emitiendo un ASIGNADO rotulado y el motor conserva 2 lecturas legacy rotuladas. Cero caja, cero sello."
+    },
+    {
+     "letra": "b",
+     "texto": "Mesa fija un instrumento (p. ej. un proxy de trámite en línea de ENCIG 2025) y se encarga un CALC de caja descriptivo que releve la proporción.",
+     "costo": "Un acto de caja; el estimando cambia a un proxy (tramite.yaml:254 declara EXISTE-NO-SATISFACE en ENCIG 2025): riesgo de medir otra cosa y de contradecir FP-273."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "Sin instrumento no hay qué medir. (a) es la misma decisión de B2, es coherente con FP-273 (conservar el ASIGNADO hasta tener adopción vigente) y con la regla FIRMAS-16 B1 vía e760-01 («donde no coinciden, se conserva con rótulo»). Si aparece un instrumento, entra como momento nuevo.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«Firmo B2 (a) con sus lecturas: M03 y las proporciones ASIGNADO RES-0017/0018 (tramite.gobierno_digital.coercitivo: rechaza_servicio 0.91 / adopta 0.09) quedan HISTÓRICO-SIN-RELEVO con rótulo ASIGNADO-CONSERVADO, conforme a la conservación firmada en FP-273 (D10, 3/sep/2026); si aparece un instrumento que distinga la obligatoriedad del canal, entran como momento nuevo con CALC de caja.»"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-10",
+  "verdict": "HOJA-DECISION",
+  "rationale": "Complemento de RES-0017 (adopta 0.09 ASIGNADO): misma causa, misma decisión. Ninguna fuente distingue la obligatoriedad del canal (tramite.yaml:254) y el dictamen #1275 da SIN-BASE-GEN2. Declarado reversible: no se redacta RELEVO-MOTOR-34-2-CAJA. La ranura B2 (c133-02) sigue ABIERTA y se firma junto con a157-09.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'],'|',r['estado'][:40],'|',r['qué_se_firma'][:230]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02']\"",
+    "salida": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02 | ABIERTA | [B2] M03 (gobierno digital coercitivo) dictaminado SIN-ESTIMANDO-RECONSTRUIBLE contra la regla del encargo (AJUSTE sin RESULT → DECIDIBLE); recomendación (a) aceptarlo como HISTÓRICO-SIN-RELEVO. Texto: «Firmo B2 (a): …»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/demanda-dictamen-v1_0.tsv (RES-0018)",
+    "comando": "git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);L=[l for l in sys.stdin if not l.startswith('#')];[print(r['resultado_id'],r['dictamen'],'sucesor='+r['sucesor'],'|',r['cita'][:230]) for r in csv.DictReader(L,delimiter='\\t') if r['resultado_id']=='RES-0018']\"",
+    "salida": "RES-0018 SIN-BASE-GEN2 sucesor=GEN2-RELEVO-CONSUMIDORES-4 | milpa/procedencia.yaml:858 gemelo en asignados_probabilidad (- regla: tramite.gobierno_digital.coercitivo) rotulo_relevo=ASIGNADO-CONSERVADO-H1 (FP e760-01, regla B1); complemento de RES-0017"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "milpa/tramite.yaml:254-256,262,266",
+    "comando": "git show origin/main:milpa/tramite.yaml | sed -n '254,256p;262p;266p' | cut -c1-150",
+    "salida": "# SIN DATO POR DEFECTO DE LA FUENTE -- EXISTE-NO-SATISFACE en ENCIG 2025 (ACTO MAESTRA34-L5 P0/P2, ADR-287): ninguna de 483 columnas de 2025 ni · - {conducta: rechaza_servicio, p: 0.91, clase: ASIGNADO} · - {conducta: adopta, p: 0.09, clase: ASIGNADO} · nota_validacion: \"Backtest: CoDi = 3.09M cuentas con >=1 transacción en 6 años.\" · # medicion). NO sustituye la p de la regla (0.91/0.09 ASIGNADO…"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-273 (D10, mesa 3/sep/2026)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'],'|',r['estado'][:24],'…',r['estado'][r['estado'].find('Conservar'):][:130]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-273']\"",
+    "salida": "FP-273 | FIRMADA (D10, mesa 3/sep … Conservar p ASIGNADO 0.91/0.09, tier MEDIA, campo_administrativo visible con rotulo COBERTURA-CREDENCIAL x COTA-SUPERIOR. FP-273 -"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-01",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'][-8:],'|',r['estado'][:10],'|',r['firmada_en'][r['firmada_en'].find('«Mesa declara'):][:260]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-01']\"",
+    "salida": "-e760-01 | FIRMADA | «Mesa declara HISTÓRICO-SIN-RELEVO las 8 entradas asignados_coeficiente de milpa/procedencia.yaml; las 12 asignados_probabilidad siguen la regla de FIRMAS-16 B1/B2; ejecuta RELEVO-CONSUMIDORES-3.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260926-GEN2-RELEVO-CONSUMIDORES-3-72d9-02 (misma decisión, M03)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'][-30:],'|',r['estado'],'|',r['sucesor'][:90]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='NC-260926-GEN2-RELEVO-CONSUMIDORES-3-72d9-02']\"",
+    "salida": "-RELEVO-CONSUMIDORES-3-72d9-02 | ABIERTA | MESA (2026-10-05) · hoja de irreversibles · antes: GEN2-RELEVO-CONSUMIDORES-4"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos (universo)",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | wc -l; git ls-tree -r --name-only origin/main forense/encargos | grep -c -i 'RELEVO-MOTOR-34-2\\|RELEVO-CONSUMIDORES-4'",
+    "salida": "1221 · 0"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "decision_declarada": {
+   "opcion": "No redactar GEN2-RELEVO-MOTOR-34-2-CAJA para RES-0017/0018",
+   "razon": "Misma declaración que a157-09: el CALC de caja no tiene instrumento y cambiaría el estimando; reversible, se reabre si aparece instrumento."
+  },
+  "decision_clave": "COERCITIVO-ASIGNADO-HISTORICO-SIN-RELEVO",
+  "fp_existente": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02",
+  "owner_detalle": "MESA-DECISION (hoja: B2 de forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md · FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02)",
+  "hoja": {
+   "situacion": "RES-0018 (tramite.gobierno_digital.coercitivo, adopta p 0.09, complemento de RES-0017, clase ASIGNADO) no tiene medición GEN2 ni instrumento que distinga un servicio digital obligatorio (tramite.yaml:254). Mesa ya firmó conservar la p ASIGNADO 0.91/0.09 (FP-273, D10 del 3/sep); el dictamen #1275 lo deja SIN-BASE-GEN2 y la ranura B2 (c133-02) sigue ABIERTA.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "RES-0017/0018 quedan HISTÓRICO-SIN-RELEVO con rótulo ASIGNADO-CONSERVADO, junto con M03 (B2 a), conforme a FP-273.",
+     "costo": "La regla sigue emitiendo un ASIGNADO rotulado y el motor conserva 2 lecturas legacy rotuladas. Cero caja, cero sello."
+    },
+    {
+     "letra": "b",
+     "texto": "Mesa fija un instrumento (p. ej. un proxy de trámite en línea de ENCIG 2025) y se encarga un CALC de caja descriptivo que releve la proporción.",
+     "costo": "Un acto de caja; el estimando cambia a un proxy (tramite.yaml:254 declara EXISTE-NO-SATISFACE en ENCIG 2025): riesgo de medir otra cosa y de contradecir FP-273."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "Sin instrumento no hay qué medir. (a) es la misma decisión de B2, es coherente con FP-273 (conservar el ASIGNADO hasta tener adopción vigente) y con la regla FIRMAS-16 B1 vía e760-01 («donde no coinciden, se conserva con rótulo»). Si aparece un instrumento, entra como momento nuevo.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«Firmo B2 (a) con sus lecturas: M03 y las proporciones ASIGNADO RES-0017/0018 (tramite.gobierno_digital.coercitivo: rechaza_servicio 0.91 / adopta 0.09) quedan HISTÓRICO-SIN-RELEVO con rótulo ASIGNADO-CONSERVADO, conforme a la conservación firmada en FP-273 (D10, 3/sep/2026); si aparece un instrumento que distinga la obligatoriedad del canal, entran como momento nuevo con CALC de caja.»"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-15",
+  "verdict": "HOJA-DECISION",
+  "rationale": "La delegación dio por «sin dato faltante» que ENNViH está en corpus, pero el relevo usa la ola 3 (2009), la más reciente del programa y por tanto reservada; abrirla es irreversible (D-19). Declarado reversible: no se redacta el encargo de caja. La decisión ocupa la ranura ABIERTA c133-01; mesa ya conservó estas lecturas como historia (tramite.yaml:663, FP-339).",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'],'|',r['estado'][:40],'|',r['qué_se_firma'][:230]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01']\"",
+    "salida": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01 | ABIERTA | [B1] dinero.ahorro.tiene_ahorros (RES-0029/0030): usa la ola 3 de ENNViH, hoy reservada; recomendación (a) HISTÓRICO-SIN-RELEVO como sus celdas (FP-339). Texto: «Firmo B1 (a): …»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/demanda-dictamen-v1_0.tsv (RES-0029)",
+    "comando": "git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);L=[l for l in sys.stdin if not l.startswith('#')];[print(r['resultado_id'],r['dictamen'],'sucesor='+r['sucesor'],'|',r['cita'][:230]) for r in csv.DictReader(L,delimiter='\\t') if r['resultado_id']=='RES-0029']\"",
+    "salida": "RES-0029 ESPERA-FIRMA-MESA sucesor=GEN2-TRAMITE-FIRMAS-22 (B1) | milpa/tramite.yaml:664 MEDIDO sin corrida0_resultado_id; payload olas 2-3 de ENNViH (ennvih2_2005_hogar_dta, ennvih3_2009_hogar_dta, ennvih2_2005_ponderador_transversal: 3/3 en data/manifiesto.yaml, 7198 ids examinados); ola 3 (20"
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:9",
+    "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | sed -n '9p' | cut -c1-200",
+    "salida": "- Reservas: ola más reciente de todo programa con historia; ENVIPE 2026; ENCO; ENIGH 2024 salvo seis columnas AMAI (C7). ENCIG 2025 y ENVIPE 2025: abiertas."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml (ennvih, olas presentes)",
+    "comando": "yq -r '.[] | select(.id|test(\"^ennvih[0-9]_\")) | .id' data/manifiesto.yaml | sed 's/_.*//' | sort | uniq -c",
+    "salida": "9 ennvih1 · 10 ennvih2 · 11 ennvih3"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-339 (D9/D10, mesa 7/sep/2026)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'],'|',r['estado'][:10],'|',r['firmada_en'][:330]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-339']\"",
+    "salida": "FP-339 | FIRMADA | D9/D10 (mesa, ACTO GEN2-T7, 7/sep/2026) -- verbatim: para (1)-(3) TRA-M-02/03/07, el M vivo es el sufijo __v1_3 (M-<id>__v1_3.json); M-<id>.json queda historico. Para (4)-(7) dinero.ahorro.tiene_ahorros y familia.apoyo.recibe_dinero_familiares (las 4 conductas MEDIDO citadas) quedan SIN-RECETA por decision de mesa: no se reconst"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/corrida0/decisiones.tsv:6-7",
+    "comando": "git show origin/main:data/corrida0/decisiones.tsv | sed -n '6,7p'",
+    "salida": "milpa/tramite.yaml:dinero.ahorro.tiene_ahorros:tiene_ahorros\treceta_legacy=SIN-RECETA\tFP-339\t2026-09-07 · milpa/tramite.yaml:dinero.ahorro.tiene_ahorros:no_tiene_ahorros\treceta_legacy=SIN-RECETA\tFP-339\t2026-09-07"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "milpa/tramite.yaml:663",
+    "comando": "git show origin/main:milpa/tramite.yaml | sed -n '663p' | cut -c1-200",
+    "salida": "# CONSERVADA COMO HISTORIA (firma c1): acervo/flujo y universo distintos, no forman serie; sustituida en el cálculo por la enmienda_enif2024"
+   },
+   {
+    "tipo": "comando",
+    "ref": "RESULT GEN2 de la sustitutiva ENIF (releva RES-0031, no RES-0029/0030)",
+    "comando": "python3 tools/consulta.py result RESULT-TIENEAHORROS-A-P-TIENE",
+    "salida": "RESULT-TIENEAHORROS-A-P-TIENE · valor=0.6420795665818781 · unidad=p ponderado de tiene_ahorros -- releva RES-0031 (esperado 0.642080) · tipo=proporcion · corrida_id=CALC-TIENE-AHORROS-0001-v1_1--fb43c8bab410 · sello=COINCIDE · estado=SELLADA · generacion=GEN2…"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "decision_declarada": {
+   "opcion": "No redactar GEN2-RELEVO-MOTOR-34-2-CAJA para RES-0029/0030",
+   "razon": "Reversible y sin sello: el CALC leería la ola 3 reservada (MEMORIA-OPERATIVA:9; el manifiesto no trae ola posterior a ennvih3_2009) y abrirla es D-19; además firma c1 y FP-339 ya inclinan a conservar como historia. Se reabre si mesa firma B1 (b)."
+  },
+  "decision_clave": "ENNVIH-AHORRO-RES-0029-0030-RELEVO-OLA3",
+  "fp_existente": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01",
+  "owner_detalle": "MESA-DECISION (hoja: B1 de forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md · FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01)",
+  "hoja": {
+   "situacion": "dinero.ahorro.tiene_ahorros (RES-0029, tiene_ahorros p 0.1748) es una medición GEN1 con las olas 2 y 3 de ENNViH. Los payloads están en el corpus, pero la ola 3 (2009) es la más reciente del programa en el manifiesto y está reservada. Mesa ya la conservó como historia (firma c1, tramite.yaml:663) y la dejó SIN-RECETA (FP-339, decisiones.tsv:6-7); la lectura ENIF 2024 (RES-0031, GEN2) la sustituye en el cálculo. FP-339 se firmó cuando el payload figuraba NO-LOCALIZADO; hoy está localizado (tramite.yaml:681), por eso B1 pide firma nueva.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "HISTÓRICO-SIN-RELEVO: sale del pendiente y se conserva como GEN1 rotulado (RES-0029/0030 juntas).",
+     "costo": "El motor conserva 2 lecturas GEN1 rotuladas. Cero caja; no gasta la reserva."
+    },
+    {
+     "letra": "b",
+     "texto": "Spec de caja solo con la ola 2 (2005).",
+     "costo": "Un acto de caja; el estimando cambia (una ola en vez de dos) y así se declara; contradice la conservación como historia de la firma c1."
+    },
+    {
+     "letra": "c",
+     "texto": "Mesa abre la ola 3 de ENNViH para esta conducta.",
+     "costo": "Irreversible: consume la reserva de la ola más reciente de ENNViH (D-19) por una medición que el cálculo ya no usa."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "Coincide con lo que mesa ya firmó en sustancia (firma c1 y FP-339), no gasta la reserva de la ola 3 y no exige acto de caja; B1 solo le pone el rótulo GEN2 de HISTÓRICO-SIN-RELEVO.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«Firmo B1 (a): `dinero.ahorro.tiene_ahorros` (RES-0029/0030) queda HISTÓRICO-SIN-RELEVO, igual que sus celdas por FP-339 y como ya la conservó la firma c1; la ola 3 de ENNViH sigue reservada.»"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-16",
+  "verdict": "HOJA-DECISION",
+  "rationale": "Complemento de RES-0029 (no_tiene_ahorros): misma bifurcación B1. La ola 3 de ENNViH es la más reciente del programa y está reservada; abrirla es irreversible (D-19). Declarado reversible: no se redacta el encargo de caja. La ranura c133-01 sigue ABIERTA y se firma junto con a157-15.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'],'|',r['estado'][:40],'|',r['qué_se_firma'][:230]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01']\"",
+    "salida": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01 | ABIERTA | [B1] dinero.ahorro.tiene_ahorros (RES-0029/0030): usa la ola 3 de ENNViH, hoy reservada; recomendación (a) HISTÓRICO-SIN-RELEVO como sus celdas (FP-339). Texto: «Firmo B1 (a): …»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/demanda-dictamen-v1_0.tsv (RES-0030)",
+    "comando": "git show origin/main:data/corrida0/demanda-dictamen-v1_0.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);L=[l for l in sys.stdin if not l.startswith('#')];[print(r['resultado_id'],r['dictamen'],'sucesor='+r['sucesor'],'|',r['cita'][:230]) for r in csv.DictReader(L,delimiter='\\t') if r['resultado_id']=='RES-0030']\"",
+    "salida": "RES-0030 ESPERA-FIRMA-MESA sucesor=GEN2-TRAMITE-FIRMAS-22 (B1) | complemento de RES-0029; misma bifurcación B1 de la hoja (ola 3 de ENNViH reservada)"
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:9",
+    "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | sed -n '9p' | cut -c1-200",
+    "salida": "- Reservas: ola más reciente de todo programa con historia; ENVIPE 2026; ENCO; ENIGH 2024 salvo seis columnas AMAI (C7). ENCIG 2025 y ENVIPE 2025: abiertas."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml (ennvih, olas presentes)",
+    "comando": "yq -r '.[] | select(.id|test(\"^ennvih[0-9]_\")) | .id' data/manifiesto.yaml | sed 's/_.*//' | sort | uniq -c",
+    "salida": "9 ennvih1 · 10 ennvih2 · 11 ennvih3"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-339 (D9/D10, mesa 7/sep/2026)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'],'|',r['estado'][:10],'|',r['firmada_en'][:330]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-339']\"",
+    "salida": "FP-339 | FIRMADA | D9/D10 (mesa, ACTO GEN2-T7, 7/sep/2026) -- verbatim: para (1)-(3) TRA-M-02/03/07, el M vivo es el sufijo __v1_3 (M-<id>__v1_3.json); M-<id>.json queda historico. Para (4)-(7) dinero.ahorro.tiene_ahorros y familia.apoyo.recibe_dinero_familiares (las 4 conductas MEDIDO citadas) quedan SIN-RECETA por decision de mesa: no se reconst"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/corrida0/decisiones.tsv:6-7",
+    "comando": "git show origin/main:data/corrida0/decisiones.tsv | sed -n '6,7p'",
+    "salida": "milpa/tramite.yaml:dinero.ahorro.tiene_ahorros:tiene_ahorros\treceta_legacy=SIN-RECETA\tFP-339\t2026-09-07 · milpa/tramite.yaml:dinero.ahorro.tiene_ahorros:no_tiene_ahorros\treceta_legacy=SIN-RECETA\tFP-339\t2026-09-07"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "milpa/tramite.yaml:663",
+    "comando": "git show origin/main:milpa/tramite.yaml | sed -n '663p' | cut -c1-200",
+    "salida": "# CONSERVADA COMO HISTORIA (firma c1): acervo/flujo y universo distintos, no forman serie; sustituida en el cálculo por la enmienda_enif2024"
+   },
+   {
+    "tipo": "comando",
+    "ref": "RESULT GEN2 de la sustitutiva ENIF (releva RES-0031, no RES-0029/0030)",
+    "comando": "python3 tools/consulta.py result RESULT-TIENEAHORROS-A-P-TIENE",
+    "salida": "RESULT-TIENEAHORROS-A-P-TIENE · valor=0.6420795665818781 · unidad=p ponderado de tiene_ahorros -- releva RES-0031 (esperado 0.642080) · tipo=proporcion · corrida_id=CALC-TIENE-AHORROS-0001-v1_1--fb43c8bab410 · sello=COINCIDE · estado=SELLADA · generacion=GEN2…"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "decision_declarada": {
+   "opcion": "No redactar GEN2-RELEVO-MOTOR-34-2-CAJA para RES-0029/0030",
+   "razon": "Misma declaración que a157-15: el CALC exigiría abrir la ola 3 reservada; reversible, se reabre si mesa firma B1 (b)."
+  },
+  "decision_clave": "ENNVIH-AHORRO-RES-0029-0030-RELEVO-OLA3",
+  "fp_existente": "FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01",
+  "owner_detalle": "MESA-DECISION (hoja: B1 de forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md · FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01)",
+  "hoja": {
+   "situacion": "dinero.ahorro.tiene_ahorros (RES-0030, no_tiene_ahorros p 0.8252, complemento de RES-0029) es una medición GEN1 con las olas 2 y 3 de ENNViH. Los payloads están en el corpus, pero la ola 3 (2009) es la más reciente del programa en el manifiesto y está reservada. Mesa ya la conservó como historia (firma c1, tramite.yaml:663) y la dejó SIN-RECETA (FP-339, decisiones.tsv:6-7); la lectura ENIF 2024 (RES-0031, GEN2) la sustituye en el cálculo. FP-339 se firmó cuando el payload figuraba NO-LOCALIZADO; hoy está localizado (tramite.yaml:681), por eso B1 pide firma nueva.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "HISTÓRICO-SIN-RELEVO: sale del pendiente y se conserva como GEN1 rotulado (RES-0029/0030 juntas).",
+     "costo": "El motor conserva 2 lecturas GEN1 rotuladas. Cero caja; no gasta la reserva."
+    },
+    {
+     "letra": "b",
+     "texto": "Spec de caja solo con la ola 2 (2005).",
+     "costo": "Un acto de caja; el estimando cambia (una ola en vez de dos) y así se declara; contradice la conservación como historia de la firma c1."
+    },
+    {
+     "letra": "c",
+     "texto": "Mesa abre la ola 3 de ENNViH para esta conducta.",
+     "costo": "Irreversible: consume la reserva de la ola más reciente de ENNViH (D-19) por una medición que el cálculo ya no usa."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "Coincide con lo que mesa ya firmó en sustancia (firma c1 y FP-339), no gasta la reserva de la ola 3 y no exige acto de caja; B1 solo le pone el rótulo GEN2 de HISTÓRICO-SIN-RELEVO.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«Firmo B1 (a): `dinero.ahorro.tiene_ahorros` (RES-0029/0030) queda HISTÓRICO-SIN-RELEVO, igual que sus celdas por FP-339 y como ya la conservó la firma c1; la ola 3 de ENNViH sigue reservada.»"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260926-ASTRA6-C1-REEMPAQUETA-VENTANA-1-ee49-03",
+  "verdict": "HOJA-DECISION",
+  "rationale": "#1304 (fusionado) ejecutó el transporte documental R24 de las 767 ventanas, pero no acreditó aislamiento: R32 autorizó el reconstructor opción A solo para el lote 3 y beee-08 sigue ABIERTA. El acceso a ENDIREH 2021 ya está firmado (ee49-01); falta el régimen de aislamiento, que decide mesa. El dueño EN-CURSO caducó.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "20ff4c05 (#1304)",
+    "comando": "git log origin/main --first-parent --oneline | grep -E '#1304'",
+    "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC ee49-03 y beee-08 (A.17)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'][-30:],'|',r['estado'],'|',r['sucesor'][:130]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='NC-260926-ASTRA6-C1-REEMPAQUETA-VENTANA-1-ee49-03' or r['id']=='NC-260927-GEN2-RECIBO-ASTRA6-1-beee-08']\"",
+    "salida": "7-GEN2-RECIBO-ASTRA6-1-beee-08 | ABIERTA | CAJA (forense/encargos/2026-09-27-ASTRA6-C1-EJECUTOR-AISLADO-3.md) · antes: RECIBO-ASTRA6-2 · -REEMPAQUETA-VENTANA-1-ee49-03 | ABIERTA | EN-CURSO (GEN2-C1-SUCESORES-Y-LOTE-3 · rama acto/GEN2-C1-SUCESORES-Y-LOTE-3) · antes: forense/validacion-independiente/catalogo-1-"
+   },
+   {
+    "tipo": "firma",
+    "ref": "decisiones-21.tsv R32 (FP 26a2-02)",
+    "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['renglon'],'|',r['estado'][:34],'|',r['texto_de_firma'][:330]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['renglon']=='R32']\"",
+    "salida": "R32 | FIRMADA · VIAJA-EN GEN2-C1-SUCESOR | «Autorizo el reconstructor de opción A para el lote 3 de C1: una sesión nueva de Claude Code, sin historial, con solo el prompt, el paquete y la lista cerrada de herramientas, con el transcript archivado y auditado antes de revelar. Sus resultados llevan el rótulo CIEGA-POR-CONTEXTO-NUEVO y no se presentan como aislamiento por b"
+   },
+   {
+    "tipo": "firma",
+    "ref": "decisiones-21.tsv R15 (FP 26a2-03)",
+    "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['renglon'],'|',r['estado'][:34],'|',r['texto_de_firma'][:330]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['renglon']=='R15']\"",
+    "salida": "R15 | FIRMADA · VIAJA-EN GEN2-C1-SUCESOR | «La reserva se conserva hasta que haya autorización por paquete y cohorte. El lote 3 de C1 se lanza paquete por paquete, y cada uno solo cuando tenga en SÍ los cuatro gates (APTO-TECNICAMENTE, CONTEXTO-NUEVO-ACREDITADO, CONTRATO-FIRMADO, ACCESO-AUTORIZADO). Esta firma no autoriza ningún paquete concreto.»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260926-ASTRA6-C1-REEMPAQUETA-VENTANA-1-ee49-01 (acceso ENDIREH 2021)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'],'|',r['estado'][:10],'|',r['qué_se_firma'][:170],'|',r['firmada_en'][:110]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260926-ASTRA6-C1-REEMPAQUETA-VENTANA-1-ee49-01']\"",
+    "salida": "FP-260926-ASTRA6-C1-REEMPAQUETA-VENTANA-1-ee49-01 | FIRMADA | Autorizar lectura futura C1 ENDIREH2021 exclusivamente módulos/campos/finalidad de hoja propia; recomendada autorización delimitada sin cambio método, adopción ni otra re | forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md -- Firmada el 27/09/2026 en ADENDA-1 de forense/e"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/validacion-independiente/catalogo-1-lote3/LANZAMIENTO-LOTE3.md:34,53",
+    "comando": "git show origin/main:forense/validacion-independiente/catalogo-1-lote3/LANZAMIENTO-LOTE3.md | sed -n '34p;53p' | cut -c1-200",
+    "salida": "- **Aislamiento del sistema de archivos:** la sesión corre en un namespace de montaje propio (`unshare`) con `/tmp` en tmpfs vacío. Sin esto, el `$TMPDIR` compartido `/tmp/claude-1000` (scratchpads · Se lanza con la configuración de la sonda 3. Reserva, dicha también en el rótulo `CIEGA-POR-CONTEXTO-NUEVO`: el proceso `claude` sí sale a la red (API), y el aislamiento es de sandbox y namespace,"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-27-ASTRA6-C1-EJECUTOR-AISLADO-3.md:178,182 (broker no provisionado)",
+    "comando": "git show origin/main:forense/encargos/2026-09-27-ASTRA6-C1-EJECUTOR-AISLADO-3.md | sed -n '178p;182p' | cut -c1-200",
+    "salida": "| Sesión nueva de proveedor y C1 real | No existe broker de proveedor acreditado en esta caja; el cliente y su protocolo pasaron solo prueba sintética. Tampoco hay autorización de acceso por paquet · Producto técnico y prueba sintética ejecutados en rama `codex/astra6-c1-ejecutor-v3-1`, base real de redacción `7748208614570a50a97c1ba830aee72a972185f9`, contrato fijado en `ea302f89`. PR #1241 ab"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3-cierre.md:26 (R24 ejecutado)",
+    "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3-cierre.md | sed -n '26p' | cut -c1-200",
+    "salida": "| R24 | 767 ventanas literales copiadas del catálogo v1.2 (columna `reserva`), sin recalcular. | `r24-transporte-ventana-767.tsv` |"
+   },
+   {
+    "tipo": "comando",
+    "ref": "firmas-pendientes.tsv (FP de C1 cuyo texto nombra broker, aislamiento, 767 o c1-ventana; universo: todas las filas)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys,re;csv.field_size_limit(10**8);R=list(csv.DictReader(sys.stdin,delimiter='\\t'));A=[r for r in R if r['estado'].startswith('ABIERTA')];print(len(R),'filas;',len(A),'ABIERTA; con /broker|aislamiento|767|c1-ventana/ (todas las FP):',[(r['id'][-34:],r['estado'][:8]) for r in R if re.search(r'broker|aislamiento|767|c1-ventana',r['qué_se_firma'],re.I) and r['id'].find('C1')>0])\"",
+    "salida": "648 filas; 18 ABIERTA; con /broker|aislamiento|767|c1-ventana/ (todas las FP): [('EN2-ASTRA-CONTINUIDAD-C1-1-26a2-02', 'FIRMADA')]"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos (universo; LOTE-4 / VENTANA-SESION-NUEVA)",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | wc -l; git ls-tree -r --name-only origin/main forense/encargos | grep -c -i 'C1-LOTE-4\\|VENTANA-SESION-NUEVA'",
+    "salida": "1221 · 0"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "decision_declarada": {
+   "opcion": "Acotar la hoja al gate CONTEXTO-NUEVO-ACREDITADO (régimen de aislamiento)",
+   "razon": "Reversible: ee49-01 (FIRMADA, 27/sep) ya autoriza la lectura futura de ENDIREH 2021 con módulos, campos y finalidad de hoja propia, y R24 ya ejecutó lo documental (nota de cierre #1304:26); solo falta el régimen de la sesión ciega de las 767."
+  },
+  "decision_clave": "C1-767-ENDIREH2021-REGIMEN-AISLAMIENTO",
+  "fp_existente": "",
+  "owner_detalle": "MESA-DECISION (hoja: régimen de aislamiento (extender R32 opción A o exigir broker) para la sesión ciega de las 767 ENDIREH 2021 c1-ventana-v1, antes de GEN2-ASTRA6-C1-LOTE-4)",
+  "hoja": {
+   "situacion": "La sesión ciega de las 767 identidades ENDIREH 2021 (paquetes c1-ventana-v1) tiene ya el acceso firmado (ee49-01) y la ventana transportada por R24, pero R32 autorizó el reconstructor opción A (sin broker) solo para el lote 3 y R15 exige los cuatro gates por paquete; sin régimen de aislamiento firmado no se lanza ni se anuncian 859 listos.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Extender R32 a la sesión de las 767 con la receta de LANZAMIENTO-LOTE3 §3 y la configuración de la sonda 3 (§4): namespace con /tmp vacío, herramientas sin red, transcript archivado y auditado antes de revelar; rótulo CIEGA-POR-CONTEXTO-NUEVO.",
+     "costo": "La ceguera no es por broker: el proceso claude sale a la API (misma reserva que el lote 3)."
+    },
+    {
+     "letra": "b",
+     "texto": "Exigir broker de red acreditado antes de lanzar (receta-sesion-futura.md paso 5; NC beee-08).",
+     "costo": "Un acto de infraestructura en CAJA sin fecha (EJECUTOR-AISLADO-3 dejó el broker sin provisionar); las 767 siguen sin validación independiente mientras tanto."
+    },
+    {
+     "letra": "c",
+     "texto": "No validar las 767 a ciegas: quedan SOSTENER-SIN-CORROBORACION con la ventana transportada por R24.",
+     "costo": "767 identidades (COM 100, ESC 96, LAB 100, NF 471) sin validación independiente de forma permanente."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "Mesa ya aceptó la opción A para el lote 3 con transcript auditado; el broker no tiene acto que lo provisione. (a) convierte 767 NO-HECHA en validación rotulada, sin presentarla como aislamiento por broker.",
+   "plazo": "Antes de redactar GEN2-ASTRA6-C1-LOTE-4 (MESA 2026-10-05)",
+   "texto_firma": "«Extiendo la autorización del reconstructor de opción A (R32) a la sesión ciega de las 767 identidades ENDIREH 2021 de los paquetes c1-ventana-v1, con la receta de LANZAMIENTO-LOTE3 §3 y la configuración de la sonda 3 (§4): namespace con /tmp vacío, herramientas sin red, transcript archivado y auditado antes de revelar. Sus resultados llevan el rótulo CIEGA-POR-CONTEXTO-NUEVO y no se presentan como aislamiento por broker. El broker sigue como meta.»"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-03",
+  "verdict": "HOJA-DECISION",
+  "rationale": "R24 (FIRMADA) firmó solo el carril de transporte y dejó NIV-terminal-v1 y P14_22_14 «pendientes de firma por bloque»; la FP 157c-02 que cita la fila ya no está abierta. El filtro EDAD 98/99 lo cubre R25 para los sucesores. Adoptar contratos nuevos sobre ola vista es de mesa (D-19); el dueño EN-CURSO caducó (#1304 fusionado).",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "20ff4c05 (#1304)",
+    "comando": "git log origin/main --first-parent --oneline | grep -E '#1304'",
+    "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC 157c-03 (A.17: dueño EN-CURSO)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'][-30:],'|',r['estado'],'|',r['sucesor'][:130]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='NC-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-03']\"",
+    "salida": "1-INCERTIDUMBRE-SPEC-1-157c-03 | ABIERTA | EN-CURSO (GEN2-C1-SUCESORES-Y-LOTE-3 · rama acto/GEN2-C1-SUCESORES-Y-LOTE-3) · antes: FP-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-02 (bloqueo citado por la NC)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'],'|',r['estado'][:10],'|',r['firmada_en'][:100]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-02']\"",
+    "salida": "FP-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-02 | FIRMADA | 28/sep/2026, verbatim, mesa (chat de dirección, maestra 54): «Las R46, R47, R49 y R51 ponlas para ma"
+   },
+   {
+    "tipo": "firma",
+    "ref": "decisiones-21.tsv R24",
+    "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['renglon'],'|',r['estado'][:34],'|',r['texto_de_firma'][:400]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['renglon']=='R24']\"",
+    "salida": "R24 | FIRMADA · VIAJA-EN GEN2-C1-SUCESOR | «Autorizo el carril de transporte: copiar la ventana literal del catálogo v1.2 a las 767 identidades, sin cambiar método ni el DISCREPA/NO-RECALCULABLE histórico. Los contratos nuevos (NIV-terminal-v1, P14_22_14 leyes, exclusión EDAD 98/99) quedan pendientes de firma por bloque; ninguno se presenta como equivalente del histórico.»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "decisiones-21.tsv R25",
+    "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['renglon'],'|',r['estado'][:34],'|',r['texto_de_firma'][:330]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['renglon']=='R25']\"",
+    "salida": "R25 | FIRMADA · VIAJA-EN GEN2-C1-SUCESOR | «En lo no cubierto por FP-…-beee-02: autorizo el retiro temporal de identidades con defecto documental, el denominador institucional, la elegibilidad nacional 99 y la ejecución de sucesores nuevos, sin adopción automática.»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/recibo-astra6-2/hoja-para-mesa-recibo-astra6-2.md:154",
+    "comando": "git show origin/main:forense/analisis/recibo-astra6-2/hoja-para-mesa-recibo-astra6-2.md | sed -n '154p' | cut -c1-330",
+    "salida": "**Situación.** [LEÍDO `forense/validacion-independiente/catalogo-1-adjudicacion-puntos/c1-puntos-hoja-para-mesa.md` l.1–11] Cuatro cosas: (a) retiro temporal de 679 identidades con defecto documental; (b) denominador institucional; (c) elegibilidad nacional (98/99 excluidos); (d) sucesores 2011/2021 como CALC nuevos sin adop"
+   },
+   {
+    "tipo": "comando",
+    "ref": "firmas-pendientes.tsv (FP de C1 cuyo texto nombra escolaridad, leyes o EDAD 98/99; universo: todas las filas)",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys,re;csv.field_size_limit(10**8);R=list(csv.DictReader(sys.stdin,delimiter='\\t'));A=[r for r in R if r['estado'].startswith('ABIERTA')];print(len(R),'filas;',len(A),'ABIERTA; con /escolaridad|NIV|P14_22|EDAD ?98|leyes/ (todas las FP):',[(r['id'][-34:],r['estado'][:8]) for r in R if re.search(r'escolaridad|NIV|P14_22|EDAD ?98|leyes',r['qué_se_firma'],re.I) and r['id'].find('C1')>0])\"",
+    "salida": "648 filas; 18 ABIERTA; con /escolaridad|NIV|P14_22|EDAD ?98|leyes/ (todas las FP): [('TRA6-C1-IMPEDIMENTOS-LOTE2-fb50-02', 'FIRMADA'), ('A6-C1-INCERTIDUMBRE-SPEC-1-157c-02', 'FIRMADA')]"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/validacion-independiente/catalogo-1-incertidumbre-spec/p3/astra6-c1-p3-spec-hoja-firma.md:9-10",
+    "comando": "git show origin/main:forense/validacion-independiente/catalogo-1-incertidumbre-spec/p3/astra6-c1-p3-spec-hoja-firma.md | sed -n '9,10p' | cut -c1-200",
+    "salida": "| Elegir composición escolar para31 dominios | Recomendada: NIV-terminal-v1 del contrato común. Preescolar básico; técnicos05básico/06medio/07superior; normal08medio/09superior. | Cambio material · | Precisar leyes frente a servicios en ayuda115 | Recomendada: contrato nuevo P14_22_14 = desconocía leyes para sancionar violencia, entre afectadasA1/A2 sin ayuda y sin denuncia. | Aclaración mater"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "decision_declarada": {
+   "opcion": "EDAD 98/99 queda fuera de esta hoja: lo decide R25 para los sucesores 2011/2021",
+   "razon": "Reversible: la hoja de recibo-astra6-2 (l.154) trata la elegibilidad 98/99 bajo 39de-01 y R25 la firma; la hoja se acota a NIV-terminal-v1 y P14_22_14."
+  },
+  "decision_clave": "C1-CONTRATOS-NUEVOS-NIV-TERMINAL-P14-22-14",
+  "fp_existente": "",
+  "owner_detalle": "MESA-DECISION (hoja: contratos nuevos C1 ENDIREH 2021 (NIV-terminal-v1, P14_22_14) por bloque, antes de GEN2-ASTRA6-C1-LOTE-4)",
+  "hoja": {
+   "situacion": "El carril «contrato nuevo» de C1 ENDIREH 2021 (escolaridad NIV-terminal-v1 en 31 dominios; P14_22_14 leyes frente a servicios en ayuda 115) quedó «pendiente de firma por bloque» en R24; sin firma no hay contrato nuevo que entregar a validadores. La exclusión EDAD 98/99 de los sucesores ya la firmó R25.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Firmar por bloque NIV-terminal-v1 y P14_22_14 como contrato NUEVO con identidades sucesoras.",
+     "costo": "Un acto de preparación en CAJA más una sesión ciega; cifras nuevas sobre ola vista, no equivalentes al histórico."
+    },
+    {
+     "letra": "b",
+     "texto": "No abrir el carril nuevo: C1 sigue solo por transporte (R24) con el método anterior; EDAD 98/99 queda como la firmó R25 para los sucesores 2011/2021.",
+     "costo": "Escolaridad y ayuda conservan el bin histórico y su D-15 de recodificación NIV/GRA (23 + 8 llaves en specs-insuficientes-v1_2), que se resuelve por adenda de spec, no por contrato nuevo."
+    },
+    {
+     "letra": "c",
+     "texto": "Diferir hasta que un consumidor (informe o catálogo) pida escolaridad terminal o desconocimiento de leyes.",
+     "costo": "La fila queda abierta sin fecha."
+    }
+   ],
+   "recomendacion": "b",
+   "porque": "C1 existe para reproducir cifras ya selladas; un contrato nuevo crea estimandos nuevos sobre una ola vista sin consumidor que los pida, y el transporte de R24 ya cubre las 767. La recomendación es del ejecutor; el contenido lo decide mesa.",
+   "plazo": "Antes de redactar GEN2-ASTRA6-C1-LOTE-4 (MESA 2026-10-05)",
+   "texto_firma": "«NC-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-03: opción (b). No firmo los contratos nuevos NIV-terminal-v1 ni P14_22_14; C1 sigue por el carril de transporte de R24 con el método anterior. La exclusión de EDAD 98/99 queda como la firmó R25 (FP-260926-ASTRA6-C1-ADJUDICACION-PUNTOS-1-39de-01) para los sucesores 2011/2021. Si un consumidor pide escolaridad terminal o desconocimiento de leyes, se abre hoja nueva.»"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-1-beee-07",
+  "verdict": "HOJA-DECISION",
+  "rationale": "Las 10 celdas ya están ACOTADA en el catálogo v1.3 (beee-02 FIRMADA, #1227). Falta la regla de publicación con margen o RNG fijo que la fila difería: es la vara de R23, reservada a mesa, y ninguna firma ni FP abierta la decide. Fijar un criterio antes de abrir dato es de mesa. Dueño EN-CURSO caducado (#1304).",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "20ff4c05 (#1304)",
+    "comando": "git log origin/main --first-parent --oneline | grep -E '#1304'",
+    "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC beee-07 (A.17: dueño EN-CURSO)",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'][-30:],'|',r['estado'],'|',r['sucesor'][:130]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='NC-260927-GEN2-RECIBO-ASTRA6-1-beee-07']\"",
+    "salida": "7-GEN2-RECIBO-ASTRA6-1-beee-07 | ABIERTA | EN-CURSO (GEN2-C1-SUCESORES-Y-LOTE-3 · rama acto/GEN2-C1-SUCESORES-Y-LOTE-3) · antes: GEN2-METODO-COMPARACION-INFERENCIAL-1"
+   },
+   {
+    "tipo": "comando",
+    "ref": "canon/catalogo-del-mexicano-v1_3.tsv (las 10 llaves frágiles)",
+    "comando": "git show origin/main:canon/catalogo-del-mexicano-v1_3.tsv | python3 -c \"import csv,sys,collections;csv.field_size_limit(10**8);L=[l for l in sys.stdin if not l.startswith('#')];R=list(csv.DictReader(L,delimiter='\\t'));print(len(R),'filas;',collections.Counter(r['validacion_ciega'][:42] for r in R if 'PUBLICABILIDAD' in r['validacion_ciega']))\"",
+    "salida": "63706 filas; Counter({'ACOTADA:PUBLICABILIDAD-FRAGIL-AL-RNG (marg': 10, 'SUSPENDIDA:PUBLICABILIDAD:DISCREPA': 1})"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260927-GEN2-RECIBO-ASTRA6-1-beee-02",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'],'|',r['estado'][:10],'|',r['qué_se_firma'][:200],'|',r['ejecutada_en'][:150]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260927-GEN2-RECIBO-ASTRA6-1-beee-02']\"",
+    "salida": "FP-260927-GEN2-RECIBO-ASTRA6-1-beee-02 | FIRMADA | Filas del catálogo v1.2 / tabla de piso v1.1: PROPONER-SUSPENDER 7 (RESULT-ENDIREH2011-MOD-TABLA#1656–#1661, #2039) y ACOTAR 689 (columna recomendacion); el sello no se toca, el sucesor es un CALC nue | ADR-260927-GEN2-CIERRE-SEMANAL-2-facd-01; EJECUTA: GEN2-CIERRE-SEMANAL-2 (PR #1227) (= GEN2-CATALOGO-V1-3-1): 7 SUSPENDIDA-POR-FIRMA y 689 ACOTAD…"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/nota-recibo.md:60,76",
+    "comando": "git show origin/main:forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/nota-recibo.md | sed -n '60p;76p' | cut -c1-200",
+    "salida": "Regla de la spec (ambas olas): publicable con n ≥ 100, ≥ 5 UPM, ancho IC ≤ 0.20 **y** CV ≤ 0.30. El validador suprimió; el sello publicó. Margen = distancia relativa del valor sellado al umb · Valor sellado = `resultados.json` del CALC; filas = número de fila de datos (1 = primera tras la cabecera) en `canon/catalogo-del-mexicano-v1_2.tsv` y `canon/tabla-de-piso-v1_1.tsv` (coinciden en las"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3.md:19 (R23 es ese método)",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3.md | sed -n '19p' | cut -c250-560",
+    "salida": "DO-COMPARACION-INFERENCIAL-1` (IC dentro 0/92 bajo tolerancia 1e-10: bootstrap con otro generador) — **R23 es ese método**: aquí se aplica como contrato diagnóstico y las 92 se dictaminan bajo él, no se dejan diferidas; aislamiento de red NO-VERIFICABLE-AQUÍ (se declara igual). [EJECUTADO] `catalogo-1-l"
+   },
+   {
+    "tipo": "comando",
+    "ref": "FP 2385-01 no nombra publicabilidad ni supresión",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'][-16:],r['estado'],'| menciona publicab/supresi:',any(k in (r['qué_se_firma']+r['gatea']).lower() for k in ('publicab','supresi'))) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id'].endswith('C1-SUCESORES-Y-LOTE-3-2385-01')]\"",
+    "salida": "Y-LOTE-3-2385-01 ABIERTA | menciona publicab/supresi: False"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "decision_declarada": {
+   "opcion": "Las 10 celdas siguen ACOTADA; no se redacta CALC de re-publicación ni RNG fijo",
+   "razon": "Reversible: no toca sello ni catálogo, ya está firmado y ejecutado (beee-02, #1227) y ningún consumidor pide dictamen en lugar de rótulo."
+  },
+  "decision_clave": "C1-PUBLICABILIDAD-FRAGIL-10-CELDAS-REGLA-MARGEN",
+  "fp_existente": "",
+  "owner_detalle": "MESA-DECISION (hoja: regla de publicación con margen para las 10 celdas de publicabilidad frágil, junto con FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01)",
+  "hoja": {
+   "situacion": "10 celdas ENDIREH del lote 1 cambian de publicabilidad según la realización del bootstrap (margen al umbral ≤ banda Monte Carlo 0.100); hoy están ACOTADA con el rótulo «publicabilidad frágil al RNG» (beee-02, catálogo v1.3). La regla de supresión sellada no fija el RNG.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Dejar las 10 en ACOTADA de forma permanente, sin regla nueva.",
+     "costo": "10 celdas quedan con rótulo en vez de dictamen; no requiere trabajo."
+    },
+    {
+     "letra": "b",
+     "texto": "Firmar una regla de publicación con margen para los CALC sucesores: publicable solo si el margen al umbral supera la banda Monte Carlo, o con semilla y orden de RNG fijados en la spec sucesora.",
+     "costo": "Spec sucesora y CALC nuevo en CAJA por paquete, congelados antes de abrir el dato; el criterio ya no se ajusta."
+    },
+    {
+     "letra": "c",
+     "texto": "Decidirla junto con FP 2385-01 (margen de IC de C1).",
+     "costo": "Espera a esa firma."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "El trato en producto ya está firmado y ejecutado (beee-02, #1227). La regla solo cambiaría un rótulo en olas vistas y ningún consumidor la pide. Es coherente con la opción (b) que recomienda FP 2385-01: sin consumidor, diagnóstico.",
+   "plazo": "Con FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 (MESA 2026-10-05)",
+   "texto_firma": "«NC-260927-GEN2-RECIBO-ASTRA6-1-beee-07: opción (a). Las 10 celdas de publicabilidad frágil quedan ACOTADA como firmó FP-260927-GEN2-RECIBO-ASTRA6-1-beee-02; no fijo regla de publicación con margen mientras ningún consumidor la pida. El sello no se toca.»"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-04",
+  "verdict": "HOJA-DECISION",
+  "rationale": "Adjudicar los IC exige el margen de equivalencia y el control simultáneo que R23 (FIRMADA) reservó a mesa «antes del siguiente conjunto sin revelar». La FP 2385-01 sigue ABIERTA y cubre exactamente eso; las 404 filas son IC-DIAGNOSTICO-R23-NO-ADJUDICA. Un umbral fijado antes de abrir dato no se ajusta después (A-bis §4): decide mesa.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'],'|',r['estado'][:10],'|',r['qué_se_firma'][:330]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01']\"",
+    "salida": "FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 | ABIERTA | Margen de equivalencia y control simultáneo para IC reimplementados de C1 (R23: «se fijarán por mesa antes del siguiente conjunto sin revelar»). Opciones: (a) margen en unidades de SE sellado por extremo (p. ej. |Δ| ≤ 0.5 SE) con Bonferroni por paquete; (b) sin margen: los IC de C1 quedan diagnósticos para siempre y el asiento s"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/validacion-independiente/catalogo-1-lote3/dictamen-lote3-v1_1.tsv",
+    "comando": "git show origin/main:forense/validacion-independiente/catalogo-1-lote3/dictamen-lote3-v1_1.tsv | python3 -c \"import csv,sys,collections;csv.field_size_limit(10**8);L=[l for l in sys.stdin if not l.startswith('#')];R=list(csv.DictReader(L,delimiter='\\t'));print(len(R),'filas;',collections.Counter(r['dictamen_ic_r23'] for r in R))\"",
+    "salida": "404 filas; Counter({'IC-DIAGNOSTICO-R23-NO-ADJUDICA': 404})"
+   },
+   {
+    "tipo": "firma",
+    "ref": "decisiones-21.tsv R23 (FP 157c-01)",
+    "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['renglon'],'|',r['estado'][:34],'|',r['texto_de_firma'][:330]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['renglon']=='R23']\"",
+    "salida": "R23 | FIRMADA · VIAJA-EN GEN2-C1-SUCESOR | «Apruebo el protocolo como contrato DIAGNÓSTICO de reproducción de IC para intentos futuros; no es estimador de IC adoptable ni recertifica IC históricos. El margen de equivalencia y el control simultáneo se fijarán por mesa antes del siguiente conjunto sin revelar.»"
+   },
+   {
+    "tipo": "commit",
+    "ref": "20ff4c05 (#1304)",
+    "comando": "git log origin/main --first-parent --oneline | grep -E '#1304'",
+    "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC 2385-04",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['id'][-30:],'|',r['estado'],'|',r['sucesor'][:130]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id']=='NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-04']\"",
+    "salida": "-C1-SUCESORES-Y-LOTE-3-2385-04 | ABIERTA | MESA (2026-10-05) · encargo por escribir: firma FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 · antes: FP-260928-GEN2-C1-SUCESORES-"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "decision_clave": "C1-IC-MARGEN-EQUIVALENCIA-R23",
+  "fp_existente": "FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01",
+  "owner_detalle": "MESA-DECISION (hoja: margen de equivalencia y control simultáneo de los IC de C1 · FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01)",
+  "hoja": {
+   "situacion": "Los IC reimplementados de C1 (404 filas del lote 3) no pueden adjudicar: R23 dejó el margen de equivalencia y el control simultáneo a mesa, y la FP 2385-01 sigue ABIERTA.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Margen en unidades de SE, sellado por extremo (p. ej. |Δ| ≤ 0.5 SE), con Bonferroni por paquete; un acto sucesor re-adjudica las 404 filas con compare_v3.",
+     "costo": "Exige decidir la precisión Monte Carlo y abre un acto de re-adjudicación. El margen se fija antes del siguiente conjunto sin revelar y ya no se ajusta."
+    },
+    {
+     "letra": "b",
+     "texto": "Sin margen: los IC de C1 quedan diagnósticos para siempre y el asiento se hace por punto (alcance INFERENCIA-NO-COMPROBADA); la NC 2385-04 se cierra con esta firma.",
+     "costo": "Ningún IC de C1 adjudica. Si un consumidor pide IC equivalentes, habrá que volver a firmar."
+    },
+    {
+     "letra": "c",
+     "texto": "Exigir igualdad de marco y de totales por UPM antes de comparar IC.",
+     "costo": "Trabajo de marco por paquete antes de cualquier IC; la adjudicación se retrasa sin fecha."
+    }
+   ],
+   "recomendacion": "b",
+   "porque": "Es la recomendación registrada en la FP: hoy ningún consumidor pide IC equivalentes y el punto ya se asienta. (a) obliga a una decisión sustantiva de precisión Monte Carlo que nadie ha preparado. Con (b) la NC se cierra y la puerta a (a) sigue abierta con una firma nueva.",
+   "plazo": "2026-10-05 (MESA, del campo sucesor de la NC)",
+   "texto_firma": "«Sobre el margen de equivalencia y el control simultáneo de los IC reimplementados de C1 (FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01, R23), firmo la opción (__). Con (b), los IC de C1 quedan diagnósticos, el asiento se hace por punto con alcance INFERENCIA-NO-COMPROBADA y NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-04 se cierra con esta firma. Con (a) o (c), el acto sucesor re-adjudica las 404 filas antes del siguiente conjunto sin revelar.»"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-01",
+  "verdict": "HOJA-DECISION",
+  "rationale": "Mesa firmó R08 A2 (b): M12 queda «con su vía documentada en el mapa, sin fecha», y la ADENDA-1 de LOTE-1 lo deja DECISIÓN-DE-MESA-PENDIENTE con HOLDOUT intacto. Un encargo CALC-ALTERNOS-LOTE-2 contradiría esa firma y gastaría el HOLDOUT (irreversible, E.6); no se redacta. La NC solo la cierra mesa; ninguna FP abierta la cubre.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "decisiones-21.tsv R08 (FP f2e5-02)",
+    "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['renglon'],'|',r['estado'][:34],'|',r['texto_de_firma'][:420]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['renglon']=='R08']\"",
+    "salida": "R08 | FIRMADA · VIAJA-EN GEN2-CALC-ALTER | «Firmo A2 (b): se encargan CALC-caja descriptivos para M13 (CIDE-CSES 2015 con clasificador de concurrencia del calendario INE), M22 (ENVIPE 2025, no denuncia por miedo por entidad) y M19 (ENCUCI 2020, tras reconciliar conf.06). Cada spec declara que consume el HOLDOUT de su momento. M12, M14, M15, M16 y M17 quedan con su vía documentada en el mapa, sin …"
+   },
+   {
+    "tipo": "firma",
+    "ref": "decisiones-21.tsv R01",
+    "comando": "git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);[print(r['renglon'],'|',r['estado'][:34],'|',r['texto_de_firma'][:300]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['renglon']=='R01']\"",
+    "salida": "R01 | FIRMADA · VIAJA-EN GEN2-CALC-ALTER | «Sobre el papel HOLDOUT de M09–M23 firmo la opción (__). Toda spec que consuma un HOLDOUT lo declara en su COMMIT-1; lo consumido se rotula RETROSPECTIVA y no vuelve a servir como prueba.»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md:8,11",
+    "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md | sed -n '8p;11p' | cut -c1-300",
+    "salida": "Opciones ofrecidas: «Obedecer R08 (b) (Recommended)» — corro M05, M13 (CIDE-CSES 2015), M19, M22, M23 y R03+R08; M12/M14–M17 quedan DECISIÓN-DE-MESA-PENDIENTE en NO-CORRIDO, HOLDOUT intacto · «Seguir §1: R01 (b) manda» · «Parar el acto». · **«Obedecer R08 (b) (Recommended)»**"
+   },
+   {
+    "tipo": "comando",
+    "ref": "milpa/catalogo-momentos-v0_1.tsv (M12)",
+    "comando": "git show origin/main:milpa/catalogo-momentos-v0_1.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);L=[l for l in sys.stdin if not l.startswith('#')];[print(r['id_momento'],r['rol_calibracion'],'valor_gen2=',repr(r['valor_gen2']),'calc_gen2=',repr(r['calc_gen2']),r['holdout_decision'][:110]) for r in csv.DictReader(L,delimiter='\\t') if r['id_momento']=='M12']\"",
+    "salida": "M12 HOLDOUT valor_gen2= '' calc_gen2= '' GASTABLE-COMO-PISO (firma R01 (b), GEN2-TRAMITE-FIRMAS-21-ADENDA-1; 0 menciones en familias-2027/prereg-caja a"
+   },
+   {
+    "tipo": "comando",
+    "ref": "canon/mapa-instrumentos-alternos-v1_0.tsv líneas 24-29 (lector CSV)",
+    "comando": "git show origin/main:canon/mapa-instrumentos-alternos-v1_0.tsv | python3 -c \"import csv,sys;csv.field_size_limit(10**8);r=csv.reader(sys.stdin,delimiter='\\t');[print(r.line_num,row[0],row[2],row[3]) for row in r if 24<=r.line_num<=29]\"",
+    "salida": "24 M12 ENCIG 2023 · 25 M12 ENCIG 2025 · 26 M12 ENIF 2021 · 27 M12 ENIF 2024 · 28 M12 ENDUTIH 2023 · 29 M12 ENDUTIH 2024"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0 (CALC-ALT-M12/14/15/16/17 en origin/main)",
+    "comando": "git ls-tree -d --name-only origin/main data/corrida0/ | wc -l; git ls-tree -d --name-only origin/main data/corrida0/ | grep -c 'CALC-ALT-M1[24567]'",
+    "salida": "394 · 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "firmas-pendientes.tsv: FP ABIERTA que nombra HOLDOUT o M12",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv | python3 -c \"import csv,sys,re;csv.field_size_limit(10**8);R=list(csv.DictReader(sys.stdin,delimiter='\\t'));A=[r for r in R if r['estado'].startswith('ABIERTA')];print(len(R),'filas',len(A),'ABIERTA; con HOLDOUT|M12:',[r['id'][-24:] for r in A if re.search(r'HOLDOUT|\\bM12\\b',' '.join(r.values()))])\"",
+    "salida": "648 filas 18 ABIERTA; con HOLDOUT|M12: []"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "decision_declarada": {
+   "opcion": "No absorber M12 en GEN2-CALC-ALTERNOS-LOTE-2",
+   "razon": "Reversible: LOTE-2 no puede incluir M12 sin contradecir R08 A2 (b); no se escribe encargo ni se toca el HOLDOUT. El estado «sin fecha» queda como firmó mesa hasta que ella decida otra cosa."
+  },
+  "decision_clave": "M12-HOLDOUT-FECHAR-O-SIN-FECHA",
+  "fp_existente": "",
+  "owner_detalle": "MESA-DECISION (hoja: fecha para M12 bajo R08 (b) + R01 (b); HOLDOUT intacto)",
+  "hoja": {
+   "situacion": "M12 (R3.4: ENCIG 2023/2025, ENIF 2021/2024, ENDUTIH 2023/2024) tiene su vía documentada en el mapa (filas 24-29), pero R08 (b) lo dejó sin fecha y su HOLDOUT sigue intacto; la NC espera que mesa decida si se gasta.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Mantener «sin fecha» (R08 b) como estado estable: la NC se cierra con esta firma y se reabre solo si una spec o una familia 2027 pide M12.",
+     "costo": "M12 sigue sin piso GEN2 en el catálogo de momentos."
+    },
+    {
+     "letra": "b",
+     "texto": "Fecharlo: encargar los CALC-caja descriptivos de M12 en GEN2-CALC-ALTERNOS-LOTE-2 y gastar su HOLDOUT como piso RETROSPECTIVO (R01 b), con censo previo de familias 2027.",
+     "costo": "Irreversible: el HOLDOUT de M12 se pierde para siempre (E.6). La fila de ENCIG 2025 sale del árbitro y la de ENIF 2024 m7 (R06) está RESERVADA, así que quedan fuera salvo otra firma."
+    },
+    {
+     "letra": "c",
+     "texto": "Convertir M12 en familia 2027 (R01 d), con emisión sellada antes de la ola.",
+     "costo": "Un expediente por momento y esperar a 2027; a cambio, la prueba sería PROSPECTIVA."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "Mesa ya eligió «sin fecha» dos veces (R08 b y ADENDA-1 de LOTE-1). Ningún consumidor pide M12 (0 de 87 corridas de demanda; ninguna CALC-ALT-M12 en data/corrida0). Conservar el HOLDOUT deja (b) y (c) disponibles; gastarlo no tiene vuelta.",
+   "plazo": "2026-10-05 (MESA, del campo sucesor de la NC)",
+   "texto_firma": "«Sobre M12 (NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-01) firmo la opción (__). (a): queda sin fecha por R08 (b), con su vía documentada en canon/mapa-instrumentos-alternos-v1_0.tsv filas 24-29 y HOLDOUT intacto; la NC se cierra con esta firma. (b): se encarga en GEN2-CALC-ALTERNOS-LOTE-2 y su spec declara en COMMIT-1 que consume el HOLDOUT de M12. (c): pasa a expediente de familia 2027.»"
+  },
+  "confianza": "media"
+ }
+]
