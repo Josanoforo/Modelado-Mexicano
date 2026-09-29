@@ -1,0 +1,334 @@
+[
+  {
+    "id": "NC-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-02",
+    "verdict": "HOJA-DECISION",
+    "rationale": "R21 (FP fb50-02 FIRMADA) es un recibo: no adopta el sucesor ENDIREH2006-PAREJA-VENTANAS-V3 ni los bins NIV de ENDIREH 2016 (R21 L19 y L29). La firma de contenido de esos tres sucesores no tiene fila en FP ni en NC. Adoptar y retirar una interpretación sellada es irreversible (D-19): va a mesa.",
+    "cite": [
+      {
+        "tipo": "firma",
+        "ref": "FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-02",
+        "comando": "python3 tools/consulta.py fp FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-02 | cut -c1-330",
+        "salida": "estado=FIRMADA · firmada_en=28/sep/2026 ... renglón R21 de decisiones-21.tsv, opción (2) ... ejecutada_en=ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-23..."
+      },
+      {
+        "tipo": "archivo",
+        "ref": "forense/validacion-independiente/catalogo-1-sucesores/R21-dictamenes-endireh-y-retiro-envipe.md:29",
+        "comando": "git show origin/main:forense/validacion-independiente/catalogo-1-sucesores/R21-dictamenes-endireh-y-retiro-envipe.md | rg -n 'no firma el contenido' --max-columns 260",
+        "salida": "29:No adopta, no edita el catálogo ni la tabla de piso, no escribe el CALC sucesor y no firma el contenido de los sucesores 2006/2016: esas firmas (dictamen L13, L23, L27) siguen pendientes y van por bloque."
+      },
+      {
+        "tipo": "archivo",
+        "ref": "forense/validacion-independiente/catalogo-1-impedimentos-lote2/p2/impedimentos-lote2-p2-dictamen-y-hoja-firma.md:13,27",
+        "comando": "git show origin/main:<ruta> | rg -n -o 'Firma (solicitada|separable)[^«]{0,60}«[^»]{0,120}'",
+        "salida": "13:Firma solicitada: «Acepto el dictamen P7_4 MD postseparación, retiro su interpretación anual y autorizo crear sucesor con separación MC anu... · 27:Firma separable por discriminación/restantes: «Adopto exclusivamente para nueva cohorte los bins NIV propuestos en el spec de esta identidad; mantengo los históricos y..."
+      },
+      {
+        "tipo": "comando",
+        "ref": "forense/no-corrido.tsv + forense/firmas-pendientes.tsv",
+        "comando": "git grep -c -E 'PAREJA-VENTANAS-V3|EDUCACION-CONTRATO-V2' origin/main -- forense/no-corrido.tsv forense/firmas-pendientes.tsv; echo exit=$?",
+        "salida": "(sin coincidencias) exit=1 · NO-ENCONTRADO en 2 archivos examinados (1092 filas NC, 647 filas FP); los nombres de los sucesores solo aparecen en 4 archivos de forense/validacion-independiente (git grep -c sobre origin/main)"
+      },
+      {
+        "tipo": "comando",
+        "ref": "forense/firmas-pendientes.tsv",
+        "comando": "python3 csv.DictReader; filas con estado que empieza por ABIERTA; buscar ENDIREH2006/2016/PAREJA-VENTANAS/NIV en qué_se_firma+dónde+gatea",
+        "salida": "FP filas 647 · ABIERTA 17 · única con ENDIREH2016: FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-01 (ACOTAR PF-TABLA#4 y #50, EDAD=98; otra identidad, no cubre 2006 ni los bins NIV de discriminación/restantes)"
+      },
+      {
+        "tipo": "comando",
+        "ref": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-05 y FP fb50-01",
+        "comando": "python3 csv.DictReader forense/no-corrido.tsv, acto==GEN2-C1-SUCESORES-Y-LOTE-3 (6 filas 2385-01..06); python3 tools/consulta.py fp FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-01",
+        "salida": "2385-05: proponer al catálogo PROPONER-SUSPENDER de las 15 ENVIPE, ACOTAR de 4 CESD-7 y 2 edad 60+ · 2385-02: sucesores ENDIREH 2011/2021 · fb50-01: contratos P1 ENOE/B, derivados, AMAI. Ninguna lleva 2006/2016."
+      }
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "MESA 2026-10-05 · hoja de irreversibles: firma de contenido de los sucesores ENDIREH 2006/2016 [dictamen L13 y L27]; el acto GEN2-C1-SUCESORES-Y-LOTE-3 ya fusionó [#1304, 20ff4c05], EN-CURSO es obsoleto",
+    "hoja": {
+      "situacion": "R21 firmó solo el recibo de los dictámenes ENDIREH 2006 (P7_4 de MD pregunta después de separarse, no el último año; 225 celdas: 5 RETIRAR-MD-ANUAL y 220 SUCESOR-MC-ANUAL-SIN-POOL-MD) y ENDIREH 2016 (bins NIV propios, 2 identidades); el contenido de los sucesores sigue sin firma y sin CALC.",
+      "opciones": [
+        {
+          "letra": "A",
+          "texto": "Firmar por separado las tres líneas del dictamen: (1) ENDIREH2006-PAREJA-VENTANAS-V3 con retiro de la interpretación anual de las 5 llaves MD; (2) bins NIV de endireh-pisos-2016-discriminacion-0001; (3) ídem endireh-pisos-2016-restantes-0001. Sellos y llaves históricas intactos.",
+          "costo": "Habilita un encargo de CALC sucesores en caja. Retirar la interpretación anual de 5 llaves selladas no se deshace en la práctica. Los sucesores son convención nueva, no reproducción del histórico."
+        },
+        {
+          "letra": "B",
+          "texto": "Firmar solo ENDIREH 2006 (defecto de validez del estimando) y dejar los bins de ENDIREH 2016 sin firmar.",
+          "costo": "Las 2 identidades ENDIREH 2016 siguen con D-15 de escolaridad y sin sucesor; menos superficie firmada."
+        },
+        {
+          "letra": "C",
+          "texto": "No firmar: los dictámenes quedan recibidos y los sucesores sin fecha.",
+          "costo": "225 celdas ENDIREH 2006 conservan una ventana anual que el cuestionario MD no respalda, sin sucesor; nada nuevo se mide."
+        }
+      ],
+      "recomendacion": "A, con las tres líneas firmadas por separado para que mesa pueda vetar cada una.",
+      "porque": "El dictamen contesta validez del estimando, no coincidencia numérica (dictamen L5-L13). R21 ya lo aceptó como base; falta solo el paso que autoriza crear el sucesor. Firmar por línea conserva el veto por identidad.",
+      "plazo": "MESA 2026-10-05, antes de escribir el encargo de sucesores ENDIREH en caja.",
+      "texto_firma": "«Firmo A: (1) acepto el dictamen P7_4 MD postseparación, retiro su interpretación anual y autorizo crear sucesor con separación MC anual/MD postseparación conforme a impedimentos-lote2-p2-dictamen-y-hoja-firma.md; (2) adopto exclusivamente para nueva cohorte los bins NIV propuestos para endireh-pisos-2016-discriminacion-0001; (3) ídem para endireh-pisos-2016-restantes-0001. Mantengo los históricos; no adopto resultados ni cambio llaves ni sellos históricos.»"
+    },
+    "decision_clave": "FIRMA-CONTENIDO-SUCESORES-ENDIREH-2006-2016",
+    "fp_existente": "",
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260926-GEN2-CIERRE-SEMANAL-1-dea2-04",
+    "verdict": "CERRAR-PRODUCTO",
+    "rationale": "El cierre previo sustituía el run del push por el del PR sin declararlo. Se declara: el run push 36276468239 en ea675d5cf quedó cancelled, con check failure. Pero su paso de línea base terminó success, el PR run sobre el mismo árbol 88a6ac12 dio success y el run push posterior 36338353579 dio todo success.",
+    "cite": [
+      {
+        "tipo": "comando",
+        "ref": "GitHub API · commit ea675d5cf (merge de #1168) y ca423ae8 (cabeza del PR)",
+        "comando": "curl -s https://api.github.com/repos/Josanoforo/Modelado-Mexicano/commits/<sha> | jq -c '{sha:.sha[0:9], tree:.commit.tree.sha, parents:[.parents[].sha[0:9]]}'  (para ea675d5cf y para ca423ae8dd9b6158d3c227065fca396883e712d0)",
+        "salida": "ea675d5cf tree 88a6ac12170a11fd248ccb1756ce3acf0337bb9c parents [acf62514c, ca423ae8d] · ca423ae8d tree 88a6ac12170a11fd248ccb1756ce3acf0337bb9c"
+      },
+      {
+        "tipo": "comando",
+        "ref": "GitHub Actions run 36276468239 (push, ea675d5cf) · DIVERGENCIA DECLARADA",
+        "comando": "curl -s https://api.github.com/repos/Josanoforo/Modelado-Mexicano/actions/runs/36276468239/jobs | jq -c '.jobs[] | select(.name==\"suite\" or .name==\"check\") | {name, conclusion, pasos:[.steps[] | select(.number==5 or .number==6 or .number==2) | [.number,.conclusion]]}' ; y .../runs/36276468239 | jq .conclusion",
+        "salida": "run conclusion=cancelled · suite conclusion=cancelled: paso 5 «Suite de verificación (modo línea base — verde = no empeoraste)» success 22:30:19-22:39:15; paso 6 «Transporte paralelo, compuerta y semántica del baseline» cancelled · check conclusion=failure (paso «Todos los grupos requeridos terminaron correctamente»). Causa de la cancelación: no determinada por este agente."
+      },
+      {
+        "tipo": "archivo",
+        "ref": ".github/workflows/verify.yml en ea675d5cf, línea 82",
+        "comando": "curl -s https://raw.githubusercontent.com/Josanoforo/Modelado-Mexicano/ea675d5cf2e5b66fc3861b2aba15f07c6fa63a9b/.github/workflows/verify.yml | rg -n 'check.py --baseline --parallel'",
+        "salida": "82:        run: time python3 tests/check.py --baseline --parallel  (el paso es success solo si check.py --baseline sale con 0; en origin/main hoy es la línea 102 con pipefail)"
+      },
+      {
+        "tipo": "comando",
+        "ref": "GitHub Actions run 36274452268 (pull_request, cabeza ca423ae8)",
+        "comando": "curl -s https://api.github.com/repos/Josanoforo/Modelado-Mexicano/actions/runs/36274452268 | jq -c '{event,head_sha:.head_sha[0:9],conclusion}' ; .../jobs | jq -c '.jobs[] | select(.name==\"suite\") | [.conclusion, [.steps[]|select(.number==5 or .number==6)|.conclusion]]'",
+        "salida": "{event:pull_request, head_sha:ca423ae8d, conclusion:success} · suite: success, pasos 5 y 6 success"
+      },
+      {
+        "tipo": "comando",
+        "ref": "GitHub Actions run 36338353579 (push a main, 9536e5e2c, posterior a ea675d5cf)",
+        "comando": "curl -s https://api.github.com/repos/Josanoforo/Modelado-Mexicano/compare/ea675d5cf...9536e5e2c | jq -c '{status,ahead_by,behind_by}' ; curl -s .../actions/runs/36338353579/jobs | jq -c '[.jobs[]|[.name,.conclusion]]'",
+        "salida": "{status:ahead, ahead_by:267, behind_by:0} · run conclusion=success · suite success (pasos 5 y 6 success) · check success · guardias, adicionales, preflight-calc, guardas-res, enrutamiento-pr, derivados success"
+      }
+    ],
+    "cerrado_por_detalle": "producto: CI verify.yml sobre el árbol 88a6ac12 del merge ea675d5cf, que es el de la cabeza ca423ae8 de #1168 · run pull_request 36274452268 suite success · paso de línea base del run push 36276468239 success aunque ese run quedó cancelled con check failure, declarado · run push posterior 36338353579 [9536e5e2c, descendiente] todo success · comando: curl -s https://api.github.com/repos/Josanoforo/Modelado-Mexicano/actions/runs/36338353579/jobs",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "",
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260927-GEN2-RECIBO-ASTRA6-1-beee-04",
+    "verdict": "ABSORBER",
+    "rationale": "La delegación del 28/sep clasifica DUEÑO-MESA y solo recomienda aceptar: no hay firma. informe-p2 L3 declara que los grupos 535/36/62/6/34/10/2 no son causas independientes ni efectos contrafactuales. Las 685 llevan CAUSA-NO-DETERMINABLE y no hay encargo del contrafactual. Falta producirlo, en caja; el tratamiento firmado no cambia.",
+    "cite": [
+      {
+        "tipo": "firma",
+        "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv:152",
+        "comando": "git grep -n 'CAUSA-DIAGNOSTICADA-NO-CIEGA' origin/main -- .",
+        "salida": "2 coincidencias, ambas fuera de un producto: decididas-por-delegacion.tsv:152 [NC beee-04 · opción DUEÑO-MESA · «Recomiendo aceptar ese diagnostico como causa CAUSA-DIAGNOSTICADA-NO-CIEGA ... reversible»] y evidencia/prop-A8.tsv:38. El rótulo no existe en ningún catálogo, nota ni tabla."
+      },
+      {
+        "tipo": "archivo",
+        "ref": "forense/validacion-independiente/catalogo-1-adjudicacion-puntos/p2/informe-p2.md:3",
+        "comando": "git show origin/main:<ruta> | sed -n 3p",
+        "salida": "«La tabla cobertura-685.tsv conserva las685 llaves únicas y las diferencias históricas LEÍDAS; no son los efectos contrafactuales nuevos. Grupos535/36/62/6/34/10/2 son clasificación priorizada heredada, no causas independientes.»"
+      },
+      {
+        "tipo": "comando",
+        "ref": "forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/2026-09-27-gen2-recibo-astra6-1--tabla-result-estado-efecto.tsv",
+        "comando": "python3 csv.DictReader (git show origin/main:<ruta>) → Counter((componente, causa_recibo)) y Counter(paquete) sobre componente==PUNTO",
+        "salida": "(PUNTO, CAUSA-NO-DETERMINABLE) 685 · paquetes: endireh-pisos-2011-modulos-0001 683 y endireh-pisos-2021-nofisica-bc-0001 2 · 685 llaves únicas (3371 filas leídas)"
+      },
+      {
+        "tipo": "comando",
+        "ref": "forense/encargos/ (nombres de archivo)",
+        "comando": "git ls-tree -r --name-only origin/main forense/encargos | rg -c -i 'contrafactual'; echo exit=$?",
+        "salida": "(sin coincidencias) exit=1 · NO-ENCONTRADO en nombres de 1221 archivos examinados; GEN2-CONTRAFACTUAL-ENDIREH2011-1 solo se nombra dentro de forense/encargos/2026-09-26-GEN2-RECIBO-ASTRA6-1.md:51 y de NC beee-04"
+      },
+      {
+        "tipo": "firma",
+        "ref": "FP-260927-GEN2-RECIBO-ASTRA6-1-beee-02",
+        "comando": "python3 csv.DictReader forense/firmas-pendientes.tsv, id==FP-260927-GEN2-RECIBO-ASTRA6-1-beee-02",
+        "salida": "estado=FIRMADA «Firmo Beee, las dos» · ACOTAR 689 y PROPONER-SUSPENDER 7 en catálogo v1.3 y tabla de piso v1.2 · ejecutada_en ADR-260927-GEN2-CIERRE-SEMANAL-2-facd-01. El tratamiento se firmó sin depender de la causa."
+      },
+      {
+        "tipo": "comando",
+        "ref": "forense/validacion-independiente/catalogo-1-sucesores/r25-cobertura-beee02.tsv",
+        "comando": "python3 csv.DictReader (git show origin/main:<ruta>) → len, Counter(trato_beee02), Counter(motivo)",
+        "salida": "685 filas · trato_beee02: ACOTAR 679, PROPONER-SUSPENDER 6 · motivo DEFECTO-PRODUCTOR E1 535, E2 36, E3 62, E5 34, E6 10, E7 2 y AMBIGUEDAD-CONTRACTUAL E4 6 (clasificación heredada, no causa probada)"
+      }
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "OTRO:CONTRAFACTUAL-ENDIREH2011",
+    "entorno": "CAJA",
+    "hecho_comando": "python3 csv.DictReader sobre la tabla de causas que entregue el acto: 685 filas, columna causa dentro de un vocabulario cerrado declarado antes de correr, y ninguna CAUSA-NO-DETERMINABLE sin justificar; git ls-tree -r --name-only origin/main forense/encargos | rg -c 'CONTRAFACTUAL-ENDIREH2011' devuelve 1 o más",
+    "owner_detalle": "",
+    "decision_declarada": {
+      "opcion": "ABSORBER el contrafactual por hipótesis E1-E7 sobre el código congelado de productor y reconstructor, en caja, sin cambiar el tratamiento firmado; no adoptar el rótulo CAUSA-DIAGNOSTICADA-NO-CIEGA de la delegación",
+      "razon": "Aceptar el diagnóstico NO CIEGO como causa afirmaría lo que informe-p2 L3 niega. La alternativa reversible existe si mesa la prefiere: rotular las causas como hipótesis y no instrumentar. Requiere asiento de mesa y hoy no existe. Cubre 683 de ENDIREH 2011 y 2 de ENDIREH 2021 NF-BC."
+    },
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260927-GEN2-RECIBO-ASTRA6-1-beee-06",
+    "verdict": "ABSORBER",
+    "rationale": "R23 y FP 2385-01 cubren las 404 llaves del lote 3, no las 1 873 IC del lote 1: intersección 0. Esas 1 873 no tienen dictamen R23 y en catálogo v1.3 figuran ADOPTADO sin marca. La vara pre-registrada ya no es alcanzable, las diferencias se leyeron. Falta el dictamen diagnóstico RETROSPECTIVO por identidad.",
+    "cite": [
+      {
+        "tipo": "comando",
+        "ref": "forense/validacion-independiente/catalogo-1-lote3/dictamen-lote3-v1_1.tsv × tabla-result-estado-efecto.tsv del lote 1",
+        "comando": "python3 csv.DictReader de ambos (git show origin/main:<ruta>); llaves del dictamen vs llaves con componente==IC de la tabla; intersección",
+        "salida": "404 llaves lote 3 · 1873 llaves IC lote 1 (1873 únicas) · intersección 0 · dictamen_ic_r23 = IC-DIAGNOSTICO-R23-NO-ADJUDICA en 404 de 404"
+      },
+      {
+        "tipo": "comando",
+        "ref": "origin/main (todo el árbol)",
+        "comando": "git grep -c -E 'IC-DIAGNOSTICO-R23|dictamen_ic_r23' origin/main -- .",
+        "salida": "5 archivos: firmas-pendientes.tsv:2 · notas/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3-cierre.md:1 · lote3/asienta_residuales.py:4 · lote3/dictamen-lote3-v1_1.tsv:405 · sucesores/R23-protocolo-inferencial-diagnostico.md:2. Ninguno es del lote 1."
+      },
+      {
+        "tipo": "archivo",
+        "ref": "forense/validacion-independiente/catalogo-1-sucesores/R23-protocolo-inferencial-diagnostico.md:7,21",
+        "comando": "git show origin/main:<ruta> | rg -n -o 'para intentos futuros[^.]*\\.|Mientras mesa no fije margen[^.]*\\.'",
+        "salida": "7: para intentos futuros; no es estimador de IC adoptable ni recertifica IC históricos. · 21: Mientras mesa no fije margen y control simultáneo, un IC reimplementado se reporta y no adjudica, ni a favor ni en contra."
+      },
+      {
+        "tipo": "comando",
+        "ref": "canon/catalogo-del-mexicano-v1_3.tsv",
+        "comando": "python3 csv.DictReader (git show origin/main:canon/catalogo-del-mexicano-v1_3.tsv); filas cuya llave está en las 1873 IC del lote 1 → Counter(estado_adopcion, naturaleza_ic, validacion_ciega)",
+        "salida": "63706 filas leídas · 1873 de 1873 halladas · estado_adopcion ADOPTADO 1873 · naturaleza_ic IC95-DE-DISENO 1873 · validacion_ciega SOSTENER 1873 · ninguna marca de IC reimplementado"
+      },
+      {
+        "tipo": "comando",
+        "ref": "tabla-result-estado-efecto.tsv del lote 1",
+        "comando": "python3 csv.DictReader; filas componente==IC → Counter(artefacto), Counter(recomendacion)",
+        "salida": "IC 1873 · artefacto TOLERANCIA-DE-REPLAY-SOBRE-IC-ALEATORIO 1873 · recomendacion SOSTENER 1873 · paquetes: endireh-pisos-2011-modulos 1202, 2021-discriminacion 258, 2021-decisiones 138, 2021-ayuda 116, 2021-nofisica-bc 109, 2021-familiar 50"
+      },
+      {
+        "tipo": "firma",
+        "ref": "FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 y acto #1304",
+        "comando": "python3 tools/consulta.py fp FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 ; git log origin/main --first-parent --oneline | rg 'GEN2-C1-SUCESORES-Y-LOTE-3'",
+        "salida": "FP 2385-01 estado=ABIERTA, gatea «Que un IC de C1 adjudique (hoy: IC-DIAGNOSTICO-R23-NO-ADJUDICA en 404 filas)» · 20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3 (el EN-CURSO de la fila es obsoleto, A.17)"
+      }
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "OTRO:C1-IC-LOTE1-R23",
+    "entorno": "NUBE",
+    "hecho_comando": "python3 csv.DictReader sobre el dictamen nuevo del lote 1: len==1873, set(llave) igual al de las llaves componente==IC de tabla-result-estado-efecto.tsv, columna dictamen_ic_r23 no vacía y rotulada RETROSPECTIVA",
+    "owner_detalle": "",
+    "decision_declarada": {
+      "opcion": "ABSORBER: aplicar R23 como dictamen descriptivo RETROSPECTIVO por identidad a las 1873 IC del lote 1, sin esperar el margen de FP 2385-01; sin microdato; propuesta de rótulo al catálogo v1.4 por GEN2-CIERRE-SEMANAL-3",
+      "razon": "La condición de vara pre-registrada antes de mirar estas diferencias ya no es alcanzable. Aplicar el contrato diagnóstico firmado no adopta ni recertifica, es una tabla derivada nueva y reversible, y evita que 1873 IC figuren ADOPTADO sin marca. R23 se firmó para intentos futuros: la aplicación es descriptiva y se declara así."
+    },
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260927-GEN2-RECIBO-ASTRA6-2-627e-09",
+    "verdict": "ABSORBER",
+    "rationale": "De las 119 NF excluidas, 8 D-15 ya pasan 8/8 por adenda, 109 IC caen en la deuda de las 1 873 IC (beee-06) y 2 puntos ya están ACOTAR. Lo huérfano es declarar que la sesión sobre -entradas-ventana-v1 no es comparable 1:1 con el lote 1. beee-01 no lo lleva, ninguna nota lo declara y LOTE-4 no tiene encargo.",
+    "cite": [
+      {
+        "tipo": "comando",
+        "ref": "forense/validacion-independiente/catalogo-1-reempaqueta-ventana/procedencia/excluidas-historico.tsv × tabla-result-estado-efecto.tsv",
+        "comando": "python3 csv.DictReader de ambos (git show origin/main:<ruta>); cruce por llave → Counter((estado_comparador, componente, recomendacion))",
+        "salida": "119 excluidas, 0 sin hallar · (DISCREPA, IC, SOSTENER) 109 · (NO-RECALCULABLE-DESDE-SPEC, SPEC, SOSTENER-SIN-CORROBORACION) 8 con causa D15-RECODIFICACION-AUSENTE · (DISCREPA, PUNTO, ACOTAR) 2"
+      },
+      {
+        "tipo": "comando",
+        "ref": "NC-260927-GEN2-RECIBO-ASTRA6-1-beee-02 (CERRADA)",
+        "comando": "python3 csv.DictReader forense/no-corrido.tsv, id==beee-02 → cerrado_por; git ls-tree --name-only origin/main forense/prereg-caja | rg NOFISICA-BC-spec-v2_0",
+        "salida": "GEN2-PISOS-Y-ADENDAS-1 (#1277): adendas ...DISCRIMINACION-spec-v2_0 y -NOFISICA-BC-spec-v2_0 con el mapa NIV; recalculación desde la adenda PASA 23/23 y 8/8 [punto e IC exactos] · forense/prereg-caja/ENDIREH-PISOS-2021-NOFISICA-BC-spec-v2_0.md existe"
+      },
+      {
+        "tipo": "archivo",
+        "ref": "forense/validacion-independiente/catalogo-1-sucesores/R24-transporte-ventana-767.md:19,23",
+        "comando": "git show origin/main:<ruta> | rg -n 'transporte material para una sesión futura|LOTE-4' --max-columns 240",
+        "salida": "19: Los contenedores -entradas-ventana-v1 de catalogo-1-reempaqueta-ventana/ [100 + 96 + 100 + 471 = 767] son el transporte material para una sesión futura. · 23: ... su lanzamiento es de GEN2-ASTRA6-C1-LOTE-4."
+      },
+      {
+        "tipo": "comando",
+        "ref": "forense/encargos/ y dos directorios de C1",
+        "comando": "git ls-tree -r --name-only origin/main forense/encargos | rg -c 'LOTE-4'; git grep -c -i -E '1:1' origin/main -- forense/validacion-independiente/catalogo-1-reempaqueta-ventana forense/validacion-independiente/catalogo-1-sucesores",
+        "salida": "ambos sin coincidencias (exit=1): NO-ENCONTRADO en nombres de 1221 archivos de encargos y en 64 archivos de catalogo-1-reempaqueta-ventana y catalogo-1-sucesores"
+      },
+      {
+        "tipo": "comando",
+        "ref": "NC-260927-GEN2-RECIBO-ASTRA6-1-beee-01",
+        "comando": "python3 tools/consulta.py nc NC-260927-GEN2-RECIBO-ASTRA6-1-beee-01",
+        "salida": "estado=ABIERTA · razon=DIFERIDO-A:ASTRA6-C1-REEMPAQUETA-VENTANA-1 — paquete v2 con columna ventana y sesión nueva; el primer intento no se reescribe · sucesor=EN-CURSO (GEN2-C1-SUCESORES-Y-LOTE-3 ...). Ninguna mención de comparabilidad 1:1."
+      },
+      {
+        "tipo": "archivo",
+        "ref": "forense/analisis/astra-continuidad-c1/nc-c1-dictamen-v1_0.tsv",
+        "comando": "python3 csv.DictReader (git show origin/main:<ruta>), nc_id==NC-260927-GEN2-RECIBO-ASTRA6-2-627e-09",
+        "salida": "dictamen=SIGUE-ABIERTA · cita_o_razon=DIFERIDO-A:lote 3 de validación ciega — 119 NF fuera de -ventana-v1"
+      },
+      {
+        "tipo": "commit",
+        "ref": "20ff4c05 (#1304)",
+        "comando": "git log origin/main --first-parent --oneline | rg '#1304'",
+        "salida": "20ff4c05 Merge pull request #1304 from Josanoforo/acto/GEN2-C1-SUCESORES-Y-LOTE-3 · nota forense/notas/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3-cierre.md existe; el EN-CURSO de la fila es obsoleto (A.17)"
+      }
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "OTRO:ASTRA6-C1-LOTE-4",
+    "entorno": "CAJA",
+    "hecho_comando": "rg -c -i 'comparab[a-z]* 1:1' forense/encargos/*GEN2-ASTRA6-C1-LOTE-4*.md devuelve 1 o más, y su sección de qué no hace cita esquema.json, la semántica de cuestionarios y NF 471 de 590",
+    "owner_detalle": "",
+    "decision_declarada": {
+      "opcion": "ABSORBER como cláusula obligatoria del encargo de la sesión ciega de las 767 [GEN2-ASTRA6-C1-LOTE-4]: declarar que -entradas-ventana-v1 añade esquema.json y semántica de cuestionarios/FD, que NF pasa de 590 a 471 y que el resultado no es comparable 1:1 con el lote 1; las 119 se reparten así: 8 hechas, 109 en OTRO:C1-IC-LOTE1-R23, 2 con tratamiento beee-02",
+      "razon": "Es reversible y barato: una cláusula en un encargo aún no escrito. No cierra por duplicada porque beee-01 no lleva esa obligación y su cierre propuesto usaría justo el paquete que la fila objetaba."
+    },
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-06",
+    "verdict": "MANTENER-DUENO",
+    "rationale": "R04 (FIRMADA) deja CSES Módulo 5 RESERVADA y el manifiesto lo confirma. Es la causa del diferimiento, no su cierre: el par presidencial concurrente 2018 sigue sin medirse. La ola solo se abre por código congelado de una prueba pre-registrada o por mesa por escrito, y ninguna spec la pide. El dueño correcto es APERTURA, no un encargo LOTE-2.",
+    "cite": [
+      {
+        "tipo": "comando",
+        "ref": "data/manifiesto.yaml id=cses5_modulo5_2016_2021_csv",
+        "comando": "git show origin/main:data/manifiesto.yaml | yq -c '.[] | select(.id==\"cses5_modulo5_2016_2021_csv\") | {id, estado_reserva}'",
+        "salida": "{\"id\":\"cses5_modulo5_2016_2021_csv\",\"estado_reserva\":\"RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR\"} · 9 ids con cses en el manifiesto [cses5 csv/codebook/cuestionario, cide_cses2015 x3, cses2/3/4 full], solo el csv de M5 con estado_reserva"
+      },
+      {
+        "tipo": "firma",
+        "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R04",
+        "comando": "python3 csv.DictReader (git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv), renglon==R04 → estado, opciones, recomendacion",
+        "salida": "estado FIRMADA · VIAJA-EN GEN2-CALC-ALTERNOS-LOTE-1 · RESERVADA: solo la abre el código congelado de una prueba pre-registrada. Cuesta: los CALC descriptivos que la usan esperan a un pre-registro · recomendación: «Se abre solo si una spec concreta la necesita y no hay sustituto»"
+      },
+      {
+        "tipo": "archivo",
+        "ref": "canon/mapa-instrumentos-alternos-v1_0.tsv:33 (fila del CSES Módulo 5, estudio MEX_2018)",
+        "comando": "python3 csv.DictReader (git show origin/main:canon/mapa-instrumentos-alternos-v1_0.tsv); incognita==M13 e instrumento que empieza por CSES Módulo 5 → propuesta, reserva, dictamen_A4",
+        "salida": "propuesta=CALC-CAJA (par con CIDE-CSES 2015: presidencial concurrente frente a intermedia) · reserva=módulo más reciente de CSES en el corpus → reservable por letra de E.6 · F5 E05 lista CSES como familia EXPUESTA · dictamen_A4=EXISTE-SATISFACE-PARCIAL(... sin variación de concurrencia)"
+      },
+      {
+        "tipo": "archivo",
+        "ref": "data/corrida0/CALC-ALT-M13-CIDECSES2015-0001",
+        "comando": "git ls-tree --name-only origin/main data/corrida0/CALC-ALT-M13-CIDECSES2015-0001/ ; git show origin/main:data/corrida0/CALC-ALT-M13-CIDECSES2015-0001/spec.yaml | sed -n 20p",
+        "salida": "ejecucion.json medidor.py resultados.json sello.json sello.sha256 spec.yaml tablas · línea 20: holdout_gastado: M13. Cubre solo la intermedia 2015; ningún archivo del CALC consume cses5."
+      },
+      {
+        "tipo": "regla",
+        "ref": "canon/MEMORIA-OPERATIVA.md:9-10",
+        "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | rg -n 'Reservas:|Regla 6'",
+        "salida": "9:- Reservas: ola más reciente de todo programa con historia; ... · 10:- Etapa de retadores: cerrada ... Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027."
+      },
+      {
+        "tipo": "archivo",
+        "ref": "forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1.md:9",
+        "comando": "git show origin/main:forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1.md | sed -n 9p | rg -o 'M13.{0,140}'",
+        "salida": "M13 CSES M5 no (reservada: usar CIDE-CSES 2015 con clasificador, como dice A2 (b))"
+      }
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "CSES Módulo 5, R04 RESERVADA: la abre solo el código congelado de una prueba pre-registrada o mesa por escrito; hoy ninguna spec la pide. El par presidencial concurrente 2018 de M13 espera esa apertura; la intermedia 2015 ya está en CALC-ALT-M13-CIDECSES2015-0001",
+    "confianza": "media"
+  }
+]

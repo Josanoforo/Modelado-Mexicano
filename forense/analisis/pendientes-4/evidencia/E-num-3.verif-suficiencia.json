@@ -1,0 +1,51 @@
+[
+ {
+  "id": "NC-0307",
+  "veredicto": "CONFIRMA",
+  "razon": "C3/L es retador sobre ENIF 2024 ya visto (R derivada, 8/8 ADOPTADO-POR-FIRMA); regla 6 en MEMORIA:10 y ADENDA-1:9 (firmada por mesa) autoriza cerrar. Pre-registro imposible: capturas ya leídas. Cita primaria v2_17 no está pegada: se apoya en MEMORIA.",
+  "comando": "git show origin/main:canon/MEMORIA-OPERATIVA.md | sed -n 10p; sed -n 9p forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md",
+  "salida": "10:- Etapa de retadores: cerrada ... Regla 6: sin retadores, pilotos ni duelos sobre olas vistas · ADENDA-1:9 cierra por diseño procedimiento retirado por regla 6; marcador ahorro: 8 ADOPTADO-POR-FIRMA PROSPECTIVA"
+ },
+ {
+  "id": "NC-0311",
+  "veredicto": "CONFIRMA",
+  "razon": "L+corpus es otro brazo retador sobre cruce ENIF 2024 visto; regla 6 (MEMORIA:10) más ADENDA-1:9 lo retiran. Reservas: FP-379 dice DIFIERE a sucesor, no que se ejecutó (la razón de la investigación lo tergiversa), y letra 19 solo asignó dueño.",
+  "comando": "awk -F'\\t' '$1==\"FP-379\"' forense/firmas-pendientes.tsv | grep -o 'C3-L+corpus se DIFIERE.\\{0,60\\}'",
+  "salida": "C3-L+corpus se DIFIERE a sucesor; la dieta viva es L-solo. (FP-379 ENMIENDA); L-solo pierde 8/8 (hallazgos.md:876); marcador origin/main sin brazo L+corpus"
+ },
+ {
+  "id": "NC-0313",
+  "veredicto": "CONFIRMA",
+  "razon": "CALC sellado no se reescribe (E.3); un CALC nuevo sería piloto sobre ola vista (regla 6). Estado y causa ya asentados en main: replay-evidencia fila 91 (alcance NC-0313) y la lección en nota de cierre PILOTO-1:305. Es la opción (a) delegada.",
+  "comando": "git show origin/main:forense/notas/2026-09-16-GEN2-CELDA-D-PILOTO-1-cierre.md | sed -n 305p | cut -c1-120; DictReader replay-evidencia.tsv fila 91",
+  "salida": "**La causa es de diseño y es mía:** ese RESULT es un snapshot del estado del árbol · fila 91: NO-REPRODUCE, IDENTICO, alcance=NC-0313: discrepancia G-R-EXISTE-AL-CERRAR"
+ },
+ {
+  "id": "NC-0324",
+  "veredicto": "REFUTA",
+  "razon": "Regla 6 habla de olas ya vistas; el dictamen MOCIBA dice respuesta real NO ABIERTA en 2021 y 2022 y cero estimaciones. No hay retiro explícito de F6 en main. R36(a) delegada mantiene R01 en espera con sucesor GEN2-MOCIBA-F6-ENLACE-PRE-R-1; cerrar borra la espera.",
+  "comando": "git show origin/main:forense/produccion/mociba-flujo-documental-1/dictamen.md | sed -n 5,11p | cut -c1-110; git grep -i -E 'F6.*(retir|cerrad)' origin/main -- canon/L0 gobierno",
+  "salida": "Respuesta real NO ABIERTA / NO ABIERTA; L y R no autorizados, cero llamadas y cero estimaciones; grep sin retiro de F6 (solo FP-260921-8a1f-06 sobre θ)"
+ },
+ {
+  "id": "NC-0338",
+  "veredicto": "CONFIRMA",
+  "razon": "Objeto vacío verificable: TRIADA-B-PISO sin claves por eje, cero filas del marcador la citan y las 97 NACIONAL son NO-APLICA. Es la opción (b) de la delegación, reversible. La cifra 9 de la fila contra 14 celdas -EN-UCOMUN no cambia el resultado.",
+  "comando": "git show origin/main:data/corrida0/CALC-TRIADA-B-PISO-0001/resultados.json | jq -r '.resultados|keys[]' | grep -c -i eje; csv marcador-segmento: NACIONAL piso_tipo",
+  "salida": "0 claves con 'eje'; 117 claves; NACIONAL 97 Counter({'NO-APLICA': 97}); filas con TBP/TRIADA: 0"
+ },
+ {
+  "id": "NC-0352",
+  "veredicto": "CONFIRMA",
+  "razon": "El archivo existe en main con sha256 f2c0cd8f…6d26 y nombra el CALC; ese sha coincide con descargas_mx/03-ISSP-REDES-DE-APOYO.md, copia de mesa censada el 21/sep, lo que sostiene que es el verbatim. La búsqueda original solo miró forense/encargos.",
+  "comando": "git show origin/main:forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/ENCARGO-GEN2-ISSP2017-REDES-APOYO-COTIDIANO-CLI-1-2026-09-19.md | sha256sum; git grep -n f2c0cd8f origin/main",
+  "salida": "f2c0cd8f9f09890826944e22800ff961310659afd46d42e16d751ca1696f6d26 · indice-juego-2026-09-21.tsv:1317 descargas_mx 03-ISSP-REDES-DE-APOYO.md 7067"
+ },
+ {
+  "id": "NC-0360",
+  "veredicto": "CONFIRMA",
+  "razon": "La fila medía NC ABIERTA sin token A.14. Reproducido con la lógica de _nc_por_razon del tablero sobre origin/main: 335 ABIERTA y 0 prosa. El contador que la fila decía atascado en 87 ya está en cero; falsador global 25.3 % bajo 33.3 %.",
+  "comando": "reader QUOTE_NONE sobre origin/main:forense/no-corrido.tsv, estado==ABIERTA sin prefijo de token (lógica de tools/tablero_programa.py::_nc_por_razon)",
+  "salida": "ABIERTA=335 prosa=0; nc_por_razon.py: SIN-TOKEN 90 (84 CERRADA, 5 NO-APLICA-MIENTRAS-ABIERTA, 1 CERRADA-POR-DISEÑO), falsador 25.3%"
+ }
+]

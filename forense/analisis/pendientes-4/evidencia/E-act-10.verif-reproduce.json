@@ -1,0 +1,9 @@
+[
+  {
+    "id": "NC-260922-GEN2-RELEVO-TANDA-7-9a4c-01",
+    "veredicto": "CONFIRMA",
+    "razon": "Los cinco cites reproducen en origin/main: e760-03 FIRMADA con texto H3 verbatim; corrida0.py:350-358 define TIPOS_HISTORICO_H3 y PREFIJO_MARCO_H3 v1_3; nota RC-3 líneas 11 y 47 (42 H3); demanda-dictamen 341 filas, 43 NO-RELEVAR-POR-REGLA-6 con 3 por cada CIV/FAM de la NC, sucesor NINGUNO (histórico); pines 0 de 51.",
+    "comando": "git show origin/main:forense/firmas-pendientes.tsv|DictReader e760-03; git show origin/main:tools/corrida0.py|sed -n 350,358p; git show origin/main:forense/notas/2026-09-26-GEN2-RELEVO-CONSUMIDORES-3-nota.md|rg -n H3; DictReader demanda-dictamen-v1_0.tsv dictamen==NO-RELEVAR-POR-REGLA-6; git show origin/main:data/corrida0/pines-de-mesa.tsv|rg -c 'L-DESDE-CAPTURAS|LDESC'",
+    "salida": "e760-03 estado=FIRMADA, firmada_en 25/sep «...HISTÓRICO-SIN-RELEVO las 42 lecturas L/AGREGADO de marco-M-sorteado-v1_3...»; TIPOS_HISTORICO_H3={celda_L,celda_AGREGADO}; nota:47 '| marco | 43 | 1 | 42 (H3) |'; 341 filas, 43 REGLA-6 (CIV-M-01/02/04/10/12/13, FAM-M-05/06/07 x3; DIN-M-01 x4); pines rg -c -> 0 (51 líneas)"
+  }
+]

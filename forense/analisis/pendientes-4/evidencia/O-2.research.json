@@ -1,0 +1,465 @@
+[
+ {
+  "id": "NC-260925-GEN2-CORPUS-COMPLETO-1-7813-01",
+  "verdict": "ABSORBER",
+  "rationale": "A.17: ABIERTA en origin/main 7312797c. De 112 afirmaciones ADQUIRIR sin instrumento, 80 no tienen fila en la cola (952): /adquiere nunca las camina, así que ADQUISICION no tiene mecanismo que las recorra. GEN2-CORPUS-COMPLETO-2 y ASTRA5-U5-ADQUISICION-2 salen NO-ENCONTRADO en forense/encargos (1219 archivos). Falta darlas de alta en la cola y adquirirlas en caja.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/dominios/hoja-adquisicion-derivada-v1_0.tsv + data/cola-adquisicion-v1_0.tsv",
+    "comando": "python3 -c \"import csv,re;h=[r['id_afirmacion'] for r in csv.DictReader(open('forense/analisis/dominios/hoja-adquisicion-derivada-v1_0.tsv'),delimiter='\\t') if r['estado_hoja']=='ADQUIRIR' and r['instrumento_en_corpus'].startswith('SIN-INSTRUMENTO')];c=open('data/cola-adquisicion-v1_0.tsv').read();print(len(h),sum(1 for i in h if not re.search(r'(?<![A-Z0-9-])'+re.escape(i)+r'(?![0-9])',c)))\"",
+    "salida": "112 80"
+   },
+   {
+    "tipo": "comando",
+    "ref": "hoja-adquisicion-derivada-v1_0.tsv (csv.DictReader, 1396 filas)",
+    "comando": "Counter(estado_hoja) y Counter(instrumento_en_corpus) sobre las filas ADQUIRIR",
+    "salida": "estado_hoja: DOCUMENTACIÓN-SOLAMENTE 605, DESCARTAR-CON-RAZÓN 420, REUTILIZAR 208, ADQUIRIR 163 · ADQUIRIR: SIN-INSTRUMENTO-EN-CORPUS 112, INSTRUMENTO-Y-OLA-EN-CORPUS 41, INSTRUMENTO-EN-CORPUS-OLA-DISTINTA 10"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos (origin/main)",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos | wc -l ; ... | rg -c 'CORPUS-COMPLETO-2|U5-ADQUISICION-2'",
+    "salida": "1219 ; (sin coincidencias, rc=1)"
+   }
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "python3 -c \"import csv,re;h=[r['id_afirmacion'] for r in csv.DictReader(open('forense/analisis/dominios/hoja-adquisicion-derivada-v1_0.tsv'),delimiter='\\t') if r['estado_hoja']=='ADQUIRIR' and r['instrumento_en_corpus'].startswith('SIN-INSTRUMENTO')];c=open('data/cola-adquisicion-v1_0.tsv').read();print(sum(1 for i in h if not re.search(r'(?<![A-Z0-9-])'+re.escape(i)+r'(?![0-9])',c)))\"  → 0 (hoy 80)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "La fila está EN-CURSO: el PR #1312 (GEN2-MAPA-DOMINIOS-Y-LICENCIAS-1, abierto y sin fusionar) edita su celda sucesor tras un segundo intento que la red volvió a denegar. Tocarla choca en la misma fila (§4 del encargo). La firma R50 (FP-…-8560-02 FIRMADA, opción (a)) manda un acto CORPUS-LICENCIAS-2 en caja, que sale NO-ENCONTRADO en forense/encargos. Queda ADQUISICION hasta que #1312 fusione.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "PR #1312 · rama origin/claude/new-session-zbz0cm",
+    "comando": "git merge-base --is-ancestor origin/claude/new-session-zbz0cm origin/main; git diff origin/main...origin/claude/new-session-zbz0cm -- forense/no-corrido.tsv | rg '^[+-]NC' | cut -f1",
+    "salida": "NO-ANCESTRO · única fila del lote editada: NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01 (sucesor: «GEN2-MAPA-DOMINIOS-Y-LICENCIAS-1 (28/sep): segundo intento, red de nube denegada otra vez (14 hosts 000, WebFetch EGRESS_BLOCKED); sigue ABIERTA»). GitHub: state=open, merged=false"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv:646 FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-02 · decisiones-21.tsv:51 R50",
+    "comando": "csv.DictReader sobre firmas-pendientes.tsv y decisiones-21.tsv, filtro por id",
+    "salida": "estado=FIRMADA · texto: «Licencias residuales: opción (a).» · R50 (a) = «acto GEN2-CORPUS-LICENCIAS-2 en caja (con red)» · gatea: Sucesor GEN2-CORPUS-LICENCIAS-2 registrado, no ejecutado aquí"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "yq -c '[.[]|select(has(\"licencia\")|not)]|length' data/manifiesto.yaml",
+    "salida": "554 (de 7198 entradas)"
+   }
+  ],
+  "owner_detalle": "ADQUISICION (páginas de términos de ~43 hosts; EN-CURSO en PR #1312, rama claude/new-session-zbz0cm, que edita esta celda: no se toca aquí; al fusionar #1312, el sucesor firmado es R50 (a), un acto CORPUS-LICENCIAS-2 en caja, absorbible en CURACION-CORPUS-LOTE)",
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "yq -c '[.[]|select(has(\"licencia\")|not)]|length' data/manifiesto.yaml  → 0 (hoy 554); solo después de fusionar #1312",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-02",
+  "verdict": "ABSORBER",
+  "rationale": "A.17: el bloqueador citado (NC-…-43d6-07) está CERRADA desde el 28/sep y tests/manifiesto.py:247 ya acepta ese estado, así que --registra no aborta. La página de términos de INEGI sigue fuera del manifiesto (0/7198 por url y por sha 97e97599). No tiene fila en la cola y ningún acto en vuelo la toma: #1312 solo escribe licencia.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-07",
+    "comando": "python3 tools/consulta.py nc NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-07",
+    "salida": "estado=CERRADA · cerrado_por=GEN2-PENDIENTES-3 · CERRADA (producto: tests/manifiesto.py:247 …) · fecha_cierre 2026-09-28"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tests/manifiesto.py:247 (HEAD==origin/main)",
+    "comando": "PYTHONDONTWRITEBYTECODE=1 python3 -c \"import sys;sys.path.insert(0,'tests');import manifiesto as m;print('RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR' in m.ESTADOS_RESERVA)\"",
+    "salida": "True"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml (7198 entradas)",
+    "comando": "yq -c '[.[]|select((.url_origen//\"\")|test(\"inegi.org.mx/inegi/terminos\"))]|length' data/manifiesto.yaml ; jq '[.[]|select((.sha256//\"\")|startswith(\"97e97599\"))]|length'",
+    "salida": "0 ; 0"
+   }
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "yq -c '[.[]|select((.url_origen//\"\")|test(\"inegi.org.mx/inegi/terminos\"))]|length' data/manifiesto.yaml  → ≥1 (hoy 0), con --verifica COINCIDE en caja",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260926-GEN2-DINERO-SERIES-CNBV-BANXICO-1-8dbe-01",
+  "verdict": "ABSORBER",
+  "rationale": "Las 10 afirmaciones CNBV siguen NO-ACCESIBLE. R16 por institución, IMORA y boletín SOFIPO tienen 0 filas en la cola (952) y 0 en el manifiesto (7198); L127 es otro objeto (Banca Múltiple). BDIF ya tiene 12 payloads: a APUEST-018 le falta solo el RESULT. Sin fila propia, /adquiere no la camina; en nube CNBV responde 403, así que toca caja.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/dinero-series/afirmacion-serie-v1_0.tsv",
+    "comando": "python3 -c \"import csv;L=[l for l in open('forense/analisis/dinero-series/afirmacion-serie-v1_0.tsv') if not l.startswith('#')];R=list(csv.DictReader(L,delimiter='\\t'));print({p:sum(1 for r in R if r['programa_cola']==p and r['dictamen']=='NO-ACCESIBLE') for p in ('CNBV','BANXICO')})\"",
+    "salida": "{'CNBV': 10, 'BANXICO': 5}"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv (952 filas, lector CSV)",
+    "comando": "regex sobre la fila completa: 'sofipo' ; 'R16.{0,20}instituci|IMORA'",
+    "salida": "sofipo → 1 (L139 CONDUSEF_CNBV_TANDAS_FUERA_DE_PERIMETRO, ajena) ; R16 por institución/IMORA → 0 · L127 CNBV_PORTAFOLIO_INFORMACION_IMOR_CONSUMO OBTENIDO-PARCIAL (IMOR por tipo de cartera, Banca Múltiple)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml (7198 entradas)",
+    "comando": "jq sobre id+url_origen+archivo: 'sofipo' ; 'r16' ; id 'bdif'",
+    "salida": "sofipo 0 ; r16 1 (gen2_cnbv_040_1a_r16_imor_tipo_cartera, 040_1a_R16.xls) ; bdif 12"
+   }
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "python3 -c \"import csv;L=[l for l in open('forense/analisis/dinero-series/afirmacion-serie-v1_0.tsv') if not l.startswith('#')];print(sum(1 for r in csv.DictReader(L,delimiter='\\t') if r['programa_cola']=='CNBV' and r['dictamen']=='NO-ACCESIBLE'))\"  → 0 (hoy 10)",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260926-GEN2-DINERO-SERIES-CNBV-BANXICO-1-8dbe-02",
+  "verdict": "ABSORBER",
+  "rationale": "Las 5 afirmaciones BANXICO siguen NO-ACCESIBLE. CRFAC-004 y CRFAC-013 ya tienen payload (CF297, cola L161 OBTENIDO) y solo les falta el RESULT (0 en resultados.tsv, 66 314 filas). El RIB de tarjetas y personales (CRFAC-011, CRPOP-050, CONS-021) tiene 0 filas en la cola y 0 en el manifiesto. Sin fila, nadie la camina; Banxico da 403 en nube.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/dinero-series/afirmacion-serie-v1_0.tsv",
+    "comando": "mismo conteo por programa_cola/dictamen",
+    "salida": "BANXICO NO-ACCESIBLE = 5 (CRFAC-004, CRFAC-011, CRFAC-013, CRPOP-050, CONS-021)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml + data/corrida0/resultados.tsv",
+    "comando": "jq id~'cf297' ; jq 'indicadores.?basicos|\\brib\\b|_rib_' ; csv.DictReader resultados.tsv buscando CF297|SF42790|SF46335|CRFAC-004|CRFAC-013|CRFAC-011|CRPOP-050|CONS-021",
+    "salida": "cf297 n=1 (banxico_sie_cf297_financiamiento_sector_privado) ; rib 0 ; resultados.tsv filas 66314 hits 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv",
+    "comando": "regex 'BANXICO.{0,30}(RIB|INDICADORES|TARJETA|PERSONAL)' ; línea 161",
+    "salida": "0 filas ; L161 BANXICO-FINANCIAMIENTO-HOGARES_SERIE OBTENIDO (Cuadro SIE CF297 completo, 38 series)"
+   }
+  ],
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "python3 -c \"import csv;L=[l for l in open('forense/analisis/dinero-series/afirmacion-serie-v1_0.tsv') if not l.startswith('#')];print(sum(1 for r in csv.DictReader(L,delimiter='\\t') if r['programa_cola']=='BANXICO' and r['dictamen']=='NO-ACCESIBLE'))\"  → 0 (hoy 5)",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0161",
+  "verdict": "HOJA-DECISION",
+  "rationale": "ADQUISICION ya no es el dueño correcto: ADQ-F6-DIRIGIDA-1 declaró la adquisición «agotada» (nota:75) y los FD MOCIBA 2021/2023 están en el manifiesto (2/2). Faltan una lectura en caja y la firma de unidad. Pero FP-380 FIRMADA ata la fila a una orden de mesa y la regla 6 cerró los retadores: reactivar o cerrar F6 lo decide mesa.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-22-GEN2-ADQ-F6-DIRIGIDA-1-nota.md:75",
+    "comando": "rg -n 'agotada' forense/notas/2026-09-22-GEN2-ADQ-F6-DIRIGIDA-1-nota.md",
+    "salida": "75:Conclusión para FP-374 (`EN-ESPERA-PANEL`): la adquisición dirigida por descarga pública **queda agotada**. Lo que falta para tener panel ya no es bajar nada, sino leer en caja y que mesa firme la unidad."
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv:370 FP-380",
+    "comando": "csv.DictReader filtro id=FP-380",
+    "salida": "estado=FIRMADA · «F6 pasa a 'espera acreditacion de R09 y adquisicion dirigida'; NC-0161/0162 siguen en ESPERA hasta que mesa ordene esa adquisicion. No se autorizan llamadas de F6 bajo la preparacion v1.0.»"
+   },
+   {
+    "tipo": "regla",
+    "ref": "canon/MEMORIA-OPERATIVA.md:10 · gobierno/PEGAR-EN-PROYECTO-v2_17.md:41",
+    "comando": "git grep -n -i 'regla 6' origin/main -- canon/MEMORIA-OPERATIVA.md gobierno/PEGAR-EN-PROYECTO-v2_17.md",
+    "salida": "MEMORIA:10 «Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027.» · v2_17:41 «Regla 6: sin retadores, pilotos ni duelos sobre olas ya vistas. El frente prospectivo son las familias 2027.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "jq id~'mociba_202[13].*fd'",
+    "salida": "n=2: mociba_2021_mociba2021_fd (sha 375bf7c1), mociba_2023_mociba2023_fd (sha f4a5d24c)"
+   }
+  ],
+  "owner_detalle": "MESA-DECISION (hoja de decisiones de PENDIENTES-4; una sola decisión para NC-0161 y NC-0162)",
+  "hoja": {
+   "situacion": "F6 (transferencia de M a familias retenidas) lleva desde el 16/sep en espera de una orden de mesa (FP-380). Ya no queda nada que bajar (ADQ-F6-DIRIGIDA-1, nota:75): falta leer en caja los FD MOCIBA 2021/2023 e ISSP v26 y firmar la unidad. Mientras tanto, la regla 6 cerró la etapa de retadores y fijó como frente prospectivo las familias 2027.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Cerrar por diseño NC-0161 y NC-0162: F6 se retira bajo la regla 6 y la pregunta de transferencia de M se replantea, si hace falta, en el frente prospectivo de familias 2027.",
+     "costo": "Se pierde la prueba de transferencia de M con MOCIBA/ISSP. Es reversible: la fila se reabre si una familia 2027 la pide."
+    },
+    {
+     "letra": "b",
+     "texto": "Reactivar F6: dueño CAJA con un encargo que lea, sin descargar nada, la estructura de los FD MOCIBA 2021/2023 y de ISSP v26, y traiga a mesa la firma de unidad.",
+     "costo": "Una sesión de caja más una firma, y una excepción explícita a «etapa de retadores cerrada». Hay dos encargos archivados que nunca se consumieron (F6-PANEL-CAJA-1, MOCIBA-FLUJO-DOCUMENTAL-1) que habría que reconciliar."
+    },
+    {
+     "letra": "c",
+     "texto": "Mantenerlas en espera con fecha: se revisan cuando se abra la primera familia 2027.",
+     "costo": "Dos filas abiertas durante meses, con una deuda que ningún acto mueve."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "La adquisición está agotada, no hay ninguna familia elegible (FP-380: 0 elegibles) y la regla 6 manda el frente prospectivo a las familias 2027. Seguir con F6 sobre olas publicadas contradice la etapa cerrada, y la opción (a) es reversible.",
+   "plazo": "2026-10-05",
+   "texto_firma": "«Firmo: F6 (transferencia de M a familias retenidas) se cierra por diseño bajo la regla 6; NC-0161 y NC-0162 pasan a CERRADA-POR-DISEÑO (regla 6 · FP-380 · ADQ-F6-DIRIGIDA-1 nota:75). La pregunta de transferencia de M se replantea, si hace falta, en el frente de familias 2027.»"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0162",
+  "verdict": "HOJA-DECISION",
+  "rationale": "Depende de NC-0161: evaluar un M renovado espera a que F6 entregue una familia retenida. FP-380 FIRMADA ata ambas filas a la misma orden de mesa, la adquisición está agotada (nota:75) y la regla 6 cerró los retadores. No es duplicada (otra pieza), pero comparte la decisión: va en el mismo renglón de la hoja que NC-0161.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv:159 NC-0162 (origin/main)",
+    "comando": "python3 tools/consulta.py nc NC-0162",
+    "salida": "estado=ABIERTA · razon=DIFERIDO-A · ADQUISICION-DIRIGIDA-AUTORIZADA-CON-RESERVA-PREVIA · sucesor=ADQUISICION (familias RETENIDAS del panel F5/F6 para integrar 17 y snapshot de 18; …) · texto: «Queda en espera de que NC-0161 entregue al menos una familia retenida»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv:370 FP-380",
+    "comando": "csv.DictReader filtro id=FP-380",
+    "salida": "FIRMADA · «NC-0161/0162 siguen en ESPERA hasta que mesa ordene esa adquisicion.»"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-22-GEN2-ADQ-F6-DIRIGIDA-1-nota.md:75",
+    "comando": "rg -n 'agotada' …",
+    "salida": "la adquisición dirigida por descarga pública **queda agotada**. Lo que falta … es … leer en caja y que mesa firme la unidad."
+   }
+  ],
+  "owner_detalle": "MESA-DECISION (mismo renglón que NC-0161)",
+  "hoja": {
+   "situacion": "Es el mismo renglón que NC-0161: la evaluación de un M renovado está ligada a F6, que sigue en espera por FP-380.",
+   "opciones": [
+    {
+     "letra": "a",
+     "texto": "Cerrar por diseño junto con NC-0161 (regla 6).",
+     "costo": "No se evalúa un M renovado con las familias retenidas actuales. Es reversible."
+    },
+    {
+     "letra": "b",
+     "texto": "Reactivar F6 (dueño CAJA) y dejar esta fila en espera del resultado de NC-0161.",
+     "costo": "Sesión de caja más firma de unidad, con excepción a la etapa de retadores."
+    },
+    {
+     "letra": "c",
+     "texto": "Espera con fecha, hasta la primera familia 2027.",
+     "costo": "Fila abierta durante meses."
+    }
+   ],
+   "recomendacion": "a",
+   "porque": "Sin familia retenida elegible no hay nada que evaluar, y la regla 6 manda el frente prospectivo a 2027.",
+   "plazo": "2026-10-05",
+   "texto_firma": "(el mismo texto que NC-0161; una sola firma cubre las dos filas)"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-02",
+  "verdict": "HOJA-RECETA",
+  "rationale": "EMIF tiene 0 filas en la cola (952; patrones emif|colef) y 0 entradas en el manifiesto (7198). La receta del acto de origen (lista-cerrada-familia-migracion-P1.md:128-133) exige llenar el formulario de solicitud de COLEF antes de bajar: es una acción con identidad humana que /adquiere no puede hacer. No duplica R46 (EMOVI, WVS, IFPS, MCPS, LAPOP) ni las seis solicitudes de OBTENCION-EXTERNA-1.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/familia-migracion/lista-cerrada-familia-migracion-P1.md:128-133",
+    "comando": "sed -n '126,135p' forense/analisis/familia-migracion/lista-cerrada-familia-migracion-P1.md",
+    "salida": "EMIF (COLEF): NO OBTENIDO POR ESTE AGENTE EN 1 INTENTO (25/sep/2026) … /emif/bases.php … → 404 … Receta de un minuto: abrir https://www.colef.mx/emif/ en navegador, menú «Bases de datos», registrar el formulario de solicitud y bajar EMIF Norte/Sur (.sav/.dta) por flujo; registrar con /adquiere."
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv (952) + data/manifiesto.yaml (7198)",
+    "comando": "regex 'emif' y 'colef' sobre filas de cola (lector CSV); jq test('emif|colef') sobre id+url_origen+archivo",
+    "salida": "cola: emif 0, colef 0 ; manifiesto: 0"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R46/R48",
+    "comando": "csv.DictReader filtro renglon R46/R48",
+    "salida": "R46: EMOVI 2011/2023, WVS 7, WVS longitudinal, IFPS, MCPS, LAPOP · R48: solicitudes (a)–(f) Banxico, IECM, Segob, Félix-Brasdefer, Delaney/FIU, Worldpanel — ninguna es EMIF"
+   }
+  ],
+  "owner_detalle": "MESA-ACCION (registro con identidad en el formulario EMIF de COLEF; luego /adquiere en caja registra los archivos y da de alta la fila en la cola)",
+  "hoja": {
+   "accion_clave": "EMIF-COLEF-REGISTRO-FORMULARIO",
+   "receta_un_minuto": "Abrir https://www.colef.mx/emif/ en un navegador → menú «Bases de datos» → llenar el formulario de solicitud con la identidad de mesa → bajar EMIF Norte y EMIF Sur (.sav/.dta) a Descargas MX y avisar la ruta.",
+   "destino": "Descargas MX → /adquiere en CAJA (registro en data/manifiesto.yaml con sha y alta de la fila EMIF en la cola; cierra NC-…-2a0e-02)"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0111",
+  "verdict": "HOJA-RECETA",
+  "rationale": "El dato depende de la solicitud 04 a INEGI (NC-0153), que ya pide el pago informal por evento/trámite y canal (04-INEGI-ENCIG-NC-0153.md:25,42-46). En REGISTRO-RECEPCION, ENCIG-NC-0153 está LISTO-PARA-TITULAR con fecha_presentacion vacía: no se ha enviado. La cola (L149) la tiene SOLICITUD-PREPARADA y el tablero la asigna a «mesa con identidad». Es la misma acción que NC-0153 y no está en R46–R49.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/REGISTRO-RECEPCION.tsv",
+    "comando": "csv.DictReader, fila con 'ENCIG'",
+    "salida": "expediente=ENCIG-NC-0153 · estado=LISTO-PARA-TITULAR · fecha_presentacion='' · canal=Contacto INEGI / atencion.usuarios@inegi.org.mx · acuse_no_personal=''"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv:149",
+    "comando": "lector CSV, línea 149",
+    "salida": "L149 | ENCIG_TASA_NACIONAL_PAGO_INFORMAL_POR_CANAL | SOLICITUD-PREPARADA | prio=0 | origen=NC-0153; … | consumidor NC-0111;NC-0153;07R · objeto: enlace ENCIG 8.5 con NT_TIPO/P7_3 o microdato/tabulado nacional evento por canal"
+   },
+   {
+    "tipo": "comando",
+    "ref": "docs/tablero-carriles.html (origin/main, derivado)",
+    "comando": "git show origin/main:docs/tablero-carriles.html | rg -o '<tr><td><code>ENCIG_TASA[^<]*</code></td><td>[^<]*</td><td>[^<]*</td><td>[^<]*</td>'",
+    "salida": "ENCIG_TASA_NACIONAL_PAGO_INFORMAL_POR_CANAL · SOLICITUD-PREPARADA · 0 · mesa con identidad (solicitud preparada)"
+   }
+  ],
+  "owner_detalle": "MESA-ACCION (envío de la solicitud 04-INEGI-ENCIG-NC-0153; mientras no haya respuesta rige el límite estructural de ADR-464: r2 solo en el dominio observado)",
+  "hoja": {
+   "accion_clave": "EXP21-04-INEGI-ENCIG-NC-0153",
+   "receta_un_minuto": "Abrir https://www.inegi.org.mx/inegi/contacto.html (o escribir a atencion.usuarios@inegi.org.mx) → pegar forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/04-INEGI-ENCIG-NC-0153.md, que ya pide evento × canal → enviar con la identidad de mesa → anotar fecha y acuse en REGISTRO-RECEPCION.tsv, fila ENCIG-NC-0153.",
+   "destino": "REGISTRO-RECEPCION.tsv (ENCIG-NC-0153) → acto receptor que re-deriva el denominador de la familia B; cubre NC-0153 y NC-0111"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-OBTENCION-EXTERNA-1-81e1-01",
+  "verdict": "HOJA-RECETA",
+  "rationale": "El portal del IECM lo bloquea un captcha de Radware (cola L936, 11 intentos; no se elude). La vía que queda es la solicitud (b), b-iecm-copaco-sepcopp.md, PREPARADA NO ENVIADA (L937), que mesa ya firmó enviar: R48, FP-…-8560-01 FIRMADA con ejecutada_en PENDIENTE-ACCIÓN-DE-MESA. Es la misma acción que R48(b) y NC-…-81e1-07: una sola fila en la hoja, no una nueva.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv:936-937",
+    "comando": "lector CSV, líneas 936,937",
+    "salida": "L936 IECM_SEPCOPP_RESULTADOS_2011_2025 | NO-OBTENIDO-POR-ESTE-AGENTE(11) | Captcha Radware en www.iecm.mx (curl y Chrome real; no se elude) · L937 IECM_COPACO_2020_2023_RESULTADOS_E_INTEGRACION | SOLICITUD-PREPARADA | Solicitud PNT redactada, no enviada: …/solicitudes/b-iecm-copaco-sepcopp.md"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv:645 FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-01",
+    "comando": "csv.DictReader filtro id",
+    "salida": "R48 · enviar las seis solicitudes (a)–(f) de OBTENCION-EXTERNA-1 con identidad de mesa · estado=FIRMADA · ejecutada_en=PENDIENTE-ACCIÓN-DE-MESA (envío con identidad de mesa; este acto no envía)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "jq test('iecm|sepcopp|copaco')",
+    "salida": "n=4, solo catálogos de colonias 2019/2022 (csv, diccionarios, shp); 0 de SEPCOPP/COPACO"
+   }
+  ],
+  "owner_detalle": "MESA-ACCION (R48 (b): envío por PNT de la solicitud IECM, ya firmado; el acuse entra por adenda de GEN2-OBTENCION-EXTERNA-2)",
+  "hoja": {
+   "accion_clave": "OE1-SOL-b-IECM-PNT",
+   "receta_un_minuto": "Entrar a https://www.plataformadetransparencia.org.mx con la cuenta de mesa → sujeto obligado IECM (CDMX) → pegar forense/analisis/obtencion-externa-1/solicitudes/b-iecm-copaco-sepcopp.md con los corchetes llenos → enviar y guardar el acuse.",
+   "destino": "Acuse por adenda de GEN2-OBTENCION-EXTERNA-2 (FP-…-8560-01); la respuesta se registra en la cola L936-937"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-OBTENCION-EXTERNA-1-81e1-02",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "Las tres fuentes tienen fila propia en la cola: L927 ECRIGE_CDMX_2019_FD, L929 ENVE_2012_2014_DATOS_ABIERTOS y L930 ENVE_2020_2022_BASE_EJEMPLO, las tres NO-OBTENIDO-POR-ESTE-AGENTE. El tablero derivado las asigna a «acto de nube (reintento) o caja». En el manifiesto falta el FD de ECRIGE-CDMX (hay 2 ids ecrige, ninguno FD). Ninguna necesita identidad: sigue siendo adquisición programática.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv:927,929,930",
+    "comando": "lector CSV, líneas 927,929,930",
+    "salida": "L927 ECRIGE_CDMX_2019_FD NO-OBTENIDO-POR-ESTE-AGENTE(10) · L929 ENVE_2012_2014_DATOS_ABIERTOS NO-OBTENIDO-POR-ESTE-AGENTE(4) · L930 ENVE_2020_2022_BASE_EJEMPLO NO-OBTENIDO-POR-ESTE-AGENTE(4), API 204 sin sesión; olas RESERVADAS"
+   },
+   {
+    "tipo": "comando",
+    "ref": "docs/tablero-carriles.html (origin/main)",
+    "comando": "git show origin/main:docs/tablero-carriles.html | rg -o '<tr><td><code>(ECRIGE_CDMX_2019_FD|ENVE_2012_2014_DATOS_ABIERTOS|ENVE_2020_2022_BASE_EJEMPLO)</code>…'",
+    "salida": "las tres: «acto de nube (reintento) o caja»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "jq test('ecrige')",
+    "salida": "n=2: oe1_ecrige_cdmx_2019_datos_abiertos_csv, oe1_ecrige_cdmx_2019_cuestionario_pdf (sin FD)"
+   }
+  ],
+  "owner_detalle": "ADQUISICION (ECRIGE-CDMX 2019 FD; ENVE 2012/2014 datos abiertos; ENVE 2020/2022 base de ejemplo; cola L927, L929, L930 NO-OBTENIDO-POR-ESTE-AGENTE; reintento en caja. REPORTADO por prop-A5, sin verificar aquí: las filas cc1 de ENVE 2012/2014 dicen OBTENIDO pero su zip solo trae esquemas)",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-OBTENCION-EXTERNA-1-81e1-03",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "La cola tiene la fila L946 ECCO_SFP en NO-OBTENIDO-POR-ESTE-AGENTE(13) y el tablero la asigna a «acto de nube (reintento) o caja». El manifiesto solo trae el reporte 2023. La receta (obtencion.tsv:167) pide primero navegador en gob.mx/buengobierno, sin identidad; solo si no hay base, una PNT a la SABG que aún no está redactada.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv:946",
+    "comando": "lector CSV, línea 946",
+    "salida": "L946 ECCO_SFP_CLIMA_CULTURA_ORGANIZACIONAL | NO-OBTENIDO-POR-ESTE-AGENTE(13) | 3 intentos nube + 10 caja: NO-ENCONTRADO en el CKAN de datos.gob.mx (sfp 11 y sabg 22 paquetes, ninguno ECCO). Olas ≠ 2023 nacerían RESERVADAS."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/obtencion-externa-1/obtencion.tsv:167",
+    "comando": "sed -n '167p' forense/analisis/obtencion-externa-1/obtencion.tsv",
+    "salida": "receta: Navegador: https://www.gob.mx/buengobierno → buscar «ECCO» / «Clima y Cultura Organizacional» → resultados por institución y base de datos; si no hay base, pedirla por PNT a la Secretaría Anticorrupción y Buen Gobierno"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "jq test('ecco')",
+    "salida": "n=1: r2_1_ecco_reporte_se_2023 (R2.1_ECCO/SE_REPORTE_GENERAL_ECCO_2023.pdf)"
+   }
+  ],
+  "owner_detalle": "ADQUISICION (ECCO SFP/SABG bases; cola L946 NO-OBTENIDO-POR-ESTE-AGENTE(13); falta el paso de navegador de la receta; si no aparece base, dirección redacta la PNT a la SABG y pasa a MESA-ACCION)",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-OBTENCION-EXTERNA-1-81e1-04",
+  "verdict": "HOJA-RECETA",
+  "rationale": "Las dos páginas de índice ya se bajaron completas (94 PDF). En el manifiesto faltan dic/2018 y mar–dic/2019. La receta (obtencion.tsv:140) dice que, si no están enlazados, se pidan junto con la solicitud (c) a Segob, PREPARADA NO ENVIADA y ya firmada para envío (R48). Es una acción con identidad: se suma a R48(c), no abre fila nueva.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/obtencion-externa-1/obtencion.tsv:140",
+    "comando": "sed -n '140p' forense/analisis/obtencion-externa-1/obtencion.tsv",
+    "salida": "NO-ENCONTRADO · receta: Navegador … «Informes Estadísticos Mensuales» → buscar 2019; si no están enlazados, pedirlos junto con la solicitud (c) de P4 · nota: 94 enlaces PDF únicos de las dos páginas de índice, todos bajados; … cubre may/2018–jul/2026 menos esos 11 meses"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "jq test('mecanismo.*(2018|2019)')",
+    "salida": "n=9: 2018_05…2018_11, 2019_01, 2019_02 (faltan 2018_12 y 2019_03…2019_12)"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv:645 FP-…-8560-01 · decisiones-21.tsv:49 R48",
+    "comando": "csv.DictReader filtro id",
+    "salida": "FIRMADA · solicitudes (a)–(f) incl. (c) Segob · Mecanismo por PNT · ejecutada_en=PENDIENTE-ACCIÓN-DE-MESA"
+   }
+  ],
+  "owner_detalle": "MESA-ACCION (R48 (c): al enviar por PNT la solicitud a Segob-Mecanismo, añadir los 11 informes mensuales)",
+  "hoja": {
+   "accion_clave": "OE1-SOL-c-SEGOB-MECANISMO-PNT",
+   "receta_un_minuto": "Al presentar por PNT (sujeto obligado Segob) forense/analisis/obtencion-externa-1/solicitudes/c-segob-mecanismo-incorporaciones.md, añadir la línea: «y los Informes Estadísticos Mensuales del Mecanismo de diciembre de 2018 y de marzo a diciembre de 2019, no enlazados en gob.mx/defensorasyperiodistas». Guardar el acuse.",
+   "destino": "Acuse por adenda de GEN2-OBTENCION-EXTERNA-2 (FP-…-8560-01); los PDF recibidos se registran en la cola L939"
+  },
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-OBTENCION-EXTERNA-1-81e1-05",
+  "verdict": "MANTENER-DUENO",
+  "rationale": "Las tres fronteras tienen fila en la cola: L944 BANXICO_ESTUDIOS (otras ediciones NO-OBTENIDO, índice 404), L945 PROFECO_QQP (años previos SIN-FETCH) y L943 réplicas JEMS (NO-ENCONTRADO). El tablero asigna OBTENIDO-PARCIAL a «caja (completa el payload)». Son URL concretas que no piden identidad, así que queda adquisición programática y el dueño es correcto.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/cola-adquisicion-v1_0.tsv:943-945",
+    "comando": "lector CSV, líneas 943,944,945",
+    "salida": "L943 JEMS_47_6_REPLICAS_3X1_Y_REMESAS_VIGILANTISMO NO-ENCONTRADO · L944 BANXICO_ESTUDIOS_EFECTIVO_Y_BILLETES OBTENIDO-PARCIAL (2014, 2015, 2017, 2018, 2023; otras ediciones NO-OBTENIDO-POR-ESTE-AGENTE(2), índice 404) · L945 PROFECO_QQP OBTENIDO-PARCIAL (2024–2026; años anteriores SIN-FETCH)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "docs/tablero-carriles.html (origin/main)",
+    "comando": "git show origin/main:docs/tablero-carriles.html | rg -o '<tr><td><code>(PROFECO_QQP|BANXICO_ESTUDIOS_[A-Z_]+)</code>…'",
+    "salida": "BANXICO_ESTUDIOS_EFECTIVO_Y_BILLETES · OBTENIDO-PARCIAL · caja (completa el payload) ; PROFECO_QQP · OBTENIDO-PARCIAL · caja (completa el payload)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "jq test('qqp') ; test('banxico.*estudio')",
+    "salida": "qqp n=5 (diccionario, metadatos, 2024, 2025, 2026) ; banxico estudios n=5 (2014, 2015, 2017, 2018, 2023)"
+   }
+  ],
+  "owner_detalle": "ADQUISICION (Banxico «Resultados de estudios…» otras ediciones, Profeco QQP años previos y réplicas JEMS; cola L943-L945; caja completa el payload)",
+  "confianza": "alta"
+ }
+]

@@ -1,0 +1,388 @@
+[
+ {
+  "id": "NC-260928-GEN2-TRAMITE-FIRMAS-21-8560-01",
+  "verdict": "CERRAR-DUPLICADA",
+  "rationale": "Misma deuda que NC-260925-GEN2-CORPUS-COMPLETO-1-7813-03 (ABIERTA, lote E-act-5): mover fuera de reserva_respondentes los 15 payloads cc1_inegi_{caas_2015,eng_2009,migracion_2002}_* tras R09 FIRMADA. Convención: la fila nueva cierra contra la vieja. La deuda sigue viva en 7813-03, que debe absorberse en CURACION-CORPUS-LOTE (CAJA). A.17: C1-SUCESORES-Y-LOTE-3 está fusionado y no la tocó (0 menciones).",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys; [print(r['id'],r['estado'],r['que_no_se_corrio'][:120],r['sucesor'][:120]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id'].endswith('7813-03')]\"",
+    "salida": "NC-260925-GEN2-CORPUS-COMPLETO-1-7813-03 ABIERTA reserva de olas «más recientes» de programas descontinuados (CAAS 2015, ENG 2009, ENCRIGE 2016, MIGRACION 2002) MESA (2026-10-05) · encargo por escribir: R09 (a): falta mover payloads fuera de reserva_respondentes (manifiesto, fuera de perímetro)"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv R09",
+    "comando": "python3 csv.DictReader sobre decisiones-21.tsv, renglon=='R09'",
+    "salida": "estado: FIRMADA (GEN2-TRAMITE-FIRMAS-21, ADENDA-1 28/sep) · texto_de_firma: «Firmo D1: se levanta por escrito la reserva E.6 de CAAS 2015, ENG 2009 y MIGRACIÓN 2002; ENCRIGE 2016 conserva la preservación de F5 R08.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "git show origin/main:data/manifiesto.yaml | python3 -c \"import sys,re;t=sys.stdin.read().split('\\n- id: ');m=[b for b in t if re.match(r'cc1_inegi_(caas_2015|eng_2009|migracion_2002)',b)];print('bloques',len(m),'con_estado_reserva',sum('estado_reserva' in b for b in m))\"",
+    "salida": "bloques 15 con_estado_reserva 15 ; ['  raiz: reserva_respondentes', '  estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L...']"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3.md",
+    "comando": "grep -c \"R09\\|CAAS\\|reserva_respondentes\\|caas_2015\" forense/encargos/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3.md forense/notas/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3-cierre.md",
+    "salida": "encargo:0 · nota de cierre:0 (acto fusionado: 5 commits en origin/main, nota en forense/notas/)"
+   }
+  ],
+  "cerrado_por_detalle": "duplicada: NC-260925-GEN2-CORPUS-COMPLETO-1-7813-03 [ABIERTA]",
+  "lote": "CURACION-CORPUS-LOTE",
+  "entorno": "CAJA",
+  "hecho_comando": "git show origin/main:data/manifiesto.yaml | python3 -c \"import sys,re;t=sys.stdin.read().split('\\n- id: ');print(sum(1 for b in t if re.match(r'cc1_inegi_(caas_2015|eng_2009|migracion_2002)',b) and ('estado_reserva' in b or 'reserva_respondentes' in b)))\"  → 0 (se verifica sobre 7813-03)",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-02",
+  "verdict": "CERRAR-DUPLICADA",
+  "rationale": "De las tres filas retenidas, GEN2-PENDIENTES-3 ya cerró dos el 28/09 en main (NC-0085 como duplicada de NC-0392 ABIERTA; 9641-03 por producto). La única deuda restante es ef6f-01, que sigue ABIERTA con su propio sucesor (mesa confirma cuenta_gen2=NO y cierra por firma; lote D-1). Esta fila solo la repite.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv",
+    "comando": "git show origin/main:forense/no-corrido.tsv | python3 -c \"import csv,sys; [print(r['id'],'|',r['estado'],'|',r['cerrado_por'][:90]) for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['id'] in ('NC-0085','NC-0392') or r['id'].endswith(('ef6f-01','9641-03'))]\"",
+    "salida": "NC-0085 | CERRADA | GEN2-PENDIENTES-3 · CERRADA (duplicada: NC-0392 [ABIERTA])\nNC-0392 | ABIERTA |\nNC-260922-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1-ef6f-01 | ABIERTA |\nNC-260923-GEN2-TUBERIA-PARSER-FP-1-9641-03 | CERRADA | GEN2-PENDIENTES-3 · CERRADA (producto: forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-8-A"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv (fila ef6f-01, campo sucesor)",
+    "comando": "misma lectura csv, campo sucesor de ef6f-01",
+    "salida": "MESA (2026-10-05) · la vista publica -0002 con cuenta_gen2=NO por decisión de mesa; la fila pedía SI: mesa confirma NO y se cierra por firma"
+   }
+  ],
+  "cerrado_por_detalle": "duplicada: NC-260922-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1-ef6f-01 [ABIERTA]; NC-0085 y 9641-03 ya CERRADA por GEN2-PENDIENTES-3",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-03",
+  "verdict": "ABSORBER",
+  "rationale": "Falta regenerar censo-tests.tsv con las dependencias que verify.yml ya instala: en main siguen 110 filas NECESITA-DEPENDENCIA (64 de numpy) y ci_guardias las salta, así que no corren en CI. FP-398 (a) está FIRMADA, pero el producto no existe. Ningún encargo la toma. Mismo lote que NC-0439.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/ci-guardias/censo-tests.tsv",
+    "comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | python3 (csv.DictReader, Counter de veredicto NECESITA-DEPENDENCIA*)",
+    "salida": "284 filas; NECESITA-DEPENDENCIA(numpy) 64, (pytest) 30, (pandas) 9, (jsonschema) 4, (scipy) 2, (pyarrow) 1; último commit al censo 42a8a646 2026-09-28 (GEN2-TUBERIA-3, solo fila nueva)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:449",
+    "comando": "git show origin/main:.github/workflows/verify.yml | grep -n \"numpy\\|pytest-xdist\"",
+    "salida": "449: python3 -m uv pip install --python \"$RUNNER_TEMP/venv/bin/python\" -r requirements.txt numpy pytest pytest-xdist"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/ci_guardias.py:407-413",
+    "comando": "git show origin/main:tools/ci_guardias.py | sed -n '398,413p'",
+    "salida": "if f[\"veredicto\"].startswith(\"NECESITA-DEPENDENCIA\"): print(\"SKIP %s: dependencia-pendiente %s (FP de mesa, no decidida aqui)\" ...); saltados += 1; continue"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-398",
+    "comando": "python3 tools/consulta.py fp FP-398",
+    "salida": "FP-398 · estado=FIRMADA · firmada_en=4.4 opcion (a) -- FIRMA DE MESA 21/sep/2026 §2 4.4 «librerias en CI — a»"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | python3 -c \"import csv,sys;print(sum(r['veredicto'].startswith(('NECESITA-DEPENDENCIA(numpy','NECESITA-DEPENDENCIA(pytest','NECESITA-DEPENDENCIA(pandas')) for r in csv.DictReader(sys.stdin,delimiter='\\t')))\"  → 0",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260927-GEN2-TUBERIA-CI-TIEMPO-1-c6d9-06",
+  "verdict": "ABSORBER",
+  "rationale": "_filas_registro sigue sin caché a nivel de llamada en main (corrida0.py:4464, sin decorador). T32-quater sigue siendo el piso de la suite (≈236 s; cinco derivaciones del registro). El sucesor nombrado, GEN2-TUBERIA-CI-TIEMPO-3, no se archivó nunca (lo mencionan 4 encargos, ninguno lo ejecuta). TUBERIA-3 ya se fusionó y no lo tocó. Va en el mismo lote que baca-02.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "tools/corrida0.py:4460-4464",
+    "comando": "git show origin/main:tools/corrida0.py | sed -n '4460,4464p'",
+    "salida": "        return etiqueta, NO_DECLARADO, NO_DECLARADO\n    return \"NO-HECHA\", NO_DECLARADO, NO_DECLARADO\n\n\ndef _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> dict:"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/nota-2026-09-27-gen2-tuberia-ci-tiempo-1.md:30,51",
+    "comando": "sed -n '30p;51p' forense/notas/nota-2026-09-27-gen2-tuberia-ci-tiempo-1.md",
+    "salida": "| T32-quater T-PINES-MESA | 261.2 | 236.2 | proceso spawn | ... El piso de la suite es ahora T32-quater (≈4 min): cinco derivaciones del registro dentro de tests/test_pines_mesa.py. Bajarlo exige cachear _filas_registro dentro de tools/corrida0.py"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/",
+    "comando": "git grep -l -- \"_filas_registro\" origin/main -- forense/encargos/2026-09-28-GEN2-TUBERIA-3.md forense/encargos/2026-09-26-GEN2-TUBERIA-CI-TIEMPO-2.md; git ls-tree -r --name-only origin/main -- forense/encargos | grep -c CI-TIEMPO-3",
+    "salida": "0 coincidencias en TUBERIA-3 ni CI-TIEMPO-2; 0 archivos de encargo CI-TIEMPO-3 (de 1219 examinados)"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:TUBERIA-CI-TIEMPO-3",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:tools/corrida0.py | grep -B3 '^def _filas_registro' | grep -c 'cache'  → ≥1, y la nota del acto mide T32-quater < 236.2 s con las mismas marcas [FAIL]/[ok]",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260921-GEN2-TUBERIA-CIERRE-RAPIDO-1-baca-02",
+  "verdict": "ABSORBER",
+  "rationale": "La derivación compartida (P-B) no se ha hecho: test_marcador_segmento llama deriva() 12 veces, y T32, T32-quater y T45 corren en procesos aislados, cada uno con su propia derivación. En tests/ y tools/ (785 archivos) no aparece ningún mecanismo compartido, y ningún encargo CIERRE-RAPIDO-2 lo cubre. Va en el lote CI-TIEMPO-3, junto con c6d9-06.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "tests/test_marcador_segmento.py",
+    "comando": "git show origin/main:tests/test_marcador_segmento.py | grep -c \"deriva()\"",
+    "salida": "12"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tests/check.py:8002",
+    "comando": "git show origin/main:tests/check.py | grep -n \"_PESADOS_AISLADOS\\s*=\"",
+    "salida": "8002:_PESADOS_AISLADOS = (\"t32_quater_pines_mesa\", \"t32_corrida0\","
+   },
+   {
+    "tipo": "comando",
+    "ref": "tests/ tools/",
+    "comando": "git ls-tree -r --name-only origin/main -- tests tools | wc -l; git grep -n -i \"derivacion compartida\\|DERIVACION_COMPARTIDA\\|_ARBOL_DERIVADO\\|deriva_una_vez\" origin/main -- tests tools",
+    "salida": "785 archivos examinados; 0 coincidencias (NO-ENCONTRADO)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/",
+    "comando": "git grep -l -- \"CIERRE-RAPIDO-2\" origin/main -- forense/encargos | wc -l",
+    "salida": "0 (de 1219 archivos de encargos)"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:TUBERIA-CI-TIEMPO-3",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:tests/test_marcador_segmento.py | grep -c 'deriva()'  → ≤1, y la nota del acto pega el diff byte-idéntico de la derivación compartida por T32/T32-quater/T45/marcador",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260921-GEN2-TUBERIA-CIERRE-RAPIDO-1-baca-03",
+  "verdict": "ABSORBER",
+  "rationale": "El retiro del canal de WARN está FIRMADO (FP baca-01, punto 5), pero el producto no existe: check.py tiene 66 líneas con WARN y la suite da 3 FAIL y 230152 WARN. La delegación propuso hacerlo después de TUBERIA-3, que ya está fusionado; la condición se cumple. No es CERRAR-FIRMA porque la firma exige un producto que todavía no existe.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "FP-260921-GEN2-TUBERIA-CIERRE-RAPIDO-1-baca-01",
+    "comando": "python3 tools/consulta.py fp FP-260921-GEN2-TUBERIA-CIERRE-RAPIDO-1-baca-01 | grep -o 'estado=[A-Z]*'; texto del punto (5) leído de firmas-pendientes.tsv",
+    "salida": "estado=FIRMADA · (5) El canal de WARN se retira. Cada familia pasa a FAIL acotado a los archivos que el PR toca, o a un contador del tablero derivado por comando; lo que no sea ninguna de las dos se borra. T10 pasa a FAIL acotado. El baseline deja de guardar WARN."
+   },
+   {
+    "tipo": "comando",
+    "ref": "tests/check.py",
+    "comando": "git show origin/main:tests/check.py | grep -c \"WARN\"",
+    "salida": "66"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/nota-2026-09-27-gen2-tuberia-ci-tiempo-1.md:38",
+    "comando": "sed -n '38p' forense/notas/nota-2026-09-27-gen2-tuberia-ci-tiempo-1.md",
+    "salida": "... `3 FAIL · 230152 WARN` y rc=0 en las dos."
+   },
+   {
+    "tipo": "comando",
+    "ref": "GEN2-TUBERIA-3",
+    "comando": "git log origin/main --oneline | rg -c GEN2-TUBERIA-3; ls forense/notas | rg tuberia-3",
+    "salida": "7 commits en main (1f058cdd NO-CORRIDO/CONSUMIDO PR #1294); nota-2026-09-28-gen2-tuberia-3-cierre.md"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 tests/check.py --baseline | tail -n 5  → resumen con 0 WARN (canal retirado) y 0 FAIL en la línea base",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2-8e53-02",
+  "verdict": "ABSORBER",
+  "rationale": "El defecto sigue en main: check.py:8569-8570 define la suite como una lista literal única. D-21 ya manda los tests nuevos como huérfanos, y en la ventana visible (27–28/sep, clon superficial) ningún commit editó la lista, mientras que 24 tocaron check.py. La pieza debe volver a medir el choque antes de partir el registro; si es cero, cierra con esa medición.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "tests/check.py:8569-8570",
+    "comando": "git show origin/main:tests/check.py | sed -n '8569,8572p'",
+    "salida": "def main():\n    tests = [\n        (\"T01 fuente única de verdad\",            t01_single_source),\n        (\"T02 duplicados nombre/contenido\",       t02_duplicates),"
+   },
+   {
+    "tipo": "regla",
+    "ref": "gobierno/instrucciones-proyecto-v2_16.md:75",
+    "comando": "git grep -n '^D-21' origin/main -- gobierno/instrucciones-proyecto-v2_16.md",
+    "salida": "D-21. Perímetro de cierre permanente: ... su test nuevo entra a CI como huérfano (ci_guardias --ejecuta-huerfanos) sin editar verify.yml ni check.py"
+   },
+   {
+    "tipo": "comando",
+    "ref": "historial de tests/check.py",
+    "comando": "git rev-parse --is-shallow-repository; git log 83a5f9ff..origin/main --no-merges --format=%h -- tests/check.py | wc -l; git log 83a5f9ff..origin/main --no-merges -G '^\\s+\\(\"T[0-9]+' -- tests/check.py",
+    "salida": "true (clon superficial desde 27/sep; 341 commits en la ventana); 24 commits tocan check.py; 0 editan la lista (solo aparece la raíz superficial bf5fc5e7)"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:tests/check.py | sed -n '/^def main/,/^    \\]/p' | grep -c '(\"T'  → 0 (registro por autodescubrimiento), o nota del acto con la tasa de conflicto por la lista re-medida sobre historial completo = 0",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260921-GEN2-TUBERIA-ENRUTAMIENTO-PR-1-9a2c-01",
+  "verdict": "ABSORBER",
+  "rationale": "La condición de uso ya se cumple: el job enrutamiento-pr vive en verify.yml:954. Aun así, revisa.md no lee la clase (0 menciones). La delegación prefería (b), cerrar SIN-OBJETO, pero ese cierre no cabe en el vocabulario sin producto ni firma. El sucesor delegado es «encargo por escribir»: una edición chica de revisa.md, en el mismo lote que acto.md (6e60-02).",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": ".github/workflows/verify.yml:954",
+    "comando": "git show origin/main:.github/workflows/verify.yml | grep -n \"enrutamiento\" | head -2",
+    "salida": "954:  enrutamiento-pr:\n1009:    # `enrutamiento-pr` (ACTO GEN2-TUBERIA-ENRUTAMIENTO-PR-1, 21/sep/2026):"
+   },
+   {
+    "tipo": "comando",
+    "ref": ".claude/commands/revisa.md",
+    "comando": "git show origin/main:.claude/commands/revisa.md | grep -c -i enrutamiento",
+    "salida": "0"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv",
+    "comando": "csv.DictReader, id == NC-...-9a2c-01",
+    "salida": "opcion=DUEÑO-MESA · Opciones: (a) encargo chico sobre revisa.md, reversible; (b) cerrar SIN-OBJETO: /revisa deduce la clase del diff y no se degrada nada. Propongo (b) salvo dolor medido."
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:COMANDOS-DIRECCION",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:.claude/commands/revisa.md | grep -c -i 'enrutamiento'  → ≥1 (revisa lee la clase del resumen del job enrutamiento-pr)",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260923-GEN2-TUBERIA-SELLO-EXTERNO-1-cfce-01",
+  "verdict": "HOJA-RECETA",
+  "rationale": "No hay ningún .ots, .tsq ni .tsr entre los 12345 archivos de main, ni un encargo SELLO-EXTERNO-2. Desde la nube el proxy rechazó los calendarios OTS y la TSA (nota, líneas 30 y 38). La ADENDA-1 de PENDIENTES-4 (línea 12) clasifica el `.ots` como acción con identidad de mesa: no va como pieza, sino como receta de un minuto.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "árbol de origin/main",
+    "comando": "git ls-tree -r --name-only origin/main | wc -l; git ls-tree -r --name-only origin/main | grep -c -E '\\.(ots|tsr|tsq)$'; git ls-tree -r --name-only origin/main -- forense/encargos | grep -c SELLO-EXTERNO-2",
+    "salida": "12345 ; 0 ; 0"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/2026-09-23-GEN2-TUBERIA-SELLO-EXTERNO-1-cierre.md:30,38",
+    "comando": "sed -n '30p;38p' forense/notas/2026-09-23-GEN2-TUBERIA-SELLO-EXTERNO-1-cierre.md",
+    "salida": "Failed to create timestamp: need at least 2 attestations but received 0 within timeout\nconnect_rejected (the egress proxy denied the CONNECT (organization policy))"
+   },
+   {
+    "tipo": "regla",
+    "ref": "forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md:12",
+    "comando": "grep -n '\\.ots' forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md",
+    "salida": "12: ... Las acciones con identidad de mesa (correos, registros, convenios, `.ots`, publicación) no son piezas: dejas la receta de un minuto y las listas en la hoja de recetas."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "docs/sello-externo.md:26-51",
+    "comando": "git show origin/main:docs/sello-externo.md | grep -n -i 'ots\\|tsa'",
+    "salida": "26: Si existe un archivo `.ots` junto al manifiesto ... 30: ots verify forense/sellos/manifiesto-sellos-<fecha>.tsv.ots ... 39: ### Mecanismo (b) — TSA RFC 3161"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "git ls-tree -r --name-only origin/main -- forense/sellos | grep -c -E '\\.(ots|tsr)$'  → ≥1",
+  "owner_detalle": "MESA · receta: atestación OTS + TSA del manifiesto de sellos desde máquina con red abierta",
+  "hoja": {
+   "accion_clave": "SELLO-EXTERNO-OTS-TSA-MANIFIESTO",
+   "receta_un_minuto": "En un clon de main, desde una máquina con red abierta: pip install opentimestamps-client && ots stamp forense/sellos/manifiesto-sellos-2026-09-23.tsv ; openssl ts -query -data forense/sellos/manifiesto-sellos-2026-09-23.tsv -sha256 -cert -out forense/sellos/manifiesto-sellos-2026-09-23.tsv.tsq && curl -sS -H 'Content-Type: application/timestamp-query' --data-binary @forense/sellos/manifiesto-sellos-2026-09-23.tsv.tsq https://freetsa.org/tsr -o forense/sellos/manifiesto-sellos-2026-09-23.tsv.tsr ; commit de .ots/.tsq/.tsr en una rama y PR; verificación según docs/sello-externo.md (ots verify / openssl ts -verify).",
+   "destino": "forense/sellos/ (PR que fusiona mesa) · hoja de recetas de GEN2-PENDIENTES-4"
+  },
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260921-GEN2-TUBERIA-SUCESOR-1-6e60-02",
+  "verdict": "ABSORBER",
+  "rationale": "El defecto sigue en main: el chequeo 0.c de acto.md (líneas 54-57) busca el rótulo en tres sitios y nunca por contenido (0 menciones de 'diff --name-only origin/main...'). D-17 (v2.16:71) exige PARAR si el encargo está archivado en otra rama viva. PARSER-FP-1 lo excluyó y no hay encargo que lo tome.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": ".claude/commands/acto.md:54-57",
+    "comando": "git show origin/main:.claude/commands/acto.md | sed -n '54,57p'",
+    "salida": "**0.c · DUPLICADO — el mismo rótulo corriendo dos veces.** El rótulo es el identificador del encargo/acto ... Se busca en **tres** sitios, no en uno:"
+   },
+   {
+    "tipo": "comando",
+    "ref": ".claude/commands/acto.md",
+    "comando": "f=.claude/commands/acto.md; git show origin/main:$f | grep -c -i 'por contenido'; git show origin/main:$f | grep -c 'diff --name-only origin/main\\.\\.\\.'",
+    "salida": "0 ; 0 (archivo de 536 líneas)"
+   },
+   {
+    "tipo": "regla",
+    "ref": "gobierno/instrucciones-proyecto-v2_16.md:71",
+    "comando": "git grep -n '^D-17' origin/main -- gobierno/instrucciones-proyecto-v2_16.md",
+    "salida": "D-17. ENTORNO ASIGNADO no identifica una sesión: el encargo nombra sesión o rama; /acto PARA si el encargo ya está archivado en otra rama viva."
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-22-GEN2-TUBERIA-PARSER-FP-1.md:40",
+    "comando": "git show origin/main:forense/encargos/2026-09-22-GEN2-TUBERIA-PARSER-FP-1.md | grep -n 'consumidores de orden'",
+    "salida": "40:No toca el chequeo 0.c de `acto.md` (6e60-02), no censa consumidores de orden (6e60-07), no reabre el careo. Sucesor: 6e60-02 (despacho duplicado por contenido) como acto propio de tubería."
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "OTRO:COMANDOS-DIRECCION",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:.claude/commands/acto.md | grep -c 'diff --name-only origin/main\\.\\.\\.'  → ≥1 (0.c incluye el chequeo por contenido sobre forense/encargos/ en cada rama viva)",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260921-GEN2-TUBERIA-SUCESOR-1-6e60-07",
+  "verdict": "ABSORBER",
+  "rationale": "Nadie ha hecho el censo de consumidores de ORDEN: PARSER-FP-1 lo excluye (línea 40) y no hay encargo que lo tome. La delegación recomendaba cerrar, pero ese cierre no tiene producto ni firma. Un barrido parcial encontró 6 de 743 .py que ordenan por id, sin verificar. Pieza chica: censo y test de orden mixto; si nadie intercala, cierra.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-22-GEN2-TUBERIA-PARSER-FP-1.md:40",
+    "comando": "git show origin/main:forense/encargos/2026-09-22-GEN2-TUBERIA-PARSER-FP-1.md | grep -n 'consumidores de orden'",
+    "salida": "40:No toca el chequeo 0.c de `acto.md` (6e60-02), no censa consumidores de orden (6e60-07), no reabre el careo."
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/*.py tests/*.py",
+    "comando": "git ls-tree -r --name-only origin/main -- tools tests | grep -c '\\.py$'; git grep -l -E \"sorted\\(.*(\\[.id.\\]|\\.get\\(.id.\\)|key=lambda [a-z_]+: *[a-z_]+\\[.id.\\])\" origin/main -- 'tools/*.py' 'tests/*.py'",
+    "salida": "743 .py examinados; 6 ordenan por id: tests/test_corpus_licencias.py tests/test_manifiesto_seguro.py tests/test_tablero_carriles.py tools/adq_doctor.py tools/f5_documental.py tools/score_marco_m.py (sin verificar si mezclan espacios)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos/",
+    "comando": "git grep -l -- '6e60-07' origin/main -- forense/encargos",
+    "salida": "3 archivos: 2026-09-21-GEN2-TUBERIA-SUCESOR-1.md, 2026-09-22-GEN2-TUBERIA-PARSER-FP-1.md (lo excluye), 2026-09-22-PENDIENTES-PROGRAMA.md; ninguno lo ejecuta"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "git ls-tree -r --name-only origin/main | grep -c -i 'orden.ids'  → ≥1 (censo TSV de consumidores y test que ordena NC-#### junto a NC-AAMMDD-… sin intercalar mal)",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ }
+]

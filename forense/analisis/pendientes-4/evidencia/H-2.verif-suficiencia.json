@@ -1,0 +1,9 @@
+[
+  {
+    "id": "NC-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-01",
+    "veredicto": "CONFIRMA",
+    "razon": "Mismo objeto: FP 8e53-01 (FIRMADA, FIRMAS-6 §2) dice NO a correr L1/L2 del PAQUETE-L-LOTE-ENIF2024-v1_0 (su gatea lo nombra; 44 celdas de pares del lote). La razón es de fondo (RETROSPECTIVA sobre reserva consumida), no de canal API/CLI; la regla 6 lo refuerza. El sucesor MESA que puso PENDIENTES-3 (28/sep) no tuvo en cuenta la firma.",
+    "comando": "git show origin/main:forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-6.md | grep 8e53-01; csv firmas-pendientes id=FP-...8e53-01 (gatea); grep -n '44 celdas' origin/main:forense/prereg-duelo-v2/PAQUETE-L-LOTE-ENIF2024-v1_0.md",
+    "salida": "«No se corre L1/L2 con presupuesto sobre los 14 cruces: sería RETROSPECTIVA sobre reserva consumida y L perdió 8/8 en DIN.» · estado=FIRMADA · gatea: si SI, sucesor corre PAQUETE-L-LOTE-ENIF2024-v1_0 (88 prompts) · v1_0: 44 celdas × 2 variantes"
+  }
+]

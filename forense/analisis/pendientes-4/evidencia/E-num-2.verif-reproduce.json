@@ -1,0 +1,30 @@
+[
+  {
+    "id": "NC-0273",
+    "veredicto": "CONFIRMA",
+    "razon": "Reproduce: clon shallow=true; test_c sale skip NO-PROCEDE-HISTÓRICO (5 ok, 1 saltada); ambos git log dan bf5fc5e7, presente en .git/shallow; nota :26 en origin/main. Matiz: consulta.py nc NC-0310 no imprime cerrado_por; el TSV (lector CSV) sí lo trae, igual en origin/main.",
+    "comando": "git rev-parse --is-shallow-repository; PYTHONDONTWRITEBYTECODE=1 python3 tests/test_motor_holdout.py | tail -n 3; git log --format=%H --diff-filter=A -- <catalogo|motor.py> | tail -1; grep -c bf5fc5e7 .git/shallow; csv.DictReader forense/no-corrido.tsv id=NC-0310",
+    "salida": "true | test_c_roles_sellados_antes_que_todo_resultado: skip -- NO-PROCEDE-HISTÓRICO ... | T-MOTOR-HOLDOUT: 5 prueba(s) ok, 1 saltada(s) | bf5fc5e7...(x2) | 1 | NC-0310 CERRADA-POR-DISEÑO cerrado_por='por diseño: tests/test_motor_holdout.py · python3 tests/test_motor_holdout.py | tail -3 · GEN2-TRAMITE-PENDIENTES-2'"
+  },
+  {
+    "id": "NC-0287",
+    "veredicto": "CONFIRMA",
+    "razon": "Reproduce: nota TRAMITE-4 :40-57 trae §3.1/3.2; recibos RECIBO-CODEX-3..6 y RECIBO-ASTRA6-N con ADR-260926-...-996b-01 en origin/main; 6/6 encargos con NOCORR=0 CONS=0; fila de delegación y sucesor de la NC dicen lo citado.",
+    "comando": "git show origin/main:forense/notas/2026-09-16-GEN2-TRAMITE-4.md | sed -n '40,57p'; git ls-tree -r --name-only origin/main forense/encargos canon/L0 | grep RECIBO-...; grep -c '^## NO-CORRIDO'/'^## CONSUMIDO' x6; csv decididas-por-delegacion.tsv id=NC-0287",
+    "salida": "## 3 · P1 · El recibo del carril Codex / 3.1 #824..#831 / 3.2 cero filas | RECIBO-CODEX-3,-4,-5 (09-19), -6 (09-20), RECIBO-ASTRA6-N + ADR-260926-GEN2-RECIBO-ASTRA6-N-996b-01.md | 6/6 NOCORR=0 CONS=0 | DUEÑO-MESA 'Recomendacion: cerrar; es forma de archivo ... Reversible'"
+  },
+  {
+    "id": "NC-0294",
+    "veredicto": "CONFIRMA",
+    "razon": "Reproduce: consumibles 44, Theta 43; valor lanza en 43/43; theta.py:13-14, v2_16:39, MEMORIA:10 y DEMANDA-DICTAMEN-1:11 dicen lo citado; único consumidor es un test. La adenda solo está en HEAD (0-bis), no en origin/main, pero es idéntica byte a byte al adjunto del usuario.",
+    "comando": "PYTHONDONTWRITEBYTECODE=1 python3 -c 'P.cargar(); len(consumibles), len(Theta.desde(p).entradas); t.valor(k) para todo k'; git show origin/main:milpa/src/theta.py | grep -n ...; git grep -n -E '...theta...' origin/main -- '*.py'; diff HEAD:adenda upload",
+    "salida": "44 43 | valor lanza: `salud` ... `matriz.g` no es camino de emisión vigente | lanzan 43 de 43 | 13:ESTADO VIGENTE ... 14:... no es camino de emisión vigente | tests/test_theta_esquema_e1.py:27,41,77; tools/corrida0.py:577 comentario | adenda IDENTICO"
+  },
+  {
+    "id": "NC-0296",
+    "veredicto": "CONFIRMA",
+    "razon": "Reproduce: réplica de corrida0.py:415 da clave 'md' solo para sellados[5]; G3_horizonte_temporal está en medidos y _acto_y_fecha real da NO-DECLARADO-EN-EL-REGISTRO en ambas; demanda-resultados (211 filas) RES-0072 igual; inventario:35 LEGACY-GEN1; gobernanza:1196 y v2_16:16 citan lo dicho.",
+    "comando": "python3 yaml: split('.',1)[-1].split(',')[0] sobre 7 sellados; c0._acto_y_fecha(medidos['G3_horizonte_temporal'].fuente); csv demanda-resultados.tsv consumidor~G3.horizonte_temporal; git grep RES-0072 origin/main -- inventario-operativo.tsv",
+    "salida": "5 G3 horizonte_temporal | clave= md | en_medidos= False (otros 6 True) | ('NO-DECLARADO-EN-EL-REGISTRO','NO-DECLARADO-EN-EL-REGISTRO') | RES-0072 acto_legacy=fecha_legacy=NO-DECLARADO-EN-EL-REGISTRO | 35:RES-0072 ... coeficiente_ejecutable LEGACY-GEN1 0.0876"
+  }
+]

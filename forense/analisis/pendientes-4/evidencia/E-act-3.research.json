@@ -1,0 +1,269 @@
+[
+  {
+    "id": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-02",
+    "verdict": "ABSORBER",
+    "rationale": "R25 (FP 39de-01 FIRMADA) autoriza ejecutar los sucesores ENDIREH 2011/2021 sin adopción automática. En origin/main no hay CALC ni spec prereg-caja de sucesor2011/sucesor2021: solo los parches PROPUESTO-POR-EJECUTOR de p4/ y el expediente R25. Falta escribir spec + COMMIT-1 y correr los dos CALC en caja. Afín a R33 (2385-06); puede compartir lote.",
+    "cite": [
+      {"tipo": "comando", "ref": "árbol origin/main (12345 archivos)", "comando": "git grep -il -e sucesor2011 -e sucesor2021 origin/main -- .", "salida": "origin/main:forense/validacion-independiente/catalogo-1-adjudicacion-puntos/p4/especificacion-sucesores.md\norigin/main:forense/validacion-independiente/catalogo-1-sucesores/R25-retiro-temporal-denominador-99.md"},
+      {"tipo": "comando", "ref": "data/corrida0/ (390 directorios)", "comando": "git ls-tree -d --name-only origin/main data/corrida0/ | rg -i sucesor", "salida": "data/corrida0/CALC-C0D-ALCANCE-CORPUS-CAPTURA-SUCESOR   (1 de 390; ninguno ENDIREH)"},
+      {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv:26 (R25) · forense/firmas-pendientes.tsv:621", "comando": "csv.DictReader sobre decisiones-21.tsv, renglon=R25; y firmas-pendientes.tsv id=FP-260926-ASTRA6-C1-ADJUDICACION-PUNTOS-1-39de-01", "salida": "estado: FIRMADA · VIAJA-EN GEN2-C1-SUCESORES-Y-LOTE-3 · texto: «En lo no cubierto por FP-…-beee-02: autorizo el retiro temporal de identidades con defecto documental, el denominador institucional, la elegibilidad nacional 99 y la ejecución de sucesores nuevos, sin adopción automática.» · FP 39de-01 | FIRMADA"},
+      {"tipo": "archivo", "ref": "forense/validacion-independiente/catalogo-1-sucesores/R25-retiro-temporal-denominador-99.md:26,30", "comando": "git show origin/main:<ruta> | rg -n 'Ninguno existe|no escribe ni corre'", "salida": "26: Ejecución de sucesores nuevos (sucesor2011, sucesor2021 …): autorizada sin adopción automática. Ninguno existe hoy como CALC ni como spec en prereg-caja/ · 30: Este acto no escribe ni corre los sucesores 2011/2021, porque su perímetro no incluye esos CALC."},
+      {"tipo": "comando", "ref": "forense/encargos (nombre de archivo)", "comando": "git ls-tree -r --name-only origin/main | rg -c GEN2-C1-SUCESORES-2011-2021", "salida": "(sin salida: 0 archivos con ese nombre; 4 archivos lo mencionan: arma_dictamen.py, dictamen-pendientes-3.tsv, encargo C1-SUCESORES-Y-LOTE-3, no-corrido.tsv)"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "OTRO:C1-SUCESORES-2011-2021",
+    "entorno": "CAJA",
+    "hecho_comando": "ls data/corrida0/CALC-*ENDIREH*20{11,21}*SUCESOR*/sello.json | wc -l  → 2, y python3 tools/consulta.py corrida <cada CALC> devuelve fila en la vista (E.7)",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-03",
+    "verdict": "ABSORBER",
+    "rationale": "El sellado CALC-ENBIARE-PISOS-BIENESTAR-0001 emite las 90 llaves -P de seis escalas como media 0–10 (p. ej. 7.77), pero esquema y sufijo dicen proporción (D15-UNIDAD-CONTRADICTORIA, propuesta ADENDA-DE-SPEC). No hay adenda ni encargo en main. Falta adenda de spec/esquema sucesora (sin editar el sello) y reconstrucción ciega de las 90 en caja.",
+    "cite": [
+      {"tipo": "archivo", "ref": "forense/validacion-independiente/specs-insuficientes-v1_2.tsv (10 filas; 1 ENBIARE)", "comando": "git show origin/main:forense/validacion-independiente/specs-insuficientes-v1_2.tsv | csv.DictReader, filtro 'ENBIARE'", "salida": "spec_id CALC-ENBIARE-PISOS-BIENESTAR-0001 · tipo_falta D15-UNIDAD-CONTRADICTORIA · que_falta: unidad de seis escalas 0-10 … el esquema del paquete y la llave (-P) dicen proporcion; enbiare-metodo-base.md §4 … dicen media 0-10 · llaves_afectadas 90 · propuesta ADENDA-DE-SPEC"},
+      {"tipo": "comando", "ref": "data/corrida0/CALC-ENBIARE-PISOS-BIENESTAR-0001/resultados.json", "comando": "git show origin/main:<ruta> | jq -r '.resultados | to_entries[] | select(.key|test(\"SATISFACCION-VIDA|ESCALERA-CANTRIL|CONFIANZA-\")) | .key' | sed -E 's/.*-//' | sort | uniq -c", "salida": "90 EE · 90 HI · 90 LO · 90 N · 90 P ; ejemplo: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-18-29-P  7.772353317007188"},
+      {"tipo": "comando", "ref": "árbol origin/main", "comando": "git ls-tree -r --name-only origin/main | rg -c GEN2-SPEC-ENBIARE-ESCALAS ; git grep -l D15-UNIDAD-CONTRADICTORIA origin/main -- .", "salida": "(0 archivos con ese nombre) ; origin/main:forense/validacion-independiente/catalogo-1-lote3/asienta_residuales.py · origin/main:forense/validacion-independiente/specs-insuficientes-v1_2.tsv (ninguna adenda)"},
+      {"tipo": "archivo", "ref": "forense/notas/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3-cierre.md (§2)", "comando": "sed -n '20,64p' <ruta>", "salida": "D-15, hallazgo nuevo (specs-insuficientes-v1_2.tsv, +1). En seis escalas 0–10 (satisfacción, Cantril, cuatro de confianza; 90 llaves), el esquema y la llave dicen proporcion y la spec dice media. La reconstructora no adivinó."}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "OTRO:C1-LOTE-4",
+    "entorno": "CAJA",
+    "hecho_comando": "lector CSV sobre el dictamen del lote sucesor de C1: filas de CALC-ENBIARE-PISOS-BIENESTAR-0001 con llave SATISFACCION-VIDA|ESCALERA-CANTRIL|CONFIANZA-*-P y punto no vacío = 90, y la adenda de spec/esquema existe con sidecar sha256 citada en specs-insuficientes sucesora",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-04",
+    "verdict": "HOJA-DECISION",
+    "rationale": "Adjudicar IC exige un margen de equivalencia y un control simultáneo que R23 reservó a mesa «antes del siguiente conjunto sin revelar». La FP 2385-01 sigue ABIERTA (A.17). Las 404 filas del lote 3 son IC-DIAGNOSTICO-R23-NO-ADJUDICA. Fijar un umbral antes de abrir dato es decisión de mesa, no de un ejecutor.",
+    "cite": [
+      {"tipo": "comando", "ref": "forense/firmas-pendientes.tsv:648", "comando": "python3 tools/consulta.py fp FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01", "salida": "FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 · estado=ABIERTA · creado=2026-09-28 · qué_se_firma=Margen de equivalencia y control simultáneo para IC reimplementados de C1 (R23: «se fijarán por mesa antes del siguiente conjunto sin revelar»). Opciones: (a) …"},
+      {"tipo": "comando", "ref": "forense/validacion-independiente/catalogo-1-lote3/dictamen-lote3-v1_1.tsv", "comando": "git show origin/main:<ruta> | csv.DictReader; Counter(dictamen_ic_r23)", "salida": "404 filas · dictamen_ic_r23 [('IC-DIAGNOSTICO-R23-NO-ADJUDICA', 404)]"},
+      {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv:24 (R23)", "comando": "csv.DictReader, renglon=R23", "salida": "FIRMADA · «Apruebo el protocolo como contrato DIAGNÓSTICO de reproducción de IC para intentos futuros; no es estimador de IC adoptable ni recertifica IC históricos. El margen de equivalencia y el control simultáneo se fijarán por mesa antes del siguiente conjunto sin revelar.»"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "MESA · firma FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 (ABIERTA)",
+    "hoja": {
+      "situacion": "Los IC reimplementados de C1 (404 filas del lote 3) no pueden adjudicar: R23 dejó el margen de equivalencia y el control simultáneo a mesa, y la FP 2385-01 sigue ABIERTA.",
+      "opciones": [
+        {"letra": "a", "texto": "Margen en unidades de SE, sellado por extremo (p. ej. |Δ| ≤ 0.5 SE), con Bonferroni por paquete; un acto sucesor re-adjudica las 404 filas con compare_v3.", "costo": "Exige decidir la precisión Monte Carlo y abre un acto de re-adjudicación. El margen se fija antes del siguiente conjunto sin revelar y ya no se ajusta."},
+        {"letra": "b", "texto": "Sin margen: los IC de C1 quedan diagnósticos para siempre y el asiento se hace por punto (alcance INFERENCIA-NO-COMPROBADA); la NC 2385-04 se cierra con esta firma.", "costo": "Ningún IC de C1 adjudica. Si un consumidor pide IC equivalentes, habrá que volver a firmar."},
+        {"letra": "c", "texto": "Exigir igualdad de marco y de totales por UPM antes de comparar IC.", "costo": "Trabajo de marco por paquete antes de cualquier IC; la adjudicación se retrasa sin fecha."}
+      ],
+      "recomendacion": "b",
+      "porque": "Es la recomendación registrada en la FP. Hoy ningún consumidor pide IC equivalentes y el punto ya se asienta. La opción (a) obliga a una decisión sustantiva de precisión Monte Carlo que nadie ha preparado. Con (b), la NC se cierra hoy y la puerta a (a) sigue abierta con una firma nueva.",
+      "plazo": "2026-10-05 (MESA, del campo sucesor de la NC)",
+      "texto_firma": "«Sobre el margen de equivalencia y el control simultáneo de los IC reimplementados de C1 (FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01, R23), firmo la opción (__). Con (b), los IC de C1 quedan diagnósticos, el asiento se hace por punto con alcance INFERENCIA-NO-COMPROBADA y NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-04 se cierra con esta firma. Con (a) o (c), el acto sucesor re-adjudica las 404 filas antes del siguiente conjunto sin revelar.»"
+    },
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-05",
+    "verdict": "ABSORBER",
+    "rationale": "Las propuestas ya existen (r21-envipe-15-llaves.tsv y dictamen-lote3-v1_1.tsv con ACOTAR 6), pero no hay catálogo v1.4: en canon/ solo están v1_0 a v1_3, y en v1.3 las 15 ENVIPE siguen ADOPTADO sin sucesor. Tampoco hay encargo CIERRE-SEMANAL-3. Las 2 filas de edad 60+ dependen de la FP 0c1f-01, que está ABIERTA; esa pieza nace NO-LANZADO si no se firma.",
+    "cite": [
+      {"tipo": "comando", "ref": "canon/ (8 archivos catalogo-del-mexicano)", "comando": "git ls-tree -r --name-only origin/main canon/ | rg -i catalogo-del-mexicano", "salida": "canon/catalogo-del-mexicano-v1_0.md/.tsv · v1_1.md/.tsv · v1_2.md/.tsv · v1_3.md/.tsv (NO-ENCONTRADO v1_4)"},
+      {"tipo": "comando", "ref": "canon/catalogo-del-mexicano-v1_3.tsv × catalogo-1-sucesores/r21-envipe-15-llaves.tsv", "comando": "csv.DictReader sobre ambos; Counter((estado_adopcion, alcance, sucesor)) de las llaves r21 en el catálogo", "salida": "r21 llaves 15 · filas catalogo 63706 · Counter({('ADOPTADO', 'ESTIMADOR-DE-CELDA', ''): 15})"},
+      {"tipo": "comando", "ref": "forense/validacion-independiente/catalogo-1-lote3/dictamen-lote3-v1_1.tsv", "comando": "csv.DictReader; filas dictamen=ACOTAR", "salida": "4 × RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-… (R26 (a) excluye EDAD=98) · RESULT-ENDIREH2016-PF-TABLA#4 y #50 (edad 60+ cuenta EDAD=98)"},
+      {"tipo": "firma", "ref": "forense/firmas-pendientes.tsv:641", "comando": "csv.DictReader, id contiene 0c1f-01", "salida": "FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-01 | ACOTAR RESULT-ENDIREH2016-PF-TABLA#4 y #50 (edad 60+ …) en catálogo v1.4 con rótulo «60+ incluye EDAD=98 …» | ABIERTA"},
+      {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv:22 (R21)", "comando": "csv.DictReader, renglon=R21", "salida": "FIRMADA · «… El retiro de las quince llaves ENVIPE 2015 se propone al circuito de catálogo como PROPONER-SUSPENDER con sucesor por CALC nuevo; no se ejecuta por esta firma.»"},
+      {"tipo": "archivo", "ref": "forense/notas/2026-09-28-GEN2-PENDIENTES-3-cierre.md:16", "comando": "git grep -n CIERRE-SEMANAL-3 origin/main -- <ruta>", "salida": "Sucesores inexistentes. GEN2-CIERRE-SEMANAL-3 no tiene encargo archivado ni rama en vuelo, así que no se le asignó nada (§7 c)."}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "OTRO:CIERRE-SEMANAL-3",
+    "entorno": "NUBE",
+    "hecho_comando": "git ls-tree --name-only origin/main canon/ | rg -c 'catalogo-del-mexicano-v1_4.tsv' → 1, y un lector CSV sobre v1_4 da 15 llaves de r21 con PROPONER-SUSPENDER y 4 CESD-7 con ACOTAR; las 2 ENDIREH 60+ solo si FP 0c1f-01 está FIRMADA",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-06",
+    "verdict": "ABSORBER",
+    "rationale": "La spec humana sucesora está en main (ENIGH2020-INTENSIDAD-REMESAS-spec-v1_1.md, tolerancia abs 1e-10, R33 FIRMADA) y deja explícitamente a RELEVO-TRAMITE-CAJA-2 el spec.yaml y la corrida del CALC -0002. En main no hay ese CALC (de 8 directorios de remesas, ninguno -0002) ni el encargo. Es trabajo de caja por escribir.",
+    "cite": [
+      {"tipo": "archivo", "ref": "forense/prereg-caja/ENIGH2020-INTENSIDAD-REMESAS-spec-v1_1.md:3,10,35", "comando": "git grep -n 'RELEVO-TRAMITE-CAJA-2\\|0002' origin/main -- <ruta>", "salida": "3: Solo spec: este acto no corre el CALC. Lo corre GEN2-RELEVO-TRAMITE-CAJA-2, que además escribe el spec.yaml sucesor. · 10: Sucesor: CALC-ENIGH2020-INTENSIDAD-REMESAS-0002, con repite_de: CALC-ENIGH2020-INTENSIDAD-REMESAS-0001 … · 35: No escribe el spec.yaml ni corre el CALC."},
+      {"tipo": "comando", "ref": "data/corrida0/ (390 directorios)", "comando": "git ls-tree -d --name-only origin/main data/corrida0/ | rg -i remesa", "salida": "CALC-ENIGH2016-INTENSIDAD-REMESAS-0001 · CALC-ENIGH2016-REMESAS-CONTEXTO-0001 · CALC-ENIGH2018-INTENSIDAD-REMESAS-0001 · CALC-ENIGH2018-REMESAS-CONTEXTO-0001 · CALC-ENIGH2020-INTENSIDAD-REMESAS-0001 · CALC-ENIGH2020-REMESAS-CONTEXTO-0001 · CALC-ENIGH2022-INTENSIDAD-REMESAS-0001 · CALC-ENIGH2022-REMESAS-CONTEXTO-0001 (sin -0002)"},
+      {"tipo": "firma", "ref": "forense/firmas-pendientes.tsv:632 · decisiones-21.tsv:34 (R33)", "comando": "csv.DictReader id=FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-05", "salida": "FIRMADA · «Queda el NO-PASA formal de los dos RESULT de remesas ENIGH2020. Autorizo una spec sucesora con tolerancia absoluta 1e-10 para su próxima validación; la spec sellada no se edita.»"},
+      {"tipo": "comando", "ref": "forense/encargos", "comando": "git ls-tree -r --name-only origin/main | rg -c GEN2-RELEVO-TRAMITE-CAJA-2", "salida": "(sin salida: 0 archivos con ese nombre; 7 lo mencionan, ninguno es encargo)"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "RELEVO-TRAMITE-CAJA-2",
+    "entorno": "CAJA",
+    "hecho_comando": "test -f data/corrida0/CALC-ENIGH2020-INTENSIDAD-REMESAS-0002/sello.json && yq '.repite_de' data/corrida0/CALC-ENIGH2020-INTENSIDAD-REMESAS-0002/spec.yaml  → CALC-ENIGH2020-INTENSIDAD-REMESAS-0001; asiento en validaciones-independientes.tsv con tolerancia 1e-10",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "alta"
+  },
+  {
+    "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-01",
+    "verdict": "HOJA-DECISION",
+    "rationale": "Mesa eligió «Obedecer R08 (b)»: M12 queda sin fecha, con su HOLDOUT intacto y como DECISIÓN-DE-MESA-PENDIENTE. Redactar un encargo LOTE-2 contradiría esa firma y gastaría el HOLDOUT, lo que es irreversible (E.6, D-19). La vía está documentada (filas 24–29 del mapa) y no existe ningún CALC-ALT-M12. Solo mesa decide si lo fecha.",
+    "cite": [
+      {"tipo": "archivo", "ref": "forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md:8,11", "comando": "rg -n 'Obedecer|M12/M14' <ruta>", "salida": "8: Opciones ofrecidas: «Obedecer R08 (b) (Recommended)» — corro M05, M13 (CIDE-CSES 2015), M19, M22, M23 y R03+R08; M12/M14–M17 quedan DECISIÓN-DE-MESA-PENDIENTE en NO-CORRIDO, HOLDOUT intacto · 11: «Obedecer R08 (b) (Recommended)»"},
+      {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv:9 (R08) · firmas-pendientes FP-…-f2e5-02 FIRMADA", "comando": "csv.DictReader, renglon=R08", "salida": "FIRMADA · «Firmo A2 (b): se encargan CALC-caja descriptivos para M13 …, M22 … y M19 … Cada spec declara que consume el HOLDOUT de su momento. M12, M14, M15, M16 y M17 quedan con su vía documentada en el mapa, sin fecha.»"},
+      {"tipo": "comando", "ref": "milpa/catalogo-momentos-v0_1.tsv (M12)", "comando": "git show origin/main:milpa/catalogo-momentos-v0_1.tsv | csv.DictReader, id_momento=M12", "salida": "rol_calibracion HOLDOUT · valor_gen2 '' · calc_gen2 '' · holdout_decision 'GASTABLE-COMO-PISO (firma R01 (b), GEN2-TRAMITE-FIRMAS-21-ADENDA-1; 0 menciones en familias-2027/prereg-caja al 28/sep; RETROSPECTIVA; …'"},
+      {"tipo": "comando", "ref": "data/corrida0/ (390 dirs) y demanda-corridas.tsv (87 corridas)", "comando": "git ls-tree -d --name-only origin/main data/corrida0/ | rg -c 'CALC-ALT-M1[24567]' ; csv.DictReader sobre demanda-corridas.tsv buscando M12|M14|M15|M16|M17", "salida": "(sin salida: 0 de 9 CALC-ALT) ; 87 corridas, 0 mencionan M12/M14–M17"},
+      {"tipo": "comando", "ref": "canon/mapa-instrumentos-alternos-v1_0.tsv (64 filas)", "comando": "csv.DictReader con número de línea física; líneas 24–29", "salida": "24 M12 ENCIG 2023 CALC-CAJA · 25 M12 ENCIG 2025 CALC-CAJA · 26 M12 ENIF 2021 CALC-CAJA · 27 M12 ENIF 2024 NADA hasta que mesa confirme reserva · 28 M12 ENDUTIH 2023 CALC-CAJA · 29 M12 ENDUTIH 2024 CALC-CAJA"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "MESA · fecha para M12 bajo R08 (b) + R01 (b); HOLDOUT intacto",
+    "hoja": {
+      "situacion": "M12 (CoDi/trámite en línea: ENCIG 2023/2025, ENIF 2021, ENDUTIH 2023/2024) tiene su vía documentada en el mapa (filas 24–29), pero R08 (b) lo dejó sin fecha y su HOLDOUT sigue intacto; la NC espera que mesa decida si se gasta.",
+      "opciones": [
+        {"letra": "a", "texto": "Mantener «sin fecha» (R08 b) como estado estable: la NC se cierra con esta firma y se reabre solo si una spec o una familia 2027 pide M12.", "costo": "M12 sigue sin piso GEN2 en el catálogo de momentos."},
+        {"letra": "b", "texto": "Fecharlo: encargar los CALC-caja descriptivos de M12 en GEN2-CALC-ALTERNOS-LOTE-2 y gastar su HOLDOUT como piso RETROSPECTIVO (R01 b), con censo previo de familias 2027.", "costo": "Irreversible: el HOLDOUT de M12 se pierde para siempre (E.6). La fila de ENCIG 2025 sale del árbitro y la de ENIF 2024 m7 (R06) está RESERVADA, así que quedan fuera salvo otra firma."},
+        {"letra": "c", "texto": "Convertir M12 en familia 2027 (R01 d), con emisión sellada antes de la ola.", "costo": "Un expediente por momento y esperar a 2027; a cambio, la prueba sería PROSPECTIVA."}
+      ],
+      "recomendacion": "a",
+      "porque": "Mesa ya eligió «sin fecha» dos veces (R08 b y ADENDA-1). Ningún consumidor pide M12 (0 de 87 corridas de demanda). Conservar el HOLDOUT deja (b) y (c) disponibles, mientras que gastarlo no tiene vuelta. Una NC sin plazo real solo engorda el libro.",
+      "plazo": "2026-10-05 (MESA, del campo sucesor de la NC)",
+      "texto_firma": "«Sobre M12 (NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-01) firmo la opción (__). (a): queda sin fecha por R08 (b), con su vía documentada en canon/mapa-instrumentos-alternos-v1_0.tsv filas 24–29 y HOLDOUT intacto; la NC se cierra con esta firma. (b): se encarga en GEN2-CALC-ALTERNOS-LOTE-2 y su spec declara en COMMIT-1 que consume el HOLDOUT de M12. (c): pasa a expediente de familia 2027.»"
+    },
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-02",
+    "verdict": "HOJA-DECISION",
+    "rationale": "Es la misma situación que 795b-01, ahora para M14 (primera etapa de pensión por edad: ENIGH 2018/2020/2022, filas 36–38). R08 (b) y ADENDA-1 lo dejan sin fecha, con el HOLDOUT intacto. Gastarlo es irreversible y la parte LAPOP 2023 (fila 41) está RESERVADA. No existe CALC-ALT-M14. Decide mesa.",
+    "cite": [
+      {"tipo": "archivo", "ref": "forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md:8,11", "comando": "rg -n 'Obedecer|M12/M14' <ruta>", "salida": "M12/M14–M17 quedan DECISIÓN-DE-MESA-PENDIENTE en NO-CORRIDO, HOLDOUT intacto · respuesta de mesa: «Obedecer R08 (b) (Recommended)»"},
+      {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv:9 (R08)", "comando": "csv.DictReader, renglon=R08", "salida": "FIRMADA · «… M12, M14, M15, M16 y M17 quedan con su vía documentada en el mapa, sin fecha.»"},
+      {"tipo": "comando", "ref": "canon/mapa-instrumentos-alternos-v1_0.tsv", "comando": "csv.DictReader con línea física; líneas 36–41", "salida": "36 M14 ENIGH 2018 CALC-CAJA (discontinuidad de recepción en 65/68 años…) · 37 ENIGH 2020 CALC-CAJA · 38 ENIGH 2022 CALC-CAJA · 39 CSES M5 NADA sola · 40 LAPOP 2018/19 NADA sola · 41 LAPOP 2023 RESERVADA — NADA (ola reservada)"},
+      {"tipo": "comando", "ref": "milpa/catalogo-momentos-v0_1.tsv (M14) · data/corrida0", "comando": "csv.DictReader id_momento=M14 ; git ls-tree -d … | rg -c 'CALC-ALT-M1[24567]'", "salida": "M14 HOLDOUT · valor_gen2 '' · GASTABLE-COMO-PISO (firma R01 (b) …) ; 0 CALC-ALT de M12/M14–M17"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "MESA · fecha para M14 bajo R08 (b) + R01 (b); HOLDOUT intacto",
+    "hoja": {
+      "situacion": "M14 (pensión por edad, umbrales 65/68/70; ENIGH 2018/2020/2022, filas 36–38 del mapa) quedó sin fecha por R08 (b), con el HOLDOUT intacto; la NC espera que mesa decida si se gasta.",
+      "opciones": [
+        {"letra": "a", "texto": "Mantener «sin fecha» (R08 b) como estado estable: la NC se cierra con esta firma y se reabre si una spec o una familia 2027 pide M14.", "costo": "No hay primera etapa GEN2 de M14."},
+        {"letra": "b", "texto": "Fecharlo: CALC-caja descriptivo de M14 con ENIGH 2018/2020/2022 en GEN2-CALC-ALTERNOS-LOTE-2, gastando el HOLDOUT (R01 b).", "costo": "Irreversible (E.6). La parte LAPOP 2023 (ITT por edad) necesita además abrir una ola RESERVADA, que no entra sin firma aparte."},
+        {"letra": "c", "texto": "Convertir M14 en familia 2027 (R01 d).", "costo": "Expediente propio y espera hasta 2027."}
+      ],
+      "recomendacion": "a",
+      "porque": "Es la misma razón que en M12: mesa ya eligió «sin fecha», ningún consumidor lo pide (0 de 87 corridas) y el HOLDOUT conserva el valor de prueba. Cualquier otra opción puede firmarse después; gastarlo, en cambio, no se deshace.",
+      "plazo": "2026-10-05 (MESA, del campo sucesor de la NC)",
+      "texto_firma": "«Sobre M14 (NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-02) firmo la opción (__). (a): queda sin fecha por R08 (b), con su vía documentada en canon/mapa-instrumentos-alternos-v1_0.tsv filas 36–38 y HOLDOUT intacto; la NC se cierra con esta firma. (b): se encarga en GEN2-CALC-ALTERNOS-LOTE-2 solo con ENIGH 2018/2020/2022, y la spec declara en COMMIT-1 que consume el HOLDOUT de M14. (c): pasa a expediente de familia 2027.»"
+    },
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-03",
+    "verdict": "HOJA-DECISION",
+    "rationale": "Es la misma situación que 795b-01, ahora para M15 (protesta por DOMINIO en ENCUCI 2020, fila 42 del mapa). R08 (b) y ADENDA-1 lo dejan sin fecha, con el HOLDOUT intacto. Gastarlo es irreversible (E.6) y no existe CALC-ALT-M15. Decide mesa.",
+    "cite": [
+      {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv:9 (R08) · ADENDA-1 CALC-ALTERNOS-LOTE-1:11", "comando": "csv.DictReader renglon=R08 ; rg -n Obedecer <adenda>", "salida": "FIRMADA · «… M12, M14, M15, M16 y M17 quedan con su vía documentada en el mapa, sin fecha.» · mesa: «Obedecer R08 (b) (Recommended)»"},
+      {"tipo": "comando", "ref": "canon/mapa-instrumentos-alternos-v1_0.tsv", "comando": "csv.DictReader con línea física; líneas 42–43", "salida": "42 M15 ENCUCI 2020 AP7_3_5, AP7_4_5 (protesta) CALC-CAJA (protesta por DOMINIO, rotulado persona, no caso) · 43 M15 LAPOP 2018/19 PROT3 NADA (ya usado en 2019 por MAESTRA38-CARGA-LAPOP: se cita)"},
+      {"tipo": "comando", "ref": "milpa/catalogo-momentos-v0_1.tsv (M15) · data/corrida0", "comando": "csv.DictReader id_momento=M15 ; git ls-tree -d … | rg -c 'CALC-ALT-M1[24567]'", "salida": "M15 HOLDOUT · reserva 'Dos objetos explícitos bajo una necesidad' · valor_gen2 '' · GASTABLE-COMO-PISO (firma R01 (b) …) ; 0 CALC-ALT"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "MESA · fecha para M15 bajo R08 (b) + R01 (b); HOLDOUT intacto",
+    "hoja": {
+      "situacion": "M15 (protesta por DOMINIO, ENCUCI 2020, fila 42 del mapa) quedó sin fecha por R08 (b), con el HOLDOUT intacto.",
+      "opciones": [
+        {"letra": "a", "texto": "Mantener «sin fecha» (R08 b) como estado estable y cerrar la NC con esta firma.", "costo": "M15 sigue sin piso GEN2."},
+        {"letra": "b", "texto": "Fecharlo: CALC-caja descriptivo ENCUCI 2020 en GEN2-CALC-ALTERNOS-LOTE-2, gastando el HOLDOUT (R01 b).", "costo": "Irreversible (E.6): se pierde la prueba de M15."},
+        {"letra": "c", "texto": "Convertir M15 en familia 2027 (R01 d).", "costo": "Expediente propio y espera hasta 2027."}
+      ],
+      "recomendacion": "a",
+      "porque": "Mesa ya eligió «sin fecha» (R08 b y ADENDA-1) y ningún consumidor lo pide (0 de 87 corridas). Conservar el HOLDOUT es lo reversible.",
+      "plazo": "2026-10-05 (MESA, del campo sucesor de la NC)",
+      "texto_firma": "«Sobre M15 (NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-03) firmo la opción (__). (a): queda sin fecha por R08 (b), con su vía documentada en canon/mapa-instrumentos-alternos-v1_0.tsv fila 42 y HOLDOUT intacto; la NC se cierra con esta firma. (b): se encarga en GEN2-CALC-ALTERNOS-LOTE-2 y la spec declara en COMMIT-1 que consume el HOLDOUT de M15. (c): pasa a expediente de familia 2027.»"
+    },
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-04",
+    "verdict": "HOJA-DECISION",
+    "rationale": "Es la misma situación que 795b-01, ahora para M16 (acciones conjuntas y armas por tamaño de localidad, ENVIPE 2025, fila 44). R08 (b) y ADENDA-1 lo dejan sin fecha, con el HOLDOUT intacto. Además, el LOTE-1 trató ENVIPE 2025 fuera de su árbitro como reservada (PARO a). Gastar el HOLDOUT y abrir esa columna es irreversible; decide mesa.",
+    "cite": [
+      {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv:9 (R08) · ADENDA-1 CALC-ALTERNOS-LOTE-1:11", "comando": "csv.DictReader renglon=R08 ; rg -n Obedecer <adenda>", "salida": "FIRMADA · «… M12, M14, M15, M16 y M17 quedan con su vía documentada en el mapa, sin fecha.» · mesa: «Obedecer R08 (b) (Recommended)»"},
+      {"tipo": "comando", "ref": "canon/mapa-instrumentos-alternos-v1_0.tsv", "comando": "csv.DictReader con línea física; líneas 44–47", "salida": "44 M16 ENVIPE 2025 AP4_11_05 (vigilancia privada…) ABIERTA (canon/MEMORIA-OPERA…) CALC-CAJA (acciones conjuntas y armas por tamaño de localidad) · 45 ENVIPE 2026 RESERVADA · 46 LAPOP 2023 RESERVADA · 47 ENCUCI 2020 NADA"},
+      {"tipo": "archivo", "ref": "forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1.md:9,31", "comando": "sed -n '9p;31p' <ruta>", "salida": "9: … M15/M16/M17/M19/M22 ENCUCI 2020 y ENVIPE 2024/2025 (2025 solo lo que su árbitro abrió) … · 31: a) abrir ola reservada (CSES M5, ENDUTIH 2025, ENIF 2024 m7, ENCODAT 2025, ENVIPE 2025 fuera del árbitro) …"},
+      {"tipo": "comando", "ref": "milpa/catalogo-momentos-v0_1.tsv (M16)", "comando": "csv.DictReader id_momento=M16", "salida": "M16 HOLDOUT · valor_gen2 '' · GASTABLE-COMO-PISO (firma R01 (b) …)"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "MESA · fecha para M16 bajo R08 (b) + R01 (b); HOLDOUT intacto; ENVIPE 2025 fuera del árbitro",
+    "hoja": {
+      "situacion": "M16 (ENVIPE 2025 AP4_11_05, fila 44 del mapa) quedó sin fecha por R08 (b), con el HOLDOUT intacto. Además, esa variable está fuera de lo que el árbitro de ENVIPE 2025 abrió.",
+      "opciones": [
+        {"letra": "a", "texto": "Mantener «sin fecha» (R08 b) como estado estable y cerrar la NC con esta firma.", "costo": "M16 sigue sin piso GEN2."},
+        {"letra": "b", "texto": "Fecharlo: CALC-caja descriptivo de ENVIPE 2025 AP4_11_05 en GEN2-CALC-ALTERNOS-LOTE-2, gastando el HOLDOUT (R01 b) y abriendo esa columna fuera del árbitro por firma expresa.", "costo": "Doblemente irreversible: se pierde el HOLDOUT (E.6) y se abre una columna de ENVIPE 2025 que ningún CALC sellado había abierto."},
+        {"letra": "c", "texto": "Convertir M16 en familia 2027 (R01 d), eventualmente con ENVIPE 2026 como R prospectiva.", "costo": "Expediente propio y espera a la ola 2026, que hoy está RESERVADA."}
+      ],
+      "recomendacion": "a",
+      "porque": "Mesa ya eligió «sin fecha» y ningún consumidor lo pide (0 de 87 corridas). La opción (b) cuesta dos aperturas irreversibles; (c) sigue disponible si se conserva el HOLDOUT.",
+      "plazo": "2026-10-05 (MESA, del campo sucesor de la NC)",
+      "texto_firma": "«Sobre M16 (NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-04) firmo la opción (__). (a): queda sin fecha por R08 (b), con su vía documentada en canon/mapa-instrumentos-alternos-v1_0.tsv fila 44 y HOLDOUT intacto; la NC se cierra con esta firma. (b): se encarga en GEN2-CALC-ALTERNOS-LOTE-2, autorizo abrir ENVIPE 2025 AP4_11_05 fuera del árbitro, y la spec declara en COMMIT-1 que consume el HOLDOUT de M16. (c): pasa a expediente de familia 2027.»"
+    },
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-05",
+    "verdict": "HOJA-DECISION",
+    "rationale": "Es la misma situación que 795b-01, ahora para M17 (participación vecinal por DOMINIO en ENCUCI 2020, fila 48 del mapa). R08 (b) y ADENDA-1 lo dejan sin fecha, con el HOLDOUT intacto. Gastarlo es irreversible (E.6) y no existe CALC-ALT-M17. Decide mesa.",
+    "cite": [
+      {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv:9 (R08) · ADENDA-1 CALC-ALTERNOS-LOTE-1:11", "comando": "csv.DictReader renglon=R08 ; rg -n Obedecer <adenda>", "salida": "FIRMADA · «… M12, M14, M15, M16 y M17 quedan con su vía documentada en el mapa, sin fecha.» · mesa: «Obedecer R08 (b) (Recommended)»"},
+      {"tipo": "comando", "ref": "canon/mapa-instrumentos-alternos-v1_0.tsv", "comando": "csv.DictReader con línea física; línea 48", "salida": "48 M17 ENCUCI 2020 AP6_2_12; AP6_3_12; AP7_1; … CALC-CAJA (participación vecinal por DOMINIO, descriptivo; …)"},
+      {"tipo": "comando", "ref": "milpa/catalogo-momentos-v0_1.tsv (M17) · forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md:17", "comando": "csv.DictReader id_momento=M17 ; rg -n 'Sin fecha por firma' <nota>", "salida": "M17 HOLDOUT · valor_gen2 '' · GASTABLE-COMO-PISO (firma R01 (b) …) ; 17: Sin fecha por firma R08 (b) + ADENDA-1 | 24, 25, 26, 28, 29 (M12) · 36, 37, 38 (M14) · 42 (M15) · 44 (M16) · 48 (M17) | 11"}
+    ],
+    "cerrado_por_detalle": "",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "MESA · fecha para M17 bajo R08 (b) + R01 (b); HOLDOUT intacto",
+    "hoja": {
+      "situacion": "M17 (participación vecinal por DOMINIO, ENCUCI 2020, fila 48 del mapa) quedó sin fecha por R08 (b), con el HOLDOUT intacto.",
+      "opciones": [
+        {"letra": "a", "texto": "Mantener «sin fecha» (R08 b) como estado estable y cerrar la NC con esta firma.", "costo": "M17 sigue sin piso GEN2."},
+        {"letra": "b", "texto": "Fecharlo: CALC-caja descriptivo ENCUCI 2020 en GEN2-CALC-ALTERNOS-LOTE-2, gastando el HOLDOUT (R01 b).", "costo": "Irreversible (E.6): se pierde la prueba de M17."},
+        {"letra": "c", "texto": "Convertir M17 en familia 2027 (R01 d).", "costo": "Expediente propio y espera hasta 2027."}
+      ],
+      "recomendacion": "a",
+      "porque": "Mesa ya eligió «sin fecha» (R08 b y ADENDA-1) y ningún consumidor lo pide (0 de 87 corridas). Conservar el HOLDOUT es lo reversible.",
+      "plazo": "2026-10-05 (MESA, del campo sucesor de la NC)",
+      "texto_firma": "«Sobre M17 (NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-05) firmo la opción (__). (a): queda sin fecha por R08 (b), con su vía documentada en canon/mapa-instrumentos-alternos-v1_0.tsv fila 48 y HOLDOUT intacto; la NC se cierra con esta firma. (b): se encarga en GEN2-CALC-ALTERNOS-LOTE-2 y la spec declara en COMMIT-1 que consume el HOLDOUT de M17. (c): pasa a expediente de familia 2027.»"
+    },
+    "confianza": "media"
+  },
+  {
+    "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-06",
+    "verdict": "CERRAR-FIRMA",
+    "rationale": "La fila pide abrir CSES Módulo 5 para el par 2018 de M13. R04 firmó CSES M5 como RESERVADA: solo la abre el código congelado de una prueba pre-registrada, no un CALC descriptivo de LOTE-2. R08 (b) asignó M13 a CIDE-CSES 2015, ya sellado. El encargo LOTE-1 decía «M13 CSES M5 no». La firma resuelve esta pregunta.",
+    "cite": [
+      {"tipo": "firma", "ref": "forense/encargos/2026-09-28-GEN2-TRAMITE-FIRMAS-21-ADENDA-1.md:11 · decisiones-21.tsv:5 (R04)", "comando": "git show origin/main:<adenda> | rg -n 'R04 CSES' ; csv.DictReader renglon=R04", "salida": "11: … R04 CSES Módulo 5: **RESERVADA**. … · R04 opción RESERVADA: «solo la abre el código congelado de una prueba pre-registrada. Cuesta: los CALC descriptivos que la usan esperan a un pre-registro» · estado FIRMADA · VIAJA-EN GEN2-CALC-ALTERNOS-LOTE-1"},
+      {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv:9 (R08)", "comando": "csv.DictReader renglon=R08", "salida": "FIRMADA · «Firmo A2 (b): se encargan CALC-caja descriptivos para M13 (CIDE-CSES 2015 con clasificador de concurrencia del calendario INE), M22 … y M19 …»"},
+      {"tipo": "archivo", "ref": "forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1.md:9", "comando": "sed -n '9p' <ruta>", "salida": "… **M13** CSES M5 **no** (reservada: usar CIDE-CSES 2015 con clasificador, como dice A2 (b)) …"},
+      {"tipo": "comando", "ref": "data/manifiesto.yaml id=cses5_modulo5_2016_2021_csv", "comando": "git show origin/main:data/manifiesto.yaml | yq '.[] | select(.id==\"cses5_modulo5_2016_2021_csv\") | {id, estado_reserva}'", "salida": "{\"id\": \"cses5_modulo5_2016_2021_csv\", \"estado_reserva\": \"RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR\"}"},
+      {"tipo": "comando", "ref": "data/corrida0/CALC-ALT-M13-CIDECSES2015-0001", "comando": "git ls-tree --name-only origin/main data/corrida0/CALC-ALT-M13-CIDECSES2015-0001/", "salida": "ejecucion.json · medidor.py · resultados.json · sello.json · sello.sha256 · spec.yaml · tablas"},
+      {"tipo": "archivo", "ref": "forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md:16", "comando": "rg -n 'Diferido por reserva' <nota>", "salida": "16: | Diferido por reserva | 33 (CSES Módulo 5, R04 RESERVADA) · 57 (ENVIPE 2025 AP5_4_*, fuera del árbitro …) | 2 |"}
+    ],
+    "cerrado_por_detalle": "firma: R04 CSES Módulo 5 RESERVADA (TRAMITE-FIRMAS-21-ADENDA-1 L11; decisiones-21.tsv R04) + R08 (b) M13 por CIDE-CSES 2015 · CALC-ALT-M13-CIDECSES2015-0001 sellado · solo una prueba pre-registrada con código congelado abre CSES M5",
+    "lote": "",
+    "entorno": "",
+    "hecho_comando": "",
+    "owner_detalle": "",
+    "hoja": {},
+    "confianza": "media"
+  }
+]

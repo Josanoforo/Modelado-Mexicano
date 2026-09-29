@@ -1,0 +1,16 @@
+[
+  {
+    "id": "NC-0353",
+    "veredicto": "CONFIRMA",
+    "razon": "Reproduce: sha256 del ENCARGO.md en origin/main (7312797c) = fc28eee3…70ca = spec.yaml:69 hash_encargo_sha256; líneas 1 y 7 del encargo citan el CALC. Búsqueda del hash sobre .md/.txt de origin/main: 1 coincidencia única (universo hoy 3872, no 3868: main se movió; hecho idéntico).",
+    "comando": "git show origin/main:forense/analisis/encuci2020-exposicion-respuesta-cli-1/ENCARGO.md | sha256sum ; git show origin/main:data/corrida0/CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001/spec.yaml | grep -n hash_encargo_sha256 ; git ls-tree -r --name-only origin/main | rg '\\.(md|txt)$' | (sha por archivo) | rg fc28eee37de78d20",
+    "salida": "fc28eee37de78d200f4da84b101ff9085505ee4bf9a2a5cdc273814de20470ca  - | 69:  hash_encargo_sha256: fc28eee37de78d200f4da84b101ff9085505ee4bf9a2a5cdc273814de20470ca | 3872 archivos .md/.txt; 1 coincidencia: forense/analisis/encuci2020-exposicion-respuesta-cli-1/ENCARGO.md"
+  },
+  {
+    "id": "NC-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-04",
+    "veredicto": "CONFIRMA",
+    "razon": "Reproduce vía API GitHub (MCP; gh no instalado): run 36303400958 push main head_sha 1c7b840a (merge #1213, primer first-parent que contiene e21f9afa cierre del acto), conclusion success; jobs suite (paso 5 check.py --baseline --parallel) y check = success; verify.yml:92-93 coincide.",
+    "comando": "for c in $(git rev-list origin/main --first-parent); do git merge-base --is-ancestor e21f9afa $c && last=$c || break; done; git log -1 $last ; MCP actions_get get_workflow_run 36303400958 ; actions_list list_workflow_jobs 36303400958 ; git show 1c7b840a:.github/workflows/verify.yml | sed -n '92,93p'",
+    "salida": "1c7b840a Merge pull request #1213 … | run 3977 event=push status=completed conclusion=success head_sha=1c7b840a285d… | suite=success (paso 'Suite de verificación (modo línea base…)' success 07:32:34→07:37:19) · check=success | 93: run: time python3 tests/check.py --baseline --parallel"
+  }
+]

@@ -1,0 +1,44 @@
+[
+ {
+  "id": "NC-0289",
+  "veredicto": "CONFIRMA",
+  "razon": "Las seis citas reproducen: corrida0.py:5538 resta _cerrados, _reduccion_por_dictamen en :1357, test en :69, 211/53/158 recalculado con lector CSV, #1294 en main, tablero 211=211, f18c-04 ABIERTA. Nota: NC-0289 ya figura CERRADA (29/09) en origin/main local.",
+  "comando": "git show origin/main:tools/corrida0.py | rg -n '\"N_resultados_pendientes\"'; lector CSV resultados.tsv + demanda-dictamen",
+  "salida": "5538: ... - _cerrados ; pendientes 211 cerrados 53 N 158 ; tablero activos `211` pendientes `211`"
+ },
+ {
+  "id": "NC-0307",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproduce: extrae_l_v1_3.py:104-108 exclusion por incertidumbre, Regla 6 en v2_17:41, MEMORIA:10, marcador 22 filas (9/8/5), hallazgos.md:876 C3 10.6394, 0 coincidencias en 14 specs FAMILIA-2027 (rg -c sin salida = 0).",
+  "comando": "git show origin/main:gobierno/PEGAR-EN-PROYECTO-v2_17.md | rg -n 'Regla 6'; Counter marcador-segmento; rg -c en 14 specs",
+  "salida": "41:- Regla 6: sin retadores... ; 22 {RESERVADA/EMITIDA-SIN-R:9, ADOPTADO-POR-FIRMA/PROSPECTIVA:8, SIN-EMISION:5}; 14 archivos, 0"
+ },
+ {
+  "id": "NC-0352",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproduce exacto: sha256 f2c0cd8f...6d26, 7067 B, 1 mencion del CALC, linea 7 nombra CALC, indice-juego:1317 y SHA256SUMS:1316 con mismo sha, alta en bf5fc5e7 (PR #1196, 27/09).",
+  "comando": "git show origin/main:$F | sha256sum; wc -c; git grep -n f2c0cd8f... origin/main",
+  "salida": "f2c0cd8f9f09890826944e22800ff961310659afd46d42e16d751ca1696f6d26 · 7067 · 1; bf5fc5e7 2026-09-27 Merge PR #1196"
+ },
+ {
+  "id": "NC-0448",
+  "veredicto": "REFUTA",
+  "razon": "Las cifras reproducen (53 reglas; 24 RE-MEDIDA/40; 6 CALC SELLADA REPRODUCE), pero la conclusion no: 16 reglas (12 FUERA-DE-ALCANCE, 3 SIN-PAYLOAD, 1 SUSTITUIDO) no se re-midieron y la CALC 3D ENIF2024 sigue hasheando el yaml legacy (spec.yaml:38-43): el impacto de la NC persiste.",
+  "comando": "Counter(destino) clasificacion-v1_0.tsv; git show origin/main:data/corrida0/CALC-C2-COMPUESTO-IC-ENIF2024-0001/spec.yaml | sed -n 38,43p",
+  "salida": "RE-MEDIDA 24, FUERA 12, SIN-PAYLOAD 3, SUSTITUIDO 1; IN-ARBITRO-MARGINALES ruta milpa/tramite-ola5-propuesta-v0.yaml sha256 93dfa3f9..."
+ },
+ {
+  "id": "NC-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-05",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproduce: los 14 ids con sha; 10 COINCIDE en verifica-2026-09-21.txt (id real mociba_2022_mociba2022_bd_csv), 4 COINCIDE en p3-verifica-enco/mociba; shas del manifiesto iguales 14/14 entre bf5fc5e7 y origin/main (7035 vs 7198). fa42-03 ABIERTA.",
+  "comando": "git show origin/main:forense/analisis/corpus-integridad-1/verifica-2026-09-21.txt | rg -F '<id> ['; yaml manifiesto bf5fc5e7 vs origin/main",
+  "salida": "COINCIDE por id (10/10); p3 enco COINCIDE=4, mociba COINCIDE 2/2; IGUAL 14 de 14"
+ },
+ {
+  "id": "NC-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01",
+  "veredicto": "CONFIRMA",
+  "razon": "Reproduce: FP FIRMADA, R17 opcion (2) con texto de firma, c6e273ea ancestro de main, 32 archivos en corpus/reports-v2, tres reports con bloque [v2.16] y Firewall genetico (con rg -i; el comando citado sin -i solo da l.105/102/87), 9 reglas PROPUESTA de #1240.",
+  "comando": "git merge-base --is-ancestor c6e273ea origin/main; git show origin/main:<report> | rg -n -i 'firewall gen|\\[v2\\.16\\]'",
+  "salida": "ANCESTRO; Autoridad 105,113; Rural 102,110; Civismo 87,95; #1240: 3+3+3 PROPUESTA; 107 total PROPUESTA"
+ }
+]

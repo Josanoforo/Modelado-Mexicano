@@ -1,0 +1,44 @@
+[
+ {
+  "id": "NC-0289",
+  "veredicto": "CONFIRMA",
+  "razon": "El defecto (contador sin transición de salida) está corregido en origin/main: status resta cierres por dictamen; reproduzco 211 pendientes, 53 cerrados, N=158. La fila pedía acreditar que no se movía; ahora se mueve. Nota: origin/main ya la marca CERRADA (TUBERIA-TABLERO-INSUMOS-1); cierre duplicado, no erróneo.",
+  "comando": "git show origin/main:tools/corrida0.py | rg -n '\"N_resultados_pendientes\"'; script csv resultados.tsv + demanda-dictamen-v1_0.tsv",
+  "salida": "5538: \"N_resultados_pendientes\": sum(...PENDIENTE) - _cerrados · pendientes 211 cerrados 53 N 158 dictamen rows 341"
+ },
+ {
+  "id": "NC-0307",
+  "veredicto": "REFUTA",
+  "razon": "Regla 6 vive en v2_17 (aún sin pegar; v2.16 vigente, sin regla 6) y en MEMORIA, y permite expresamente evaluar en retrospectiva cruces vistos: no retira la medición del intervalo. El cierre por diseño es preferencia; la delegación recomendaba encargar.",
+  "comando": "git show origin/main:gobierno/instrucciones-proyecto-v2_16.md | rg -c 'Regla 6|olas ya vistas'; rg v2_17 pendiente-de-pegado",
+  "salida": "v2.16: 0 coincidencias de Regla 6 (solo 'retadores' en l.39-40,112). v2_17: 'hasta entonces v2.16 sigue vigente'; carpeta gobierno/pendiente-de-pegado contiene v2_17"
+ },
+ {
+  "id": "NC-0352",
+  "veredicto": "CONFIRMA",
+  "razon": "El archivo ENCARGO-...-2026-09-19.md existe en main, nombra el CALC y su sha256 f2c0cd8f coincide byte a byte (7067 B) con la copia independiente de mesa descargas_mx/03-ISSP-REDES-DE-APOYO.md censada el 21/sep. Es exactamente la cita con sha que la fila pedía.",
+  "comando": "git show origin/main:$F | sha256sum; git grep -n f2c0cd8f... origin/main",
+  "salida": "f2c0cd8f9f09890826944e22800ff961310659afd46d42e16d751ca1696f6d26 · indice-juego-2026-09-21.tsv:1317 descargas_mx 03-ISSP-REDES-DE-APOYO.md 7067 f2c0cd8f…"
+ },
+ {
+  "id": "NC-0448",
+  "veredicto": "REFUTA",
+  "razon": "El árbitro sí se re-midió (6 CALC), pero la fila y su impacto son que las 4 celdas 3D siguen apoyadas en el YAML legacy. Los 4 spec.yaml aún hashean milpa/tramite-ola5-propuesta-v0.yaml; PENDIENTES-CAJA-1 dejó ese consumo como adopción DE-MESA. Además 12 FUERA-DE-ALCANCE y 3 SIN-PAYLOAD.",
+  "comando": "git show origin/main:data/corrida0/CALC-C2-COMPUESTO-IC-ENIF2024-0001/spec.yaml | rg -n IN-ARBITRO; rg NC-0448 PENDIENTES-CAJA-1-verificacion.tsv",
+  "salida": "IN-ARBITRO-MARGINALES origen repo ruta milpa/tramite-ola5-propuesta-v0.yaml sha 93dfa3f9…; NC-0448 … 'que las 4 celdas de 3D lo consuman en vez del legacy es adopcion' DE-MESA"
+ },
+ {
+  "id": "NC-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-05",
+  "veredicto": "CONFIRMA",
+  "razon": "Los ids F6 con payload (16 candidatos, cualquier conteo de 14) quedan COINCIDE contra payload en caja: 10 en verifica-2026-09-21 (tamaños = manifiesto), 2 ENCO reservadas y 2 PDF MOCIBA en PISOS-Y-ADENDAS-1. Residuo de la herramienta es fa42-03, otro objeto.",
+  "comando": "rg -F '<id> [' verifica-2026-09-21.txt (16 ids); p3-verifica-enco.txt; p3-verifica-mociba.txt",
+  "salida": "10 COINCIDE (+2 FUERA_DE_PERIMETRO, +2 AUSENTE luego resueltos); p3: enco COINCIDE=4 archivos_examinados=4; mociba PDF COINCIDE 2/2; fa42-03 ABIERTA"
+ },
+ {
+  "id": "NC-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01",
+  "veredicto": "REFUTA",
+  "razon": "La firma R17 recibe reglas 'como propuesta PARA REVISIÓN INDEPENDIENTE'; esa revisión, que la fila lista como no corrida, sigue pendiente y ninguna otra NC/FP la lleva. La condición editorial C3 sí está cumplida, pero cerrar afirmando que 'la firma no la pide' contradice su texto.",
+  "comando": "decisiones-21.tsv R17 texto_de_firma; git grep -i 'revisión independiente' origin/main -- no-corrido.tsv firmas-pendientes.tsv",
+  "salida": "«…como propuesta para revisión independiente, sin adopción… condicionado a que una pasada editorial C3 añada firewall…»; grep en no-corrido/firmas: ninguna otra fila para la revisión"
+ }
+]

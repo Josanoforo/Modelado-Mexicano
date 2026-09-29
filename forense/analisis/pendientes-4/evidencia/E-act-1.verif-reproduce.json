@@ -1,0 +1,30 @@
+[
+  {
+    "id": "NC-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01",
+    "veredicto": "NO-REPRODUCE",
+    "razon": "Firma R17 FIRMADA, ancestro c6e273ea y rg 2/1 en los tres reports reproducen. Pero la cita del Counter de reglas-propuestas declara autoridad 7/comunalidad 3/rural 3 y no reproduce: hay 107 filas pero Autoridad 3, Psicologia politica 3, Mexico rural 3; no existe 'comunalidad'. Cifra tecleada.",
+    "comando": "git show origin/main:forense/analisis/reports-v2/reglas-propuestas-v1_0.tsv | csv.DictReader; Counter((report,estado))",
+    "salida": "107 filas; ('Autoridad','PROPUESTA'):3, ('Psicologia politica','PROPUESTA'):3, ('México rural','PROPUESTA'):3; sin clave 'comunalidad' ni 'autoridad':7"
+  },
+  {
+    "id": "NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-2-e0db-05",
+    "veredicto": "CONFIRMA",
+    "razon": "e760-06 (RES-0171..0175) y e760-07 (RES-0211) siguen ABIERTA en origin/main; tabla-consumidores lista las mismas 6 celdas_D LEGACY-GEN1; consulta.py da las seis tipo=celda_D n_usos=1; precedente 72d9-04 CERRADA por duplicada con las mismas 6.",
+    "comando": "csv.DictReader git show origin/main:forense/no-corrido.tsv (e760-06, e760-07, 72d9-04); python3 tools/consulta.py result RES-0171..0175,0211",
+    "salida": "e760-06 ABIERTA (5 lecturas); e760-07 ABIERTA (RES-0211); 72d9-04 CERRADA duplicada; RES-017x/0211 tipo=celda_D n_usos=1 valor=PENDIENTE"
+  },
+  {
+    "id": "NC-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-04",
+    "veredicto": "CONFIRMA",
+    "razon": "sin-licencia-base.tsv: 598 filas, 554 con licencia vacia, 4 za6980 en www.gesis.org (vacias). NC 1997-01 ABIERTA con sucesor LICENCIAS-2; FP 8560-02 (R50 opcion (a)) FIRMADA. Etiqueta 'no-declarada 44' es laxa (son 44 no vacias), sin efecto en el hecho.",
+    "comando": "git show origin/main:forense/analisis/corpus-licencias-1/sin-licencia-base.tsv | csv.DictReader; Counter(licencia_actual==''); rg -ci za6980",
+    "salida": "598 filas; vacias=554; za6980=4 (gesis); NC 1997-01 ABIERTA; FP 8560-02 FIRMADA 'opción (a)'"
+  },
+  {
+    "id": "NC-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-05",
+    "veredicto": "CONFIRMA",
+    "razon": "verifica-2026-09-21.txt da COINCIDE para los 10 ids no reservados y FUERA_DE_PERIMETRO en reserva_respondentes; sha del manifiesto igual en bf5fc5e7 y origin/main (10/10). Salvedad: el id 'mociba_2022_bd_csv' citado no existe; es mociba_2022_mociba2022_bd_csv. Corregir la cita.",
+    "comando": "git show origin/main:forense/analisis/corpus-integridad-1/verifica-2026-09-21.txt | rg -F -e '<id> [' ...; comparar sha256 manifiesto bf5fc5e7 vs origin/main",
+    "salida": "9 ids COINCIDE por nombre citado + mociba_2022_mociba2022_bd_csv COINCIDE; data_raw coincide=1286 ausente=2; descargas_mx coincide=335; reserva fuera=4; sha 10/10 IGUAL"
+  }
+]

@@ -1,0 +1,452 @@
+[
+ {
+  "id": "NC-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01",
+  "verdict": "CANAL",
+  "rationale": "TUBERIA-3 (#1294) está fusionado y no registró estos CALC: dueño EN-CURSO vencido (A.17). Los dos CALC están sellados, con asiento REPRODUCE/IDENTICO y en el lote pendiente (posiciones 81–82 de 113); ausentes de corridas.tsv en main. Sólo falta que el canal [deriva] publique la vista.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "9d2550b9 (#1294, GEN2-TUBERIA-3)",
+    "comando": "git log origin/main --first-parent --oneline | rg -n 'TUBERIA-3|1294' ; ls forense/notas | rg -i tuberia-3",
+    "salida": "3:9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu · nota-2026-09-28-gen2-tuberia-3-cierre.md (P1–P5; no nombra ninguna de estas NC; deja abierta f18c-01 por el auto-merge del [deriva])"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv (origin/main)",
+    "comando": "for c in CALC-ENSU-PISOS-0001 CALC-ENSU-SERIE-0001; do python3 tools/consulta.py corrida $c; done",
+    "salida": "NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357 / NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/lote_desde_asientos.py",
+    "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes | rg -n 'CALC-ENSU-PISOS-0001|CALC-ENSU-SERIE-0001'",
+    "salida": "81:CALC-ENSU-PISOS-0001 · 82:CALC-ENSU-SERIE-0001 · stderr: «asientos nuevos examinados: 113 · lote: 113 · descartados: 0» (árbol de trabajo; corridas.tsv, resultados.tsv, usos.tsv y replay-evidencia.tsv idénticos a origin/main: git diff --stat origin/main HEAD -- esas rutas → vacío)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/replay-evidencia.tsv",
+    "comando": "csv.DictReader sobre git show origin/main:forense/replay-evidencia.tsv, calc_id exacto",
+    "salida": "374 filas · CALC-ENSU-PISOS-0001 1 asiento REPRODUCE/IDENTICO · CALC-ENSU-SERIE-0001 1 asiento REPRODUCE/IDENTICO"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/derivados/auto-36495085433 (rama del #1309)",
+    "comando": "python3 (csv.DictReader) sobre git show origin/derivados/auto-36495085433:data/corrida0/corridas.tsv, cruzando spec_id con la salida de lote_desde_asientos",
+    "salida": "pend 113 · en rama deriva 40 · posiciones min/max 1 40 · en main 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "GitHub API · PR #1309 y #1315",
+    "comando": "curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/issues/1309/comments ; curl -sS .../pulls/1315/commits",
+    "salida": "#1309: 2026-09-29T00:03:17Z github-actions[bot] «Superado por …/pull/1315: el job derivados re-deriva desde el main vigente…» (closed, merged_at None). #1315 (abierto): «[deriva] trozo 1 tras 4a0d94aab: 20 CALC, quedan 93» · «[deriva] trozo 2 tras 4a0d94aab: 20 CALC, quedan 73»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-TUBERIA-3-f18c-01",
+    "comando": "python3 tsv.py forense/firmas-pendientes.tsv id TUBERIA-3 (csv.DictReader sobre git show origin/main:…)",
+    "salida": "FP-260928-GEN2-TUBERIA-3-f18c-01 · «P4 · el [deriva] no se fusiona solo: (a) automerge-rutinas.yml gana schedule…» · estado=ABIERTA · gatea NC-260928-GEN2-TUBERIA-3-f18c-01 (abierta) y -04"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "python3 tools/consulta.py corrida CALC-ENSU-SERIE-0001 && python3 tools/consulta.py corrida CALC-ENSU-PISOS-0001  # ninguna dice NO-ENCONTRADO",
+  "owner_detalle": "vista corridas.tsv/resultados.tsv · CALC CALC-ENSU-PISOS-0001, CALC-ENSU-SERIE-0001 · canal [deriva]: el PR vivo hoy es #1315 (derivados/auto-36500584875; #1309 fue cerrado como superado) y sólo trae las posiciones 1–40 de 113 pendientes; el drenaje hasta la posición 82 depende de que mesa fusione [deriva] sucesivos o decida FP-260928-GEN2-TUBERIA-3-f18c-01 (ABIERTA) · verifica: python3 tools/consulta.py corrida CALC-ENSU-SERIE-0001 && python3 tools/consulta.py corrida CALC-ENSU-PISOS-0001  # ninguna dice NO-ENCONTRADO",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260927-GEN2-RECIBO-ASTRA6-2-627e-12",
+  "verdict": "CANAL",
+  "rationale": "Dueño EN-CURSO vencido: TUBERIA-3 fusionado (#1294) sin registrar el CALC. CALC-WVS-PISOS-2018-0001 está sellado (sello COINCIDE), con asiento REPRODUCE/IDENTICO, en la posición 69 del lote pendiente; consulta.py result sigue en NO-ENCONTRADO. No falta ningún acto: sólo que el canal publique.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "9d2550b9 (#1294, GEN2-TUBERIA-3)",
+    "comando": "git log origin/main --first-parent --oneline | rg -n 'TUBERIA-3|1294' ; ls forense/notas | rg -i tuberia-3",
+    "salida": "3:9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu · nota-2026-09-28-gen2-tuberia-3-cierre.md (P1–P5; no nombra ninguna de estas NC; deja abierta f18c-01 por el auto-merge del [deriva])"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv (origin/main)",
+    "comando": "for c in CALC-WVS-PISOS-2018-0001; do python3 tools/consulta.py corrida $c; done",
+    "salida": "NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/lote_desde_asientos.py",
+    "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes | rg -n 'CALC-WVS-PISOS-2018-0001'",
+    "salida": "69:CALC-WVS-PISOS-2018-0001 · stderr: «asientos nuevos examinados: 113 · lote: 113 · descartados: 0» (árbol de trabajo; corridas.tsv, resultados.tsv, usos.tsv y replay-evidencia.tsv idénticos a origin/main: git diff --stat origin/main HEAD -- esas rutas → vacío)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/resultados.tsv",
+    "comando": "R=$(git show origin/main:data/corrida0/CALC-WVS-PISOS-2018-0001/resultados.json | jq -r '.resultados|keys[0]'); python3 tools/consulta.py result $R",
+    "salida": "RESULT-WVS-PISOS-2018-ASISTE-SERVICIO-MENSUAL-2018-EDAD-18-29-EE → NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=66313 (el CALC declara 3049 resultados)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/replay-evidencia.tsv",
+    "comando": "csv.DictReader sobre git show origin/main:forense/replay-evidencia.tsv",
+    "salida": "CALC-WVS-PISOS-2018-0001 1 asiento REPRODUCE/IDENTICO"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/derivados/auto-36495085433 (rama del #1309)",
+    "comando": "python3 (csv.DictReader) sobre git show origin/derivados/auto-36495085433:data/corrida0/corridas.tsv, cruzando spec_id con la salida de lote_desde_asientos",
+    "salida": "pend 113 · en rama deriva 40 · posiciones min/max 1 40 · en main 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "GitHub API · PR #1309 y #1315",
+    "comando": "curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/issues/1309/comments ; curl -sS .../pulls/1315/commits",
+    "salida": "#1309: 2026-09-29T00:03:17Z github-actions[bot] «Superado por …/pull/1315: el job derivados re-deriva desde el main vigente…» (closed, merged_at None). #1315 (abierto): «[deriva] trozo 1 tras 4a0d94aab: 20 CALC, quedan 93» · «[deriva] trozo 2 tras 4a0d94aab: 20 CALC, quedan 73»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-TUBERIA-3-f18c-01",
+    "comando": "python3 tsv.py forense/firmas-pendientes.tsv id TUBERIA-3 (csv.DictReader sobre git show origin/main:…)",
+    "salida": "FP-260928-GEN2-TUBERIA-3-f18c-01 · «P4 · el [deriva] no se fusiona solo: (a) automerge-rutinas.yml gana schedule…» · estado=ABIERTA · gatea NC-260928-GEN2-TUBERIA-3-f18c-01 (abierta) y -04"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "python3 tools/consulta.py result RESULT-WVS-PISOS-2018-ASISTE-SERVICIO-MENSUAL-2018-EDAD-18-29-EE  # ya no dice NO-ENCONTRADO",
+  "owner_detalle": "vista resultados.tsv (y corridas.tsv) · CALC CALC-WVS-PISOS-2018-0001 · canal [deriva]: el PR vivo hoy es #1315 (derivados/auto-36500584875; #1309 fue cerrado como superado) y sólo trae las posiciones 1–40 de 113 pendientes; el drenaje hasta la posición 69 depende de que mesa fusione [deriva] sucesivos o decida FP-260928-GEN2-TUBERIA-3-f18c-01 (ABIERTA) · verifica: python3 tools/consulta.py result RESULT-WVS-PISOS-2018-ASISTE-SERVICIO-MENSUAL-2018-EDAD-18-29-EE  # ya no dice NO-ENCONTRADO",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260927-GEN2-TUBERIA-CI-TIEMPO-1-c6d9-05",
+  "verdict": "ABSORBER",
+  "rationale": "Los runs existen, pero ningún archivo de main los cita. El push de #1187 (36291122052) acabó cancelado a los ≈30,4 min: no cumple «< 25 min». Hay pushes posteriores en verde por debajo de 25 min y un primer nocturno en success (36326473274). Falta dejar la cita con ese matiz; no es un cierre automático.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "9d2550b9 (#1294, GEN2-TUBERIA-3)",
+    "comando": "git log origin/main --first-parent --oneline | rg -n 'TUBERIA-3|1294' ; ls forense/notas | rg -i tuberia-3",
+    "salida": "3:9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu · nota-2026-09-28-gen2-tuberia-3-cierre.md (P1–P5; no nombra ninguna de estas NC; deja abierta f18c-01 por el auto-merge del [deriva])"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-26-GEN2-TUBERIA-CI-TIEMPO-1.md:13",
+    "comando": "git show origin/main:forense/encargos/2026-09-26-GEN2-TUBERIA-CI-TIEMPO-1.md | rg -n '25|nocturn|Hecho'",
+    "salida": "13:«Hecho» … el push a `main` correspondiente termina `check` VERDE en **< 25 min** (run citado); la corrida nocturna existe y su primer run se c[ita]"
+   },
+   {
+    "tipo": "comando",
+    "ref": "GitHub API · runs push/main 27-sep",
+    "comando": "curl -sS 'https://api.github.com/repos/Josanoforo/Modelado-Mexicano/actions/runs?event=push&branch=main&per_page=100&page=N' (N=1,2) | python3 (updated_at − run_started_at)",
+    "salida": "36291122052 2026-09-27T03:20:33Z cancelled 30.4 3149b4e2bb Merge #1187 · 36300637254 06:37Z success 21.2 (#1211) · 36301635959 06:57Z success 17.4 (#1214) · 36303400958 07:32Z success 21.2 (#1213)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "GitHub API · runs schedule/main",
+    "comando": "mcp github actions_list list_workflow_runs verify.yml event=schedule branch=main",
+    "salida": "total_count 2 · 36326473274 schedule success created 2026-09-27T14:35:38Z updated 14:51:27Z (head 1c7b840a #1213) · 36458154737 schedule success 2026-09-28T17:26:38Z→18:06:31Z"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/main forense canon docs",
+    "comando": "git grep -n -l -E '36326473274|36458154737|36495085433' origin/main -- forense canon docs",
+    "salida": "(vacío: 0 archivos citan esos runs; NO-ENCONTRADO en forense/, canon/, docs/ de origin/main)"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "git grep -n -E '36326473274|36291122052' origin/main -- forense/notas | wc -l  # ≥1, y python3 tools/consulta.py nc NC-260927-GEN2-TUBERIA-CI-TIEMPO-1-c6d9-05 | grep -c estado=CERRADA  # 1",
+  "owner_detalle": "falta: una nota que cite el primer nocturno (36326473274) y el run del push de #1187 (36291122052, cancelado a los ≈30,4 min), dictamine el «< 25 min» y nombre el primer push verde por debajo del umbral (p. ej. 36301635959, 17,4 min)",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260927-GEN2-TUBERIA-CI-TIEMPO-2-a387-03",
+  "verdict": "CERRAR-DUPLICADA",
+  "rationale": "Es una NC de contabilidad: pide cerrar c6d9-05 y las NC del canal abiertas «sin [deriva]». Cada una sigue en el libro como fila propia y ABIERTA, con su veredicto en este lote (c6d9-05: ABSORBER; 5916-01, 627e-12, ba6c-02, fa42-04, e2f9-02: CANAL). La deuda no añade nada propio: duplica esas filas.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "9d2550b9 (#1294, GEN2-TUBERIA-3)",
+    "comando": "git log origin/main --first-parent --oneline | rg -n 'TUBERIA-3|1294' ; ls forense/notas | rg -i tuberia-3",
+    "salida": "3:9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu · nota-2026-09-28-gen2-tuberia-3-cierre.md (P1–P5; no nombra ninguna de estas NC; deja abierta f18c-01 por el auto-merge del [deriva])"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/no-corrido.tsv (origin/main)",
+    "comando": "python3 tools/consulta.py nc NC-260927-GEN2-TUBERIA-CI-TIEMPO-1-c6d9-05 ; python3 tools/consulta.py nc NC-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01",
+    "salida": "NC-260927-GEN2-TUBERIA-CI-TIEMPO-1-c6d9-05 · estado=ABIERTA · acto=GEN2-TUBERIA-CI-TIEMPO-1 · pr=1187 … / NC-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01 · estado=ABIERTA · … razon=DIFERIDO-A:GEN2-TUBERIA -- derivados protegidos no viajan en PR…"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/no-corrido.tsv",
+    "comando": "python3 (csv.DictReader) git show origin/main:forense/no-corrido.tsv, fila a387-03",
+    "salida": "pieza=P5 · cierre de NC · que_no_se_corrio=cerrar …c6d9-05 y las NC del canal abiertas por «sin [deriva]» · razon=DIFERIDO-A:post-merge de #1198 — cerrarlas exige el run de main y el [deriva] fusionado"
+   }
+  ],
+  "cerrado_por_detalle": "duplicada: NC-260927-GEN2-TUBERIA-CI-TIEMPO-1-c6d9-05 (ABIERTA, ABSORBER en TUBERIA-TESTS-LOTE) y NC del canal 5916-01/627e-12/ba6c-02/fa42-04/e2f9-02 (ABIERTAS, CANAL) · python3 tools/consulta.py nc <id>",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260927-GEN2-TUBERIA-CI-TIEMPO-2-a387-04",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "El solape ya se resolvió en main, después de abrirse la NC: 906913dd (#1211) hace que cada run de derivados cierre como superados los derivados/auto-* anteriores, así que no quedan dos PR con el mismo trozo. Funciona en la práctica: #1290 se cerró por #1301 y #1309 por #1315. Que el [deriva] no se fusione solo es otra deuda: FP-f18c-01.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "9d2550b9 (#1294, GEN2-TUBERIA-3)",
+    "comando": "git log origin/main --first-parent --oneline | rg -n 'TUBERIA-3|1294' ; ls forense/notas | rg -i tuberia-3",
+    "salida": "3:9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu · nota-2026-09-28-gen2-tuberia-3-cierre.md (P1–P5; no nombra ninguna de estas NC; deja abierta f18c-01 por el auto-merge del [deriva])"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:755-763",
+    "comando": "git show origin/main:.github/workflows/verify.yml | rg -n 'Un solo \\[deriva\\] vivo|gh pr close'",
+    "salida": "755: # Un solo [deriva] vivo (27/sep, #1206 y #1209): cada push a … 763: gh pr close \"$N\" --delete-branch --comment \"Superado por $PR: el job derivados re-deriva desde el main vigente todo lo que este PR traía (lo no fusionado sigue pendiente).\""
+   },
+   {
+    "tipo": "commit",
+    "ref": "906913dd (vía #1211, 9e0ce644)",
+    "comando": "git show -s --format='%h %ad %s' --date=iso 906913dd ; git log origin/main --format='%h %ad %s' --date=iso | rg -i '1198|CI-TIEMPO-2'",
+    "salida": "906913dd 2026-09-27 06:30:34 +0000 GEN2-TUBERIA-CI-TIEMPO-2 · un solo [deriva] vivo: el job cierra los anteriores como superados · posterior a c3af8791 05:15:53 (NC a387-01..04) y a 414fcf7d (merge #1198)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "GitHub API · PR #1290 y #1309",
+    "comando": "curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/issues/{1290,1309}/comments",
+    "salida": "#1290 closed 2026-09-28T20:29:12Z · bot: «Superado por …/pull/1301 …» · #1309 closed · bot 2026-09-29T00:03:17Z: «Superado por …/pull/1315 …»"
+   }
+  ],
+  "cerrado_por_detalle": "producto: .github/workflows/verify.yml:755-763 (906913dd, #1211) · git show origin/main:.github/workflows/verify.yml | rg -n 'Un solo \\[deriva\\] vivo'",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-ASTRA-CONTINUIDAD-C2-1-ba6c-02",
+  "verdict": "CANAL",
+  "rationale": "Dueño EN-CURSO vencido (TUBERIA-3 fusionado). Los dos CALC ENVIPE de familias 2027 están sellados y en el lote pendiente (91–92 de 113); ausentes de corridas.tsv en main. Sólo falta que el canal los publique. Reserva: su último asiento es NO-EJECUTABLE/NO-VERIFICABLE, así que la fila publicada llevará ese eje.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "9d2550b9 (#1294, GEN2-TUBERIA-3)",
+    "comando": "git log origin/main --first-parent --oneline | rg -n 'TUBERIA-3|1294' ; ls forense/notas | rg -i tuberia-3",
+    "salida": "3:9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu · nota-2026-09-28-gen2-tuberia-3-cierre.md (P1–P5; no nombra ninguna de estas NC; deja abierta f18c-01 por el auto-merge del [deriva])"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv (origin/main)",
+    "comando": "for c in CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4 CALC-FAMILIA-2027-ENVIPE-EVASION-NORMA; do python3 tools/consulta.py corrida $c; done",
+    "salida": "NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357 / NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/lote_desde_asientos.py",
+    "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes | rg -n 'CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4|CALC-FAMILIA-2027-ENVIPE-EVASION-NORMA'",
+    "salida": "91:CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4 · 92:CALC-FAMILIA-2027-ENVIPE-EVASION-NORMA · stderr: «asientos nuevos examinados: 113 · lote: 113 · descartados: 0» (árbol de trabajo; corridas.tsv, resultados.tsv, usos.tsv y replay-evidencia.tsv idénticos a origin/main: git diff --stat origin/main HEAD -- esas rutas → vacío)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/replay-evidencia.tsv",
+    "comando": "csv.DictReader sobre git show origin/main:forense/replay-evidencia.tsv, calc_id que empieza por CALC-FAMILIA-2027-ENVIPE",
+    "salida": "2 asientos por CALC: (1) REPRODUCE · contexto 'reproduccion_emisiones_y_oro_historico_separados' · CAJA · 7594f459; (2) NO-EJECUTABLE/NO-VERIFICABLE · razones 'SUSTITUIDO-EN-ALCANCE: asiento previo ASTRA6-C2-ENVIPE-1; verify sin corrida ejecutada' · 3f92bd86"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/derivados/auto-36495085433 (rama del #1309)",
+    "comando": "python3 (csv.DictReader) sobre git show origin/derivados/auto-36495085433:data/corrida0/corridas.tsv, cruzando spec_id con la salida de lote_desde_asientos",
+    "salida": "pend 113 · en rama deriva 40 · posiciones min/max 1 40 · en main 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "GitHub API · PR #1309 y #1315",
+    "comando": "curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/issues/1309/comments ; curl -sS .../pulls/1315/commits",
+    "salida": "#1309: 2026-09-29T00:03:17Z github-actions[bot] «Superado por …/pull/1315: el job derivados re-deriva desde el main vigente…» (closed, merged_at None). #1315 (abierto): «[deriva] trozo 1 tras 4a0d94aab: 20 CALC, quedan 93» · «[deriva] trozo 2 tras 4a0d94aab: 20 CALC, quedan 73»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-TUBERIA-3-f18c-01",
+    "comando": "python3 tsv.py forense/firmas-pendientes.tsv id TUBERIA-3 (csv.DictReader sobre git show origin/main:…)",
+    "salida": "FP-260928-GEN2-TUBERIA-3-f18c-01 · «P4 · el [deriva] no se fusiona solo: (a) automerge-rutinas.yml gana schedule…» · estado=ABIERTA · gatea NC-260928-GEN2-TUBERIA-3-f18c-01 (abierta) y -04"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "python3 tools/consulta.py corrida CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4 && python3 tools/consulta.py corrida CALC-FAMILIA-2027-ENVIPE-EVASION-NORMA  # ninguna NO-ENCONTRADO",
+  "owner_detalle": "vista corridas.tsv/resultados.tsv · CALC CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4, CALC-FAMILIA-2027-ENVIPE-EVASION-NORMA · canal [deriva]: el PR vivo hoy es #1315 (derivados/auto-36500584875; #1309 fue cerrado como superado) y sólo trae las posiciones 1–40 de 113 pendientes; el drenaje hasta la posición 92 depende de que mesa fusione [deriva] sucesivos o decida FP-260928-GEN2-TUBERIA-3-f18c-01 (ABIERTA) · verifica: python3 tools/consulta.py corrida CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4 && python3 tools/consulta.py corrida CALC-FAMILIA-2027-ENVIPE-EVASION-NORMA  # ninguna NO-ENCONTRADO",
+  "hoja": {},
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260928-GEN2-DEMANDA-DICTAMEN-1-c133-03",
+  "verdict": "CERRAR-PRODUCTO",
+  "rationale": "Lo pedido ya está en main: GEN2-TUBERIA-3 P3 hizo que `status` lea la vista del dictamen (data/corrida0/demanda-dictamen-v1_0.tsv) con _reduccion_por_dictamen, la misma fuente que `demanda`, y hay tests. Lo que queda (el tablero de main muestra requeridas 87 hasta que el canal publique las vistas de demanda; en la rama #1309 ya da 0) es del canal.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "9d2550b9 (#1294, GEN2-TUBERIA-3)",
+    "comando": "git log origin/main --first-parent --oneline | rg -n 'TUBERIA-3|1294' ; ls forense/notas | rg -i tuberia-3",
+    "salida": "3:9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu · nota-2026-09-28-gen2-tuberia-3-cierre.md (P1–P5; no nombra ninguna de estas NC; deja abierta f18c-01 por el auto-merge del [deriva])"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/corrida0.py:1330-1333,1357-1369,5439-5443",
+    "comando": "git show origin/main:tools/corrida0.py | rg -n '_reduccion_por_dictamen|def _lee_dictamen|demanda-dictamen'",
+    "salida": "1330:def _lee_dictamen() … 1333: vista = SALIDA / \"demanda-dictamen-v1_0.tsv\" · 1357:def _reduccion_por_dictamen(…): \"ACTO GEN2-TUBERIA-3 · P3. UNICA fuente … la leen `demanda` y `status`\" · 5440: _no_req, _cerrados = _reduccion_por_dictamen( … \"N_corridas_requeridas\": … - _no_req"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tests/test_tuberia3.py:69,177",
+    "comando": "git show origin/main:tests/test_tuberia3.py | rg -n 'def test_.*(status|dictamen)'",
+    "salida": "69:def test_p3_status_lee_el_dictamen_y_legacy_no_se_mueve(): · 177:def test_p3_status_coincide_con_demanda_cuando_las_vistas_estan_al_dia(): · 275: …dictamen_desalineado…"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/notas/nota-2026-09-28-gen2-tuberia-3-cierre.md:24",
+    "comando": "sed -n '24p' forense/notas/nota-2026-09-28-gen2-tuberia-3-cierre.md",
+    "salida": "## P3 · `status` lee el dictamen — `tools/corrida0.py::_reduccion_por_dictamen` es la única fuente de la reducción; la usan `cmd_demanda` y `status`. … `demanda` → requeridas 0, pendientes 63; `status` → requeridas 0, pendientes 63, legacy 82. COINCIDEN."
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/tablero/TABLERO-PROGRAMA.md",
+    "comando": "git show origin/main:forense/tablero/TABLERO-PROGRAMA.md | sed -n 49p | rg -o 'requeridas `[0-9]+`' ; ídem sobre origin/derivados/auto-36495085433 (línea 50)",
+    "salida": "main: requeridas `87` (tablero de 1f4bf1cc, anterior a #1294) · rama [deriva] #1309: «corridas selladas `318` / requeridas `0` … pendientes `63`»"
+   }
+  ],
+  "cerrado_por_detalle": "producto: tools/corrida0.py:5439-5443 (status → _reduccion_por_dictamen → demanda-dictamen-v1_0.tsv, GEN2-TUBERIA-3 #1294) · git show origin/main:tools/corrida0.py | rg -n '_reduccion_por_dictamen'",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "",
+  "owner_detalle": "",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-04",
+  "verdict": "CANAL",
+  "rationale": "Dueño EN-CURSO vencido (TUBERIA-3 fusionado). Los dos CALC tienen asiento REPRODUCE/IDENTICO, sello COINCIDE y están en el lote pendiente (103–104 de 113). No tienen fila en corridas.tsv de main (357 filas). Sólo falta que el canal los publique; son de los últimos en la cola.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "9d2550b9 (#1294, GEN2-TUBERIA-3)",
+    "comando": "git log origin/main --first-parent --oneline | rg -n 'TUBERIA-3|1294' ; ls forense/notas | rg -i tuberia-3",
+    "salida": "3:9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu · nota-2026-09-28-gen2-tuberia-3-cierre.md (P1–P5; no nombra ninguna de estas NC; deja abierta f18c-01 por el auto-merge del [deriva])"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv (origin/main)",
+    "comando": "for c in CALC-ENCIG2023-CONFIANZA-PISOS-0001 CALC-PISO-PERSISTENCIA-ERROR-0002; do python3 tools/consulta.py corrida $c; done",
+    "salida": "NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357 / NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/lote_desde_asientos.py",
+    "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes | rg -n 'CALC-ENCIG2023-CONFIANZA-PISOS-0001|CALC-PISO-PERSISTENCIA-ERROR-0002'",
+    "salida": "103:CALC-ENCIG2023-CONFIANZA-PISOS-0001 · 104:CALC-PISO-PERSISTENCIA-ERROR-0002 · stderr: «asientos nuevos examinados: 113 · lote: 113 · descartados: 0» (árbol de trabajo; corridas.tsv, resultados.tsv, usos.tsv y replay-evidencia.tsv idénticos a origin/main: git diff --stat origin/main HEAD -- esas rutas → vacío)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/replay-evidencia.tsv",
+    "comando": "csv.DictReader sobre git show origin/main:forense/replay-evidencia.tsv, calc_id exacto",
+    "salida": "CALC-ENCIG2023-CONFIANZA-PISOS-0001 1 asiento REPRODUCE/IDENTICO · CALC-PISO-PERSISTENCIA-ERROR-0002 1 asiento REPRODUCE/IDENTICO (en corridas.tsv sólo está …-PERSISTENCIA-ERROR-0001--24afe8b90751)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/derivados/auto-36495085433 (rama del #1309)",
+    "comando": "python3 (csv.DictReader) sobre git show origin/derivados/auto-36495085433:data/corrida0/corridas.tsv, cruzando spec_id con la salida de lote_desde_asientos",
+    "salida": "pend 113 · en rama deriva 40 · posiciones min/max 1 40 · en main 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "GitHub API · PR #1309 y #1315",
+    "comando": "curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/issues/1309/comments ; curl -sS .../pulls/1315/commits",
+    "salida": "#1309: 2026-09-29T00:03:17Z github-actions[bot] «Superado por …/pull/1315: el job derivados re-deriva desde el main vigente…» (closed, merged_at None). #1315 (abierto): «[deriva] trozo 1 tras 4a0d94aab: 20 CALC, quedan 93» · «[deriva] trozo 2 tras 4a0d94aab: 20 CALC, quedan 73»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-TUBERIA-3-f18c-01",
+    "comando": "python3 tsv.py forense/firmas-pendientes.tsv id TUBERIA-3 (csv.DictReader sobre git show origin/main:…)",
+    "salida": "FP-260928-GEN2-TUBERIA-3-f18c-01 · «P4 · el [deriva] no se fusiona solo: (a) automerge-rutinas.yml gana schedule…» · estado=ABIERTA · gatea NC-260928-GEN2-TUBERIA-3-f18c-01 (abierta) y -04"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "python3 tools/consulta.py corrida CALC-ENCIG2023-CONFIANZA-PISOS-0001 && python3 tools/consulta.py corrida CALC-PISO-PERSISTENCIA-ERROR-0002  # ninguna NO-ENCONTRADO",
+  "owner_detalle": "vista corridas.tsv/resultados.tsv · CALC CALC-ENCIG2023-CONFIANZA-PISOS-0001, CALC-PISO-PERSISTENCIA-ERROR-0002 · canal [deriva]: el PR vivo hoy es #1315 (derivados/auto-36500584875; #1309 fue cerrado como superado) y sólo trae las posiciones 1–40 de 113 pendientes; el drenaje hasta la posición 104 depende de que mesa fusione [deriva] sucesivos o decida FP-260928-GEN2-TUBERIA-3-f18c-01 (ABIERTA) · verifica: python3 tools/consulta.py corrida CALC-ENCIG2023-CONFIANZA-PISOS-0001 && python3 tools/consulta.py corrida CALC-PISO-PERSISTENCIA-ERROR-0002  # ninguna NO-ENCONTRADO",
+  "hoja": {},
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260928-GEN2-RELEVO-TRAMITE-CAJA-1-e2f9-02",
+  "verdict": "CANAL",
+  "rationale": "Dueño EN-CURSO vencido. Los dos CALC derivados están sellados, con REPRODUCE/IDENTICO y en el lote (58–59 de 113); sin fila en main. La rama [deriva] del #1309 ya resolvía a GEN2 3 de los 7 usos (CTX-2019, CTX-2023, ENCIGDER-C-Q); los otros 4 esperan el registro de los CALC. Todo es del canal.",
+  "cite": [
+   {
+    "tipo": "commit",
+    "ref": "9d2550b9 (#1294, GEN2-TUBERIA-3)",
+    "comando": "git log origin/main --first-parent --oneline | rg -n 'TUBERIA-3|1294' ; ls forense/notas | rg -i tuberia-3",
+    "salida": "3:9d2550b9 Merge pull request #1294 from Josanoforo/claude/new-session-5j6lbu · nota-2026-09-28-gen2-tuberia-3-cierre.md (P1–P5; no nombra ninguna de estas NC; deja abierta f18c-01 por el auto-merge del [deriva])"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv (origin/main)",
+    "comando": "for c in CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001 CALC-ENCUCI-0001-COMPLEMENTO-DERIVADO-0001; do python3 tools/consulta.py corrida $c; done",
+    "salida": "NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357 / NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=357"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tools/lote_desde_asientos.py",
+    "comando": "python3 tools/lote_desde_asientos.py --incluir-pendientes | rg -n 'CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001|CALC-ENCUCI-0001-COMPLEMENTO-DERIVADO-0001'",
+    "salida": "58:CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001 · 59:CALC-ENCUCI-0001-COMPLEMENTO-DERIVADO-0001 · stderr: «asientos nuevos examinados: 113 · lote: 113 · descartados: 0» (árbol de trabajo; corridas.tsv, resultados.tsv, usos.tsv y replay-evidencia.tsv idénticos a origin/main: git diff --stat origin/main HEAD -- esas rutas → vacío)"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/replay-evidencia.tsv",
+    "comando": "csv.DictReader sobre git show origin/main:forense/replay-evidencia.tsv",
+    "salida": "CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001 REPRODUCE/IDENTICO · CALC-ENCUCI-0001-COMPLEMENTO-DERIVADO-0001 REPRODUCE/IDENTICO"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/usos.tsv (main vs rama #1309)",
+    "comando": "csv.DictReader sobre git show <ref>:data/corrida0/usos.tsv; resultado_id RES-0020/0227/0228 y corrida0_resultado_id",
+    "salida": "main: RES-0020 generacion_leida=LEGACY-GEN1, sin corrida0_resultado_id; 0 filas con RESULT-CTX-2019/2023-P-ALTO. Rama deriva: RES-0227→RESULT-CTX-2019-P-ALTO GEN2 · RES-0228→RESULT-CTX-2023-P-ALTO GEN2 · RES-0020→RESULT-ENCIGDER-C-Q GEN2 · 0 filas ENCUCIDER"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/derivados/auto-36495085433 (rama del #1309)",
+    "comando": "python3 (csv.DictReader) sobre git show origin/derivados/auto-36495085433:data/corrida0/corridas.tsv, cruzando spec_id con la salida de lote_desde_asientos",
+    "salida": "pend 113 · en rama deriva 40 · posiciones min/max 1 40 · en main 0"
+   },
+   {
+    "tipo": "comando",
+    "ref": "GitHub API · PR #1309 y #1315",
+    "comando": "curl -sS https://api.github.com/repos/Josanoforo/Modelado-Mexicano/issues/1309/comments ; curl -sS .../pulls/1315/commits",
+    "salida": "#1309: 2026-09-29T00:03:17Z github-actions[bot] «Superado por …/pull/1315: el job derivados re-deriva desde el main vigente…» (closed, merged_at None). #1315 (abierto): «[deriva] trozo 1 tras 4a0d94aab: 20 CALC, quedan 93» · «[deriva] trozo 2 tras 4a0d94aab: 20 CALC, quedan 73»"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260928-GEN2-TUBERIA-3-f18c-01",
+    "comando": "python3 tsv.py forense/firmas-pendientes.tsv id TUBERIA-3 (csv.DictReader sobre git show origin/main:…)",
+    "salida": "FP-260928-GEN2-TUBERIA-3-f18c-01 · «P4 · el [deriva] no se fusiona solo: (a) automerge-rutinas.yml gana schedule…» · estado=ABIERTA · gatea NC-260928-GEN2-TUBERIA-3-f18c-01 (abierta) y -04"
+   }
+  ],
+  "cerrado_por_detalle": "",
+  "lote": "",
+  "entorno": "",
+  "hecho_comando": "python3 tools/consulta.py corrida CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001 && python3 tools/consulta.py corrida CALC-ENCUCI-0001-COMPLEMENTO-DERIVADO-0001  # ninguna NO-ENCONTRADO; y usos.tsv con corrida0_generacion=GEN2 para los 7 usos",
+  "owner_detalle": "vista corridas.tsv/resultados.tsv/usos.tsv · CALC CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001, CALC-ENCUCI-0001-COMPLEMENTO-DERIVADO-0001 · canal [deriva]: el PR vivo hoy es #1315 (derivados/auto-36500584875; #1309 fue cerrado como superado) y sólo trae las posiciones 1–40 de 113 pendientes; el drenaje hasta la posición 59 depende de que mesa fusione [deriva] sucesivos o decida FP-260928-GEN2-TUBERIA-3-f18c-01 (ABIERTA) · verifica: python3 tools/consulta.py corrida CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001 && python3 tools/consulta.py corrida CALC-ENCUCI-0001-COMPLEMENTO-DERIVADO-0001  # ninguna NO-ENCONTRADO; y usos.tsv con corrida0_generacion=GEN2 para los 7 usos",
+  "hoja": {},
+  "confianza": "alta"
+ }
+]

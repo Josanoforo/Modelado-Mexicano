@@ -231,6 +231,7 @@ tests/test_motor_usos_complementos.py	script	NO	(ninguna)	NO	1.0	CORRE-EN-CI	exi
 tests/test_motral2015_valoracion.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_n34_producto_dano.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_no_corrido_estructura.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
+tests/test_pendientes_4_duenos.py	script	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exit 0 sin corpus (GEN2-PENDIENTES-4)
 tests/test_perimetro_raices.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_piloto3_guardias.py	script	NO	numpy,pandas	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_piloto3_v11.py	pytest	NO	numpy	SI	0.4	NECESITA-DEPENDENCIA(numpy)	E   ModuleNotFoundError: No module named 'numpy'
@@ -304,7 +305,10 @@ tests/test_pdr1_envipe2025.py	pytest	NO	numpy,pytest	NO	0.0	NECESITA-DEPENDENCIA
 tests/test_tablero_insumos.py	script	NO	(ninguna)	NO	1.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-TUBERIA-TABLERO-INSUMOS-1)
 tests/test_mc2_enif2024.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-MEDICION-CARRILES-2: prueba sintética del CALC MC2-ENIF2024 (fila añadida por línea)
 tests/test_mc2_ensanut2024.py	script	NO	numpy,pyreadstat	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-MEDICION-CARRILES-2: prueba sintética del CALC MC2-ENSANUT2024 (fila añadida por línea)
+tests/test_catalogo_v1_4.py	script	NO	(ninguna)	NO	40.1	FALLA-DE-VERDAD	TIMEOUT>40s
+tests/test_reports_v3.py	script	NO	(ninguna)	NO	2.3	CORRE-EN-CI	exit 0 sin corpus
 tests/test_mc2_envipe2025.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-MEDICION-CARRILES-2: prueba sintética del CALC MC2-ENVIPE2025 (fila añadida por línea)
 tests/test_mc2_enif2024_m7.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-MEDICION-CARRILES-2: prueba sintética del CALC MC2-ENIF2024-M7 (fila añadida por línea)
+tests/test_mc2_enigh2022.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-MEDICION-CARRILES-2: prueba sintética del CALC MC2-ENIGH2022 (fila añadida por línea)
 tests/test_mc2_enoe.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-MEDICION-CARRILES-2: prueba sintética del CALC MC2-ENOE (fila añadida por línea)
 tests/test_mc2_enut2024.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-MEDICION-CARRILES-2: prueba sintética del CALC MC2-ENUT2024 (fila añadida por línea)

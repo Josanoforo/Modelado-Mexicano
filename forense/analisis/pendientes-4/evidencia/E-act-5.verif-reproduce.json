@@ -1,0 +1,9 @@
+[
+  {
+    "id": "NC-260924-GEN2-CONTADORES-CONSUMO-2-749c-03",
+    "veredicto": "CONFIRMA",
+    "razon": "Los cinco comandos reproducen contra origin/main (7312797c): resultados.tsv 15611540 B; 1f4bf1cc (#1268, ancestro de main) toca marcador-segmento/resultados/usos; guarda 50 MB en verify.yml (694 existe, el rg no la lista pero 695-713 sí); 749c-02 CERRADA PR #1096. Diferencia menor de formato, mismo hecho.",
+    "comando": "git cat-file -s origin/main:data/corrida0/resultados.tsv; git log origin/main -n2 -- data/corrida0/marcador-segmento.tsv; git show 1f4bf1cc --stat|tail -8; git show origin/main:.github/workflows/verify.yml|rg -n '50 ?MB|GH001'; python3 tools/consulta.py nc ...749c-02",
+    "salida": "15611540 · 1f4bf1cc 2026-09-28 [deriva] trozo 1 ... (#1268) · marcador-segmento.tsv 543 +-, resultados.tsv 131602, usos.tsv 51, 76 files changed · 695/697/698/705/713 GUARDA-TAMANO 50 MB · 749c-02 estado=CERRADA pr=PR #1096"
+  }
+]

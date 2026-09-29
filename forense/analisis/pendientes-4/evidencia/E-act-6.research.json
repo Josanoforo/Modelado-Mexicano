@@ -1,0 +1,423 @@
+[
+ {
+  "id": "NC-260926-GEN2-DINERO-SERIES-CNBV-BANXICO-1-8dbe-03",
+  "verdict": "ABSORBER",
+  "rationale": "La premisa del PARO cayó: los 12 payloads BDIF de CNBV (sep/2022) están en el manifiesto. Pero la columna de oferta BDIF no existe: ningún CALC BDIF, y el catálogo v1.3 dice que la P4 de #1159 no añadió nada. Es la misma deuda que NC dea2-03 (ABIERTA), que va al mismo lote. Se ejecuta la delegación: encargo CAJA.",
+  "cite": [
+   {
+    "tipo": "archivo",
+    "ref": "canon/catalogo-del-mexicano-v1_3.md:26",
+    "comando": "git show origin/main:canon/catalogo-del-mexicano-v1_3.md | sed -n '26p'",
+    "salida": "7. `oferta_exclusion`: ... `GEN2-DINERO-SERIES-CNBV-BANXICO-1` (`PR #1159`) no añadió columna de oferta a ningún piso de crédito o ahorro: su pieza P4 quedó `PARO-ENTORNO` (la serie BDIF de CNBV está en host denegado; NC `8dbe`), así que la columna sigue siendo la de `CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001`."
+   },
+   {
+    "tipo": "comando",
+    "ref": "canon/catalogo-del-mexicano-v1_3.tsv",
+    "comando": "csv.DictReader sobre git show origin/main:canon/catalogo-del-mexicano-v1_3.tsv; Counter(oferta_exclusion[:60])",
+    "salida": "63706 filas; [('NO-APLICA', 63606), ('SIN-MEDIDA-DE-OFERTA-SELLADA-PARA-ESTA-OLA-Y-CONDUCTA: exclu', 100)]; las 100 son dinero: ENIF 2024 97, ENFIH 2019 2, ENNVIH-1 2002 1"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/manifiesto.yaml",
+    "comando": "git show origin/main:data/manifiesto.yaml | grep -c '^- id: adq15_bdif'",
+    "salida": "12 (p.ej. adq15_bdif_52sep2022_bd_acceso_mun, archivo ADQ15_CNBV_BDIF_inclusion_financiera/52Sep2022_BD_Acceso_Mun.csv, sha256 registrado)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/",
+    "comando": "git ls-tree -d --name-only origin/main data/corrida0/ | grep -i -e oferta -e cnbv -e bdif",
+    "salida": "CALC-CNBV-SERIES-IMOR-R16-0001, CALC-DIN-OFERTA-EXCLUSION-ENIF{2012,2015,2018,2021,2024}-0001 — 0 CALC con BDIF"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv:NC-...-8dbe-03",
+    "comando": "csv.DictReader, id=NC-260926-GEN2-DINERO-SERIES-CNBV-BANXICO-1-8dbe-03",
+    "salida": "DUEÑO-MESA · La premisa \"BDIF en host denegado\" ya no aplica: la serie de oferta esta en disco. Falta el producto (CALC de columna de oferta junto a pisos de credito/ahorro, catalogo v1.2): propuesta abrir encargo de caja; el sucesor -2 no existe."
+   }
+  ],
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "CAJA",
+  "hecho_comando": "git ls-tree -d --name-only origin/main data/corrida0/ | grep -ciE 'BDIF|OFERTA-CNBV' (>=1, con sello.json y fila en corridas.tsv) y csv.DictReader sobre el catálogo vigente: filas con oferta_exclusion que empieza con 'SIN-MEDIDA-DE-OFERTA' < 100",
+  "que_falta": "CALC CAJA sobre los 12 payloads BDIF (sep/2022) que ponga la oferta al lado de los pisos de crédito y ahorro. Antes debe resolver el desfase de fecha con ENIF 2021/2024 y citar CALC-DIN-OFERTA-EXCLUSION-ENIF2024-0001 (sellado, sin fila en corridas.tsv) antes de medir nada nuevo (E.5).",
+  "absorbe_tambien": "NC-260926-GEN2-CIERRE-SEMANAL-1-dea2-03 (misma deuda, ABIERTA)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260924-GEN2-DONDE-CAMBIO-EL-MEXICANO-1-96ee-02",
+  "verdict": "ABSORBER",
+  "rationale": "Sigue sin hacer: tabla-dictamen-v1_0 trae las 6311 series ENDIREH en SIN-SERIE (6170 por menos de 3 olas y 141 por comparabilidad no documentada). No hay crosswalk ENDIREH entre las 443 rutas ENDIREH del árbol. La delegación propone (a), un encargo NUBE que arme el crosswalk leyendo los cuestionarios; (b), SIN-SERIE por diseño, viaja como alternativa en el encargo.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/donde-cambio/tabla-dictamen-v1_0.tsv",
+    "comando": "csv.DictReader; filas instrumento ENDIREH*; Counter(dictamen), Counter(causa_sin_serie)",
+    "salida": "6311 {'SIN-SERIE': 6311} [('MENOS-DE-3-OLAS-EN-EL-CORPUS', 6170), ('COMPARABILIDAD-NO-DOCUMENTADA-O-NO-COMPARABLE', 141)]"
+   },
+   {
+    "tipo": "comando",
+    "ref": "árbol origin/main",
+    "comando": "git ls-tree -r --name-only origin/main | grep -i endireh | grep -ic -e crosswalk -e comparabilidad -e puente -e homolog -e entre-olas",
+    "salida": "0 (universo: 443 rutas con 'endireh' en origin/main) — NO-ENCONTRADO"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos, forense/notas",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos forense/notas | grep -i DONDE-CAMBIO",
+    "salida": "solo 2026-09-24-GEN2-DONDE-CAMBIO-EL-MEXICANO-1.md (+sha) y su nota de cierre; -2 NO-ENCONTRADO"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv:NC-...-96ee-02",
+    "comando": "csv.DictReader, id",
+    "salida": "DUEÑO-MESA · Falta la fuente escrita de comparabilidad entre olas ENDIREH (spec §2 no la presume); es trabajo de documentos (NUBE, sin microdato) sin encargo. Opciones: (a) encargo NUBE que lea cuestionarios y arme el crosswalk por texto; (b) dejar ENDIREH como SIN-SERIE por diseno. Propongo (a)..."
+   }
+  ],
+  "lote": "OTRO:SERIES-Y-ENLACES-NUBE",
+  "entorno": "NUBE",
+  "hecho_comando": "git ls-tree -r --name-only origin/main forense/analisis/donde-cambio | grep -ci 'endireh.*crosswalk' (>=1) y csv.DictReader sobre la tabla-dictamen vigente: filas ENDIREH con causa_sin_serie MENOS-DE-3-OLAS-EN-EL-CORPUS < 6170, o cada fila con cita de texto de pregunta",
+  "que_falta": "Un crosswalk de módulos ENDIREH 2006/2011/2016/2021 por texto de pregunta (cuestionarios y FD, A.15) y un nuevo dictamen de serie sobre los RESULT ya sellados, sin microdato. Si mesa no quiere series ENDIREH, el encargo cierra por diseño con la opción (b).",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260921-GEN2-DUELO-ENVIPE2026-COMMIT-1-8796-06",
+  "verdict": "ABSORBER",
+  "rationale": "El test existe y guarda código sellado. El duelo es prospectivo sobre ENVIPE 2026, que está reservada, así que la regla 6 no lo retira. FP-398 (a) está FIRMADA y verify.yml:449 instala numpy y pytest. Aun así el censo lo sigue marcando NECESITA-DEPENDENCIA(numpy) y ci_guardias.py:407 lo salta. Falta re-censar; es la misma deuda que 3fc6-03.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/ci-guardias/censo-tests.tsv",
+    "comando": "csv.DictReader (git show origin/main:...), archivo==tests/test_duelo_prospectivo.py; Counter(veredicto)",
+    "salida": "{'invocador':'script','cableado_hoy':'NO','dependencias_faltantes':'numpy','necesita_corpus_por_codigo':'NO','veredicto':'NECESITA-DEPENDENCIA(numpy)'} · 284 filas: CORRE-EN-CI 155, NECESITA-DEPENDENCIA 111, FALLA-DE-VERDAD 18"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/ci_guardias.py:407-412",
+    "comando": "git show origin/main:tools/ci_guardias.py | sed -n '395,415p'",
+    "salida": "if f[\"veredicto\"].startswith(\"NECESITA-DEPENDENCIA\"):\n    print(\"SKIP %s: dependencia-pendiente %s (FP de mesa, no decidida aqui)\" ...)\n    saltados += 1\n    continue"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:449,452; requirements.txt:29-32",
+    "comando": "git show origin/main:.github/workflows/verify.yml | grep -n 'pytest\\|ejecuta-huerfanos'; git show origin/main:requirements.txt | grep -n 'numpy\\|pandas\\|pytest'",
+    "salida": "449: ... pip install ... -r requirements.txt numpy pytest pytest-xdist ; 452: run: python3 tools/ci_guardias.py --ejecuta-huerfanos ; 29:numpy 30:pandas 32:pytest"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-398",
+    "comando": "python3 tools/consulta.py fp FP-398",
+    "salida": "FP-398 · estado=FIRMADA · firmada_en=4.4 opcion (a) -- FIRMA DE MESA 21/sep/2026 §2 4.4 «librerias en CI — a»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "NC-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-03",
+    "comando": "python3 tools/consulta.py nc NC-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-03",
+    "salida": "estado=ABIERTA · razon=FUERA-DE-PERÍMETRO · GEN2-TUBERIA-RESUMEN-SUITE-1 (tubería): censo y ci_guardias no son de este acto · sucesor=MESA (2026-10-05) · encargo por escribir"
+   }
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | python3 -c \"import csv,sys;print([r['veredicto'] for r in csv.DictReader(sys.stdin,delimiter='\\t') if r['archivo']=='tests/test_duelo_prospectivo.py'])\" → ['CORRE-EN-CI'], y el log del job guardias sin 'SKIP tests/test_duelo_prospectivo.py'",
+  "que_falta": "Regenerar censo-tests.tsv con --censo --con-ejecucion en un entorno que tenga los requirements, para que el test pase a CORRE-EN-CI (lo mismo que pide 3fc6-03 para todo el censo).",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260924-GEN2-ENCIG-PISOS-GEN2-1-19a3-02",
+  "verdict": "ABSORBER",
+  "rationale": "Sigue ciego: _propaga_envuelto (corrida0.py:4220) no menciona «parametros» ni una sola vez en su cuerpo. Los tres tests que lo ejercitan no prueban un número copiado de milpa/ dentro de parametros. PISOS-GEN2-2 cerró sin tocarlo, y ninguna rama remota cambia corrida0.py. Es un arreglo de motor más su test, sin microdato.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "tools/corrida0.py:4220-4400",
+    "comando": "git show origin/main:tools/corrida0.py | sed -n '4220,4400p' | grep -c -i parametros",
+    "salida": "0"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/corrida0.py:4280-4285",
+    "comando": "git show origin/main:tools/corrida0.py | sed -n '4278,4285p'",
+    "salida": "def resuelve_entrada(entrada, pila): ... declarado = str(entrada.get(\"origen_numerico\") or \"\").upper()\n if declarado in {ORIGEN_NUEVO, ...}: return [{\"origen\": declarado, ... \"ORIGEN-DECLARADO:...\"}]  (lee inputs y origen declarado; no inspecciona parametros)"
+   },
+   {
+    "tipo": "comando",
+    "ref": "tests/test_corrida0.py, test_corredores_gen2.py, test_vista.py",
+    "comando": "for f in (tests que citan _propaga_envuelto): git show origin/main:$f | grep -n -i parametros | grep -i -e milpa -e origen -e teclead -e propaga",
+    "salida": "3 archivos examinados: 0 coincidencias (parametros solo como {'fuente_acto':'TEST'} / {'id_celda':'CIV-08'} / {})"
+   },
+   {
+    "tipo": "comando",
+    "ref": "ramas remotas",
+    "comando": "for b in (8 ramas remotas no-main): git diff --stat origin/main...$b -- tools/corrida0.py",
+    "salida": "8 ramas examinadas: 0 archivos cambiados"
+   },
+   {
+    "tipo": "firma",
+    "ref": "decididas-por-delegacion.tsv:NC-...-19a3-02",
+    "comando": "csv.DictReader, id",
+    "salida": "DUEÑO-MESA · Sin producto: el resolvedor sigue ciego a numeros tecleados en parametros ... Necesita test con numero copiado de milpa/."
+   }
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:tools/corrida0.py | sed -n '/^def _propaga_envuelto/,/^def [a-z]/p' | grep -c parametros (>=1) y python3 -m pytest -q tests/test_corrida0.py -k 'parametros and milpa' | tail -n 3 (>=1 passed: spec con número de milpa/ en parametros no sale NUEVO)",
+  "que_falta": "Que el resolvedor de linaje compare los números de `parametros` contra milpa/ (u otra fuente legacy) y degrade origen_numerico a HEREDADO o INDETERMINADO, con un test del caso DIN/TRA ya medido.",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260924-GEN2-ENCIG-PISOS-GEN2-1-19a3-06",
+  "verdict": "ABSORBER",
+  "rationale": "La dependencia ya está resuelta en CI: FP-398 (a) FIRMADA, y verify.yml:449 instala pytest y numpy. Pero el censo conserva NECESITA-DEPENDENCIA(pytest) para tests/test_encig_pisos_gen2.py, y ci_guardias.py:407 salta ese veredicto, así que el test no corre en CI. Falta re-censar (misma deuda que 3fc6-03). No pide corpus por código.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/ci-guardias/censo-tests.tsv",
+    "comando": "csv.DictReader, archivo==tests/test_encig_pisos_gen2.py",
+    "salida": "{'invocador':'pytest','cableado_hoy':'NO','dependencias_faltantes':'numpy,pytest','necesita_corpus_por_codigo':'NO','veredicto':'NECESITA-DEPENDENCIA(pytest)','detalle':'/usr/local/bin/python3: No module named pytest'}"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/ci_guardias.py:407-412",
+    "comando": "git show origin/main:tools/ci_guardias.py | grep -n 'startswith(\"NECESITA-DEPENDENCIA\")'",
+    "salida": "407:        if f[\"veredicto\"].startswith(\"NECESITA-DEPENDENCIA\"):"
+   },
+   {
+    "tipo": "archivo",
+    "ref": ".github/workflows/verify.yml:449",
+    "comando": "git show origin/main:.github/workflows/verify.yml | grep -n pytest-xdist",
+    "salida": "449: python3 -m uv pip install --python \"$RUNNER_TEMP/venv/bin/python\" -r requirements.txt numpy pytest pytest-xdist"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-398",
+    "comando": "python3 tools/consulta.py fp FP-398",
+    "salida": "FP-398 · estado=FIRMADA · firmada_en=4.4 opcion (a) -- FIRMA DE MESA 21/sep/2026"
+   }
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "csv.DictReader sobre git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv: veredicto de tests/test_encig_pisos_gen2.py == 'CORRE-EN-CI', y el job guardias sin 'SKIP tests/test_encig_pisos_gen2.py'",
+  "que_falta": "Re-censar con los requirements instalados para que test_encig_pisos_gen2.py deje de estar en NECESITA-DEPENDENCIA y corra en --ejecuta-huerfanos.",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260921-GEN2-ENCIG-SERIE-Y-TENDENCIA-1-852f-02",
+  "verdict": "ABSORBER",
+  "rationale": "La precondición ya se cumple: CALC-ARBITRO-MARGINALES-ENCIG2025-0001 está SELLADA en corridas.tsv. En cambio CALC-ENCIG-ORIGEN-MOVIL-0002 no aparece, y la 0001 sigue en envuelto_legacy=INDETERMINADO por su input GEN1 milpa/tramite-ola5-propuesta-v0.yaml (E.1). Todos los inputs son RESULT del repo y la corrida es RETROSPECTIVA-MECÁNICA, no un retador, así que la regla 6 no la retira. Se ejecuta la opción (a) de la delegación.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/corridas.tsv",
+    "comando": "csv.DictReader (sin la línea '# DERIVADO'), corrida_id con ORIGEN-MOVIL o ARBITRO-MARGINALES-ENCIG2025",
+    "salida": "357 filas; CALC-ARBITRO-MARGINALES-ENCIG2025-0001--d7455c958e41 SELLADA GEN2 cuenta_gen2=SI envuelto_legacy=NO; CALC-ENCIG-ORIGEN-MOVIL-0001--4b066941040f SELLADA cuenta_gen2=SI envuelto_legacy=INDETERMINADO; ninguna -0002"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/",
+    "comando": "git ls-tree -d --name-only origin/main data/corrida0/ | grep -i ORIGEN-MOVIL",
+    "salida": "CALC-DUELO-ORIGEN-MOVIL-0001, CALC-ENCIG-ORIGEN-MOVIL-0001, CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001 — ENCIG-...-0002 NO-ENCONTRADO"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "data/corrida0/CALC-ENCIG-ORIGEN-MOVIL-0001/spec.yaml:9,13,42-44",
+    "comando": "git show origin/main:data/corrida0/CALC-ENCIG-ORIGEN-MOVIL-0001/spec.yaml | grep -n -i 'tipo\\|rotulo\\|tramite-ola5'",
+    "salida": "9: tipo: ORIGEN-MOVIL-PISOS-MECANICOS · 13: rotulo: RETROSPECTIVA-MECÁNICA · 42: - id: TRAMITE-OLA5-PROPUESTA · 44: ruta: milpa/tramite-ola5-propuesta-v0.yaml (resto de inputs: CALC-ENCIG-SERIE-CANAL-2017/19/21/23 resultados.json, origen repo)"
+   },
+   {
+    "tipo": "regla",
+    "ref": "gobierno/instrucciones-proyecto-v2_16.md §8 E.1",
+    "comando": "grep -n 'GEN1 es historia' gobierno/instrucciones-proyecto-v2_16.md",
+    "salida": "E.1 GEN1 es historia, no autoridad: no se reescribe ni es fuente de GEN2."
+   },
+   {
+    "tipo": "firma",
+    "ref": "decididas-por-delegacion.tsv:NC-...-852f-02",
+    "comando": "csv.DictReader, id",
+    "salida": "DUEÑO-MESA · La precondicion cambio: #971 ya esta en main ... CALC-ENCIG-ORIGEN-MOVIL-0002 no existe; sin encargo archivado. No abre microdato (re-apunta a RESULT). Opciones: (a) ... redactar el encargo NUBE del CALC sucesor ...; (b) cerrar por diseno ... Propongo (a)."
+   }
+  ],
+  "lote": "OTRO:SERIES-Y-ENLACES-NUBE",
+  "entorno": "NUBE",
+  "hecho_comando": "test -f data/corrida0/CALC-ENCIG-ORIGEN-MOVIL-0002/sello.json && git show origin/main:data/corrida0/CALC-ENCIG-ORIGEN-MOVIL-0002/spec.yaml | grep -c 'tramite-ola5' (=0) y su fila en corridas.tsv con envuelto_legacy=NO",
+  "que_falta": "Un CALC sucesor, CALC-ENCIG-ORIGEN-MOVIL-0002, con el mismo procedimiento congelado y el insumo 2025 re-apuntado a los 11 RESULT de CALC-ARBITRO-MARGINALES-ENCIG2025-0001, sellado y registrado. El dictamen SALTO-SIN-EXPLICAR no se toca.",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-06",
+  "verdict": "ABSORBER",
+  "rationale": "El censo marca NECESITA-DEPENDENCIA(numpy), ci_guardias.py:407 lo salta y numpy ya llega a CI por FP-398 (a). Hay un matiz: necesita_corpus=SI es una detección estática, pero el test solo usa corpus con --oro (líneas 17, 289-294). Sin --oro corre sintético. El re-censo tiene que ejecutarlo para no dejarlo en NECESITA-CORPUS.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/ci-guardias/censo-tests.tsv",
+    "comando": "csv.DictReader, archivo==tests/test_enif_persistencia_ic_calibrado.py",
+    "salida": "{'invocador':'script','cableado_hoy':'NO','dependencias_faltantes':'numpy','necesita_corpus_por_codigo':'SI','veredicto':'NECESITA-DEPENDENCIA(numpy)','detalle':\"ModuleNotFoundError: No module named 'numpy'\"}"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tests/test_enif_persistencia_ic_calibrado.py:17,289-294,313-336",
+    "comando": "git show origin/main:tests/test_enif_persistencia_ic_calibrado.py | grep -n -i -e oro -e corpus -e data/raw -e sintet",
+    "salida": "17:3. **Oro** (sólo con corpus y `--oro`) · 159:def corre_sintetico · 289:def falsa_oro · 292: z = ROOT / \"data/raw/enif2021_csv.zip\" · 313:def corre(oro=False) · 333: out = corre_sintetico(errores) · 336: if oro:"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/ci_guardias.py:399-412",
+    "comando": "git show origin/main:tools/ci_guardias.py | sed -n '399,412p'",
+    "salida": "if f[\"veredicto\"] == \"NECESITA-CORPUS\": print(\"SKIP %s: corpus\") ... if f[\"veredicto\"].startswith(\"NECESITA-DEPENDENCIA\"): print(\"SKIP ... dependencia-pendiente\")"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-398",
+    "comando": "python3 tools/consulta.py fp FP-398",
+    "salida": "FP-398 · estado=FIRMADA · firmada_en=4.4 opcion (a)"
+   }
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "csv.DictReader sobre git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv: veredicto de tests/test_enif_persistencia_ic_calibrado.py == 'CORRE-EN-CI' (ni NECESITA-DEPENDENCIA ni NECESITA-CORPUS)",
+  "que_falta": "Re-censar con ejecución real (--con-ejecucion), para que la parte sintética sin --oro quede CORRE-EN-CI en lugar de heredar NECESITA-CORPUS por la mención estática a data/raw.",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-02",
+  "verdict": "ABSORBER",
+  "rationale": "La FP 308c-01 (b′) está FIRMADA y pide un acto que no se ha hecho. En el marcador de main las 10 sexo_edad siguen SIN-PISO, no NO-CONSTRUIBLE-POR-CRUCE, y reparto_hogar sigue sin enlace. GEN2-ENUT-ENLACE-MARCADOR-1 no aparece en main. La firma lo manda a NUBE, sin medición; la delegación decía CAJA, y aquí manda la firma.",
+  "cite": [
+   {
+    "tipo": "firma",
+    "ref": "data/corrida0/decisiones.tsv FP-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01:(b′)",
+    "comando": "git show origin/main:data/corrida0/decisiones.tsv | grep \"308c-01:(b\"",
+    "salida": "«(b′) no se mide nada nuevo. Las 10 celdas sexo_edad del marcador son cruce: quedan NO-CONSTRUIBLE-POR-CRUCE ... La celda reparto_hogar (la razón) se enlaza sin medir: piso 2019 = 0.238 ... y R 2024 = RAZON-NUCLEO-NACIONAL ...; el sucesor es un acto de nube que re-derive el marcador, cero mediciones, sin CALC-id.»"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/marcador-segmento.tsv",
+    "comando": "csv.DictReader (sin '#'), regla_o_eje_origen contiene reparto_mujeres40; Counter((eje_o_par, estado[:45]))",
+    "salida": "327 filas; {('sexo_edad','SIN-PISO'): 10, ('reparto_hogar','SIN-PISO'): 1, ('reparto_hogarxsexo_edad','RESERVADA'): 1}"
+   },
+   {
+    "tipo": "comando",
+    "ref": "origin/main",
+    "comando": "git ls-tree -r --name-only origin/main | grep -i ENLACE-MARCADOR ; git log origin/main --oneline | grep -i ENLACE-MARCADOR",
+    "salida": "0 rutas (12375 examinadas); 0 commits — NO-ENCONTRADO"
+   },
+   {
+    "tipo": "firma",
+    "ref": "forense/firmas-pendientes.tsv FP-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01",
+    "comando": "csv.DictReader, id",
+    "salida": "estado FIRMADA · ejecutada_en: ASENTADA por ACTO GEN2-ENUT-NUCLEO-CELDAS-1 ... (a) y (b′) los ejecuta GEN2-ENUT-ENLACE-MARCADOR-1 (NUBE, cero mediciones, sin CALC-id)."
+   }
+  ],
+  "lote": "OTRO:SERIES-Y-ENLACES-NUBE",
+  "entorno": "NUBE",
+  "hecho_comando": "csv.DictReader sobre git show origin/main:data/corrida0/marcador-segmento.tsv tras el canal: filas reparto_mujeres40 con eje sexo_edad y estado que empieza con 'NO-CONSTRUIBLE-POR-CRUCE' == 10, y reparto_hogar con estado distinto de 'SIN-PISO'",
+  "que_falta": "La pieza GEN2-ENUT-ENLACE-MARCADOR-1 que nombra la firma: enlazar la razón reparto_hogar (piso 2019 0.2379 contra la R 2024 sellada) y marcar las 10 sexo_edad como NO-CONSTRUIBLE-POR-CRUCE, cambiando los insumos de marcador_segmento.py; el canal re-deriva. También absorbe c6f4-02 y 7357-01.",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-03",
+  "verdict": "ABSORBER",
+  "rationale": "La FP 308c-01 (a) está FIRMADA: la fila C2×2019 pasa a CAMBIO-DE-INSTRUMENTO. La v1_0, con sha 9483ecbb…, está fijada en tres CALC sellados y no se edita. Tampoco hay una v1_1: la fila C2×2019 sigue en CAMBIO-MENOR. Va a la misma pieza NUBE que 9f24-02.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/enut-comparabilidad-texto-v1_0.tsv",
+    "comando": "git show origin/main:data/enut-comparabilidad-texto-v1_0.tsv | sha256sum | cut -c1-16; git grep -c 9483ecbb origin/main -- data/corrida0/CALC-ENUT*/spec.yaml",
+    "salida": "9483ecbb65ab2baf; 1 coincidencia en cada spec: CALC-ENUT-SERIE-2009-2014-NUCLEO-0001, CALC-ENUT2019-NUCLEO-EJES-0001, CALC-ENUT2024-NUCLEO-EJES-0001"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/enut-comparabilidad-texto-v1_0.tsv",
+    "comando": "git show origin/main:data/enut-comparabilidad-texto-v1_0.tsv | grep -P '^C2\\t' | grep 2019 | cut -c1-250",
+    "salida": "C2\tHoras semanales de cuidado — NÚCLEO COMÚN 2014/2019/2024 ...\t2019\t2024\tCAMBIO-MENOR\tActividades"
+   },
+   {
+    "tipo": "comando",
+    "ref": "árbol origin/main",
+    "comando": "git ls-tree -r --name-only origin/main | grep -i enut-comparabilidad-texto",
+    "salida": "data/enut-comparabilidad-texto-v1_0.tsv, data/enut-comparabilidad-texto-v1_0.tsv.meta — v1_1 NO-ENCONTRADO"
+   },
+   {
+    "tipo": "firma",
+    "ref": "FP-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01 (a)",
+    "comando": "csv.DictReader forense/firmas-pendientes.tsv, id",
+    "salida": "(a) ... la fila C2×2019 de data/enut-comparabilidad-texto-v1_0.tsv pasa a CAMBIO-DE-INSTRUMENTO ... estado FIRMADA · (a) y (b′) los ejecuta GEN2-ENUT-ENLACE-MARCADOR-1 (NUBE, cero mediciones, sin CALC-id)"
+   }
+  ],
+  "lote": "OTRO:SERIES-Y-ENLACES-NUBE",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:data/enut-comparabilidad-texto-v1_1.tsv | grep -P '^C2\\t' | grep -P '\\t2019\\t' | grep -c CAMBIO-DE-INSTRUMENTO (=1) y git show origin/main:data/enut-comparabilidad-texto-v1_0.tsv | sha256sum | cut -c1-8 == 9483ecbb",
+  "que_falta": "Una enut-comparabilidad-texto-v1_1.tsv nueva con C2×2019 como CAMBIO-DE-INSTRUMENTO según (a), la tabla de identidad PISOS-ENUT2019-ejes v1_2 y la re-derivación del marcador por su herramienta.",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-03",
+  "verdict": "ABSORBER",
+  "rationale": "Re-censar no basta. tools/enut_nucleo.py:55 importa dbfread a nivel de módulo, y requirements.txt no lo trae (0 coincidencias), así que en CI el test seguiría sin poder importar. numpy y pandas ya llegan por FP-398 (a). Faltan dos pasos de tubería: añadir dbfread a requirements.txt y regenerar el censo.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "requirements.txt",
+    "comando": "git show origin/main:requirements.txt | grep -c -i dbfread",
+    "salida": "0"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "tools/enut_nucleo.py:55; tests/test_enut_nucleo_conducto.py:21,39",
+    "comando": "git show origin/main:tools/enut_nucleo.py | grep -n '^from dbfread'; git grep -n dbfread origin/main -- tests/test_enut*",
+    "salida": "55:from dbfread import DBF · tests/test_enut_nucleo_conducto.py:21:Necesita numpy/pandas/dbfread (CI no los instala: FP-398 (a)); corre en CAJA. · 39: import enut_nucleo as N"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/analisis/ci-guardias/censo-tests.tsv",
+    "comando": "csv.DictReader, archivo==tests/test_enut_nucleo_conducto.py",
+    "salida": "{'invocador':'script','dependencias_faltantes':'enut_nucleo,pandas','necesita_corpus_por_codigo':'NO','veredicto':'NECESITA-DEPENDENCIA(numpy)'}"
+   },
+   {
+    "tipo": "firma",
+    "ref": "decididas-por-delegacion.tsv:NC-...-308c-03",
+    "comando": "csv.DictReader, id",
+    "salida": "DUEÑO-MESA · numpy/pandas/yaml ya llegan a CI (FP-398 a; verify.yml:449) pero dbfread no esta en requirements.txt ... Dos pasos: (1) dbfread en requirements.txt; (2) python3 tools/ci_guardias.py --censo."
+   }
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "git show origin/main:requirements.txt | grep -c '^dbfread' (=1) y csv.DictReader sobre censo-tests.tsv: veredicto de tests/test_enut_nucleo_conducto.py == 'CORRE-EN-CI'",
+  "que_falta": "Añadir dbfread a requirements.txt (lo usan también enut_nucleo, dominios/familia/lectores y control_motral2015) y re-censar, para que test_enut_nucleo_conducto.py corra en CI.",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-03",
+  "verdict": "ABSORBER",
+  "rationale": "No hay piso de fecundidad deseada: los 8 CALC ENADID de main (5 revisados) tienen 0 menciones de ideal, deseada, nacidos vivos o fecundidad, y no hay encargo -2. Hace falta un informe de estructura del módulo de la mujer por ola antes de medir. Es microdato ENADID: va a CAJA, en el lote de pisos.",
+  "cite": [
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0/CALC-ENADID*",
+    "comando": "git ls-tree -d --name-only origin/main data/corrida0/ | grep -i -e ENADID -e FECUND; por CALC: git show .../spec.yaml|resultados.json | grep -c -i -e ideal -e desead -e 'nacidos vivos' -e fecund",
+    "salida": "8 CALC ENADID (0001, COLA-2018, FAMILIA-HOGARES, 2023-UNION-SEXO-EDAD-0001..0004, PDR1-2023); 5 examinados: spec 0 / res 0 en todos — NO-ENCONTRADO"
+   },
+   {
+    "tipo": "comando",
+    "ref": "data/corrida0, forense/prereg-caja, tools",
+    "comando": "git grep -l -i -e 'ideal de hijos' -e hijos_ideal -e ideal_hijos -e 'fecundidad deseada' -e fecundidad_deseada origin/main -- data/corrida0 forense/prereg-caja tools",
+    "salida": "(vacío) — NO-ENCONTRADO"
+   },
+   {
+    "tipo": "comando",
+    "ref": "forense/encargos, forense/notas",
+    "comando": "git ls-tree -r --name-only origin/main forense/encargos forense/notas | grep -i FAMILIA-CUIDADOS",
+    "salida": "solo ...-PISOS-1.md (+sha) y su nota de cierre; -PISOS-2 NO-ENCONTRADO"
+   },
+   {
+    "tipo": "archivo",
+    "ref": "forense/encargos/2026-09-25-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1.md:38",
+    "comando": "git grep -n -i 'fecundidad' origin/main -- forense/encargos/2026-09-25-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1.md",
+    "salida": "38:| NC-…-2a0e-03 | fecundidad deseada vs observada | DIFERIDO-A:GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2 -- el ideal de hijos cambia de número y nemónico por ola en el módulo de la mujer | sin piso de fecundi"
+   }
+  ],
+  "lote": "PISOS-DOMINIOS-Y-REGLAS-2",
+  "entorno": "CAJA",
+  "hecho_comando": "ls data/corrida0/ | grep -ciE 'ENADID.*(FECUND|IDEAL)' (>=1 con sello.json y fila en corridas.tsv), o un NO-CONSTRUIBLE con texto de pregunta y secciones del FD por ola (A.15) asentado en la nota",
+  "que_falta": "Un informe de estructura del módulo de la mujer ENADID por ola (número y nemónico del ideal de hijos) y, con él, el piso de ideal de hijos contra hijos nacidos vivos en olas no reservadas, con spec y COMMIT-1.",
+  "confianza": "media"
+ }
+]

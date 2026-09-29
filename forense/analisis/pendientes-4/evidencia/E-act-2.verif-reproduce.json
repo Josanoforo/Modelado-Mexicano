@@ -1,0 +1,9 @@
+[
+ {
+  "id": "NC-260928-GEN2-ASTRA-CONTINUIDAD-C2-1-ba6c-01",
+  "veredicto": "CONFIRMA",
+  "razon": "Los tres comandos reproducen: 8c5c-13 sigue ABIERTA, la receta p2-enoe §1 usa enoe_diagnostico.py --oro y el sha 817f28d2 coincide. Reserva: la frase 'ya va al lote de replays de caja' no tiene cita y no se halló; no sostiene el cierre.",
+  "comando": "python3 tools/consulta.py nc NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-13; git show origin/main:forense/analisis/familias-2027/p2-enoe-v1_0.md | sed -n '30,37p'; git show origin/main:data/manifiesto.yaml | yq '.[] | select(.id==\"enoe_2024_4t_microdatos\") | .sha256'",
+  "salida": "8c5c-13 estado=ABIERTA pr=1222 · receta: enoe_diagnostico.py --oro ...enoe_2024_trim4_csv.zip, sha debe dar 817f28d2…7305 · manifiesto sha256 817f28d20a43…7305 (origin/main 25b5e7f0)"
+ }
+]

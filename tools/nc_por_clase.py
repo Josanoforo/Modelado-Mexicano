@@ -112,10 +112,16 @@ T_VENCIDA = "VENCIDA-CANDIDATA"
 # Lista cerrada de dueños (GEN2-PENDIENTES-3 · P4) + EN-CURSO (fila de un acto en vuelo,
 # citada con su rama) + DIRECCION (GEN2-TUBERIA-TABLERO-INSUMOS-1 · P6: lo que espera es un
 # encargo por escribir, que redacta dirección y sella mesa; rotularlo MESA lo escondía).
-RE_DUENO = re.compile(r"^(MESA|CAJA|ADQUISICION|APERTURA|DIRECCION|EN-CURSO) \([^)]+\)")
-DUENO_A_CLASE = {"MESA": "ESPERA-MESA", "CAJA": T_ACTO, "EN-CURSO": "EN-CURSO",
-                 "ADQUISICION": "ESPERA-ADQUISICION", "APERTURA": "ESPERA-APERTURA",
-                 "DIRECCION": "ESPERA-DIRECCION"}
+# GEN2-PENDIENTES-4 (P3): «MESA» a secas escondía tres cosas distintas (una acción con identidad,
+# una decisión con opciones, un encargo que dirección revisa) y un canal automático. La lista
+# cerrada de dueños las separa para que el tablero no diga que el 72 % espera a mesa. `MESA` y
+# `DIRECCION` (GEN2-TUBERIA-TABLERO-INSUMOS-1) se conservan para clasificar filas históricas o
+# ajenas; la guardia estricta vive en tests/test_pendientes_4_duenos.py.
+RE_DUENO = re.compile(r"^(MESA-ACCION|MESA-DECISION|MESA|DIRECCION-ENCARGO|DIRECCION|CANAL|CAJA|ADQUISICION|APERTURA|EN-CURSO) \([^)]+\)")
+DUENO_A_CLASE = {"MESA": "ESPERA-MESA", "MESA-ACCION": "ESPERA-MESA-ACCION", "MESA-DECISION": "ESPERA-MESA-DECISION",
+                 "DIRECCION-ENCARGO": "ESPERA-DIRECCION-ENCARGO", "DIRECCION": "ESPERA-DIRECCION", "CANAL": "ESPERA-CANAL",
+                 "CAJA": T_ACTO, "EN-CURSO": "EN-CURSO",
+                 "ADQUISICION": "ESPERA-ADQUISICION", "APERTURA": "ESPERA-APERTURA"}
 RE_EN_CURSO = re.compile(r"^EN-CURSO \((?P<acto>[^()]+?) · rama (?P<rama>[^()\s]+)\)")
 
 # ──────────────────────────────────────────────────────────────────

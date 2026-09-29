@@ -1,0 +1,16 @@
+[
+  {
+    "id": "NC-0353",
+    "veredicto": "CONFIRMA",
+    "razon": "La fila pide el texto verbatim del encargo que gobierna el CALC, citado con sha256. Ese texto está en origin/main y su sha coincide con el hash_encargo_sha256 congelado en spec.yaml:69 (COMMIT-1). El archivo gobierna este CALC, no otro. Solo queda un resto de forma: no está en forense/encargos/ ni lleva CONSUMIDO.",
+    "comando": "git show origin/main:forense/analisis/encuci2020-exposicion-respuesta-cli-1/ENCARGO.md | sha256sum; git show origin/main:data/corrida0/CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001/spec.yaml | grep -n hash_encargo_sha256",
+    "salida": "fc28eee37de78d200f4da84b101ff9085505ee4bf9a2a5cdc273814de20470ca  - | 69:  hash_encargo_sha256: fc28eee3...0ca | ENCARGO.md:7 'CALC propuesto `CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001`' (43 líneas)"
+  },
+  {
+    "id": "NC-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-04",
+    "veredicto": "CONFIRMA",
+    "razon": "Se cumple la receta de la propia fila. El run push 36303400958 corrió sobre el merge 1c7b840a (PR #1213), que contiene los commits del acto (e21f9afa, 8a10dec8). Su job suite corrió check.py --baseline --parallel con success, y el job check también dio success. --parallel solo aísla T35 en otro proceso: no omite tests.",
+    "comando": "git log --format='%h %s' 5f708a47..52c8ac87 | head -3; MCP actions_list list_workflow_jobs 36303400958; git show 1c7b840a:tests/check.py | grep -n parallel",
+    "salida": "8a10dec8 GEN2-TRAMITE-NC-DECISIONES-1: ## CONSUMIDO (PR #1213) · e21f9afa Cierre ... | suite success head_sha=1c7b840a paso 'Suite de verificación (modo línea base)' 07:32:34→07:37:19 success; check success | check.py:11 '--baseline --parallel  # T35 en proceso aislado'"
+  }
+]

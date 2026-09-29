@@ -1,0 +1,111 @@
+[
+ {
+  "id": "NC-0418",
+  "verdict": "ABSORBER",
+  "rationale": "El falsador sigue vigente: la plantilla v2.2:143 dice que ni v2.1 ni v2.2 reinician la ventana. La plantilla v2.0 y tools/nc_por_razon.py están en main, pero la ventana cierra el 2026-12-20 y hoy es 2026-09-29. La delegación la dejó con MESA al 2026-12-20, y el libro dice 2026-10-05. Falta un encargo con fecha de no-antes.",
+  "cite": [
+   {"tipo": "archivo", "ref": "forense/encargos/PLANTILLA-ENCARGO-v2_2.md:143", "comando": "git show origin/main:forense/encargos/PLANTILLA-ENCARGO-v2_2.md | sed -n '143p' | cut -c1-420", "salida": "Si `PARO-PREMISA` + `PARO-ENTORNO` + `FUERA-DE-PERÍMETRO` no bajan de 47 % a menos de un tercio de las NC nuevas en los tres meses siguientes a su sello, la plantilla no resolvió el defecto y se revisa. [...] El mismo falsador de v2.0 sigue vigente; ni v2.1 ni v2.2 reinician la ventana de medición."},
+   {"tipo": "comando", "ref": "origin/main (90345dff) árbol, 12345 rutas", "comando": "git ls-tree -r --name-only origin/main | rg 'PLANTILLA-ENCARGO|nc_por_razon'", "salida": "forense/encargos/PLANTILLA-ENCARGO-v2_0.md\nforense/encargos/PLANTILLA-ENCARGO-v2_0.md.sha256\nforense/encargos/PLANTILLA-ENCARGO-v2_1.md ... forense/encargos/PLANTILLA-ENCARGO-v2_2.md ... tools/nc_por_razon.py"},
+   {"tipo": "comando", "ref": "fecha de hoy vs ventana", "comando": "date +%F", "salida": "2026-09-29 (ventana del falsador: 2026-09-20 a 2026-12-20)"},
+   {"tipo": "archivo", "ref": "forense/analisis/pendientes-3/decididas-por-delegacion.tsv:NC-0418", "comando": "csv.DictReader sobre decididas-por-delegacion.tsv, id==NC-0418", "salida": "opcion=DUEÑO-MESA · razon: «dejar ABIERTA con dueño de la lista cerrada MESA (fecha 2026-12-20) y el comando del falsador en la fila. No verifique la existencia de la plantilla en la ruta indicada.»"}
+  ],
+  "lote": "OTRO:FALSADOR-PLANTILLA-DIC2026",
+  "entorno": "NUBE",
+  "hecho_comando": "En un commit con fecha >= 2026-12-21: python3 tools/nc_por_razon.py --desde 2026-09-20 --hasta 2026-12-20 (salida cruda + SHA de origin/main en la nota, comparada con la base de 75/160 = 46.9 % en cb1945ff) && python3 tools/consulta.py nc NC-0418 | grep -c CERRADA → 1",
+  "owner_detalle": "DIRECCION-ENCARGO (encargo propuesto FALSADOR-PLANTILLA, no antes del 2026-12-21)",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0426",
+  "verdict": "CERRAR-FIRMA",
+  "rationale": "El quinto canal por id_celda servía a los consumidores de marco-M-sorteado-v1_3 (duelo v2). Hoy las 70 filas del marco están resueltas: 24 por pines de mesa, 42 L/AGREGADO declaradas HISTÓRICO-SIN-RELEVO por la firma H3 (FP e760-03, FIRMADA y ejecutada por RELEVO-CONSUMIDORES-3), 3 YA-RELEVADO-GEN2 y 1 por regla 6. El canal ya no tiene objeto.",
+  "cite": [
+   {"tipo": "firma", "ref": "forense/firmas-pendientes.tsv:FP-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-03", "comando": "csv.DictReader sobre git show origin/main:forense/firmas-pendientes.tsv, id==FP-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-03", "salida": "estado: FIRMADA · firmada_en: 25/sep/2026 [...] «Mesa declara HISTÓRICO-SIN-RELEVO las 42 lecturas L/AGREGADO de marco-M-sorteado-v1_3 y las saca del contador legacy; ejecuta RELEVO-CONSUMIDORES-3.» · ejecutada_en: ADR-260926-GEN2-TRAMITE-FIRMAS-18-6cf3-01"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-26-GEN2-RELEVO-CONSUMIDORES-3-nota.md:47", "comando": "git show origin/main:forense/notas/2026-09-26-GEN2-RELEVO-CONSUMIDORES-3-nota.md | sed -n '47p'", "salida": "| marco | 43 | **1** (esperado ≤ 1 ✔) | 42 (H3) | 0 | DIN-M-01:M (CAJA) |"},
+   {"tipo": "comando", "ref": "data/corrida0/relevo-usos-v1_0.tsv (211 filas, 70 de marco-M)", "comando": "csv.DictReader sobre git show origin/main:data/corrida0/relevo-usos-v1_0.tsv; Counter((veredicto, sufijo)) para consumidor con 'marco-M'", "salida": "{('SIN-CANDIDATO','L'): 28, ('RELEVADO-POR-PIN-DE-MESA','R'): 14, ('SIN-CANDIDATO','AGREGADO'): 14, ('RELEVADO-POR-PIN-DE-MESA','M'): 10, ('SIN-CANDIDATO','M'): 4}"},
+   {"tipo": "comando", "ref": "data/corrida0/demanda-dictamen-v1_0.tsv (341 filas)", "comando": "csv.DictReader; resultado_id in RES-0126/0136/0141/0146 (los 4 :M sin candidato)", "salida": "RES-0126 NO-RELEVAR-POR-REGLA-6 (DIN-M-01, retador M del duelo sobre ola vista) · RES-0136 YA-RELEVADO-GEN2 · RES-0141 YA-RELEVADO-GEN2 · RES-0146 YA-RELEVADO-GEN2; filas con marco-M: 43, todas NO-RELEVAR-POR-REGLA-6"},
+   {"tipo": "archivo", "ref": "forense/encargos/2026-09-21-GEN2-TUBERIA-RES-LLAVE-1.md:125", "comando": "git show origin/main:forense/encargos/2026-09-21-GEN2-TUBERIA-RES-LLAVE-1.md | sed -n '125p'", "salida": "`NC-0426` —el quinto canal por `parametros.id_celda`— quedó sustituido en la práctica por los pines de mesa."}
+  ],
+  "cerrado_por_detalle": "firma: FP-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-03 FIRMADA (H3; ejecutada por GEN2-RELEVO-CONSUMIDORES-3, marco 43→1) + pines de mesa CP-PIN-DE-MESA (24 filas marco-M) · data/corrida0/relevo-usos-v1_0.tsv y data/corrida0/demanda-dictamen-v1_0.tsv por lector CSV",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0438",
+  "verdict": "ABSORBER",
+  "rationale": "El contrato ya está decidido: TRAMITE-FIRMAS-21 fijó rc=3 para REPLICA-RESULTADO·CONTEXTO-DISTINTO (R39, FIRMADA-DELEGADA). No está implementado: en origin/main, cmd_verify devuelve 0, 2 o 1 y el caso cae en 1. Entre los 1217 archivos de forense/encargos ninguno se llama VERIFY-RC. Son unas 3 líneas y un test en tools/corrida0.py.",
+  "cite": [
+   {"tipo": "archivo", "ref": "tools/corrida0.py:3164-3170", "comando": "git show origin/main:tools/corrida0.py | sed -n '3164,3170p'", "salida": "def cmd_verify(args) -> int:\n    r = verify(args.calc_id)\n    v = r[\"veredicto\"]\n    if v == \"REPRODUCE\":\n        return 0\n    if v in (\"NO-VERIFICABLE\", \"NO-EJECUTABLE\"):\n        return 2\n    return 1"},
+   {"tipo": "firma", "ref": "forense/analisis/hoja-firmas-21/decisiones-21.tsv:R39", "comando": "csv.DictReader sobre git show origin/main:forense/analisis/hoja-firmas-21/decisiones-21.tsv, renglon==R39", "salida": "objeto: NC-0438: rc de verify para REPLICA-RESULTADO·CONTEXTO-DISTINTO (0 o 1) · estado: FIRMADA-DELEGADA (GEN2-TRAMITE-FIRMAS-21: decidida por el trámite; nota §P3)"},
+   {"tipo": "archivo", "ref": "forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md:31", "comando": "git show origin/main:forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md | rg -n 'NC-0438'", "salida": "31:| 8 | NC-0438 | contrato rc=3 | sucesor GEN2-TUBERIA-VERIFY-RC-1 |"},
+   {"tipo": "comando", "ref": "forense/encargos (1217 archivos en origin/main)", "comando": "git ls-tree -r --name-only origin/main forense/encargos | rg -i 'VERIFY-RC' ; git grep -l -i 'VERIFY-RC' origin/main -- forense/encargos", "salida": "(sin salida: NO-ENCONTRADO en 1217 archivos; el sucesor nombrado no tiene encargo archivado)"}
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "sed -n '/^def cmd_verify/,/^$/p' tools/corrida0.py | grep -c 'return 3' → 1 && python3 -m pytest -q tests/test_corrida0_verify_rc.py | tail -n 3 (verde: un sintético REPLICA-RESULTADO·CONTEXTO-DISTINTO asierta rc==3)",
+  "owner_detalle": "DIRECCION-ENCARGO (TUBERIA-TESTS-LOTE; absorbe el sucesor nombrado GEN2-TUBERIA-VERIFY-RC-1)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0439",
+  "verdict": "ABSORBER",
+  "rationale": "Sigue sin hacer. La cabecera de censo-tests.tsv en origin/main no declara con qué dependencias se derivó. El defecto se repite: el 28/sep se añadieron filas NECESITA-DEPENDENCIA(numpy) aunque verify.yml instala numpy. Está relacionada con NC-260928-...-3fc6-03 (ABIERTA, la clasificación actual), pero no es la misma: esta pide impedir que se repita. Mismo lote.",
+  "cite": [
+   {"tipo": "comando", "ref": "forense/analisis/ci-guardias/censo-tests.tsv (287 líneas en 90345dff)", "comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | head -1", "salida": "archivo\tinvocador\tcableado_hoy\tdependencias_faltantes\tnecesita_corpus_por_codigo\ttiempo_seg\tveredicto\tdetalle"},
+   {"tipo": "commit", "ref": "9d2550b9..90345dff (GEN2-MEDICION-CARRILES-2)", "comando": "git diff 9d2550b9 90345dff -- forense/analisis/ci-guardias/censo-tests.tsv", "salida": "+tests/test_mc2_enif2024.py\tscript\tNO\tnumpy\tNO\t0.0\tNECESITA-DEPENDENCIA(numpy)\t... (fila añadida por línea)\n+tests/test_mc2_ensanut2024.py\tscript\tNO\tnumpy,pyreadstat\tNO\t0.0\tNECESITA-DEPENDENCIA(numpy)"},
+   {"tipo": "archivo", "ref": ".github/workflows/verify.yml:449", "comando": "git show origin/main:.github/workflows/verify.yml | rg -n 'numpy'", "salida": "449:          python3 -m uv pip install --python \"$RUNNER_TEMP/venv/bin/python\" -r requirements.txt numpy pytest pytest-xdist"},
+   {"tipo": "comando", "ref": "forense/no-corrido.tsv (1092 filas)", "comando": "csv.DictReader; ABIERTA cuyo texto contiene 'censo-tests' o 'ci_guardias', id != NC-0439", "salida": "NC-260924-GEN2-ENCIG-PISOS-GEN2-1-19a3-06 ABIERTA · NC-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-03 ABIERTA «censo-tests.tsv marca NECESITA-DEPENDENCIA(numpy) tests que verify.yml ya instala; ci_guardias los salta»"}
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "python3 -c \"import csv;h=next(csv.reader(open('forense/analisis/ci-guardias/censo-tests.tsv'),delimiter='\\t'));print('entorno_derivacion' in h)\" → True && python3 tools/ci_guardias.py --ejecuta-huerfanos falla en voz alta (test de regresión) si el entorno declarado del censo difiere del instalado",
+  "owner_detalle": "DIRECCION-ENCARGO (TUBERIA-TESTS-LOTE; junto con NC-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-03)",
+  "confianza": "alta"
+ },
+ {
+  "id": "NC-0448",
+  "verdict": "CERRAR-DISENO",
+  "rationale": "El árbitro es GEN1 (MAESTRA32-E18, 31/ago) y el motor no lo carga. E.1 dice que GEN1 no se reescribe, y §1 que los encargos salen de la demanda. La demanda ya no pide nada del árbitro: sus 18 RESULT tienen dictamen (14 YA-RELEVADO-GEN2, 4 NO-RELEVAR-POR-FIRMA). Las 4 celdas de 3D están SELLADA con cuenta_gen2=SI (FP-395/396/397 FIRMADA). Ejecuta la opción (a) recomendada por la delegación.",
+  "cite": [
+   {"tipo": "regla", "ref": "gobierno/instrucciones-proyecto-v2_16.md:17 y :99", "comando": "git grep -n -e 'Los encargos salen de la demanda' -e 'E.1 GEN1 es historia' origin/main -- gobierno/instrucciones-proyecto-v2_16.md", "salida": "17:Los encargos salen de la demanda (corrida0.py demanda), no de la cola de deuda.\n99:E.1 GEN1 es historia, no autoridad: no se reescribe ni es fuente de GEN2."},
+   {"tipo": "archivo", "ref": "milpa/tramite-ola5-propuesta-v0.yaml:2-4", "comando": "git show origin/main:milpa/tramite-ola5-propuesta-v0.yaml | sed -n '2,5p'", "salida": "# PROPUESTA · ACTO MAESTRA32-E18 · REGLAS-OLA5-FASE1 · 31/ago/2026\n#\n# Archivo que EL MOTOR NO CARGA (verificado: `grep -r \"tramite-ola5\"\n# milpa/src/` vacío, ver forense/notas/2026-08-31-reglas-fase1-cierre.md)."},
+   {"tipo": "comando", "ref": "data/corrida0/demanda-resultados.tsv (18 filas con linaje 'ola5') × data/corrida0/demanda-dictamen-v1_0.tsv (341 filas)", "comando": "csv.DictReader: filas de demanda-resultados con 'ola5' en algún campo → dictamen por resultado_id", "salida": "Counter({'YA-RELEVADO-GEN2': 14, 'NO-RELEVAR-POR-FIRMA': 4}) — 18/18 con dictamen; 0 pendientes"},
+   {"tipo": "comando", "ref": "data/corrida0/corridas.tsv (357 filas)", "comando": "csv.DictReader; spec_id in los 4 CALC de 3D", "salida": "CALC-C2-COMPUESTO-IC-ENIF2024-0001 SELLADA cuenta_gen2= SI · CALC-C2-COMPUESTO-IC-ENVIPE2025-0001 SELLADA SI · CALC-C2-COMPUESTO-RESERVADAS-0001 SELLADA SI · CALC-PISOS-ENIF2021-FORMALIDAD-0001 SELLADA SI | decision de mesa (`decisiones.tsv`): cuenta_gen2=SI, caso por caso: el insumo legacy (milpa/tramite-o…"},
+   {"tipo": "firma", "ref": "forense/firmas-pendientes.tsv:FP-395,FP-396,FP-397", "comando": "csv.DictReader; id in FP-395/396/397", "salida": "FP-395 FIRMADA | 3D -- FIRMA DE MESA 21/sep/2026 §2 3D «sí» + cuenta_gen2=SI · FP-396 FIRMADA | 3D, cuenta_gen2=SI · FP-397 FIRMADA | 3D inciso (1), cuenta_gen2=SI"}
+  ],
+  "cerrado_por_detalle": "diseño: E.1 (gobierno/instrucciones-proyecto-v2_16.md:99) + §1 demanda (:17) · árbitro GEN1 (milpa/tramite-ola5-propuesta-v0.yaml:2, MAESTRA32-E18, 31/ago) · 18/18 RESULT con linaje del árbitro dictaminados en data/corrida0/demanda-dictamen-v1_0.tsv (14 YA-RELEVADO-GEN2, 4 NO-RELEVAR-POR-FIRMA) · 4 CALC 3D SELLADA con cuenta_gen2=SI por FP-395/396/397 FIRMADA · opción (a) de decididas-por-delegacion.tsv",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0449",
+  "verdict": "ABSORBER",
+  "rationale": "Sigue sin hacer: TABLAS_IDENTIDAD no incluye la tabla de crédito y marcador-segmento.tsv no tiene filas de crédito. El consumidor que faltaba ya existe: el piloto 2024 corrió (COMMIT-1, COMMIT-2-3) y hay 9 celdas-D de crédito. Como las tablas selladas no se editan, se crea una tabla sucesora v1_1 que nombra al consumidor y se registra. Es reversible y en NUBE.",
+  "cite": [
+   {"tipo": "comando", "ref": "tools/marcador_segmento.py (1598 líneas) y data/corrida0/marcador-segmento.tsv (329 líneas)", "comando": "rg -c 'DIN-CREDITO' <(git show origin/main:tools/marcador_segmento.py); rg -ci credito <(git show origin/main:data/corrida0/marcador-segmento.tsv)", "salida": "DIN-CREDITO en marcador: 0 · credito en marcador-segmento: 0"},
+   {"tipo": "archivo", "ref": "tools/marcador_segmento.py:80-81", "comando": "git show origin/main:tools/marcador_segmento.py | sed -n '73,88p'", "salida": "Ninguna tabla se edita nunca: una fila sellada se SUCEDE, no se corrige (A.10). [...] TABLAS_IDENTIDAD = [ PISOS-REJILLA-arbitro, PISOS-ENUT2019-ejes v1_0, PISOS-ENIF2021-formalidad, PISOS-ENUT2019-ejes v1_1, PISOS-EDER2017-cohorte ]"},
+   {"tipo": "archivo", "ref": "forense/prereg-caja/DIN-CREDITO-PISOS-ENIF2021-metadatos-v1_0.tsv:2", "comando": "git show origin/main:forense/prereg-caja/DIN-CREDITO-PISOS-ENIF2021-metadatos-v1_0.tsv | head -2", "salida": "RESULT-DIN-CREDITO-PISOS-ENIF2021-K1-SEXO-1-P\tK1::sexo::1\tK1\tENIF\t2021 [...] CONSTRUIBLE\t\tPENDIENTE:piloto-credito-2024 (K1)"},
+   {"tipo": "comando", "ref": "data/curacion-registro/celdas-d (21 archivos) y forense/notas", "comando": "git ls-tree -r --name-only origin/main data/curacion-registro/celdas-d | rg -ci credito; git ls-tree -r --name-only origin/main forense/notas | rg -i 'credito-prediccion-2024'", "salida": "9 (de 21) · nota-2026-09-21-gen2-din-credito-prediccion-2024-commit-1.md · nota-2026-09-22-gen2-din-credito-prediccion-2024-commit-2-3.md"},
+   {"tipo": "archivo", "ref": "forense/notas/nota-2026-09-23-gen2-din-credito-celdas-d-2.md:92-93", "comando": "git show origin/main:forense/notas/nota-2026-09-23-gen2-din-credito-celdas-d-2.md | sed -n '92,93p'", "salida": "- **Clase 2 · PERSISTENCIA t-1 vs R**: lee filas con `error_piso_pp` en `data/corrida0/marcador-segmento.tsv`. El -0002 no tiene fila ahí."}
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "grep -c 'DIN-CREDITO-PISOS-ENIF2021-metadatos' tools/marcador_segmento.py → ≥1 && tras el [deriva]: python3 -c \"import csv;f=open('data/corrida0/marcador-segmento.tsv');next(f);print(sum('CREDITO' in r['celda_id'].upper() or 'credito' in r['regla_o_eje_origen'] for r in csv.DictReader(f,delimiter='\\t')))\" → >0 && python3 -m pytest -q tests/test_marcador_segmento.py | tail -n 3 verde",
+  "owner_detalle": "DIRECCION-ENCARGO (TUBERIA-TESTS-LOTE; tabla sucesora v1_1 con consumidor nombrado y registrada en TABLAS_IDENTIDAD; re-deriva el canal)",
+  "confianza": "media"
+ },
+ {
+  "id": "NC-0450",
+  "verdict": "ABSORBER",
+  "rationale": "Sigue sin hacer: en origin/main la línea 117 del test todavía asierta CONFLICTO-ENTRE-CANALES, pero la vista da RELEVADO-POR-PIN-DE-MESA para RES-0047 y RES-0049. El censo marca el test FALLA-DE-VERDAD (TIMEOUT>40s). Basta cambiar la aserción y revisar el timeout, algo reversible en tests/, y ningún acto en vuelo lo toca.",
+  "cite": [
+   {"tipo": "archivo", "ref": "tests/test_relevo_remesas_f3.py:110,117", "comando": "git show origin/main:tests/test_relevo_remesas_f3.py | rg -n 'CONFLICTO-ENTRE-CANALES|def test_f3_no_alcanza'", "salida": "110:def test_f3_no_alcanza_otros_consumidores_ni_res_0047_0049():\n117:        assert filas[res][\"veredicto\"] == \"CONFLICTO-ENTRE-CANALES\""},
+   {"tipo": "comando", "ref": "data/corrida0/relevo-usos-v1_0.tsv (211 filas)", "comando": "csv.DictReader; resultado_id in RES-0047/RES-0049", "salida": "RES-0047 RELEVADO-POR-PIN-DE-MESA CP-PIN-DE-MESA milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_no_corto\nRES-0049 RELEVADO-POR-PIN-DE-MESA CP-PIN-DE-MESA milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizon"},
+   {"tipo": "comando", "ref": "forense/analisis/ci-guardias/censo-tests.tsv", "comando": "git show origin/main:forense/analisis/ci-guardias/censo-tests.tsv | rg 'test_relevo_remesas_f3'", "salida": "tests/test_relevo_remesas_f3.py\tscript\tNO\t(ninguna)\tNO\t40.1\tFALLA-DE-VERDAD\tTIMEOUT>40s"},
+   {"tipo": "commit", "ref": "historial del test en origin/main", "comando": "git log origin/main --oneline -- tests/test_relevo_remesas_f3.py | head", "salida": "bf5fc5e7 Merge pull request #1196 from Josanoforo/codex/astra6-c3-dinero-tecnologia-conocimiento-1"}
+  ],
+  "lote": "TUBERIA-TESTS-LOTE",
+  "entorno": "NUBE",
+  "hecho_comando": "grep -c 'CONFLICTO-ENTRE-CANALES' tests/test_relevo_remesas_f3.py → 0 en la aserción de RES-0047/0049 && timeout 300 python3 tests/test_relevo_remesas_f3.py; echo rc=$? → rc=0 && la fila del test en censo-tests.tsv deja de ser FALLA-DE-VERDAD",
+  "owner_detalle": "DIRECCION-ENCARGO (TUBERIA-TESTS-LOTE; sucesor sugerido antes GEN2-RELEVO-TANDA-4, ya consumido sin tocar el test)",
+  "confianza": "alta"
+ }
+]

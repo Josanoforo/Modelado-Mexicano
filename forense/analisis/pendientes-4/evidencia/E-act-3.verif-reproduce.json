@@ -1,0 +1,9 @@
+[
+  {
+    "id": "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-06",
+    "veredicto": "CONFIRMA",
+    "razon": "Las seis citas se reproducen en origin/main 90345dff: adenda L11 'R04 CSES Módulo 5: RESERVADA'; decisiones-21 R04 y R08 FIRMADA con los textos declarados; LOTE-1 L9 'M13 CSES M5 no'; manifiesto estado_reserva RESERVADA; CALC-ALT-M13-CIDECSES2015-0001 con sello.json; nota L16 'Diferido por reserva 33'. NC sigue ABIERTA.",
+    "comando": "git show origin/main:<adenda-FIRMAS-21-ADENDA-1> | rg -n 'R04 CSES'; csv.DictReader decisiones-21.tsv renglon in (R04,R08); git show origin/main:<LOTE-1.md> | sed -n 9p; git show origin/main:data/manifiesto.yaml | yq select id==cses5_modulo5_2016_2021_csv; git ls-tree --name-only origin/main data/corrida0/CALC-ALT-M13-CIDECSES2015-0001/; rg -n 'Diferido por reserva' <nota-cierre>",
+    "salida": "11: ... R04 CSES Módulo 5: **RESERVADA** · R04 estado FIRMADA · VIAJA-EN GEN2-CALC-ALTERNOS-LOTE-1 · R08 FIRMADA «Firmo A2 (b)... M13 (CIDE-CSES 2015...)» · L9 **M13** CSES M5 **no** (reservada...) · estado_reserva RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR · ejecucion.json medidor.py resultados.json sello.json ... · 16: Diferido por reserva | 33 (CSES Módulo 5, R04 RESERVADA)"
+  }
+]
