@@ -24,7 +24,7 @@
 - **Procedencia.** SHA `35017cfc8` · fecha del commit `2026-09-29` · ¿árbol == origin/main? `True`.
 - **Motor.** reglas totales `25` · reglas con dato (>=1 conducta MEDIDO*) `24` · reglas sin dato `1` · conductas MEDIDO* `58` · tiers `{'FUERTE': 20, 'MEDIA': 5}`.
 - **Marcador por segmento.** filas por estado: ADOPTADO-POR-FIRMA `52` · CONSUMIDA-SIN-PILOTO `1` · DIAGNOSTICO `8` · EVALUADA `57` · IDENTICO `89` · MEDIDA-POR-NSE `52` · MEDIDA-POR-NSE-APROXIMACION `24` · MEDIDA-POR-NSE-APROXIMACION-CIRCULAR `6` · NO-COMPARABLE `2` · RESERVADA `19` · SIN-PISO `15` · SUPRIMIDA-N `2` (total `327`) · cobertura de piso `111 / 327` · valor añadido / evaluadas `0 / 52` · celdas `emision = EMITIDA-SIN-EVALUAR` `13 / 327` · `veto_pisos_activo` `True`.
-- **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: `False` 1 · `NO` 18 · `NO-DERIVACION-CONTEXTUAL` 1 · `NO-SIN-FIRMA-DE-OBJETO` 1 · `PENDIENTE-DE-CASCADA-DIFERIDA` 2 · `PENDIENTE-DE-INTEGRACION-SERIAL` 2 · `PENDIENTE-DE-MESA` 15 · `SI` 219 (selladas total `259`) · `PENDIENTE-DE-MESA`:
+- **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: `False` 1 · `NO` 18 · `NO-DERIVACION-CONTEXTUAL` 1 · `NO-SIN-FIRMA-DE-OBJETO` 1 · `PENDIENTE-DE-CASCADA-DIFERIDA` 2 · `PENDIENTE-DE-INTEGRACION-SERIAL` 2 · `PENDIENTE-DE-MESA` 15 · `SI` 239 (selladas total `279`) · `PENDIENTE-DE-MESA`:
   - `CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002--18e3c08247d5`: `NO-VERIFICADO`
   - `CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0001--f22dc8014aec`: `NO-VERIFICADO`
   - `CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002--cd853c64a584`: `NO-VERIFICADO`
@@ -1028,7 +1028,7 @@ Todo número de arriba sale de estos archivos por `python3 tools/tablero_carrile
 | F13 | `forense/encargos/*.md` | `e187a602071e (lista)` | glob; en vuelo = sin línea «## CONSUMIDO» | 820 |
 | F15 | `data/corrida0/aperturas-pendientes-v1_0.tsv` | `4c7f99590390` | lee_tsv, (programa, año de ola) -> expediente y qué la abre | — |
 | F16 | `forense/analisis/*/*dictamenes.tsv` | `0abe6bf6c772 (lista)` | pisos_pendientes(): glob; filas con dominio · calc · resultado_id | 90 |
-| F17 | `data/corrida0/resultados.tsv` | `46e376c11e08` | pisos_pendientes(): conjunto de resultado_id registrados (salta líneas #) | — |
+| F17 | `data/corrida0/resultados.tsv` | `71afe9d3f93b` | pisos_pendientes(): conjunto de resultado_id registrados (salta líneas #) | — |
 | F14 | `canon/crosswalk-carriles-v1_0.tsv` | `77878ff2f4d5` | crosswalk() (misma derivación; --verifica compara con el archivo) | 31 |
 | S | `tools/tablero_carriles.py` | `cebf99425a43` | constantes de la cabecera | — |
 <!-- TABLERO-UNICO:CARRILES:END -->
