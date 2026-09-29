@@ -1,0 +1,28 @@
+paquete/docs/spec-humana.md
+paquete/CONTRATO-v3.md
+paquete/FIRMAS-Y-ACCESO.md
+paquete/esquema-identidades.tsv
+paquete/docs/enpecyt2011-cuestionario.pdf
+paquete/docs/enpecyt2011-descripcion-archivos.pdf
+paquete/docs/enpecyt2013-cuestionario.pdf
+paquete/docs/enpecyt2013-fd.pdf
+paquete/docs/enpecyt2015-fd.pdf
+paquete/datos/enpecyt2011_cb1.dbf
+paquete/datos/enpecyt2011_cb2.dbf
+paquete/datos/enpecyt2011_cs.dbf
+paquete/datos/enpecyt2013_cb1.dbf
+paquete/datos/enpecyt2013_cb2.dbf
+paquete/datos/enpecyt2013_cs.dbf
+paquete/datos/enpecyt2015_cb1.dbf
+paquete/datos/enpecyt2015_cb2.dbf
+paquete/datos/enpecyt2015_cs.dbf
+paquete/lib/dbfread/ (modulos importados por Python: __init__.py, dbf.py, field_parser.py, struct_parser.py, dbversions.py, ifiles.py, memo.py, codepages.py, exceptions.py, version.py, deprecated_dbf.py)
+salida/codigo/reconstruye.py
+salida/codigo/decisiones.json
+
+# Notas
+# - Los PDF se convirtieron a texto con pdftotext en $TMPDIR (derivados temporales, no entregados).
+# - Scripts exploratorios en $TMPDIR (explora.py, explora2.py) leyeron los 9 DBF con dbfread iterando
+#   registros: dbfread decodifica en memoria el registro completo, pero solo se retuvieron/agregaron
+#   las columnas autorizadas y solo se imprimieron conteos y agregados. El codigo entregado decodifica
+#   exclusivamente las columnas autorizadas por offset de bytes.
