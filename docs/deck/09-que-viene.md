@@ -6,7 +6,8 @@ title: "Qué viene"
 
 [Deck]({{ '/deck.html' | relative_url }}) · [Portada]({{ '/' | relative_url }})
 
-- ENDIREH (unidad ASTRA-5 U2) cerrado el 24/sep/2026; INE/ENCUP y el resto de la hoja ASTRA-5 (768 afirmaciones con adquisición identificada) siguen en medición.
+- Frente prospectivo: las familias 2027 se sellan antes de que INEGI publique la ola; hasta entonces el programa no afirma nada prospectivo sobre ellas.
+- Reglas SI-ENTONCES: un bloque de adopción condicional al criterio de CONFIRMA que decide mesa; ninguna regla adoptada todavía.
 - DOI vía Zenodo y activación de GitHub Pages: decisión de mesa, pendiente en este corte.
 - Primeras entregas del reto público, conforme lleguen los PR con spec pre-registrada.
 

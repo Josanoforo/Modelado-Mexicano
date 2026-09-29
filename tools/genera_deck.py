@@ -16,6 +16,24 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DECK_DIR = ROOT / "docs/deck"
+
+# GEN2-CIERRE-Y-PRODUCTO-3: las cifras de producto se leen de las constancias del catálogo
+# vigente (conteos y `corrida0 status` guardados por su generador), no se teclean.
+import json as _json  # noqa: E402
+_CAT = ROOT / "forense/analisis/catalogo/v1_4"
+_C = _json.loads((_CAT / "conteos-v1_4.json").read_text(encoding="utf-8"))
+_S = _json.loads((_CAT / "status-v1_4.json").read_text(encoding="utf-8"))
+
+
+def _n(x: int) -> str:
+    return f"{x:,}".replace(",", " ")
+
+
+def _piso() -> int:
+    import subprocess  # noqa: PLC0415
+    out = subprocess.run(["python3", "tools/genera_tabla_piso_v1_3.py"], cwd=ROOT, capture_output=True,
+                         text=True, check=True).stdout
+    return int(re.search(r"filas_adoptadas=(\d+)", out).group(1))
 PPTX_SALIDA = ROOT / "docs/deck.pptx"
 
 SLIDES = [
@@ -24,7 +42,7 @@ SLIDES = [
         "titulo": "Tesis",
         "bullets": [
             "Lo que la gente dijo en la última encuesta oficial de México, por segmento, con intervalo — y la prueba pública de si un modelo la predice mejor que repetir la ola anterior.",
-            "246 corridas selladas · 66 582 RESULT GEN2 sellados · 72 RESULT GEN2 adoptados activos (el piso que se publica).",
+            f"{_n(_S['N_corridas_selladas'])} corridas selladas · {_n(_C['estimadores'])} estimadores en el catálogo v1.4 · {_n(_S['N_resultados_gen2_adoptados_activos'])} RESULT GEN2 adoptados activos por consumidores del motor.",
             "Los retadores evaluados no superaron los criterios de superioridad fijados en las comparaciones citadas. Esto no declara equivalencia ni se extiende a modelos nunca evaluados.",
         ],
     },
@@ -54,9 +72,9 @@ SLIDES = [
         "titulo": "Qué cubre el corpus y el catálogo",
         "bullets": [
             "31 reports temáticos de evidencia en el corpus — documentos, no dominios mutuamente excluyentes.",
-            "Catálogo v1.0: 1 537 filas de estimando/segmento/ola en 5 áreas de consulta; la mayoría es piso histórico de contexto o propuesta sin adopción.",
-            "72 filas adoptadas (`ADOPTADO-POR-FIRMA` + `CONSUMO-GEN2-ACTIVO`) en 4 de 5 áreas: dinero y crédito (27), trámites y Estado (22), tiempo/cuidado y vínculos (13), seguridad y norma (10). Ingreso y gasto está sellado como contexto, sin fila adoptada todavía.",
-            "ENDIREH e INE/ENCUP siguen en medición; no se presentan como medición publicada.",
+            f"Catálogo v1.4: {_n(_C['estimadores'])} estimadores con RESULT sellado, en {_C['mapa11_dominios_medidos']} de los {_C['mapa11_dominios']} dominios del mapa; todos descriptivos, casi todos retrospectivos, cada uno con su firma o el bloque de adopción citado.",
+            f"Esta semana: {_n(_C['bloque:filas'])} filas de {_C['bloque:calcs']} CALC entran por bloque (el merge de mesa es la adopción), con reserva de ancho; {_C['estado_adopcion:SUSPENDIDA-POR-FIRMA']} filas quedan suspendidas por validación ciega o por firma, rotuladas y sin borrar.",
+            f"{_C['mapa11_dominios'] - _C['mapa11_dominios_medidos']} dominios del mapa siguen sin estimador (genética, genómica, humor, interacción, emociones morales, juventud, duelo): «nadie corrió» o «hace falta adquirir», no «no se puede».",
         ],
     },
     {
@@ -91,7 +109,7 @@ SLIDES = [
         "slug": "08-reto-publico",
         "titulo": "Reto público",
         "bullets": [
-            "La tabla de piso publica 72 filas adoptadas — la línea que un retador tiene que vencer, derivada del catálogo por comando, no editada a mano.",
+            f"La tabla de piso v1.3 publica {_n(_piso())} filas — la línea que un retador tiene que vencer, derivada del catálogo por comando, no editada a mano; los contrastes de momento no son línea a vencer.",
             "Regla: diferencia de error medio (ΔMAE) con IC por réplica, umbral fijado antes de abrir el dato. Vence si el IC despeja el umbral; propuesta con reserva si despeja 0 y no el umbral; nadie vence si incluye 0.",
             "Se entrega con spec pre-registrada por PR, antes de que exista el árbitro de la ola. Se invita por escrito a Toluna, ThinkNow, Matria/Celestial y YouGov; cualquier equipo puede participar por la misma vía.",
             "Sin promesas de adopción: el reto mide, mesa decide.",
@@ -101,7 +119,8 @@ SLIDES = [
         "slug": "09-que-viene",
         "titulo": "Qué viene",
         "bullets": [
-            "ENDIREH (unidad ASTRA-5 U2) cerrado el 24/sep/2026; INE/ENCUP y el resto de la hoja ASTRA-5 (768 afirmaciones con adquisición identificada) siguen en medición.",
+            "Frente prospectivo: las familias 2027 se sellan antes de que INEGI publique la ola; hasta entonces el programa no afirma nada prospectivo sobre ellas.",
+            "Reglas SI-ENTONCES: un bloque de adopción condicional al criterio de CONFIRMA que decide mesa; ninguna regla adoptada todavía.",
             "DOI vía Zenodo y activación de GitHub Pages: decisión de mesa, pendiente en este corte.",
             "Primeras entregas del reto público, conforme lleguen los PR con spec pre-registrada.",
         ],
