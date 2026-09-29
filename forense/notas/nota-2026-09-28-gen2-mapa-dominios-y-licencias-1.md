@@ -2,6 +2,8 @@
 
 ADR-260928-GEN2-MAPA-DOMINIOS-Y-LICENCIAS-1-5024-01 · NUBE · AUTÓNOMO-AMPLIO · 0-bis `5024379f` · base `9d2550b9` (= SHA de redacción; 0 commits de diferencia).
 
+> **Actualización 29/sep/2026.** P2 se retomó con la red parcialmente abierta: `payloads_sin_licencia` 598 → 570 (commit `82b6b9b6`) → **111** (sección «P2 · continuación» al final). Las cifras de P2 de este encabezado y del apartado «P2 · Licencias» son las del 28/sep y se conservan como historia.
+
 Contadores: **cero mediciones; no adopta.** Afirmaciones que citan CALC/RESULT en `gen2_existente` (regex del tablero): **76 → 178**. Clase: sin cambios (235 / 717 / 420 / 24). `payloads_sin_licencia`: **598 → 598**; campo `licencia` ausente: **554 → 554**; grafías puras INEGI: **22 → 0**. `mapa11_dominios_medidos`: NO-ENCONTRADO (`grep -rn mapa11 tools/ tests/` → 0 archivos); no se mueve.
 
 ## Premisas
@@ -40,3 +42,43 @@ Contadores: **cero mediciones; no adopta.** Afirmaciones que citan CALC/RESULT e
 
 ## Sucesores
 Mapa v1.3 (con MEDICION-CARRILES-2 y los 101 CALC que el canal aún no registra: basta re-correr el script); licencias: NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01 sigue abierta con receta de red.
+
+## P2 · continuación (29/sep/2026) — NUBE, red parcialmente abierta
+
+ADR-260929-GEN2-MAPA-DOMINIOS-Y-LICENCIAS-1-5024-02 · misma raíz `5024`. Parte del commit `82b6b9b6` de la rama del PR #1312 y de `origin/main` `7312797c` fusionado (20 commits: MEDICION-CARRILES-2 ENIF2024, ENSANUT2024 y ENVIPE2025). Trabajo en la rama de sesión `claude/epic-newton-1848i4`.
+
+**Contadores (derivados por comando).** Cero mediciones; no adopta. `payloads_sin_licencia`: 598 (línea base de LICENCIAS-1) → 570 (`82b6b9b6`, 28 con documento ya en el repo) → **111**. `python3 forense/analisis/mapa-dominios-1-2/aplica_licencias_p2.py --resumen` → 459 entradas con licencia de una regla P2: **339 NO-DETERMINABLE · 81 TERMINOS-DE-USO · 36 LICENCIA-DECLARADA · 3 NO-APLICA**; 111 sin resolver. El criterio «licencia vacía = 0» **sigue sin cumplirse**. La regla de conteo evalúa la cabeza del valor de `licencia` (antes de « — nota previa del registro: »): con la regla anterior serían 141, porque 30 entradas resueltas conservan una nota histórica que dice «no declarada».
+
+**Lectura correcta del contador.** 111 no significa «459 con licencia». Solo 36 son licencia declarada por la fuente; 81 son términos de uso (varios restrictivos) y 339 son NO-DETERMINABLE con universo citado: la fuente fue alcanzada y no declara licencia ni términos de reuso; en 178 de ellas solo hay un aviso de derechos reservados (UNAM-IIJ 119, IETAM 46, IEC 7, INE 5, TEPJF 1) y en otras 156 un aviso de copyright o titularidad (ENSANUT 149, IEEM 7). El frente público (requisito I2) no puede leer este campo como «reuso permitido»: lo permitido con texto abierto es CC0 (20), CC BY 4.0 (UCDP 2), CC Atribución 2.5 (CIDE 3) y el libre uso del INEGI (8); GPS (3) es CC BY-NC-SA y además pide no transferir los datos a terceros.
+
+### Premisas
+- [EJECUTADO → cambió, logística] La red de esta sesión no es la del 28/sep. Sonda `curl https://<host>/` (1 intento) a los 42 hosts con URL real de los payloads sin licencia: 25 responden 200, 11 dan `000`, 4 dan 403 y 1 da 202 sin cuerpo. INEGI responde 200 (el 28/sep daba `000`). `www.losmexicanos.unam.mx` da `000` por https:// y 200 por http://, que es el esquema de su `url_origen`.
+- [EJECUTADO] La página de términos del INEGI es idéntica byte a byte a la sellada por LICENCIAS-1 (sha256 `97e975…`, 10 442 B).
+- [REPORTADO → verificado por dirección] Cinco investigadores (subagentes de solo lectura sobre el repo) trajeron evidencia por grupo de portales. Dirección verificó por comando el 100 % de las filas que se aplican: archivo, sha256, bytes y cita verbatim; y repitió por su cuenta las descargas de ENSANUT e IETAM (mismos sha256), los 9 `dataset.csv` de Datawrapper (9/9 = sha256 del manifiesto), el bundle JS de la PDN (mismo sha256, fragmentos = cortes exactos) y el corte de TEPJF. El resto de sus afirmaciones son REPORTADO y se marcan así en cada valor.
+- [EJECUTADO → cayó] «Registro previo» del Banco Mundial: la página trae tres bloques; el de *Public Use Files* sí pide registro, el resumen general dice «registered and unregistered». Se citó el bloque de PUF.
+
+### Lo hecho
+1. Mecanismo: `aplica_licencias_p2.py` lee `terminos-sellados/reglas-p2.tsv` (39 reglas, D-15) y solo aplica una regla si su página sellada existe, su sha256/bytes coinciden con `indice.tsv` y todas sus citas verbatim están en la evidencia. Escribe solo `licencia`, conserva la nota previa tras un marcador y verifica con `yaml.safe_load` antes/después. Es idempotente (segunda corrida: 0 cambios). Guardia en `tests/test_corpus_licencias.py`.
+2. Evidencia sellada en el repo: 36 páginas crudas (1.8 MB) con sha256 en `indice.tsv` y 5 universos de búsqueda con URL, HTTP, bytes y sha256 de 255 GET (`universo-*.tsv`). Las páginas viven con `-text` local: el `* text=auto eol=lf` de la raíz cambia los bytes y rompe el sha256 (ver `forense/hallazgos.md`).
+3. Reglas por dominio o por registro con atribución declarada: por `url_origen` exacta o por prefijo; por autoría INEGI para 13 entradas sin URL (hermanas del manifiesto con URL en inegi.org.mx); por tipo de archivo donde importa (LAPOP: 8 datasets `.dta/.sav`, no sus PDF).
+4. NO se aplicó: ComprasMX (la página que declararía los términos es inalcanzable: un negativo sin universo agotado no es NO-DETERMINABLE), Cero Desabasto (3 hosts bloqueados), IMSS-Bienestar, calidad.salud.gob.mx (aplicabilidad inferida), los 9 PDF de LAPOP, WBES 6453 e IHSN 7063 (PARCIAL), el formulario OECD (el payload es el propio formulario; el expediente 02 recoge compromisos del solicitante, no la licencia) y los 2 payloads de github.com.
+5. NO se usó `raw.githubusercontent.com` para leer la licencia del paquete R `list`: `github.com` está restringido en esta sesión a los repos configurados y leer otro repo por un host que el proxy no bloqueó sería usar un hueco. Ninguna denegación explícita del proxy (`host_not_allowed`, «Host not in allowlist», Cloudflare, TLS) se rodeó.
+6. CI de la rama: `guardias` fallaba por «tests sin fila en el censo» (`test_mapa_dominios_v1_2`); `suite` y el resto en verde. Corregido con fila de censo e `import pytest` (commit `7d48a0bb`).
+
+### Restricciones que chocan con publicar payloads en un repo público (I2)
+Texto de las propias fuentes, citado en cada valor: LAPOP («You may not distribute, share or post the data»), Pew §13 (solo extractos, nunca el dataset completo), WVS («non-redistribution data use license»), Banco Mundial PUF (sin redistribuir ni vender sin acuerdo escrito), gob.mx (uso personal y no comercial), GPS (no transferir a terceros) y los avisos de derechos reservados. Ninguna de las 459 filas autoriza por sí sola subir esos payloads a un repo público; requiere decisión de mesa fuera de este acto. En Dataverse el CC0 es del depositante y no se verificó su derecho sobre datos de terceros.
+
+### P2 sin resolver (111)
+Por dominio: `sin-licencia-base.tsv` (regenerada por comando; solo puede encoger). Dos causas, según los investigadores (REPORTADO) y las sondas de dirección: (a) la política de red del entorno deniega el host (`host_not_allowed`, CONNECT 403: www.gdeltproject.org, sat.gob.mx, hacienda.gob.mx, issp.org, oecd.org, povertyactionlab.org, datacivica.org, web.archive.org, nosotrxs.org y otros); (b) barrera propia del sitio (Cloudflare en gesis.org e icpsr.umich.edu, Akamai en datos.gob.mx, TLS en ieepco.org.mx y mapadecuidados.inmujeres.gob.mx, DNS en cendoc.imjuventud.gob.mx, S3 `AccessDenied` en EEA). Receta de un minuto para (a): en el menú del entorno de nube (barra del título) → Edit → Network access, ampliar el nivel o añadir esos dominios, y relanzar el mismo procedimiento; para (b): navegador real (caja o usuario). NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01 sigue ABIERTA con esta receta.
+
+### Módulo de auditoría v2.16 (continuación)
+- ¿Contadores movidos? Ninguno de medición. `payloads_sin_licencia` 570 → 111 (regla de cabeza; 141 con la anterior).
+- ¿Qué afirmación sobre el corpus se escribió a mano y no se derivó? Los textos de `licencia` y las etiquetas de veredicto son redacción humana sobre citas verificadas por comando; las cifras (459, 339/81/36/3, 111) salen de `--resumen`. Lo «INFERIDO» va marcado dentro del valor (Banco Mundial PUF por `data_access_type`; MMdata colección → dataset HTTWYL por nombre de archivo; aplicabilidad a calidad.salud.gob.mx no aplicada). Las atribuciones «por url_origen» heredan la procedencia «NO confirmada por el autor» del manifiesto (314 de los payloads de ENSANUT, IETAM y UNAM; también las 4 816 entradas INEGI de LICENCIAS-1).
+- ¿Unidad y escala? Payload (archivo), no persona ni encuesta. La licencia de un PDF puede diferir de la del dataset del mismo estudio (LAPOP: solo se aplicó a los datos).
+- ¿PROSPECTIVA o RETROSPECTIVA mezcladas? No aplica: P2 no mide.
+- ¿Riesgo de lectura simplista? Leer «111 sin resolver» como «459 con licencia» o NO-DETERMINABLE como «libre»: NO-DETERMINABLE significa que la fuente no declara términos, no que el reuso esté permitido.
+- ¿Sesgo de clase media urbana o pobreza confundida con cultura? No aplica.
+- ¿Qué deuda «asumida a propósito» caducó? La reserva P2 del 28/sep («red denegada») caducó al cambiar la política de red de la sesión.
+
+### Sucesores
+Mapa v1.3 (sin cambios: P1 no se reabrió, la vista `resultados.tsv` no cambió en `main`). Licencias: NC-…-1997-01 (111) con la receta de red; decisión de mesa sobre publicar payloads con términos restrictivos o derechos reservados.

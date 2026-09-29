@@ -16,7 +16,8 @@ BASE = RAIZ / "forense/analisis/corpus-licencias-1/sin-licencia-base.tsv"
 
 
 def _sin_licencia(v):
-    v = str(v or "").strip().lower()
+    # La nota previa que P2 conserva tras « — nota previa del registro: » es dato histórico: no cuenta como carencia.
+    v = str(v or "").split(" — nota previa del registro: ")[0].strip().lower()
     return v in ("", "none") or "no declarada" in v
 
 
