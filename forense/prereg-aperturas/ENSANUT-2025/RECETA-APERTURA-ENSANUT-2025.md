@@ -21,4 +21,4 @@ no se sostiene, PARA.
    de leer; devuelve R por celda, `-DICTAMEN`, `-K`, `-N`, Wilson, `-MAE-PUNTO`, `-MARCA`.
 6. **Asiento**: registro por el job de derivados; `forense/replay-evidencia.tsv` (E.7); re-rótulo de la reserva
    de la ola en el manifiesto por el acto que lo tenga en su perímetro. Contendientes servidos a la vez (E.6):
-   CALC-ENSANUT-PISOS-SALUD-0001.
+   CALC-ENSANUT-PISOS-SALUD-0001, CALC-MC2-ENSANUT2024-0001.

@@ -3,11 +3,12 @@
 # el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
 calc_id: CALC-APERTURA-ENSANUT-2025-0001
 spec_md: ../../../forense/prereg-aperturas/ENSANUT-2025/APERTURA-ENSANUT-2025-spec-v1_0.md
-spec_md_sha256: bdcf67c58ef57844d157b406214792dc4cd3df285bbfbfdfea5e15fadcb301ba
+spec_md_sha256: a84246e7d1c1427904388f234e6be757eaf148e16f6572c9a0d0bfecd1e4211a
 script: forense/prereg-aperturas/ENSANUT-2025/medidor_apertura_ensanut_2025.py
 dependencias_materiales:
 - numpy
 - pandas
+- pyreadstat
 etiquetas:
   generacion: GEN2
   uso_motor: NO-ADOPTA-NADA
@@ -19,6 +20,7 @@ etiquetas:
   unidad_transferencia: PERSONA
   contendientes:
   - CALC-ENSANUT-PISOS-SALUD-0001
+  - CALC-MC2-ENSANUT2024-0001
   ola_reservada: ENSANUT 2025 (se abre sólo al correr este CALC)
   congelado: NO -- expediente; se congela cuando mesa firme su apertura
 inputs:
@@ -60,6 +62,19 @@ inputs:
   sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
   funcion: CODIGO
   nota: lee_dta y num de la receta de pisos
+- id: contendiente_medidor_mc2
+  origen: repo
+  ruta: data/corrida0/CALC-MC2-ENSANUT2024-0001/medidor.py
+  sha256: 11e22394dafda219c2d2209c756c0660281d6f81f29fb3aa80ba4172b788dc6c
+  funcion: CODIGO
+  nota: 'medidor sellado de MC2: frame_inte/frame_adul, celdas_inte/celdas_adul (recodificación; no importa receta
+    del repo)'
+- id: contendiente_resultados_mc2
+  origen: repo
+  ruta: data/corrida0/CALC-MC2-ENSANUT2024-0001/resultados.json
+  sha256: 69c41814965b485552496b00da067f0d968a25daa4ae863a58af761c80cacf3c
+  funcion: DATO
+  nota: 'MC2 2024 sellado: P, IC95-INF, IC95-SUP por celda'
 - id: guardia_apertura
   origen: repo
   ruta: forense/prereg-aperturas/guardia_apertura.py
@@ -99,13 +114,33 @@ variables:
   definicion: conducta del contendiente (spec SALUD-ENSANUT-PISOS §2)
 - nombre: IDEACION-SUICIDA-ADOLESCENTES
   definicion: conducta del contendiente (spec SALUD-ENSANUT-PISOS §2)
+- nombre: MC2-BUSCO
+  definicion: buscó atención (h0404 1 vs 2) | necesidad de salud 3 meses (h0401 = 1); sólo NORURAL (NAC/RURAL/URBANO/METRO
+    duplican BUSCO-ATENCION)
+- nombre: MC2-BUSCO-MENTAL
+  definicion: buscó atención | necesidad de salud mental (h0402 en 47/48/50/59)
+- nombre: MC2-ACCESO
+  definicion: algún motivo de no búsqueda (H0405A-C) en 2/3/4 | no buscó con motivo válido 01-13
+- nombre: MC2-NO-GRAVE
+  definicion: algún motivo de no búsqueda = 1 | no buscó con motivo válido 01-13
+- nombre: MC2-DM-SUSPENDE
+  definicion: suspendió medicamento 6 meses (a0313 1 vs 2) | adulto 20+ con a0301 = 1 y a0307 1-3
+- nombre: MC2-DM-ECON-ACCESO
+  definicion: causa de suspensión (a0314) en 5/6/7/10 | suspendió con causa válida
+- nombre: MC2-DM-PAGA
+  definicion: pagó por el tratamiento (0 < a0310a < 99999) | tratado con monto válido
 universo: 'Personas de ENSANUT 2025: adultos 20+, integrantes (todas las edades), utilizadores, adolescentes 10-19;
-  ponde_f > 0 con est_sel y upm no vacíos (prepara() del contendiente)'
-filtros: Un eje a la vez (TOTAL, SEXO, EDAD, ESTRATO, ESCOLARIDAD 20+); nunca cruces (guardia E.6)
+  ponde_f > 0 con est_sel y upm no vacíos (prepara() de PISOS-SALUD). Celdas MC2-*: el universo de cada celda del
+  medidor sellado de MC2 (integrantes con necesidad de salud en 3 meses; adultos 20+ con diabetes diagnosticada
+  y en tratamiento), mismo filtro de diseño'
+filtros: 'Un eje a la vez (TOTAL, SEXO, EDAD, ESTRATO, ESCOLARIDAD 20+); nunca cruces (guardia E.6). MC2-*: una
+  llamada por celda sellada, agrupada por su indicador de pertenencia; 7 diferencias y 4 duplicados de PISOS-SALUD
+  apartados sin abrir'
 ponderador: ponde_f
 transformacion: Recodificación del contendiente (forense/analisis/salud-bienestar/lista-cerrada-P1.md §2); columna
   ausente o con texto/códigos distintos en el catálogo 2025 -> NO-ESTIMABLE
-estimando: R = Σw·y/Σw por conducta×eje×categoría en ENSANUT 2025; cobertura de R en el ICC del piso 2024
+estimando: R = Σw·y/Σw por celda en ENSANUT 2025; cobertura de R en el IC del contendiente (ICC del piso 2024 de
+  PISOS-SALUD; IC95 de diseño 2024 de MC2), una sola primaria sobre todas las celdas
 seed:
   aplica: false
   razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
@@ -784,6 +819,146 @@ resultados:
   unidad: proporción ponderada en la ola reservada
   permite_no_estimable: true
 - id: RESULT-APERTURA-ENSANUT-2025-IDEACION-SUICIDA-ADOLESCENTES-ESTRATO-METROPOLITANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-BUSCO-NORURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-METRO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-NORURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-EDAD-0-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-EDAD-20-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-ACCESO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-METRO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-NORURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-EDAD-0-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-EDAD-20-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-NO-GRAVE-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-BUSCO-MENTAL-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-BUSCO-MENTAL-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-BUSCO-MENTAL-NORURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-SUSPENDE-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-SUSPENDE-PAGA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-SUSPENDE-NOPAGA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-SUSPENDE-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-SUSPENDE-NORURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-SUSPENDE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-SUSPENDE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-ECON-ACCESO-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-ECON-ACCESO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-ECON-ACCESO-NORURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENSANUT-2025-MC2-DM-PAGA-NAC-R
   tipo: proporcion
   unidad: proporción ponderada en la ola reservada
   permite_no_estimable: true
