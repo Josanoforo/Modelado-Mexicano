@@ -5381,6 +5381,87 @@ def _clases_de_relevo(usos_activos: list) -> dict:
     return salida
 
 
+# ACTO GEN2-TUBERIA-TABLERO-INSUMOS-1 · P1 (28/sep/2026). LA FECHA DE LA VISTA.
+# Defecto que atrapa: `status` publicaba contadores sin decir DE CUANDO eran; el
+# ultimo [deriva] fusionado era de las 10:20 del 28/sep, con otro en cola sin
+# fusionar, y el puesto de tablero tuvo que inferirlo a mano. Se DERIVA del
+# historial y de las refs locales de `origin`, sin red y sin escribir (D-23):
+#   vista_publicada_commit/_fecha -- ultimo commit de la primera linea de HEAD
+#     con `[deriva]` (asunto de un squash, o cuerpo de un merge de mesa) que
+#     cambio `data/corrida0/usos.tsv`, la vista que solo publica el canal. Un
+#     commit a mano sobre esa vista NO cuenta. Fecha del committer, en UTC.
+#   vista_publicada_commits_posteriores -- commits de la primera linea de HEAD
+#     (PR fusionados) despues de ese: si crece, `main` va atrasado respecto de
+#     su vista.
+#   deriva_en_cola -- ramas `derivados/auto-*` que `origin` tenia en el ultimo
+#     fetch de este clon (un [deriva] abierto y sin fusionar).
+# Un clon superficial cuyo borde es el que «toca» la vista no prueba nada, y un
+# clon sin refs de `origin` no dice nada de la cola: se declara (A.13), no se
+# rellena con un cero que aparentaria una cola vacia.
+_VISTA_PUBLICADA_RUTA = "data/corrida0/usos.tsv"
+
+
+def _vista_publicada() -> dict:
+    nv = "NO-VERIFICABLE-SIN-GIT"
+    out = {"vista_publicada_commit": nv, "vista_publicada_fecha": nv,
+           "vista_publicada_commits_posteriores": nv,
+           "deriva_en_cola": nv, "deriva_en_cola_fuente": nv}
+
+    def git(*args: str) -> str | None:
+        try:
+            r = subprocess.run(["git", *args], cwd=RAIZ, capture_output=True,
+                               text=True, timeout=60)
+        except (OSError, subprocess.SubprocessError):
+            return None
+        return r.stdout.strip() if r.returncode == 0 else None
+
+    if git("rev-parse", "--git-dir") is None:
+        return out
+    borde: set = set()
+    ruta_sh = git("rev-parse", "--git-path", "shallow")
+    if ruta_sh and (RAIZ / ruta_sh).exists():
+        borde = {l.strip() for l in (RAIZ / ruta_sh).read_text().splitlines() if l.strip()}
+    total = git("rev-list", "--count", "HEAD") or "?"
+    hallado = git("log", "--first-parent", "-1", "--format=%H\t%cI",
+                  "--grep=^\\[deriva\\]", "--", _VISTA_PUBLICADA_RUTA)
+    if hallado is None:
+        pass
+    elif not hallado or hallado.split("\t")[0] in borde:
+        # ningun [deriva] en la historia alcanzable, o el unico candidato es el
+        # borde del clon superficial (que «introduce» todo archivo)
+        motivo = ("NO-VERIFICABLE-CLON-SUPERFICIAL" if borde
+                  else f"NO-ENCONTRADO (ningun [deriva] toca {_VISTA_PUBLICADA_RUTA} "
+                       f"en los {total} commits de HEAD)")
+        out.update(vista_publicada_commit=motivo, vista_publicada_fecha=motivo,
+                   vista_publicada_commits_posteriores=motivo)
+    else:
+        sha, fecha = hallado.split("\t")
+        try:
+            fecha = (datetime.datetime.fromisoformat(fecha)
+                     .astimezone(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
+        except ValueError:
+            fecha = f"NO-VERIFICABLE-FECHA-ILEGIBLE ({fecha})"
+        out.update(vista_publicada_commit=sha, vista_publicada_fecha=fecha,
+                   vista_publicada_commits_posteriores=git("rev-list", "--first-parent", "--count",
+                                                    f"{sha}..HEAD") or nv)
+    refs = git("for-each-ref", "--format=%(refname)", "refs/remotes/origin/")
+    if refs is None or "refs/remotes/origin/main" not in refs.split():
+        out.update(deriva_en_cola="NO-VERIFICABLE-SIN-REFS-DE-ORIGIN",
+                   deriva_en_cola_fuente="este clon no trae refs/remotes/origin/main; `git fetch` y repetir")
+    else:
+        out["deriva_en_cola"] = sum(
+            1 for r in refs.split() if r.startswith("refs/remotes/origin/derivados/auto-"))
+        fetch = git("rev-parse", "--git-path", "FETCH_HEAD")
+        try:
+            cuando = datetime.datetime.fromtimestamp(
+                (RAIZ / fetch).stat().st_mtime, datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        except (OSError, TypeError):
+            cuando = "DESCONOCIDO"
+        out["deriva_en_cola_fuente"] = (f"refs/remotes/origin/derivados/auto-* sin red; "
+                                        f"ultimo fetch de este clon {cuando}")
+    return out
+
+
 def status(imprime: bool = True) -> dict:
     """§9 del plan v2.0. TODO derivado de las vistas en memoria: ningun
     numero se teclea aqui y ninguno se lee de un TSV que quiza no se
@@ -5508,6 +5589,8 @@ def status(imprime: bool = True) -> dict:
     c["celdas_validadas_prospectiva"] = _prosp
     c["celdas_validadas_retrospectiva"] = _retro
     c["celdas_emitidas_sin_r"] = _CV.emitidas_sin_r(_cv)
+    # ACTO GEN2-TUBERIA-TABLERO-INSUMOS-1 · P1: de cuando es la vista que se lee.
+    c.update(_vista_publicada())
     if imprime:
         for clave, valor in c.items():
             print(f"{clave}={valor}")
