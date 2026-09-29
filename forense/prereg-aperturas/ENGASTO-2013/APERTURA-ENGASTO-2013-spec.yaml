@@ -1,0 +1,1450 @@
+# CALC-APERTURA-ENGASTO-2013-0001 -- contrato ejecutable del expediente de apertura (D-15), GEN2-APERTURAS-PREREGISTRADAS-1.
+# NO CORRIDO. La apertura es copiar este archivo a data/corrida0/CALC-APERTURA-ENGASTO-2013-0001/spec.yaml;
+# el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
+calc_id: CALC-APERTURA-ENGASTO-2013-0001
+spec_md: ../../../forense/prereg-aperturas/ENGASTO-2013/APERTURA-ENGASTO-2013-spec-v1_0.md
+spec_md_sha256: 41f7c880954f58df15281e2f01b2af504650828a585d65ecd8cad65eeac67f08
+script: forense/prereg-aperturas/ENGASTO-2013/medidor_apertura_engasto_2013.py
+dependencias_materiales:
+- numpy
+- pandas
+- pyreadstat
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: 'NO'
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+  tipo: APERTURA-PRE-REGISTRADA (COMMIT-3 de la ola reservada)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: PROSPECTIVA
+  unidad_transferencia: HOGAR
+  contendientes:
+  - CALC-ENGASTO-CONSUMO-PISOS-0001
+  ola_reservada: ENGASTO 2013 (se abre sólo al correr este CALC)
+  congelado: NO -- expediente; se congela cuando mesa firme su apertura
+inputs:
+- id: engasto_2012_hogar_dta
+  origen: manifiesto
+  sha256: bb17939d883175c1cb31d82ad951bc13c1b4b3713974142d7a3233169d7440ae
+  funcion: DATO
+  nota: ENGASTO 2013 HOGAR (archivo engasto2013/hogar_dta.zip; id con rótulo 2012) -- ola RESERVADA; sólo este medidor
+    la lee
+- id: engasto_2013_viviendas_dta
+  origen: manifiesto
+  sha256: 3e7d5da238523b0107ad37e965d4cc5908219586e3322ac530be5295a7960978
+  funcion: DATO
+  nota: ENGASTO 2013 VIVIENDAS (diseño, tam_loc) -- ola RESERVADA; sólo este medidor la lee
+- id: engasto_2012_gasto_de_consumo_ajustado_dta
+  origen: manifiesto
+  sha256: 8b12ef504548157c463eaa0374c833da34bfd92623d077201b3cf3bd99158dca
+  funcion: DATO
+  nota: ENGASTO 2013 GASTO_DE_CONSUMO_AJUSTADO (jefe; archivo engasto2013/, id con rótulo 2012) -- ola RESERVADA
+- id: contendiente_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-ENGASTO-CONSUMO-PISOS-0001/medidor.py
+  sha256: d996dbf3e38ae7d0fafae7f94710b7374d88e7fcc47cf8eb8940b413df773c86
+  funcion: CODIGO
+  nota: 'medidor sellado del contendiente: COLS/prepara/conducta_y/EJES/rid'
+- id: contendiente_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENGASTO-CONSUMO-PISOS-0001/resultados.json
+  sha256: 0afd04101ed0c8e7b927b6df4072188b36309e2f9299b665f6590a0ab8729bd8
+  funcion: DATO
+  nota: 'piso 2012 sellado: P, IC-LO, IC-HI (diseño) por celda'
+- id: receta_pisos
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: lee_dta y num de la receta de pisos
+- id: guardia_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/guardia_apertura.py
+  sha256: b9fee881070a00c46ad3238d9ee65f6d3cfd3028594b29ee055727f9501771c0
+  funcion: CODIGO
+  nota: auditoría AST, agregador de una variable, adjudicación
+- id: expediente_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/expediente_apertura.py
+  sha256: db003b18b9bc8213d0aba9bed900a9b7f5620ebc4e9a2173727f53356c7ef9f7
+  funcion: CODIGO
+  nota: esquema, salida y contrato comunes
+variables:
+- nombre: GRAN-COMPRA-*(8)
+  definicion: conducta del contendiente (spec CONSUMO-ENGASTO-PISOS §2; lista-cerrada-P1 §3)
+- nombre: '{CARNE,FRUTA,VERDURA,PAN,LECHE}-EN-{SUPER-MEMBRESIA,MERCADO-TIANGUIS-AMBULANTE}'
+  definicion: conducta del contendiente (spec CONSUMO-ENGASTO-PISOS §2; lista-cerrada-P1 §3)
+- nombre: COMPRA-INTERNET-ALGUN-RUBRO
+  definicion: conducta del contendiente (spec CONSUMO-ENGASTO-PISOS §2; lista-cerrada-P1 §3)
+- nombre: COMPRA-INTERNET-SI-CONEXION
+  definicion: conducta del contendiente (spec CONSUMO-ENGASTO-PISOS §2; lista-cerrada-P1 §3)
+- nombre: TIENE-CELULAR
+  definicion: conducta del contendiente (spec CONSUMO-ENGASTO-PISOS §2; lista-cerrada-P1 §3)
+- nombre: CONEX-INTERNET
+  definicion: conducta del contendiente (spec CONSUMO-ENGASTO-PISOS §2; lista-cerrada-P1 §3)
+universo: 'Hogares de ENGASTO 2013 (carpeta engasto2013/): HOGAR con factor_hog > 0 y est_dis, upm (VIVIENDAS) no
+  vacíos (prepara() del contendiente); universo de cada conducta el del contendiente'
+filtros: Un eje a la vez (TOTAL, SEXO-JEFE, EDAD-JEFE, ESCOLARIDAD-JEFE, TLOC); nunca cruces (guardia E.6)
+ponderador: factor_hog
+transformacion: Recodificación del contendiente (forense/analisis/consumo-gasto/lista-cerrada-P1.md §3, §5; códigos
+  del FD 2012). LUGAR_COMPRA 2013 ausente del manifiesto -> sus conductas NO-ESTIMABLE; columna ausente o con texto/códigos
+  distintos -> NO-ESTIMABLE; llave/ponderador/diseño ausente -> PARO
+estimando: R = Σw·y/Σw por conducta×eje×categoría en ENGASTO 2013; cobertura de R en el IC95 de diseño del piso
+  2012
+seed:
+  aplica: false
+  razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
+parametros:
+  nominal: 0.95
+  z: 1.959964
+  regla: cobertura R en [lo, hi] del contendiente; Wilson 95%; NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificación ad hoc)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'determinista: sumas float64 sin remuestreo'
+resultados:
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-SUPER-MEMBRESIA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-SUPER-MEMBRESIA-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-SUPER-MEMBRESIA-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-SUPER-MEMBRESIA-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-SUPER-MEMBRESIA-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-SUPER-MEMBRESIA-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-SUPER-MEMBRESIA-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-SUPER-MEMBRESIA-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-SUPER-MEMBRESIA-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-SUPER-MEMBRESIA-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-SUPER-MEMBRESIA-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-MERCADO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-MERCADO-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-MERCADO-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-MERCADO-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-MERCADO-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-MERCADO-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-MERCADO-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-MERCADO-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-MERCADO-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-MERCADO-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-MERCADO-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-MERCADO-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-MERCADO-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-MERCADO-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-MERCADO-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-TIANGUIS-AMBULANTE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-TIANGUIS-AMBULANTE-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-TIANGUIS-AMBULANTE-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-TIANGUIS-AMBULANTE-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-TIANGUIS-AMBULANTE-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-TIANGUIS-AMBULANTE-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-TIANGUIS-AMBULANTE-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-TIANGUIS-AMBULANTE-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-TIANGUIS-AMBULANTE-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-TIANGUIS-AMBULANTE-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-TIANGUIS-AMBULANTE-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-ABARROTES-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-ABARROTES-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-ABARROTES-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-ABARROTES-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-ABARROTES-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-ABARROTES-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-ABARROTES-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-ABARROTES-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-ABARROTES-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-ABARROTES-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-ABARROTES-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-ABARROTES-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-ABARROTES-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-ABARROTES-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-ABARROTES-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-CONVENIENCIA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-CONVENIENCIA-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-CONVENIENCIA-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-CONVENIENCIA-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-CONVENIENCIA-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-CONVENIENCIA-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-CONVENIENCIA-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-CONVENIENCIA-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-CONVENIENCIA-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-CONVENIENCIA-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-CONVENIENCIA-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-CONVENIENCIA-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-CONVENIENCIA-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-CONVENIENCIA-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-CONVENIENCIA-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-DEPARTAMENTAL-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-DEPARTAMENTAL-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-DEPARTAMENTAL-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-DEPARTAMENTAL-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-DEPARTAMENTAL-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-DEPARTAMENTAL-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-DEPARTAMENTAL-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-DEPARTAMENTAL-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-DEPARTAMENTAL-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-DEPARTAMENTAL-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-DEPARTAMENTAL-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-DEPARTAMENTAL-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-DEPARTAMENTAL-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-DEPARTAMENTAL-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-DEPARTAMENTAL-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-INTERNET-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-INTERNET-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-INTERNET-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-INTERNET-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-INTERNET-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-INTERNET-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-INTERNET-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-INTERNET-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-INTERNET-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-INTERNET-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-INTERNET-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-INTERNET-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-INTERNET-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-INTERNET-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-INTERNET-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-OTRO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-OTRO-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-OTRO-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-OTRO-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-OTRO-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-OTRO-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-OTRO-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-OTRO-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-OTRO-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-OTRO-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-OTRO-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-OTRO-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-OTRO-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-OTRO-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-GRAN-COMPRA-OTRO-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-SUPER-MEMBRESIA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-SUPER-MEMBRESIA-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-SUPER-MEMBRESIA-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-SUPER-MEMBRESIA-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-SUPER-MEMBRESIA-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-SUPER-MEMBRESIA-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-SUPER-MEMBRESIA-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-SUPER-MEMBRESIA-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-SUPER-MEMBRESIA-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-SUPER-MEMBRESIA-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-SUPER-MEMBRESIA-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-MERCADO-TIANGUIS-AMBULANTE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-MERCADO-TIANGUIS-AMBULANTE-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-MERCADO-TIANGUIS-AMBULANTE-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CARNE-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-SUPER-MEMBRESIA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-SUPER-MEMBRESIA-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-SUPER-MEMBRESIA-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-SUPER-MEMBRESIA-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-SUPER-MEMBRESIA-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-SUPER-MEMBRESIA-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-SUPER-MEMBRESIA-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-SUPER-MEMBRESIA-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-SUPER-MEMBRESIA-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-SUPER-MEMBRESIA-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-SUPER-MEMBRESIA-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-MERCADO-TIANGUIS-AMBULANTE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-MERCADO-TIANGUIS-AMBULANTE-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-MERCADO-TIANGUIS-AMBULANTE-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-FRUTA-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-SUPER-MEMBRESIA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-SUPER-MEMBRESIA-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-SUPER-MEMBRESIA-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-SUPER-MEMBRESIA-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-SUPER-MEMBRESIA-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-SUPER-MEMBRESIA-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-SUPER-MEMBRESIA-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-SUPER-MEMBRESIA-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-SUPER-MEMBRESIA-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-SUPER-MEMBRESIA-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-SUPER-MEMBRESIA-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-MERCADO-TIANGUIS-AMBULANTE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-MERCADO-TIANGUIS-AMBULANTE-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-MERCADO-TIANGUIS-AMBULANTE-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-VERDURA-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-SUPER-MEMBRESIA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-SUPER-MEMBRESIA-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-SUPER-MEMBRESIA-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-SUPER-MEMBRESIA-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-SUPER-MEMBRESIA-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-SUPER-MEMBRESIA-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-SUPER-MEMBRESIA-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-SUPER-MEMBRESIA-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-SUPER-MEMBRESIA-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-SUPER-MEMBRESIA-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-SUPER-MEMBRESIA-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-MERCADO-TIANGUIS-AMBULANTE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-MERCADO-TIANGUIS-AMBULANTE-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-MERCADO-TIANGUIS-AMBULANTE-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-PAN-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-SUPER-MEMBRESIA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-SUPER-MEMBRESIA-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-SUPER-MEMBRESIA-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-SUPER-MEMBRESIA-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-SUPER-MEMBRESIA-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-SUPER-MEMBRESIA-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-SUPER-MEMBRESIA-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-SUPER-MEMBRESIA-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-SUPER-MEMBRESIA-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-SUPER-MEMBRESIA-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-SUPER-MEMBRESIA-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-SUPER-MEMBRESIA-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-MERCADO-TIANGUIS-AMBULANTE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-MERCADO-TIANGUIS-AMBULANTE-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-MERCADO-TIANGUIS-AMBULANTE-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-MERCADO-TIANGUIS-AMBULANTE-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-MERCADO-TIANGUIS-AMBULANTE-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-LECHE-EN-MERCADO-TIANGUIS-AMBULANTE-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-ALGUN-RUBRO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-ALGUN-RUBRO-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-ALGUN-RUBRO-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-ALGUN-RUBRO-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-ALGUN-RUBRO-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-ALGUN-RUBRO-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-ALGUN-RUBRO-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-ALGUN-RUBRO-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-ALGUN-RUBRO-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-ALGUN-RUBRO-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-ALGUN-RUBRO-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-ALGUN-RUBRO-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-ALGUN-RUBRO-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-ALGUN-RUBRO-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-ALGUN-RUBRO-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-SI-CONEXION-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-SI-CONEXION-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-SI-CONEXION-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-SI-CONEXION-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-SI-CONEXION-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-SI-CONEXION-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-SI-CONEXION-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-SI-CONEXION-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-SI-CONEXION-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-SI-CONEXION-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-SI-CONEXION-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-SI-CONEXION-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-SI-CONEXION-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-SI-CONEXION-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-COMPRA-INTERNET-SI-CONEXION-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-TIENE-CELULAR-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-TIENE-CELULAR-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-TIENE-CELULAR-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-TIENE-CELULAR-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-TIENE-CELULAR-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-TIENE-CELULAR-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-TIENE-CELULAR-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-TIENE-CELULAR-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-TIENE-CELULAR-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-TIENE-CELULAR-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-TIENE-CELULAR-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-TIENE-CELULAR-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-TIENE-CELULAR-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-TIENE-CELULAR-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-TIENE-CELULAR-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CONEX-INTERNET-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CONEX-INTERNET-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CONEX-INTERNET-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CONEX-INTERNET-EDAD-JEFE-HASTA-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CONEX-INTERNET-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CONEX-INTERNET-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CONEX-INTERNET-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CONEX-INTERNET-ESCOLARIDAD-JEFE-PRIMARIA-INCOMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CONEX-INTERNET-ESCOLARIDAD-JEFE-PRIMARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CONEX-INTERNET-ESCOLARIDAD-JEFE-SECUNDARIA-COMPLETA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CONEX-INTERNET-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-Y-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CONEX-INTERNET-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CONEX-INTERNET-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CONEX-INTERNET-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-CONEX-INTERNET-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-DICTAMEN
+  tipo: texto
+  unidad: vocabulario cerrado CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE
+- id: RESULT-APERTURA-ENGASTO-2013-K
+  tipo: entero
+  unidad: celdas con R dentro del IC del contendiente
+- id: RESULT-APERTURA-ENGASTO-2013-N
+  tipo: entero
+  unidad: celdas puntuadas
+- id: RESULT-APERTURA-ENGASTO-2013-WILSON-LO
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, inferior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-WILSON-HI
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, superior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-MAE-PUNTO
+  tipo: flotante
+  unidad: error absoluto medio punto del contendiente vs R (descriptivo)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENGASTO-2013-MARCA
+  tipo: texto
+  unidad: PROSPECTIVA (contendiente sellado antes de R)

@@ -1,0 +1,1415 @@
+# CALC-APERTURA-ENADID-2023-0001 -- contrato ejecutable del expediente de apertura (D-15), GEN2-APERTURAS-PREREGISTRADAS-1.
+# NO CORRIDO. La apertura es copiar este archivo a data/corrida0/CALC-APERTURA-ENADID-2023-0001/spec.yaml;
+# el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
+calc_id: CALC-APERTURA-ENADID-2023-0001
+spec_md: ../../../forense/prereg-aperturas/ENADID-2023/APERTURA-ENADID-2023-spec-v1_0.md
+spec_md_sha256: 94d72f31af0a0d10d5fa6ff1809faa726a31094ce12fa1088ae98587c02e3239
+script: forense/prereg-aperturas/ENADID-2023/medidor_apertura_enadid_2023.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: 'NO'
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+  tipo: APERTURA-PRE-REGISTRADA (COMMIT-3 de la ola reservada)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: PROSPECTIVA
+  unidad_transferencia: HOGAR y PERSONA (por celda; nunca promediadas entre sí)
+  contendientes:
+  - CALC-ENADID-FAMILIA-HOGARES-0001
+  - CALC-ENADID-COLA-2018-0001
+  ola_reservada: ENADID 2023 (se abre sólo al correr este CALC)
+  congelado: NO -- expediente; se congela cuando mesa firme su apertura
+inputs:
+- id: enadid2023_base_datos_csv
+  origen: manifiesto
+  sha256: 995d448ab298251d441e437fc4a368f84879a8b74fa7bc103dc189434cbfaa18
+  funcion: DATO
+  nota: ENADID 2023 base CSV (THOGAR, TSDEM, TMUJER2, TMIGRANTE) -- ola RESERVADA para estas conductas; sólo este
+    medidor la lee
+- id: familia_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-ENADID-FAMILIA-HOGARES-0001/medidor.py
+  sha256: 7ff64d94b1a8cb59f0df3a62dd54f256cb4907b5da1d5e6e3cdeff7028dc3863
+  funcion: CODIGO
+  nota: 'medidor sellado FAMILIA: HOG/PER/columnas_*/prepara_*/conductas_*/rid'
+- id: familia_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENADID-FAMILIA-HOGARES-0001/resultados.json
+  sha256: 51d8ad9fb49a64e53c560316f818567a73d4144230da0fa89fed72f64cee8ee4
+  funcion: DATO
+  nota: 'piso 2018 sellado FAMILIA: P, ICC-LO, ICC-HI por celda'
+- id: cola_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-ENADID-COLA-2018-0001/medidor.py
+  sha256: d5ed69920078262d1e1e01894f4ee2cfae1e6f9e1cf40120edd86025352d72c3
+  funcion: CODIGO
+  nota: 'medidor sellado COLA: COND_*/MAPAS_*/EJES_*/EDADES/COLS_*/MIEMBROS/derivadas_*'
+- id: cola_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENADID-COLA-2018-0001/resultados.json
+  sha256: ad62e897caf13f2bf7e7bc8e53e9291937a530e0f192cdf405260aefb3eb947a
+  funcion: DATO
+  nota: 'piso 2018 sellado COLA: P, IC-LO, IC-HI (diseño) por celda'
+- id: receta_pisos_salud
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: num de la receta de pisos (FAMILIA)
+- id: lectores_familia
+  origen: repo
+  ruta: tools/dominios/familia/lectores.py
+  sha256: 4e71238800c2c1a0d9215443dc8aadbb8add35b120c0c0ff1c1e87773e62e331
+  funcion: CODIGO
+  nota: lee_csv_zip (miembro sin distinguir mayúsculas)
+- id: motor_pisos_confianza
+  origen: repo
+  ruta: tools/dominios/confianza/motor_pisos.py
+  sha256: 7d0494f43052e0ea39ce0baf5f6505ccf889b386cfa3c0775b0dbdfb56ef958e
+  funcion: CODIGO
+  nota: prepara_diseno/recodifica/eje_mapa/eje_rango/num/rid (COLA)
+- id: guardia_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/guardia_apertura.py
+  sha256: b9fee881070a00c46ad3238d9ee65f6d3cfd3028594b29ee055727f9501771c0
+  funcion: CODIGO
+  nota: auditoría AST, agregador de una variable, adjudicación
+- id: expediente_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/expediente_apertura.py
+  sha256: db003b18b9bc8213d0aba9bed900a9b7f5620ebc4e9a2173727f53356c7ef9f7
+  funcion: CODIGO
+  nota: esquema, salida y contrato comunes
+variables:
+- nombre: FAM-HOGAR-UNIPERSONAL
+  definicion: conducta de CALC-ENADID-FAMILIA-HOGARES-0001 (unidad HOGAR)
+- nombre: FAM-HOGAR-NUCLEAR
+  definicion: conducta de CALC-ENADID-FAMILIA-HOGARES-0001 (unidad HOGAR)
+- nombre: FAM-HOGAR-AMPLIADO
+  definicion: conducta de CALC-ENADID-FAMILIA-HOGARES-0001 (unidad HOGAR)
+- nombre: FAM-HOGAR-JEFATURA-FEMENINA
+  definicion: conducta de CALC-ENADID-FAMILIA-HOGARES-0001 (unidad HOGAR)
+- nombre: FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A
+  definicion: conducta de CALC-ENADID-FAMILIA-HOGARES-0001 (unidad HOGAR)
+- nombre: FAM-PERSONA-60MAS
+  definicion: conducta de CALC-ENADID-FAMILIA-HOGARES-0001 (unidad PERSONA)
+- nombre: FAM-AM60-VIVE-SOLO
+  definicion: conducta de CALC-ENADID-FAMILIA-HOGARES-0001 (unidad PERSONA)
+- nombre: FAM-AM60-EN-HOGAR-AMPLIADO
+  definicion: conducta de CALC-ENADID-FAMILIA-HOGARES-0001 (unidad PERSONA)
+- nombre: FAM-JOVEN-25-34-HIJO-DEL-JEFE
+  definicion: conducta de CALC-ENADID-FAMILIA-HOGARES-0001 (unidad PERSONA)
+- nombre: FAM-PERSONA-15MAS-UNIDA
+  definicion: conducta de CALC-ENADID-FAMILIA-HOGARES-0001 (unidad PERSONA)
+- nombre: FAM-UNIDO-15MAS-EN-UNION-LIBRE
+  definicion: conducta de CALC-ENADID-FAMILIA-HOGARES-0001 (unidad PERSONA)
+- nombre: COLA-SEPARADA-ENTRE-UNION-LIBRE
+  definicion: conducta de CALC-ENADID-COLA-2018-0001 (unidad PERSONA (mujer 15-54))
+- nombre: COLA-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO
+  definicion: conducta de CALC-ENADID-COLA-2018-0001 (unidad PERSONA (mujer 15-54))
+- nombre: COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON
+  definicion: conducta de CALC-ENADID-COLA-2018-0001 (unidad HOGAR)
+- nombre: COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON
+  definicion: conducta de CALC-ENADID-COLA-2018-0001 (unidad HOGAR)
+universo: 'FAMILIA: hogares de THOGAR con fac_viv > 0, est_dis y upm_dis no vacíos, y residentes de TSDEM enlazados
+  por llave_hog; COLA: mujeres de TMUJER2 15-54 con fac_per > 0 y diseño válido, y jefaturas (paren = 1) de TSDEM
+  con fac_viv > 0 y diseño válido, emigrante varón fuera por TMIGRANTE (p4_6 = 1, p4_15 en {1, 3})'
+filtros: Un eje a la vez (los de cada contendiente); nunca cruces (guardia E.6)
+ponderador: fac_viv (hogares y residentes), fac_per (mujeres)
+transformacion: Recodificación de cada contendiente (specs FAMILIA-ENADID-PISOS §2 y COLA-ENADID-PISOS) con códigos
+  2018; renombre declarado p3_21 -> p3_27 (situación conyugal TSDEM 2023); columna ausente o con texto/códigos distintos
+  -> NO-ESTIMABLE; llave/ponderador/diseño ausente -> PARO
+estimando: R = Σw·y/Σw por contendiente×conducta×eje×categoría en ENADID 2023; cobertura de R en el ICC 2018 (FAMILIA)
+  o en el IC95 de diseño 2018 (COLA)
+seed:
+  aplica: false
+  razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
+parametros:
+  nominal: 0.95
+  z: 1.959964
+  regla: cobertura R en [lo, hi] del contendiente; Wilson 95%; NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificación ad hoc)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'determinista: sumas float64 sin remuestreo'
+resultados:
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-UNIPERSONAL-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-UNIPERSONAL-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-UNIPERSONAL-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-UNIPERSONAL-EDAD-JEFE-12-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-UNIPERSONAL-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-UNIPERSONAL-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-UNIPERSONAL-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-UNIPERSONAL-ESCOLARIDAD-JEFE-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-UNIPERSONAL-ESCOLARIDAD-JEFE-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-UNIPERSONAL-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-UNIPERSONAL-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-UNIPERSONAL-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-UNIPERSONAL-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-UNIPERSONAL-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-UNIPERSONAL-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-NUCLEAR-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-NUCLEAR-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-NUCLEAR-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-NUCLEAR-EDAD-JEFE-12-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-NUCLEAR-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-NUCLEAR-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-NUCLEAR-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-NUCLEAR-ESCOLARIDAD-JEFE-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-NUCLEAR-ESCOLARIDAD-JEFE-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-NUCLEAR-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-NUCLEAR-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-NUCLEAR-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-NUCLEAR-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-NUCLEAR-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-NUCLEAR-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-AMPLIADO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-AMPLIADO-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-AMPLIADO-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-AMPLIADO-EDAD-JEFE-12-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-AMPLIADO-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-AMPLIADO-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-AMPLIADO-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-AMPLIADO-ESCOLARIDAD-JEFE-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-AMPLIADO-ESCOLARIDAD-JEFE-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-AMPLIADO-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-AMPLIADO-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-AMPLIADO-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-AMPLIADO-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-AMPLIADO-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-AMPLIADO-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-JEFATURA-FEMENINA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-JEFATURA-FEMENINA-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-JEFATURA-FEMENINA-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-JEFATURA-FEMENINA-EDAD-JEFE-12-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-JEFATURA-FEMENINA-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-JEFATURA-FEMENINA-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-JEFATURA-FEMENINA-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-JEFATURA-FEMENINA-ESCOLARIDAD-JEFE-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-JEFATURA-FEMENINA-ESCOLARIDAD-JEFE-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-JEFATURA-FEMENINA-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-JEFATURA-FEMENINA-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-JEFATURA-FEMENINA-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-JEFATURA-FEMENINA-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-JEFATURA-FEMENINA-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-JEFATURA-FEMENINA-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A-SEXO-JEFE-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A-SEXO-JEFE-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A-EDAD-JEFE-12-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A-EDAD-JEFE-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A-EDAD-JEFE-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A-EDAD-JEFE-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A-ESCOLARIDAD-JEFE-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A-ESCOLARIDAD-JEFE-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A-ESCOLARIDAD-JEFE-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A-ESCOLARIDAD-JEFE-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-HOGAR-CON-MIGRANTE-INTERNACIONAL-5A-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-EDAD-00-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-EDAD-15-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-EDAD-60-74-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-EDAD-75-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-TAMANO-HOGAR-1-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-TAMANO-HOGAR-2-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-TAMANO-HOGAR-3-4-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-TAMANO-HOGAR-5-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-CONDICION-PAREJA-UNIDO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-60MAS-CONDICION-PAREJA-NO-UNIDO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-EDAD-00-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-EDAD-15-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-EDAD-60-74-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-EDAD-75-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-TAMANO-HOGAR-1-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-TAMANO-HOGAR-2-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-TAMANO-HOGAR-3-4-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-TAMANO-HOGAR-5-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-CONDICION-PAREJA-UNIDO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-VIVE-SOLO-CONDICION-PAREJA-NO-UNIDO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-EDAD-00-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-EDAD-15-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-EDAD-60-74-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-EDAD-75-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-TAMANO-HOGAR-1-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-TAMANO-HOGAR-2-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-TAMANO-HOGAR-3-4-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-TAMANO-HOGAR-5-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-CONDICION-PAREJA-UNIDO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-AM60-EN-HOGAR-AMPLIADO-CONDICION-PAREJA-NO-UNIDO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-EDAD-00-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-EDAD-15-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-EDAD-60-74-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-EDAD-75-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-TAMANO-HOGAR-1-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-TAMANO-HOGAR-2-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-TAMANO-HOGAR-3-4-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-TAMANO-HOGAR-5-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-CONDICION-PAREJA-UNIDO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-JOVEN-25-34-HIJO-DEL-JEFE-CONDICION-PAREJA-NO-UNIDO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-EDAD-00-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-EDAD-15-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-EDAD-60-74-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-EDAD-75-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-TAMANO-HOGAR-1-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-TAMANO-HOGAR-2-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-TAMANO-HOGAR-3-4-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-TAMANO-HOGAR-5-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-CONDICION-PAREJA-UNIDO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-PERSONA-15MAS-UNIDA-CONDICION-PAREJA-NO-UNIDO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-EDAD-00-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-EDAD-15-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-EDAD-60-74-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-EDAD-75-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-TAMANO-HOGAR-1-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-TAMANO-HOGAR-2-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-TAMANO-HOGAR-3-4-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-TAMANO-HOGAR-5-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-CONDICION-PAREJA-UNIDO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-FAM-UNIDO-15MAS-EN-UNION-LIBRE-CONDICION-PAREJA-NO-UNIDO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-ENTRE-UNION-LIBRE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-ENTRE-UNION-LIBRE-EDAD-15-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-ENTRE-UNION-LIBRE-EDAD-25-34-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-ENTRE-UNION-LIBRE-EDAD-35-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-ENTRE-UNION-LIBRE-EDAD-45-54-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-ENTRE-UNION-LIBRE-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-ENTRE-UNION-LIBRE-TAMLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-ENTRE-UNION-LIBRE-TAMLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-ENTRE-UNION-LIBRE-TAMLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-ENTRE-UNION-LIBRE-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-ENTRE-UNION-LIBRE-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-ENTRE-UNION-LIBRE-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-ENTRE-UNION-LIBRE-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-EDAD-15-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-EDAD-25-34-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-EDAD-35-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-EDAD-45-54-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-TAMLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-TAMLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-TAMLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-TAMLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-TAMLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-TAMLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-ENTIDAD-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-TAMLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-TAMLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-TAMLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-COLA-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-ENTIDAD-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-DICTAMEN
+  tipo: texto
+  unidad: vocabulario cerrado CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE
+- id: RESULT-APERTURA-ENADID-2023-K
+  tipo: entero
+  unidad: celdas con R dentro del IC del contendiente
+- id: RESULT-APERTURA-ENADID-2023-N
+  tipo: entero
+  unidad: celdas puntuadas
+- id: RESULT-APERTURA-ENADID-2023-WILSON-LO
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, inferior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-WILSON-HI
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, superior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-MAE-PUNTO
+  tipo: flotante
+  unidad: error absoluto medio punto del contendiente vs R (descriptivo)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENADID-2023-MARCA
+  tipo: texto
+  unidad: PROSPECTIVA (contendiente sellado antes de R)

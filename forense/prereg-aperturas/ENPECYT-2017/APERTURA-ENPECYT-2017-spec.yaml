@@ -1,0 +1,520 @@
+# CALC-APERTURA-ENPECYT-2017-0001 -- contrato ejecutable del expediente de apertura (D-15), GEN2-APERTURAS-PREREGISTRADAS-1.
+# NO CORRIDO. La apertura es copiar este archivo a data/corrida0/CALC-APERTURA-ENPECYT-2017-0001/spec.yaml;
+# el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
+calc_id: CALC-APERTURA-ENPECYT-2017-0001
+spec_md: ../../../forense/prereg-aperturas/ENPECYT-2017/APERTURA-ENPECYT-2017-spec-v1_0.md
+spec_md_sha256: 1d72ea916ef1ee76e66b389f2dcdf4b3bcbd856b83c4b158d02afb395341292b
+script: forense/prereg-aperturas/ENPECYT-2017/medidor_apertura_enpecyt_2017.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: 'NO'
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+  tipo: APERTURA-PRE-REGISTRADA (COMMIT-3 de la ola reservada)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: PROSPECTIVA
+  unidad_transferencia: PERSONA
+  contendientes:
+  - CALC-ENPECYT-CONOC-PISOS-0001
+  ola_reservada: ENPECYT 2017 (se abre sólo al correr este CALC)
+  congelado: NO -- expediente; se congela cuando mesa firme su apertura
+inputs:
+- id: enpecyt2017_bd_dbf_zip
+  origen: manifiesto
+  sha256: dd5dbda3278b6d0c47bec98867f3268789609932a92078f057b8b4733090759a
+  funcion: DATO
+  nota: ENPECYT 2017 base DBF (tablas CB1, CB2, CS) -- ola RESERVADA; sólo este medidor la lee
+- id: contendiente_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-ENPECYT-CONOC-PISOS-0001/medidor.py
+  sha256: 8e3b450e9ad5da51c97641bb1125fe388161e75a57932ee51cd3e9ec619ac7e5
+  funcion: CODIGO
+  nota: 'medidor sellado del contendiente: lee_dbf/miembro/campos_de/prepara/conducta_y/rid/rid_p'
+- id: contendiente_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENPECYT-CONOC-PISOS-0001/resultados.json
+  sha256: 233db622abf9af279c94021820a3535cd004cc359648c7093c0432a046453d67
+  funcion: DATO
+  nota: 'piso 2015 sellado: P, ICC-LO, ICC-HI por celda'
+- id: guardia_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/guardia_apertura.py
+  sha256: b9fee881070a00c46ad3238d9ee65f6d3cfd3028594b29ee055727f9501771c0
+  funcion: CODIGO
+  nota: auditoría AST, agregador de una variable, adjudicación
+- id: expediente_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/expediente_apertura.py
+  sha256: db003b18b9bc8213d0aba9bed900a9b7f5620ebc4e9a2173727f53356c7ef9f7
+  funcion: CODIGO
+  nota: esquema, salida y contrato comunes
+variables:
+- nombre: INTERES-AL-MENOS-MODERADO
+  definicion: conducta del contendiente (spec ENPECYT-CONOC-PISOS §0/§2), campos 2015
+- nombre: INTERES-GRANDE-O-MAS
+  definicion: conducta del contendiente (spec ENPECYT-CONOC-PISOS §0/§2), campos 2015
+- nombre: GOB-INVERTIR-ACUERDO
+  definicion: conducta del contendiente (spec ENPECYT-CONOC-PISOS §0/§2), campos 2015
+- nombre: GOB-INVERTIR-ACUERDO-SIN-NS
+  definicion: conducta del contendiente (spec ENPECYT-CONOC-PISOS §0/§2), campos 2015
+- nombre: FE-CIENCIA-ACUERDO
+  definicion: conducta del contendiente (spec ENPECYT-CONOC-PISOS §0/§2), campos 2015
+- nombre: FE-CIENCIA-ACUERDO-SIN-NS
+  definicion: conducta del contendiente (spec ENPECYT-CONOC-PISOS §0/§2), campos 2015
+- nombre: RESPETA-10-BOMBERO
+  definicion: conducta del contendiente (spec ENPECYT-CONOC-PISOS §0/§2), campos 2015
+- nombre: RESPETA-10-ENFERMERA
+  definicion: conducta del contendiente (spec ENPECYT-CONOC-PISOS §0/§2), campos 2015
+- nombre: RESPETA-10-INVESTIGADOR
+  definicion: conducta del contendiente (spec ENPECYT-CONOC-PISOS §0/§2), campos 2015
+- nombre: RESPETA-10-INVENTOR
+  definicion: conducta del contendiente (spec ENPECYT-CONOC-PISOS §0/§2), campos 2015
+universo: Persona elegida de 18+ (una fila de CB1) de ENPECYT 2017, áreas urbanas 100 000+; unión CB1-CB2-CS por
+  CD_A+PER+CON+V_SEL+N_HOG+N_REN con llaves únicas; FAC > 0; EST_DIS y UPM_DIS no vacíos (prepara() del contendiente)
+filtros: Un eje a la vez (TOTAL, SEXO, EDAD, ESCOLARIDAD); nunca cruces (guardia E.6)
+ponderador: FAC (CB1)
+transformacion: Recodificación del contendiente (spec ENPECYT-CONOC-PISOS §2) con los campos de 2015 (ITEMS['2015']);
+  campo ausente o con texto/códigos distintos en el FD/cuestionario 2017 -> NO-ESTIMABLE; ciudad/llave/FAC/diseño
+  ausente -> PARO
+estimando: R = Σw·y/Σw por conducta×eje×categoría en ENPECYT 2017; cobertura de R en el ICC (persistencia) del piso
+  2015
+seed:
+  aplica: false
+  razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
+parametros:
+  nominal: 0.95
+  z: 1.959964
+  regla: cobertura R en [lo, hi] del contendiente; Wilson 95%; NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificación ad hoc)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'determinista: sumas float64 sin remuestreo'
+resultados:
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-AL-MENOS-MODERADO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-AL-MENOS-MODERADO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-AL-MENOS-MODERADO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-AL-MENOS-MODERADO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-AL-MENOS-MODERADO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-AL-MENOS-MODERADO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-AL-MENOS-MODERADO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-AL-MENOS-MODERADO-ESCOLARIDAD-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-AL-MENOS-MODERADO-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-AL-MENOS-MODERADO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-GRANDE-O-MAS-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-GRANDE-O-MAS-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-GRANDE-O-MAS-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-GRANDE-O-MAS-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-GRANDE-O-MAS-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-GRANDE-O-MAS-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-GRANDE-O-MAS-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-GRANDE-O-MAS-ESCOLARIDAD-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-GRANDE-O-MAS-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-INTERES-GRANDE-O-MAS-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-ESCOLARIDAD-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-SIN-NS-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-SIN-NS-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-SIN-NS-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-SIN-NS-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-SIN-NS-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-SIN-NS-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-SIN-NS-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-SIN-NS-ESCOLARIDAD-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-SIN-NS-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-GOB-INVERTIR-ACUERDO-SIN-NS-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-ESCOLARIDAD-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-SIN-NS-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-SIN-NS-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-SIN-NS-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-SIN-NS-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-SIN-NS-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-SIN-NS-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-SIN-NS-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-SIN-NS-ESCOLARIDAD-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-SIN-NS-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-FE-CIENCIA-ACUERDO-SIN-NS-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-BOMBERO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-BOMBERO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-BOMBERO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-BOMBERO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-BOMBERO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-BOMBERO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-BOMBERO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-BOMBERO-ESCOLARIDAD-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-BOMBERO-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-BOMBERO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-ENFERMERA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-ENFERMERA-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-ENFERMERA-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-ENFERMERA-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-ENFERMERA-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-ENFERMERA-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-ENFERMERA-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-ENFERMERA-ESCOLARIDAD-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-ENFERMERA-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-ENFERMERA-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVESTIGADOR-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVESTIGADOR-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVESTIGADOR-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVESTIGADOR-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVESTIGADOR-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVESTIGADOR-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVESTIGADOR-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVESTIGADOR-ESCOLARIDAD-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVESTIGADOR-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVESTIGADOR-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVENTOR-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVENTOR-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVENTOR-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVENTOR-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVENTOR-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVENTOR-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVENTOR-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVENTOR-ESCOLARIDAD-BASICA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVENTOR-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-RESPETA-10-INVENTOR-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-DICTAMEN
+  tipo: texto
+  unidad: vocabulario cerrado CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE
+- id: RESULT-APERTURA-ENPECYT-2017-K
+  tipo: entero
+  unidad: celdas con R dentro del IC del contendiente
+- id: RESULT-APERTURA-ENPECYT-2017-N
+  tipo: entero
+  unidad: celdas puntuadas
+- id: RESULT-APERTURA-ENPECYT-2017-WILSON-LO
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, inferior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-WILSON-HI
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, superior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-MAE-PUNTO
+  tipo: flotante
+  unidad: error absoluto medio punto del contendiente vs R (descriptivo)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENPECYT-2017-MARCA
+  tipo: texto
+  unidad: PROSPECTIVA (contendiente sellado antes de R)
