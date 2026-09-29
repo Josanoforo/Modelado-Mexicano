@@ -127,7 +127,7 @@ Unidad: los 31 reports de `corpus/reports/` (el conteo de «dominios» de la ADE
 | El México Rural e Indígena en sus Propios Términos  Comunalidad  Autor | `RURAL_INDIGENA` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 56 (7 / 30 / 19) |
 | Elegir  Cortejar y Amar en el México de Hoy  Díada de Pareja  Apps de  | `PAREJA` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 32 (1 / 18 / 13) |
 | Genetica y Conducta del Mexicano Contemporaneo  Canal Individual vs  E | `GENETICA` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 38 (0 / 35 / 3) |
-| Health  Body  Food and Substance Use in Mexico  The Behavioral Layer o | `SALUD` | **MEDIDO** | 800 | 2 | 64 (13 / 31 / 20) |
+| Health  Body  Food and Substance Use in Mexico  The Behavioral Layer o | `SALUD` | **MEDIDO** | 800 | 3 | 64 (13 / 31 / 20) |
 | Humor in Mexican Psychological Life  2023-2026 Update | `HUMOR` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 29 (0 / 17 / 12) |
 | La arquitectura invisible de la interacción social en México | `INTERACCION` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 21 (0 / 13 / 8) |
 | La familia mexicana como sistema psicológico  entre el afecto  la obli | `FAMILIA_CUIDADOS` | **MEDIDO** | 709 | 0 | 46 (6 / 27 / 13) |
