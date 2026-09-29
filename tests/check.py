@@ -3049,6 +3049,11 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # momento M03 del catálogo de momentos, ya censado en su espacio).
     "forense/analisis/pendientes-3/PENDIENTES-PROGRAMA-v4.md",
     "forense/analisis/pendientes-3/hoja-mesa-pendientes-3.md",
+    # GEN2-PENDIENTES-4 (28/sep/2026): inventario v5 archivado VERBATIM con sha256 (A.3: se cita,
+    # no se edita). `M03`, `M05` y `M09`–`M23` son momentos del catálogo de momentos (ya censados
+    # en su espacio); `M5` es el módulo 5 del CSES, no un rótulo; `M1` es el motor M1 de
+    # GEN2-M1-ALCANCE-1; `E1` es la letra [E1] de la hoja NC-DECISIONES-1 (FP …f2e5-12).
+    "forense/analisis/pendientes-4/PENDIENTES-PROGRAMA-v5.md",
     # GEN2-TRAMITE-FIRMAS-21-1 (28/sep/2026): `M09`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
     # (HOLDOUT, encargo P1) y `E2` es letra de la hoja NC-DECISIONES-1 (FP …f2e5-13, ya asentada);
     # encargo verbatim (A.3) y su fragmento L0.

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""conteos.py -- ACTO GEN2-PENDIENTES-4 · P4: conteos del libro de NC por comando, para el antes y el
+"""conteos_pendientes_4.py -- ACTO GEN2-PENDIENTES-4 · P4: conteos del libro de NC por comando, para el antes y el
 después del acto (ninguna cifra tecleada). Lector CSV (el libro no usa comillas pero el conteo
 por línea física ya falló una vez con campos citados: instrucciones §2).
 
-    python3 forense/analisis/pendientes-4/conteos.py                 # JSON a stdout
-    python3 forense/analisis/pendientes-4/conteos.py --lee <json>    # tabla antes/después vs ese JSON
+    python3 forense/analisis/pendientes-4/conteos_pendientes_4.py                 # JSON a stdout
+    python3 forense/analisis/pendientes-4/conteos_pendientes_4.py --lee <json>    # tabla antes/después vs ese JSON
 """
 import csv
 import json

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""aplica_dictamen.py -- ACTO GEN2-PENDIENTES-4: aplica `dictamen-pendientes-4.tsv` sobre
+"""aplica_dictamen_pendientes_4.py -- ACTO GEN2-PENDIENTES-4: aplica `dictamen-pendientes-4.tsv` sobre
 `forense/no-corrido.tsv`, POR LÍNEA (el módulo csv corrompe filas ajenas al reescribir: ver
 PENDIENTES-3). Sólo cambia las columnas previstas y lo prueba antes de escribir.
 
@@ -13,8 +13,8 @@ un `antes:` que las conserve las reintroduce.
 Sólo toca filas que siguen ABIERTA; una fila ya cerrada en main por otro acto se reporta y no
 se toca. Idempotente.
 
-    python3 forense/analisis/pendientes-4/aplica_dictamen.py            # dry-run
-    python3 forense/analisis/pendientes-4/aplica_dictamen.py --escribe
+    python3 forense/analisis/pendientes-4/aplica_dictamen_pendientes_4.py            # dry-run
+    python3 forense/analisis/pendientes-4/aplica_dictamen_pendientes_4.py --escribe
 """
 import os
 import re
