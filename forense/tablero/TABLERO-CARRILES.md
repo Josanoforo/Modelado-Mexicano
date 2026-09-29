@@ -22,17 +22,13 @@ Precedencia de la siguiente acción: FIRMA > RESERVA > ADQUISICION > NC-PARO > C
 
 ## Resumen
 
-Carriles 31: 🔴 ROJO 7 · 🟡 AMARILLO 21 · 🟠 NARANJA 0 · 🟢 VERDE 0 · ⚪ GRIS 3 ⟨F1 F2 F3 S⟩
+Carriles 31: 🔴 ROJO 3 · 🟡 AMARILLO 21 · 🟠 NARANJA 4 · 🟢 VERDE 0 · ⚪ GRIS 3 ⟨F1 F2 F3 S⟩
 
 | carril | report | semáforo | afirm. | núcleo con cifra | reglas con dictamen | stoppers | siguiente acción | ⟨⟩ |
 |---|---|---|---:|---:|---:|---:|---|---|
-| CARRIL-09 | El México Rural e Indígena en sus Propios Términos · Comunal | 🔴 ROJO | 49 | 0/1 | 0% de 3 | 3 | FIRMA: `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-02 | Ausencia sin certeza · duelo y pérdida ambigua en familias d | 🔴 ROJO | 41 | 0/1 | 0% de 4 | 2 | ADQUISICION: `SIN-UNION` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
-| CARRIL-08 | El Mexicano y el Tiempo · Estructura · no Cultura · en la Pl | 🔴 ROJO | 38 | 0/1 | 29% de 7 | 4 | FIRMA: `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-13 | Humor in Mexican Psychological Life · 2023-2026 Update | 🔴 ROJO | 34 | 0/1 | 0% de 3 | 1 | ADQUISICION: `SIN-UNION` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
-| CARRIL-22 | Psicología de la Juventud Mexicana Contemporánea · Gen Z y M | 🔴 ROJO | 32 | 0/1 | 0% de 4 | 4 | RESERVA: `mapa:reserva_v1_1` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-17 | Moral Emotions in Mexico · Declared Dignity · Relational Fac | 🔴 ROJO | 31 | 0/1 | 0% de 2 | 1 | ADQUISICION: `SIN-UNION` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
-| CARRIL-03 | Autoridad y jerarquía en el México contemporáneo · anatomía  | 🔴 ROJO | 30 | 0/1 | 0% de 3 | 6 | FIRMA: `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-24 | Psicología del Trabajo en México · Un Mapa Basado en Evidenc | 🟡 AMARILLO | 57 | 1/1 | 0% de 3 | 5 | RESERVA: `mapa:reserva_v1_1` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-15 | La familia mexicana como sistema psicológico · entre el afec | 🟡 AMARILLO | 51 | 1/1 | 0% de 3 | 5 | FIRMA: `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-07 | El Efecto Ambiental de la Violencia Crónica en México · Cómo | 🟡 AMARILLO | 48 | 1/1 | 0% de 4 | 3 | ADQUISICION: `SIN-UNION` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
@@ -54,6 +50,10 @@ Carriles 31: 🔴 ROJO 7 · 🟡 AMARILLO 21 · 🟠 NARANJA 0 · 🟢 VERDE 0 �
 | CARRIL-05 | Confianza y Desconfianza en México · Anatomía Psicológica de | 🟡 AMARILLO | 33 | 1/1 | 0% de 4 | 5 | FIRMA: `FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-26 | Reconfiguración de los Guiones de Género en México · Masculi | 🟡 AMARILLO | 33 | 2/2 | 0% de 3 | 5 | FIRMA: `FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-01` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-21 | Psicología · Conducta y Sociedad en el México Contemporáneo  | 🟡 AMARILLO | 28 | 2/2 | 0% de 0 | 6 | RESERVA: `mapa:reserva_v1_1` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
+| CARRIL-09 | El México Rural e Indígena en sus Propios Términos · Comunal | 🟠 NARANJA | 49 | 0/1 | 0% de 3 | 3 | FIRMA: `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
+| CARRIL-08 | El Mexicano y el Tiempo · Estructura · no Cultura · en la Pl | 🟠 NARANJA | 38 | 0/1 | 29% de 7 | 4 | FIRMA: `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
+| CARRIL-22 | Psicología de la Juventud Mexicana Contemporánea · Gen Z y M | 🟠 NARANJA | 32 | 0/1 | 0% de 4 | 4 | RESERVA: `mapa:reserva_v1_1` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
+| CARRIL-03 | Autoridad y jerarquía en el México contemporáneo · anatomía  | 🟠 NARANJA | 30 | 0/1 | 0% de 3 | 6 | FIRMA: `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-11 | Genetica y Conducta del Mexicano Contemporaneo · Canal Indiv | ⚪ GRIS | 38 | 0/1 | 0% de 3 | 1 | ADQUISICION: `SIN-UNION` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-16 | Mexican Population Genomics · 2025-2026 Scientific and Marke | ⚪ GRIS | 33 | 0/1 | 0% de 2 | 4 | FIRMA: `FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-30 | Sanción Social Horizontal en México · Chisme · Envidia y Mal | ⚪ GRIS | 22 | 0/1 | 0% de 2 | 2 | ADQUISICION: `SIN-UNION` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
@@ -146,32 +146,6 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
 
 ## Carriles
 
-### 🔴 CARRIL-09 · El México Rural e Indígena en sus Propios Términos · Comunalidad · Autoridad y Reciprocidad como Sistemas con Lógica Propia ⟨F1 F14⟩
-
-- **Semáforo ROJO** — núcleo con cifra adoptada 0/1 ⟨F1 F2 F3 S⟩
-- **Afirmaciones 49**: medible en corpus 7 · con adquisición 23 · no medible por diseño 19 · no construible 0; citan un CALC/RESULT en `gen2_existente`: 5 ⟨F1⟩
-- **Dominios**: RURAL_INDIGENA 38 (78%) núcleo · SALUD 5 (10%) · MIGRACION 3 (6%) · RELIGIOSIDAD 2 (4%) · GENERO 1 (2%) ⟨F1 S⟩
-- **Instrumentos citados** (afirmaciones): ENUT 4 · CONEVAL 2 · ENIGH 2 · CAAS 1 · ENADID 1 · ENASEM 1 · ENASIC 1 · ENDIREH 1 · ENSANUT 1; sin instrumento reconocido: 38 ⟨F1 F12 S⟩
-- **Instrumentos del núcleo** (casan stoppers y validación): ENUT 3 · CONEVAL 2 · ENASEM 1 · ENASIC 1 · ENIGH 1 ⟨F1 F12 S⟩
-- **Pisos del núcleo pendientes de adopción** — registrados en la vista: ninguno; sellados en disco, no registrados (E.7): RURAL_INDIGENA: CALC-MC2-ENSANUT2024-0001, CALC-PDR1-ENADID2023-0001, CALC-PDR1-ENUT2024-0001 ⟨F16 F17 S⟩
-- **Cifras del catálogo v1.3 por dominio** (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) ⟨F2⟩
-  - núcleo sin filas en el catálogo: RURAL_INDIGENA ⟨F2⟩
-  - dominios secundarios con cifra (adoptadas + con reserva de ancho): GENERO 7304 · MIGRACION 126 · RELIGIOSIDAD 404 · SALUD 800 ⟨F2⟩
-- **Reglas del report** (3; encabezados excluidos 1): SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 0% ⟨F3⟩
-- **Validación ciega**: CONCUERDA-NO-APROBADA 19 · NO-PASA 2 · PASA 1 ⟨F10 F2⟩
-- **Editorial v2** (C/M/R/S 5 / 21 / 2 / 32): EN-MAIN · recibo pr-1240 · regla adoptada: No acreditada aquí · reserva material: 32 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
-- **Adquisición del carril** (afirmaciones con adquisición): EN-MANIFIESTO 1 · PROGRAMA-OBTENIDO-EN-COLA 2 · SIN-UNION 20 ⟨F1 F5 F6⟩
-- **Stoppers** (3): ⟨F1 F5 F6 F7 F8⟩
-  - **FIRMA** (1) ⟨F7⟩
-    - `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` (por ENUT) — §5-bis · regla del semáforo de tools/tablero_carriles.py (GEN2-TUBERIA-TABLERO-INSUMOS-1; dirección propone, m → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md ⟨F7⟩
-  - **ADQUISICION** (1) ⟨F1 F5 F6⟩
-    - `SIN-UNION` — afirmaciones 20 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-U5 ×18, ASTRA5-MESA-RURAL ×2 ⟨F1 F5 F6⟩
-  - **NC-PARO** (1) ⟨F8⟩
-    - `NC-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-03` (por ENUT) — PARO-PREMISA: · P3 · enut-comparabilidad-texto-v1_0.tsv enmendado por (a) (fila C2×2019); marcad → MESA (2026-10-05) · encargo por escribir (decidida por delegación: decididas-por-delegacio ⟨F8⟩
-- **Actos en vuelo** (sin CONSUMIDO, por nombre): `2026-08-13-ENASIC-SPLIT.md` ⟨F13⟩
-- **Frente 2027**: SIN-UNION (ningún instrumento citado es de una familia 2027) ⟨F11⟩
-- **Siguiente acción** [FIRMA]: `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md ⟨F7⟩
-
 ### 🔴 CARRIL-02 · Ausencia sin certeza · duelo y pérdida ambigua en familias de personas desaparecidas en México ⟨F1 F14⟩
 
 - **Semáforo ROJO** — núcleo con cifra adoptada 0/1 ⟨F1 F2 F3 S⟩
@@ -195,33 +169,6 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
 - **Frente 2027**: ENVIPE-DENUNCIA-U4 (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE) · ENVIPE-EVASION-NORMA (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE) ⟨F11⟩
 - **Siguiente acción** [ADQUISICION]: `SIN-UNION` → propietario en el mapa: ASTRA5-MESA-DUELO / ASTRA5-MESA-DOCUMENTAL ×13, ASTRA5-MESA-DOCUMENTAL ×6, ASTRA5-U5 ×5 ⟨F1 F5 F6⟩
 
-### 🔴 CARRIL-08 · El Mexicano y el Tiempo · Estructura · no Cultura · en la Planeación y el Compromiso Temporal ⟨F1 F14⟩
-
-- **Semáforo ROJO** — núcleo con cifra adoptada 0/1 ⟨F1 F2 F3 S⟩
-- **Afirmaciones 38**: medible en corpus 12 · con adquisición 12 · no medible por diseño 14 · no construible 0; citan un CALC/RESULT en `gen2_existente`: 7 ⟨F1⟩
-- **Dominios**: TIEMPO 18 (47%) núcleo · TRABAJO 4 (11%) · DINERO 3 (8%) · MOVILIDAD 3 (8%) · VIOLENCIA 3 (8%) · INTERACCION 2 (5%) · CONFIANZA 1 (3%) · CONSUMO 1 (3%) · GENERO 1 (3%) · JUVENTUD 1 (3%) · SALUD 1 (3%) ⟨F1 S⟩
-- **Instrumentos citados** (afirmaciones): ENIF 1 · ENOE 1 · ENUT 1; sin instrumento reconocido: 35 ⟨F1 F12 S⟩
-- **Instrumentos del núcleo** (casan stoppers y validación): ENIF 1 · ENUT 1 ⟨F1 F12 S⟩
-- **Pisos del núcleo pendientes de adopción** — registrados en la vista: ninguno; sellados en disco, no registrados (E.7): TIEMPO: CALC-MC2-ENIF2024-0001, CALC-PDR1-ENUT2024-0001 ⟨F16 F17 S⟩
-- **Cifras del catálogo v1.3 por dominio** (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) ⟨F2⟩
-  - núcleo sin filas en el catálogo: TIEMPO ⟨F2⟩
-  - dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826 · CONSUMO 4470 · DINERO 100 · GENERO 7304 · MOVILIDAD 172 · SALUD 800 · TRABAJO 26409 · VIOLENCIA 12772 ⟨F2⟩
-- **Reglas del report** (7; encabezados excluidos 2): MATIZA 1 · MATIZA-SIN-CRUCE 1 · SIN-CIFRA-GEN2 5; con dictamen distinto de SIN-CIFRA-GEN2 29% ⟨F3⟩
-- **Validación ciega**: PASA 7 ⟨F10 F2⟩
-- **Editorial v2** (C/M/R/S 1 / 10 / 5 / 29): EN-MAIN · recibo pr-1242 · regla adoptada: No acreditada aquí · reserva material: 29 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
-- **Adquisición del carril** (afirmaciones con adquisición): EN-MANIFIESTO 5 · SIN-UNION 7 ⟨F1 F5 F6⟩
-- **Stoppers** (4): ⟨F1 F5 F6 F7 F8 F12 F15⟩
-  - **FIRMA** (1) ⟨F7⟩
-    - `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` (por ENUT) — §5-bis · regla del semáforo de tools/tablero_carriles.py (GEN2-TUBERIA-TABLERO-INSUMOS-1; dirección propone, m → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md ⟨F7⟩
-  - **RESERVA** (1) ⟨F12 F6 F15⟩
-    - `mapa:reserva_v1_1` — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 2) → E.6 (reserva declarada en el mapa) ⟨F1⟩
-  - **ADQUISICION** (1) ⟨F1 F5 F6⟩
-    - `SIN-UNION` — afirmaciones 7 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-U1 ×7 ⟨F1 F5 F6⟩
-  - **NC-PARO** (1) ⟨F8⟩
-    - `NC-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-03` (por ENUT) — PARO-PREMISA: · P3 · enut-comparabilidad-texto-v1_0.tsv enmendado por (a) (fila C2×2019); marcad → MESA (2026-10-05) · encargo por escribir (decidida por delegación: decididas-por-delegacio ⟨F8⟩
-- **Frente 2027**: ENIF-AHORRO-FORMAL (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE; reserva heredada de v1.0: ACCESO-AUTORIZADO(FP-260926-GEN2-AS) · ENIF-HORIZONTE-AHORRO (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE; reserva heredada de v1.0: ACCESO-AUTORIZADO(FP-260926-GEN2-AS) · ENOE-INFORMALIDAD (NO-LANZAR-TODAVIA; gate CONTRATO-FIRMADO(regla de inferencia para 39 estratos singleton)+FIRMA-DE-MESA(F) ⟨F11⟩
-- **Siguiente acción** [FIRMA]: `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md ⟨F7⟩
-
 ### 🔴 CARRIL-13 · Humor in Mexican Psychological Life · 2023-2026 Update ⟨F1 F14⟩
 
 - **Semáforo ROJO** — núcleo con cifra adoptada 0/1 ⟨F1 F2 F3 S⟩
@@ -242,32 +189,6 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
 - **Frente 2027**: SIN-UNION (ningún instrumento citado es de una familia 2027) ⟨F11⟩
 - **Siguiente acción** [ADQUISICION]: `SIN-UNION` → propietario en el mapa: ASTRA5-MESA-CULTURA ×5, ASTRA5-MESA-CULTURA / ASTRA5-MESA-DOCUMENTAL ×3, ASTRA5-U4 ×3 ⟨F1 F5 F6⟩
 
-### 🔴 CARRIL-22 · Psicología de la Juventud Mexicana Contemporánea · Gen Z y Millennials Jóvenes como Cohorte Divergente ⟨F1 F14⟩
-
-- **Semáforo ROJO** — núcleo con cifra adoptada 0/1 ⟨F1 F2 F3 S⟩
-- **Afirmaciones 32**: medible en corpus 9 · con adquisición 14 · no medible por diseño 8 · no construible 1; citan un CALC/RESULT en `gen2_existente`: 8 ⟨F1⟩
-- **Dominios**: JUVENTUD 10 (31%) núcleo · POLITICA 4 (12%) · TRABAJO 4 (12%) · GENERO 3 (9%) · SALUD_MENTAL 3 (9%) · AUTORIDAD 2 (6%) · FAMILIA_CUIDADOS 2 (6%) · TECNOLOGIA 2 (6%) · PAREJA 1 (3%) · RELIGIOSIDAD 1 (3%) ⟨F1 S⟩
-- **Instrumentos citados** (afirmaciones): EDER 3 · ENADID 3 · ENOE 3 · ENDUTIH 2 · OECD 2 · EDR 1 · ENCODAT 1 · ENDISEG 1 · ENSANUT 1 · LATINOBAROMETRO 1; sin instrumento reconocido: 14 ⟨F1 F12 S⟩
-- **Instrumentos del núcleo** (casan stoppers y validación): EDER 3 · ENADID 3 · OECD 1 ⟨F1 F12 S⟩
-- **Pisos del núcleo pendientes de adopción** — registrados en la vista: ninguno; sellados en disco, no registrados (E.7): JUVENTUD: CALC-MC2-ENOE-0001 ⟨F16 F17 S⟩
-- **Cifras del catálogo v1.3 por dominio** (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) ⟨F2⟩
-  - núcleo sin filas en el catálogo: JUVENTUD ⟨F2⟩
-  - dominios secundarios con cifra (adoptadas + con reserva de ancho): FAMILIA_CUIDADOS 1449 · GENERO 7304 · PAREJA 3304 · POLITICA 84 · RELIGIOSIDAD 404 · SALUD_MENTAL 2758 · TECNOLOGIA 1827 · TRABAJO 26409 ⟨F2⟩
-- **Reglas del report** (4; encabezados excluidos 0): SIN-CIFRA-GEN2 4; con dictamen distinto de SIN-CIFRA-GEN2 0% ⟨F3⟩
-- **Validación ciega**: CONCUERDA-NO-APROBADA 8 · PASA 94 ⟨F10 F2⟩
-- **Editorial v2** (C/M/R/S 0 / 10 / 4 / 26): EN-MAIN · recibo pr-1242 · regla adoptada: No acreditada aquí · reserva material: 26 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
-- **Adquisición del carril** (afirmaciones con adquisición): COLA-PENDIENTE 2 · EN-MANIFIESTO 4 · PROGRAMA-OBTENIDO-EN-COLA 1 · SIN-UNION 7 ⟨F1 F5 F6⟩
-- **Stoppers** (4): ⟨F1 F5 F6 F12 F15⟩
-  - **RESERVA** (1) ⟨F12 F6 F15⟩
-    - `mapa:reserva_v1_1` — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 1) → E.6 (reserva declarada en el mapa) ⟨F1⟩
-  - **ADQUISICION** (3) ⟨F1 F5 F6⟩
-    - `SIN-UNION` — afirmaciones 7 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-U3 ×3, ASTRA5-MESA-JUVENTUD ×2, ASTRA5-MESA-GENERO ×1 ⟨F1 F5 F6⟩
-    - `OECD` — estado OBTENIDO-PARCIAL; prioridad 36; afirmaciones 2; origen cola-adquisicion-2026-08-12.tsv:36 → caja (completa el payload) ⟨F1 F5 F6⟩
-    - `OECD_TRUST_PUM_2021_2023_2025` — estado SOLICITUD-PREPARADA; prioridad 36; afirmaciones 2; origen NC-0061;NC-0151; GEN2-CRON-DEMANDA-A-DATO-Y-PRODUCCION → mesa con identidad (solicitud preparada) ⟨F1 F5 F6⟩
-- **Actos en vuelo** (sin CONSUMIDO, por nombre): `2026-09-19-EDER-PRIMERA-UNION-SEXO-COHORTE.md`, `2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1-CONTINUACION.md`, `2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1.md` ⟨F13⟩
-- **Frente 2027**: ENOE-INFORMALIDAD (NO-LANZAR-TODAVIA; gate CONTRATO-FIRMADO(regla de inferencia para 39 estratos singleton)+FIRMA-DE-MESA(F) ⟨F11⟩
-- **Siguiente acción** [RESERVA]: `mapa:reserva_v1_1` → E.6 (reserva declarada en el mapa) ⟨F1⟩
-
 ### 🔴 CARRIL-17 · Moral Emotions in Mexico · Declared Dignity · Relational Face · and Residual Catholic Guilt ⟨F1 F14⟩
 
 - **Semáforo ROJO** — núcleo con cifra adoptada 0/1 ⟨F1 F2 F3 S⟩
@@ -287,33 +208,6 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
     - `SIN-UNION` — afirmaciones 14 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-MESA-INTERACCION ×8, ASTRA5-MESA-SALUD ×2, ASTRA5-MESA-GENERO ×2 ⟨F1 F5 F6⟩
 - **Frente 2027**: SIN-UNION (ningún instrumento citado es de una familia 2027) ⟨F11⟩
 - **Siguiente acción** [ADQUISICION]: `SIN-UNION` → propietario en el mapa: ASTRA5-MESA-INTERACCION ×8, ASTRA5-MESA-SALUD ×2, ASTRA5-MESA-GENERO ×2 ⟨F1 F5 F6⟩
-
-### 🔴 CARRIL-03 · Autoridad y jerarquía en el México contemporáneo · anatomía psicológica de un sistema dual ⟨F1 F14⟩
-
-- **Semáforo ROJO** — núcleo con cifra adoptada 0/1 ⟨F1 F2 F3 S⟩
-- **Afirmaciones 30**: medible en corpus 9 · con adquisición 10 · no medible por diseño 11 · no construible 0; citan un CALC/RESULT en `gen2_existente`: 3 ⟨F1⟩
-- **Dominios**: AUTORIDAD 29 (97%) núcleo · POLITICA 1 (3%) ⟨F1 S⟩
-- **Instrumentos citados** (afirmaciones): ENCUCI 3 · LATINOBAROMETRO 2 · CEEY_EMOVI 1 · WVS 1; sin instrumento reconocido: 23 ⟨F1 F12 S⟩
-- **Instrumentos del núcleo** (casan stoppers y validación): ENCUCI 3 · LATINOBAROMETRO 2 · CEEY_EMOVI 1 · WVS 1 ⟨F1 F12 S⟩
-- **Pisos del núcleo pendientes de adopción** — registrados en la vista: ninguno; sellados en disco, no registrados (E.7): AUTORIDAD: CALC-PDR1-ENCUCI2020-0002 ⟨F16 F17 S⟩
-- **Cifras del catálogo v1.3 por dominio** (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) ⟨F2⟩
-  - núcleo sin filas en el catálogo: AUTORIDAD ⟨F2⟩
-  - dominios secundarios con cifra (adoptadas + con reserva de ancho): POLITICA 84 ⟨F2⟩
-- **Reglas del report** (3; encabezados excluidos 1): SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 0% ⟨F3⟩
-- **Validación ciega**: CONCUERDA-NO-APROBADA 68 · PASA 3 ⟨F10 F2⟩
-- **Editorial v2** (C/M/R/S 1 / 16 / 1 / 41): EN-MAIN · recibo pr-1240 · regla adoptada: No acreditada aquí · reserva material: 41 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
-- **Adquisición del carril** (afirmaciones con adquisición): COLA-PENDIENTE 1 · EN-MANIFIESTO 1 · SIN-UNION 8 ⟨F1 F5 F6⟩
-- **Stoppers** (6): ⟨F1 F5 F6 F7⟩
-  - **FIRMA** (3) ⟨F7⟩
-    - `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` (por ENCUCI) — §5-bis · regla del semáforo de tools/tablero_carriles.py (GEN2-TUBERIA-TABLERO-INSUMOS-1; dirección propone, m → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md ⟨F7⟩
-    - `FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01` (por WVS) — Acceso con solicitud o términos para seis objetos (EMOVI 2023/2011 CEEY, WVS ola 7 EE.UU./Japón y longitudinal → mesa firma (plazo 2026-09-29); encargo 2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1.md ⟨F7⟩
-    - `FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-12` (por WVS) — [E1] 6 fuentes de microdato (EMOVI 2023/2011 de CEEY, WVS ola 7 EE.UU./Japón, WVS longitudinal 1981-2022, IFPS → mesa firma (plazo 2026-09-29); encargo 2026-09-27-GEN2-TRAMITE-NC-DECISIONES-1.md ⟨F7⟩
-  - **ADQUISICION** (3) ⟨F1 F5 F6⟩
-    - `SIN-UNION` — afirmaciones 8 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-U3 ×6, ASTRA5-MESA-MOVILIDAD ×1, ASTRA5-MESA-EMPRESA ×1 ⟨F1 F5 F6⟩
-    - `EMOVI_2011` — estado NO-ACCESIBLE; prioridad 3; afirmaciones 1; origen ASTRA5-U0 ASTRA5-U0-SINT-008 → mesa con identidad (acceso/registro) ⟨F1 F5 F6⟩
-    - `EMOVI_2023` — estado NO-ACCESIBLE; prioridad 3; afirmaciones 1; origen ASTRA5-U0 ASTRA5-U0-AUTOR-016;ASTRA5-U0-MER-013;ASTRA5-U0-ME → mesa con identidad (acceso/registro) ⟨F1 F5 F6⟩
-- **Frente 2027**: SIN-UNION (ningún instrumento citado es de una familia 2027) ⟨F11⟩
-- **Siguiente acción** [FIRMA]: `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md ⟨F7⟩
 
 ### 🟡 CARRIL-24 · Psicología del Trabajo en México · Un Mapa Basado en Evidencia ⟨F1 F14⟩
 
@@ -839,6 +733,112 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
 - **Frente 2027**: ENOE-INFORMALIDAD (NO-LANZAR-TODAVIA; gate CONTRATO-FIRMADO(regla de inferencia para 39 estratos singleton)+FIRMA-DE-MESA(F) ⟨F11⟩
 - **Siguiente acción** [RESERVA]: `mapa:reserva_v1_1` → E.6 (reserva declarada en el mapa) ⟨F1⟩
 
+### 🟠 CARRIL-09 · El México Rural e Indígena en sus Propios Términos · Comunalidad · Autoridad y Reciprocidad como Sistemas con Lógica Propia ⟨F1 F14⟩
+
+- **Semáforo NARANJA** — núcleo con cifra adoptada 0/1 y piso sellado registrado pendiente de adopción en 1 ⟨F1 F2 F3 S⟩
+- **Afirmaciones 49**: medible en corpus 7 · con adquisición 23 · no medible por diseño 19 · no construible 0; citan un CALC/RESULT en `gen2_existente`: 5 ⟨F1⟩
+- **Dominios**: RURAL_INDIGENA 38 (78%) núcleo · SALUD 5 (10%) · MIGRACION 3 (6%) · RELIGIOSIDAD 2 (4%) · GENERO 1 (2%) ⟨F1 S⟩
+- **Instrumentos citados** (afirmaciones): ENUT 4 · CONEVAL 2 · ENIGH 2 · CAAS 1 · ENADID 1 · ENASEM 1 · ENASIC 1 · ENDIREH 1 · ENSANUT 1; sin instrumento reconocido: 38 ⟨F1 F12 S⟩
+- **Instrumentos del núcleo** (casan stoppers y validación): ENUT 3 · CONEVAL 2 · ENASEM 1 · ENASIC 1 · ENIGH 1 ⟨F1 F12 S⟩
+- **Pisos del núcleo pendientes de adopción** — registrados en la vista: RURAL_INDIGENA: CALC-MC2-ENSANUT2024-0001, CALC-PDR1-ENADID2023-0001, CALC-PDR1-ENUT2024-0001; sellados en disco, no registrados (E.7): ninguno ⟨F16 F17 S⟩
+- **Cifras del catálogo v1.3 por dominio** (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) ⟨F2⟩
+  - núcleo sin filas en el catálogo: RURAL_INDIGENA ⟨F2⟩
+  - dominios secundarios con cifra (adoptadas + con reserva de ancho): GENERO 7304 · MIGRACION 126 · RELIGIOSIDAD 404 · SALUD 800 ⟨F2⟩
+- **Reglas del report** (3; encabezados excluidos 1): SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 0% ⟨F3⟩
+- **Validación ciega**: CONCUERDA-NO-APROBADA 19 · NO-PASA 2 · PASA 1 ⟨F10 F2⟩
+- **Editorial v2** (C/M/R/S 5 / 21 / 2 / 32): EN-MAIN · recibo pr-1240 · regla adoptada: No acreditada aquí · reserva material: 32 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
+- **Adquisición del carril** (afirmaciones con adquisición): EN-MANIFIESTO 1 · PROGRAMA-OBTENIDO-EN-COLA 2 · SIN-UNION 20 ⟨F1 F5 F6⟩
+- **Stoppers** (3): ⟨F1 F5 F6 F7 F8⟩
+  - **FIRMA** (1) ⟨F7⟩
+    - `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` (por ENUT) — §5-bis · regla del semáforo de tools/tablero_carriles.py (GEN2-TUBERIA-TABLERO-INSUMOS-1; dirección propone, m → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md ⟨F7⟩
+  - **ADQUISICION** (1) ⟨F1 F5 F6⟩
+    - `SIN-UNION` — afirmaciones 20 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-U5 ×18, ASTRA5-MESA-RURAL ×2 ⟨F1 F5 F6⟩
+  - **NC-PARO** (1) ⟨F8⟩
+    - `NC-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-03` (por ENUT) — PARO-PREMISA: · P3 · enut-comparabilidad-texto-v1_0.tsv enmendado por (a) (fila C2×2019); marcad → MESA (2026-10-05) · encargo por escribir (decidida por delegación: decididas-por-delegacio ⟨F8⟩
+- **Actos en vuelo** (sin CONSUMIDO, por nombre): `2026-08-13-ENASIC-SPLIT.md` ⟨F13⟩
+- **Frente 2027**: SIN-UNION (ningún instrumento citado es de una familia 2027) ⟨F11⟩
+- **Siguiente acción** [FIRMA]: `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md ⟨F7⟩
+
+### 🟠 CARRIL-08 · El Mexicano y el Tiempo · Estructura · no Cultura · en la Planeación y el Compromiso Temporal ⟨F1 F14⟩
+
+- **Semáforo NARANJA** — núcleo con cifra adoptada 0/1 y piso sellado registrado pendiente de adopción en 1 ⟨F1 F2 F3 S⟩
+- **Afirmaciones 38**: medible en corpus 12 · con adquisición 12 · no medible por diseño 14 · no construible 0; citan un CALC/RESULT en `gen2_existente`: 7 ⟨F1⟩
+- **Dominios**: TIEMPO 18 (47%) núcleo · TRABAJO 4 (11%) · DINERO 3 (8%) · MOVILIDAD 3 (8%) · VIOLENCIA 3 (8%) · INTERACCION 2 (5%) · CONFIANZA 1 (3%) · CONSUMO 1 (3%) · GENERO 1 (3%) · JUVENTUD 1 (3%) · SALUD 1 (3%) ⟨F1 S⟩
+- **Instrumentos citados** (afirmaciones): ENIF 1 · ENOE 1 · ENUT 1; sin instrumento reconocido: 35 ⟨F1 F12 S⟩
+- **Instrumentos del núcleo** (casan stoppers y validación): ENIF 1 · ENUT 1 ⟨F1 F12 S⟩
+- **Pisos del núcleo pendientes de adopción** — registrados en la vista: TIEMPO: CALC-MC2-ENIF2024-0001, CALC-PDR1-ENUT2024-0001; sellados en disco, no registrados (E.7): ninguno ⟨F16 F17 S⟩
+- **Cifras del catálogo v1.3 por dominio** (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) ⟨F2⟩
+  - núcleo sin filas en el catálogo: TIEMPO ⟨F2⟩
+  - dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826 · CONSUMO 4470 · DINERO 100 · GENERO 7304 · MOVILIDAD 172 · SALUD 800 · TRABAJO 26409 · VIOLENCIA 12772 ⟨F2⟩
+- **Reglas del report** (7; encabezados excluidos 2): MATIZA 1 · MATIZA-SIN-CRUCE 1 · SIN-CIFRA-GEN2 5; con dictamen distinto de SIN-CIFRA-GEN2 29% ⟨F3⟩
+- **Validación ciega**: PASA 7 ⟨F10 F2⟩
+- **Editorial v2** (C/M/R/S 1 / 10 / 5 / 29): EN-MAIN · recibo pr-1242 · regla adoptada: No acreditada aquí · reserva material: 29 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
+- **Adquisición del carril** (afirmaciones con adquisición): EN-MANIFIESTO 5 · SIN-UNION 7 ⟨F1 F5 F6⟩
+- **Stoppers** (4): ⟨F1 F5 F6 F7 F8 F12 F15⟩
+  - **FIRMA** (1) ⟨F7⟩
+    - `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` (por ENUT) — §5-bis · regla del semáforo de tools/tablero_carriles.py (GEN2-TUBERIA-TABLERO-INSUMOS-1; dirección propone, m → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md ⟨F7⟩
+  - **RESERVA** (1) ⟨F12 F6 F15⟩
+    - `mapa:reserva_v1_1` — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 2) → E.6 (reserva declarada en el mapa) ⟨F1⟩
+  - **ADQUISICION** (1) ⟨F1 F5 F6⟩
+    - `SIN-UNION` — afirmaciones 7 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-U1 ×7 ⟨F1 F5 F6⟩
+  - **NC-PARO** (1) ⟨F8⟩
+    - `NC-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-03` (por ENUT) — PARO-PREMISA: · P3 · enut-comparabilidad-texto-v1_0.tsv enmendado por (a) (fila C2×2019); marcad → MESA (2026-10-05) · encargo por escribir (decidida por delegación: decididas-por-delegacio ⟨F8⟩
+- **Frente 2027**: ENIF-AHORRO-FORMAL (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE; reserva heredada de v1.0: ACCESO-AUTORIZADO(FP-260926-GEN2-AS) · ENIF-HORIZONTE-AHORRO (LISTA-PARA-ABRIR-CUANDO-LLEGUE-LA-OLA; gate DATO-2027-AUSENTE; reserva heredada de v1.0: ACCESO-AUTORIZADO(FP-260926-GEN2-AS) · ENOE-INFORMALIDAD (NO-LANZAR-TODAVIA; gate CONTRATO-FIRMADO(regla de inferencia para 39 estratos singleton)+FIRMA-DE-MESA(F) ⟨F11⟩
+- **Siguiente acción** [FIRMA]: `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md ⟨F7⟩
+
+### 🟠 CARRIL-22 · Psicología de la Juventud Mexicana Contemporánea · Gen Z y Millennials Jóvenes como Cohorte Divergente ⟨F1 F14⟩
+
+- **Semáforo NARANJA** — núcleo con cifra adoptada 0/1 y piso sellado registrado pendiente de adopción en 1 ⟨F1 F2 F3 S⟩
+- **Afirmaciones 32**: medible en corpus 9 · con adquisición 14 · no medible por diseño 8 · no construible 1; citan un CALC/RESULT en `gen2_existente`: 8 ⟨F1⟩
+- **Dominios**: JUVENTUD 10 (31%) núcleo · POLITICA 4 (12%) · TRABAJO 4 (12%) · GENERO 3 (9%) · SALUD_MENTAL 3 (9%) · AUTORIDAD 2 (6%) · FAMILIA_CUIDADOS 2 (6%) · TECNOLOGIA 2 (6%) · PAREJA 1 (3%) · RELIGIOSIDAD 1 (3%) ⟨F1 S⟩
+- **Instrumentos citados** (afirmaciones): EDER 3 · ENADID 3 · ENOE 3 · ENDUTIH 2 · OECD 2 · EDR 1 · ENCODAT 1 · ENDISEG 1 · ENSANUT 1 · LATINOBAROMETRO 1; sin instrumento reconocido: 14 ⟨F1 F12 S⟩
+- **Instrumentos del núcleo** (casan stoppers y validación): EDER 3 · ENADID 3 · OECD 1 ⟨F1 F12 S⟩
+- **Pisos del núcleo pendientes de adopción** — registrados en la vista: JUVENTUD: CALC-MC2-ENOE-0001; sellados en disco, no registrados (E.7): ninguno ⟨F16 F17 S⟩
+- **Cifras del catálogo v1.3 por dominio** (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) ⟨F2⟩
+  - núcleo sin filas en el catálogo: JUVENTUD ⟨F2⟩
+  - dominios secundarios con cifra (adoptadas + con reserva de ancho): FAMILIA_CUIDADOS 1449 · GENERO 7304 · PAREJA 3304 · POLITICA 84 · RELIGIOSIDAD 404 · SALUD_MENTAL 2758 · TECNOLOGIA 1827 · TRABAJO 26409 ⟨F2⟩
+- **Reglas del report** (4; encabezados excluidos 0): SIN-CIFRA-GEN2 4; con dictamen distinto de SIN-CIFRA-GEN2 0% ⟨F3⟩
+- **Validación ciega**: CONCUERDA-NO-APROBADA 8 · PASA 94 ⟨F10 F2⟩
+- **Editorial v2** (C/M/R/S 0 / 10 / 4 / 26): EN-MAIN · recibo pr-1242 · regla adoptada: No acreditada aquí · reserva material: 26 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
+- **Adquisición del carril** (afirmaciones con adquisición): COLA-PENDIENTE 2 · EN-MANIFIESTO 4 · PROGRAMA-OBTENIDO-EN-COLA 1 · SIN-UNION 7 ⟨F1 F5 F6⟩
+- **Stoppers** (4): ⟨F1 F5 F6 F12 F15⟩
+  - **RESERVA** (1) ⟨F12 F6 F15⟩
+    - `mapa:reserva_v1_1` — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 1) → E.6 (reserva declarada en el mapa) ⟨F1⟩
+  - **ADQUISICION** (3) ⟨F1 F5 F6⟩
+    - `SIN-UNION` — afirmaciones 7 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-U3 ×3, ASTRA5-MESA-JUVENTUD ×2, ASTRA5-MESA-GENERO ×1 ⟨F1 F5 F6⟩
+    - `OECD` — estado OBTENIDO-PARCIAL; prioridad 36; afirmaciones 2; origen cola-adquisicion-2026-08-12.tsv:36 → caja (completa el payload) ⟨F1 F5 F6⟩
+    - `OECD_TRUST_PUM_2021_2023_2025` — estado SOLICITUD-PREPARADA; prioridad 36; afirmaciones 2; origen NC-0061;NC-0151; GEN2-CRON-DEMANDA-A-DATO-Y-PRODUCCION → mesa con identidad (solicitud preparada) ⟨F1 F5 F6⟩
+- **Actos en vuelo** (sin CONSUMIDO, por nombre): `2026-09-19-EDER-PRIMERA-UNION-SEXO-COHORTE.md`, `2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1-CONTINUACION.md`, `2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1.md` ⟨F13⟩
+- **Frente 2027**: ENOE-INFORMALIDAD (NO-LANZAR-TODAVIA; gate CONTRATO-FIRMADO(regla de inferencia para 39 estratos singleton)+FIRMA-DE-MESA(F) ⟨F11⟩
+- **Siguiente acción** [RESERVA]: `mapa:reserva_v1_1` → E.6 (reserva declarada en el mapa) ⟨F1⟩
+
+### 🟠 CARRIL-03 · Autoridad y jerarquía en el México contemporáneo · anatomía psicológica de un sistema dual ⟨F1 F14⟩
+
+- **Semáforo NARANJA** — núcleo con cifra adoptada 0/1 y piso sellado registrado pendiente de adopción en 1 ⟨F1 F2 F3 S⟩
+- **Afirmaciones 30**: medible en corpus 9 · con adquisición 10 · no medible por diseño 11 · no construible 0; citan un CALC/RESULT en `gen2_existente`: 3 ⟨F1⟩
+- **Dominios**: AUTORIDAD 29 (97%) núcleo · POLITICA 1 (3%) ⟨F1 S⟩
+- **Instrumentos citados** (afirmaciones): ENCUCI 3 · LATINOBAROMETRO 2 · CEEY_EMOVI 1 · WVS 1; sin instrumento reconocido: 23 ⟨F1 F12 S⟩
+- **Instrumentos del núcleo** (casan stoppers y validación): ENCUCI 3 · LATINOBAROMETRO 2 · CEEY_EMOVI 1 · WVS 1 ⟨F1 F12 S⟩
+- **Pisos del núcleo pendientes de adopción** — registrados en la vista: AUTORIDAD: CALC-PDR1-ENCUCI2020-0002; sellados en disco, no registrados (E.7): ninguno ⟨F16 F17 S⟩
+- **Cifras del catálogo v1.3 por dominio** (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) ⟨F2⟩
+  - núcleo sin filas en el catálogo: AUTORIDAD ⟨F2⟩
+  - dominios secundarios con cifra (adoptadas + con reserva de ancho): POLITICA 84 ⟨F2⟩
+- **Reglas del report** (3; encabezados excluidos 1): SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 0% ⟨F3⟩
+- **Validación ciega**: CONCUERDA-NO-APROBADA 68 · PASA 3 ⟨F10 F2⟩
+- **Editorial v2** (C/M/R/S 1 / 16 / 1 / 41): EN-MAIN · recibo pr-1240 · regla adoptada: No acreditada aquí · reserva material: 41 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
+- **Adquisición del carril** (afirmaciones con adquisición): COLA-PENDIENTE 1 · EN-MANIFIESTO 1 · SIN-UNION 8 ⟨F1 F5 F6⟩
+- **Stoppers** (6): ⟨F1 F5 F6 F7⟩
+  - **FIRMA** (3) ⟨F7⟩
+    - `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` (por ENCUCI) — §5-bis · regla del semáforo de tools/tablero_carriles.py (GEN2-TUBERIA-TABLERO-INSUMOS-1; dirección propone, m → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md ⟨F7⟩
+    - `FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01` (por WVS) — Acceso con solicitud o términos para seis objetos (EMOVI 2023/2011 CEEY, WVS ola 7 EE.UU./Japón y longitudinal → mesa firma (plazo 2026-09-29); encargo 2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1.md ⟨F7⟩
+    - `FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-12` (por WVS) — [E1] 6 fuentes de microdato (EMOVI 2023/2011 de CEEY, WVS ola 7 EE.UU./Japón, WVS longitudinal 1981-2022, IFPS → mesa firma (plazo 2026-09-29); encargo 2026-09-27-GEN2-TRAMITE-NC-DECISIONES-1.md ⟨F7⟩
+  - **ADQUISICION** (3) ⟨F1 F5 F6⟩
+    - `SIN-UNION` — afirmaciones 8 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-U3 ×6, ASTRA5-MESA-MOVILIDAD ×1, ASTRA5-MESA-EMPRESA ×1 ⟨F1 F5 F6⟩
+    - `EMOVI_2011` — estado NO-ACCESIBLE; prioridad 3; afirmaciones 1; origen ASTRA5-U0 ASTRA5-U0-SINT-008 → mesa con identidad (acceso/registro) ⟨F1 F5 F6⟩
+    - `EMOVI_2023` — estado NO-ACCESIBLE; prioridad 3; afirmaciones 1; origen ASTRA5-U0 ASTRA5-U0-AUTOR-016;ASTRA5-U0-MER-013;ASTRA5-U0-ME → mesa con identidad (acceso/registro) ⟨F1 F5 F6⟩
+- **Frente 2027**: SIN-UNION (ningún instrumento citado es de una familia 2027) ⟨F11⟩
+- **Siguiente acción** [FIRMA]: `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` → mesa firma; encargo 2026-09-28-GEN2-TUBERIA-TABLERO-INSUMOS-1.md ⟨F7⟩
+
 ### ⚪ CARRIL-11 · Genetica y Conducta del Mexicano Contemporaneo · Canal Individual vs · Estructura ⟨F1 F14⟩
 
 - **Semáforo GRIS** — dominio GENETICA fuera por firewall genético ⟨F1 F2 F3 S⟩
@@ -886,7 +886,7 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
 - **Dominios**: SANCION_SOCIAL 11 (50%) núcleo · INTERACCION 2 (9%) · TRABAJO 2 (9%) · CONFIANZA 1 (5%) · DINERO 1 (5%) · GENERO 1 (5%) · JUVENTUD 1 (5%) · MIGRACION 1 (5%) · RURAL_INDIGENA 1 (5%) · VIOLENCIA 1 (5%) ⟨F1 S⟩
 - **Instrumentos citados** (afirmaciones): ENADID 1 · ENSU 1 · ENVE 1 · ENVIPE 1 · LATINOBAROMETRO 1 · MOCIBA 1; sin instrumento reconocido: 16 ⟨F1 F12 S⟩
 - **Instrumentos del núcleo** (casan stoppers y validación): ENSU 1 · ENVE 1 · MOCIBA 1 ⟨F1 F12 S⟩
-- **Pisos del núcleo pendientes de adopción** — registrados en la vista: ninguno; sellados en disco, no registrados (E.7): SANCION_SOCIAL: CALC-PDR1-ENSU2024-0001 ⟨F16 F17 S⟩
+- **Pisos del núcleo pendientes de adopción** — registrados en la vista: SANCION_SOCIAL: CALC-PDR1-ENSU2024-0001; sellados en disco, no registrados (E.7): ninguno ⟨F16 F17 S⟩
 - **Cifras del catálogo v1.3 por dominio** (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) ⟨F2⟩
   - núcleo sin filas en el catálogo: SANCION_SOCIAL ⟨F2⟩
   - dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 826 · DINERO 100 · GENERO 7304 · MIGRACION 126 · TRABAJO 26409 · VIOLENCIA 12772 ⟨F2⟩
@@ -924,7 +924,7 @@ Todo número de arriba sale de estos archivos por `python3 tools/tablero_carrile
 | F13 | `forense/encargos/*.md` | `a851dda028ca (lista)` | glob; en vuelo = sin línea «## CONSUMIDO» | 818 |
 | F15 | `data/corrida0/aperturas-pendientes-v1_0.tsv` | `4c7f99590390` | lee_tsv, (programa, año de ola) -> expediente y qué la abre | — |
 | F16 | `forense/analisis/*/*dictamenes.tsv` | `cd78601b716d (lista)` | pisos_pendientes(): glob; filas con dominio · calc · resultado_id | 74 |
-| F17 | `data/corrida0/resultados.tsv` | `56c0224f683e` | pisos_pendientes(): conjunto de resultado_id registrados (salta líneas #) | — |
+| F17 | `data/corrida0/resultados.tsv` | `765738691b3a` | pisos_pendientes(): conjunto de resultado_id registrados (salta líneas #) | — |
 | F14 | `canon/crosswalk-carriles-v1_0.tsv` | `9539d131abd1` | crosswalk() (misma derivación; --verifica compara con el archivo) | 31 |
 | S | `tools/tablero_carriles.py` | `c23b28762de9` | constantes de la cabecera | — |
 <!-- TABLERO-DERIVADO:END -->
