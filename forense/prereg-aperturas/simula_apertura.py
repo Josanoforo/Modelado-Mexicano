@@ -8,7 +8,7 @@ ACTO GEN2-APERTURAS-PREREGISTRADAS-1 (28/sep/2026). D-23: todo ocurre en un `git
 
 Pasos (los de `RECETA-APERTURA-<X>.md` §4): copia el árbol de trabajo de `forense/prereg-aperturas/` al
 worktree; en su `data/manifiesto.yaml` levanta la custodia de los payloads del contrato (sólo texto: quita
-`estado_reserva`, `raiz: data_raw`); copia el contrato a `data/corrida0/CALC-APERTURA-<X>-0001/spec.yaml`;
+`estado_reserva` y, si la raíz es `reserva_respondentes`, `raiz: data_raw`); copia el contrato a `data/corrida0/CALC-APERTURA-<X>-0001/spec.yaml`;
 commit local; `corrida0 preflight`. Imprime el veredicto y los bloqueos. En NUBE el payload no existe: el
 único resultado aceptable es VERDE con avisos `NO-VISIBLE-EN-ESTE-CONTEXTO` (FP-352), nunca un bloqueo.
 """
@@ -40,8 +40,6 @@ def _levanta_custodia(manifiesto: str, ids: set[str]) -> int:
     for ln in lineas:
         m = re.match(r"^- id: (\S+)\s*$", ln)
         if m:
-            if dentro and not tiene_raiz:
-                out.append("  raiz: data_raw")
             dentro = m.group(1).strip("'\"") in ids
             tocadas += dentro
             tiene_raiz = False
@@ -50,14 +48,32 @@ def _levanta_custodia(manifiesto: str, ids: set[str]) -> int:
         if dentro and re.match(r"^  estado_reserva:", ln):
             continue
         if dentro and re.match(r"^  raiz:", ln):
-            out.append("  raiz: data_raw")
+            # sólo la custodia se mueve; descargas_mx/data_raw quedan como están (receta §4a)
+            out.append("  raiz: data_raw" if "reserva_respondentes" in ln else ln)
             tiene_raiz = True
             continue
         out.append(ln)
-    if dentro and not tiene_raiz:
-        out.append("  raiz: data_raw")
     open(manifiesto, "w", encoding="utf-8").write("\n".join(out))
     return tocadas
+
+
+def _raiz(pid: str):
+    for ln_id, raiz in _raices():
+        if ln_id == pid:
+            return raiz
+    return None
+
+
+def _raices():
+    out, pid = [], None
+    for ln in open(os.path.join(RAIZ, "data", "manifiesto.yaml"), encoding="utf-8"):
+        m = re.match(r"^- id: (\S+)", ln)
+        if m:
+            pid = m.group(1).strip("'\"")
+        m = re.match(r"^  raiz: (\S+)", ln)
+        if m and pid:
+            out.append((pid, m.group(1)))
+    return out
 
 
 def simula(x: str, wt: str) -> tuple[str, str]:
@@ -91,7 +107,13 @@ def main(argv):
             shutil.rmtree(destino, ignore_errors=True)
             shutil.copytree(AQUI, destino, ignore=shutil.ignore_patterns("__pycache__"))
             info, veredicto = simula(x, wt)
-            ok = "VERDE" in veredicto and "BLOQUEADO" not in veredicto
+            bloqueos = veredicto.split("BLOQUEADO", 1)[1].split() if "BLOQUEADO" in veredicto else []
+            # descargas_mx no existe en NUBE: su RAIZ_NO_CONFIGURADA es entorno (NO-VERIFICABLE-AQUÍ), no contrato
+            reales = [b for b in bloqueos if not b.startswith("input_manifiesto_RAIZ_NO_CONFIGURADA=")
+                      or _raiz(b.split("=", 1)[1]) != "descargas_mx"]
+            ok = ("VERDE" in veredicto and not bloqueos) or (bloqueos and not reales)
+            if bloqueos and not reales:
+                veredicto += " · sólo RAIZ_NO_CONFIGURADA de descargas_mx (entorno NUBE): NO-VERIFICABLE-AQUÍ, contrato sin bloqueos"
             malos += not ok
             print(f"{x}: {info} · {veredicto}")
         finally:

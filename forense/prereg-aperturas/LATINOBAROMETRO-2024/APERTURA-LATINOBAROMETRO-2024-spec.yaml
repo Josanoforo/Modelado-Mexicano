@@ -1,0 +1,1802 @@
+# CALC-APERTURA-LATINOBAROMETRO-2024-0001 -- contrato ejecutable del expediente de apertura (D-15), GEN2-APERTURAS-PREREGISTRADAS-1.
+# NO CORRIDO. La apertura es copiar este archivo a data/corrida0/CALC-APERTURA-LATINOBAROMETRO-2024-0001/spec.yaml;
+# el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
+calc_id: CALC-APERTURA-LATINOBAROMETRO-2024-0001
+spec_md: ../../../forense/prereg-aperturas/LATINOBAROMETRO-2024/APERTURA-LATINOBAROMETRO-2024-spec-v1_0.md
+spec_md_sha256: 2889dd5f1f005c3afce2677f8d1e2af9719cd38ae8e8ec71226d46cb11c3761d
+script: forense/prereg-aperturas/LATINOBAROMETRO-2024/medidor_apertura_latinobarometro_2024.py
+dependencias_materiales:
+- numpy
+- pandas
+- pyreadstat
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: 'NO'
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+  tipo: APERTURA-PRE-REGISTRADA (COMMIT-3 de la ola reservada)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: PROSPECTIVA
+  unidad_transferencia: PERSONA
+  contendientes:
+  - CALC-LATINOBAROMETRO-PISOS-2023-0001
+  - CALC-LATINOBAROMETRO-COLA-2023-0001
+  ola_reservada: LATINOBAROMETRO 2024 (se abre sólo al correr este CALC)
+  congelado: NO -- expediente; se congela cuando mesa firme su apertura
+inputs:
+- id: latinobarometro2024_bd_stata
+  origen: manifiesto
+  sha256: 469a94c55395b36c4d1f013851a7e79d0619620640a64653eca79afce21f5e97
+  funcion: DATO
+  nota: Latinobarómetro 2024 (zip con .dta esp/eng y cuestionarios) -- ola RESERVADA por la spec sellada de los
+    dos contendientes; sólo este medidor la lee, sólo idenpa = 484
+- id: contendiente_pisos_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-LATINOBAROMETRO-PISOS-2023-0001/medidor.py
+  sha256: 39362de57eba9245d58b5eba63dcfed586cbd0348323d59a6470046e1f826dc5
+  funcion: CODIGO
+  nota: 'medidor sellado CALC-LATINOBAROMETRO-PISOS-2023-0001: CONDUCTAS, MAPAS, EJES_CATS, PAIS'
+- id: contendiente_pisos_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-LATINOBAROMETRO-PISOS-2023-0001/resultados.json
+  sha256: 0db9ee6d0e150a908425d39be7aa76958efb9db069f0a03161186436ce3d1038
+  funcion: DATO
+  nota: 'piso 2023 sellado: P, IC-LO, IC-HI por celda'
+- id: contendiente_cola_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-LATINOBAROMETRO-COLA-2023-0001/medidor.py
+  sha256: fa6e98f7516e770dee8e81584a2a8da8681f919ef4c1e0133ee68346226ad38f
+  funcion: CODIGO
+  nota: 'medidor sellado CALC-LATINOBAROMETRO-COLA-2023-0001: CONDUCTAS, MAPAS, EJES_CATS'
+- id: contendiente_cola_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-LATINOBAROMETRO-COLA-2023-0001/resultados.json
+  sha256: d1e0dbbdd2c81479080dc19c8cd98455a90919aef300039053b688a634d0c11a
+  funcion: DATO
+  nota: 'piso 2023 sellado: P, IC-LO, IC-HI por celda'
+- id: motor_pisos_confianza
+  origen: repo
+  ruta: tools/dominios/confianza/motor_pisos.py
+  sha256: 7d0494f43052e0ea39ce0baf5f6505ccf889b386cfa3c0775b0dbdfb56ef958e
+  funcion: CODIGO
+  nota: lee, num, recodifica, eje_mapa, edad, prepara_diseno, rid
+- id: guardia_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/guardia_apertura.py
+  sha256: 02a04c1063483bc0441e41c41c02469b325eca2b1aad41f1ec41344f8a57efad
+  funcion: CODIGO
+  nota: auditoría AST, agregador de una variable, adjudicación
+- id: expediente_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/expediente_apertura.py
+  sha256: db003b18b9bc8213d0aba9bed900a9b7f5620ebc4e9a2173727f53356c7ef9f7
+  funcion: CODIGO
+  nota: esquema, salida y contrato comunes
+variables:
+- nombre: PISOS-CONFIANZA-INTERPERSONAL
+  definicion: 'bin(P9STGBS: 1=[1], 0=[2]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-CONFIA-FFAA
+  definicion: 'bin(P13STGBS_A: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-CONFIA-POLICIA
+  definicion: 'bin(P13STGBS_B: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-CONFIA-IGLESIA
+  definicion: 'bin(P13ST_C: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-CONFIA-CONGRESO
+  definicion: 'bin(P13ST_D: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-CONFIA-GOBIERNO
+  definicion: 'bin(P13ST_E: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-CONFIA-PODER-JUDICIAL
+  definicion: 'bin(P13ST_F: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-CONFIA-PARTIDOS
+  definicion: 'bin(P13ST_G: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-CONFIA-INSTITUCION-ELECTORAL
+  definicion: 'bin(P13ST_H: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-CONFIA-PRESIDENTE
+  definicion: 'bin(P13ST_I: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-CATOLICO
+  definicion: 'bin(S1: 1=[1], 0=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 96, 97]; resto fuera); códigos de la
+    ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-SIN-RELIGION
+  definicion: 'bin(S1: 1=[13, 14, 97], 0=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 96]; resto fuera); códigos de la
+    ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-PRACTICANTE
+  definicion: 'bin(S1A: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-DEMOCRACIA-PREFERIBLE
+  definicion: 'bin(P10STGBS: 1=[1], 0=[2, 3]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-AUTORITARISMO-A-VECES-PREFERIBLE
+  definicion: 'bin(P10STGBS: 1=[2], 0=[1, 3]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO
+  definicion: 'bin(P18STM_B: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-APOYARIA-GOBIERNO-MILITAR
+  definicion: 'bin(P20STM: 1=[1], 0=[2]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES
+  definicion: 'bin(P19N: 1=[1], 0=[2]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-TRABAJA-POR-COMUNIDAD
+  definicion: 'bin(P44ST_B: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-FIRMO-PETICION
+  definicion: 'bin(P45ST_A: 1=[1], 0=[2, 3]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: PISOS-ASISTIO-MANIFESTACION
+  definicion: 'bin(P45S_B: 1=[1], 0=[2, 3]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-PISOS-2023-0001'
+- nombre: COLA-SATISFECHO-CON-LA-VIDA
+  definicion: 'bin(P1ST: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-COLA-2023-0001'
+- nombre: COLA-SATISFECHO-CON-LA-DEMOCRACIA
+  definicion: 'bin(P11STGBS_A: 1=[1, 2], 0=[3, 4]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-COLA-2023-0001'
+- nombre: COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE
+  definicion: 'bin(P15STGBS: 1=[1], 0=[2]; resto fuera); códigos de la ola del piso 2023 de CALC-LATINOBAROMETRO-COLA-2023-0001'
+universo: Personas entrevistadas en México en Latinobarómetro 2024 (idenpa = 484), wt finito > 0, edad >= 18 (la
+  regla de los dos contendientes)
+filtros: Un eje a la vez (TOTAL, SEXO, EDAD, ESCOLARIDAD, TAMLOC, CLASE-SUBJETIVA); nunca cruces (guardia E.6)
+ponderador: wt
+transformacion: Recodificación bin de cada contendiente con los códigos de 2023 (spec §1); columna ausente en 2024
+  -> NO-ESTIMABLE; nombre presente con otro texto de pregunta -> re-sello previo (spec §5)
+estimando: R = Σw·y/Σw por contendiente×conducta×eje×categoría en Latinobarómetro 2024 México; cobertura de R en
+  el IC de diseño sellado del piso 2023 (IC-LO/IC-HI)
+seed:
+  aplica: false
+  razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
+parametros:
+  nominal: 0.95
+  z: 1.959964
+  regla: cobertura R en [lo, hi] del contendiente; Wilson 95%; NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificación ad hoc)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'determinista: sumas float64 sin remuestreo'
+resultados:
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIANZA-INTERPERSONAL-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-FFAA-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-POLICIA-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-IGLESIA-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-CONGRESO-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-GOBIERNO-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PODER-JUDICIAL-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PARTIDOS-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-INSTITUCION-ELECTORAL-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CONFIA-PRESIDENTE-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-CATOLICO-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-SIN-RELIGION-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PRACTICANTE-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-DEMOCRACIA-PREFERIBLE-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-AUTORITARISMO-A-VECES-PREFERIBLE-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-NO-IMPORTA-GOBIERNO-NO-DEMOCRATICO-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-APOYARIA-GOBIERNO-MILITAR-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-PREFIERE-SOCIEDAD-DE-COSTUMBRES-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-TRABAJA-POR-COMUNIDAD-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-FIRMO-PETICION-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-PISOS-ASISTIO-MANIFESTACION-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-VIDA-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-SATISFECHO-CON-LA-DEMOCRACIA-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-ESCOLARIDAD-HASTA-BASICA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-ESCOLARIDAD-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-TAMLOC-MENOS-20MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-TAMLOC-20MIL-100MIL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-TAMLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-CLASE-SUBJETIVA-ALTA-MEDIA-ALTA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-CLASE-SUBJETIVA-MEDIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-CLASE-SUBJETIVA-MEDIA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-COLA-APRUEBA-GOBIERNO-DEL-PRESIDENTE-CLASE-SUBJETIVA-BAJA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-DICTAMEN
+  tipo: texto
+  unidad: vocabulario cerrado CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-K
+  tipo: entero
+  unidad: celdas con R dentro del IC del contendiente
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-N
+  tipo: entero
+  unidad: celdas puntuadas
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-WILSON-LO
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, inferior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-WILSON-HI
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, superior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-MAE-PUNTO
+  tipo: flotante
+  unidad: error absoluto medio punto del contendiente vs R (descriptivo)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-LATINOBAROMETRO-2024-MARCA
+  tipo: texto
+  unidad: PROSPECTIVA (contendiente sellado antes de R)
