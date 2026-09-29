@@ -115,7 +115,7 @@ Acciones con identidad real (correos, solicitudes, registros, un disco, una func
 
 ## A10 · Pedir a INEGI la regla oficial de varianza de los 39 estratos singleton de ENOE 2024T4
 
-**Cierra (1):** `NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-04`
+**Cierra (2):** `NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-04`, `NC-260928-GEN2-VALIDACION-Y-2027-1-f926-03`
 **Fecha:** 2026-10-05 · **Deduplicada contra:** distinta de A09
 
 **Receta de un minuto.**
@@ -258,6 +258,15 @@ Acciones con identidad real (correos, solicitudes, registros, un disco, una func
 - Escribir a Astra por su canal habitual: «Del lote 1 de C1 necesito (1) el log del materializador y un `ls -lR /raw` con sha256 por archivo de los lanzamientos ayuda, decisiones y laboral (los tres sin hashes de /raw en el repo), y (2) el SHA-256 del lanza.sh con que corrió el intento 2 de comunitaria. Pégalo tal cual, sin resumir.» Guardar la respuesta sin editar.
 
 **Destino / acuse.** forense/validacion-independiente/catalogo-1-ejecucion-lote1/ (adenda con sha256, entrega por encargo CAJA/tramite); mientras no llegue, el rótulo CIEGA-POR-SEPARACIÓN del lote 1 conserva sus reservas declaradas.
+
+## A24 · Pedir la revisión independiente de los tres reports C3 (autoridad, civismo, comunalidad)
+
+**Cierra (1):** `NC-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01`
+**Fecha:** 2026-10-05 · **Deduplicada contra:** R17 (ya FIRMADA: recibe los reports como propuesta); la pasada editorial que R17 condicionaba ya la hizo GEN2-ASTRA-CONTINUIDAD-C3-1 (#1261)
+
+**Receta de un minuto.**
+
+- (1) Mesa abre la conversación de Astra y adjunta `forense/analisis/reports-v2/autoridad-civismo-comunalidad-1/hashes-producto.json` y la hoja `forense/analisis/recibo-astra6-3/hoja-para-mesa-recibo-astra6-3.md` con la firma R17 (FIRMADA el 28/sep); (2) Astra dictamina desde la spec y los datos, sin leer el código que produjo las cifras (validación independiente, A-bis); (3) el dictamen entra por recibo de Claude por SHA (cadena C3: Astra dictamina, ejecutores, Claude recibe, mesa firma); ninguna regla SI-ENTONCES se adopta por esta vía.
 
 ## A23 · Convenios y credenciales personales de tandas (tanda.mx/tandamas.mx, Tanda+) y Findex individual
 

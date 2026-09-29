@@ -49,6 +49,10 @@ ACCIONES = [
 EXCLUIR_CLAVES = {"SOLICITUD-LM-INEGI-ENCRIGE2020-MICRODATO"}
 
 MANUAL_NC = {
+    # 3a1f-01 (FP R17 FIRMADA): la pasada editorial C3 ya la hizo GEN2-ASTRA-CONTINUIDAD-C3-1; falta la revisión independiente, que es de otra sesión
+    "NC-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01": ("A24", "Pedir la revisión independiente de los tres reports C3 (autoridad, civismo, comunalidad)",
+                "(1) Mesa abre la conversación de Astra y adjunta `forense/analisis/reports-v2/autoridad-civismo-comunalidad-1/hashes-producto.json` y la hoja `forense/analisis/recibo-astra6-3/hoja-para-mesa-recibo-astra6-3.md` con la firma R17 (FIRMADA el 28/sep); (2) Astra dictamina desde la spec y los datos, sin leer el código que produjo las cifras (validación independiente, A-bis); (3) el dictamen entra por recibo de Claude por SHA (cadena C3: Astra dictamina, ejecutores, Claude recibe, mesa firma); ninguna regla SI-ENTONCES se adopta por esta vía.",
+                SEMANA, "R17 (ya FIRMADA: recibe los reports como propuesta); la pasada editorial que R17 condicionaba ya la hizo GEN2-ASTRA-CONTINUIDAD-C3-1 (#1261)"),
     # NC-0056: convenios y credenciales personales de tandas; los verificadores rechazaron cerrarla («ninguna firma nombra NC-0056»)
     "NC-0056": ("A23", "Convenios y credenciales personales de tandas (tanda.mx/tandamas.mx, Tanda+) y Findex individual",
                 "Los tres son personales y no se negocian desde el repo: (1) convenio institucional con tanda.mx/tandamas.mx y con Tanda+ (equipo@tandamas.mx); (2) trámite presencial; (3) cuenta gratuita del Banco Mundial para Findex individual. Con identidad de mesa: escribir o presentarse; guardar el acuse en `forense/expedientes-acceso/` y avisar la ruta.",

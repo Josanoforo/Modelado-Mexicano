@@ -96,6 +96,11 @@ def main():
             filas.append([i, origen, "NADA", "", "", r.get("rationale", "")[:200]])
         else:
             sin_accion.append((i, f"estado {est} sin acción (segunda pasada o verificación pendiente)"))
+    # NC que llegaron al libro después de la investigación (sin evidencia): solo las decide `manual`
+    for i, m in manual.items():
+        if i in libro and libro[i].get("estado") == "ABIERTA" and i not in {f[0] for f in filas} and i not in fin:
+            filas.append([i, "sin-evidencia:MANUAL", m["accion"], m.get("cerrado_por", ""), m.get("nuevo_sucesor", ""),
+                          m.get("porque", "")])
     # ninguna NC ABIERTA sin fila ni motivo
     ya = {f[0] for f in filas} | {i for i, _ in sin_accion}
     for i, r in libro.items():
