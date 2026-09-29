@@ -53,3 +53,4 @@ No adopta, no abre reservadas, no valida a ciegas (VALIDACION-Y-2027-1), no escr
 
 Consumido por `ACTO GEN2-MEDICION-CARRILES-2` en tres PR por instrumento: #1311 (ENIF 2024, fusionado), #1314 (ENSANUT 2024, fusionado) y #1316 (ENVIPE 2025 + cierre). ADR `ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-01..03`. Nota: `forense/notas/2026-09-28-GEN2-MEDICION-CARRILES-2-cierre.md`.
 - Adenda: `2026-09-28-GEN2-MEDICION-CARRILES-2-ADENDA-1.md` (firma R06 m7 ABIERTA-PARCIAL), consumida por #1317 (ADR `…-8fdf-04`).
+- Cierre final: hijas #1324 (NARANJA), #1327 (ENOE), #1336 (ENIGH), #1339 (ENUT), #1346 (ENDUTIH) y este PR de cierre (ADR `…-8fdf-06..10`); ADENDA-2 consumida.
