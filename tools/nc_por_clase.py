@@ -118,6 +118,29 @@ DUENO_A_CLASE = {"MESA": "ESPERA-MESA", "CAJA": T_ACTO, "EN-CURSO": "EN-CURSO",
                  "DIRECCION": "ESPERA-DIRECCION"}
 RE_EN_CURSO = re.compile(r"^EN-CURSO \((?P<acto>[^()]+?) · rama (?P<rama>[^()\s]+)\)")
 
+# ──────────────────────────────────────────────────────────────────
+# DUEÑOS COMPLETOS (ACTO GEN2-TUBERIA-TABLERO-INSUMOS-1 · P4)
+#
+# Defecto que atrapa, medido el 28/sep/2026 sobre el libro real: de 27 filas
+# ADQUISICION solo 6 nombraban una solicitud o una FP, y ninguna de las 18 APERTURA
+# nombraba la FP que abriría su ola. Al lector (el puesto de tablero) el dueño le
+# decía «espera un dato» o «espera una apertura» sin decirle QUÉ objeto lo desbloquea.
+#
+# Una fila ADQUISICION nombra su solicitud si el segmento del dueño (lo anterior a
+# ` · antes:`) cita, en alguna de estas tres formas, un objeto que EXISTE hoy:
+#   cola:<fuente_canonica>     -- fila de data/cola-adquisicion-v1_0.tsv
+#   <ruta>.md                  -- bajo forense/analisis/obtencion-externa-1/solicitudes/
+#                                 o forense/expedientes-acceso/
+#   obtencion:<pieza>:<fuente> -- par (pieza, fuente) de forense/analisis/obtencion-externa-1/obtencion.tsv
+# o una FP existente de forense/firmas-pendientes.tsv que decide esa adquisición. Una fila
+# APERTURA nombra su FP si el segmento cita una FP existente. Lo que se cita se
+# verifica (A.17); una cita a un objeto ausente no cuenta.
+COLA = "data/cola-adquisicion-v1_0.tsv"
+OBTENCION = "forense/analisis/obtencion-externa-1/obtencion.tsv"
+RE_SOL_COLA = re.compile(r"(?<![\w/-])cola:([A-Za-z0-9_.\-]+)")
+RE_SOL_RUTA = re.compile(r"(forense/(?:analisis/obtencion-externa-1/solicitudes|expedientes-acceso)/[^\s;,)]+\.md)")
+RE_SOL_OBT = re.compile(r"(?<![\w/-])obtencion:([A-Za-z0-9]+):([A-Za-z0-9_.\-]+)")
+
 
 # Verificación POR PRODUCTO hecha a mano en ACTO GEN2-SENAL-1 (P2), fila por fila.
 # NO es una constante tecleada de conveniencia: es el asiento de una lectura que
@@ -256,7 +279,74 @@ def en_curso_vencido(sucesor, enc, vivas):
             f"las {len(vivas)} ramas de origin")
 
 
-def clasifica(r, fps, enc, notas, vivas=None):
+def _tsv_sin_comentarios(path):
+    csv.field_size_limit(10**9)
+    with open(path, encoding="utf-8", newline="") as f:
+        lineas = [l for l in f if not l.startswith("#")]
+    return list(csv.DictReader(lineas, delimiter="\t"))
+
+
+def cola_por_fuente():
+    """{fuente_canonica: estado_A4A5} de la cola de adquisición."""
+    return {r["fuente_canonica"]: r["estado_A4A5"] for r in _tsv_sin_comentarios(COLA)} if os.path.exists(COLA) else {}
+
+
+def obtencion_por_par():
+    """{(pieza, fuente): estado} de OBTENCION-EXTERNA-1."""
+    if not os.path.exists(OBTENCION):
+        return {}
+    return {(r["pieza"], r["fuente"]): r["estado"] for r in _tsv_sin_comentarios(OBTENCION)}
+
+
+def segmento_actual(sucesor):
+    """El dueño vigente: lo anterior a ` · antes:` (lo que sigue es el dueño viejo)."""
+    return (sucesor or "").split(" · antes:", 1)[0]
+
+
+def solicitudes_citadas(sucesor, cola, obt):
+    """[(clave, estado o None)]: cada solicitud que el dueño vigente nombra; None = el objeto no existe."""
+    seg, out = segmento_actual(sucesor), []
+    for m in RE_SOL_COLA.finditer(seg):
+        out.append((f"cola:{m.group(1)}", cola.get(m.group(1))))
+    for m in RE_SOL_RUTA.finditer(seg):
+        out.append((m.group(1), "EXISTE" if os.path.isfile(m.group(1)) else None))
+    for m in RE_SOL_OBT.finditer(seg):
+        out.append((f"obtencion:{m.group(1)}:{m.group(2)}", obt.get((m.group(1), m.group(2)))))
+    return out
+
+
+def fps_citadas(sucesor, fps):
+    """[(id, estado o None)]: cada FP que el dueño vigente nombra; None = no está en el tablero de firmas."""
+    return [(f, fps.get(f)) for f in sorted(set(re.findall(RE_FP, segmento_actual(sucesor))))]
+
+
+def dueno_incompleto(sucesor, cola, obt, fps):
+    """None si el dueño es real; si no, el defecto: FUERA-DE-LA-LISTA-CERRADA · ADQUISICION-SIN-SOLICITUD
+    · APERTURA-SIN-FP. Una cita a un objeto que no existe no cuenta."""
+    m = RE_DUENO.match(sucesor or "")
+    if not m:
+        return "FUERA-DE-LA-LISTA-CERRADA"
+    if m.group(1) == "ADQUISICION":
+        if not [c for c in solicitudes_citadas(sucesor, cola, obt) + fps_citadas(sucesor, fps) if c[1] is not None]:
+            return "ADQUISICION-SIN-SOLICITUD"
+    elif m.group(1) == "APERTURA":
+        if not [c for c in fps_citadas(sucesor, fps) if c[1] is not None]:
+            return "APERTURA-SIN-FP"
+    return None
+
+
+def evidencia_dueno(tipo, sucesor, cola, obt, fps):
+    """Lo que el dueño ADQUISICION/APERTURA nombra y su estado hoy, o el hueco, para la vista derivada."""
+    if tipo == "ADQUISICION":
+        c = [f"{k} [{e or 'NO-EXISTE'}]" for k, e in solicitudes_citadas(sucesor, cola, obt) + fps_citadas(sucesor, fps)]
+        return " · ".join(c) or "SIN-SOLICITUD: el dueño no nombra su solicitud"
+    if tipo == "APERTURA":
+        c = [f"{k} [{e or 'NO-EXISTE'}]" for k, e in fps_citadas(sucesor, fps)]
+        return " · ".join(c) or "SIN-FP: el dueño no nombra la firma que abriría la ola"
+    return ""
+
+
+def clasifica(r, fps, enc, notas, vivas=None, ctx=None):
     """Prioridad explícita: una NC puede citar varias cosas, y el token debe
     decir QUÉ LA BLOQUEA HOY, no todo lo que menciona.
 
@@ -281,7 +371,8 @@ def clasifica(r, fps, enc, notas, vivas=None):
                 return T_VENCIDA, v[0], v[1]
             if vivas is None:
                 return "EN-CURSO", f"dueño {m.group(0)}", "rama NO-VERIFICABLE (sin `git ls-remote`)"
-        return DUENO_A_CLASE[m.group(1)], f"dueño {m.group(0)}", ""
+        ev = evidencia_dueno(m.group(1), s, ctx["cola"], ctx["obt"], fps) if ctx else ""
+        return DUENO_A_CLASE[m.group(1)], f"dueño {m.group(0)}", ev
 
     if re.search(r"bandeja|titular", texto, re.I):
         return T_BANDEJA, "la fila se enruta a una bandeja/titular", ""
@@ -340,9 +431,10 @@ def derivar(con_red=True):
     todas = filas(NC)
     abiertas = [r for r in todas if (r.get("estado") or "").strip() == "ABIERTA"]
     vivas, fuente_ramas = ramas_vivas() if con_red else (None, "NO-VERIFICABLE (--sin-red)")
+    ctx = {"cola": cola_por_fuente(), "obt": obtencion_por_par()}
     out = []
     for r in abiertas:
-        clase, falta, ev = clasifica(r, fps, enc, notas, vivas)
+        clase, falta, ev = clasifica(r, fps, enc, notas, vivas, ctx)
         out.append({
             "id": r["id"],
             "fecha": r["fecha"],

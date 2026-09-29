@@ -5445,9 +5445,16 @@ def _vista_publicada() -> dict:
                    vista_publicada_commits_posteriores=git("rev-list", "--first-parent", "--count",
                                                     f"{sha}..HEAD") or nv)
     refs = git("for-each-ref", "--format=%(refname)", "refs/remotes/origin/")
+    refspecs = (git("config", "--get-all", "remote.origin.fetch") or "").split()
     if refs is None or "refs/remotes/origin/main" not in refs.split():
         out.update(deriva_en_cola="NO-VERIFICABLE-SIN-REFS-DE-ORIGIN",
                    deriva_en_cola_fuente="este clon no trae refs/remotes/origin/main; `git fetch` y repetir")
+    elif not any(rs.lstrip("+").split(":")[0] == "refs/heads/*" for rs in refspecs):
+        # un clon de una sola rama (el checkout de CI, `--depth`) no puede ver derivados/auto-*:
+        # un cero ahi seria un falso cero
+        out.update(deriva_en_cola="NO-VERIFICABLE-CLON-DE-UNA-RAMA",
+                   deriva_en_cola_fuente=f"remote.origin.fetch = {' '.join(refspecs) or '(vacio)'}: "
+                                         f"no trae refs/heads/derivados/*")
     else:
         out["deriva_en_cola"] = sum(
             1 for r in refs.split() if r.startswith("refs/remotes/origin/derivados/auto-"))
