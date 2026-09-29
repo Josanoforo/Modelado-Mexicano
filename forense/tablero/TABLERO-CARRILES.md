@@ -896,7 +896,7 @@ Todo número de arriba sale de estos archivos por `python3 tools/tablero_carrile
 | F10 | `data/corrida0/validaciones-independientes.tsv` | `630fc2ac17a0` | lee_tsv, join resultado_id → catálogo.result_id | 748 |
 | F11 | `forense/analisis/familias-2027/familias-2027-estado-v1_1.tsv` | `e8bfab28c374` | lee_tsv | 8 |
 | F12 | `forense/analisis/corpus-completo/tabla-final-v1_0.tsv` | `4a647dd37503` | lee_tsv, programa y olas_reservadas_al_entrar | 146 |
-| F13 | `forense/encargos/*.md` | `cf3ceea8f6af (lista)` | glob; en vuelo = sin línea «## CONSUMIDO» | 813 |
+| F13 | `forense/encargos/*.md` | `15282e3b6b8a (lista)` | glob; en vuelo = sin línea «## CONSUMIDO» | 814 |
 | F14 | `canon/crosswalk-carriles-v1_0.tsv` | `9539d131abd1` | crosswalk() (misma derivación; --verifica compara con el archivo) | 31 |
 | S | `tools/tablero_carriles.py` | `5ee02bedb05b` | constantes de la cabecera | — |
 <!-- TABLERO-DERIVADO:END -->
