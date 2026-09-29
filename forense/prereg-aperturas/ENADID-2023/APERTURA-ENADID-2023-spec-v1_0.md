@@ -97,8 +97,8 @@ contendientes, con IC de Wilson al 95 %. Dictamen: **CALIBRADO** si 0.95 ∈ Wil
 **SOBRECUBRE** si Wilson_lo > 0.95; **NO-ESTIMABLE** si n = 0. Orden: NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE >
 CALIBRADO (excluyentes). Secundarias, descriptivas, no adjudican: cobertura por conglomerado = **CALC contendiente**
 (recalculable de R y lo/hi; se reporta aparte porque FAM trae IC de persistencia y COLA IC de diseño, que no son el
-mismo objeto) y `-MAE-PUNTO`, que promedia celdas de hogar y de persona: **no se lee como una cantidad** (§4 v2.16),
-sólo como resumen descriptivo; la lectura es por celda o por contendiente y unidad.
+mismo objeto) y `-MAE-PUNTO`, calculado **sólo sobre celdas de unidad persona** (el punto de las celdas de hogar
+entra como None: §4 v2.16, ninguna cantidad de hogar se promedia con una de persona); descriptivo, no adjudica.
 B-bis: CALIBRADO = pisos **corroborados en alcance** para 2023; SOBRECUBRE = **acotados** (IC conservador); SUBCUBRE
 = los pisos de 2018 no anticipan 2023 en esa proporción de celdas (esperable en COLA: IC de muestreo sin
 persistencia, cinco años de distancia). Contendientes servidos a la vez: los dos; no hay otro sellado antes.
@@ -134,7 +134,7 @@ como inputs `origen: repo` con sha). La apertura es copiarlo a
 - PROSPECTIVA vs RETROSPECTIVA: la primaria es PROSPECTIVA (contendientes en main desde `bf5fc5e7`, 27/sep, antes
   de cualquier R de estas celdas); las 18 celdas conyugales ya vistas se apartan y se reportan como RETROSPECTIVA;
   ninguna frase mezcla las dos columnas.
-- Unidad: hogar y persona por celda; el MAE global mezcla ambas y no se lee como cantidad (§4).
+- Unidad: hogar y persona por celda; el MAE descriptivo se calcula sólo sobre celdas de persona (§4: no se mezclan).
 - Escala: proporción 0..1; se compara «R dentro del IC del piso» (cobertura), no punto contra punto.
 - Segmentación: un eje a la vez; ningún cruce. TLOC es tamaño de localidad, no clase; el sesgo de clase media
   urbana no se corrige aquí.

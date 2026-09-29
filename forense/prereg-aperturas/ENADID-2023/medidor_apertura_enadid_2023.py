@@ -248,6 +248,12 @@ def mide_r(F, C, R, Mo, frames, faltan=None):
     return out
 
 
+# v2.16 §4: `-MAE-PUNTO` (descriptivo) no promedia hogar con persona; se calcula sólo sobre celdas PERSONA
+# (el punto de las celdas HOGAR va None: la cobertura, que es la primaria, no usa el punto).
+UNIDAD_MAE = "PERSONA"
+_UNIDAD = {v["nombre"]: v["definicion"].rsplit("(unidad ", 1)[1].rstrip(")") for v in CONTRATO["variables"]}
+
+
 def filas(F, C, Mo, r, pisos):
     out = []
     for pref, c, eje, cat in celdas_de(F, C):
@@ -264,6 +270,8 @@ def filas(F, C, Mo, r, pisos):
             hi = p.get(Mo.rid(C.P, c, OLA_CODIGOS, eje, cat, "IC-HI"))
             punto = p.get(Mo.rid(C.P, c, OLA_CODIGOS, eje, cat, "P"))
             cong = COLA_CALC
+        if not _UNIDAD.get(f"{pref}-{c}", "").startswith(UNIDAD_MAE):
+            punto = None
         out.append({"id": _cid(pref, c, eje, cat), "conglomerado": cong, "lo": lo, "hi": hi, "punto": punto,
                     "r": r.get((pref, c, eje, cat))})
     return out

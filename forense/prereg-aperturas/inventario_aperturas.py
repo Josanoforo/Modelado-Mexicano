@@ -175,7 +175,7 @@ def filas():
             nota.append("payload sin estado_reserva y no reservado por corpus_loader: la reserva la declara el contendiente (hallazgo)")
         if x:
             abre = f"CODIGO-CONGELADO del expediente {x} en caja (receta de un commit)"
-            falta = f"FIRMA-DE-MESA que congele {_dir(prog, ola)} y autorice su apertura"
+            falta = f"FIRMA-DE-MESA que congele {EXP}/{x} y autorice su apertura"
         elif estado == "LEVANTADA-POR-ESCRITO":
             abre, falta = "YA-LEVANTADA-POR-ESCRITO (falta mover los payloads fuera de reserva_respondentes, CAJA)", "NINGUNA"
         elif estado in ("ABIERTA-COMO-VISTA", "ABIERTA-POR-CODIGO-CONGELADO"):
@@ -186,7 +186,7 @@ def filas():
         out.append({"programa": prog, "ola": ola, "estado_vigente": estado, "n_ids": str(len(ids)),
                     "ids": ";".join(ids), "fuente_reserva": fr, "contendientes": ";".join(cont) or "NINGUNO",
                     "familia": FAMILIA_2027, "cruces_vistos": ";".join(vistos) or "NINGUNO",
-                    "expediente": _dir(prog, ola), "que_la_abre": abre, "firma_que_faltaria": falta,
+                    "expediente": f"{EXP}/{x}" if x else _dir(prog, ola), "que_la_abre": abre, "firma_que_faltaria": falta,
                     "nota": " · ".join(nota)})
     return out
 

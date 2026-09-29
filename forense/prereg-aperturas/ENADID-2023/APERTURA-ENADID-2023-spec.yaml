@@ -3,7 +3,7 @@
 # el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
 calc_id: CALC-APERTURA-ENADID-2023-0001
 spec_md: ../../../forense/prereg-aperturas/ENADID-2023/APERTURA-ENADID-2023-spec-v1_0.md
-spec_md_sha256: 94d72f31af0a0d10d5fa6ff1809faa726a31094ce12fa1088ae98587c02e3239
+spec_md_sha256: 266004d2f8c9df7a686f6974f5691cd94e92e51ce90310667092a4b6a504a0de
 script: forense/prereg-aperturas/ENADID-2023/medidor_apertura_enadid_2023.py
 dependencias_materiales:
 - numpy
