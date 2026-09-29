@@ -1,0 +1,927 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-MC2-ENVIPE2025-0001
+spec_md: ../../../forense/prereg-caja/MC2-ENVIPE2025-spec-v1_0.md
+spec_md_sha256: 5a678441a765e806776aa2bba45f34ad9f9cad81831764aeb3162c5d87142006
+script: data/corrida0/CALC-MC2-ENVIPE2025-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  cuenta_gen2_nota: "encargo GEN2-MEDICION-CARRILES-2 (cuenta_gen2 = SÍ); no adopta: mesa por merge, por instrumento"
+  acto: GEN2-MEDICION-CARRILES-2
+  tipo: PISO-DESCRIPTIVO-RETROSPECTIVO
+  temporalidad: RETROSPECTIVA
+  ola_reservada: ENVIPE 2026 (no es input)
+
+inputs:
+  - {id: envipe2025_csv, origen: manifiesto}
+  - {id: envipe2024_csv, origen: manifiesto}
+
+lectura_de_estructura_previa: "FD fd_envipe2025.pdf y fd_envipe2024.pdf (pdftotext), cabeceras de los tres miembros, índice de tablas del zip y lector del medidor sellado CALC-PDR1-ENVIPE2025-0001; ningún registro leído antes del COMMIT-1; de CALC-ENVIPE-PERCEPCION-2024-0001 sólo los ids"
+
+variables:
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: FAC_DEL, rol: "ponderador de delito"}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: EST_DIS, rol: "estrato"}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: UPM_DIS, rol: "UPM"}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: DOMINIO, rol: "dominio U/C/R"}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: SEXO, rol: "sexo de la víctima"}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: BPCOD, rol: "código de delito; 09 extorsión"}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: BP1_20, rol: "acudió al MP a denunciar 1/2"}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: BP1_21, rol: "otro integrante denunció 1/2/9"}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: BP1_24, rol: "MP abrió carpeta 1/2/9"}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: BP1_5A_2, rol: "delito por llamada telefónica 1/0"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2025.csv, variable: FAC_ELE, rol: "ponderador persona elegida"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2025.csv, variable: EST_DIS, rol: "estrato"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2025.csv, variable: UPM_DIS, rol: "UPM"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2025.csv, variable: DOMINIO, rol: "dominio"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2025.csv, variable: SEXO, rol: "sexo"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2025.csv, variable: EDAD, rol: "edad"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2025.csv, variable: CVE_ENT, rol: "entidad; 25 Sinaloa"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2025.csv, variable: AP4_3_3, rol: "vivir en el estado es seguro/inseguro"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: FAC_ELE, rol: "ponderador persona elegida"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: EST_DIS, rol: "estrato"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: UPM_DIS, rol: "UPM"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: DOMINIO, rol: "dominio"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: SEXO, rol: "sexo"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: EDAD, rol: "edad"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: CVE_ENT, rol: "entidad; 25 Sinaloa"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_3_3, rol: "vivir en el estado es seguro/inseguro"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_10_01, rol: "dejó de salir de noche 1/2"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_2_01, rol: "preocupación (uno de tres) ítem"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_2_02, rol: "preocupación (uno de tres) ítem"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_2_03, rol: "preocupación (uno de tres) ítem"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_2_04, rol: "preocupación (uno de tres) ítem"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_2_05, rol: "preocupación (uno de tres) ítem"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_2_06, rol: "preocupación (uno de tres) ítem"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_2_07, rol: "preocupación (uno de tres) ítem"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_2_08, rol: "preocupación (uno de tres) ítem"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_2_09, rol: "preocupación (uno de tres) ítem"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_2_10, rol: "preocupación (uno de tres) ítem"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_2_11, rol: "preocupación (uno de tres) ítem"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_2_12, rol: "preocupación (uno de tres) ítem"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_2_13, rol: "preocupación (uno de tres) ítem"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_2_99, rol: "preocupación: no sabe"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_4_03, rol: "se siente inseguro en el espacio 1/2"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_4_07, rol: "se siente inseguro en el espacio 1/2"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_4_08, rol: "se siente inseguro en el espacio 1/2"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_4_09, rol: "se siente inseguro en el espacio 1/2"}
+  - {archivo: conjunto_de_datos_tper_vic1_envipe2024.csv, variable: AP4_4_11, rol: "se siente inseguro en el espacio 1/2"}
+
+universo: "Delitos ocurridos en 2024 registrados en el módulo de victimización de ENVIPE 2025; personas 18+ elegidas (TPer_Vic1) de ENVIPE 2024 y 2025."
+filtros: "BP1_20 fuera de 1/2 sale del denominador (contado); AP4_4/AP4_10 3 No aplica y 9 fuera; AP4_2_99 fuera; AP4_3_3 9 fuera."
+ponderador: FAC_DEL (delito) y FAC_ELE (persona), sin normalizar
+transformacion: "Ver spec humana §1-§2: proporciones ponderadas; cifra negra = 1 - [denuncia y carpeta]; diferencia Sinaloa 2025-2024 con réplicas independientes por ola."
+estimando: "Proporciones ponderadas por celda con IC95 de diseño; descriptivo, RETROSPECTIVO; dictámenes por la regla B-bis §3 de la spec humana."
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap de UPM_DIS con reemplazo dentro de EST_DIS (prefijado por ola); percentiles 2.5/97.5
+  singleton: autorremuestreo; varianza cero; contado en DIAG-*-N-ESTRATOS-UPM-UNICA
+  hash_medidor_sha256: 6cfd637b68d2dddfd664d92e2685b86af0272222a48fb4ebbb996194cf927ea8
+  hash_payload_sha256: "envipe2025_csv 8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa; envipe2024_csv 90776b2fab6e3666dad1cb5f5f3eb7d6a7699dbfefd4f8f04f07fb01e61a6fb2"
+  hash_prereg_sha256: 5a678441a765e806776aa2bba45f34ad9f9cad81831764aeb3162c5d87142006
+  hash_encargo_sha256: c791b1922b43326a627cac1ed1050af4695b7b5d679283fa7b597c43ade2c36c
+
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: misma semilla y sumas deterministas; enteros comparan exacto
+
+resultados:
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-NAC-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-MUJER-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CIFRA-NEGRA-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-NAC-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-MUJER-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-DENUNCIA-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-NAC-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-MUJER-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-CARPETA-DADA-DENUNCIA-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-EXT-TELEFONICA-NAC-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-EXT-TELEFONICA-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-EXT-TELEFONICA-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-EXT-TELEFONICA-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-EXT-TELEFONICA-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-EXT-TELEFONICA-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-EXT-TELEFONICA-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-EXT-TELEFONICA-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-EXT-TELEFONICA-MUJER-P, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-EXT-TELEFONICA-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-EXT-TELEFONICA-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, delito ocurrido en 2024 (módulo de victimización ENVIPE 2025)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEL-EXT-TELEFONICA-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (delito ocurrido en 2024 (módulo de victimización ENVIPE 2025))"}
+  - {id: RESULT-MC2-ENVIPE2025-DIAG-DEL-FILAS, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENVIPE2025-DIAG-DEL-DENUNCIA-SIN-BP1_20-VALIDO, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENVIPE2025-DIAG-DEL-EXTORSIONES, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENVIPE2025-DIAG-DEL-N-SIN-PONDERADOR, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENVIPE2025-DIAG-DEL-N-ESTRATOS, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENVIPE2025-DIAG-DEL-N-UPM, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENVIPE2025-DIAG-DEL-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2024-SINALOA-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2024-SINALOA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2024-SINALOA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2024-SINALOA-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-SINALOA-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-SINALOA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-SINALOA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-SINALOA-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-2025-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-DEJO-SALIR-NOCHE-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-POBREZA-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESEMPLEO-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-NARCOTRAFICO-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-PRECIOS-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-INSEGURIDAD-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-DESASTRES-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-AGUA-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-CORRUPCION-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-EDUCACION-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-SALUD-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-PREOC-IMPUNIDAD-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CALLE-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-BANCO-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CAJERO-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-TRANSPORTE-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-DOM-U-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-DOM-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-DOM-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-DOM-U-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-DOM-C-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-DOM-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-DOM-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-DOM-C-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-DOM-R-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-DOM-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-DOM-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-DOM-R-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-30-44-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-45-59-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-INSEGURO-CARRETERA-2024-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-SINALOA-DIF-2025-2024-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas entre olas, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-SINALOA-DIF-2025-2024-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas entre olas, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-SINALOA-DIF-2025-2024-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas entre olas, persona 18+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENVIPE2025-EDO-INSEGURO-SINALOA-DIF-2025-2024-N, tipo: entero, unidad: "n no ponderado de la celda (persona 18+)"}
+  - {id: RESULT-MC2-ENVIPE2025-DIAG-PER-FILAS-2024, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENVIPE2025-DIAG-PER-FILAS-2025, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENVIPE2025-DIAG-PER-PREOC-NO-CONTESTO-2024, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENVIPE2025-DIAG-PER-SINALOA-2024, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENVIPE2025-DIAG-PER-SINALOA-2025, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENVIPE2025-DIAG-PER-N-ESTRATOS, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENVIPE2025-DIAG-PER-N-UPM, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENVIPE2025-DIAG-PER-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}

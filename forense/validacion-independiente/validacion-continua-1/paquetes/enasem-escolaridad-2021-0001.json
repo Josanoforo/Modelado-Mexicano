@@ -1,0 +1,36 @@
+{
+ "paquete": "enasem-escolaridad-2021-0001",
+ "calc": "CALC-ENASEM-ESCOLARIDAD-2021-0001",
+ "docs": [
+  {
+   "src": "forense/prereg-caja/COLA-ENASEM-ESCOLARIDAD-spec-v1_0.md",
+   "miembro": null,
+   "dst": "docs/spec-humana.md"
+  },
+  {
+   "src": "data/raw/enasem2021/enasem_2021_fd.xlsx",
+   "miembro": null,
+   "dst": "docs/enasem_2021_fd.xlsx"
+  }
+ ],
+ "datos": [
+  {
+   "src": "data/raw/enasem2021/enasem_2021_bd_csv.zip",
+   "sha256": "68b8f7ecbd55c2e857cb7449a3ead2b6edc2c87398d45667296d84b7c76db730",
+   "miembro": "SECT_A_C_D_E_PC_F_H_I_2021.csv",
+   "dst": "datos/sect_a_2021.csv"
+  }
+ ],
+ "campos": {
+  "datos/sect_a_2021.csv": [
+   "YRSCHOOL",
+   "SEX_21",
+   "AGE_21",
+   "FACTORI_21",
+   "EST_DIS_21",
+   "UPM_DIS_21"
+  ]
+ },
+ "filtro_filas": "50 <= AGE_21 <= 120 (888/999 fuera); FACTORI_21>0; EST_DIS_21 y UPM_DIS_21 no vacios.",
+ "notas": "Ola 2021 abierta; ENASEM 2024 RESERVADA no incluida. Las 6 columnas existen en el encabezado real (986 cols), mayusculas exactas. La spec dice que SEX_21/AGE_21/FACTORI_21/EST_DIS_21/UPM_DIS_21 se documentan en la hoja MASTER_FOLLOW_UP_FILE_2021 del FD y que existen en el CSV de seccion (verificado). YRSCHOOL != YRSCHOOL_21/_18. Semilla: spec §4 no fija propia; el valor 20260930 esta en spec.yaml (DISCREPANCIA declarada en spec §7; parte de la spec humana no la fija)."
+}

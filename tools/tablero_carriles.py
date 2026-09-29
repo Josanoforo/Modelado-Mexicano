@@ -30,7 +30,7 @@ acepta un [deriva] que sólo cambie dentro del bloque.
 (las constantes viven sólo aquí; el tablero las imprime en «Cómo leer»)
 
 UNIÓN report ↔ dominio (P1). Dominios del carril = `dominio` de sus filas en
-  `canon/mapa-dominios-v1_1.tsv`, con peso = afirmaciones del dominio / total
+  `canon/mapa-dominios-v1_2.tsv`, con peso = afirmaciones del dominio / total
   del carril. NÚCLEO = dominios con peso ≥ NUCLEO_PESO_MIN, más siempre el (los)
   de mayor peso.
 UNIÓN report ↔ instrumento. Un instrumento es un token del VOCABULARIO citado
@@ -54,8 +54,20 @@ SEMÁFORO (se evalúa en este orden):
   VERDE    = todo dominio NÚCLEO tiene ≥ 1 cifra adoptada y la fracción de reglas
              con dictamen distinto de SIN-CIFRA-GEN2 es ≥ VERDE_REGLAS_MIN
              (0 reglas cuenta como fracción 0).
+  NARANJA  = (firma de mesa, FP-260928-GEN2-MEDICION-CARRILES-2-8fdf-01 punto 1,
+             ADENDA-2 de GEN2-MEDICION-CARRILES-2) no VERDE, y todo dominio
+             NÚCLEO sin cifra adoptada tiene PISO PENDIENTE (≥ 1), habiendo al
+             menos uno así. Estado de visibilidad, no de adopción: ningún acto de
+             medición mueve VERDE; el catálogo lo mueve en el cierre.
+  ROJO     = (tras NARANJA) ningún dominio NÚCLEO con cifra adoptada.
   AMARILLO = el resto: hay cifra adoptada pero reglas mayoritariamente sin cifra,
-             o reglas con dictamen pero algún NÚCLEO sin cifra.
+             o reglas con dictamen pero algún NÚCLEO sin cifra ni piso pendiente.
+  «Piso pendiente» de un dominio = fila de un fragmento de dictámenes
+  (F16: `forense/analisis/*/*dictamenes.tsv`, columnas dominio · calc · resultado_id)
+  cuyo CALC tiene sello.json y `cuenta_gen2: SI`, cuyo `resultado_id` está
+  REGISTRADO EN LA VISTA (`data/corrida0/resultados.tsv`) y cuyo CALC no aporta
+  ninguna fila adoptada al catálogo v1.3. Un piso sellado que la vista aún no
+  registra no cuenta: se lista como «sellado en disco, no registrado» (E.7).
   «Cifra adoptada» = fila del catálogo con estado_adopcion ADOPTADO o
   ADOPTADO-CON-RESERVA-DE-ANCHO; SUSPENDIDA-POR-FIRMA no cuenta.
 
@@ -155,7 +167,7 @@ QUIEN_PIDE = (
 
 # ── Fuentes (clave de procedencia → archivo) ────────────────────────────────
 FUENTES = {
-    "F1": "canon/mapa-dominios-v1_1.tsv",
+    "F1": "canon/mapa-dominios-v1_2.tsv",
     "F2": "canon/catalogo-del-mexicano-v1_3.tsv",
     "F3": "canon/reglas-contrastadas-v1_0.tsv",
     "F4": "corpus/reports-v2/INDICE.md",
@@ -169,6 +181,9 @@ FUENTES = {
     "F12": "forense/analisis/corpus-completo/tabla-final-v1_0.tsv",
     "F13": "forense/encargos/*.md",
     "F14": "canon/crosswalk-carriles-v1_0.tsv",
+    "F15": "data/corrida0/aperturas-pendientes-v1_0.tsv",  # GEN2-APERTURAS-PREREGISTRADAS-1
+    "F16": "forense/analisis/*/*dictamenes.tsv",           # GEN2-MEDICION-CARRILES-2 (NARANJA)
+    "F17": "data/corrida0/resultados.tsv",                 # GEN2-MEDICION-CARRILES-2 (NARANJA)
 }
 LECTOR = {
     "F1": "lee_tsv (csv.DictReader), filas con report corpus/reports/*",
@@ -185,6 +200,9 @@ LECTOR = {
     "F12": "lee_tsv, programa y olas_reservadas_al_entrar",
     "F13": "glob; en vuelo = sin línea «## CONSUMIDO»",
     "F14": "crosswalk() (misma derivación; --verifica compara con el archivo)",
+    "F15": "lee_tsv, (programa, año de ola) -> expediente y qué la abre",
+    "F16": "pisos_pendientes(): glob; filas con dominio · calc · resultado_id",
+    "F17": "pisos_pendientes(): conjunto de resultado_id registrados (salta líneas #)",
 }
 CMD = "python3 tools/tablero_carriles.py --json"
 
@@ -192,8 +210,8 @@ MD_SALIDA = "forense/tablero/TABLERO-CARRILES.md"
 HTML_SALIDA = "docs/tablero-carriles.html"
 CROSSWALK = "canon/crosswalk-carriles-v1_0.tsv"
 MARCAS = ("<!-- TABLERO-DERIVADO:BEGIN -->", "<!-- TABLERO-DERIVADO:END -->")
-ICONO = {"VERDE": "🟢", "AMARILLO": "🟡", "ROJO": "🔴", "GRIS": "⚪"}
-ORDEN_SEMAFORO = ("ROJO", "AMARILLO", "VERDE", "GRIS")
+ICONO = {"VERDE": "🟢", "NARANJA": "🟠", "AMARILLO": "🟡", "ROJO": "🔴", "GRIS": "⚪"}
+ORDEN_SEMAFORO = ("ROJO", "AMARILLO", "NARANJA", "VERDE", "GRIS")
 TAG = re.compile(r"⟨((?:F\d+|S)(?: (?:F\d+|S))*)⟩")
 
 
@@ -320,16 +338,21 @@ def estado_token(estado: str) -> str:
 
 # ── semáforo (puro; probado en tests/test_tablero_carriles.py) ───────────────
 def semaforo(dominio_principal: str, frac_no_medible: float, nucleo_con_cifra: int,
-             nucleo_total: int, frac_reglas_con_dictamen: float) -> tuple[str, str]:
+             nucleo_total: int, frac_reglas_con_dictamen: float,
+             nucleo_piso_pendiente: int = 0) -> tuple[str, str]:
+    """`nucleo_piso_pendiente` = dominios NÚCLEO SIN cifra adoptada que tienen piso pendiente."""
     if dominio_principal in DOMINIOS_FIREWALL:
         return "GRIS", f"dominio {dominio_principal} fuera por firewall genético"
     if frac_no_medible > GRIS_NO_MEDIBLE_MIN:
         return "GRIS", f"NO-MEDIBLE-POR-DISEÑO {frac_no_medible:.0%} > {GRIS_NO_MEDIBLE_MIN:.0%}"
-    if nucleo_con_cifra == 0:
-        return "ROJO", f"núcleo con cifra adoptada 0/{nucleo_total}"
     if nucleo_con_cifra == nucleo_total and frac_reglas_con_dictamen >= VERDE_REGLAS_MIN:
         return "VERDE", (f"núcleo con cifra {nucleo_con_cifra}/{nucleo_total}; reglas con dictamen "
                          f"{frac_reglas_con_dictamen:.0%} ≥ {VERDE_REGLAS_MIN:.0%}")
+    if nucleo_piso_pendiente >= 1 and nucleo_con_cifra + nucleo_piso_pendiente == nucleo_total:
+        return "NARANJA", (f"núcleo con cifra adoptada {nucleo_con_cifra}/{nucleo_total} y piso sellado "
+                           f"registrado pendiente de adopción en {nucleo_piso_pendiente}")
+    if nucleo_con_cifra == 0:
+        return "ROJO", f"núcleo con cifra adoptada 0/{nucleo_total}"
     return "AMARILLO", (f"núcleo con cifra {nucleo_con_cifra}/{nucleo_total}; reglas con dictamen "
                         f"{frac_reglas_con_dictamen:.0%} (umbral {VERDE_REGLAS_MIN:.0%})")
 
@@ -348,6 +371,32 @@ def titulo(basename: str) -> str:
 
 
 # ── derivación ──────────────────────────────────────────────────────────────
+def pisos_pendientes(cat: list[dict]) -> tuple[dict, dict, int]:
+    """Por dominio: CALC con piso pendiente registrado en la vista, y CALC sellados sin registrar.
+    Devuelve (registrados, sin_registrar, filas_leidas)."""
+    with open(ruta(FUENTES["F17"]), encoding="utf-8", errors="replace") as f:
+        vista = {r.get("resultado_id", "") for r in csv.DictReader([ln for ln in f if not ln.startswith("#")],
+                                                                     delimiter="\t")}
+    adoptados = {x["calc"] for x in cat if x.get("calc") and x["estado_adopcion"] in ESTADOS_ADOPTADOS}
+    reg, sin, n = defaultdict(set), defaultdict(set), 0
+    sello_ok = {}
+    for p in sorted(glob.glob(ruta(FUENTES["F16"]))):
+        for x in lee_tsv(os.path.relpath(p, RAIZ)):
+            n += 1
+            dom, calc, rid = x.get("dominio", ""), x.get("calc", ""), x.get("resultado_id", "")
+            if not (dom and calc and rid) or calc in adoptados:
+                continue
+            if calc not in sello_ok:
+                d = os.path.join(RAIZ, "data/corrida0", calc)
+                s = os.path.join(d, "spec.yaml")
+                sello_ok[calc] = (os.path.exists(os.path.join(d, "sello.json")) and os.path.exists(s)
+                                  and re.search(r"cuenta_gen2:\s*['\"]?SI\b", open(s, encoding="utf-8").read()) is not None)
+            if not sello_ok[calc]:
+                continue
+            (reg if rid in vista else sin)[dom].add(calc)
+    return reg, sin, n
+
+
 def derivar() -> dict:
     mapa_all = lee_tsv(FUENTES["F1"])
     mapa = [x for x in mapa_all if x["report"].startswith("corpus/reports/")]
@@ -385,6 +434,8 @@ def derivar() -> dict:
         if x["result_id"]:
             res_a[x["result_id"]] = k
     dom_con_cifra = {d for (d, _), c in cat_agg.items() if sum(c[e] for e in ESTADOS_ADOPTADOS)}
+    piso_reg, piso_sin, filas_frag = pisos_pendientes(cat)
+    filas_leidas["F16"] = filas_frag
 
     # cola por programa
     cola_prog = defaultdict(list)
@@ -466,6 +517,7 @@ def derivar() -> dict:
                                     for ins, c in sorted(por_i.items())},
             }
         nucleo_con_cifra = sum(1 for d in nuc if d in dom_con_cifra)
+        nucleo_piso = sum(1 for d in nuc if d not in dom_con_cifra and piso_reg.get(d))
 
         rg = reglas_por.get(base, [])
         rg_enc = [x for x in rg if x["texto"].lstrip().startswith("#")]
@@ -475,7 +527,7 @@ def derivar() -> dict:
 
         vc = Counter(v for (d, ins), v in val_rows if (d and d in nuc) or (ins and ins in instr_nuc))
         frac_nm = clase["NO-MEDIBLE-POR-DISEÑO"] / n
-        sem, razon = semaforo(principal, frac_nm, nucleo_con_cifra, len(nuc), frac_rg)
+        sem, razon = semaforo(principal, frac_nm, nucleo_con_cifra, len(nuc), frac_rg, nucleo_piso)
 
         ed = idx.get(base)
 
@@ -494,7 +546,8 @@ def derivar() -> dict:
                 st["FIRMA"].append({"id": x["id"], "por": hit, "rel": relevancia(hit), "texto": x["qué_se_firma"][:110],
                                     "sucesor": "mesa firma" + (f" (plazo {plazo.group(1)})" if plazo else "")
                                     + (f"; encargo {os.path.basename(x['encargo'])}" if x["encargo"] else "")})
-        # reservas citadas
+        # reservas citadas (F15: expediente de apertura por programa × año, GEN2-APERTURAS-PREREGISTRADAS-1)
+        aper = {(x["programa"], x["ola"][:4]): x for x in (lee_tsv(FUENTES["F15"]) if os.path.exists(ruta(FUENTES["F15"])) else [])}
         for ins in sorted(instr_nuc):
             for ola, fk, det in reservas.get(ins, []):
                 anio = re.match(r"(?:19|20)\d\d", ola)
@@ -505,8 +558,10 @@ def derivar() -> dict:
                 if citan:
                     fam = [f["familia"] for f in fam_por_instr.get(ins, [])]
                     st["RESERVA"].append({"id": f"{ins} {ola}", "fuente": fk, "rel": citan, "texto": f"{det}; afirmaciones que la citan: {citan}",
-                                          "sucesor": ("familia 2027 " + ", ".join(fam)) if fam else
-                                          "E.6: la levanta el código congelado de una prueba pre-registrada o mesa por escrito"})
+                                          "sucesor": (("familia 2027 " + ", ".join(fam)) if fam else
+                                          "E.6: la levanta el código congelado de una prueba pre-registrada o mesa por escrito")
+                                          + (lambda a: f"; expediente {a['expediente']} ({a['que_la_abre'][:40]})" if a else "")(
+                                              aper.get((ins.upper(), anio.group(0))))})
         res_map = Counter(x["reserva_v1_1"][:90] for x in filas if x["reserva_v1_1"])
         for t, k in sorted(res_map.items()):
             st["RESERVA"].append({"id": "mapa:reserva_v1_1", "fuente": "F1", "rel": k, "texto": f"{t} (afirmaciones: {k})",
@@ -592,7 +647,10 @@ def derivar() -> dict:
             "dominios": dict(sorted(pesos.items(), key=lambda kv: (-kv[1], kv[0]))),
             "nucleo": nuc, "principal": principal, "instrumentos_nucleo": dict(sorted(instr_nuc.items(), key=lambda kv: (-kv[1], kv[0]))), "instrumentos": dict(sorted(instr.items(), key=lambda kv: (-kv[1], kv[0]))),
             "afirmaciones_sin_instrumento": sum(1 for s in ins_por_fila if not s),
-            "cifras": cifras, "nucleo_con_cifra": nucleo_con_cifra,
+            "cifras": cifras, "nucleo_con_cifra": nucleo_con_cifra, "nucleo_piso_pendiente": nucleo_piso,
+            "pisos_pendientes": {d: sorted(piso_reg[d]) for d in nuc if d not in dom_con_cifra and piso_reg.get(d)},
+            "pisos_sin_registrar": {d: sorted(piso_sin[d] - piso_reg.get(d, set())) for d in nuc
+                                    if d not in dom_con_cifra and piso_sin.get(d, set()) - piso_reg.get(d, set())},
             "reglas": dict(sorted(rg_dict.items())), "reglas_total": len(rg_ok), "reglas_encabezado": len(rg_enc),
             "frac_reglas_con_dictamen": frac_rg, "validacion": dict(sorted(vc.items())),
             "editorial": ed, "semaforo": sem, "razon": razon, "frac_no_medible": frac_nm,
@@ -706,7 +764,7 @@ def lista_items(items, fk):
     return out
 
 
-FK_ST = {"FIRMA": "F7", "RESERVA": "F12 F6", "ADQUISICION": "F1 F5 F6", "NC-PARO": "F8", "CALC": "F9", "EDITORIAL": "F4"}
+FK_ST = {"FIRMA": "F7", "RESERVA": "F12 F6 F15", "ADQUISICION": "F1 F5 F6", "NC-PARO": "F8", "CALC": "F9", "EDITORIAL": "F4"}
 
 
 def tarjeta(c: dict) -> list[str]:
@@ -724,6 +782,10 @@ def tarjeta(c: dict) -> list[str]:
     L.append(f"- **Instrumentos citados** (afirmaciones): {ins}; sin instrumento reconocido: {c['afirmaciones_sin_instrumento']} ⟨F1 F12 S⟩")
     inu = " · ".join(f"{i} {k}" for i, k in c["instrumentos_nucleo"].items()) or "ninguno"
     L.append(f"- **Instrumentos del núcleo** (casan stoppers y validación): {inu} ⟨F1 F12 S⟩")
+    if c["pisos_pendientes"] or c["pisos_sin_registrar"]:
+        pp = " · ".join(f"{d}: {', '.join(v)}" for d, v in c["pisos_pendientes"].items()) or "ninguno"
+        ps = " · ".join(f"{d}: {', '.join(v)}" for d, v in c["pisos_sin_registrar"].items()) or "ninguno"
+        L.append(f"- **Pisos del núcleo pendientes de adopción** — registrados en la vista: {pp}; sellados en disco, no registrados (E.7): {ps} ⟨F16 F17 S⟩")
     if c["cifras"]:
         L.append(f"- **Cifras del catálogo v1.3 por dominio** (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) ⟨F2⟩")
         sec = []
@@ -785,6 +847,7 @@ def render_md(D: dict) -> str:
     L = ["## Cómo leer", ""]
     L.append(f"Umbrales (único sitio: cabecera de `tools/tablero_carriles.py`): núcleo = dominio con peso ≥ {NUCLEO_PESO_MIN} "
              f"(más el de mayor peso) · VERDE exige cifra adoptada en todo el núcleo y reglas con dictamen ≥ {VERDE_REGLAS_MIN} · "
+             f"NARANJA = núcleo cubierto por cifra adoptada o piso sellado registrado en la vista pendiente de adopción (visibilidad, no adopción) · "
              f"GRIS = dominio principal en {', '.join(DOMINIOS_FIREWALL)} o NO-MEDIBLE-POR-DISEÑO > {GRIS_NO_MEDIBLE_MIN} · "
              f"a lo más {MAX_ITEMS} stoppers listados por categoría ⟨S⟩")
     L.append("")
@@ -939,18 +1002,18 @@ HTML_MARCO = """<!doctype html>
 <title>Tablero por carriles</title>
 <style>
 :root{--bg:#fbfaf7;--fg:#1d1d1b;--mut:#6b6960;--line:#e3e0d8;--card:#ffffff;--code:#f1efe9;
---verde:#2e7d4f;--amarillo:#b7860b;--rojo:#b23a2e;--gris:#7a7a7a}
+--verde:#2e7d4f;--naranja:#c2600e;--amarillo:#b7860b;--rojo:#b23a2e;--gris:#7a7a7a}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#161614;--fg:#ecebe6;--mut:#a3a197;
---line:#34332f;--card:#1f1f1c;--code:#2a2926;--verde:#5fbf86;--amarillo:#e0b43c;--rojo:#e47464;--gris:#a0a0a0}}
+--line:#34332f;--card:#1f1f1c;--code:#2a2926;--verde:#5fbf86;--naranja:#f0923c;--amarillo:#e0b43c;--rojo:#e47464;--gris:#a0a0a0}}
 :root[data-theme="dark"]{--bg:#161614;--fg:#ecebe6;--mut:#a3a197;--line:#34332f;--card:#1f1f1c;--code:#2a2926;
---verde:#5fbf86;--amarillo:#e0b43c;--rojo:#e47464;--gris:#a0a0a0}
+--verde:#5fbf86;--naranja:#f0923c;--amarillo:#e0b43c;--rojo:#e47464;--gris:#a0a0a0}
 html,body{margin:0;background:var(--bg);color:var(--fg)}
 body{font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;max-width:1100px;margin:0 auto;padding:16px;
 overflow-wrap:anywhere}
 h1{font-size:1.6rem;margin:.5rem 0}h2{border-bottom:1px solid var(--line);padding-bottom:.2rem;margin-top:2rem}
 h3.carril{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--gris);padding:.5rem .7rem;
 border-radius:6px;font-size:1.05rem;margin-top:1.6rem}
-h3.verde{border-left-color:var(--verde)}h3.amarillo{border-left-color:var(--amarillo)}h3.rojo{border-left-color:var(--rojo)}
+h3.verde{border-left-color:var(--verde)}h3.naranja{border-left-color:var(--naranja)}h3.amarillo{border-left-color:var(--amarillo)}h3.rojo{border-left-color:var(--rojo)}
 code{background:var(--code);padding:0 .25rem;border-radius:3px;font-size:.88em;word-break:break-all}
 .dd{color:var(--mut);font-size:.8em;white-space:nowrap}
 .tabla{overflow-x:auto;max-width:100%}table{border-collapse:collapse;font-size:.88rem;width:100%;min-width:760px}

@@ -1,0 +1,41 @@
+{
+ "paquete": "latinobarometro-cola-2023-0001",
+ "calc": "CALC-LATINOBAROMETRO-COLA-2023-0001",
+ "docs": [
+  {
+   "src": "forense/prereg-caja/COLA-LATINOBAROMETRO-PISOS-spec-v1_0.md",
+   "miembro": null,
+   "dst": "docs/spec-humana.md"
+  },
+  {
+   "src": "data/raw/LATINOBAROMETRO/2023/latinobarometro-2023-stata-v1-0.zip",
+   "miembro": "Latinobarometro_2023_Esp.pdf",
+   "dst": "docs/latinobarometro2023-cuestionario-esp.pdf"
+  }
+ ],
+ "datos": [
+  {
+   "src": "data/raw/LATINOBAROMETRO/2023/latinobarometro-2023-stata-v1-0.zip",
+   "sha256": "7689a62d74226a1847ef24407a80d1aaa78d5702648d2b24928d5055e3466cb7",
+   "miembro": "Latinobarometro_2023_Esp_Stata_v1_0.dta",
+   "dst": "datos/latinobarometro2023_esp.dta"
+  }
+ ],
+ "campos": {
+  "datos/latinobarometro2023_esp.dta": [
+   "idenpa",
+   "wt",
+   "edad",
+   "sexo",
+   "REEEDUC_1",
+   "tamciud",
+   "S2",
+   "P1ST",
+   "P11STGBS_A",
+   "P15STGBS",
+   "P13ST_E"
+  ]
+ },
+ "filtro_filas": "idenpa = 484 (Mexico); universo edad >= 18; valido: wt finito > 0. Sin estrato ni UPM (bootstrap ponderado de entrevistas).",
+ "notas": "11 columnas verificadas via pyreadstat metadataonly (274 cols en total). Solo la base en espanol; ola 2024 RESERVADA no tocada. La spec cita ORO-CONFIA-GOBIERNO (P13ST_E) que debe reproducir el total de CALC-LATINOBAROMETRO-PISOS-2023-0001: el paquete no incluye ese CALC."
+}

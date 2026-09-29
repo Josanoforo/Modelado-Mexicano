@@ -1,0 +1,135 @@
+{
+ "paquete": "ensu-pisos-0001",
+ "calc": "CALC-ENSU-PISOS-0001",
+ "docs": [
+  {
+   "src": "forense/prereg-caja/ENSU-SERIE-spec-v1_0.md",
+   "miembro": null,
+   "dst": "docs/spec-humana.md"
+  },
+  {
+   "src": "forense/analisis/seguridad-ensu/lista-cerrada-P1.md",
+   "miembro": null,
+   "dst": "docs/lista-cerrada-P1.md"
+  },
+  {
+   "src": "data/raw/ENSU/2024/ensu_fd_2024_pdf.zip",
+   "miembro": "ensu_fd_2024/ensu_fd_2024_marzo.pdf",
+   "dst": "docs/fd-2024-mar.pdf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ensu/2025/ensu_fd_2025_pdf.zip",
+   "miembro": "ensu_fd_2025/ensu_fd_2025_septiembre.pdf",
+   "dst": "docs/fd-2025-sep.pdf"
+  },
+  {
+   "src": "data/raw/corpus-completo/inegi/ensu/2025/ensu_fd_2025_pdf.zip",
+   "miembro": "ensu_fd_2025/ensu_fd_2025_diciembre.pdf",
+   "dst": "docs/fd-2025-dic.pdf"
+  }
+ ],
+ "datos": [
+  {
+   "src": "data/raw/ENSU/2024/ensu_bd_2024_csv.zip",
+   "sha256": "97034a71d6b2e26d9e87cf5f0835d2004d12b5c92d8afe486bb73164038211f4",
+   "miembro": "ensu_bd_marzo_2024_csv.zip!ENSU_CB_0324.csv",
+   "dst": "datos/ensu_2024t1_cb.csv"
+  },
+  {
+   "src": "data/raw/ensu2025/ensu_bd_2025_csv.zip",
+   "sha256": "317ed14f2f2f43c9f8280e491f7592d0cf95a0392aaa641b66822569444b121c",
+   "miembro": "ensu_bd_septiembre_2025_csv.zip!ENSU_CB_0925.csv",
+   "dst": "datos/ensu_2025t3_cb.csv"
+  },
+  {
+   "src": "data/raw/ensu2025/ensu_bd_2025_csv.zip",
+   "sha256": "317ed14f2f2f43c9f8280e491f7592d0cf95a0392aaa641b66822569444b121c",
+   "miembro": "ensu_bd_diciembre_2025_csv.zip!ENSU_CB_1225.csv",
+   "dst": "datos/ensu_2025t4_cb.csv"
+  }
+ ],
+ "campos": {
+  "datos/ensu_2024t1_cb.csv": [
+   "UPM",
+   "VIV_SEL",
+   "H_MUD",
+   "R_SEL",
+   "CD",
+   "EST_DIS",
+   "UPM_DIS",
+   "FAC_SEL",
+   "BP1_1",
+   "BP1_2_03",
+   "BP1_2_08",
+   "BP1_2_09",
+   "BP1_3",
+   "BP1_4_3",
+   "BP1_4_4",
+   "BP1_4_6",
+   "BP1_5_1",
+   "BP1_5_2",
+   "BP1_5_3",
+   "BP1_5_4",
+   "BP1_9_1",
+   "BP1_8_1",
+   "SEXO",
+   "EDAD"
+  ],
+  "datos/ensu_2025t3_cb.csv": [
+   "UPM",
+   "VIV_SEL",
+   "H_MUD",
+   "R_SEL",
+   "CD",
+   "EST_DIS",
+   "UPM_DIS",
+   "FAC_SEL",
+   "BP1_1",
+   "BP1_2_03",
+   "BP1_2_08",
+   "BP1_2_09",
+   "BP1_3",
+   "BP1_4_3",
+   "BP1_4_4",
+   "BP1_4_6",
+   "BP1_5_1",
+   "BP1_5_2",
+   "BP1_5_3",
+   "BP1_5_4",
+   "BP1_9_1",
+   "BP1_8_1",
+   "SEXO",
+   "EDAD"
+  ],
+  "datos/ensu_2025t4_cb.csv": [
+   "UPM",
+   "VIV_SEL",
+   "H_MUD",
+   "R_SEL",
+   "CD",
+   "EST_DIS",
+   "UPM_DIS",
+   "FAC_SEL",
+   "BP1_1",
+   "BP1_2_03",
+   "BP1_2_08",
+   "BP1_2_09",
+   "BP1_3",
+   "BP1_4_3",
+   "BP1_4_4",
+   "BP1_4_6",
+   "BP1_5_1",
+   "BP1_5_2",
+   "BP1_5_3",
+   "BP1_5_4",
+   "BP1_9_1",
+   "BP1_8_1",
+   "BP3_5",
+   "BP3_6",
+   "SEXO",
+   "EDAD"
+  ]
+ },
+ "filtro_filas": "Persona seleccionada 18+ (tabla CB, una por vivienda): FAC_SEL/FACTOR > 0 y estrato (CD + EST_DIS/EDIS) y UPM_DIS no vacios; denominadores por conducta segun lista-cerrada-P1 s3. 2020T3: solo tabla ENSU_CB_sec1_2_3_0920. Sin filtro adicional de filas en el paquete (se entregan filas completas).",
+ "notas": "Separador '!' en 'miembro' = zips anidados (zip externo -> zip trimestral -> tabla); sin '!' = miembro directo del zip externo. sha256 = del payload externo (spec.yaml), compartido por los trimestres del mismo anio. docs incluye lista-cerrada-P1.md (parte de la spec; s5 solo lista ids de afirmaciones, sin cifras) y FD (descriptores, no tabulados). PISOS: 3 trimestres (2024T1, 2025T3, 2025T4), solo CB (era E3 trae SEXO y EDAD en CB; CS no necesaria). Ejes ENT=2 primeros digitos de UPM, CIUDAD=CD. Columnas verificadas en cabecera real; las 15 conductas existen en los 3 (BP3_5/BP3_6 en 2025T4, no en 2025T3 ni 2024T1: C15 solo semestral T2/T4, coherente con spec). 2026 no tocado."
+}

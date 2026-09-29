@@ -1,0 +1,44 @@
+{
+ "paquete": "pew-religion-2024-0001",
+ "calc": "CALC-PEW-RELIGION-2024-0001",
+ "docs": [
+  {
+   "src": "forense/prereg-caja/COLA-PEW-RELIGION-spec-v1_0.md",
+   "miembro": null,
+   "dst": "docs/spec-humana.md"
+  },
+  {
+   "src": "/home/pc0/mm-corpus/descargas_mx_espejo/UNIVERSO-2026-09/PEW/pew_gas_spring2024.zip",
+   "miembro": "Pew Research Center Global Attitudes Spring 2024 Data Dictionary.xlsx",
+   "dst": "docs/pew2024-data-dictionary.xlsx"
+  },
+  {
+   "src": "/home/pc0/mm-corpus/descargas_mx_espejo/UNIVERSO-2026-09/PEW/pew_gas_spring2024.zip",
+   "miembro": "Pew Research Center Global Attitudes Spring 2024 Questionnaire.pdf",
+   "dst": "docs/pew2024-questionnaire.pdf"
+  }
+ ],
+ "datos": [
+  {
+   "src": "/home/pc0/mm-corpus/descargas_mx_espejo/UNIVERSO-2026-09/PEW/pew_gas_spring2024.zip",
+   "sha256": "1fb75a866ae8fddde03a1928d42a81f194b1258749408ec907fea3a79210ab2c",
+   "miembro": "Pew Research Center Global Attitudes Spring 2024 Dataset.sav",
+   "dst": "datos/pew2024.sav"
+  }
+ ],
+ "campos": {
+  "datos/pew2024.sav": [
+   "country",
+   "weight",
+   "age",
+   "gender",
+   "d_educ_mexico",
+   "religion_combined",
+   "religion_christian",
+   "religion_switch",
+   "god"
+  ]
+ },
+ "filtro_filas": "country = 35 (Mexico); universo 18 <= age <= 97 (98/99 fuera); valido: weight finito > 0. Sin estrato/UPM (bootstrap ponderado de entrevistas).",
+ "notas": "src es ruta absoluta: data/raw (symlink a /home/pc0/mm-corpus/raw) NO contiene UNIVERSO-2026-09; el zip vive en mm-corpus/descargas_mx_espejo/ (sha256 verificado = spec). 9 columnas verificadas via pyreadstat metadataonly (653 cols). Se usa el .sav (miembro_sufijo .sav segun spec) y no el CSV del zip. religion_* traen 'NOT FOR POINT ESTIMATES' (declarado en la spec). Reservada pew_gas_spring2025 no tocada; Topline excluido. Errata/README/Syntax del zip no incluidos."
+}

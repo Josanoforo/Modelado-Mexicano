@@ -1,0 +1,40 @@
+{
+  "columnas_reales_no_autorizadas_en_codigo": [],
+  "comandos_con_red": [],
+  "init": {
+    "claude_code_version": "2.1.284",
+    "cwd": "/home/pc0/vyc27-rec/pew-religion-2024-0001",
+    "mcp_servers": [],
+    "model": "claude-opus-5-5",
+    "permissionMode": "acceptEdits",
+    "tools": [
+      "Bash",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Read",
+      "Write"
+    ]
+  },
+  "llamadas": 9,
+  "modelos": [
+    "claude-opus-5-5"
+  ],
+  "paquete": "pew-religion-2024-0001",
+  "resultado": {
+    "duration_ms": 101648,
+    "is_error": false,
+    "num_turns": 10,
+    "permission_denials": [],
+    "subtype": "success",
+    "total_cost_usd": 0.5450138
+  },
+  "rutas_fuera_del_cwd": [],
+  "session_id": "dbeb4c4c-659a-4c02-a5c0-291c082a158b",
+  "veredicto": {
+    "CAMPOS-DENTRO": true,
+    "CERO-LECTURAS-FUERA": true,
+    "SIN-RED": true,
+    "SOLO-OPUS": true
+  }
+}

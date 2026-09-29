@@ -1,0 +1,82 @@
+host	url	http	bytes	sha256	fecha_utc	sellado_en_repo
+catalog.ihsn.org	https://catalog.ihsn.org/catalog/7063	200	43597	cc329d41312b91bf1a2df18d7af979cc95a7ed55bc20881767620604062b9467	2026-09-29T00:19:49Z	NO (solo sha256)
+catalog.ihsn.org	https://catalog.ihsn.org/terms-of-use	200	28772	1e379312d62e042ac1b1f1ef99ced4306f84285865b9326468c8c43215df4544	2026-09-29T00:19:50Z	NO (solo sha256)
+catalog.ihsn.org	https://catalog.ihsn.org/index.php/api/catalog/MEX_2009_ENNViH-3_v01_M	200	10374	1feee54241a0d8ed7c84749796636d2e917828783b7a3047827bc5b95933d201	2026-09-29T00:20:09Z	NO (solo sha256)
+catalog.ihsn.org	https://catalog.ihsn.org/catalog/7063/get-microdata	200	22653	a775b7b10a960e86291ba4973e0927f8711ca6a9712197c960e2526967b975a6	2026-09-29T00:20:10Z	NO (solo sha256)
+cses.org	https://cses.org/data-download/	200	78276	ee518d746ac56cb683030177b23d7376d6f6373645491868e14b02cd58d015fe	2026-09-29T00:12:43Z	NO (solo sha256)
+cses.org	https://cses.org/registration/	200	96283	6f4c9a9404efde2fb65506ba39c537bf7938ae4440c1980d920ef77ae8221ca7	2026-09-29T00:13:01Z	NO (solo sha256)
+cses.org	https://cses.org/about/frequently-asked-questions/	200	83391	e944a131239a99f1d07197c12580e14960cb93c54655f1a35264f903b08e1351	2026-09-29T00:13:02Z	NO (solo sha256)
+cses.org	https://cses.org/data-download/download-data-documentation/	200	76160	793e1a8b81896a299afd7797f51f94ecacb346cbc78a2f375257a4b3a79477e4	2026-09-29T00:13:03Z	NO (solo sha256)
+cses.org	https://cses.org/data-download/cses-module-5-2016-2021/	200	124401	8ea67b45affefa495e6fbcb796e994d9310634f2112e121c86ef01bf9fbbcec9	2026-09-29T00:13:19Z	NO (solo sha256)
+cses.org	https://cses.org/data-download/cses-module-5-2016-2021/funding-sources-and-how-to-cite-module-5/	200	74993	0e237793a7fd75d45f8fc5ffb6a1b376ebc7147fb3dcd9649672ff4b8ede2623	2026-09-29T00:13:37Z	NO (solo sha256)
+cses.org	https://cses.org/wp-json/wp/v2/search?search=license&per_page=20	401	96	876e3599519cb38b0620395a02d4c5803b89d62a3385d249d21944ef58f23cb9	2026-09-29T00:13:45Z	NO (solo sha256)
+cses.org	https://cses.org/wp-json/wp/v2/search?search=data%20use&per_page=20	401	96	876e3599519cb38b0620395a02d4c5803b89d62a3385d249d21944ef58f23cb9	2026-09-29T00:13:46Z	NO (solo sha256)
+cses.org	https://cses.org/wp-json/wp/v2/search?search=terms%20of%20use&per_page=20	401	96	876e3599519cb38b0620395a02d4c5803b89d62a3385d249d21944ef58f23cb9	2026-09-29T00:13:46Z	NO (solo sha256)
+cses.org	https://cses.org/wp-content/uploads/2023/07/cses5_codebook.zip	206	1	-	2026-09-29T00:23:14Z..2026-09-29T00:23:38Z	NO (respuesta no conservada)
+cses.org	https://cses.org/wp-content/uploads/2023/07/cses5_csv.zip	206	1	-	2026-09-29T00:23:14Z..2026-09-29T00:23:38Z	NO (respuesta no conservada)
+cses.org	https://cses.org/wp-content/uploads/2023/07/cses5_codebook_part1_introduction.txt	200	175127	1313670b78bee60eeca5b6359b6132279cb37b410c206ffba95962ba11a7f311	2026-09-29T00:23:38Z	SI
+cses.org	https://cses.org/wp-content/uploads/2023/07/cses5_codebook.zip	206	1	5c62e091b8c0565f1bafad0dad5934276143ae2ccef7a5381e8ada5b1a8d26d2	2026-09-29T00:34:13Z	NO (solo sha256)
+cses.org	https://cses.org/wp-content/uploads/2023/07/cses5_csv.zip	206	1	5c62e091b8c0565f1bafad0dad5934276143ae2ccef7a5381e8ada5b1a8d26d2	2026-09-29T00:34:14Z	NO (solo sha256)
+dataverse.harvard.edu	https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/JGYZ7T	200	5610	38017b4be3e90de6ea27a4a23192d73d44ad0ef9c51cc6733713202cb651f288	2026-09-29T00:09:34Z	SI
+dataverse.harvard.edu	https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/27083	200	9733	7ec0b81cfe9564c175932ea3650301a8fedb12fb57ddedf3de18566ecfe9d9eb	2026-09-29T00:09:35Z	SI
+dataverse.harvard.edu	https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/ESRIBE	200	20759	0f3d3e8205c14146fe68d2d82426cfda33989ec4cf5463f81aa43976919c6c50	2026-09-29T00:09:35Z	SI
+dataverse.harvard.edu	https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/VOB5JL	200	11398	d42f648c2e5d8867184311902d428a9ccd6ac7f220d07e9047f837ba8eb08589	2026-09-29T00:09:35Z	SI
+dataverse.harvard.edu	https://dataverse.harvard.edu/api/dataverses/MMdata	200	1479	189193968052c27e7b363e18b50de1b0464ae39bacbeae4438e609375022d404	2026-09-29T00:09:36Z	NO (solo sha256)
+dataverse.harvard.edu	https://dataverse.harvard.edu/api/dataverses/MMdata/contents	200	406	bfe19b6002cc5620d27e78c6588ddbf148ce73a70ca7a2ab0c9d4be8f40db803	2026-09-29T00:09:53Z	SI
+dataverse.harvard.edu	https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/HTTWYL	200	7232	5e61c07458d2cc93eaedc1a143fef582b6011d84aeaef9d061715a448fa464e2	2026-09-29T00:10:01Z	SI
+dataverse.harvard.edu	https://dataverse.harvard.edu/api/info/applicationTermsOfUse	200	26881	875d43c2ed15f86d274a111618916656aa7925b796b5fc61b388581bbaa7e64e	2026-09-29T00:10:13Z	SI
+dataverse.harvard.edu	https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/JGYZ7T	202	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	2026-09-29T00:24:55Z	NO (respuesta no conservada)
+dataverse.harvard.edu	https://dataverse.harvard.edu/dataverse/MMdata	202	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	2026-09-29T00:24:55Z	NO (respuesta no conservada)
+gps.econ.uni-bonn.de	https://gps.econ.uni-bonn.de/downloads	200	100366	81f4b2d4bca85054da02f48d1244bf765c271605c040867c7bf3986952b84f1a	2026-09-29T00:20:25Z	SI
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/api/catalog/1039	400	46	942399b1f9db3808a467516c5fbbcc182f40963b1a1c48c3573aa74401bafa9e	2026-09-29T00:10:33Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/api/catalog/2049	400	46	942399b1f9db3808a467516c5fbbcc182f40963b1a1c48c3573aa74401bafa9e	2026-09-29T00:10:34Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/api/catalog/2661	400	46	942399b1f9db3808a467516c5fbbcc182f40963b1a1c48c3573aa74401bafa9e	2026-09-29T00:10:34Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/api/catalog/6453	400	46	942399b1f9db3808a467516c5fbbcc182f40963b1a1c48c3573aa74401bafa9e	2026-09-29T00:10:35Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/api/catalog/6667	400	46	942399b1f9db3808a467516c5fbbcc182f40963b1a1c48c3573aa74401bafa9e	2026-09-29T00:10:35Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/catalog/1039	200	59334	093508970b343ab7718abdbe23cc052f33a3ff0178e9de20e9589a5476e756ce	2026-09-29T00:10:41Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/catalog/1039/data-dictionary	200	36793	096a195cb17eee76257ab79ba42f02d23685a6e5d90895a29c7a10fa6c22713d	2026-09-29T00:10:41Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/api/catalog/MEX_2010_IEPEP_v01_M_v01_A_PUF	200	7290	28caf7234313c4aa4cf8fa32489d08766214583e6c734e14b0c8d2c5b74301e5	2026-09-29T00:11:02Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/catalog/1039/get-microdata	200	28845	294ca848f710eaaee43642ca188e4d88f812f68306d91cfbd836c9c691d0b988	2026-09-29T00:11:03Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/terms-of-use	200	33681	d8a5afc5cd70c294d6b1b3ca7487f1dc35b78c0bac1b2339d1811f7d7836e5e4	2026-09-29T00:11:03Z	SI
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/catalog/2049	200	63825	e83d181e71ce844b537d974a6736ce2ba93d6648bddcbecf4ac6c51cd1c32344	2026-09-29T00:11:22Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/api/catalog/MEX_2011_LFEPIE_v01_M	200	9124	d1e87b5af22b93247906b225dbadce98170be595f99cfa2e6cd7d997d4a61007	2026-09-29T00:11:23Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/catalog/2661	200	65134	d65c1d5df243991dfcc60eb6c96d7846ad24c92dc4548a407bc5244d26c61d4d	2026-09-29T00:11:23Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/api/catalog/MEX_2012-2014_ECEPIE_v01_M_v01_A_PUF	200	8612	9a19725fbed3c34e1016585da60e225463a626176bb63d5bf86ec72250f2ca6f	2026-09-29T00:11:24Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/catalog/6453	200	61748	9beae95ec5ff1310d423423354b4257cd3812a9bc1012f55b632b497839c0bce	2026-09-29T00:11:24Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/api/catalog/MEX_2023_WBES_v01_M	200	12207	d55bfd65d3755f52347a477fb540cee6f6d657bc45d98ae0bcae2cff25c11263	2026-09-29T00:11:25Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/catalog/6667	200	54903	3b77f97686517b1a3f80bbc7b9e132ad419f1dfde9eba00d687cb6102e644078	2026-09-29T00:11:25Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/api/catalog/MEX_2016_APIPIE_v01_M	200	4553	cdd230722814069d067e74e232af4b2e860b2975aff405e6742fbf362375a105	2026-09-29T00:11:26Z	NO (solo sha256)
+microdata.worldbank.org	https://microdata.worldbank.org/index.php/catalog/6453/related-materials	200	49656	49a900ce03269c47ec84441ac533dc563028b78103f30459bc51a75f70ee8e6f	2026-09-29T00:12:35Z	NO (solo sha256)
+reutersinstitute.politics.ox.ac.uk	https://reutersinstitute.politics.ox.ac.uk/	200	372702	e88c7b286e32be6eeb026c17a886c07fc53f9150fec4eb86f7f26fbf0c1b698a	2026-09-29T00:19:10Z	NO (solo sha256)
+reutersinstitute.politics.ox.ac.uk	https://reutersinstitute.politics.ox.ac.uk/privacy-policy	200	149079	5e7ea23df44098c8c3880c23dde13af28448e94270105aadce33aff890be8347	2026-09-29T00:19:17Z	NO (solo sha256)
+reutersinstitute.politics.ox.ac.uk	https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2025	200	116030	b9a4329e1bda3900eb0879454cc0c7e8f4a70ddf005d7f3bd0193afd4e82ae5e	2026-09-29T00:19:18Z	SI
+reutersinstitute.politics.ox.ac.uk	https://reutersinstitute.politics.ox.ac.uk/terms-of-use	404	122209	b4d9d2c3207142710c9bbf33abf1b74a49016f0cf491e2f999822e6c2091caf8	2026-09-29T00:19:28Z	NO (solo sha256)
+reutersinstitute.politics.ox.ac.uk	https://reutersinstitute.politics.ox.ac.uk/terms-and-conditions	404	122227	4466c832891bf049585d6789e6ddad8ef904a08711dd878a7dd0c60775832ccc	2026-09-29T00:19:29Z	NO (solo sha256)
+ucdp.uu.se	https://ucdp.uu.se/downloads/ged/	200	2568	82310075e8effd4e362aa4c2966d0b73cb9b9380319df1a1f10bad4151f81611	2026-09-29T00:17:41Z	NO (solo sha256)
+ucdp.uu.se	https://ucdp.uu.se/downloads/	200	139885	6739bd1dcc85b5e3467342c0da4e38577375eba8ac94470e6a78f49c77d97f2a	2026-09-29T00:18:01Z	SI
+ucdp.uu.se	https://ucdp.uu.se/about	200	2568	82310075e8effd4e362aa4c2966d0b73cb9b9380319df1a1f10bad4151f81611	2026-09-29T00:18:02Z	NO (solo sha256)
+ucdp.uu.se	https://ucdp.uu.se/downloads/ged/ged261.pdf	200	917038	-	2026-09-29T00:18:02Z..2026-09-29T00:18:21Z	NO (respuesta no conservada)
+ucdp.uu.se	https://ucdp.uu.se/downloads/ged/ged261.pdf	200	917038	f767380ebbf365aec7586f98b6d100cafb69fb54010a908604d53bd9ad655972	2026-09-29T00:34:14Z	NO (respuesta no conservada)
+www.pewresearch.org	https://www.pewresearch.org/about/terms-and-conditions/	200	321969	f198206c585e2771b6ffc176c3bcf55c6ee4d917f5ce0da7ebc2c1c40a72d7ef	2026-09-29T00:16:15Z	SI
+www.pewresearch.org	https://www.pewresearch.org/wp-json/wp/v2/dataset	200	39191	9d7fdb499cec689388726cfb5bfd654bbaccb533cb168b8fe9fbd152963140cc	2026-09-29T00:16:16Z	NO (solo sha256)
+www.pewresearch.org	https://www.pewresearch.org/dataset/spring-2025-survey-data/	200	348866	16c98f5d58f8b833c8d307f327ced53391fe1631be3b1e3de84f3f75cc27064b	2026-09-29T00:16:42Z	NO (solo sha256)
+www.vanderbilt.edu	https://www.vanderbilt.edu/lapop/mexico.php	200	143120	3fdf4714ac0355c96ed55e95d97facfce74e0f83e1f0c0bbd081cab5a595b054	2026-09-29T00:16:53Z	NO (solo sha256)
+www.vanderbilt.edu	https://www.vanderbilt.edu/cgd/data-access/	200	147397	8a761ca0efd42ae88ecae7b82410d2f933bdfb5f4e09f1126220c7fe6c182b03	2026-09-29T00:16:59Z	NO (solo sha256)
+www.vanderbilt.edu	https://www.vanderbilt.edu/center-for-global-democracy/data/	200	81127	b701e65864603bfde2beb41800873e666fe6cc3a661946359afdc73fb19d8138	2026-09-29T00:17:07Z	SI
+www.vanderbilt.edu	https://www.vanderbilt.edu/lapop/usage-policy.php	404	108458	b11c6562838116919ce4edd2f0e96d9f53816d9231604748d30ade83fc8f92b3	2026-09-29T00:17:07Z	NO (solo sha256)
+www.vanderbilt.edu	https://www.vanderbilt.edu/lapop/mexico/ABMex18-v12.0.2.5-Spa-190207_W.pdf	206	2048	-	2026-09-29T00:17:23Z	NO (respuesta no conservada)
+www.vanderbilt.edu	https://www.vanderbilt.edu/lapop/mexico/ABMEX2021-Technical-Report-v1.0-FINAL-eng-110921.pdf	206	2048	-	2026-09-29T00:17:24Z	NO (respuesta no conservada)
+www.vanderbilt.edu	https://www.vanderbilt.edu/lapop/mexico/ABMex2021-Mexico-Questionnaire-v17.2.5.2-Spa-210420-W.pdf	206	2048	-	2026-09-29T00:17:24Z	NO (respuesta no conservada)
+www.vanderbilt.edu	https://www.vanderbilt.edu/lapop/mexico/ABMEX2023-Technical-Report-v4.0-FINAL-eng-231117.pdf	206	2048	-	2026-09-29T00:17:25Z	NO (respuesta no conservada)
+www.vanderbilt.edu	https://www.vanderbilt.edu/lapop/mexico/ABMEX2021-Technical-Report-v1.0-FINAL-eng-110921.pdf	206	2048	8235ec5289b552fa09f8182f0461a466bc00845c4e93e48f8d615c8ccafa79d3	2026-09-29T00:34:12Z	NO (solo sha256)
+www.vanderbilt.edu	https://www.vanderbilt.edu/lapop/mexico/ABMex18-v12.0.2.5-Spa-190207_W.pdf	206	2048	57633cfe5af11bd7e3a28af0832e6bff8a21f23f31622260224f16f1d0f919b8	2026-09-29T00:34:12Z	NO (solo sha256)
+www.vanderbilt.edu	https://www.vanderbilt.edu/lapop/mexico/ABMEX2023-Technical-Report-v4.0-FINAL-eng-231117.pdf	206	2048	bed1675969b32b879e364a6182f30112ef8850cb40b9c96f7260160a034ef39a	2026-09-29T00:34:13Z	NO (solo sha256)
+www.vanderbilt.edu	https://www.vanderbilt.edu/lapop/mexico/ABMex2021-Mexico-Questionnaire-v17.2.5.2-Spa-210420-W.pdf	206	2048	0b0cd910b66572bfc02fe5ebb3890a3cc3754651311b2ebd505af332d905e494	2026-09-29T00:34:13Z	NO (solo sha256)
+www.worldvaluessurvey.org	https://www.worldvaluessurvey.org/wvs.jsp	200	29096	dcc82bb04b32da997e140527e9842ee090d97a3641f09e16937ad8d4cd717c34	2026-09-29T00:14:05Z	NO (solo sha256)
+www.worldvaluessurvey.org	https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp	200	13503	83a8cdead3757f167bfadf6a0e1fa331c88fe20137a9e3419dcc542e2d9ce9f7	2026-09-29T00:14:07Z	NO (solo sha256)
+www.worldvaluessurvey.org	https://www.worldvaluessurvey.org/WVSSiteMap.jsp	200	36626	befa2b5533e9d9bbb2340f904caefb4562abec58b2a0f23b7d69fb639f0b1d82	2026-09-29T00:14:22Z	NO (solo sha256)
+www.worldvaluessurvey.org	https://www.worldvaluessurvey.org/AJDocumentation.jsp?CndWAVE=7&COUNTRY=	200	10010	1eba2c53753d7799fa91f6b6b45faf5a0b34e3462ae504e9de4fa97cffb9583c	2026-09-29T00:14:23Z	NO (solo sha256)
+www.worldvaluessurvey.org	https://www.worldvaluessurvey.org/AJDocumentation.jsp?CndWAVE=7&COUNTRY=Mexico	200	10013	74738e57718fb17f28756a8a75a278d4633ececfd583f2e3f3f5fc065cabe61a	2026-09-29T00:14:48Z	NO (solo sha256)
+www.worldvaluessurvey.org	https://www.worldvaluessurvey.org/WVSContents.jsp?CMSID=DataDoc	200	16674	b7c9ec4a632cde6f0b4bda133e66be26b40cf99071de55ec790e06cfe1fbc39f	2026-09-29T00:14:49Z	NO (solo sha256)
+www.worldvaluessurvey.org	https://www.worldvaluessurvey.org/WVSContents.jsp?CMSID=Faqs	200	16125	9f7aaaddd9349d098268013643e65e7d0c372c00127901b8b3c19aa8e396e896	2026-09-29T00:15:06Z	NO (solo sha256)
+www.worldvaluessurvey.org	https://www.worldvaluessurvey.org/WVSContents.jsp?CMSID=Documentation	200	17751	8db351fe8f8403baad7140e20dea0933915d88cd32e1682bc9511eaa41daa46b	2026-09-29T00:15:07Z	SI

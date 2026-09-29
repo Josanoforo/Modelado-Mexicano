@@ -1,0 +1,441 @@
+{
+  "identidad": {
+    "paquete": "enasem-escolaridad-2021-0001",
+    "version_entrada": "validacion-continua-1",
+    "sha256_entrada": "f76eddec9aae60712adaba5f93d1dbd6585f1e25008a506f4fbcbcf881e65bd5"
+  },
+  "parametros": {
+    "generador": "numpy.random.PCG64",
+    "semilla": 20260930,
+    "replicas": 2000,
+    "bloque": 50,
+    "percentiles": [
+      2.5,
+      97.5
+    ]
+  },
+  "upm_por_estrato_marco_bootstrap": {
+    "1": 3209,
+    "2": 2382,
+    "3": 1550,
+    "4": 701
+  },
+  "llaves": [
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-50-59-P",
+      "conducta": "seis-anos-o-menos",
+      "eje": "EDAD",
+      "segmento": "50-59",
+      "ola": "2021",
+      "n_filas_csv": 15739,
+      "exclusiones_universo_diseno": {
+        "AGE_21<50": 472,
+        "AGE_21>120_o_no_numerico(888/999)": 10,
+        "FACTORI_21<=0_o_vacio": 0,
+        "EST_DIS_21_o_UPM_DIS_21_vacio": 0
+      },
+      "n_universo_diseno_valido": 15257,
+      "n_fuera_de_segmento": 10482,
+      "n_segmento": 4775,
+      "exclusiones_en_segmento": {
+        "YRSCHOOL_blanco_o_fuera_0_22": 145
+      },
+      "n_valido": 4630,
+      "n_uno": 1824,
+      "n_upm_con_casos_validos": 2412,
+      "suma_pesos_validos": 9705968.0,
+      "replicas": 2000,
+      "replicas_degeneradas": 0,
+      "ee_bootstrap_ddof1": 0.01595606379864462
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-60-69-P",
+      "conducta": "seis-anos-o-menos",
+      "eje": "EDAD",
+      "segmento": "60-69",
+      "ola": "2021",
+      "n_filas_csv": 15739,
+      "exclusiones_universo_diseno": {
+        "AGE_21<50": 472,
+        "AGE_21>120_o_no_numerico(888/999)": 10,
+        "FACTORI_21<=0_o_vacio": 0,
+        "EST_DIS_21_o_UPM_DIS_21_vacio": 0
+      },
+      "n_universo_diseno_valido": 15257,
+      "n_fuera_de_segmento": 10709,
+      "n_segmento": 4548,
+      "exclusiones_en_segmento": {
+        "YRSCHOOL_blanco_o_fuera_0_22": 93
+      },
+      "n_valido": 4455,
+      "n_uno": 2529,
+      "n_upm_con_casos_validos": 3413,
+      "suma_pesos_validos": 9251503.0,
+      "replicas": 2000,
+      "replicas_degeneradas": 0,
+      "ee_bootstrap_ddof1": 0.016352314124973167
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-70-79-P",
+      "conducta": "seis-anos-o-menos",
+      "eje": "EDAD",
+      "segmento": "70-79",
+      "ola": "2021",
+      "n_filas_csv": 15739,
+      "exclusiones_universo_diseno": {
+        "AGE_21<50": 472,
+        "AGE_21>120_o_no_numerico(888/999)": 10,
+        "FACTORI_21<=0_o_vacio": 0,
+        "EST_DIS_21_o_UPM_DIS_21_vacio": 0
+      },
+      "n_universo_diseno_valido": 15257,
+      "n_fuera_de_segmento": 11283,
+      "n_segmento": 3974,
+      "exclusiones_en_segmento": {
+        "YRSCHOOL_blanco_o_fuera_0_22": 49
+      },
+      "n_valido": 3925,
+      "n_uno": 2846,
+      "n_upm_con_casos_validos": 2815,
+      "suma_pesos_validos": 4892557.0,
+      "replicas": 2000,
+      "replicas_degeneradas": 0,
+      "ee_bootstrap_ddof1": 0.017828142272171436
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-80-MAS-P",
+      "conducta": "seis-anos-o-menos",
+      "eje": "EDAD",
+      "segmento": "80-MAS",
+      "ola": "2021",
+      "n_filas_csv": 15739,
+      "exclusiones_universo_diseno": {
+        "AGE_21<50": 472,
+        "AGE_21>120_o_no_numerico(888/999)": 10,
+        "FACTORI_21<=0_o_vacio": 0,
+        "EST_DIS_21_o_UPM_DIS_21_vacio": 0
+      },
+      "n_universo_diseno_valido": 15257,
+      "n_fuera_de_segmento": 13297,
+      "n_segmento": 1960,
+      "exclusiones_en_segmento": {
+        "YRSCHOOL_blanco_o_fuera_0_22": 14
+      },
+      "n_valido": 1946,
+      "n_uno": 1633,
+      "n_upm_con_casos_validos": 1501,
+      "suma_pesos_validos": 2381283.0,
+      "replicas": 2000,
+      "replicas_degeneradas": 0,
+      "ee_bootstrap_ddof1": 0.013338677995465675
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-HOMBRE-P",
+      "conducta": "seis-anos-o-menos",
+      "eje": "SEXO",
+      "segmento": "HOMBRE",
+      "ola": "2021",
+      "n_filas_csv": 15739,
+      "exclusiones_universo_diseno": {
+        "AGE_21<50": 472,
+        "AGE_21>120_o_no_numerico(888/999)": 10,
+        "FACTORI_21<=0_o_vacio": 0,
+        "EST_DIS_21_o_UPM_DIS_21_vacio": 0
+      },
+      "n_universo_diseno_valido": 15257,
+      "n_fuera_de_segmento": 8796,
+      "n_segmento": 6461,
+      "exclusiones_en_segmento": {
+        "YRSCHOOL_blanco_o_fuera_0_22": 201
+      },
+      "n_valido": 6260,
+      "n_uno": 3498,
+      "n_upm_con_casos_validos": 4942,
+      "suma_pesos_validos": 11724168.0,
+      "replicas": 2000,
+      "replicas_degeneradas": 0,
+      "ee_bootstrap_ddof1": 0.014055642725470198
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-MUJER-P",
+      "conducta": "seis-anos-o-menos",
+      "eje": "SEXO",
+      "segmento": "MUJER",
+      "ola": "2021",
+      "n_filas_csv": 15739,
+      "exclusiones_universo_diseno": {
+        "AGE_21<50": 472,
+        "AGE_21>120_o_no_numerico(888/999)": 10,
+        "FACTORI_21<=0_o_vacio": 0,
+        "EST_DIS_21_o_UPM_DIS_21_vacio": 0
+      },
+      "n_universo_diseno_valido": 15257,
+      "n_fuera_de_segmento": 6461,
+      "n_segmento": 8796,
+      "exclusiones_en_segmento": {
+        "YRSCHOOL_blanco_o_fuera_0_22": 100
+      },
+      "n_valido": 8696,
+      "n_uno": 5334,
+      "n_upm_con_casos_validos": 6789,
+      "suma_pesos_validos": 14507143.0,
+      "replicas": 2000,
+      "replicas_degeneradas": 0,
+      "ee_bootstrap_ddof1": 0.011173395328564767
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-TOTAL-TODOS-P",
+      "conducta": "seis-anos-o-menos",
+      "eje": "TOTAL",
+      "segmento": "TODOS",
+      "ola": "2021",
+      "n_filas_csv": 15739,
+      "exclusiones_universo_diseno": {
+        "AGE_21<50": 472,
+        "AGE_21>120_o_no_numerico(888/999)": 10,
+        "FACTORI_21<=0_o_vacio": 0,
+        "EST_DIS_21_o_UPM_DIS_21_vacio": 0
+      },
+      "n_universo_diseno_valido": 15257,
+      "n_fuera_de_segmento": 0,
+      "n_segmento": 15257,
+      "exclusiones_en_segmento": {
+        "YRSCHOOL_blanco_o_fuera_0_22": 301
+      },
+      "n_valido": 14956,
+      "n_uno": 8832,
+      "n_upm_con_casos_validos": 7805,
+      "suma_pesos_validos": 26231311.0,
+      "replicas": 2000,
+      "replicas_degeneradas": 0,
+      "ee_bootstrap_ddof1": 0.010294207758921621
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-50-59-P",
+      "conducta": "sin-escolaridad",
+      "eje": "EDAD",
+      "segmento": "50-59",
+      "ola": "2021",
+      "n_filas_csv": 15739,
+      "exclusiones_universo_diseno": {
+        "AGE_21<50": 472,
+        "AGE_21>120_o_no_numerico(888/999)": 10,
+        "FACTORI_21<=0_o_vacio": 0,
+        "EST_DIS_21_o_UPM_DIS_21_vacio": 0
+      },
+      "n_universo_diseno_valido": 15257,
+      "n_fuera_de_segmento": 10482,
+      "n_segmento": 4775,
+      "exclusiones_en_segmento": {
+        "YRSCHOOL_blanco_o_fuera_0_22": 145
+      },
+      "n_valido": 4630,
+      "n_uno": 266,
+      "n_upm_con_casos_validos": 2412,
+      "suma_pesos_validos": 9705968.0,
+      "replicas": 2000,
+      "replicas_degeneradas": 0,
+      "ee_bootstrap_ddof1": 0.0067066350160480265
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-60-69-P",
+      "conducta": "sin-escolaridad",
+      "eje": "EDAD",
+      "segmento": "60-69",
+      "ola": "2021",
+      "n_filas_csv": 15739,
+      "exclusiones_universo_diseno": {
+        "AGE_21<50": 472,
+        "AGE_21>120_o_no_numerico(888/999)": 10,
+        "FACTORI_21<=0_o_vacio": 0,
+        "EST_DIS_21_o_UPM_DIS_21_vacio": 0
+      },
+      "n_universo_diseno_valido": 15257,
+      "n_fuera_de_segmento": 10709,
+      "n_segmento": 4548,
+      "exclusiones_en_segmento": {
+        "YRSCHOOL_blanco_o_fuera_0_22": 93
+      },
+      "n_valido": 4455,
+      "n_uno": 447,
+      "n_upm_con_casos_validos": 3413,
+      "suma_pesos_validos": 9251503.0,
+      "replicas": 2000,
+      "replicas_degeneradas": 0,
+      "ee_bootstrap_ddof1": 0.008190113405345012
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-70-79-P",
+      "conducta": "sin-escolaridad",
+      "eje": "EDAD",
+      "segmento": "70-79",
+      "ola": "2021",
+      "n_filas_csv": 15739,
+      "exclusiones_universo_diseno": {
+        "AGE_21<50": 472,
+        "AGE_21>120_o_no_numerico(888/999)": 10,
+        "FACTORI_21<=0_o_vacio": 0,
+        "EST_DIS_21_o_UPM_DIS_21_vacio": 0
+      },
+      "n_universo_diseno_valido": 15257,
+      "n_fuera_de_segmento": 11283,
+      "n_segmento": 3974,
+      "exclusiones_en_segmento": {
+        "YRSCHOOL_blanco_o_fuera_0_22": 49
+      },
+      "n_valido": 3925,
+      "n_uno": 674,
+      "n_upm_con_casos_validos": 2815,
+      "suma_pesos_validos": 4892557.0,
+      "replicas": 2000,
+      "replicas_degeneradas": 0,
+      "ee_bootstrap_ddof1": 0.014292354632633345
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-80-MAS-P",
+      "conducta": "sin-escolaridad",
+      "eje": "EDAD",
+      "segmento": "80-MAS",
+      "ola": "2021",
+      "n_filas_csv": 15739,
+      "exclusiones_universo_diseno": {
+        "AGE_21<50": 472,
+        "AGE_21>120_o_no_numerico(888/999)": 10,
+        "FACTORI_21<=0_o_vacio": 0,
+        "EST_DIS_21_o_UPM_DIS_21_vacio": 0
+      },
+      "n_universo_diseno_valido": 15257,
+      "n_fuera_de_segmento": 13297,
+      "n_segmento": 1960,
+      "exclusiones_en_segmento": {
+        "YRSCHOOL_blanco_o_fuera_0_22": 14
+      },
+      "n_valido": 1946,
+      "n_uno": 572,
+      "n_upm_con_casos_validos": 1501,
+      "suma_pesos_validos": 2381283.0,
+      "replicas": 2000,
+      "replicas_degeneradas": 0,
+      "ee_bootstrap_ddof1": 0.022242695805107664
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-HOMBRE-P",
+      "conducta": "sin-escolaridad",
+      "eje": "SEXO",
+      "segmento": "HOMBRE",
+      "ola": "2021",
+      "n_filas_csv": 15739,
+      "exclusiones_universo_diseno": {
+        "AGE_21<50": 472,
+        "AGE_21>120_o_no_numerico(888/999)": 10,
+        "FACTORI_21<=0_o_vacio": 0,
+        "EST_DIS_21_o_UPM_DIS_21_vacio": 0
+      },
+      "n_universo_diseno_valido": 15257,
+      "n_fuera_de_segmento": 8796,
+      "n_segmento": 6461,
+      "exclusiones_en_segmento": {
+        "YRSCHOOL_blanco_o_fuera_0_22": 201
+      },
+      "n_valido": 6260,
+      "n_uno": 725,
+      "n_upm_con_casos_validos": 4942,
+      "suma_pesos_validos": 11724168.0,
+      "replicas": 2000,
+      "replicas_degeneradas": 0,
+      "ee_bootstrap_ddof1": 0.0072718622052162975
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-MUJER-P",
+      "conducta": "sin-escolaridad",
+      "eje": "SEXO",
+      "segmento": "MUJER",
+      "ola": "2021",
+      "n_filas_csv": 15739,
+      "exclusiones_universo_diseno": {
+        "AGE_21<50": 472,
+        "AGE_21>120_o_no_numerico(888/999)": 10,
+        "FACTORI_21<=0_o_vacio": 0,
+        "EST_DIS_21_o_UPM_DIS_21_vacio": 0
+      },
+      "n_universo_diseno_valido": 15257,
+      "n_fuera_de_segmento": 6461,
+      "n_segmento": 8796,
+      "exclusiones_en_segmento": {
+        "YRSCHOOL_blanco_o_fuera_0_22": 100
+      },
+      "n_valido": 8696,
+      "n_uno": 1234,
+      "n_upm_con_casos_validos": 6789,
+      "suma_pesos_validos": 14507143.0,
+      "replicas": 2000,
+      "replicas_degeneradas": 0,
+      "ee_bootstrap_ddof1": 0.0073849931161014066
+    },
+    {
+      "llave": "RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-TOTAL-TODOS-P",
+      "conducta": "sin-escolaridad",
+      "eje": "TOTAL",
+      "segmento": "TODOS",
+      "ola": "2021",
+      "n_filas_csv": 15739,
+      "exclusiones_universo_diseno": {
+        "AGE_21<50": 472,
+        "AGE_21>120_o_no_numerico(888/999)": 10,
+        "FACTORI_21<=0_o_vacio": 0,
+        "EST_DIS_21_o_UPM_DIS_21_vacio": 0
+      },
+      "n_universo_diseno_valido": 15257,
+      "n_fuera_de_segmento": 0,
+      "n_segmento": 15257,
+      "exclusiones_en_segmento": {
+        "YRSCHOOL_blanco_o_fuera_0_22": 301
+      },
+      "n_valido": 14956,
+      "n_uno": 1959,
+      "n_upm_con_casos_validos": 7805,
+      "suma_pesos_validos": 26231311.0,
+      "replicas": 2000,
+      "replicas_degeneradas": 0,
+      "ee_bootstrap_ddof1": 0.0057378744271389245
+    }
+  ],
+  "decisiones": [
+    {
+      "decision": "Bootstrap de UPM: en cada estrato con n_h UPM se sortean n_h UPM con reemplazo (equiprobables); el peso de réplica es FACTORI_21 x multiplicidad de su UPM. Sin reescalamiento Rao-Wu ni n_h-1.",
+      "frase": "«Razón ponderada Σw·y/Σw con bootstrap de UPM dentro de estrato (UPM única del estrato = de certeza)»"
+    },
+    {
+      "decision": "Estrato con una sola UPM: se trata como de certeza, multiplicador 1 en todas las réplicas (no ocurre en el dato: los 4 estratos tienen >1 UPM).",
+      "frase": "«(UPM única del estrato = de certeza)»"
+    },
+    {
+      "decision": "Generador numpy.random.Generator(numpy.random.PCG64(20260930)); 2000 réplicas generadas en 40 bloques de 50; en cada bloque, para cada estrato en orden numérico ascendente, rng.integers(0, n_h, size=(50, n_h)) sobre las UPM del estrato ordenadas por id numérico. El orden de consumo del generador no lo fija la spec.",
+      "frase": "«Semilla y réplicas (para recalcular): numpy.PCG64(20260930), 2000 réplicas, bloques de 50»"
+    },
+    {
+      "decision": "Un solo juego de réplicas de UPM, construido sobre el marco universo+diseño válido (antes de excluir YRSCHOOL en blanco), compartido por las 14 llaves.",
+      "frase": "«Válido: peso > 0, estrato y UPM no vacíos (M.prepara_diseno)» y «vía M.mide_ola»"
+    },
+    {
+      "decision": "IC = percentiles 2.5 y 97.5 de las 2000 réplicas con numpy.percentile (interpolación lineal por defecto).",
+      "frase": "«percentiles 2.5/97.5»"
+    },
+    {
+      "decision": "Réplica degenerada = réplica cuyo denominador Σw_rep del dominio (filas con y en UNO/CERO) es 0 o cuyo valor no es finito; si hay al menos una, la llave queda RECONSTRUIDO con estado_ic NO-IDENTIFICADA.",
+      "frase": "«contrato conservador (una réplica degenerada → sin EE ni IC)»"
+    },
+    {
+      "decision": "YRSCHOOL en blanco (o fuera de 0–22) sale del numerador y del denominador de cada llave.",
+      "frase": "«cualquier valor fuera de 0–22 (blanco al leer el CSV, por ejemplo) queda fuera de las dos listas UNO/CERO»"
+    },
+    {
+      "decision": "Tramos de edad cerrados por ambos extremos en años enteros: 50–59, 60–69, 70–79, 80–130 (acotado por el universo a <=120).",
+      "frase": "«cuatro tramos ... 50-59, 60-69, 70-79, 80-MAS con 80-130 como cierre abierto»"
+    },
+    {
+      "decision": "Universo y diseño se aplican antes de cualquier eje: 50 <= AGE_21 <= 120, FACTORI_21 > 0, EST_DIS_21 y UPM_DIS_21 no vacíos (lexema tras strip).",
+      "frase": "«el universo es 50 <= AGE_21 <= 120 ... Peso FACTORI_21 > 0 ... Válido: peso > 0, estrato y UPM no vacíos»"
+    }
+  ]
+}
