@@ -1,0 +1,269 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-MC2-ENSANUT2024-0001
+spec_md: ../../../forense/prereg-caja/MC2-ENSANUT2024-spec-v1_0.md
+spec_md_sha256: 88f4d502a38a8070ea26114bfb14842e390e4b0d37ec62a249417be2abb17296
+script: data/corrida0/CALC-MC2-ENSANUT2024-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  cuenta_gen2_nota: "encargo GEN2-MEDICION-CARRILES-2 (cuenta_gen2 = SÍ); no adopta: mesa por merge, por instrumento"
+  acto: GEN2-MEDICION-CARRILES-2
+  tipo: PISO-DESCRIPTIVO-RETROSPECTIVO
+  temporalidad: RETROSPECTIVA
+  ola_reservada: ENSANUT 2025 (no es input)
+
+inputs:
+  - {id: integrantes_ensanut2024_w_icb_stata_stata__v2026_09_01, origen: manifiesto}
+  - {id: adultos_ensanut2024_w_stata_stata__v2026_09_01, origen: manifiesto}
+
+lectura_de_estructura_previa: "cuestionarios de hogar (sección IV), utilizadores y adultos (sección III) por pdftotext; metadatos de los dos .dta (pyreadstat metadataonly); ningún registro leído antes del COMMIT-1; valores sellados de CALC-ENSANUT-PISOS-SALUD-0001 no leídos"
+
+variables:
+  - {archivo: integrantes_ensanut2024_w_icb.dta, variable: ponde_f, rol: "ponderador"}
+  - {archivo: integrantes_ensanut2024_w_icb.dta, variable: est_sel, rol: "estrato de selección"}
+  - {archivo: integrantes_ensanut2024_w_icb.dta, variable: upm, rol: "UPM"}
+  - {archivo: integrantes_ensanut2024_w_icb.dta, variable: estrato, rol: "estrato urbanidad 1 rural 2 urbano 3 metro"}
+  - {archivo: integrantes_ensanut2024_w_icb.dta, variable: h0302, rol: "sexo"}
+  - {archivo: integrantes_ensanut2024_w_icb.dta, variable: h0303, rol: "edad"}
+  - {archivo: integrantes_ensanut2024_w_icb.dta, variable: h0401, rol: "necesidad de salud 3 meses 1/2"}
+  - {archivo: integrantes_ensanut2024_w_icb.dta, variable: h0402, rol: "última necesidad; salud mental 47/48/50/59"}
+  - {archivo: integrantes_ensanut2024_w_icb.dta, variable: h0404, rol: "buscó atención 1/2"}
+  - {archivo: integrantes_ensanut2024_w_icb.dta, variable: H0405A, rol: "motivo de no búsqueda (1)"}
+  - {archivo: integrantes_ensanut2024_w_icb.dta, variable: H0405B, rol: "motivo de no búsqueda (2)"}
+  - {archivo: integrantes_ensanut2024_w_icb.dta, variable: H0405C, rol: "motivo de no búsqueda (3)"}
+  - {archivo: adultos_ensanut2024_w.dta, variable: ponde_f, rol: "ponderador"}
+  - {archivo: adultos_ensanut2024_w.dta, variable: est_sel, rol: "estrato de selección"}
+  - {archivo: adultos_ensanut2024_w.dta, variable: upm, rol: "UPM"}
+  - {archivo: adultos_ensanut2024_w.dta, variable: estrato, rol: "estrato urbanidad"}
+  - {archivo: adultos_ensanut2024_w.dta, variable: sexo, rol: "sexo"}
+  - {archivo: adultos_ensanut2024_w.dta, variable: edad, rol: "edad"}
+  - {archivo: adultos_ensanut2024_w.dta, variable: a0301, rol: "diabetes diagnosticada 1 sí"}
+  - {archivo: adultos_ensanut2024_w.dta, variable: a0307, rol: "toma pastillas/insulina 1-3"}
+  - {archivo: adultos_ensanut2024_w.dta, variable: a0310a, rol: "pago mensual por tratamiento; 00 no pagó"}
+  - {archivo: adultos_ensanut2024_w.dta, variable: a0313, rol: "suspendió medicamento 6 meses 1/2"}
+  - {archivo: adultos_ensanut2024_w.dta, variable: a0314, rol: "causa principal de suspensión"}
+
+universo: "Integrantes del hogar con necesidad de salud en 3 meses (h0401 = 1), todas las edades; adultos 20+ con diabetes diagnosticada (a0301 = 1) y en tratamiento (a0307 1-3). ENSANUT 2024."
+filtros: "Motivos 99/vacíos fuera (contados); a0310a >= 99999 fuera (contado); a0313 = 9 fuera; a0314 fuera de la lista fuera."
+ponderador: ponde_f sin normalizar
+transformacion: "Ver spec humana §1-§2: proporciones ponderadas; diferencias RURAL-METRO, RURAL-NORURAL, PAGA-NOPAGA en la misma réplica."
+estimando: "Proporciones ponderadas por celda con IC95 de diseño; descriptivo, RETROSPECTIVO; dictámenes por la regla B-bis §3 de la spec humana."
+dependencias_materiales: [numpy, pandas, pyreadstat]
+
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap de upm con reemplazo dentro de est_sel; percentiles 2.5/97.5
+  singleton: autorremuestreo; varianza cero; contado en DIAG-*-N-ESTRATOS-UPM-UNICA
+  hash_medidor_sha256: 11e22394dafda219c2d2209c756c0660281d6f81f29fb3aa80ba4172b788dc6c
+  hash_payload_sha256: "integrantes_ensanut2024_w_icb_stata_stata__v2026_09_01 20a9fae339da3fa3fc6ce20e81b6b1cf32375b40baf5a876d760a15f01ec6aa9; adultos_ensanut2024_w_stata_stata__v2026_09_01 0fa8f4436fa427cc23d1d43164d449462c09eb787cb45ad20961576cb095a6c4"
+  hash_prereg_sha256: 88f4d502a38a8070ea26114bfb14842e390e4b0d37ec62a249417be2abb17296
+  hash_encargo_sha256: c791b1922b43326a627cac1ed1050af4695b7b5d679283fa7b597c43ade2c36c
+
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: misma semilla y sumas deterministas; enteros comparan exacto
+
+resultados:
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-RURAL-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-RURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-RURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-RURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-URBANO-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-URBANO-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-URBANO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-URBANO-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-METRO-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-METRO-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-METRO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-METRO-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-NORURAL-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-NORURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-NORURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-NORURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-RURAL-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-RURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-RURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-RURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-URBANO-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-URBANO-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-URBANO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-URBANO-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-METRO-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-METRO-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-METRO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-METRO-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-NORURAL-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-NORURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-NORURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-NORURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-EDAD-0-19-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-EDAD-0-19-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-EDAD-0-19-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-EDAD-0-19-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-EDAD-20-59-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-EDAD-20-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-EDAD-20-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-EDAD-20-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-RURAL-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-RURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-RURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-RURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-URBANO-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-URBANO-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-URBANO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-URBANO-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-METRO-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-METRO-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-METRO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-METRO-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-NORURAL-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-NORURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-NORURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-NORURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-EDAD-0-19-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-EDAD-0-19-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-EDAD-0-19-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-EDAD-0-19-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-EDAD-20-59-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-EDAD-20-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-EDAD-20-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-EDAD-20-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-NO-GRAVE-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-RURAL-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-RURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-RURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-RURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-NORURAL-P, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-NORURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-NORURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-NORURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-DIF-RURAL-METRO-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-DIF-RURAL-METRO-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-DIF-RURAL-METRO-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-DIF-RURAL-METRO-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-DIF-RURAL-NORURAL-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-DIF-RURAL-NORURAL-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-DIF-RURAL-NORURAL-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-DIF-RURAL-NORURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-DIF-RURAL-METRO-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-DIF-RURAL-METRO-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-DIF-RURAL-METRO-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-DIF-RURAL-METRO-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-DIF-RURAL-NORURAL-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-DIF-RURAL-NORURAL-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-DIF-RURAL-NORURAL-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-DIF-RURAL-NORURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-MENOS-NOGRAVE-NAC-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-MENOS-NOGRAVE-NAC-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-MENOS-NOGRAVE-NAC-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-ACCESO-MENOS-NOGRAVE-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-DIF-RURAL-NORURAL-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-DIF-RURAL-NORURAL-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-DIF-RURAL-NORURAL-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona integrante con necesidad de salud (3 meses)", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-BUSCO-MENTAL-DIF-RURAL-NORURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona integrante con necesidad de salud (3 meses))"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-INTE-FILAS, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-INTE-NECESIDAD-SI, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-INTE-NO-BUSCO, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-INTE-NO-BUSCO-SIN-MOTIVO-VALIDO, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-INTE-NECESIDAD-SALUD-MENTAL, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-INTE-N-ESTRATOS, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-INTE-N-UPM, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-INTE-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona adulta 20+ con diabetes en tratamiento)"}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-PAGA-P, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-PAGA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-PAGA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-PAGA-N, tipo: entero, unidad: "n no ponderado de la celda (persona adulta 20+ con diabetes en tratamiento)"}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-NOPAGA-P, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-NOPAGA-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-NOPAGA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-NOPAGA-N, tipo: entero, unidad: "n no ponderado de la celda (persona adulta 20+ con diabetes en tratamiento)"}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-RURAL-P, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-RURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-RURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-RURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona adulta 20+ con diabetes en tratamiento)"}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-NORURAL-P, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-NORURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-NORURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-NORURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona adulta 20+ con diabetes en tratamiento)"}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona adulta 20+ con diabetes en tratamiento)"}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona adulta 20+ con diabetes en tratamiento)"}
+  - {id: RESULT-MC2-ENSANUT2024-DM-ECON-ACCESO-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-ECON-ACCESO-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-ECON-ACCESO-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-ECON-ACCESO-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona adulta 20+ con diabetes en tratamiento)"}
+  - {id: RESULT-MC2-ENSANUT2024-DM-ECON-ACCESO-RURAL-P, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-ECON-ACCESO-RURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-ECON-ACCESO-RURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-ECON-ACCESO-RURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona adulta 20+ con diabetes en tratamiento)"}
+  - {id: RESULT-MC2-ENSANUT2024-DM-ECON-ACCESO-NORURAL-P, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-ECON-ACCESO-NORURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-ECON-ACCESO-NORURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-ECON-ACCESO-NORURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona adulta 20+ con diabetes en tratamiento)"}
+  - {id: RESULT-MC2-ENSANUT2024-DM-PAGA-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-PAGA-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-PAGA-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-PAGA-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona adulta 20+ con diabetes en tratamiento)"}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-DIF-PAGA-NOPAGA-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-DIF-PAGA-NOPAGA-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-DIF-PAGA-NOPAGA-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas, persona adulta 20+ con diabetes en tratamiento", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENSANUT2024-DM-SUSPENDE-DIF-PAGA-NOPAGA-N, tipo: entero, unidad: "n no ponderado de la celda (persona adulta 20+ con diabetes en tratamiento)"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-ADUL-FILAS, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-ADUL-DIABETES-20MAS, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-ADUL-CON-TRATAMIENTO, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-ADUL-MONTO-FUERA, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-ADUL-SUSPENDE-CON-CAUSA, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-ADUL-N-ESTRATOS, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-ADUL-N-UPM, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-MC2-ENSANUT2024-DIAG-ADUL-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
