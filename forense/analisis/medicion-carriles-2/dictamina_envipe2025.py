@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """GEN2-MEDICION-CARRILES-2 · hija ENVIPE 2025 · dictámenes B-bis §3 de
 forense/prereg-caja/MC2-ENVIPE2025-spec-v1_0.md, mecánicos, sobre CALC-MC2-ENVIPE2025-0001
-(y E.5 sobre CALC-ENVIPE-PERCEPCION-2024-0001). Escribe ENVIPE2025-dictamenes.tsv."""
+(y E.5 sobre CALC-ENVIPE-PERCEPCION-2024-0001). Escribe MC2-ENVIPE2025-dictamenes.tsv."""
 import json
 from pathlib import Path
 
@@ -75,7 +75,7 @@ nan = (float("nan"),) * 3
 fila("TIME-038", "VIOLENCIA", "NO-CONSTRUIBLE", "", nan, "Regla con mecanismo no observable; pisos DEJO-SALIR-NOCHE y EDO-INSEGURO quedan como insumo.", "—", "")
 fila("POL-009", "POLITICA", "NO-CONSTRUIBLE", "", nan, "Costo total INEGI suma pérdidas, prevención y salud sobre PIB externo.", "—", "")
 cab = ["id", "clase", "dominio", "dictamen", "resultado_id", "calc", "punto", "ic95_inf", "ic95_sup", "unidad", "detalle"]
-(RAIZ / "forense/analisis/medicion-carriles-2/ENVIPE2025-dictamenes.tsv").write_text(
+(RAIZ / "forense/analisis/medicion-carriles-2/MC2-ENVIPE2025-dictamenes.tsv").write_text(
     "\t".join(cab) + "\n" + "".join("\t".join(x) + "\n" for x in D), encoding="utf-8")
 for x in D:
     print(x[0], x[3], x[6], x[7], x[8])

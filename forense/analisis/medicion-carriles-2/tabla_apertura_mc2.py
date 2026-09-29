@@ -7,7 +7,7 @@ los reports v2), si PISOS-DOMINIOS-Y-REGLAS-1 ya la midió, instrumento (primer
 token reconocido de `instrumento_ola`/`instrumento_sugerido`), y la decisión de
 este acto: la de sus fragmentos `*-dictamenes.tsv` (MEDIDO), la de la tabla
 DECISIONES de abajo (CITADO-E5, DIFERIDO-A, NO-CONSTRUIBLE, CONGELADO) o
-PENDIENTE-<instrumento>. Escribe tabla-apertura-v1_0.tsv y conteos-apertura.json.
+PENDIENTE-<instrumento>. Escribe tabla-apertura-mc2-v1_0.tsv y conteos-apertura.json.
 No lee microdato."""
 import collections
 import glob
@@ -99,7 +99,7 @@ for r in reg:
     filas.append(["regla", r["regla_id"], r["dominio_catalogo"], token(r["instrumento_sugerido"]),
                   r["instrumento_sugerido"][:120].replace("\t", " "), "—", "", dec])
 cab = ["clase", "id", "dominio", "instrumento", "instrumento_texto", "estado_c3", "pieza_pdr1", "decision_mc2"]
-(DIR / "tabla-apertura-v1_0.tsv").write_text("\t".join(cab) + "\n" + "".join("\t".join(f) + "\n" for f in filas),
+(DIR / "tabla-apertura-mc2-v1_0.tsv").write_text("\t".join(cab) + "\n" + "".join("\t".join(f) + "\n" for f in filas),
                                             encoding="utf-8")
 cont = collections.Counter((f[0], f[7].split(":")[0].split(" ")[0]) for f in filas)
 pend = collections.Counter(f[3] for f in filas if f[7].startswith("PENDIENTE"))
