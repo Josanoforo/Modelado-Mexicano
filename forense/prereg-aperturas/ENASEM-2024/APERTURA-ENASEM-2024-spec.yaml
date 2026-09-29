@@ -1,0 +1,175 @@
+# CALC-APERTURA-ENASEM-2024-0001 -- contrato ejecutable del expediente de apertura (D-15), GEN2-APERTURAS-PREREGISTRADAS-1.
+# NO CORRIDO. La apertura es copiar este archivo a data/corrida0/CALC-APERTURA-ENASEM-2024-0001/spec.yaml;
+# el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
+calc_id: CALC-APERTURA-ENASEM-2024-0001
+spec_md: ../../../forense/prereg-aperturas/ENASEM-2024/APERTURA-ENASEM-2024-spec-v1_0.md
+spec_md_sha256: ab231dd82eac338a77303139486080ce245205e6c490f1cdbf7e356bd6fa73f9
+script: forense/prereg-aperturas/ENASEM-2024/medidor_apertura_enasem_2024.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: 'NO'
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+  tipo: APERTURA-PRE-REGISTRADA (COMMIT-3 de la ola reservada)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: PROSPECTIVA
+  unidad_transferencia: PERSONA
+  contendientes:
+  - CALC-ENASEM-ESCOLARIDAD-2021-0001
+  ola_reservada: ENASEM 2024 (se abre sólo al correr este CALC)
+  congelado: NO -- expediente; se congela cuando mesa firme su apertura
+inputs:
+- id: enasem2024_bd_csv_zip
+  origen: manifiesto
+  sha256: 6712f1b0cc5e15f70c7124c2de2f7d398e419d4d1e5adcf3c673363dfbd1c9a4
+  funcion: DATO
+  nota: ENASEM 2024 microdatos CSV (miembro tr_enasem24_sect_a_c_d_e_pc_f_h_i.csv) -- ola RESERVADA; sólo este medidor
+    la lee
+- id: contendiente_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-ENASEM-ESCOLARIDAD-2021-0001/medidor.py
+  sha256: e99494b009dba74ed0fd79bf80e921f480be8f9a969a452f2817ec43a6b21098
+  funcion: CODIGO
+  nota: 'medidor sellado del contendiente: CONDUCTAS, MAPAS, EDADES, columnas y diseño'
+- id: contendiente_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENASEM-ESCOLARIDAD-2021-0001/resultados.json
+  sha256: f7ab868cba803c459ef8b73cb50345839e973f33e50e1efe92b6c2f8085a0a33
+  funcion: DATO
+  nota: 'piso 2021 sellado: P, IC-LO, IC-HI (IC95 de diseño) por celda'
+- id: motor_pisos_confianza
+  origen: repo
+  ruta: tools/dominios/confianza/motor_pisos.py
+  sha256: 7d0494f43052e0ea39ce0baf5f6505ccf889b386cfa3c0775b0dbdfb56ef958e
+  funcion: CODIGO
+  nota: prepara_diseno, recodifica, eje_mapa, eje_rango, num, rid del motor común
+- id: guardia_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/guardia_apertura.py
+  sha256: b9002a494f3d2468909fb4c5c16d3067b0eacd201027498f1b9ff04297ce7c5e
+  funcion: CODIGO
+  nota: auditoría AST, agregador de una variable, adjudicación
+- id: expediente_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/expediente_apertura.py
+  sha256: 7e7d711a2751c98fe27367c490ee6566874e26418ef9c2315ec27d1ad884ea29
+  funcion: CODIGO
+  nota: esquema, salida y contrato comunes
+variables:
+- nombre: SIN-ESCOLARIDAD
+  definicion: 'conducta del contendiente (spec COLA-ENASEM-ESCOLARIDAD §2): YRSCHOOL'
+- nombre: SEIS-ANOS-O-MENOS
+  definicion: 'conducta del contendiente (spec COLA-ENASEM-ESCOLARIDAD §2): YRSCHOOL'
+- nombre: SEX_24
+  definicion: Sexo 2024 (eje SEXO, 1 HOMBRE / 2 MUJER)
+- nombre: AGE_24
+  definicion: Edad 2024 (universo 50-120 y eje EDAD 50-59/60-69/70-79/80-MAS)
+- nombre: FACTORI_24
+  definicion: factor individual 2024 (ponderador)
+- nombre: EST_DIS_24
+  definicion: estrato de diseño (validez de registro)
+- nombre: UPM_DIS_24
+  definicion: UPM de diseño (validez de registro)
+universo: Persona entrevistada de ENASEM 2024 con 50 <= AGE_24 <= 120 (888/999 fuera); FACTORI_24 > 0, EST_DIS_24
+  y UPM_DIS_24 no vacíos (prepara_diseno del motor)
+filtros: Un eje a la vez (TOTAL, SEXO, EDAD); nunca cruces (guardia E.6)
+ponderador: FACTORI_24 (factor individual 2024; homólogo de FACTORI_21 del piso)
+transformacion: Recodificación del contendiente (spec COLA-ENASEM-ESCOLARIDAD §2) sobre YRSCHOOL; sufijo de ronda
+  _21 -> _24 en sexo, edad, factor, estrato y UPM; columna ausente -> NO-ESTIMABLE
+estimando: R = Σw·y/Σw por conducta×eje×categoría en ENASEM 2024; cobertura de R en el IC95 de diseño del piso 2021
+seed:
+  aplica: false
+  razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
+parametros:
+  nominal: 0.95
+  z: 1.959964
+  regla: cobertura R en [lo, hi] del contendiente; Wilson 95%; NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificación ad hoc)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'determinista: sumas float64 sin remuestreo'
+resultados:
+- id: RESULT-APERTURA-ENASEM-2024-SIN-ESCOLARIDAD-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada de personas 50+ en ENASEM 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-SIN-ESCOLARIDAD-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada de personas 50+ en ENASEM 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-SIN-ESCOLARIDAD-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada de personas 50+ en ENASEM 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-SIN-ESCOLARIDAD-EDAD-50-59-R
+  tipo: proporcion
+  unidad: proporción ponderada de personas 50+ en ENASEM 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-SIN-ESCOLARIDAD-EDAD-60-69-R
+  tipo: proporcion
+  unidad: proporción ponderada de personas 50+ en ENASEM 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-SIN-ESCOLARIDAD-EDAD-70-79-R
+  tipo: proporcion
+  unidad: proporción ponderada de personas 50+ en ENASEM 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-SIN-ESCOLARIDAD-EDAD-80-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada de personas 50+ en ENASEM 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-SEIS-ANOS-O-MENOS-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada de personas 50+ en ENASEM 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-SEIS-ANOS-O-MENOS-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada de personas 50+ en ENASEM 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-SEIS-ANOS-O-MENOS-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada de personas 50+ en ENASEM 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-SEIS-ANOS-O-MENOS-EDAD-50-59-R
+  tipo: proporcion
+  unidad: proporción ponderada de personas 50+ en ENASEM 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-SEIS-ANOS-O-MENOS-EDAD-60-69-R
+  tipo: proporcion
+  unidad: proporción ponderada de personas 50+ en ENASEM 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-SEIS-ANOS-O-MENOS-EDAD-70-79-R
+  tipo: proporcion
+  unidad: proporción ponderada de personas 50+ en ENASEM 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-SEIS-ANOS-O-MENOS-EDAD-80-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada de personas 50+ en ENASEM 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-DICTAMEN
+  tipo: texto
+  unidad: vocabulario cerrado CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE
+- id: RESULT-APERTURA-ENASEM-2024-K
+  tipo: entero
+  unidad: celdas con R dentro del IC del contendiente
+- id: RESULT-APERTURA-ENASEM-2024-N
+  tipo: entero
+  unidad: celdas puntuadas
+- id: RESULT-APERTURA-ENASEM-2024-WILSON-LO
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, inferior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-WILSON-HI
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, superior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-MAE-PUNTO
+  tipo: flotante
+  unidad: error absoluto medio punto del contendiente vs R (descriptivo)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENASEM-2024-MARCA
+  tipo: texto
+  unidad: PROSPECTIVA (contendiente sellado antes de R)

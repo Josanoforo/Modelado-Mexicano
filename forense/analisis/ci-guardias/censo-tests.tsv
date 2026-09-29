@@ -13,6 +13,22 @@ tests/test_agrega_l_v1_0.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin co
 tests/test_ahorro_comparabilidad_texto.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_amai_enigh2024.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_amai_nse.py	pytest	NO	numpy,pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
+tests/test_apertura_censo_2020.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
+tests/test_apertura_edr_2024.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
+tests/test_apertura_emat_2024.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
+tests/test_apertura_enadid_2023.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
+tests/test_apertura_enasem_2024.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
+tests/test_apertura_engasto_2013.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
+tests/test_apertura_enif_2024.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
+tests/test_apertura_enigh_2024.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
+tests/test_apertura_enoe_2026t2.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
+tests/test_apertura_enpecyt_2017.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
+tests/test_apertura_ensu_2026.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
+tests/test_apertura_envipe_2026.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
+tests/test_apertura_lapop_2023.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
+tests/test_apertura_latinobarometro_2024.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
+tests/test_apertura_pew_2025.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
+tests/test_apertura_salud_2025.py	pytest	NO	(ninguna)	NO	5.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
 tests/test_arbitro_marginales.py	pytest	NO	numpy,pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_arnes_sesion.py	script	NO	(ninguna)	NO	1.7	CORRE-EN-CI	exit 0 sin corpus
 tests/test_astra3_encig_ic_calibrado.py	modulo	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 con -m tests.test_astra3_encig_ic_calibrado (invocacion de script fallaba)
@@ -228,6 +244,7 @@ tests/test_pisos_rejilla_datos.py	script	NO	numpy,pandas	NO	0.1	NECESITA-DEPENDE
 tests/test_portada.py	script	NO	(ninguna)	NO	4.2	CORRE-EN-CI	exit 0 sin corpus
 tests/test_preflight_calc_tocados.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_prepara_corpus.py	script	NO	(ninguna)	SI	0.5	CORRE-EN-CI	exit 0 sin corpus
+tests/test_prereg_aperturas.py	pytest	NO	(ninguna)	NO	26.4	CORRE-EN-CI	exit 0 sin corpus (GEN2-APERTURAS-PREREGISTRADAS-1; fila añadida por línea: --censo completo excede 600 s)
 tests/test_reactivos_ciegos_fd.py	modulo	NO	(ninguna)	NO	11.4	CORRE-EN-CI	exit 0 con -m tests.test_reactivos_ciegos_fd (invocacion de script fallaba)
 tests/test_reactivos_contexto.py	script	NO	openpyxl	NO	0.2	NECESITA-DEPENDENCIA(openpyxl)	ModuleNotFoundError: No module named 'openpyxl'
 tests/test_readme_derivado.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
@@ -283,6 +300,7 @@ tests/test_pdr1_enigh2022.py	pytest	NO	numpy,pandas,pytest	NO	0.0	NECESITA-DEPEN
 tests/test_pdr1_ensu2024.py	pytest	NO	numpy,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	GEN2-PISOS-DOMINIOS-Y-REGLAS-1: prueba sintética del CALC PDR1 (fila añadida por línea)
 tests/test_pdr1_enut2024.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-PISOS-DOMINIOS-Y-REGLAS-1: prueba sintética del CALC PDR1 (fila añadida por línea)
 tests/test_pdr1_envipe2025.py	pytest	NO	numpy,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	GEN2-PISOS-DOMINIOS-Y-REGLAS-1: prueba sintética del CALC PDR1 (fila añadida por línea)
+tests/test_tablero_insumos.py	script	NO	(ninguna)	NO	1.0	CORRE-EN-CI	exit 0 sin corpus (GEN2-TUBERIA-TABLERO-INSUMOS-1)
 tests/test_mc2_enif2024.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-MEDICION-CARRILES-2: prueba sintética del CALC MC2-ENIF2024 (fila añadida por línea)
 tests/test_mc2_ensanut2024.py	script	NO	numpy,pyreadstat	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-MEDICION-CARRILES-2: prueba sintética del CALC MC2-ENSANUT2024 (fila añadida por línea)
 tests/test_mc2_envipe2025.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-MEDICION-CARRILES-2: prueba sintética del CALC MC2-ENVIPE2025 (fila añadida por línea)

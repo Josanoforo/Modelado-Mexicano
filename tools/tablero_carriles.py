@@ -63,7 +63,7 @@ SEMÁFORO (se evalúa en este orden):
   AMARILLO = el resto: hay cifra adoptada pero reglas mayoritariamente sin cifra,
              o reglas con dictamen pero algún NÚCLEO sin cifra ni piso pendiente.
   «Piso pendiente» de un dominio = fila de un fragmento de dictámenes
-  (`forense/analisis/*/*dictamenes.tsv`, columnas dominio · calc · resultado_id)
+  (F16: `forense/analisis/*/*dictamenes.tsv`, columnas dominio · calc · resultado_id)
   cuyo CALC tiene sello.json y `cuenta_gen2: SI`, cuyo `resultado_id` está
   REGISTRADO EN LA VISTA (`data/corrida0/resultados.tsv`) y cuyo CALC no aporta
   ninguna fila adoptada al catálogo v1.3. Un piso sellado que la vista aún no
@@ -181,8 +181,9 @@ FUENTES = {
     "F12": "forense/analisis/corpus-completo/tabla-final-v1_0.tsv",
     "F13": "forense/encargos/*.md",
     "F14": "canon/crosswalk-carriles-v1_0.tsv",
-    "F15": "forense/analisis/*/*dictamenes.tsv",
-    "F16": "data/corrida0/resultados.tsv",
+    "F15": "data/corrida0/aperturas-pendientes-v1_0.tsv",  # GEN2-APERTURAS-PREREGISTRADAS-1
+    "F16": "forense/analisis/*/*dictamenes.tsv",           # GEN2-MEDICION-CARRILES-2 (NARANJA)
+    "F17": "data/corrida0/resultados.tsv",                 # GEN2-MEDICION-CARRILES-2 (NARANJA)
 }
 LECTOR = {
     "F1": "lee_tsv (csv.DictReader), filas con report corpus/reports/*",
@@ -199,8 +200,9 @@ LECTOR = {
     "F12": "lee_tsv, programa y olas_reservadas_al_entrar",
     "F13": "glob; en vuelo = sin línea «## CONSUMIDO»",
     "F14": "crosswalk() (misma derivación; --verifica compara con el archivo)",
-    "F15": "pisos_pendientes(): glob; filas con dominio · calc · resultado_id",
-    "F16": "pisos_pendientes(): conjunto de resultado_id registrados (salta líneas #)",
+    "F15": "lee_tsv, (programa, año de ola) -> expediente y qué la abre",
+    "F16": "pisos_pendientes(): glob; filas con dominio · calc · resultado_id",
+    "F17": "pisos_pendientes(): conjunto de resultado_id registrados (salta líneas #)",
 }
 CMD = "python3 tools/tablero_carriles.py --json"
 
@@ -372,13 +374,13 @@ def titulo(basename: str) -> str:
 def pisos_pendientes(cat: list[dict]) -> tuple[dict, dict, int]:
     """Por dominio: CALC con piso pendiente registrado en la vista, y CALC sellados sin registrar.
     Devuelve (registrados, sin_registrar, filas_leidas)."""
-    with open(ruta(FUENTES["F16"]), encoding="utf-8", errors="replace") as f:
+    with open(ruta(FUENTES["F17"]), encoding="utf-8", errors="replace") as f:
         vista = {r.get("resultado_id", "") for r in csv.DictReader([ln for ln in f if not ln.startswith("#")],
                                                                      delimiter="\t")}
     adoptados = {x["calc"] for x in cat if x.get("calc") and x["estado_adopcion"] in ESTADOS_ADOPTADOS}
     reg, sin, n = defaultdict(set), defaultdict(set), 0
     sello_ok = {}
-    for p in sorted(glob.glob(ruta(FUENTES["F15"]))):
+    for p in sorted(glob.glob(ruta(FUENTES["F16"]))):
         for x in lee_tsv(os.path.relpath(p, RAIZ)):
             n += 1
             dom, calc, rid = x.get("dominio", ""), x.get("calc", ""), x.get("resultado_id", "")
@@ -433,7 +435,7 @@ def derivar() -> dict:
             res_a[x["result_id"]] = k
     dom_con_cifra = {d for (d, _), c in cat_agg.items() if sum(c[e] for e in ESTADOS_ADOPTADOS)}
     piso_reg, piso_sin, filas_frag = pisos_pendientes(cat)
-    filas_leidas["F15"] = filas_frag
+    filas_leidas["F16"] = filas_frag
 
     # cola por programa
     cola_prog = defaultdict(list)
@@ -544,7 +546,8 @@ def derivar() -> dict:
                 st["FIRMA"].append({"id": x["id"], "por": hit, "rel": relevancia(hit), "texto": x["qué_se_firma"][:110],
                                     "sucesor": "mesa firma" + (f" (plazo {plazo.group(1)})" if plazo else "")
                                     + (f"; encargo {os.path.basename(x['encargo'])}" if x["encargo"] else "")})
-        # reservas citadas
+        # reservas citadas (F15: expediente de apertura por programa × año, GEN2-APERTURAS-PREREGISTRADAS-1)
+        aper = {(x["programa"], x["ola"][:4]): x for x in (lee_tsv(FUENTES["F15"]) if os.path.exists(ruta(FUENTES["F15"])) else [])}
         for ins in sorted(instr_nuc):
             for ola, fk, det in reservas.get(ins, []):
                 anio = re.match(r"(?:19|20)\d\d", ola)
@@ -555,8 +558,10 @@ def derivar() -> dict:
                 if citan:
                     fam = [f["familia"] for f in fam_por_instr.get(ins, [])]
                     st["RESERVA"].append({"id": f"{ins} {ola}", "fuente": fk, "rel": citan, "texto": f"{det}; afirmaciones que la citan: {citan}",
-                                          "sucesor": ("familia 2027 " + ", ".join(fam)) if fam else
-                                          "E.6: la levanta el código congelado de una prueba pre-registrada o mesa por escrito"})
+                                          "sucesor": (("familia 2027 " + ", ".join(fam)) if fam else
+                                          "E.6: la levanta el código congelado de una prueba pre-registrada o mesa por escrito")
+                                          + (lambda a: f"; expediente {a['expediente']} ({a['que_la_abre'][:40]})" if a else "")(
+                                              aper.get((ins.upper(), anio.group(0))))})
         res_map = Counter(x["reserva_v1_1"][:90] for x in filas if x["reserva_v1_1"])
         for t, k in sorted(res_map.items()):
             st["RESERVA"].append({"id": "mapa:reserva_v1_1", "fuente": "F1", "rel": k, "texto": f"{t} (afirmaciones: {k})",
@@ -759,7 +764,7 @@ def lista_items(items, fk):
     return out
 
 
-FK_ST = {"FIRMA": "F7", "RESERVA": "F12 F6", "ADQUISICION": "F1 F5 F6", "NC-PARO": "F8", "CALC": "F9", "EDITORIAL": "F4"}
+FK_ST = {"FIRMA": "F7", "RESERVA": "F12 F6 F15", "ADQUISICION": "F1 F5 F6", "NC-PARO": "F8", "CALC": "F9", "EDITORIAL": "F4"}
 
 
 def tarjeta(c: dict) -> list[str]:
@@ -780,7 +785,7 @@ def tarjeta(c: dict) -> list[str]:
     if c["pisos_pendientes"] or c["pisos_sin_registrar"]:
         pp = " · ".join(f"{d}: {', '.join(v)}" for d, v in c["pisos_pendientes"].items()) or "ninguno"
         ps = " · ".join(f"{d}: {', '.join(v)}" for d, v in c["pisos_sin_registrar"].items()) or "ninguno"
-        L.append(f"- **Pisos del núcleo pendientes de adopción** — registrados en la vista: {pp}; sellados en disco, no registrados (E.7): {ps} ⟨F15 F16 S⟩")
+        L.append(f"- **Pisos del núcleo pendientes de adopción** — registrados en la vista: {pp}; sellados en disco, no registrados (E.7): {ps} ⟨F16 F17 S⟩")
     if c["cifras"]:
         L.append(f"- **Cifras del catálogo v1.3 por dominio** (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) ⟨F2⟩")
         sec = []

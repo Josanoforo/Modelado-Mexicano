@@ -1,0 +1,1270 @@
+# CALC-APERTURA-EDR-2024-0001 -- contrato ejecutable del expediente de apertura (D-15), GEN2-APERTURAS-PREREGISTRADAS-1.
+# NO CORRIDO. La apertura es copiar este archivo a data/corrida0/CALC-APERTURA-EDR-2024-0001/spec.yaml;
+# el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
+calc_id: CALC-APERTURA-EDR-2024-0001
+spec_md: ../../../forense/prereg-aperturas/EDR-2024/APERTURA-EDR-2024-spec-v1_0.md
+spec_md_sha256: 58b02420914bbfc708624bf1d4b86cb90ff1ccbffdfc71b03dd95d0fd97812d7
+script: forense/prereg-aperturas/EDR-2024/medidor_apertura_edr_2024.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: 'NO'
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+  tipo: APERTURA-PRE-REGISTRADA (COMMIT-3 de la ola reservada)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: PROSPECTIVA
+  unidad_transferencia: DEFUNCION-REGISTRADA
+  contendientes:
+  - CALC-EDR-SUICIDIO-PISOS-0001
+  ola_reservada: EDR 2024 (se abre sólo al correr este CALC)
+  congelado: NO -- expediente; se congela cuando mesa firme su apertura
+inputs:
+- id: edr2024_bd_dbf_zip
+  origen: manifiesto
+  sha256: a8acb8f0f5aab9d06bf50e55db0f1c2de3e3c32597e0f0aa7c62d0530c17ee3b
+  funcion: DATO
+  nota: EDR 2024 defunciones registradas, DBF (miembro DEFUN24.dbf) -- ola RESERVADA; sólo este medidor la lee
+- id: contendiente_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-EDR-SUICIDIO-PISOS-0001/medidor.py
+  sha256: 148ccb1abfeb29c6802ce2069aa64555054a6a4d8452fb8c91bd8f18be19e6e1
+  funcion: CODIGO
+  nota: 'medidor sellado del contendiente: prepara/_ejes_de/_todas/miembro_ola/lee_dbf'
+- id: contendiente_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-EDR-SUICIDIO-PISOS-0001/resultados.json
+  sha256: c39a931e574edb63032663479ff00a9aa4db4d0e10b03b4e953fb716ce977b74
+  funcion: DATO
+  nota: 'piso 2023 sellado: P, ICC-LO, ICC-HI por celda'
+- id: guardia_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/guardia_apertura.py
+  sha256: b9002a494f3d2468909fb4c5c16d3067b0eacd201027498f1b9ff04297ce7c5e
+  funcion: CODIGO
+  nota: auditoría AST, agregador de una variable, adjudicación
+- id: expediente_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/expediente_apertura.py
+  sha256: 7e7d711a2751c98fe27367c490ee6566874e26418ef9c2315ec27d1ad884ea29
+  funcion: CODIGO
+  nota: esquema, salida y contrato comunes
+variables:
+- nombre: SUICIDIO-CIE
+  definicion: 'conducta del contendiente (spec EDR-SUICIDIO-PISOS §2): CAUSA_DEF'
+- nombre: SUICIDIO-PRESUNTO
+  definicion: 'conducta del contendiente (spec EDR-SUICIDIO-PISOS §2): TIPO_DEFUN'
+- nombre: SUIC-HOMBRE
+  definicion: 'conducta del contendiente (spec EDR-SUICIDIO-PISOS §2): CAUSA_DEF, SEXO'
+- nombre: SUIC-15-44
+  definicion: 'conducta del contendiente (spec EDR-SUICIDIO-PISOS §2): CAUSA_DEF, EDAD'
+- nombre: SUIC-15-29
+  definicion: 'conducta del contendiente (spec EDR-SUICIDIO-PISOS §2): CAUSA_DEF, EDAD'
+- nombre: SUIC-OCURRIDO-EN-OLA
+  definicion: 'conducta del contendiente (spec EDR-SUICIDIO-PISOS §2): CAUSA_DEF, ANIO_OCUR'
+- nombre: ENT_RESID
+  definicion: entidad de residencia (eje ENT 01-32)
+- nombre: TLOC_RESID
+  definicion: tamaño de localidad de residencia (eje TLOC)
+- nombre: ESCOLARIDA
+  definicion: escolaridad del fallecido (eje ESCOLARIDAD)
+universo: Defunciones registradas en 2024 (todas las filas vivas de DEFUN24.dbf); universo por conducta según prepara()
+  del contendiente (causa no vacía, suicidio CIE X60-X84, edad o sexo válidos)
+filtros: Un eje a la vez (TOTAL, SEXO, EDAD, ENT de residencia, TLOC de residencia, ESCOLARIDAD); SUIC-HOMBRE sin
+  eje SEXO y SUIC-15-* sin eje EDAD; nunca cruces (guardia E.6)
+ponderador: 'ninguno (registro completo: w = 1 por defunción)'
+transformacion: Recodificación del contendiente (spec EDR-SUICIDIO-PISOS §2); presunto suicidio = TIPO_DEFUN ==
+  3 (como 2022-2023); columna ausente -> NO-ESTIMABLE
+estimando: R = proporción exacta de defunciones registradas en 2024 con la conducta, por conducta×eje×categoría;
+  cobertura de R en el ICC del piso 2023
+seed:
+  aplica: false
+  razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
+parametros:
+  nominal: 0.95
+  z: 1.959964
+  regla: cobertura R en [lo, hi] del contendiente; Wilson 95%; NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificación ad hoc)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'determinista: sumas float64 sin remuestreo'
+resultados:
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-EDAD-0-9-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-EDAD-10-14-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-EDAD-15-19-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-EDAD-20-24-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-EDAD-25-29-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-01-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-02-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-03-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-04-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-05-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-06-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-07-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-08-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-09-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-10-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-11-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-12-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-13-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-14-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-15-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-16-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-17-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-18-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-19-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-20-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-21-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-22-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-23-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-24-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-25-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-26-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-27-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-28-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-29-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-30-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-31-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ENT-32-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ESCOLARIDAD-PRIMARIA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-CIE-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-EDAD-0-9-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-EDAD-10-14-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-EDAD-15-19-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-EDAD-20-24-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-EDAD-25-29-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-01-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-02-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-03-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-04-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-05-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-06-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-07-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-08-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-09-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-10-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-11-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-12-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-13-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-14-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-15-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-16-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-17-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-18-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-19-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-20-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-21-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-22-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-23-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-24-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-25-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-26-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-27-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-28-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-29-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-30-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-31-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ENT-32-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ESCOLARIDAD-PRIMARIA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUICIDIO-PRESUNTO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-EDAD-0-9-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-EDAD-10-14-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-EDAD-15-19-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-EDAD-20-24-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-EDAD-25-29-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-01-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-02-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-03-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-04-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-05-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-06-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-07-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-08-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-09-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-10-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-11-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-12-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-13-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-14-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-15-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-16-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-17-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-18-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-19-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-20-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-21-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-22-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-23-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-24-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-25-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-26-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-27-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-28-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-29-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-30-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-31-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ENT-32-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ESCOLARIDAD-PRIMARIA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-HOMBRE-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-01-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-02-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-03-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-04-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-05-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-06-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-07-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-08-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-09-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-10-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-11-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-12-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-13-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-14-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-15-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-16-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-17-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-18-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-19-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-20-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-21-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-22-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-23-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-24-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-25-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-26-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-27-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-28-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-29-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-30-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-31-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ENT-32-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ESCOLARIDAD-PRIMARIA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-44-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-01-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-02-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-03-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-04-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-05-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-06-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-07-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-08-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-09-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-10-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-11-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-12-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-13-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-14-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-15-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-16-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-17-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-18-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-19-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-20-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-21-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-22-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-23-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-24-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-25-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-26-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-27-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-28-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-29-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-30-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-31-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ENT-32-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ESCOLARIDAD-PRIMARIA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-15-29-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-EDAD-0-9-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-EDAD-10-14-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-EDAD-15-19-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-EDAD-20-24-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-EDAD-25-29-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-01-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-02-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-03-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-04-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-05-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-06-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-07-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-08-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-09-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-10-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-11-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-12-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-13-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-14-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-15-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-16-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-17-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-18-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-19-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-20-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-21-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-22-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-23-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-24-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-25-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-26-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-27-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-28-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-29-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-30-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-31-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ENT-32-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-TLOC-MENOS-2500-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-TLOC-2500-14999-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-TLOC-15MIL-99MIL-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-TLOC-100MIL-MAS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ESCOLARIDAD-PRIMARIA-O-MENOS-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-SUIC-OCURRIDO-EN-OLA-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción exacta de defunciones registradas en 2024
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-DICTAMEN
+  tipo: texto
+  unidad: vocabulario cerrado CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE
+- id: RESULT-APERTURA-EDR-2024-K
+  tipo: entero
+  unidad: celdas con R dentro del IC del contendiente
+- id: RESULT-APERTURA-EDR-2024-N
+  tipo: entero
+  unidad: celdas puntuadas
+- id: RESULT-APERTURA-EDR-2024-WILSON-LO
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, inferior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-WILSON-HI
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, superior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-MAE-PUNTO
+  tipo: flotante
+  unidad: error absoluto medio punto del contendiente vs R (descriptivo)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-EDR-2024-MARCA
+  tipo: texto
+  unidad: PROSPECTIVA (contendiente sellado antes de R)

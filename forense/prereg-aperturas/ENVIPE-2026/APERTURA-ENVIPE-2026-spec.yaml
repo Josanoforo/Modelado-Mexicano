@@ -1,0 +1,1512 @@
+# CALC-APERTURA-ENVIPE-2026-0001 -- contrato ejecutable del expediente de apertura (D-15), GEN2-APERTURAS-PREREGISTRADAS-1.
+# NO CORRIDO. La apertura es copiar este archivo a data/corrida0/CALC-APERTURA-ENVIPE-2026-0001/spec.yaml;
+# el primer resultado que produzca es el que se reporta. Derivado por expediente_apertura.escribe_contrato.
+calc_id: CALC-APERTURA-ENVIPE-2026-0001
+spec_md: ../../../forense/prereg-aperturas/ENVIPE-2026/APERTURA-ENVIPE-2026-spec-v1_0.md
+spec_md_sha256: 13b6057d6ab0550cc9bda36bf160af6ef9b65496390ec708706a5efdf3c4a705
+script: forense/prereg-aperturas/ENVIPE-2026/medidor_apertura_envipe_2026.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: 'NO'
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+  tipo: APERTURA-PRE-REGISTRADA (COMMIT-3 de la ola reservada)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: PROSPECTIVA
+  unidad_transferencia: PERSONA
+  contendientes:
+  - CALC-ENVIPE-PERCEPCION-2024-0001
+  - CALC-MC2-ENVIPE2025-0001
+  ola_reservada: ENVIPE 2026 (se abre sólo al correr este CALC)
+  congelado: NO -- expediente; se congela cuando mesa firme su apertura
+inputs:
+- id: envipe2026_csv
+  origen: manifiesto
+  sha256: dd79f589eb6ed7d3675cc86e21ac9bbdbf269913963091d8698d6e28e0540a17
+  funcion: DATO
+  nota: 'ENVIPE 2026 datos abiertos CSV -- reserva RESTANTE: tper_vic1 (los dos contendientes) y tsdem.NIV como
+    eje de persona elegida; tmod_vic (ya abierta por los duelos sellados) sólo para las celdas RETROSPECTIVAS de
+    MC2, sin puntuar; sólo este medidor la lee'
+- id: contendiente_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-ENVIPE-PERCEPCION-2024-0001/medidor.py
+  sha256: f0ef11b56f05c1fda1d4f2c1b5e4a60882ec72798d91e09b72cf63aec045e2ab
+  funcion: CODIGO
+  nota: 'medidor sellado del contendiente: CONDUCTAS, MAPAS, EDADES, EJES_CATS, COLS_*, une'
+- id: contendiente_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENVIPE-PERCEPCION-2024-0001/resultados.json
+  sha256: 40bb5bc35a5454d8cf3ccd12d2bdedca95a91061c0c565e9bc7e0dad19589080
+  funcion: DATO
+  nota: 'piso 2024 sellado: P, IC-LO, IC-HI por celda'
+- id: receta_pisos_salud
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: lee_csv_zip, miembro_unico de la receta de pisos
+- id: motor_pisos_confianza
+  origen: repo
+  ruta: tools/dominios/confianza/motor_pisos.py
+  sha256: 7d0494f43052e0ea39ce0baf5f6505ccf889b386cfa3c0775b0dbdfb56ef958e
+  funcion: CODIGO
+  nota: prepara_diseno, recodifica, eje_mapa, eje_rango, num del motor de pisos
+- id: mc2_medidor
+  origen: repo
+  ruta: data/corrida0/CALC-MC2-ENVIPE2025-0001/medidor.py
+  sha256: 6cfd637b68d2dddfd664d92e2685b86af0272222a48fb4ebbb996194cf927ea8
+  funcion: CODIGO
+  nota: 'medidor sellado de CALC-MC2-ENVIPE2025-0001: _lee, frame_del, frame_per, celdas_del, celdas_per, PFX, PREOC,
+    AP44, COLS_* (no importa recetas)'
+- id: mc2_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-MC2-ENVIPE2025-0001/resultados.json
+  sha256: d004f24f61b4844bb5f49e8da70eb65eb19df5a1081edff4dfef51635be4fded
+  funcion: DATO
+  nota: 'resultados sellados de MC2: rejilla de celdas y P, IC95-INF, IC95-SUP por celda'
+- id: guardia_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/guardia_apertura.py
+  sha256: b9002a494f3d2468909fb4c5c16d3067b0eacd201027498f1b9ff04297ce7c5e
+  funcion: CODIGO
+  nota: auditoría AST, agregador de una variable, adjudicación
+- id: expediente_apertura
+  origen: repo
+  ruta: forense/prereg-aperturas/expediente_apertura.py
+  sha256: 7e7d711a2751c98fe27367c490ee6566874e26418ef9c2315ec27d1ad884ea29
+  funcion: CODIGO
+  nota: esquema, salida y contrato comunes
+variables:
+- nombre: ESTADO-INSEGURO
+  definicion: AP4_3_3 = 2 frente a 1 (spec contendiente §2)
+- nombre: INSEGURO-CAMINAR-DE-NOCHE
+  definicion: AP4_4_A ∈ {3,4} frente a {1,2} (spec contendiente §2)
+- nombre: DEJO-PERMITIR-MENORES-SALIR-SOLOS
+  definicion: AP4_10_02 = 1 frente a 2 (spec contendiente §2)
+- nombre: MC2-DEJO-SALIR-NOCHE
+  definicion: AP4_10_01 = 1 frente a 2; piso ENVIPE 2024 (spec MC2 §1; PROSPECTIVA; unidad PERSONA)
+- nombre: MC2-PREOC-<tema>
+  definicion: AP4_2_<código de PREOC> = 1, entre quienes no marcaron AP4_2_99; once temas; piso ENVIPE 2024 (spec
+    MC2 §1; PROSPECTIVA; unidad PERSONA)
+- nombre: MC2-INSEGURO-<espacio>
+  definicion: AP4_4_<código de AP44> = 2 frente a 1; cinco espacios; piso ENVIPE 2024 (spec MC2 §1; PROSPECTIVA;
+    unidad PERSONA)
+- nombre: MC2-DUPLICADA-EDO-INSEGURO-2025-<segmento>
+  definicion: AP4_3_3 = 2 frente a 1; mismo estimando que ESTADO-INSEGURO de PERCEPCION, que la puntúa; R sin puntuar
+    (unidad PERSONA)
+- nombre: MC2-RETROSPECTIVA-DEL-<indicador>-<segmento>
+  definicion: DENUNCIA (BP1_20 = 1 o BP1_21 = 1), CIFRA-NEGRA, CARPETA-DADA-DENUNCIA (BP1_24 = 1), EXT-TELEFONICA
+    (BP1_5A_2, BPCOD = 9) sobre tmod_vic; RETROSPECTIVA, R sin puntuar (unidad DELITO)
+universo: 'PERCEPCION: persona elegida de 18-97 años (EDAD), ENVIPE 2026, tabla tper_vic1; FAC_ELE > 0, EST_DIS
+  y UPM_DIS no vacíos; NIV de tsdem por ID_PER. MC2: el de su medidor sellado -- persona elegida de tper_vic1 con
+  FAC_ELE > 0 y UPM_DIS no vacía (sin tope de EDAD); delitos de tmod_vic con FAC_DEL > 0 (celdas RETROSPECTIVAS,
+  no puntúan)'
+filtros: 'Un eje a la vez (PERCEPCION: TOTAL, SEXO, EDAD, ESCOLARIDAD, DOMINIO, ENTIDAD; MC2: un segmento NAC/SEXO/DOMINIO/EDAD/SINALOA
+  por llamada); nunca cruces (guardia E.6)'
+ponderador: FAC_ELE (persona elegida); FAC_DEL sólo en las celdas RETROSPECTIVAS de MC2 (delito)
+transformacion: 'Recodificación de cada contendiente, sin tocar: PERCEPCION (spec COLA-ENVIPE-PERCEPCION §2: bin(col,
+  UNO, CERO)); MC2 (frame_del/frame_per de su medidor sellado, con la ola 2026 en la ranura de la última ola de
+  cada estimando). Columna ausente en el catálogo 2026 -> NO-ESTIMABLE (R None), sin recodificación ad hoc'
+estimando: 'R = Σw·y/Σw por celda en ENVIPE 2026; cobertura de R en el IC del contendiente (PERCEPCION: IC de diseño
+  del piso 2024; MC2: IC95 bootstrap de su última ola). Una sola primaria sobre todas las celdas puntuadas (todas
+  de unidad PERSONA)'
+seed:
+  aplica: false
+  razon: R es un punto; la cobertura usa el IC ya sellado del contendiente
+parametros:
+  nominal: 0.95
+  z: 1.959964
+  regla: cobertura R en [lo, hi] del contendiente; Wilson 95%; NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificación ad hoc)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'determinista: sumas float64 sin remuestreo'
+resultados:
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-DOMINIO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-DOMINIO-COMPLEMENTO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-DOMINIO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-ESTADO-INSEGURO-ENTIDAD-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-DOMINIO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-DOMINIO-COMPLEMENTO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-DOMINIO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-INSEGURO-CAMINAR-DE-NOCHE-ENTIDAD-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-TOTAL-TODOS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-SEXO-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-SEXO-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ESCOLARIDAD-HASTA-PRIMARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ESCOLARIDAD-SECUNDARIA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ESCOLARIDAD-MEDIA-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ESCOLARIDAD-SUPERIOR-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-DOMINIO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-DOMINIO-COMPLEMENTO-URBANO-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-DOMINIO-RURAL-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-01-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-02-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-03-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-04-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-05-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-06-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-07-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-08-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-09-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-10-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-11-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-12-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-13-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-14-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-15-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-16-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-17-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-18-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-19-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-20-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-21-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-22-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-23-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-24-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-25-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-26-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-27-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-28-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-30-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-31-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DEJO-PERMITIR-MENORES-SALIR-SOLOS-ENTIDAD-32-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DEJO-SALIR-NOCHE-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DEJO-SALIR-NOCHE-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DEJO-SALIR-NOCHE-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DEJO-SALIR-NOCHE-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DEJO-SALIR-NOCHE-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DEJO-SALIR-NOCHE-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DEJO-SALIR-NOCHE-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DEJO-SALIR-NOCHE-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DEJO-SALIR-NOCHE-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DEJO-SALIR-NOCHE-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-CARPETA-DADA-DENUNCIA-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-CARPETA-DADA-DENUNCIA-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-CARPETA-DADA-DENUNCIA-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-CARPETA-DADA-DENUNCIA-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-CARPETA-DADA-DENUNCIA-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-CARPETA-DADA-DENUNCIA-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-CIFRA-NEGRA-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-CIFRA-NEGRA-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-CIFRA-NEGRA-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-CIFRA-NEGRA-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-CIFRA-NEGRA-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-CIFRA-NEGRA-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-DENUNCIA-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-DENUNCIA-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-DENUNCIA-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-DENUNCIA-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-DENUNCIA-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-DENUNCIA-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-EXT-TELEFONICA-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-EXT-TELEFONICA-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-RETROSPECTIVA-DEL-EXT-TELEFONICA-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DUPLICADA-EDO-INSEGURO-2025-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DUPLICADA-EDO-INSEGURO-2025-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DUPLICADA-EDO-INSEGURO-2025-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DUPLICADA-EDO-INSEGURO-2025-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DUPLICADA-EDO-INSEGURO-2025-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DUPLICADA-EDO-INSEGURO-2025-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DUPLICADA-EDO-INSEGURO-2025-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DUPLICADA-EDO-INSEGURO-2025-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DUPLICADA-EDO-INSEGURO-2025-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DUPLICADA-EDO-INSEGURO-2025-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-DUPLICADA-EDO-INSEGURO-2025-SINALOA-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-BANCO-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-BANCO-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-BANCO-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-BANCO-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-BANCO-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-BANCO-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-BANCO-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-BANCO-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-BANCO-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-BANCO-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CAJERO-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CAJERO-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CAJERO-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CAJERO-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CAJERO-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CAJERO-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CAJERO-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CAJERO-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CAJERO-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CAJERO-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CALLE-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CALLE-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CALLE-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CALLE-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CALLE-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CALLE-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CALLE-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CALLE-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CALLE-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CALLE-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CARRETERA-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CARRETERA-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CARRETERA-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CARRETERA-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CARRETERA-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CARRETERA-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CARRETERA-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CARRETERA-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CARRETERA-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-CARRETERA-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-TRANSPORTE-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-TRANSPORTE-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-TRANSPORTE-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-TRANSPORTE-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-TRANSPORTE-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-TRANSPORTE-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-TRANSPORTE-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-TRANSPORTE-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-TRANSPORTE-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-INSEGURO-TRANSPORTE-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-AGUA-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-AGUA-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-AGUA-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-AGUA-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-AGUA-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-AGUA-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-AGUA-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-AGUA-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-AGUA-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-AGUA-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-CORRUPCION-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-CORRUPCION-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-CORRUPCION-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-CORRUPCION-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-CORRUPCION-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-CORRUPCION-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-CORRUPCION-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-CORRUPCION-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-CORRUPCION-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-CORRUPCION-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESASTRES-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESASTRES-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESASTRES-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESASTRES-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESASTRES-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESASTRES-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESASTRES-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESASTRES-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESASTRES-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESASTRES-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESEMPLEO-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESEMPLEO-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESEMPLEO-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESEMPLEO-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESEMPLEO-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESEMPLEO-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESEMPLEO-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESEMPLEO-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESEMPLEO-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-DESEMPLEO-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-EDUCACION-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-EDUCACION-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-EDUCACION-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-EDUCACION-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-EDUCACION-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-EDUCACION-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-EDUCACION-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-EDUCACION-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-EDUCACION-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-EDUCACION-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-IMPUNIDAD-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-IMPUNIDAD-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-IMPUNIDAD-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-IMPUNIDAD-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-IMPUNIDAD-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-IMPUNIDAD-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-IMPUNIDAD-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-IMPUNIDAD-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-IMPUNIDAD-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-IMPUNIDAD-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-INSEGURIDAD-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-INSEGURIDAD-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-INSEGURIDAD-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-INSEGURIDAD-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-INSEGURIDAD-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-INSEGURIDAD-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-INSEGURIDAD-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-INSEGURIDAD-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-INSEGURIDAD-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-INSEGURIDAD-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-NARCOTRAFICO-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-NARCOTRAFICO-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-NARCOTRAFICO-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-NARCOTRAFICO-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-NARCOTRAFICO-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-NARCOTRAFICO-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-NARCOTRAFICO-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-NARCOTRAFICO-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-NARCOTRAFICO-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-NARCOTRAFICO-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-POBREZA-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-POBREZA-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-POBREZA-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-POBREZA-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-POBREZA-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-POBREZA-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-POBREZA-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-POBREZA-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-POBREZA-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-POBREZA-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-PRECIOS-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-PRECIOS-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-PRECIOS-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-PRECIOS-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-PRECIOS-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-PRECIOS-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-PRECIOS-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-PRECIOS-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-PRECIOS-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-PRECIOS-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-SALUD-2024-DOM-C-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-SALUD-2024-DOM-R-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-SALUD-2024-DOM-U-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-SALUD-2024-EDAD-18-29-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-SALUD-2024-EDAD-30-44-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-SALUD-2024-EDAD-45-59-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-SALUD-2024-EDAD-60-MAS-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-SALUD-2024-HOMBRE-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-SALUD-2024-MUJER-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MC2-PREOC-SALUD-2024-NAC-R
+  tipo: proporcion
+  unidad: proporción ponderada en la ola reservada
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-DICTAMEN
+  tipo: texto
+  unidad: vocabulario cerrado CALIBRADO/SUBCUBRE/SOBRECUBRE/NO-ESTIMABLE
+- id: RESULT-APERTURA-ENVIPE-2026-K
+  tipo: entero
+  unidad: celdas con R dentro del IC del contendiente
+- id: RESULT-APERTURA-ENVIPE-2026-N
+  tipo: entero
+  unidad: celdas puntuadas
+- id: RESULT-APERTURA-ENVIPE-2026-WILSON-LO
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, inferior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-WILSON-HI
+  tipo: proporcion
+  unidad: IC de Wilson 95% de k/n, superior
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MAE-PUNTO
+  tipo: flotante
+  unidad: error absoluto medio punto del contendiente vs R (descriptivo)
+  permite_no_estimable: true
+- id: RESULT-APERTURA-ENVIPE-2026-MARCA
+  tipo: texto
+  unidad: PROSPECTIVA (contendiente sellado antes de R)
