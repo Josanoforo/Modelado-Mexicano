@@ -42,7 +42,7 @@ afirmacion	ASTRA5-U0-CONOC-008	TECNOLOGIA	ENDUTIH	ENDUTIH 2023 (INEGI/IFT)	MEDIB
 afirmacion	ASTRA5-U0-CONOC-029	TRABAJO	ENOE	ENOE 4T 2025 (INEGI); microdato ya en corpus	MEDIBLE-EN-CORPUS;SIN-CIFRA		PENDIENTE-ENOE
 afirmacion	ASTRA5-U0-CONS-010	DINERO	ENIF	ENIF 2024, pregunta 7.1 (P7_1_1)	SIN-C3		MEDIDO:CONFIRMA (CALC-MC2-ENIF2024-M7-0001)
 afirmacion	ASTRA5-U0-CONS-011	DINERO	ENIF	ENIF 2012/2018/2021/2024, pregunta sobre tenencia de tarjeta de credito bancaria	SIN-C3		MEDIDO:CONFIRMA (CALC-MC2-ENIF2024-0001)
-afirmacion	ASTRA5-U0-CONS-023	CONSUMO	ENIGH	ENIGH 2024 (INEGI), Reporte de resultados	SIN-C3		PENDIENTE-ENIGH
+afirmacion	ASTRA5-U0-CONS-023	CONSUMO	ENIGH	ENIGH 2024 (INEGI), Reporte de resultados	SIN-C3		MEDIDO:MATIZA (CALC-MC2-ENIGH2022-0001)
 afirmacion	ASTRA5-U0-CONS-038	TECNOLOGIA	ENDUTIH	ENDUTIH (ola no especificada por el report; el corpus tiene 2023/2024/2025)	SIN-C3		PENDIENTE-ENDUTIH
 afirmacion	ASTRA5-U0-CONS-039	DINERO	ENIF	ENIF 2024	SIN-C3		MEDIDO:MATIZA (CALC-MC2-ENIF2024-0001)
 afirmacion	ASTRA5-U0-CRFAC-001	DINERO	BANXICO	serie administrativa (no encuesta); Banxico 'IMOR de la cartera de credito al consumo por producto' (mensual, HTML ofici	SIN-C3		PENDIENTE-BANXICO
@@ -66,8 +66,8 @@ afirmacion	ASTRA5-U0-ENOE-003	TRABAJO	ENOE	ENOE 2024 T3, cuestionario básico v7
 afirmacion	ASTRA5-U0-FAM-007	FAMILIA_CUIDADOS	ENUT	ENUT 2024	SIN-C3		PENDIENTE-ENUT
 afirmacion	ASTRA5-U0-FAM-008	FAMILIA_CUIDADOS	ENUT	ENUT 2024	SIN-C3		PENDIENTE-ENUT
 afirmacion	ASTRA5-U0-FAM-017	DINERO	ENIF	ENIF 2012/2015/2018/2021/2024 (participacion en tanda y tenencia de cuenta, presentes en todas las olas revisadas)	SIN-C3		MEDIDO:ROMPE-PARCIAL (CALC-MC2-ENIF2024-0001)
-afirmacion	ASTRA5-U0-FAM-034	DINERO	ENIGH	ENIGH 2024 (nueva serie) u olas previas; en manifiesto con cuestionarios de hogares/gastos/negocios	SIN-C3		PENDIENTE-ENIGH
-afirmacion	ASTRA5-U0-FAM-036	DINERO	ENIGH	ENIGH (multiples olas en manifiesto, incl. 2024)	SIN-C3		PENDIENTE-ENIGH
+afirmacion	ASTRA5-U0-FAM-034	DINERO	ENIGH	ENIGH 2024 (nueva serie) u olas previas; en manifiesto con cuestionarios de hogares/gastos/negocios	SIN-C3		MEDIDO:MATIZA (CALC-MC2-ENIGH2022-0001)
+afirmacion	ASTRA5-U0-FAM-036	DINERO	ENIGH	ENIGH (multiples olas en manifiesto, incl. 2024)	SIN-C3		MEDIDO:MATIZA (CALC-MC2-ENIGH2022-0001)
 afirmacion	ASTRA5-U0-FAM-037	RURAL_INDIGENA	INEGI	candidato: INEGI Censo 2020 (poblacion indigena) + CONEVAL (medicion de pobreza)	SIN-C3		PENDIENTE-INEGI
 afirmacion	ASTRA5-U0-FAM-039	GENERO	ENUT	ENUT 2024 (mismo instrumento que familia-007/008, modulo de cuidado + condicion de actividad + deseo de trabajar)	SIN-C3		PENDIENTE-ENUT
 afirmacion	ASTRA5-U0-FAM-040	VIOLENCIA	ENDIREH	ENDIREH 2021 (componentes fisica 15.60% y no-fisica 38.27% ya medidos por separado, RESULTS-ASTRA5.md)	SIN-C3		PENDIENTE-ENDIREH
@@ -86,8 +86,8 @@ afirmacion	ASTRA5-U0-FIN-013	DINERO	SIN-TOKEN	enif2024	MATIZA		CON-JUICIO-C3:MAT
 afirmacion	ASTRA5-U0-FIN-018	CONFIANZA	SIN-TOKEN	encig2023 (y olas previas para serie)	SIN-CIFRA		PENDIENTE-SIN-TOKEN
 afirmacion	ASTRA5-U0-FIN-023	DINERO	SIN-TOKEN	ensafi2023	SIN-CIFRA		PENDIENTE-SIN-TOKEN
 afirmacion	ASTRA5-U0-FIN-028	DINERO	SIN-TOKEN	enif2024; enif_2015	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
-afirmacion	ASTRA5-U0-FIN-031	DINERO	ENIGH	enigh (ola por confirmar) + informe BBVA Research	SIN-CIFRA		PENDIENTE-ENIGH
-afirmacion	ASTRA5-U0-FIN-032	DINERO	ENIGH	enigh (ola por confirmar) + informe BBVA Research	SIN-CIFRA		PENDIENTE-ENIGH
+afirmacion	ASTRA5-U0-FIN-031	DINERO	ENIGH	enigh (ola por confirmar) + informe BBVA Research	SIN-CIFRA		MEDIDO:MATIZA (CALC-ENIGH2022-INTENSIDAD-REMESAS-0001)
+afirmacion	ASTRA5-U0-FIN-032	DINERO	ENIGH	enigh (ola por confirmar) + informe BBVA Research	SIN-CIFRA		MEDIDO:MATIZA (CALC-ENIGH2022-INTENSIDAD-REMESAS-0001)
 afirmacion	ASTRA5-U0-FIN-034	DINERO	SIN-TOKEN	enif2024	SIN-CIFRA		MEDIDO:MATIZA (CALC-MC2-ENIF2024-0001)
 afirmacion	ASTRA5-U0-GEN-001	GENERO	ENDIREH	ENDIREH 2021, Cuestionario A	SIN-C3		PENDIENTE-ENDIREH
 afirmacion	ASTRA5-U0-GEN-009	TRABAJO	ENOE	ENOE 2024T3 (microdatos + FD 'Estructura de la base de datos ENOE 2024') — en manifiesto	SIN-C3		PENDIENTE-ENOE
@@ -110,13 +110,13 @@ afirmacion	ASTRA5-U0-JUV-016	RELIGIOSIDAD	SIN-TOKEN	Censo de Población y Vivien
 afirmacion	ASTRA5-U0-JUV-019	GENERO	ENDISEG	ENDISEG 2021 (INEGI) — no registrada en el manifiesto de este proyecto	SIN-C3		PENDIENTE-ENDISEG
 afirmacion	ASTRA5-U0-JUV-026	POLITICA	SIN-TOKEN	Latinobarómetro 2024 (en corpus, microdato Stata); ola de comparación previa (no confirmada en corpus)	SIN-C3		PENDIENTE-SIN-TOKEN
 afirmacion	ASTRA5-U0-JUV-028	TRABAJO	ENOE	ENOE 2024T3 (INEGI, ya usado en RESULT-ENOE-PISOS-TABLA)	SIN-C3		PENDIENTE-ENOE
-afirmacion	ASTRA5-U0-MER-004	MOVILIDAD	ENIGH	ENIGH 2024 nueva serie, reporte de resultados 23/25 de 30-jul-2025	SIN-CIFRA		PENDIENTE-ENIGH
-afirmacion	ASTRA5-U0-MER-005	MOVILIDAD	ENIGH	ENIGH 2024 nueva serie, reporte de resultados 23/25 de 30-jul-2025	SIN-CIFRA		PENDIENTE-ENIGH
+afirmacion	ASTRA5-U0-MER-004	MOVILIDAD	ENIGH	ENIGH 2024 nueva serie, reporte de resultados 23/25 de 30-jul-2025	SIN-CIFRA		MEDIDO:MATIZA (CALC-MC2-ENIGH2022-0001)
+afirmacion	ASTRA5-U0-MER-005	MOVILIDAD	ENIGH	ENIGH 2024 nueva serie, reporte de resultados 23/25 de 30-jul-2025	SIN-CIFRA		MEDIDO:MATIZA (CALC-MC2-ENIGH2022-0001)
 afirmacion	ASTRA5-U0-MER-006	CONFIANZA	ENCIG	ENCIG 2025, captación 31-oct a 16-dic-2025	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
 afirmacion	ASTRA5-U0-MER-007	CONFIANZA	ENCIG	ENCIG 2025, captación 31-oct a 16-dic-2025	SIN-CIFRA		PENDIENTE-ENCIG
 afirmacion	ASTRA5-U0-MER-009	CONFIANZA	ENCIG	ENCIG 2025, captación 31-oct a 16-dic-2025	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
 afirmacion	ASTRA5-U0-MER-038	GENERO	INEGI	INEGI ENIGH 2024 (nueva serie), Cuadro 9 del reporte de resultados; Buk 'Radiografia de las Mujeres en el Trabajo 2026' 	SIN-CIFRA		PENDIENTE-INEGI
-afirmacion	ASTRA5-U0-MIGR-006	MIGRACION	ENIGH	ENIGH 2024 Nueva Serie (INEGI)	SIN-CIFRA		PENDIENTE-ENIGH
+afirmacion	ASTRA5-U0-MIGR-006	MIGRACION	ENIGH	ENIGH 2024 Nueva Serie (INEGI)	SIN-CIFRA		MEDIDO:PISO-SIN-DICTAMEN (MC2-ENIGH2022-dictamenes.tsv)
 afirmacion	ASTRA5-U0-MIGR-009	MIGRACION	ENADID	ENADID 2023 (INEGI), tabla TMIGRANTE	SIN-CIFRA		PENDIENTE-ENADID
 afirmacion	ASTRA5-U0-MIGR-011	MIGRACION	ENADID	ENADID 2023 (INEGI), tabla TMIGRANTE	SIN-CIFRA		PENDIENTE-ENADID
 afirmacion	ASTRA5-U0-MIGR-013	MIGRACION	ENADID	ENADID 2023 (INEGI), tabla THOGAR	SIN-CIFRA		PENDIENTE-ENADID
@@ -157,7 +157,7 @@ afirmacion	ASTRA5-U0-SALMEN-009	SALUD_MENTAL	SIN-TOKEN	ENNVIH-1 (2002), ENNVIH-2
 afirmacion	ASTRA5-U0-SALMEN-013	SALUD_MENTAL	ENSANUT	ENSANUT 2022 (Vazquez-Salas R et al., Salud Publica Mex)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
 afirmacion	ASTRA5-U0-SALMEN-014	SALUD_MENTAL	ENSANUT	ENSANUT Continua 2023-2024 (rotulada 'ENSANUT2024-v2026-09-01' en el corpus)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
 afirmacion	ASTRA5-U0-SALMEN-025	TECNOLOGIA	ENDUTIH	ENDUTIH (Encuesta Nacional sobre Disponibilidad y Uso de Tecnologias de la Informacion en los Hogares) -- ola no especif	SIN-CIFRA		PENDIENTE-ENDUTIH
-afirmacion	ASTRA5-U0-SALMEN-028	SALUD_MENTAL	ENIGH	ENIGH 2024 (Nueva Serie), cuestionario de gastos del hogar	SIN-CIFRA		PENDIENTE-ENIGH
+afirmacion	ASTRA5-U0-SALMEN-028	SALUD_MENTAL	ENIGH	ENIGH 2024 (Nueva Serie), cuestionario de gastos del hogar	SIN-CIFRA		MEDIDO:NO-CONSTRUIBLE (MC2-ENIGH2022-dictamenes.tsv)
 afirmacion	ASTRA5-U0-SALMEN-032	RURAL_INDIGENA	ENSANUT	ENSANUT 2024 Continua, cuestionario 'Utilizadores de servicios de salud'; ENIGH 2024 Nueva Serie	SIN-CIFRA		MEDIDO:MATIZA (CALC-MC2-ENSANUT2024-0001)
 afirmacion	ASTRA5-U0-SALUD-006	SALUD	ENSANUT	ENSANUT 2024, cuestionario de Utilizadores, variable u0201 (institución/prestador de atención, 24 categorías, incluye ca	CONFIRMA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
 afirmacion	ASTRA5-U0-SALUD-009	SALUD	ENSANUT	ENSANUT 2024, cuestionario Hogar, Sección IV 'Situación de salud y utilización de servicios de salud', pregunta 4.1-4.2 	CONFIRMA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
