@@ -1,0 +1,164 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-MC2-ENDUTIH2024-0001
+spec_md: ../../../forense/prereg-caja/MC2-ENDUTIH2024-spec-v1_0.md
+spec_md_sha256: 0f500f71b1d66702ecf15d37b0172d231593a105c5d7102588c51d8ff6129404
+script: data/corrida0/CALC-MC2-ENDUTIH2024-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  cuenta_gen2_nota: "encargo GEN2-MEDICION-CARRILES-2 (ADENDA-2: «sigue»); no adopta"
+  acto: GEN2-MEDICION-CARRILES-2
+  tipo: PISO-DESCRIPTIVO-RETROSPECTIVO
+  temporalidad: RETROSPECTIVA
+
+inputs:
+  - {id: endutih2024_bd_dbf_zip, origen: manifiesto}
+  - id: ENDUTIH-DBFMINI
+    origen: repo
+    funcion: CODIGO
+    ruta: tests/dbfmini.py
+    sha256: a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b
+
+lectura_de_estructura_previa: "FD endutih2024_fd_xlsx (tic_2024_usuarios 7.1-7.4, 7.15, 7.16) y nombres de campos del DBF; de los pisos ENDUTIH sellados sólo llaves; ningún registro leído antes del COMMIT-1. ENDUTIH 2025 (R05) no es input."
+
+variables:
+  - {archivo: tic_2024_usuarios.DBF, variable: EDAD, rol: "edad"}
+  - {archivo: tic_2024_usuarios.DBF, variable: FAC_PER, rol: "ponderador"}
+  - {archivo: tic_2024_usuarios.DBF, variable: EST_DIS, rol: "estrato"}
+  - {archivo: tic_2024_usuarios.DBF, variable: UPM_DIS, rol: "UPM"}
+  - {archivo: tic_2024_usuarios.DBF, variable: P7_1, rol: "usó internet 1/2"}
+  - {archivo: tic_2024_usuarios.DBF, variable: P7_3, rol: "frecuencia de uso"}
+  - {archivo: tic_2024_usuarios.DBF, variable: P7_4, rol: "horas al día"}
+  - {archivo: tic_2024_usuarios.DBF, variable: P7_15, rol: "usó redes sociales"}
+  - {archivo: tic_2024_usuarios.DBF, variable: P7_16_6, rol: "usa WhatsApp"}
+
+universo: "Persona elegida de 6 años y más (tic_2024_usuarios.DBF), ENDUTIH 2024."
+filtros: "P7_4 fuera de 1-24 fuera; P7_3 fuera de 1-5 fuera; WhatsApp sólo entre usuarios."
+ponderador: FAC_PER sin normalizar
+transformacion: "Ver spec humana §1: proporciones y medias ponderadas por celda."
+estimando: "Proporciones y medias ponderadas con IC95 de diseño; RETROSPECTIVO; dictámenes B-bis §2."
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap de UPM_DIS con reemplazo dentro de EST_DIS; percentiles 2.5/97.5
+  singleton: autorremuestreo; varianza cero; contado en DIAG-N-ESTRATOS-UPM-UNICA
+  hash_medidor_sha256: fbf9432008466373dfa581486b6e6e4e8cfda7f30f34f0b6e5a30e08e4a7ca2c
+  hash_payload_sha256: "endutih2024_bd_dbf_zip ef723ed125c81c4a9036b74fab67f520de007a2d52c5e0b03d4ebec509e1ae87"
+  hash_prereg_sha256: 0f500f71b1d66702ecf15d37b0172d231593a105c5d7102588c51d8ff6129404
+  hash_encargo_sha256: 791d0a894ac00d25d51e8001b686ac0db05dd5411e4ebfd412e9882173f1e6d5
+
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-8
+  razon: misma semilla y sumas deterministas; enteros comparan exacto
+
+resultados:
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-NAC-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-NAC-P, tipo: flotante, unidad: "horas al día, media ponderada entre usuarios", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-NAC-IC95-INF, tipo: flotante, unidad: "horas al día, media ponderada entre usuarios", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-NAC-IC95-SUP, tipo: flotante, unidad: "horas al día, media ponderada entre usuarios", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-NAC-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-NAC-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-NAC-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-NAC-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-18-24-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-18-24-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-18-24-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-18-24-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-18-24-P, tipo: flotante, unidad: "horas al día, media ponderada entre usuarios", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-18-24-IC95-INF, tipo: flotante, unidad: "horas al día, media ponderada entre usuarios", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-18-24-IC95-SUP, tipo: flotante, unidad: "horas al día, media ponderada entre usuarios", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-18-24-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-18-24-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-18-24-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-18-24-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-18-24-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-18-24-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-18-24-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-18-24-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-18-24-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-18-24-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-18-24-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-18-24-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-18-24-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-25-54-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-25-54-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-25-54-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-25-54-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-25-54-P, tipo: flotante, unidad: "horas al día, media ponderada entre usuarios", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-25-54-IC95-INF, tipo: flotante, unidad: "horas al día, media ponderada entre usuarios", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-25-54-IC95-SUP, tipo: flotante, unidad: "horas al día, media ponderada entre usuarios", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-25-54-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-25-54-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-25-54-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-25-54-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-25-54-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-25-54-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-25-54-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-25-54-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-25-54-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-25-54-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-25-54-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-25-54-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-25-54-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-55-64-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-55-64-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-55-64-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-55-64-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-55-64-P, tipo: flotante, unidad: "horas al día, media ponderada entre usuarios", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-55-64-IC95-INF, tipo: flotante, unidad: "horas al día, media ponderada entre usuarios", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-55-64-IC95-SUP, tipo: flotante, unidad: "horas al día, media ponderada entre usuarios", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-55-64-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-55-64-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-55-64-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-55-64-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-55-64-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-55-64-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-55-64-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-55-64-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-55-64-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-55-64-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-55-64-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-55-64-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-55-64-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-65-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-65-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-65-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-INTERNET-EDAD-65-MAS-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-65-MAS-P, tipo: flotante, unidad: "horas al día, media ponderada entre usuarios", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-65-MAS-IC95-INF, tipo: flotante, unidad: "horas al día, media ponderada entre usuarios", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-65-MAS-IC95-SUP, tipo: flotante, unidad: "horas al día, media ponderada entre usuarios", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-HORAS-DIA-EDAD-65-MAS-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-65-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-65-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-65-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-USO-DIARIO-EDAD-65-MAS-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-65-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-65-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-65-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-REDES-EDAD-65-MAS-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-65-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-65-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-65-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 6+", permite_no_estimable: true}
+  - {id: RESULT-MC2-ENDUTIH2024-WHATSAPP-USUARIOS-INTERNET-EDAD-65-MAS-N, tipo: entero, unidad: "n no ponderado (persona 6+)"}
+  - {id: RESULT-MC2-ENDUTIH2024-DIAG-FILAS, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENDUTIH2024-DIAG-USUARIOS, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENDUTIH2024-DIAG-HORAS-FUERA-1-24, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENDUTIH2024-DIAG-N-ESTRATOS, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENDUTIH2024-DIAG-N-UPM, tipo: entero, unidad: "conteo de diagnóstico"}
+  - {id: RESULT-MC2-ENDUTIH2024-DIAG-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo de diagnóstico"}
