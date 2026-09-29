@@ -1,0 +1,49 @@
+{
+  "columnas_reales_no_autorizadas_en_codigo": [],
+  "comandos_con_red": [],
+  "init": {
+    "claude_code_version": "2.1.284",
+    "cwd": "/home/pc0/vyc27-rec/latinobarometro-cola-2023-0001",
+    "mcp_servers": [],
+    "model": "claude-opus-5-5",
+    "permissionMode": "acceptEdits",
+    "tools": [
+      "Bash",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Read",
+      "Write"
+    ]
+  },
+  "llamadas": 14,
+  "modelos": [
+    "claude-opus-5-5"
+  ],
+  "paquete": "latinobarometro-cola-2023-0001",
+  "resultado": {
+    "duration_ms": 102521,
+    "is_error": false,
+    "num_turns": 15,
+    "permission_denials": [
+      {
+        "tool_input": {
+          "command": "cd /home/pc0/vyc27-rec/latinobarometro-cola-2023-0001/salida && find . -type f ! -name SELLO.txt | sort | xargs sha256sum > SELLO.txt && cat SELLO.txt && sha256sum resultado.json && python3 -c \"\nimport json;r=json.load(open('resultado.json'))\nfor f in r['filas']:\n  if 'TOTAL' in f['llave']: print(f['llave'][33:],f['punto'][:8],f['ic95_inf'][:8],f['ic95_sup'][:8])\"",
+          "description": "Write seal file and show TOTAL rows"
+        },
+        "tool_name": "Bash",
+        "tool_use_id": "toolu_01PRGjDZ4ynjL1LF2Cv9vBNd"
+      }
+    ],
+    "subtype": "success",
+    "total_cost_usd": 0.5686383999999999
+  },
+  "rutas_fuera_del_cwd": [],
+  "session_id": "e50b1d09-9003-4869-9955-3874bd157ec8",
+  "veredicto": {
+    "CAMPOS-DENTRO": true,
+    "CERO-LECTURAS-FUERA": true,
+    "SIN-RED": true,
+    "SOLO-OPUS": true
+  }
+}

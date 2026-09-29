@@ -1,0 +1,66 @@
+{
+  "columnas_reales_no_autorizadas_en_codigo": [],
+  "comandos_con_red": [],
+  "init": {
+    "claude_code_version": "2.1.284",
+    "cwd": "/home/pc0/vyc27-rec/ccpv-fam-pisos-0001",
+    "mcp_servers": [],
+    "model": "claude-opus-5-5",
+    "permissionMode": "acceptEdits",
+    "tools": [
+      "Bash",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Read",
+      "Write"
+    ]
+  },
+  "llamadas": 35,
+  "modelos": [
+    "claude-opus-5-5"
+  ],
+  "paquete": "ccpv-fam-pisos-0001",
+  "resultado": {
+    "duration_ms": 716567,
+    "is_error": false,
+    "num_turns": 36,
+    "permission_denials": [
+      {
+        "tool_input": {
+          "command": "sed -i 's/from concurrent.futures import ProcessPoolExecutor/import multiprocessing as mp\\nfrom concurrent.futures import ProcessPoolExecutor/; s/with ProcessPoolExecutor(max_workers=workers) as ex:/with ProcessPoolExecutor(max_workers=workers, mp_context=mp.get_context(\"fork\")) as ex:/' salida/codigo/carga.py && time python3 -c \"\nimport sys,os; sys.path.insert(0,'salida/codigo')\nfrom carga import carga\nviv,per,rutas,vl=carga(cache=os.environ['TMPDIR']+'/ccpv-rec-propio/cache.pkl')\nprint(viv.shape, per.shape, len(rutas))\nprint(viv.memory_usage(deep=True).sum()/1e9, per.memory_usage(deep=True).sum()/1e9)\n\" 2>&1 | tail -5",
+          "description": "Use fork context and load all files",
+          "timeout": 3600000
+        },
+        "tool_name": "Bash",
+        "tool_use_id": "toolu_01MseejQHBPW18THwFKRmEBx"
+      },
+      {
+        "tool_input": {
+          "command": "rm -rf \"$TMPDIR/ccpv-rec-propio\" && cd salida && find . -type f ! -name SELLO.txt | sort | xargs -d '\\n' sha256sum > SELLO.txt && cat SELLO.txt",
+          "description": "Remove temp cache and write seal"
+        },
+        "tool_name": "Bash",
+        "tool_use_id": "toolu_018VoEsyvfAJgUCnPhawbi1t"
+      }
+    ],
+    "subtype": "success",
+    "total_cost_usd": 1.5589046000000002
+  },
+  "rutas_fuera_del_cwd": [
+    "/",
+    "/1e9",
+    "/ccpv-rec-propio/cache.pkl",
+    "/ccpv-rec-propio/smoke",
+    "/ccpv-rec-propio/smoke/diagnostico.json",
+    "/ccpv_cache.pkl",
+    "/with"
+  ],
+  "session_id": "d8d252ef-cdaf-47c8-9bfe-496a68798c8c",
+  "veredicto": {
+    "CAMPOS-DENTRO": true,
+    "CERO-LECTURAS-FUERA": false,
+    "SIN-RED": true,
+    "SOLO-OPUS": true
+  }
+}

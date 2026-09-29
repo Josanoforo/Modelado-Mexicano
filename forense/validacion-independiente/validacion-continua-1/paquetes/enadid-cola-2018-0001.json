@@ -1,0 +1,64 @@
+{
+ "paquete": "enadid-cola-2018-0001",
+ "calc": "CALC-ENADID-COLA-2018-0001",
+ "docs": [
+  {
+   "src": "forense/prereg-caja/COLA-ENADID-PISOS-spec-v1_0.md",
+   "miembro": null,
+   "dst": "docs/spec-humana.md"
+  },
+  {
+   "src": "data/raw/ENADID/2018/fd_enadid18.xlsx",
+   "miembro": null,
+   "dst": "docs/fd_enadid18.xlsx"
+  }
+ ],
+ "datos": [
+  {
+   "src": "data/raw/ENADID/2018/base_datos_enadid18_csv.zip",
+   "sha256": "3c6643b706ec5ecd44a4649c8d57c08f4a992117f189e448f13d4774a60a3e5f",
+   "miembro": "TMujer2.csv",
+   "dst": "datos/tmujer2.csv"
+  },
+  {
+   "src": "data/raw/ENADID/2018/base_datos_enadid18_csv.zip",
+   "sha256": "3c6643b706ec5ecd44a4649c8d57c08f4a992117f189e448f13d4774a60a3e5f",
+   "miembro": "TSdem.csv",
+   "dst": "datos/tsdem.csv"
+  },
+  {
+   "src": "data/raw/ENADID/2018/base_datos_enadid18_csv.zip",
+   "sha256": "3c6643b706ec5ecd44a4649c8d57c08f4a992117f189e448f13d4774a60a3e5f",
+   "miembro": "TMigrante.csv",
+   "dst": "datos/tmigrante.csv"
+  }
+ ],
+ "campos": {
+  "datos/tmujer2.csv": [
+   "p10_1",
+   "edad_muj",
+   "tam_loc",
+   "niv",
+   "fac_per",
+   "est_dis",
+   "upm_dis"
+  ],
+  "datos/tsdem.csv": [
+   "llave_hog",
+   "paren",
+   "sexo",
+   "ent",
+   "tam_loc",
+   "fac_viv",
+   "est_dis",
+   "upm_dis"
+  ],
+  "datos/tmigrante.csv": [
+   "llave_hog",
+   "p4_6",
+   "p4_15"
+  ]
+ },
+ "filtro_filas": "MUJERES (tmujer2): edad_muj 15-54, fac_per>0, est_dis y upm_dis no vacios. HOGARES (tsdem): paren=1 (jefatura), fac_viv>0, est_dis y upm_dis no vacios; particion con/sin migrante varon por llave_hog contra tmigrante (p4_6=1 y p4_15 in {1,3}).",
+ "notas": "Ola 2018 abierta; ENADID 2023 RESERVADA no incluida. Las 18 columnas existen en los encabezados reales (minusculas exactas como en la spec; sin discrepancias). FD xlsx incluido (descriptor no numerico; hojas TMUJER2, TSDEM, TMIGRANTE). El paquete no lleva el zip completo: solo 3 miembros de 7."
+}

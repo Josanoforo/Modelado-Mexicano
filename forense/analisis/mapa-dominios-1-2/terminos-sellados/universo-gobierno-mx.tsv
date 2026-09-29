@@ -1,0 +1,44 @@
+host	url	http	bytes	sha256	fecha_utc	sellado_en_repo
+www.dgis.salud.gob.mx	http://www.dgis.salud.gob.mx/contenidos/basesdedatos/bdc_urgencias_gobmx.html	200	15559	5ee711ff2bbbaaa59cbeb23c5811e6d5b0c7b91ab9cf1e7898de002db2367967	2026-09-29T00:10:46Z	NO (solo sha256)
+www.dgis.salud.gob.mx	http://www.dgis.salud.gob.mx/contenidos/basesdedatos/bdc_urgencias_gobmx.html	200	15559	5ee711ff2bbbaaa59cbeb23c5811e6d5b0c7b91ab9cf1e7898de002db2367967	2026-09-29T00:10:51Z	NO (solo sha256)
+www.dgis.salud.gob.mx	http://www.dgis.salud.gob.mx/contenidos/basesdedatos/BD_Cubos_gobmx.html	200	15498	0c6b7bbeccef94d722b370b4281a96eed2c227bf4089cac883b9a607dab82c0c	2026-09-29T00:17:17Z	NO (solo sha256)
+www.dgis.salud.gob.mx	http://www.dgis.salud.gob.mx/contenidos/basesdedatos/da_gobmx.html	404	1342	a286466ff5807744ad1eaba0e5d102aadfc41a1dcd404d60d6badee022867ec3	2026-09-29T00:17:18Z	NO (solo sha256)
+www.dgis.salud.gob.mx	http://www.dgis.salud.gob.mx/contenidos/basesdedatos/Datos_Abiertos_gobmx.html	200	17226	cb16c1a3122bb58a62605dc2922fbd335ed1c6b82dc6f02a0b6701403db72e4b	2026-09-29T00:18:11Z	SI
+www.dgis.salud.gob.mx	http://www.dgis.salud.gob.mx/contenidos/basesdedatos/da_urgencias_gobmx.html	200	24227	3def62fe778b530890d4387345859557993f4e90aa60e1bf043f9c79ebe3eefb	2026-09-29T00:18:30Z	NO (solo sha256)
+datos.cide.edu	http://datos.cide.edu/handle/10089/17405	200	26257	bae0ebcc9ede59f569190e1b36122ca781fc5dd3ca699e4d17c4e5a14121692a	2026-09-29T00:12:47Z	SI
+datos.cide.edu	http://datos.cide.edu/handle/10089/17405	200	26257	bae0ebcc9ede59f569190e1b36122ca781fc5dd3ca699e4d17c4e5a14121692a	2026-09-29T00:12:53Z	NO (solo sha256)
+datos.cide.edu	http://datos.cide.edu/handle/10089/17406	200	25901	6be62fdbb73cabf65c908451d6838c88400766a730cc5cfc01b6dd4b39ad28de	2026-09-29T00:17:06Z	SI
+datos.cide.edu	http://datos.cide.edu/handle/10089/17403	200	26064	6425977f893d2865d68676ff4cc3e7fff064c3f5c10850a67fe63a553d402363	2026-09-29T00:17:07Z	SI
+datos.cide.edu	http://datos.cide.edu/handle/10089/17405?show=full	200	35027	25915eeb8db66d9babf57b81b0c1e6f4642ab5f2e16830e5277020a00db39f91	2026-09-29T00:19:02Z	NO (solo sha256)
+datos.cide.edu	http://datos.cide.edu/docs/encuesta.pdf	200	607949	e458eba26a2263f157d4a6d2edd03ee5a4b424bf94d7911aaa4f57ca48789538	2026-09-29T00:26:42Z	NO (solo sha256)
+repositoriodocumental.ine.mx	https://repositoriodocumental.ine.mx/xmlui/handle/123456789/128317	200	28473	6db4fdfba0a52079b60b73931a177259bc5098d95d18d14ba59f0fcebb4c295d	2026-09-29T00:19:14Z	NO (solo sha256)
+repositoriodocumental.ine.mx	https://repositoriodocumental.ine.mx/xmlui/handle/123456789/128317?show=full	200	26448	2451c83462ae386eecc0b780170a9640f32a527254866b338f92788cc584ee95	2026-09-29T00:19:16Z	SI
+repositoriodocumental.ine.mx	https://repositoriodocumental.ine.mx/xmlui/handle/123456789/128291?show=full	200	26402	635c41c91e69b2656fd1a56540c188681678de03232972b8f8afb857e6100227	2026-09-29T00:19:17Z	SI
+repositoriodocumental.ine.mx	https://repositoriodocumental.ine.mx/xmlui/	200	769112	42eab7f1557f4feaa7495524781424d2c15b0c56c11abbff8d564e87503d29fc	2026-09-29T00:19:57Z	NO (solo sha256)
+www.ine.mx	https://www.ine.mx/	200	211007	7c5fe413ddd5e4e189c0f7d2a3518a74530babf2d6ee903d2defe68b4038a395	2026-09-29T00:19:32Z	NO (solo sha256)
+www.ine.mx	https://www.ine.mx/transparencia/datos-abiertos/	200	133857	778244f8b369d9cf98dc5f0af5f250b3625360fe6e6272f7546b178daa5a17d6	2026-09-29T00:19:39Z	NO (solo sha256)
+www.te.gob.mx	https://www.te.gob.mx/publicaciones/	200	2102	0050ad803ccb4e046e1421b6837e2200831b196aeefe1981f9cc1ea6aa83ff22	2026-09-29T00:25:14Z	NO (solo sha256)
+www.te.gob.mx	https://www.te.gob.mx/editorial/static/js/main.b661338b.js	200	639438	5db21996f45385ffabf78fbd2beaaf3b4427b035bbf47f7c3187a87c25c323f9	2026-09-29T00:25:29Z	NO (solo sha256)
+www.te.gob.mx	https://www.te.gob.mx/	200	84482	4c5440a7adf2689f1df28487ce4c4201ce1658b2d8672547156ae8a38d1a00cc	2026-09-29T00:25:49Z	NO (solo sha256)
+www.coneval.org.mx	https://www.coneval.org.mx/	200	112466	f3fcc8a8b0f06be7e70f71b6d3732abe53897e23e208d78a9b4c861b26220a27	2026-09-29T00:24:00Z	NO (solo sha256)
+www.coneval.org.mx	https://www.coneval.org.mx/Paginas/Pie/terminos-uso-libre.aspx	200	97539	34a46daa3801138352f10f6e041380d45e53a39168223175e9290860c0e77dad	2026-09-29T00:24:06Z	SI
+www.coneval.org.mx	https://www.coneval.org.mx/Medicion/Paginas/Pobreza-municipio-2010-2020.aspx	200	126366	dfb1bd3eaaed86a18f7734670b5c48e31f9384cd0eec29a6f4eec3fb41dbf70e	2026-09-29T00:24:07Z	NO (solo sha256)
+www.coneval.org.mx	https://www.coneval.org.mx/Medicion/Documents/Pobreza_municipal/2020_compl/Pobreza_municipal_2020_VCOMPL.rar	200	43237376		2026-09-29T00:24Z	NO (respuesta no conservada)
+www.coneval.org.mx	https://www.coneval.org.mx/Medicion/Paginas/Pobreza_grupos_poblacionales_municipal_2010_2020.aspx	200	126650	1bfc0881659e7054f3a4c5f44473c1d013e73965aea538703d058e2eff548045	2026-09-29T00:25:05Z	NO (solo sha256)
+www.banxico.org.mx	https://www.banxico.org.mx/publicaciones-y-prensa/documentos-de-investigacion-del-banco-de-mexico/%7B55E4278D-C42F-8B21-FDFA-BC67036EED1F%7D.pdf	200	253790	899dff850d1b23c74d803c026d1dd6306f4115b1b9427a74eb008114d4e99839	2026-09-29T00:22:30Z	NO (solo sha256)
+www.banxico.org.mx	https://www.banxico.org.mx/publicaciones-y-prensa/documentos-de-investigacion-del-banco-de-mexico/documentos-de-investigacion-banco-mexico.html	000	0		2026-09-29T00:22:31Z	NO (respuesta no conservada)
+www.banxico.org.mx	https://www.banxico.org.mx/publicaciones-y-prensa/documentos-de-investigacion-del-banco-de-mexico/documentos-de-investigacion-banco-mexico.html	000	0		2026-09-29T00:31:20Z	NO (respuesta no conservada)
+www.banxico.org.mx	https://www.banxico.org.mx/	200	27463	2a4e7d54f2ea647ed15e34bfb969eddcc6ea93f08acdaae25d8a6751904e8219	2026-09-29T00:22:41Z	NO (solo sha256)
+www.banxico.org.mx	https://www.banxico.org.mx/recursos/js/bmLoadTemplate.js	200	21641	307b8fda6b3a555b41f5950407115aee92021271d92f153001fb87e6e2fb97b3	2026-09-29T00:23:01Z	NO (solo sha256)
+www.banxico.org.mx	https://www.banxico.org.mx/footer.html	200	18375	b1a800dccd6f0f601eb63842074a841255a7f9a17b1b128973bf08716bd13eeb	2026-09-29T00:23:08Z	NO (solo sha256)
+www.banxico.org.mx	https://www.banxico.org.mx/footer-es/salvedad-politicas-uso-banco-.html	200	6521	05494befe5c0706f9cb7217e807cff30bb1de71737b193f75beeb6d0ea6bf70b	2026-09-29T00:23:13Z	SI
+www.gob.mx	https://www.gob.mx/terminos	200	23794	4f09b3dd3d4fbe47acb9f65e8ae23ac1e0335230182e80f00db7c62a639118a6	2026-09-29T00:17:18Z	SI
+www.gob.mx	https://www.gob.mx/salud/acciones-y-programas/direccion-general-de-informacion-en-salud-dgis	200	55495	7afa0aa8fe3fc9e7c7ead58338a119437276b7e3a8f9bcb6068f8f993bfb8149	2026-09-29T00:18:05Z	NO (solo sha256)
+www.gob.mx	https://www.gob.mx/imjuve/documentos/base-de-datos-de-la-encuesta-nacional-de-juventud-2010	200	56019	8ddf6037fc124531c85d0a354e1d74cffa55af3c01a2b7a038ba8eb616439f33	2026-09-29T00:23:42Z	NO (solo sha256)
+www.plataformadigitalnacional.org	https://www.plataformadigitalnacional.org/	200	1144	9658ec7b794e9d0fbf9215e91c7c80db79e05a85c86bb744eff2d5a968a29613	2026-09-29T00:09:23Z	NO (solo sha256)
+www.plataformadigitalnacional.org	https://www.plataformadigitalnacional.org/declaraciones	200	1144	0442890d61b4c6ba018c49a4ba3f838257e17e82ef6a8593c6016a5e22597abf	2026-09-29T00:09:24Z	NO (solo sha256)
+www.plataformadigitalnacional.org	https://www.plataformadigitalnacional.org/static/js/index.1d5282f65e.js	200	1047335	9e3a7cea21fdbf81d431a657f142708f93f39327f170b28a2dd79561f6fff08f	2026-09-29T00:09:33Z	NO (solo sha256)
+www.plataformadigitalnacional.org	https://www.plataformadigitalnacional.org/static/js/309.51829b29a2.js	200	1436352	83aa26fb0a659e258a014ba068c7da0cdea95b6dbb9479f7450b74d8dd0e79b9	2026-09-29T00:09:35Z	NO (solo sha256)
+www.plataformadigitalnacional.org	https://www.plataformadigitalnacional.org/static/js/index.1d5282f65e.js	200	1047335	9e3a7cea21fdbf81d431a657f142708f93f39327f170b28a2dd79561f6fff08f	2026-09-29T00:10:46Z	NO (solo sha256)
+calidad.salud.gob.mx	https://calidad.salud.gob.mx/site/calidad/docs/2023/SESTAD_reporte_2021.pdf	200	1006873	f4383a277ad9653486c41a7e29e801df8f88e67b39dd6adfe46e7ecdb5627f95	2026-09-29T00:23:27Z	NO (solo sha256)
+calidad.salud.gob.mx	https://calidad.salud.gob.mx/	200	54287	0a6c6c3bb384af907589e53ee45b723a12827b309360509546bfc295459b975d	2026-09-29T00:23:28Z	NO (solo sha256)

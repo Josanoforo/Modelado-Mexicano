@@ -3302,6 +3302,12 @@ def _aplica_validaciones_independientes(filas: list[dict]) -> None:
     # no se colapsan (firma de mesa 28/sep/2026, GEN2-C1-SUCESORES-Y-LOTE-3);
     # la vista proyecta la ultima fila en orden de archivo.
     vistos: set[tuple[str, str, str]] = set()
+    # índice y caché (GEN2-VALIDACION-Y-2027-1): con 20k asientos, re-hashear la misma evidencia y
+    # recorrer todas las filas por asiento rebasaba el tope de 30 min del CI; misma semántica.
+    por_clave: dict[tuple[str, str], list[dict]] = {}
+    for f in filas:
+        por_clave.setdefault((f["spec_id"], f["resultado_id"]), []).append(f)
+    sha_de: dict[Path, str] = {}
     for asiento in asientos:
         clave = (asiento["spec_id"], asiento["resultado_id"])
         if clave + (asiento["validacion_ref"],) in vistos:
@@ -3316,7 +3322,9 @@ def _aplica_validaciones_independientes(filas: list[dict]) -> None:
         try:
             ruta_ref = (RAIZ / ref).resolve(strict=True)
             ruta_ref.relative_to(RAIZ.resolve())
-            sha = hashlib.sha256(ruta_ref.read_bytes()).hexdigest()
+            if ruta_ref not in sha_de:
+                sha_de[ruta_ref] = hashlib.sha256(ruta_ref.read_bytes()).hexdigest()
+            sha = sha_de[ruta_ref]
         except (OSError, ValueError):
             raise ParoRegistro(
                 f"VALIDACION-EVIDENCIA-AUSENTE: {clave[0]}/{clave[1]} -> {ref}")
@@ -3327,8 +3335,7 @@ def _aplica_validaciones_independientes(filas: list[dict]) -> None:
         if not asiento["alcance_validacion"]:
             raise ParoRegistro(
                 f"VALIDACION-OVERLAY-SIN-ALCANCE: {clave[0]}/{clave[1]}")
-        destinos = [f for f in filas
-                    if (f["spec_id"], f["resultado_id"]) == clave]
+        destinos = por_clave.get(clave, [])
         if len(destinos) != 1:
             raise ParoRegistro(
                 f"VALIDACION-OVERLAY-DESTINO: {clave[0]}/{clave[1]} "

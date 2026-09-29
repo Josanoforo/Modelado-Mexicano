@@ -1,0 +1,1424 @@
+{
+  "congelacion_sha256": "7fa9bfcd976ec1958a9839e1a807a57e1baa1ede94ab372fe51a64a308f6c802",
+  "estado": "DISCREPA",
+  "identidad": {
+    "paquete": "pew-religion-2024-0001",
+    "sha256_entrada": "e54f9c296d234cdc2867bcd3a2d508bb462edc98cfb64aeaf6b942e64408149e",
+    "version_entrada": "validacion-continua-1"
+  },
+  "referencia_sha256": "0ddebc10cf9a63e5984da2ed9451d9a25a0fddc951c46091da76fe73dc6356dc",
+  "resultados": [
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00075564618269744",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00312423770224973",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-2.3E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00155599421166125",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00053351513577083",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-6E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00317585438374573",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00070494882501326",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-4E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.001288960543151828",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00629230808602774",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "2E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00412871692498023",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00327895189977032",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "1.4E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00167244568351204",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0007957616779532",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-6E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00228994782145976",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00554923832110795",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00275492643877381",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00237359802904227",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "6E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00075861462240110",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0025115537789197",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "3.3E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00231576295021821",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00058671693502972",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-1.1E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00088722806985395",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00091802139639838",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "3.0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0037885067624663",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0001002152164554",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-1E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0050302390500293",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0008672828175453",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-1E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0009187116412733",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0060789078040645",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "3E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0022186630862572",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0019998722681674",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-1E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0002374157247251",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0013229401348772",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "8E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0003911771810409",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0001400776479545",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "5E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.001647178332434",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0033003454585532",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "3E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0000247641941819",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0003163792532771",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-1E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0001014059121879",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0020039059729939",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "4E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0006596517813849",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0002842468693365",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "1E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0033008152334276",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0005487160143731",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "2E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CATOLICO-2024-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0015320820184897",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0014652537859153",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0022674609845190",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0004707986929287",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-1E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0002645337028485",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0000604868269823",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0000650701305628",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-2E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0011456385862772",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-2E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0007169034632168",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0003370343458272",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "1E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0007387913052922",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0002540526430974",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "3E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0004732855793447",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0016461639561395",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-1E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0014708948757319",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0007953013535347",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "5E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0020883988073765",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0002057400895594",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-5E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0013351401180126",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0005132172998987",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "2E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00115567021473292",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0000975716162014",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-2.4E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00522475114393536",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00061733204074854",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00186060479703712",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00181374164616183",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "9E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00069370308040634",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0054151219072447",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-2E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00039560072129492",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0063448010390676",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "1.8E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00105556135110432",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00066565754584923",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-7E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00176026625339695",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0013875628283229",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "3E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00148090656650706",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00107349922980154",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "5E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00107104244823929",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0024817153120916",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "3.4E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00092305067326787",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00098426214078632",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-1.2E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00123904066311795",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00180996810885969",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "2.4E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-TOTAL-TODOS-P"
+    }
+  ],
+  "tolerancia": {
+    "abs": "1e-10",
+    "rel": "0"
+  },
+  "tolerancia_sha256": "db9850b21bac2d51db71bbc2b1254a3083f04a68c2756fb74dfb25ed1c66fce5",
+  "version": 3
+}

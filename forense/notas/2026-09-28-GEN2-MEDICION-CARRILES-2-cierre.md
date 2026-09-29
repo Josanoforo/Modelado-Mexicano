@@ -45,3 +45,9 @@ P3 adquisición y las hijas ENOE, ENIGH, ENUT, ENDUTIH, ENCUCI, ENADID y resto: 
 ## 6 · Módulo de auditoría (v2.16)
 
 Contadores: +1 regla con cifra, +32 afirmaciones. Todo RETROSPECTIVA; ninguna cifra PROSPECTIVA. Unidades: persona (ENIF, ENSANUT, ENVIPE percepción) y delito (ENVIPE módulo), nunca promediadas. Incentivo antes que psicología: afore/seguro siguen a la formalidad (oferta institucional); no buscar atención se explica más por «no era grave» que por acceso, pero el rural busca menos; la suspensión de tratamiento se asocia a pagar (IC toca 0). Sin clase NSE en ENIF (declarado). Firewall genético: sin variables de ascendencia.
+
+## 7 · Adenda de cierre (ADENDA-2, firma de mesa del 28/sep)
+
+- **Criterio de «hecho» nuevo.** Por firma de mesa, el criterio de este acto y de los siguientes actos de medición pasa a ser **«menos carriles rojos o más naranjas»**. NARANJA = «piso sellado y registrado en la vista, pendiente de adopción por catálogo», entre AMARILLO y VERDE; estado de visibilidad, no de adopción. Implementado en `tools/tablero_carriles.py` (regla en la cabecera de umbrales; ADR `…-8fdf-05`).
+- **Estado al implementarlo:** NARANJA 0. La vista (`data/corrida0/resultados.tsv`, último `[deriva]` con «quedan 101 CALC») aún no registra los CALC PDR1 ni MC2; el tablero los lista como «sellados en disco, no registrados» (E.7). Tres ROJO quedan a un `[deriva]` de NARANJA: CARRIL-03 AUTORIDAD (`CALC-PDR1-ENCUCI2020-0002`), CARRIL-08 TIEMPO (`CALC-PDR1-ENUT2024-0001`, `CALC-MC2-ENIF2024-0001`), CARRIL-09 RURAL_INDIGENA (`CALC-PDR1-ENUT2024-0001`, `CALC-PDR1-ENADID2023-0001`, `CALC-MC2-ENSANUT2024-0001`).
+- **«Sigue»:** el acto continúa con ENOE → ENIGH → ENUT → ENDUTIH → resto → P3; olas reservadas se sustituyen por las vistas y se declara; lo que no cierre hoy queda para GEN2-MEDICION-CARRILES-3 con la tabla de apertura, no como NC.
