@@ -1,18 +1,18 @@
 {
-  "alternativa_requerida": false,
+  "alternativa_requerida": true,
   "alternativas": [],
-  "ciclos_sin_avance": 1,
+  "ciclos_sin_avance": 2,
   "continuacion_pendiente": false,
-  "cursor_continuacion": "No repetir búsqueda documental; reactivar cuando mesa publique o comunique la decisión sobre la cuarta categoría exenta.",
+  "cursor_continuacion": "Reactivar cuando mesa firme si [COLA]/[ADQ] son cuarta categoría exenta; no re-perseguir los retro-sellos ya ejecutados o reasentados.",
   "estado": "barrera",
   "evidencias": [
-    "forense/notas/2026-09-22-GEN2-38-investigacion-adq.md"
+    "forense/notas/2026-09-28-GEN2-38-investigacion-adq.md"
   ],
-  "frontera_no_examinada": "Conversación o firma de mesa aún no publicada/indexada que decida si [COLA]/[ADQ] forman una cuarta categoría exenta.",
+  "frontera_no_examinada": "Ninguna ruta pública de datos plausible: el residual es una decisión de gobernanza de mesa.",
   "necesidad_id": "NC-0170",
-  "proxima_revision": "",
+  "proxima_revision": "2026-10-05",
   "suficiencia": {
-    "conceptual": "ACREDITADA",
+    "conceptual": "NO_APLICA",
     "diseno": "NO_APLICA",
     "identidad": "ACREDITADA",
     "identificacion": "NO_APLICA",
@@ -23,6 +23,6 @@
     "unidad": "NO_APLICA",
     "uso_habilitado": "INCOMPATIBLE"
   },
-  "ultima_exploracion": "2026-09-22",
-  "version_pregunta": "AUTO-NC-v1-6b700d157a36"
+  "ultima_exploracion": "2026-09-28",
+  "version_pregunta": "AUTO-NC-v1-b40df28b34e8"
 }
