@@ -43,7 +43,7 @@ def archiva(REC, paq):
         nuevo = f"{paq}--" + rel.replace("/", "--")
         shutil.copyfile(p, dest / nuevo)
         filas.append((rel, nuevo, sha(p), "SELLADO" if rel in sellados else "FUERA-DEL-SELLO"))
-    for suf in ("transcript.jsonl", "inicio", "fin", "stderr"):
+    for suf in ("transcript.jsonl",):  # inicio/fin/stderr van a lanzamientos.tsv (T02: contenidos repetidos)
         src = REC / f"{paq}.{suf}"
         if src.exists():
             nuevo = f"{paq}--transcript.jsonl" if suf == "transcript.jsonl" else f"{paq}--{suf}.txt"

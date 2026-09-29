@@ -7,7 +7,7 @@ python3 $V/archiva.py $REC "$@"
 git add $V && git commit -qm "GEN2-VALIDACION-Y-2027-1 · P1: salida archivada antes de abrir sellados (E.2): $*
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>" && git push -q origin $B
-python3 $V/compara.py $REC "$@"
+python3 $V/compara_vc1.py $REC "$@"
 git add $V && git commit -qm "GEN2-VALIDACION-Y-2027-1 · P1: auditoría y comparación: $*
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>" && git push -q origin $B

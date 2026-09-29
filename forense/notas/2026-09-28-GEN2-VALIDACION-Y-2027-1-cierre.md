@@ -72,7 +72,7 @@ Los apartados P1, P2 y P4 de arriba describen el estado antes de la firma de mes
 1. Paquete con sha antes de entregar (`ed733a1e`).
 2. Reconstructora `claude -p` aislada, lanzada por mesa desde su terminal (`cola.sh`, 3 en paralelo, 17:51–18:20). El clasificador del modo automático negó el lanzamiento desde la sesión («Create Unsafe Agents»).
 3. Salida archivada y commiteada antes de abrir el sellado (`archiva.py`).
-4. Auditoría del transcript, `freeze-export` y `compare_v3 freeze`; referencia desde `resultados.json`; `compare_v3 compare` (`compara.py`).
+4. Auditoría del transcript, `freeze-export` y `compare_v3 freeze`; referencia desde `resultados.json`; `compare_v3 compare` (`compara_vc1.py`).
 5. Dictamen y asiento con la regla de `LANZAMIENTO-VC1.md` (`asienta.py`).
 
 Tolerancia: la sellada en cada `spec.yaml` (flotante abs 1e-10). IC diagnóstico (R23), no adjudica.
