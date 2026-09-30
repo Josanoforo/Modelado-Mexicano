@@ -1,6 +1,4 @@
 <!-- TABLERO-DERIVADO:BEGIN -->
-**NO-ES-ORIGIN-MAIN** -- generado con `--permitir-rama` fuera de `origin/main`. El único productor del canal es el job `guardias` de CI (`.github/workflows/verify.yml`) sobre `origin/main`; una conversación de mesa lo ignora (`docs/PROTOCOLO-TABLERO.md`).
-
 ## Estado vivo derivado
 
 - **Celdas validadas (métrica rectora, firma de mesa 20/sep/2026).** `219` celdas con predicción emitida antes de ver el dato y error sellado contra R (cruce `162` + persistencia `57`). **No es «N aciertos»: es N celdas con error CONOCIDO.** Tres clases, sin fundir:
@@ -23,10 +21,10 @@
   - *duelo de tres, nacional* · n `12` · MAE `M` `4.987` pp · `L_SOLO` `3.957` pp · `L_CORPUS` `3.889` pp · veredicto `SIN-GANADOR-UNICO` · NO se suma a las otras dos clases (otro universo, otro estimando) · `CALC-TRIADA-0002/resultados.json`
   - *sub-cifra del dominio DINERO* · cruce n `8` (error mediano `1.011` pp) · persistencia n `32` (error mediano `2.145` pp) · ENIF 2024; la brecha de persistencia es de 3 años y no se promedia con las de 1 y 2 años de ENVIPE/ENCIG
   - *NO cuentan* · `89` filas `IDENTICO` (M == R porque `EMISOR=ARBITRO`: el mismo número copiado, no una predicción contrastada) · `2` celdas de `formalidad` con piso y sin `error_piso_pp` (su error es un CALC sucesor) · universo examinado: 327 filas de data/corrida0/marcador-segmento.tsv + 3 CALC sellados
-- **Procedencia.** SHA `02002d56` · fecha del commit `2026-09-29` · ¿árbol == origin/main? `False`.
+- **Procedencia.** SHA `aa690c8c4` · fecha del commit `2026-09-29` · ¿árbol == origin/main? `True`.
 - **Motor.** reglas totales `25` · reglas con dato (>=1 conducta MEDIDO*) `24` · reglas sin dato `1` · conductas MEDIDO* `58` · tiers `{'FUERTE': 20, 'MEDIA': 5}`.
 - **Marcador por segmento.** filas por estado: ADOPTADO-POR-FIRMA `52` · CONSUMIDA-SIN-PILOTO `1` · DIAGNOSTICO `8` · EVALUADA `57` · IDENTICO `89` · MEDIDA-POR-NSE `52` · MEDIDA-POR-NSE-APROXIMACION `24` · MEDIDA-POR-NSE-APROXIMACION-CIRCULAR `6` · NO-COMPARABLE `2` · RESERVADA `19` · SIN-PISO `15` · SUPRIMIDA-N `2` (total `327`) · cobertura de piso `111 / 327` · valor añadido / evaluadas `0 / 52` · celdas `emision = EMITIDA-SIN-EVALUAR` `13 / 327` · `veto_pisos_activo` `True`.
-- **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: `False` 1 · `NO` 15 · `NO-DERIVACION-CONTEXTUAL` 1 · `NO-SIN-FIRMA-DE-OBJETO` 1 · `PENDIENTE-DE-CASCADA-DIFERIDA` 2 · `PENDIENTE-DE-INTEGRACION-SERIAL` 2 · `PENDIENTE-DE-MESA` 14 · `SI` 170 (selladas total `206`) · `PENDIENTE-DE-MESA`:
+- **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: `False` 1 · `NO` 18 · `NO-DERIVACION-CONTEXTUAL` 1 · `NO-SIN-FIRMA-DE-OBJETO` 1 · `PENDIENTE-DE-CASCADA-DIFERIDA` 2 · `PENDIENTE-DE-INTEGRACION-SERIAL` 2 · `PENDIENTE-DE-MESA` 15 · `SI` 239 (selladas total `279`) · `PENDIENTE-DE-MESA`:
   - `CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002--18e3c08247d5`: `NO-VERIFICADO`
   - `CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0001--f22dc8014aec`: `NO-VERIFICADO`
   - `CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002--cd853c64a584`: `NO-VERIFICADO`
@@ -40,18 +38,19 @@
   - `CALC-ENIGH2020-INTENSIDAD-REMESAS-0001--d41b466457b6`: `REPRODUCE`
   - `CALC-ENIGH2020-PERFIL-ESTRUCTURAL-0001--ff84ff36db65`: `REPRODUCE`
   - `CALC-ENIGH2020-REMESAS-CONTEXTO-0001--0fcfbe663035`: `REPRODUCE`
+  - `CALC-RELEVO-ENCIG23-P83-0001-v1_1--66cfff97600b`: `REPRODUCE`
   - `CALC-WBES2023-PRECISION-INTERACCIONES-0001--7f2a0899f700`: `NO-VERIFICADO`
 - **Corredor LEGACY (eje x = ∅, GO-MARCADOR).** el marcador por segmento es la línea de arriba. marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
 - **Corpus lógico.** entradas del manifiesto `7198` · filas de registro de curación `953` · filas de relaciones `231` · filas del inventario de reactivos v1.2 `178247`.
-- **Gobernanza operativa.** ADR máximo del espacio numérico CERRADO `593` · FP máximo del mismo espacio `409` · ids con raíz de acto (época vigente) `{'ADR': 207, 'FP': 281, 'NC': 655}` · FP abiertas: FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01, FP-260923-GEN2-FRONT-1-4296-01, FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01, FP-260926-GEN2-FRONT-3-PORTADA-1-8914-03, FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-12, FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-20, FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-26, FP-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01, FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01, FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02, FP-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01, FP-260928-GEN2-CORPUS-CACHE-PARQUET-1-01aa-01, FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-01, FP-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-01, FP-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-02, FP-260928-GEN2-TUBERIA-3-f18c-01, FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01, FP-260928-GEN2-CIERRE-Y-PRODUCTO-3-3c2e-01, FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01, FP-260928-GEN2-PENDIENTES-4-12d9-03, FP-260928-GEN2-PENDIENTES-4-12d9-04, FP-260928-GEN2-PENDIENTES-4-12d9-05, FP-260928-GEN2-PENDIENTES-4-12d9-06, FP-260928-GEN2-PENDIENTES-4-12d9-07, FP-260928-GEN2-PENDIENTES-4-12d9-08, FP-260928-GEN2-PENDIENTES-4-12d9-09, FP-260928-GEN2-PENDIENTES-4-12d9-10, FP-260928-GEN2-PENDIENTES-4-12d9-11, FP-260928-GEN2-PENDIENTES-4-12d9-12, FP-260928-GEN2-PENDIENTES-4-12d9-13, FP-260928-GEN2-PENDIENTES-4-12d9-14, FP-260928-GEN2-PENDIENTES-4-12d9-15, FP-260928-GEN2-PENDIENTES-4-12d9-16, FP-260928-GEN2-PENDIENTES-4-12d9-17, FP-260928-GEN2-PENDIENTES-4-12d9-18, FP-260928-GEN2-PENDIENTES-4-12d9-19, FP-260928-GEN2-PENDIENTES-4-12d9-20, FP-260928-GEN2-PENDIENTES-4-12d9-21, FP-260928-GEN2-PENDIENTES-4-12d9-22, FP-260928-GEN2-PENDIENTES-4-12d9-23, FP-260928-GEN2-PENDIENTES-4-12d9-24 · encargos archivados `855` (consumidos `765`) · instrucciones vigentes `v2.16` · cola de encargos (solo estados != CONSUMIDO; consumidos `77`):
+- **Gobernanza operativa.** ADR máximo del espacio numérico CERRADO `593` · FP máximo del mismo espacio `409` · ids con raíz de acto (época vigente) `{'ADR': 208, 'FP': 281, 'NC': 656}` · FP abiertas: FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01, FP-260923-GEN2-FRONT-1-4296-01, FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01, FP-260926-GEN2-FRONT-3-PORTADA-1-8914-03, FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-12, FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-20, FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-26, FP-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01, FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01, FP-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02, FP-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01, FP-260928-GEN2-CORPUS-CACHE-PARQUET-1-01aa-01, FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-01, FP-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-01, FP-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-02, FP-260928-GEN2-TUBERIA-3-f18c-01, FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01, FP-260928-GEN2-CIERRE-Y-PRODUCTO-3-3c2e-01, FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01, FP-260928-GEN2-PENDIENTES-4-12d9-03, FP-260928-GEN2-PENDIENTES-4-12d9-04, FP-260928-GEN2-PENDIENTES-4-12d9-05, FP-260928-GEN2-PENDIENTES-4-12d9-06, FP-260928-GEN2-PENDIENTES-4-12d9-07, FP-260928-GEN2-PENDIENTES-4-12d9-08, FP-260928-GEN2-PENDIENTES-4-12d9-09, FP-260928-GEN2-PENDIENTES-4-12d9-10, FP-260928-GEN2-PENDIENTES-4-12d9-11, FP-260928-GEN2-PENDIENTES-4-12d9-12, FP-260928-GEN2-PENDIENTES-4-12d9-13, FP-260928-GEN2-PENDIENTES-4-12d9-14, FP-260928-GEN2-PENDIENTES-4-12d9-15, FP-260928-GEN2-PENDIENTES-4-12d9-16, FP-260928-GEN2-PENDIENTES-4-12d9-17, FP-260928-GEN2-PENDIENTES-4-12d9-18, FP-260928-GEN2-PENDIENTES-4-12d9-19, FP-260928-GEN2-PENDIENTES-4-12d9-20, FP-260928-GEN2-PENDIENTES-4-12d9-21, FP-260928-GEN2-PENDIENTES-4-12d9-22, FP-260928-GEN2-PENDIENTES-4-12d9-23, FP-260928-GEN2-PENDIENTES-4-12d9-24 · encargos archivados `855` (consumidos `766`) · instrucciones vigentes `v2.16` · cola de encargos (solo estados != CONSUMIDO; consumidos `77`):
   - `2026-09-07-ENCARGOS-GEN2-en-orden.md`: GATED
   - `2026-09-08-GEN2-SONDA-3-PILOTO-CAJA.md`: LISTO
   - `2026-09-10-GEN2-POST-685/00-LEEME-LANZAMIENTO-POST-685.md`: GATED
-- **NC abiertas por razón (token A.14, prefijo exacto).** abiertas `282` · por token: `DECISIÓN-DE-MESA-PENDIENTE` 34 · `DIFERIDO-A` 104 · `FUERA-DE-PERÍMETRO` 35 · `NO-VERIFICABLE-AQUÍ` 56 · `PARO-ENTORNO` 6 · `PARO-PREMISA` 18 · `SUSTITUIDO-POR` 1 · prosa (sin token reconocible) `28`.
-- **GEN2 (derivado de `corrida0 status`, valores EN ÁRBOL; vistas del árbol distintas de HEAD: `ninguna`).** adoptados activos `128` · pendientes de adopción `10` · corridas selladas `326` / requeridas `0` · resultados sellados `240946` / activos `211` · pendientes `158` · dependencias numéricas legacy activas `67` · validación independiente `5933` · diferencias materiales `0` · NC- abiertas `282` · replays LEGACY-GEN1 sellados `5` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
-- **Legacy activas por consumidor (desglose aditivo del contador de arriba).** motor `13` · procedencia `30` · catalogo de momentos `17` · marco del duelo `1` · celdas D `6` · otro `0` — suman `67`, el total. Los cinco consumidores son RELEVABLES: ninguno se declara fuera del contador. Cuántos de ellos ya tienen medición GEN2 sellada que la vista no enlaza se deriva en `forense/analisis/relevo-reconcilia-1/reconcilia-173-v1_0.tsv`.
+- **NC abiertas por razón (token A.14, prefijo exacto).** abiertas `283` · por token: `DECISIÓN-DE-MESA-PENDIENTE` 35 · `DIFERIDO-A` 104 · `FUERA-DE-PERÍMETRO` 35 · `NO-VERIFICABLE-AQUÍ` 56 · `PARO-ENTORNO` 6 · `PARO-PREMISA` 18 · `SUSTITUIDO-POR` 1 · prosa (sin token reconocible) `28`.
+- **GEN2 (derivado de `corrida0 status`, valores EN ÁRBOL; vistas del árbol distintas de HEAD: `data/corrida0/corridas.tsv, data/corrida0/resultados.tsv, data/corrida0/pines-sellados-resueltos.tsv, data/corrida0/usos.tsv, data/corrida0/demanda-corridas.tsv, data/corrida0/demanda-resultados.tsv`).** adoptados activos `138` · pendientes de adopción `0` · corridas selladas `326` / requeridas `0` · resultados sellados `240946` / activos `236` · pendientes `63` · dependencias numéricas legacy activas `82` · validación independiente `5933` · diferencias materiales `0` · NC- abiertas `283` · replays LEGACY-GEN1 sellados `5` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
+- **Legacy activas por consumidor (desglose aditivo del contador de arriba).** motor `13` · procedencia `30` · catalogo de momentos `17` · marco del duelo `1` · celdas D `21` · otro `0` — suman `82`, el total. Los cinco consumidores son RELEVABLES: ninguno se declara fuera del contador. Cuántos de ellos ya tienen medición GEN2 sellada que la vista no enlaza se deriva en `forense/analisis/relevo-reconcilia-1/reconcilia-173-v1_0.tsv`.
 - **Relevadas por pin de mesa, por vía (firma 4.1, 21/sep/2026 — las clases NO se funden).** vía (i) desde insumo crudo con hash `14` · vía (ii) lectura de una conducta ya GEN2 `13`. Marco del duelo, lo que sigue legacy por campo: R `0` · M `1` · L `0` · AGREGADO `0`. Celdas M todavía legacy, **nombradas**: `DIN-M-01` — `DIN-M-01` es el recordatorio de que `tiene_ahorros` espera el acceso a ENNViH. El canal vive en `data/corrida0/pines-de-mesa.tsv` y cada fila pasa las cuatro guardas de 4.1 antes de mover el contador (`T32-quater T-PINES-MESA`).
-- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `216924` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `10` · vetados por decisión vigente (sellados, pero una firma prohíbe adoptarlos: no son cola) `813` · adoptados por un consumidor activo `128`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
+- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `216924` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `0` · vetados por decisión vigente (sellados, pero una firma prohíbe adoptarlos: no son cola) `813` · adoptados por un consumidor activo `138`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
 - **Fuentes.** `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, `forense/prereg-duelo-v2/` (marcos y corridas M/R/L), `data/manifiesto.yaml`, `data/curacion-registro/cola-adquisicion-registro.tsv`, `data/curacion-registro/relaciones.tsv`, `data/inventario-reactivos-v1_2.tsv`, `canon/gobernanza-v1_15.md`, `forense/firmas-pendientes.tsv`, `forense/encargos/*.md`, `forense/encargos/cola/*.md`.
 
 **Protocolo vigente.** La actualización factual de este bloque se hace con:
@@ -104,13 +103,12 @@ Precedencia de la siguiente acción: FIRMA > RESERVA > ADQUISICION > NC-PARO > C
 
 #### Resumen
 
-Carriles 31: 🔴 ROJO 4 · 🟡 AMARILLO 23 · 🟠 NARANJA 0 · 🟢 VERDE 1 · ⚪ GRIS 3 ⟨F1 F2 F3 S⟩
+Carriles 31: 🔴 ROJO 3 · 🟡 AMARILLO 23 · 🟠 NARANJA 1 · 🟢 VERDE 1 · ⚪ GRIS 3 ⟨F1 F2 F3 S⟩
 
 | carril | report | semáforo | afirm. | núcleo con cifra | reglas con dictamen | stoppers | siguiente acción | ⟨⟩ |
 |---|---|---|---:|---:|---:|---:|---|---|
 | CARRIL-02 | Ausencia sin certeza · duelo y pérdida ambigua en familias d | 🔴 ROJO | 41 | 0/1 | 0% de 4 | 3 | FIRMA: `FP-260928-GEN2-PENDIENTES-4-12d9-09` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-13 | Humor in Mexican Psychological Life · 2023-2026 Update | 🔴 ROJO | 34 | 0/1 | 0% de 3 | 2 | FIRMA: `FP-260928-GEN2-PENDIENTES-4-12d9-16` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
-| CARRIL-22 | Psicología de la Juventud Mexicana Contemporánea · Gen Z y M | 🔴 ROJO | 32 | 0/1 | 0% de 4 | 6 | FIRMA: `FP-260928-GEN2-PENDIENTES-4-12d9-07` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-17 | Moral Emotions in Mexico · Declared Dignity · Relational Fac | 🔴 ROJO | 31 | 0/1 | 0% de 2 | 1 | ADQUISICION: `SIN-UNION` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-24 | Psicología del Trabajo en México · Un Mapa Basado en Evidenc | 🟡 AMARILLO | 57 | 1/1 | 0% de 3 | 5 | RESERVA: `mapa:reserva_v1_1` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-15 | La familia mexicana como sistema psicológico · entre el afec | 🟡 AMARILLO | 51 | 1/1 | 0% de 3 | 4 | ADQUISICION: `SIN-UNION` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
@@ -135,6 +133,7 @@ Carriles 31: 🔴 ROJO 4 · 🟡 AMARILLO 23 · 🟠 NARANJA 0 · 🟢 VERDE 1 �
 | CARRIL-26 | Reconfiguración de los Guiones de Género en México · Masculi | 🟡 AMARILLO | 33 | 2/2 | 0% de 3 | 8 | FIRMA: `FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-01` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-03 | Autoridad y jerarquía en el México contemporáneo · anatomía  | 🟡 AMARILLO | 30 | 1/1 | 0% de 3 | 6 | FIRMA: `FP-260928-GEN2-PENDIENTES-4-12d9-16` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-21 | Psicología · Conducta y Sociedad en el México Contemporáneo  | 🟡 AMARILLO | 28 | 2/2 | 0% de 0 | 6 | RESERVA: `mapa:reserva_v1_1` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
+| CARRIL-22 | Psicología de la Juventud Mexicana Contemporánea · Gen Z y M | 🟠 NARANJA | 32 | 0/1 | 0% de 4 | 6 | FIRMA: `FP-260928-GEN2-PENDIENTES-4-12d9-07` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-19 | Non-Family Social Capital in Mexico · Cooperation · Trust ·  | 🟢 VERDE | 42 | 1/1 | 67% de 9 | 6 | FIRMA: `FP-260928-GEN2-PENDIENTES-4-12d9-09` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-11 | Genetica y Conducta del Mexicano Contemporaneo · Canal Indiv | ⚪ GRIS | 38 | 0/1 | 0% de 3 | 1 | ADQUISICION: `SIN-UNION` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
 | CARRIL-16 | Mexican Population Genomics · 2025-2026 Scientific and Marke | ⚪ GRIS | 33 | 0/1 | 0% de 2 | 4 | FIRMA: `FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01` | ⟨F1 F2 F3 F4 F5 F7 F8 F9⟩ |
@@ -239,7 +238,7 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
   - núcleo sin filas en el catálogo: DUELO ⟨F2⟩
   - dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 2007 · FAMILIA_CUIDADOS 1449 · GENERO 7304 · MIGRACION 126 · RELIGIOSIDAD 404 · SALUD 800 · SALUD_MENTAL 2758 · SANCION_SOCIAL 9 ⟨F2⟩
 - **Reglas del report** (4; encabezados excluidos 0): SIN-CIFRA-GEN2 4; con dictamen distinto de SIN-CIFRA-GEN2 0% ⟨F3⟩
-- **Validación ciega**: CONCUERDA-NO-APROBADA 4 · PASA 142 ⟨F10 F2⟩
+- **Validación ciega**: CONCUERDA-NO-APROBADA 4 · PASA 147 ⟨F10 F2⟩
 - **Editorial v2** (C/M/R/S 9 / 23 / 3 / 20): EN-MAIN · recibo pr-1246 · regla adoptada: No acreditada aquí · reserva material: 20 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
 - **Adquisición del carril** (afirmaciones con adquisición): SIN-UNION 24 ⟨F1 F5 F6⟩
 - **Stoppers** (3): ⟨F1 F5 F6 F7 F8⟩
@@ -274,35 +273,6 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
     - `SIN-UNION` — afirmaciones 17 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-MESA-CULTURA ×5, ASTRA5-MESA-CULTURA / ASTRA5-MESA-DOCUMENTAL ×3, ASTRA5-U4 ×3 ⟨F1 F5 F6⟩
 - **Frente 2027**: SIN-UNION (ningún instrumento citado es de una familia 2027) ⟨F11⟩
 - **Siguiente acción** [FIRMA]: `FP-260928-GEN2-PENDIENTES-4-12d9-16` → mesa firma; encargo 2026-09-28-GEN2-PENDIENTES-4.md ⟨F7⟩
-
-##### 🔴 CARRIL-22 · Psicología de la Juventud Mexicana Contemporánea · Gen Z y Millennials Jóvenes como Cohorte Divergente ⟨F1 F14⟩
-
-- **Semáforo ROJO** — núcleo con cifra adoptada 0/1 ⟨F1 F2 F3 S⟩
-- **Afirmaciones 32**: medible en corpus 9 · con adquisición 14 · no medible por diseño 8 · no construible 1; citan un CALC/RESULT en `gen2_existente`: 8 ⟨F1⟩
-- **Dominios**: JUVENTUD 10 (31%) núcleo · POLITICA 4 (12%) · TRABAJO 4 (12%) · GENERO 3 (9%) · SALUD_MENTAL 3 (9%) · AUTORIDAD 2 (6%) · FAMILIA_CUIDADOS 2 (6%) · TECNOLOGIA 2 (6%) · PAREJA 1 (3%) · RELIGIOSIDAD 1 (3%) ⟨F1 S⟩
-- **Instrumentos citados** (afirmaciones): EDER 3 · ENADID 3 · ENOE 3 · ENDUTIH 2 · OECD 2 · EDR 1 · ENCODAT 1 · ENDISEG 1 · ENSANUT 1 · LATINOBAROMETRO 1; sin instrumento reconocido: 14 ⟨F1 F12 S⟩
-- **Instrumentos del núcleo** (casan stoppers y validación): EDER 3 · ENADID 3 · OECD 1 ⟨F1 F12 S⟩
-- **Pisos del núcleo pendientes de adopción** — registrados en la vista: ninguno; sellados en disco, no registrados (E.7): JUVENTUD: CALC-MC2-ENOE-0001 ⟨F16 F17 S⟩
-- **Cifras del catálogo v1.4 por dominio** (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) ⟨F2⟩
-  - núcleo sin filas en el catálogo: JUVENTUD ⟨F2⟩
-  - dominios secundarios con cifra (adoptadas + con reserva de ancho): AUTORIDAD 142 · FAMILIA_CUIDADOS 1449 · GENERO 7304 · PAREJA 3304 · POLITICA 124 · RELIGIOSIDAD 404 · SALUD_MENTAL 2758 · TECNOLOGIA 1827 · TRABAJO 26409 ⟨F2⟩
-- **Reglas del report** (4; encabezados excluidos 0): SIN-CIFRA-GEN2 4; con dictamen distinto de SIN-CIFRA-GEN2 0% ⟨F3⟩
-- **Validación ciega**: CONCUERDA-NO-APROBADA 8 · PASA 94 ⟨F10 F2⟩
-- **Editorial v2** (C/M/R/S 0 / 10 / 4 / 26): EN-MAIN · recibo pr-1242 · regla adoptada: No acreditada aquí · reserva material: 26 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
-- **Adquisición del carril** (afirmaciones con adquisición): COLA-PENDIENTE 2 · EN-MANIFIESTO 4 · PROGRAMA-OBTENIDO-EN-COLA 1 · SIN-UNION 7 ⟨F1 F5 F6⟩
-- **Stoppers** (6): ⟨F1 F5 F6 F7 F12 F15⟩
-  - **FIRMA** (2) ⟨F7⟩
-    - `FP-260928-GEN2-PENDIENTES-4-12d9-07` (por EDER) — [D8 · EDER 2025 (JUV-001/002): levantar la reserva E.6] Opciones: (A) Mesa levanta por escrito la reserva E.6  → mesa firma; encargo 2026-09-28-GEN2-PENDIENTES-4.md ⟨F7⟩
-    - `FP-260928-GEN2-PENDIENTES-4-12d9-19` (por ENADID) — [D21 · ENADID 2023 y Pew GAS Spring 2025: ¿reservadas?] Opciones: (A) Reservarlas por escrito (fila reserva:*  → mesa firma; encargo 2026-09-28-GEN2-PENDIENTES-4.md ⟨F7⟩
-  - **RESERVA** (1) ⟨F12 F6 F15⟩
-    - `mapa:reserva_v1_1` — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 1) → E.6 (reserva declarada en el mapa) ⟨F1⟩
-  - **ADQUISICION** (3) ⟨F1 F5 F6⟩
-    - `SIN-UNION` — afirmaciones 7 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-U3 ×3, ASTRA5-MESA-JUVENTUD ×2, ASTRA5-MESA-GENERO ×1 ⟨F1 F5 F6⟩
-    - `OECD` — estado OBTENIDO-PARCIAL; prioridad 36; afirmaciones 2; origen cola-adquisicion-2026-08-12.tsv:36 → caja (completa el payload) ⟨F1 F5 F6⟩
-    - `OECD_TRUST_PUM_2021_2023_2025` — estado SOLICITUD-PREPARADA; prioridad 36; afirmaciones 2; origen NC-0061;NC-0151; GEN2-CRON-DEMANDA-A-DATO-Y-PRODUCCION → mesa con identidad (solicitud preparada) ⟨F1 F5 F6⟩
-- **Actos en vuelo** (sin CONSUMIDO, por nombre): `2026-09-19-EDER-PRIMERA-UNION-SEXO-COHORTE.md`, `2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1-CONTINUACION.md`, `2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1.md` ⟨F13⟩
-- **Frente 2027**: ENOE-INFORMALIDAD (NO-LANZAR-TODAVIA; gate CONTRATO-FIRMADO(regla de inferencia para 39 estratos singleton)+FIRMA-DE-MESA(F) ⟨F11⟩
-- **Siguiente acción** [FIRMA]: `FP-260928-GEN2-PENDIENTES-4-12d9-07` → mesa firma; encargo 2026-09-28-GEN2-PENDIENTES-4.md ⟨F7⟩
 
 ##### 🔴 CARRIL-17 · Moral Emotions in Mexico · Declared Dignity · Relational Face · and Residual Catholic Guilt ⟨F1 F14⟩
 
@@ -410,7 +380,7 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
   - VIOLENCIA (núcleo): 138 · 12667 · 0 · 0 — por instrumento (* = el carril lo cita): ENSU* 12634, ENVIPE* 171 ⟨F2⟩
   - dominios secundarios con cifra (adoptadas + con reserva de ancho): AUTORIDAD 142 · CONFIANZA 2007 · DINERO 124 · GENERO 7304 · MIGRACION 126 · POLITICA 124 · SALUD_MENTAL 2758 ⟨F2⟩
 - **Reglas del report** (4; encabezados excluidos 0): SIN-CIFRA-GEN2 4; con dictamen distinto de SIN-CIFRA-GEN2 0% ⟨F3⟩
-- **Validación ciega**: CONCUERDA-NO-APROBADA 12109 · NO-PASA 525 · PASA 146 ⟨F10 F2⟩
+- **Validación ciega**: CONCUERDA-NO-APROBADA 12109 · NO-PASA 525 · PASA 151 ⟨F10 F2⟩
 - **Editorial v2** (C/M/R/S 9 / 25 / 2 / 104): EN-MAIN · recibo pr-1180 · regla adoptada: No acreditada aquí · reserva material: 104 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
 - **Adquisición del carril** (afirmaciones con adquisición): EN-MANIFIESTO 1 · PROGRAMA-OBTENIDO-EN-COLA 2 · SIN-UNION 18 ⟨F1 F5 F6⟩
 - **Stoppers** (4): ⟨F1 F5 F6 F7 F8⟩
@@ -537,7 +507,7 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
   - POLITICA (núcleo): 14 · 110 · 2 · 0 — por instrumento (* = el carril lo cita): CIDE-CSES 4, ENCUCI 2, ENVIPE* 12, LAPOP* 38, LATINOBAROMETRO* 68 ⟨F2⟩
   - dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 2007 · VIOLENCIA 12805 ⟨F2⟩
 - **Reglas del report** (10; encabezados excluidos 0): MATIZA 3 · MATIZA-SIN-CRUCE 1 · SIN-CIFRA-GEN2 6; con dictamen distinto de SIN-CIFRA-GEN2 40% ⟨F3⟩
-- **Validación ciega**: CONCUERDA-NO-APROBADA 230 · PASA 148 ⟨F10 F2⟩
+- **Validación ciega**: CONCUERDA-NO-APROBADA 230 · PASA 157 ⟨F10 F2⟩
 - **Editorial v2** (C/M/R/S 6 / 16 / 4 / 34): EN-MAIN · recibo pr-1240 · regla adoptada: No acreditada aquí · reserva material: 34 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
 - **Adquisición del carril** (afirmaciones con adquisición): EN-MANIFIESTO 1 · SIN-UNION 13 ⟨F1 F5 F6⟩
 - **Stoppers** (8): ⟨F1 F5 F6 F7 F8 F12 F15⟩
@@ -640,7 +610,7 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
   - TIEMPO (núcleo): 0 · 78 · 0 · 0 — por instrumento (* = el carril lo cita): ENUT* 78 ⟨F2⟩
   - dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 2007 · CONSUMO 4470 · DINERO 124 · GENERO 7304 · MOVILIDAD 172 · SALUD 800 · TRABAJO 26409 · VIOLENCIA 12805 ⟨F2⟩
 - **Reglas del report** (7; encabezados excluidos 2): MATIZA 1 · MATIZA-SIN-CRUCE 1 · SIN-CIFRA-GEN2 5; con dictamen distinto de SIN-CIFRA-GEN2 29% ⟨F3⟩
-- **Validación ciega**: PASA 7 ⟨F10 F2⟩
+- **Validación ciega**: PASA 12 ⟨F10 F2⟩
 - **Editorial v2** (C/M/R/S 1 / 10 / 5 / 29): EN-MAIN · recibo pr-1242 · regla adoptada: No acreditada aquí · reserva material: 29 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
 - **Adquisición del carril** (afirmaciones con adquisición): EN-MANIFIESTO 5 · SIN-UNION 7 ⟨F1 F5 F6⟩
 - **Stoppers** (4): ⟨F1 F5 F6 F7 F8 F12 F15⟩
@@ -695,7 +665,7 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
   - DINERO (núcleo): 76 · 48 · 0 · 0 — por instrumento (* = el carril lo cita): ENFIH 2, ENIF* 105, ENNVIH 1, ENSAFI 16 ⟨F2⟩
   - dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 2007 · TECNOLOGIA 1827 ⟨F2⟩
 - **Reglas del report** (5; encabezados excluidos 1): CONFIRMA 1 · MATIZA-SIN-CRUCE 1 · SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 40% ⟨F3⟩
-- **Validación ciega**: CONCUERDA-NO-APROBADA 6 · NO-PASA 3 · PASA 18 ⟨F10 F2⟩
+- **Validación ciega**: CONCUERDA-NO-APROBADA 6 · NO-PASA 3 · PASA 23 ⟨F10 F2⟩
 - **Editorial v2** (C/M/R/S 0 / 69 / 0 / 144): EN-MAIN · recibo RECIBO-ASTRA6-1 · regla adoptada: No acreditada aquí · reserva material: 144 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
 - **Adquisición del carril** (afirmaciones con adquisición): EN-MANIFIESTO 2 · PROGRAMA-OBTENIDO-EN-COLA 1 · SIN-UNION 20 ⟨F1 F5 F6⟩
 - **Stoppers** (3): ⟨F1 F5 F6 F7 F12 F15⟩
@@ -790,7 +760,7 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
   - DINERO (núcleo): 76 · 48 · 0 · 0 — por instrumento (* = el carril lo cita): ENFIH 2, ENIF* 105, ENNVIH 1, ENSAFI 16 ⟨F2⟩
   - dominios secundarios con cifra (adoptadas + con reserva de ancho): CONFIANZA 2007 · CONSUMO 4470 · GENERO 7304 ⟨F2⟩
 - **Reglas del report** (3; encabezados excluidos 0): MATIZA-SIN-CRUCE 1 · SIN-CIFRA-GEN2 2; con dictamen distinto de SIN-CIFRA-GEN2 33% ⟨F3⟩
-- **Validación ciega**: CONCUERDA-NO-APROBADA 1 · NO-PASA 1 · PASA 7 ⟨F10 F2⟩
+- **Validación ciega**: CONCUERDA-NO-APROBADA 1 · NO-PASA 1 · PASA 12 ⟨F10 F2⟩
 - **Editorial v2** (C/M/R/S 1 / 24 / 5 / 64): EN-MAIN · recibo pr-1196 · regla adoptada: No acreditada aquí · reserva material: 64 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
 - **Adquisición del carril** (afirmaciones con adquisición): SIN-UNION 6 ⟨F1 F5 F6⟩
 - **Stoppers** (2): ⟨F1 F5 F6 F7⟩
@@ -812,7 +782,7 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
   - CONFIANZA (núcleo): 59 · 1948 · 13 · 0 — por instrumento (* = el carril lo cita): ENCIG* 1113, ENCRIGE 27, ENCUCI 40, ENVE 9, ENVIPE* 14, INSTRUMENTO-NO-IDENTIFICADO 4, LATINOBAROMETRO* 323, WVS* 477 ⟨F2⟩
   - dominios secundarios con cifra (adoptadas + con reserva de ancho): AUTORIDAD 142 · CAPITAL_SOCIAL 661 · DINERO 124 · GENERO 7304 · TRABAJO 26409 ⟨F2⟩
 - **Reglas del report** (4; encabezados excluidos 0): SIN-CIFRA-GEN2 4; con dictamen distinto de SIN-CIFRA-GEN2 0% ⟨F3⟩
-- **Validación ciega**: CONCUERDA-NO-APROBADA 72 · PASA 147 ⟨F10 F2⟩
+- **Validación ciega**: CONCUERDA-NO-APROBADA 72 · PASA 156 ⟨F10 F2⟩
 - **Editorial v2** (C/M/R/S 0 / 150 / 6 / 201): EN-MAIN · recibo pr-1171 · regla adoptada: No acreditada aquí · reserva material: 201 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
 - **Adquisición del carril** (afirmaciones con adquisición): EN-MANIFIESTO 3 · PROGRAMA-OBTENIDO-EN-COLA 3 · SIN-UNION 11 ⟨F1 F5 F6⟩
 - **Stoppers** (7): ⟨F1 F5 F6 F7 F8⟩
@@ -915,6 +885,35 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
 - **Frente 2027**: ENOE-INFORMALIDAD (NO-LANZAR-TODAVIA; gate CONTRATO-FIRMADO(regla de inferencia para 39 estratos singleton)+FIRMA-DE-MESA(F) ⟨F11⟩
 - **Siguiente acción** [RESERVA]: `mapa:reserva_v1_1` → E.6 (reserva declarada en el mapa) ⟨F1⟩
 
+##### 🟠 CARRIL-22 · Psicología de la Juventud Mexicana Contemporánea · Gen Z y Millennials Jóvenes como Cohorte Divergente ⟨F1 F14⟩
+
+- **Semáforo NARANJA** — núcleo con cifra adoptada 0/1 y piso sellado registrado pendiente de adopción en 1 ⟨F1 F2 F3 S⟩
+- **Afirmaciones 32**: medible en corpus 9 · con adquisición 14 · no medible por diseño 8 · no construible 1; citan un CALC/RESULT en `gen2_existente`: 8 ⟨F1⟩
+- **Dominios**: JUVENTUD 10 (31%) núcleo · POLITICA 4 (12%) · TRABAJO 4 (12%) · GENERO 3 (9%) · SALUD_MENTAL 3 (9%) · AUTORIDAD 2 (6%) · FAMILIA_CUIDADOS 2 (6%) · TECNOLOGIA 2 (6%) · PAREJA 1 (3%) · RELIGIOSIDAD 1 (3%) ⟨F1 S⟩
+- **Instrumentos citados** (afirmaciones): EDER 3 · ENADID 3 · ENOE 3 · ENDUTIH 2 · OECD 2 · EDR 1 · ENCODAT 1 · ENDISEG 1 · ENSANUT 1 · LATINOBAROMETRO 1; sin instrumento reconocido: 14 ⟨F1 F12 S⟩
+- **Instrumentos del núcleo** (casan stoppers y validación): EDER 3 · ENADID 3 · OECD 1 ⟨F1 F12 S⟩
+- **Pisos del núcleo pendientes de adopción** — registrados en la vista: JUVENTUD: CALC-MC2-ENOE-0001; sellados en disco, no registrados (E.7): ninguno ⟨F16 F17 S⟩
+- **Cifras del catálogo v1.4 por dominio** (adoptadas · con reserva de ancho · suspendidas · acotadas en validación ciega) ⟨F2⟩
+  - núcleo sin filas en el catálogo: JUVENTUD ⟨F2⟩
+  - dominios secundarios con cifra (adoptadas + con reserva de ancho): AUTORIDAD 142 · FAMILIA_CUIDADOS 1449 · GENERO 7304 · PAREJA 3304 · POLITICA 124 · RELIGIOSIDAD 404 · SALUD_MENTAL 2758 · TECNOLOGIA 1827 · TRABAJO 26409 ⟨F2⟩
+- **Reglas del report** (4; encabezados excluidos 0): SIN-CIFRA-GEN2 4; con dictamen distinto de SIN-CIFRA-GEN2 0% ⟨F3⟩
+- **Validación ciega**: CONCUERDA-NO-APROBADA 8 · PASA 96 ⟨F10 F2⟩
+- **Editorial v2** (C/M/R/S 0 / 10 / 4 / 26): EN-MAIN · recibo pr-1242 · regla adoptada: No acreditada aquí · reserva material: 26 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
+- **Adquisición del carril** (afirmaciones con adquisición): COLA-PENDIENTE 2 · EN-MANIFIESTO 4 · PROGRAMA-OBTENIDO-EN-COLA 1 · SIN-UNION 7 ⟨F1 F5 F6⟩
+- **Stoppers** (6): ⟨F1 F5 F6 F7 F12 F15⟩
+  - **FIRMA** (2) ⟨F7⟩
+    - `FP-260928-GEN2-PENDIENTES-4-12d9-07` (por EDER) — [D8 · EDER 2025 (JUV-001/002): levantar la reserva E.6] Opciones: (A) Mesa levanta por escrito la reserva E.6  → mesa firma; encargo 2026-09-28-GEN2-PENDIENTES-4.md ⟨F7⟩
+    - `FP-260928-GEN2-PENDIENTES-4-12d9-19` (por ENADID) — [D21 · ENADID 2023 y Pew GAS Spring 2025: ¿reservadas?] Opciones: (A) Reservarlas por escrito (fila reserva:*  → mesa firma; encargo 2026-09-28-GEN2-PENDIENTES-4.md ⟨F7⟩
+  - **RESERVA** (1) ⟨F12 F6 F15⟩
+    - `mapa:reserva_v1_1` — C4 FIRMAS-16: boletín ENOE 2026T1 consumido; ninguna afirmación de informalidad puede usar (afirmaciones: 1) → E.6 (reserva declarada en el mapa) ⟨F1⟩
+  - **ADQUISICION** (3) ⟨F1 F5 F6⟩
+    - `SIN-UNION` — afirmaciones 7 sin instrumento del vocabulario → propietario en el mapa: ASTRA5-U3 ×3, ASTRA5-MESA-JUVENTUD ×2, ASTRA5-MESA-GENERO ×1 ⟨F1 F5 F6⟩
+    - `OECD` — estado OBTENIDO-PARCIAL; prioridad 36; afirmaciones 2; origen cola-adquisicion-2026-08-12.tsv:36 → caja (completa el payload) ⟨F1 F5 F6⟩
+    - `OECD_TRUST_PUM_2021_2023_2025` — estado SOLICITUD-PREPARADA; prioridad 36; afirmaciones 2; origen NC-0061;NC-0151; GEN2-CRON-DEMANDA-A-DATO-Y-PRODUCCION → mesa con identidad (solicitud preparada) ⟨F1 F5 F6⟩
+- **Actos en vuelo** (sin CONSUMIDO, por nombre): `2026-09-19-EDER-PRIMERA-UNION-SEXO-COHORTE.md`, `2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1-CONTINUACION.md`, `2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1.md` ⟨F13⟩
+- **Frente 2027**: ENOE-INFORMALIDAD (NO-LANZAR-TODAVIA; gate CONTRATO-FIRMADO(regla de inferencia para 39 estratos singleton)+FIRMA-DE-MESA(F) ⟨F11⟩
+- **Siguiente acción** [FIRMA]: `FP-260928-GEN2-PENDIENTES-4-12d9-07` → mesa firma; encargo 2026-09-28-GEN2-PENDIENTES-4.md ⟨F7⟩
+
 ##### 🟢 CARRIL-19 · Non-Family Social Capital in Mexico · Cooperation · Trust · and Collective Action Beyond Kinship ⟨F1 F14⟩
 
 - **Semáforo VERDE** — núcleo con cifra 1/1; reglas con dictamen 67% ≥ 50% ⟨F1 F2 F3 S⟩
@@ -926,7 +925,7 @@ Fuentes pendientes en la cola (quién la pide, por la regla QUIEN_PIDE):
   - CAPITAL_SOCIAL (núcleo): 0 · 661 · 0 · 0 — por instrumento (* = el carril lo cita): ENVIPE* 47, LAPOP* 614 ⟨F2⟩
   - dominios secundarios con cifra (adoptadas + con reserva de ancho): AUTORIDAD 142 · CONFIANZA 2007 · DINERO 124 · RELIGIOSIDAD 404 · RURAL_INDIGENA 77 · TECNOLOGIA 1827 · VIOLENCIA 12805 ⟨F2⟩
 - **Reglas del report** (9; encabezados excluidos 0): CONFIRMA 2 · MATIZA 1 · MATIZA-SIN-CRUCE 3 · SIN-CIFRA-GEN2 3; con dictamen distinto de SIN-CIFRA-GEN2 67% ⟨F3⟩
-- **Validación ciega**: CONCUERDA-NO-APROBADA 4 · PASA 301 ⟨F10 F2⟩
+- **Validación ciega**: CONCUERDA-NO-APROBADA 4 · PASA 306 ⟨F10 F2⟩
 - **Editorial v2** (C/M/R/S 0 / 5 / 0 / 83): EN-MAIN · recibo pr-1171 · regla adoptada: No acreditada aquí · reserva material: 83 registros SIN-CIFRA; ver razones y límites en tabla. Módulo [v2.16] y firewall: bloque C3-V216 del report. ⟨F4⟩
 - **Adquisición del carril** (afirmaciones con adquisición): COLA-PENDIENTE 1 · SIN-UNION 12 ⟨F1 F5 F6⟩
 - **Stoppers** (6): ⟨F1 F5 F6 F7 F8⟩
@@ -1021,15 +1020,15 @@ Todo número de arriba sale de estos archivos por `python3 tools/tablero_carrile
 | F5 | `data/cola-adquisicion-v1_0.tsv` | `e96592d42f57` | lee_tsv (salta líneas #) | 952 |
 | F6 | `data/manifiesto.yaml` | `d8ac4943b224` | manifiesto(): campos id y estado_reserva por línea | 7198 |
 | F7 | `forense/firmas-pendientes.tsv` | `be51c3cb1bc7` | lee_tsv, estado ABIERTA* | 678 |
-| F8 | `forense/no-corrido.tsv` | `dbc5eb2a8ba0` | lee_tsv, estado ABIERTA*, razón PARO-PREMISA*/PARO-ENTORNO* | 1102 |
+| F8 | `forense/no-corrido.tsv` | `ffdaf1817da3` | lee_tsv, estado ABIERTA*, razón PARO-PREMISA*/PARO-ENTORNO* | 1103 |
 | F9 | `data/corrida0/demanda-dictamen-v1_0.tsv` | `59ab68b09e08` | lee_tsv, dictamen SIN-BASE-GEN2 / ESPERA-* | 341 |
-| F10 | `data/corrida0/validaciones-independientes.tsv` | `b7b72fc00114` | lee_tsv, join resultado_id → catálogo.result_id | 21266 |
+| F10 | `data/corrida0/validaciones-independientes.tsv` | `2864d908be14` | lee_tsv, join resultado_id → catálogo.result_id | 21282 |
 | F11 | `forense/analisis/familias-2027/familias-2027-estado-v1_2.tsv` | `871c4dfe05cd` | lee_tsv | 8 |
 | F12 | `forense/analisis/corpus-completo/tabla-final-v1_0.tsv` | `4a647dd37503` | lee_tsv, programa y olas_reservadas_al_entrar | 146 |
-| F13 | `forense/encargos/*.md` | `0e5dd362de9c (lista)` | glob; en vuelo = sin línea «## CONSUMIDO» | 820 |
+| F13 | `forense/encargos/*.md` | `e187a602071e (lista)` | glob; en vuelo = sin línea «## CONSUMIDO» | 820 |
 | F15 | `data/corrida0/aperturas-pendientes-v1_0.tsv` | `4c7f99590390` | lee_tsv, (programa, año de ola) -> expediente y qué la abre | — |
 | F16 | `forense/analisis/*/*dictamenes.tsv` | `0abe6bf6c772 (lista)` | pisos_pendientes(): glob; filas con dominio · calc · resultado_id | 90 |
-| F17 | `data/corrida0/resultados.tsv` | `56c0224f683e` | pisos_pendientes(): conjunto de resultado_id registrados (salta líneas #) | — |
+| F17 | `data/corrida0/resultados.tsv` | `71afe9d3f93b` | pisos_pendientes(): conjunto de resultado_id registrados (salta líneas #) | — |
 | F14 | `canon/crosswalk-carriles-v1_0.tsv` | `77878ff2f4d5` | crosswalk() (misma derivación; --verifica compara con el archivo) | 31 |
 | S | `tools/tablero_carriles.py` | `cebf99425a43` | constantes de la cabecera | — |
 <!-- TABLERO-UNICO:CARRILES:END -->
@@ -1039,7 +1038,7 @@ Todo número de arriba sale de estos archivos por `python3 tools/tablero_carrile
 ## P · Pendientes del programa — de quién es cada cosa
 
 <!-- TABLERO-UNICO:PENDIENTES:BEGIN -->
-_Derivado con `python3 tools/nc_por_clase.py --json` (`derivar()`, que no escribe) y `forense/firmas-pendientes.tsv`; universo de la deuda: 282 filas ABIERTA de 1102 en forense/no-corrido.tsv. La clase de cada fila es la del clasificador, sin reinterpretar. No toca el libro ni cierra nada. Este bloque sustituye al inventario `PENDIENTES-PROGRAMA` que ya no se publica aparte._
+_Derivado con `python3 tools/nc_por_clase.py --json` (`derivar()`, que no escribe) y `forense/firmas-pendientes.tsv`; universo de la deuda: 283 filas ABIERTA de 1103 en forense/no-corrido.tsv. La clase de cada fila es la del clasificador, sin reinterpretar. No toca el libro ni cierra nada. Este bloque sustituye al inventario `PENDIENTES-PROGRAMA` que ya no se publica aparte._
 
 #### P.1 · Firmas de mesa abiertas: 41
 
@@ -1089,18 +1088,18 @@ Ordenadas por plazo y después por cuántos carriles frenan. «Vence» se compar
 | `FP-260928-GEN2-TUBERIA-3-f18c-01` | P4 · el [deriva] no se fusiona solo: (a) automerge-rutinas.yml gana schedule (cada 15 min) que fusiona PR derivados/auto-* con su último SHA verde y… | — | — | 2026-09-28 |
 | `FP-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` | §5-bis · regla del semáforo de tools/tablero_carriles.py (GEN2-TUBERIA-TABLERO-INSUMOS-1; dirección propone, mesa decide). SIN-UNION cuenta como stop… | — | — | 2026-09-29 |
 
-#### P.2 · Deuda abierta por dueño: 282 filas
+#### P.2 · Deuda abierta por dueño: 283 filas
 
 | dueño | filas | qué la mueve |
 |---|---:|---|
 | MESA-DECISION | 42 | mesa elige una opción de la hoja de decisiones |
-| MESA-ACCION | 40 | mesa hace algo con su identidad (acceso, envío, recibo) |
+| MESA-ACCION | 41 | mesa hace algo con su identidad (acceso, envío, recibo) |
 | DIRECCION-ENCARGO | 152 | dirección revisa y lanza un encargo ya redactado |
 | CANAL | 23 | que se fusione el `[deriva]` en cola |
 | APERTURA | 17 | que se abra una ola reservada (pre-registro o mesa por escrito, E.6) |
 | ADQUISICION | 7 | que llegue el payload que nombra la solicitud |
 | CAJA | 1 | que caja corra un encargo ya archivado |
-| **total** | **282** | |
+| **total** | **283** | |
 
 #### P.3 · El detalle, fila por fila, por dueño
 
@@ -1151,7 +1150,7 @@ Ordenadas por plazo y después por cuántos carriles frenan. «Vence» se compar
 | `NC-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-01` | P5 · opción de auto-merge del [deriva] (FP f18c-01) | dueño MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D27) | — |
 | `NC-260929-GEN2-TUBERIA-TABLERO-INSUMOS-1-c6aa-02` | §5-bis · regla del semáforo de tools/tablero_carriles.py | dueño MESA-DECISION (forense/analisis/pendientes-4/hoja-decisiones-pendientes-4.md#D28) | — |
 
-**MESA-ACCION · 40**
+**MESA-ACCION · 41**
 
 | id | pieza | qué le falta | evidencia derivada |
 |---|---|---|---|
@@ -1195,6 +1194,7 @@ Ordenadas por plazo y después por cuántos carriles frenan. «Vence» se compar
 | `NC-260928-GEN2-OBTENCION-EXTERNA-1-81e1-07` | P4 | dueño MESA-ACCION (2026-10-05) | — |
 | `NC-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01` | P4 · commit 2 | dueño MESA-ACCION (2026-09-29) | — |
 | `NC-260928-GEN2-VALIDACION-Y-2027-1-f926-03` | P3 | dueño MESA-ACCION (2026-10-05) | — |
+| `NC-260929-GEN2-TUBERIA-TABLERO-UNICO-1-22ee-01` | P5 · asiento de FP-260928-GEN2-CIERRE-Y-PRODUCTO-3-3c2e-01 | dueño MESA-ACCION (2026-10-05) | — |
 
 **DIRECCION-ENCARGO · 152**
 
