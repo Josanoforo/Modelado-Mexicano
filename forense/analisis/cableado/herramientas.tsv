@@ -87,6 +87,7 @@ tools/genera_specs_envipe_serie_completa.py	Genera las ocho caras mecánicas del
 tools/genera_tabla_piso.py	Deriva canon/tabla-de-piso-v1_0.tsv desde canon/catalogo-del-mexicano-v1_0.tsv.
 tools/genera_tabla_piso_v1_1.py	Deriva canon/tabla-de-piso-v1_1.tsv desde canon/catalogo-del-mexicano-v1_2.tsv.
 tools/genera_tabla_piso_v1_2.py	Deriva canon/tabla-de-piso-v1_2.tsv desde canon/catalogo-del-mexicano-v1_3.tsv.
+tools/genera_tabla_piso_v1_3.py	Deriva canon/tabla-de-piso-v1_3.tsv desde canon/catalogo-del-mexicano-v1_4.tsv.
 tools/hook_lectura.py	Hook PreToolUse (Bash|Read) que hace cumplir las reglas de lectura.
 tools/informe_pilotos.py	Cifras de los tres pilotos para el informe del programa -- ACTO GEN2-MARCADOR-E-INFORME-1 · P4.
 tools/integra_banxico_producto_dano.py	Actualiza sólo la relación Banxico de N34 con la medición sellada.
@@ -162,6 +163,7 @@ tools/sello_externo.py	Manifiesto de sellos GEN2 y su atestación externa (D-a1.
 tools/snapshot_motor_gen2.py	Construye el snapshot reproducible del emisor GEN2 explícito.
 tools/tablero_carriles.py	tablero_carriles.py -- TABLERO DE CARRILES: un carril por report del
 tools/tablero_programa.py	tablero_programa.py -- deriva los indicadores del TABLERO DEL PROGRAMA desde el
+tools/tablero_unico.py	tablero_unico.py -- bloques TABLERO-UNICO:CARRILES y TABLERO-UNICO:PENDIENTES del
 tools/tablero_vista.py	tablero_vista.py -- vista visual del TABLERO DEL PROGRAMA, para leerse en diez segundos.
 tools/tasas_base_corresidencia_actual.py	ACTO MAESTRA33-C1 · RE-SPEC-CORRESIDENCIA — COMMIT-2
 tools/tasas_base_fase1.py	ACTO MAESTRA32-E18 · REGLAS-OLA5-FASE1 — COMMIT-2
