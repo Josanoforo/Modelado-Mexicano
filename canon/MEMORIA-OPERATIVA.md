@@ -29,7 +29,7 @@
 
 ## 4 · Decisiones activas por objeto ⟲ (FIRMADA del último corte, id → una línea)
 <!-- T-MEM:INICIO -->
-- Corte 2026-09-28 · 187 FIRMADA en 14 días · se muestran 12 · todas: `python3 tools/memoria_operativa.py --lista`
+- Corte 2026-09-28 · 189 FIRMADA en 14 días · se muestran 12 · todas: `python3 tools/memoria_operativa.py --lista`
 - FP-260928-GEN2-VALIDACION-Y-2027-1-f926-04 · COMMIT-1 y emisión de ENOE/ENSU (sucesor por familia) · 28/09
 - FP-260928-GEN2-VALIDACION-Y-2027-1-f926-03 · GEN2-TUBERIA-SELLO-EXTERNO-2 · 28/09
 - FP-260928-GEN2-VALIDACION-Y-2027-1-f926-02 · GEN2-VALIDACION-Y-2027-2 (lote 4 de C1) · 28/09
@@ -37,11 +37,11 @@
 - FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01 · cierre de las NC listadas en la hoja · 28/09
 - FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-02 · Sucesor GEN2-CORPUS-LICENCIAS-2 registrado, no ejecutado aquí · 28/09
 - FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-01 · El acuse de cada solicitud entra por adenda (GEN2-OBTENCION-EXTERNA-2) · 28/09
+- FP-260928-GEN2-PENDIENTES-4-12d9-02 · todo cierre y toda asignación de dueño de las NC del libro · 28/09
+- FP-260928-GEN2-PENDIENTES-4-12d9-01 · cierre por diseño de las NC GEN1 o retiradas y redacción de los encar… · 28/09
 - FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02 · Gate ACCESO-AUTORIZADO de las 312 en GEN2-ASTRA6-C1-LOTE-4 · 28/09
 - FP-260928-GEN2-ASTRA-CONTINUIDAD-C3-1-26bb-03 · FIRMAS-21 · 28/09
 - FP-260928-GEN2-ASTRA-CONTINUIDAD-C3-1-26bb-02 · FIRMAS-21 · 28/09
-- FP-260928-GEN2-ASTRA-CONTINUIDAD-C3-1-26bb-01 · FIRMAS-21 · 28/09
-- FP-260928-GEN2-ASTRA-CONTINUIDAD-C2-1-ba6c-01 · universo del tablero C2 y rótulo de ENSU 2025T4 como oro; no abre ni … · 28/09
 <!-- T-MEM:FIN -->
 
 ## 5 · Dónde está cada cosa
