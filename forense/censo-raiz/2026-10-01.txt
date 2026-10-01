@@ -619,3 +619,8 @@ Páginas guardadas (1, no son dato -- evidencia de procedencia):
   descargas.php -- sugerencia detectada: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
 
 Escrito: data/manifiesto-staging.yaml (274 entrada(s) staging de la raíz 'descargas_mx' + 0 preservada(s) de otras). Nada se promovió a data/manifiesto.yaml.
+
+[ADQ-PDN] s1: PARO-ZIP-ILEGIBLE, data/raw/pdn_bulk_2026_10/pdn_s1_2026-10-01.zip no es un ZIP válido o falló testzip()
+[ADQ-PDN] s2: estado=COINCIDE id=pdn_s2_2026_09_06 sha_manifiesto=db8fda58236ac96de0216dfdffedaa31b8a45c06bf6c9c1034192f914c4922e8 sha_real=db8fda58236ac96de0216dfdffedaa31b8a45c06bf6c9c1034192f914c4922e8 miembros_zip=IGUAL
+[ADQ-PDN] s3: estado=COINCIDE id=pdn_s3v2 sha_manifiesto=923d0dd06d6855babec620b373394381de1c0d7eb16c523066f6d333efb11adb sha_real=923d0dd06d6855babec620b373394381de1c0d7eb16c523066f6d333efb11adb miembros_zip=IGUAL
+[ADQ-PDN] s6: PARO-ZIP-ILEGIBLE, data/raw/pdn_bulk_2026_10/pdn_s6_2026-10-01.zip no es un ZIP válido o falló testzip()
