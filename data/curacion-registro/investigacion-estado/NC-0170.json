@@ -1,14 +1,14 @@
 {
   "alternativa_requerida": true,
   "alternativas": [],
-  "ciclos_sin_avance": 2,
+  "ciclos_sin_avance": 4,
   "continuacion_pendiente": false,
-  "cursor_continuacion": "Reactivar cuando mesa firme si [COLA]/[ADQ] son cuarta categoría exenta; no re-perseguir los retro-sellos ya ejecutados o reasentados.",
+  "cursor_continuacion": "Reactivar cuando mesa firme si [COLA]/[ADQ] son cuarta categoría exenta; no re-perseguir retro-sellos ya ejecutados o reasentados.",
   "estado": "barrera",
   "evidencias": [
-    "forense/notas/2026-09-28-GEN2-38-investigacion-adq.md"
+    "forense/notas/2026-10-01-GEN2-38-investigacion-adq.md"
   ],
-  "frontera_no_examinada": "Ninguna ruta pública de datos plausible: el residual es una decisión de gobernanza de mesa.",
+  "frontera_no_examinada": "Ninguna ruta pública de datos plausible: el residual vigente es una decisión de gobernanza de mesa.",
   "necesidad_id": "NC-0170",
   "proxima_revision": "2026-10-05",
   "suficiencia": {
@@ -23,6 +23,6 @@
     "unidad": "NO_APLICA",
     "uso_habilitado": "INCOMPATIBLE"
   },
-  "ultima_exploracion": "2026-09-28",
-  "version_pregunta": "AUTO-NC-v1-b40df28b34e8"
+  "ultima_exploracion": "2026-10-01",
+  "version_pregunta": "AUTO-NC-v1-9be0569b70d9"
 }

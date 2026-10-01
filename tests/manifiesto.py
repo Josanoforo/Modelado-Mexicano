@@ -261,7 +261,7 @@ def _es_documental(entrada):
     encaja en ninguna estructura conocida -- _validar_manifiesto_completo
     la rechaza."""
     claves = set(entrada.keys())
-    if claves <= {"id", "fecha", "hecho"}:
+    if claves <= {"id", "fecha", "hecho", "licencia"}:
         return True
     if "archivo" not in entrada and "sha256" not in entrada and "retirada" in entrada:
         return True

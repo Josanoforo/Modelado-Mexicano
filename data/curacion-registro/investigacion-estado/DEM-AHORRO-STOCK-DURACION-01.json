@@ -5,16 +5,16 @@
     "RELABEL_USO_ACOTADO_AUTORIZADO_POR_772",
     "APROBAR_PROXY_NUEVO_CON_ALCANCE_EXPLICITO"
   ],
-  "ciclos_sin_avance": 15,
+  "ciclos_sin_avance": 16,
   "continuacion_pendiente": true,
-  "cursor_continuacion": "Buscar sólo instrumentos probabilísticos de adultos que separen tenencia/ausencia y meses o días del mismo stock; mesa puede mantener bloqueo, relabel #772 o aprobar proxy explícito.",
+  "cursor_continuacion": "Buscar sólo instrumentos probabilísticos de adultos que separen tenencia/ausencia y meses o días del mismo stock; no repetir ENIF, ENSAFI, EACF, Findex, ENFIH ni IIEG.",
   "estado": "continua",
   "evidencias": [
-    "forense/notas/2026-09-28-GEN2-38-investigacion-adq.md"
+    "forense/notas/2026-10-01-GEN2-38-investigacion-adq.md"
   ],
   "frontera_no_examinada": "Catálogos variable-por-variable de encuestas financieras de universidades estatales distintas de IIEG y archivos históricos no indexados de CONDUSEF.",
   "necesidad_id": "DEM-AHORRO-STOCK-DURACION-01",
-  "proxima_revision": "2026-09-29",
+  "proxima_revision": "2026-10-02",
   "reprogramaciones": [
     {
       "fecha_decision": "2026-09-15",
@@ -34,6 +34,6 @@
     "unidad": "ACREDITADA",
     "uso_habilitado": "INCOMPATIBLE"
   },
-  "ultima_exploracion": "2026-09-28",
+  "ultima_exploracion": "2026-10-01",
   "version_pregunta": "2026-09-15-stock-ausencia-y-duracion-separados-v1"
 }

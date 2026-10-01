@@ -1,12 +1,12 @@
 {
   "alternativa_requerida": true,
   "alternativas": [],
-  "ciclos_sin_avance": 2,
+  "ciclos_sin_avance": 4,
   "continuacion_pendiente": false,
   "cursor_continuacion": "Reactivar al asignarse uno de esos actos; enlazar enadid2023:P3_27_AG a CORR-0013 y la serie MOCIBA a F6 sin re-derivar la firma de mesa.",
   "estado": "barrera",
   "evidencias": [
-    "forense/notas/2026-09-28-GEN2-38-investigacion-adq.md"
+    "forense/notas/2026-10-01-GEN2-38-investigacion-adq.md"
   ],
   "frontera_no_examinada": "Acto MEDICION-DEMANDA con CORR-0013 en perímetro y acto F6-PANEL-CAJA-1 o sucesor para MOCIBA 2015/2016/2017.",
   "necesidad_id": "NC-0246",
@@ -23,6 +23,6 @@
     "unidad": "NO_APLICA",
     "uso_habilitado": "INCOMPATIBLE"
   },
-  "ultima_exploracion": "2026-09-28",
-  "version_pregunta": "AUTO-NC-v1-27ba1e0d93bc"
+  "ultima_exploracion": "2026-10-01",
+  "version_pregunta": "AUTO-NC-v1-2fdd3fb707aa"
 }
