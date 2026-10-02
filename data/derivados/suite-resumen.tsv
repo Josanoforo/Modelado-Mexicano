@@ -1,0 +1,266 @@
+# DERIVADO por tools/resumen_suite.py desde el log del job `suite` (nocturno); no se edita a mano
+clave	valor
+commit	c5905a80ca062157e65948893f9d1561a5d03e66
+fecha	2026-10-02T15:33:30Z
+run_id	37027333731
+resultado	VERDE
+fail_total	3
+warn_total	241697
+fail_nuevos	0
+warn_nuevos	255
+duracion_s	222
+warn_nuevo	T03: archivo/propuestas/propuesta-motor-adaptativo-celda-v0_1.md: cita `catalogo-fuentes-v1_0.md`, que no existe
+warn_nuevo	T03: archivo/propuestas/propuesta-motor-adaptativo-celda-v0_1.md: cita `cruce-catalogo-fichas-2026-07-30.md`, que n
+warn_nuevo	T03: archivo/propuestas/propuesta-motor-adaptativo-celda-v0_1.md: cita `v2_0.md`, que no existe
+warn_nuevo	T03: canon/L0/ADR-260922-GEN2-PENDIENTES-RECONCILIA-1-38c3-01.md: cita `PENDIENTES-PROGRAMA.md`, que no existe
+warn_nuevo	T03: canon/L0/ADR-260923-GEN2-TRAMITE-FIRMAS-12-9087-01.md: cita `GEN2-TRAMITE-FIRMAS-12-ADENDA-1.md`, que no exist
+warn_nuevo	T03: canon/L0/ADR-260923-GEN2-TRAMITE-FIRMAS-12-9087-01.md: cita `ORDEN-DE-LANZAMIENTO-2026-09-23.md`, que no exist
+warn_nuevo	T03: canon/L0/ADR-260923-GEN2-TRAMITE-FIRMAS-9-97dc-02.md: cita `PENDIENTES-PROGRAMA-v3.md`, que no existe
+warn_nuevo	T03: canon/L0/ADR-260924-GEN2-INFORME-V1-3-1-b1aa-01.md: cita `estado-programa-v1_16.md`, que no existe
+warn_nuevo	T03: canon/L0/ADR-260929-GEN2-TUBERIA-TABLERO-UNICO-1-22ee-01.md: cita `TABLERO-CARRILES.md`, que no existe
+warn_nuevo	T03: canon/estado-programa-v1_19.md: cita `BRIEF-ASTRA-01-PISOS-REJILLA-2026-09-19.md`, que no existe
+warn_nuevo	T03: canon/estado-programa-v1_19.md: cita `estado-programa-v1.16.md`, que no existe
+warn_nuevo	T03: canon/estado-programa-v1_19.md: cita `estado-programa-v1_14.md`, que no existe
+warn_nuevo	T03: canon/estado-programa-v1_19.md: cita `estado-programa-v1_17.md`, que no existe
+warn_nuevo	T03: canon/estado-programa-v1_19.md: cita `estado-programa-v1_18.md`, que no existe
+warn_nuevo	T03: canon/estado-programa-v1_19.md: cita `v2_13.md`, que no existe
+warn_nuevo	T03: canon/estado-programa-v1_19.md: cita `v2_14.md`, que no existe
+warn_nuevo	T03: canon/gobernanza-v1_15.md: cita `-ADENDA-1.md`, que no existe
+warn_nuevo	T03: canon/gobernanza-v1_15.md: cita `MANUAL-opentimestamps-2026-09-23.md`, que no existe
+warn_nuevo	T03: canon/gobernanza-v1_15.md: cita `MANUAL-pages-y-zenodo-2026-09-23.md`, que no existe
+warn_nuevo	T03: canon/gobernanza-v1_15.md: cita `ORDEN-DE-LANZAMIENTO-2026-09-23.md`, que no existe
+warn_nuevo	T03: canon/gobernanza-v1_15.md: cita `PENDIENTES-PROGRAMA-v3.md`, que no existe
+warn_nuevo	T03: canon/gobernanza-v1_15.md: cita `PENDIENTES-PROGRAMA.md`, que no existe
+warn_nuevo	T03: canon/gobernanza-v1_15.md: cita `PENDIENTES-PROGRAMA__1_.md`, que no existe
+warn_nuevo	T03: canon/gobernanza-v1_15.md: cita `TABLERO-CARRILES.md`, que no existe
+warn_nuevo	T03: canon/gobernanza-v1_15.md: cita `estado-programa-v1_16.md`, que no existe
+warn_nuevo	T03: canon/gobernanza-v1_15.md: cita `estado-programa-v1_17.md`, que no existe
+warn_nuevo	T03: canon/gobernanza-v1_15.md: cita `instrucciones-proyecto-v2_14.md`, que no existe
+warn_nuevo	T03: canon/gobernanza-v1_15.md: cita `v2_13.md`, que no existe
+warn_nuevo	T03: canon/informe-programa-v1_5.md: cita `estado-programa-v1_17.md`, que no existe
+warn_nuevo	T03: canon/informe-programa-v1_6.md: cita `estado-programa-v1_17.md`, que no existe
+warn_nuevo	T03: canon/informe-programa-v1_6.md: cita `estado-programa-v1_18.md`, que no existe
+warn_nuevo	T03: data/INFRAESTRUCTURA-v1_0.md: cita `-enmienda-v1_1.md`, que no existe
+warn_nuevo	T03: data/INFRAESTRUCTURA-v1_0.md: cita `TABLERO-CARRILES.md`, que no existe
+warn_nuevo	T03: docs/PROTOCOLO-TABLERO.md: cita `TABLERO-CARRILES.md`, que no existe
+warn_nuevo	T03: docs/tablero.md: cita `TABLERO-CARRILES.md`, que no existe
+warn_nuevo	T03: forense/analisis/astra-encig/encargo-astra-encig-emision.md: cita `00-ARRANQUE-Y-COORDINACION-ASTRA-1.md`, que
+warn_nuevo	T03: forense/analisis/astra-encig/encargo-astra-encig-emision.md: cita `MISION-ASTRA-1-vence-al-piso-2026-09-22.md`
+warn_nuevo	T03: forense/analisis/astra-encig/nota.md: cita `00-ARRANQUE-Y-COORDINACION-ASTRA-1.md`, que no existe
+warn_nuevo	T03: forense/analisis/astra-envipe/01-ASTRA-ENVIPE-EMISION-PROSPECTIVA-1.md: cita `00-ARRANQUE-Y-COORDINACION-ASTRA
+warn_nuevo	T03: forense/analisis/astra-envipe/nota-envipe.md: cita `00-ARRANQUE-Y-COORDINACION-ASTRA-1.md`, que no existe
+warn_nuevo	T03: forense/analisis/astra-envipe/recibo-claude-envipe.md: cita `03-INPUT-CAJA-PILOTOS-4-Y-5.md`, que no existe
+warn_nuevo	T03: forense/analisis/astra6-revision-tanda2/astra6-tanda2-dictamen-integracion.md: cita `07-REVISION-PR-Y-DECISION
+warn_nuevo	T03: forense/analisis/din-oferta-exclusion/input-u1-verbatim.md: cita `MISION-ASTRA-3-mide-lo-que-falta.md`, que no
+warn_nuevo	T03: forense/analisis/dominios/genero/recibo-astra5-u2-endireh-codex-para-claude.md: cita `04-ASTRA5-U2-GENERO-ENDI
+warn_nuevo	T03: forense/analisis/encig-persistencia-ic-calibrado/01-input-verbatim.md: cita `MISION-ASTRA-3-mide-lo-que-falta.
+warn_nuevo	T03: forense/analisis/familias-2027/astra6-envipe/enmienda-firmas-c2-envipe-v1_0.md: cita `spec-v1_3.md`, que no ex
+warn_nuevo	T03: forense/analisis/persistencia-error-formalidad/input-verbatim.md: cita `MISION-ASTRA-3-mide-lo-que-falta.md`,
+warn_nuevo	T03: forense/analisis/reports-v2/autoridad-civismo-comunalidad-1/verificaciones.md: cita `03-ASTRA6-C3-CIERRE-1240-
+warn_nuevo	T03: forense/encargos/2026-09-19-GEN2-RECIBO-CODEX-3.md: cita `estado-programa-v1_14.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-19-GEN2-V214-instrucciones-v2_14.md: cita `instrucciones-proyecto-v2_14.md`, que no e
+warn_nuevo	T03: forense/encargos/2026-09-20-GEN2-RECIBO-CODEX-6.md: cita `EVALUACION-CARRIL-CODEX-2026-09-20.md`, que no exist
+warn_nuevo	T03: forense/encargos/2026-09-20-GEN2-V215-instrucciones-v2_15.md: cita `ACTO-MD-bloque-ejecucion-v2_15.md`, que no
+warn_nuevo	T03: forense/encargos/2026-09-20-GEN2-V215-instrucciones-v2_15.md: cita `instrucciones-proyecto-v2_14.md`, que no e
+warn_nuevo	T03: forense/encargos/2026-09-20-GEN2-V215-instrucciones-v2_15.md: cita `instrucciones-proyecto-v2_15-OPERATIVA.md`
+warn_nuevo	T03: forense/encargos/2026-09-21-GEN2-TRAMITE-FIRMAS-5.md: cita `-4.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-21-GEN2-TUBERIA-SUCESOR-1.md: cita `01-VEREDICTO.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-21-GEN2-TUBERIA-SUCESOR-1.md: cita `02-ENCARGO-verbatim.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-21-GEN2-TUBERIA-SUCESOR-1.md: cita `03-hallazgos-de-este-acto.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-GEN2-FP374-RESELLO-1.md: cita `PLAN-ACELERACION-seis-palancas-2026-09-20.md`, que
+warn_nuevo	T03: forense/encargos/2026-09-22-GEN2-PENDIENTES-CAJA-1.md: cita `PENDIENTES-PROGRAMA.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-GEN2-PENDIENTES-RECONCILIA-1.md: cita `PENDIENTES-PROGRAMA.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-GEN2-RECIBO-ASTRA-1.md: cita `-6.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-GEN2-TRAMITE-COLA-VIEJA-1.md: cita `PENDIENTES-PROGRAMA__1_.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-9-ADENDA-1.md: cita `-ADENDA-1.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-9-ADENDA-1.md: cita `PENDIENTES-PROGRAMA-v3.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-9.md: cita `-ADENDA-1.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `-4.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `-enmienda-v1_1.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `01-VEREDICTO.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `02-ENCARGO-verbatim.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `03-hallazgos-de-este-acto.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `ACTO-MD-bloque-ejecucion-v2_15.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `EVALUACION-CARRIL-CODEX-2026-09-20.md`, que no exist
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `enmienda-v1_1.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `estado-programa-v1_13.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `instrucciones-proyecto-v2_13.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `instrucciones-proyecto-v2_14.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `instrucciones-proyecto-v2_15-OPERATIVA.md`, que no e
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `raices.local.yaml`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `settings.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `v1_12.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `v1_13.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `v1_14.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `v2_13.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `v2_14.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-23-GEN2-DUELO-ENCIG2025-CIERRE-1.md: cita `-COMMIT-1.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-23-GEN2-FRONT-1.md: cita `instrucciones-proyecto-v2_N.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-23-GEN2-FRONT-1.md: cita `v2_16-HISTORIA.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-23-GEN2-FRONT-1.md: cita `v2_16.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-10.md: cita `PENDIENTES-PROGRAMA-v3.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-13.md: cita `BRIEF-DEEP-SEARCH-2-competencia-Mexico-2026-09-23
+warn_nuevo	T03: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-14-ADENDA-2.md: cita `MANUAL-opentimestamps-2026-09-23.md`, qu
+warn_nuevo	T03: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-14-ADENDA-2.md: cita `MANUAL-pages-y-zenodo-2026-09-23.md`, qu
+warn_nuevo	T03: forense/encargos/2026-09-26-GEN2-FRONT-3-PORTADA-1.md: cita `-HISTORIA.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-CIERRE-SEMANAL-2.md: cita `2026-09-27-GEN2-CIERRE-SEMANAL-2-ADENDA-N.md`, que
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-CIERRE-SEMANAL-2.md: cita `estado-programa-v1_17.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-CORPUS-LICENCIAS-1.md: cita `2026-09-27-GEN2-CORPUS-LICENCIAS-1-ADENDA-N.md`,
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1.md: cita `2026-09-27-GEN2-MAPA-INSTRUMENTOS-ALTE
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1.md: cita `REVISION-repo-y-fuentes-alternas-2026-
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-OBTENCION-EXTERNA-1.md: cita `2026-09-27-GEN2-OBTENCION-EXTERNA-1-ADENDA-N.md
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-OBTENCION-EXTERNA-1.md: cita `REVISION-repo-y-fuentes-alternas-2026-09-27.md`
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-OBTENCION-PREVIA-1.md: cita `2026-09-27-GEN2-OBTENCION-PREVIA-1-ADENDA-N.md`,
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md: cita `HOJA-FIRMAS-21-para-mesa-2026-09-27.md`, q
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2.md: cita `2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-N.md`, que n
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2.md: cita `pr-1.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-3.md: cita `2026-09-27-GEN2-RECIBO-ASTRA6-3-ADENDA-N.md`, que n
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-3.md: cita `pr-N.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-TRAMITE-PENDIENTES-2.md: cita `2026-09-27-GEN2-TRAMITE-PENDIENTES-2-ADENDA-N.
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-TRAMITE-PENDIENTES-2.md: cita `PENDIENTES-PROGRAMA__3_.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-TRAMITE-PENDIENTES-2.md: cita `TABLERO-PROGRAMA__7_.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-TUBERIA-RESUMEN-SUITE-1.md: cita `2026-09-27-GEN2-TUBERIA-RESUMEN-SUITE-1-ADE
+warn_nuevo	T03: forense/encargos/2026-09-27-GEN2-TUBERIA-RESUMEN-SUITE-1.md: cita `TABLERO-PROGRAMA__7_.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-APERTURAS-PREREGISTRADAS-1.md: cita `2026-09-28-GEN2-APERTURAS-PREREGISTRADAS
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C1-1.md: cita `00-TRANSFER-Y-PLAN.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C1-1.md: cita `2026-09-28-GEN2-ASTRA-CONTINUIDAD-C1-1-ADEND
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C1-1.md: cita `pr-N.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C2-1.md: cita `2026-09-28-GEN2-ASTRA-CONTINUIDAD-C2-1-ADEND
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C3-1.md: cita `2026-09-28-GEN2-ASTRA-CONTINUIDAD-C3-1-ADEND
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C3-1.md: cita `pr-N.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md: cita `2026-09-28-GEN2-ASTRA6-C1-LOTE-3-ADENDA-N.md`, que
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-ASTRA6-C2-EJECUCION-1.md: cita `2026-09-28-GEN2-ASTRA6-C2-EJECUCION-1-ADENDA-
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3.md: cita `2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3-ADENDA-
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1.md: cita `2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-N.
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-CIERRE-Y-PRODUCTO-3.md: cita `2026-09-28-GEN2-CIERRE-Y-PRODUCTO-3-ADENDA-N.md
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-CORPUS-CACHE-PARQUET-1.md: cita `2026-09-28-GEN2-CORPUS-CACHE-PARQUET-1-ADEND
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-DEMANDA-DICTAMEN-1.md: cita `2026-09-28-GEN2-DEMANDA-DICTAMEN-1-ADENDA-N.md`,
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-MAPA-DOMINIOS-Y-LICENCIAS-1.md: cita `2026-09-28-GEN2-MAPA-DOMINIOS-Y-LICENCI
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-MEDICION-CARRILES-2.md: cita `2026-09-28-GEN2-MEDICION-CARRILES-2-ADENDA-N.md
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-PENDIENTES-3.md: cita `2026-09-28-GEN2-PENDIENTES-3-ADENDA-N.md`, que no exis
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-PENDIENTES-3.md: cita `PENDIENTES-PROGRAMA__4_.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-PENDIENTES-4-ADENDA-1.md: cita `PENDIENTES-PROGRAMA__5_.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-PENDIENTES-4.md: cita `2026-09-28-GEN2-PENDIENTES-4-ADENDA-N.md`, que no exis
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-PISOS-DOMINIOS-Y-REGLAS-1.md: cita `2026-09-28-GEN2-PISOS-DOMINIOS-Y-REGLAS-1
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-PISOS-Y-ADENDAS-1.md: cita `2026-09-28-GEN2-PISOS-Y-ADENDAS-1-ADENDA-N.md`, q
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-PISOS-Y-ADENDAS-1.md: cita `raices.local.yaml`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-REGLAS-Y-RESULT-1.md: cita `2026-09-28-GEN2-REGLAS-Y-RESULT-1-ADENDA-N.md`, q
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-RELEVO-TRAMITE-CAJA-1.md: cita `2026-09-28-GEN2-RELEVO-TRAMITE-CAJA-1-ADENDA-
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-TABLERO-CARRILES-1.md: cita `2026-09-28-GEN2-TABLERO-CARRILES-1-ADENDA-N.md`,
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-TRAMITE-FIRMAS-21-1.md: cita `HOJA-FIRMAS-21-v2-opciones-2026-09-27.md`, que
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-TRAMITE-FIRMAS-21.md: cita `2026-09-28-GEN2-TRAMITE-FIRMAS-21-ADENDA-N.md`, q
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1-ADENDA-1.md: cita `HOJA-FIRMAS-21-v2-opciones-2026-0
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1.md: cita `2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1-A
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1.md: cita `HOJA-FIRMAS-21-v2-opciones-2026-09-27.md`,
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-TRAMITE-INSTRUCCIONES-V217-1.md: cita `-HISTORIA.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-TRAMITE-INSTRUCCIONES-V217-1.md: cita `2026-09-28-GEN2-TRAMITE-INSTRUCCIONES-
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-TUBERIA-3.md: cita `2026-09-28-GEN2-TUBERIA-3-ADENDA-N.md`, que no existe
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-TUBERIA-Y-CURACION-1.md: cita `2026-09-28-GEN2-TUBERIA-Y-CURACION-1-ADENDA-N.
+warn_nuevo	T03: forense/encargos/2026-09-28-GEN2-VALIDACION-Y-2027-1.md: cita `2026-09-28-GEN2-VALIDACION-Y-2027-1-ADENDA-N.md
+warn_nuevo	T03: forense/encargos/2026-09-29-GEN2-TUBERIA-TABLERO-UNICO-1.md: cita `TABLERO-CARRILES.md`, que no existe
+warn_nuevo	T03: forense/encargos/cola/PROPUESTOS/2026-09-29-GEN2-CORRECCION-C3-1.md: cita `pr-N.md`, que no existe
+warn_nuevo	T03: forense/encargos/cola/PROPUESTOS/2026-09-29-GEN2-RELEVO-TRAMITE-CAJA-2.md: cita `L8-CONVERSION-PRESIDENCIAL-sp
+warn_nuevo	T03: forense/encargos/cola/PROPUESTOS/2026-09-29-GEN2-TUBERIA-CORRIDA0-2.md: cita `SKILL.md`, que no existe
+warn_nuevo	T03: forense/encargos/cola/PROPUESTOS/2026-09-29-GEN2-TUBERIA-CORRIDA0-2.md: cita `raices.local.yaml`, que no exist
+warn_nuevo	T03: forense/encargos/fuentes/ASTRA6-lanzamiento-20260926/00-LEEME-LANZAMIENTO.md: cita `01-2026-09-26-ASTRA6-C1-PA
+warn_nuevo	T03: forense/encargos/fuentes/ASTRA6-lanzamiento-20260926/00-LEEME-LANZAMIENTO.md: cita `02-2026-09-26-ASTRA6-C2-EN
+warn_nuevo	T03: forense/encargos/fuentes/ASTRA6-lanzamiento-20260926/00-LEEME-LANZAMIENTO.md: cita `03-2026-09-26-ASTRA6-C2-EN
+warn_nuevo	T03: forense/encargos/fuentes/ASTRA6-lanzamiento-20260926/00-LEEME-LANZAMIENTO.md: cita `04-2026-09-26-ASTRA6-C2-EN
+warn_nuevo	T03: forense/encargos/fuentes/ASTRA6-lanzamiento-20260926/00-LEEME-LANZAMIENTO.md: cita `05-2026-09-26-ASTRA6-C3-SO
+warn_nuevo	T03: forense/encargos/fuentes/ASTRA6-lanzamiento-20260926/00-LEEME-LANZAMIENTO.md: cita `06-2026-09-26-ASTRA6-C3-CO
+warn_nuevo	T03: forense/encargos/fuentes/MISION-ASTRA-4-producto.md: cita `-COMMIT-1.md`, que no existe
+warn_nuevo	T03: forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/ENCARGO-GEN2-TRAMITE-5-2026-09-17.md: cita `estado
+warn_nuevo	T03: forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md: cita `estado-programa-v1.14.md`
+warn_nuevo	T03: forense/hallazgos.md: cita `03-hallazgos-de-este-acto.md`, que no existe
+warn_nuevo	T03: forense/hallazgos.md: cita `EVALUACION-CARRIL-CODEX-2026-09-20.md`, que no existe
+warn_nuevo	T03: forense/hallazgos.md: cita `PENDIENTES-PROGRAMA-v3.md`, que no existe
+warn_nuevo	T03: forense/hallazgos.md: cita `instrucciones-proyecto-v2_13.md`, que no existe
+warn_nuevo	T03: forense/hallazgos.md: cita `instrucciones-proyecto-v2_14.md`, que no existe
+warn_nuevo	T03: forense/hallazgos.md: cita `v2_13.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-19-GEN2-PISOS-ENIF2021-FORMALIDAD-1-cierre.md: cita `instrucciones-proyecto-v2_14.md`, q
+warn_nuevo	T03: forense/notas/2026-09-19-GEN2-PISOS-ENUT2019-EJES-1-cierre.md: cita `estado-programa-v1_14.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-20-GEN2-DIN-CREDITO-PISOS-ENIF2021-1-cierre.md: cita `raices.local.yaml`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-3-cierre.md: cita `instrucciones-proyecto-v2_13.md`, que
+warn_nuevo	T03: forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-3-cierre.md: cita `v1_13.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-3-cierre.md: cita `v1_14.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-21-GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1-cierre.md: cita `raices.local.yaml`, que no exis
+warn_nuevo	T03: forense/notas/2026-09-22-GEN2-TRAMITE-COLA-VIEJA-1-nota.md: cita `PENDIENTES-PROGRAMA__1_.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-23-GEN2-FRONT-1-cierre.md: cita `PLAN-VISIBILIZACION-2026-09-23.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-23-GEN2-TRAMITE-FIRMAS-14-cierre.md: cita `MANUAL-opentimestamps-2026-09-23.md`, que no
+warn_nuevo	T03: forense/notas/2026-09-23-GEN2-TRAMITE-FIRMAS-14-cierre.md: cita `MANUAL-pages-y-zenodo-2026-09-23.md`, que no
+warn_nuevo	T03: forense/notas/2026-09-26-GEN2-RECIBO-ASTRA6-N/pr-1173.md: cita `...63n_y_la_adaptaci...md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-26-GEN2-RECIBO-ASTRA6-N/pr-1173.md: cita `...ano__Patrones...md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-26-revisa-post-hoc-1166.md: cita `encargo.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-26-revisa-post-hoc-1166.md: cita `metodo.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-27-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-cierre.md: cita `REVISION-repo-y-fuentes-alternas-2
+warn_nuevo	T03: forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/nota-recibo.md: cita `conductas.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/nota-recibo.md: cita `metodo.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-2/pr-1203.md: cita `encargo.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-2/pr-1203.md: cita `metodo.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-28-GEN2-ASTRA6-C1-LOTE-3-cierre.md: cita `metodo.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3-cierre.md: cita `FIRMAS-Y-ACCESO.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-28-GEN2-PENDIENTES-3-cierre.md: cita `PENDIENTES-PROGRAMA__4_.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-28-GEN2-PISOS-Y-ADENDAS-1/2026-09-28-GEN2-PISOS-Y-ADENDAS-1-cierre.md: cita `ambiguedade
+warn_nuevo	T03: forense/notas/2026-09-28-GEN2-PISOS-Y-ADENDAS-1/2026-09-28-GEN2-PISOS-Y-ADENDAS-1-cierre.md: cita `raices.loca
+warn_nuevo	T03: forense/notas/2026-09-29-GEN2-TUBERIA-TABLERO-INSUMOS-1-cierre.md: cita `TABLERO-CARRILES.md`, que no existe
+warn_nuevo	T03: forense/notas/2026-09-29-GEN2-TUBERIA-TABLERO-UNICO-1-cierre.md: cita `TABLERO-CARRILES.md`, que no existe
+warn_nuevo	T03: forense/notas/nota-2026-09-21-gen2-celda-d-piloto-3-commit-1-v1_2.md: cita `raices.local.yaml`, que no existe
+warn_nuevo	T03: forense/notas/nota-2026-09-21-gen2-encig-serie-y-tendencia-1.md: cita `raices.local.yaml`, que no existe
+warn_nuevo	T03: forense/notas/nota-2026-09-21-gen2-tuberia-cierre-sin-choque-2-cierre.md: cita `estado-programa-v1_13.md`, que
+warn_nuevo	T03: forense/notas/nota-2026-09-21-gen2-tuberia-cierre-sin-choque-2-cierre.md: cita `v1_12.md`, que no existe
+warn_nuevo	T03: forense/notas/nota-2026-09-27-gen2-obtencion-externa-1.md: cita `REVISION-repo-y-fuentes-alternas-2026-09-27.m
+warn_nuevo	T03: forense/notas/nota-2026-09-28-gen2-tramite-hoja-firmas-21-1.md: cita `HOJA-FIRMAS-21-v2-opciones-2026-09-27.md
+warn_nuevo	T03: forense/notas/nota-arnes-sesion-claude-md.md: cita `instrucciones-proyecto-v2_13.md`, que no existe
+warn_nuevo	T03: forense/notas/nota-arnes-sesion-claude-md.md: cita `settings.md`, que no existe
+warn_nuevo	T03: forense/prereg-caja/DISENO-duelo-prospectivo-ENIGH2024-v1_0.md: cita `enmienda-v1_1.md`, que no existe
+warn_nuevo	T03: forense/tablero/TABLERO-PROGRAMA.md: cita `TABLERO-CARRILES.md`, que no existe
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-ayuda-0001/art
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-comunitaria-00
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-decisiones-000
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-laboral-0001/a
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-ejecucion-lote2/p3/reconstrucciones/eder-0003-v4/artefactos/eder-0
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-ejecucion-lote2/p3/reconstrucciones/encodat-pisos-sustancias-0001-
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-ejecucion-lote2/p3/reconstrucciones/encodat-pisos-sustancias-0001-
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-ejecucion-lote2/p3/reconstrucciones/endireh-pisos-2016-pareja-fisi
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p2/specs/enbiare-edades-propuesta.md: ci
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p2/specs/encuci-rural-restaurado.md: cit
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p2/specs/enigh-complemento-restaurado.md
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p3/entradas/residuales-p3-contrato-ic.md
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p4/residuales-p4-cambios.md: cita `esque
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/residuales-nota-cierre.md: cita `esquema
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/residuales-recibo-para-claude.md: cita `
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-lote3/LANZAMIENTO-LOTE3-RESIDUALES.md: cita `FIRMAS-Y-ACCESO.md`,
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-lote3/enbiare-pisos-bienestar-0001/entrada/enbiare-l3r--prompt.md:
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-lote3/enbiare-pisos-bienestar-0001/entrada/enbiare-l3r--prompt.md:
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-lote3/enbiare-pisos-bienestar-0001/entrada/enbiare-l3r--prompt.md:
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-lote3/encodat-pisos-sustancias-0001/entrada/encodat-l3r--prompt.md
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-lote3/encodat-pisos-sustancias-0001/entrada/encodat-l3r--prompt.md
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-lote3/encodat-pisos-sustancias-0001/entrada/encodat-l3r--prompt.md
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-lote3/encodat-pisos-sustancias-0001/entrada/encodat-l3r--prompt.md
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-lote3/encodat-pisos-sustancias-0001/reconstructora/salida/encodat-
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-lote3/encuci-0001/entrada/encuci-l3r--prompt.md: cita `FIRMAS-Y-AC
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-lote3/encuci-0001/entrada/encuci-l3r--prompt.md: cita `esquema-sal
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-lote3/endireh-pisos-2016-pareja-fisica-0002/entrada/prompt.md: cit
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-lote3/endireh-pisos-2016-pareja-fisica-0002/reconstructora/salida/
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-lote3/enigh-0001/entrada/enigh-l3r--prompt.md: cita `FIRMAS-Y-ACCE
+warn_nuevo	T03: forense/validacion-independiente/catalogo-1-lote3/enigh-0001/entrada/enigh-l3r--prompt.md: cita `esquema-salid
+warn_nuevo	T03: forense/validacion-independiente/pisos-y-adendas-1/nofisica-bc/ambiguedades-nofisica-bc.md: cita `ambiguedades
+warn_nuevo	T03: forense/validacion-independiente/pisos-y-adendas-1/protocolo-recalculo-v1_0.md: cita `ambiguedades.md`, que no
+warn_nuevo	T03: forense/validacion-independiente/validacion-continua-1/LANZAMIENTO-VC1.md: cita `FIRMAS-Y-ACCESO.md`, que no e
+warn_nuevo	T03: forense/validacion-independiente/validacion-continua-1/ccpv-fam-pisos-0001/entrada/ccpv-fam-pisos-0001--prompt
+warn_nuevo	T03: forense/validacion-independiente/validacion-continua-1/edr-suicidio-pisos-0001/entrada/edr-suicidio-pisos-0001
+warn_nuevo	T03: forense/validacion-independiente/validacion-continua-1/emat-pareja-pisos-0001/entrada/emat-pareja-pisos-0001--
+warn_nuevo	T03: forense/validacion-independiente/validacion-continua-1/enadid-cola-2018-0001/entrada/enadid-cola-2018-0001--pr
+warn_nuevo	T03: forense/validacion-independiente/validacion-continua-1/enasem-escolaridad-2021-0001/entrada/enasem-escolaridad
+warn_nuevo	T03: forense/validacion-independiente/validacion-continua-1/endiseg-pisos-2021-0001/entrada/endiseg-pisos-2021-0001
+warn_nuevo	T03: forense/validacion-independiente/validacion-continua-1/enoe-participacion-2024t4-0001/entrada/enoe-participaci
+warn_nuevo	T03: forense/validacion-independiente/validacion-continua-1/enpecyt-conoc-pisos-0001/entrada/enpecyt-conoc-pisos-00
+warn_nuevo	T03: forense/validacion-independiente/validacion-continua-1/ensu-pisos-0001/entrada/ensu-pisos-0001--prompt.md: cit
+warn_nuevo	T03: forense/validacion-independiente/validacion-continua-1/ensu-serie-0001/entrada/ensu-serie-0001--prompt.md: cit
+warn_nuevo	T03: forense/validacion-independiente/validacion-continua-1/envipe-percepcion-2024-0001/entrada/envipe-percepcion-2
+warn_nuevo	T03: forense/validacion-independiente/validacion-continua-1/latinobarometro-cola-2023-0001/entrada/latinobarometro-
+warn_nuevo	T03: forense/validacion-independiente/validacion-continua-1/mmsi-pisos-2016-0001/entrada/mmsi-pisos-2016-0001--prom
+warn_nuevo	T03: forense/validacion-independiente/validacion-continua-1/pew-religion-2024-0001/entrada/pew-religion-2024-0001--
+warn_nuevo	T13: canon/MEMORIA-OPERATIVA.md sin bloque de cabecera ARCHIVO/NOMBRE ESTABLE (ADR-36)
+warn_nuevo	T13: canon/REGLAS-DE-LECTURA.md sin bloque de cabecera ARCHIVO/NOMBRE ESTABLE (ADR-36)
+warn_nuevo	T13: canon/donde-cambio-el-mexicano-v1_0.md sin bloque de cabecera ARCHIVO/NOMBRE ESTABLE (ADR-36)
