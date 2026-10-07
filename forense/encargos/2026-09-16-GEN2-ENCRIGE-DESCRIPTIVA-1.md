@@ -92,3 +92,11 @@ Auditoría y documentación auxiliar: aproximadamente 20% del esfuerzo. La defin
 
 > Ejecuta íntegramente ENCARGO-GEN2-ENCRIGE-DESCRIPTIVA-1.md en CLI/CAJA, worktree propio. Autorizo fijar y ejecutar la extracción descriptiva de ENCRIGE 2020 desde los tres insumos ya registrados, pruebas dirigidas, sello/verify propio cuando el contrato lo permita, commits, push y un PR; fusión conmigo. Autorizo diferir cascada y registro global. Respeta F-19: unidades económicas, descripción para el informe, cero transferencia de M o evaluación F6. No abras ENCRIGE 2016, ENIF reservado ni otras familias. Entrega tabla, lectura sustantiva y reproducción; no te detengas en redactar una spec si el corpus permite terminar la extracción.
 <!-- FIN DEL BLOQUE ORIGINAL VERBATIM -->
+
+## NO-CORRIDO / RESERVAS
+
+cuenta_gen2=PENDIENTE-DE-MESA; registro global diferido (cita verbatim: `forense/notas/2026-09-16-GEN2-ENCRIGE-DESCRIPTIVA-1-cierre.md#Registro, contador y reservas` → "El último comando fue estrictamente seco: no se pasó `--escribe`. ... Por ello se difiere el registro global; la carpeta CALC queda sellada y verificable de forma independiente. `cuenta_gen2=PENDIENTE-DE-MESA`; no se escribió `decisiones.tsv` ni una firma de contador."; misma nota, `## Integración diferida` → "CIERRE COMPARTIDO DIFERIDO — integrar después de CAREO/TRÁMITE-4 ... No hay números reservados, cambios al panel F6, adopción al motor ni despliegue.").
+
+## CONSUMIDO
+
+PR #826 (`d07c1d06c5f5357725d4b389bd321810fc2e7545`, "GEN2-ENCRIGE-DESCRIPTIVA-1: corrupción experimentada por tamaño") — único merge que cita este rótulo (`git log --all --merges --grep='GEN2-ENCRIGE-DESCRIPTIVA-1' -F`) y que toca este archivo además de `forense/analisis/encrige-descriptiva-1/` (medidor, spec, resultados, sello, csv, lectura-TRA.md), `forense/notas/2026-09-16-GEN2-ENCRIGE-DESCRIPTIVA-1-cierre.md` y `tests/test_encrige_descriptiva.py`. Marcado por `/tramite` (puertas 1-3, `canon/REGLAS-DE-LECTURA.md` + skill `/tramite` §3.3).
