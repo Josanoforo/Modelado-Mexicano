@@ -107,3 +107,7 @@ Devolver producto, decisión que desbloquea, PR/base/HEAD, comandos y pruebas re
 ## Prompt de lanzamiento
 
 > Ejecuta íntegramente GEN2-MOCIBA-FLUJO-DOCUMENTAL-1. Autorizo adquirir hasta cuatro documentos oficiales de cuestionario/manual MOCIBA 2021/2022, registrar únicamente sus adiciones al manifiesto y resolver el flujo hacia P12_5 por ola. Entrega contrato de elegibilidad, clasificador y fixtures sintéticos ejecutados, tarjetas sucesoras locales y preflight sin abrir respuestas. Conserva M no elegible y firma/llamadas/R no autorizados; resolver el filtro no autoriza F6. No abras tabulados, microdatos, ISSP, ENCO ni el piloto. Autorizo commits, pruebas, push y PR; fusión conmigo. Aplica cascada diferida y preserva los perímetros paralelos.
+
+## CONSUMIDO
+
+`PR #840` (`acto/gen2-mociba-flujo-documental-1` → `main`), verificado fusionado en `origin/main` (`git merge-base --is-ancestor 2c149f58b origin/main`). Marca añadida por `/tramite` (puerta 3: único merge `Merge pull request #840`, toca este archivo y otros doce — contrato de elegibilidad, clasificador, fixtures y manifiesto).
