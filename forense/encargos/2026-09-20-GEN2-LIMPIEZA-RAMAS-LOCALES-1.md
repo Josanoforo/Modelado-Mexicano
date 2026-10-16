@@ -37,3 +37,11 @@ No fusiona · no rescata (lista para que otro acto rescate) · no dictamina la c
 CIERRE
 
 ## NO-CORRIDO / RESERVAS ("Ninguno." si aplica) · ## CONSUMIDO con PR · estado final: git branch | wc -l y git worktree list por clon, pegados crudos.
+
+## NO-CORRIDO / RESERVAS
+
+Ninguno. (cita verbatim: `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-1-cierre.md#Cierre`, sección `## NO-CORRIDO / RESERVAS` → "Ninguno.")
+
+## CONSUMIDO
+
+PR #910 (`62bcba922d56a53c2bce7d5fa41a0b399ca6847f`, "GEN2-LIMPIEZA-RAMAS-LOCALES-1: inventario y limpieza de ramas/worktrees en la caja") — único merge que cita este rótulo (`git log --all --merges --grep='GEN2-LIMPIEZA-RAMAS-LOCALES-1'`) y que toca este archivo además de `forense/hallazgos.md` y `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-1-cierre.md`. Marcado por `/tramite` (puertas 1-3, `canon/REGLAS-DE-LECTURA.md` + skill `/tramite` §3.3).
