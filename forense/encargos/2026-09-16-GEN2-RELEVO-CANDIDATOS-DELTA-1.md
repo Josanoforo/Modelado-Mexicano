@@ -97,3 +97,11 @@ Consumo técnico: rama `acto/gen2-relevo-candidatos-delta-1`, base
 `forense/notas/2026-09-16-GEN2-RELEVO-CANDIDATOS-DELTA-1-cierre.md`.
 La cascada compartida queda diferida por la excepción temporal del encargo;
 este consumo no es firma, adopción ni fusión.
+
+## NO-CORRIDO / RESERVAS
+
+Diez decisiones individuales de bin 2, la decisión de `RES-0055` (bin 3), la pareja sucesora de `RES-0028` y la cascada compartida de NC/decisiones/ADR/canon quedan sin correr (cita verbatim: `forense/notas/2026-09-16-GEN2-RELEVO-CANDIDATOS-DELTA-1-cierre.md#NO-CORRIDO / RESERVAS`, tabla completa — primera fila: "Decisión individual de diez slots | Bin 2 obligatorio por p medida o por dependencia `M/AGREGADO` | Conservan autoridad legacy aunque el delta sea pequeño | Mesa firma o rechaza cada renglón de `RES-0025/0026/0031/0032/0033/0034/0053/0054/0056/0066`"; última fila: "Cascada compartida de NC/decisiones/ADR/PARA/canon/contadores | Excepción temporal explícita del encargo | NC-0255 no se edita en esta rama aunque el producto técnico ya existe | Integración serial después de CAREO/TRÁMITE-4, sin reservar números aquí").
+
+## CONSUMIDO
+
+PR #829 (`d8ffe7101a23d3520f2e33f280923317ab47912b`, "ACTO GEN2-RELEVO-CANDIDATOS-DELTA-1 · deltas y decisiones") — único merge que cita este rótulo (`git log --all --merges --grep='GEN2-RELEVO-CANDIDATOS-DELTA-1' -F`) y que toca este archivo además de `forense/notas/2026-09-16-GEN2-RELEVO-CANDIDATOS-DELTA-1-cierre.md`, `forense/relevo-usos/candidatos-delta-1/` (contrato, decisiones propuestas, json/tsv de relevo y selección), `tests/test_relevo_candidatos_delta.py` y `tools/relevo_candidatos_delta.py`. Marcado por `/tramite` (puertas 1-3, `canon/REGLAS-DE-LECTURA.md` + skill `/tramite` §3.3).

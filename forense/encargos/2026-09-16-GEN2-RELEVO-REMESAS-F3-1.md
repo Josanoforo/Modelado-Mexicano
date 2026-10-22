@@ -97,3 +97,11 @@ Consumo técnico: rama `acto/gen2-relevo-remesas-f3-1`, base
 `forense/notas/2026-09-16-GEN2-RELEVO-REMESAS-F3-1-cierre.md`. La cascada
 compartida queda diferida bajo **CIERRE COMPARTIDO DIFERIDO**; este consumo no
 es una medición, una nueva firma ni una fusión.
+
+## NO-CORRIDO / RESERVAS
+
+No se ejecutaron medidores históricos, registro ni rutinas; integración diferida (cita verbatim: `forense/notas/2026-09-16-GEN2-RELEVO-REMESAS-F3-1-cierre.md#Estado y reservas` → "No se ejecutaron medidores históricos, `corrida0 registro --escribe`, cron, `/tramite`, `/despacha` ni `/deriva`; no se abrió microdato ni reserva." · "**INTEGRADO:** pendiente de fusión por Jonás." · "**CIERRE COMPARTIDO DIFERIDO:** queda para el trámite serial propagar el cierre administrativo de NC-0216. F-2/NC-0217, NC-0244 y cualquier decisión sobre `RES-0047/0049` permanecen fuera de alcance.").
+
+## CONSUMIDO
+
+PR #835 (`32071a5c9c88d39d8ebac7c24b3d997ef557edb9`, "GEN2-RELEVO-REMESAS-F3-1: aplica F-3 a RES-0035") — único merge que cita este rótulo (`git log --all --merges --grep='GEN2-RELEVO-REMESAS-F3-1' -F`) y que toca este archivo además de `data/corrida0/relevo-usos-v1_0.tsv`, `forense/analisis/relevo-remesas-f3-1/relevo-remesas-f3-1-antes-despues.md`, `forense/notas/2026-09-16-GEN2-RELEVO-REMESAS-F3-1-cierre.md`, `tests/test_relevo_remesas_f3.py` y `tools/relevo_usos.py`. Marcado por `/tramite` (puertas 1-3, `canon/REGLAS-DE-LECTURA.md` + skill `/tramite` §3.3).
