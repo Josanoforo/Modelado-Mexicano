@@ -95,3 +95,7 @@ Termina cuando exista el producto usable y siguiente acción clara; no refines p
 
 Fuente local recibida de mesa: `/mnt/c/Users/PC0/Descargas MX/ENCARGO-GEN2-L8-LINAJE-HEREDADO-1.md`.
 Archivado por el propio acto el 17 de septiembre de 2026 UTC (sesión iniciada el 16 de septiembre en America/Mexico_City). El bloque anterior se conserva verbatim; esta nota posterior registra únicamente procedencia y consumo. Consumido por PR #833, abierto desde la rama `acto/gen2-l8-linaje-heredado-1`; fusión pendiente de Jonás.
+
+## CONSUMIDO
+
+`PR #833` (`acto/gen2-l8-linaje-heredado-1` → `main`), verificado fusionado en `origin/main` (`git merge-base --is-ancestor a8aff380c0205479c004b18c51c83c7a7e766cd4 origin/main`). Marca añadida por `/tramite` (puerta 3: único merge `Merge pull request #833`, toca este archivo y otros cuatro — `tests/test_corrida0.py`, `tools/corrida0.py`, nota y tabla propias).
