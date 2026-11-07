@@ -163,3 +163,7 @@ Termina cuando la vista está regenerada, el recorrido evita usar una proyecció
 Prompt de lanzamiento
 
 Ejecuta íntegramente ENCARGO-GEN2-DEMANDA-VIGENTE-ANTES-DESPACHO.md en CAJA. Usa origin/main vigente y aprovecha correctivos ya integrados. Autorizo cambios delimitados, regeneración canónica, pruebas, commits, push, apertura o actualización del PR, despliegue del SHA publicado si cambia el runtime y la comprobación mediante la tarea existente, dentro de sus fechas y presupuesto. Los merges quedan conmigo. Corrige la recurrencia del desfase con el mecanismo existente; conserva cursores, reservas y decisiones científicas. No descargues por demostrar actividad ni repitas investigaciones. No autoriza contactos a terceros, compras ni nuevos privilegios. Entrega evidencia concreta del corte utilizado y del despacho, distinguiendo comprobación manual de ejecución automática.
+
+## CONSUMIDO
+
+`PR #801` (`acto/gen2-demanda-vigente-antes-despacho` → `main`), verificado fusionado en `origin/main` (`git merge-base --is-ancestor 10f8617582c6d6f201ba067137e8ea5c3c9483c1 origin/main`). Marca añadida por `/tramite` (puerta 3: único merge `Merge pull request #801`, toca este archivo y otros seis — workflow, proyección de demanda, herramientas de cron y pruebas).
