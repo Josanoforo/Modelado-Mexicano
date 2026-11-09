@@ -144,3 +144,7 @@ Presupuesto de control aproximado: 20%; el resto, definición y preparación usa
 Fuente local recibida de mesa: `/mnt/c/Users/PC0/Descargas MX/ENCARGO-GEN2-F6-FACTIBILIDAD-PREPARACION-1.md`.
 Archivado por el propio acto el 16 de septiembre de 2026. El bloque anterior se conserva verbatim; esta nota posterior registra únicamente procedencia y consumo. Estado: en ejecución en la rama `acto/gen2-f6-factibilidad-preparacion-1`.
 
+## CONSUMIDO
+
+`PR #825` (`acto/gen2-f6-factibilidad-preparacion-1` → `main`), verificado fusionado en `origin/main` (`git merge-base --is-ancestor 4fff914f286021574ac0897273ee0e6971b38f04 origin/main`). Marca añadida por `/tramite` (puerta 3: único merge `Merge pull request #825`, toca este archivo y otros seis — spec, tarjetas, fixtures, `tests/check.py` y herramienta propia).
+
